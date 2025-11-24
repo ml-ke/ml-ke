@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Graphs Fundamentals: Bridging Data and Meaning"
-date: 2025-11-25 09:00:00 +0300
+date: 2025-11-24 18:00:00 +0300
 categories: [Data Science, Knowledge Graphs]
 tags: [knowledge-graphs, rdf, ontologies, graph-databases, neo4j, embeddings]
 math: true
