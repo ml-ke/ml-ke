@@ -5,6 +5,9 @@ categories: [Machine Learning, Math]
 tags: [optimization, calculus, neural-networks]
 math: true
 mermaid: true
+image:
+  path: /assets/BlogPhotos/gradient-descent.png
+  alt: Gradient Descent
 ---
 
 ## What is Gradient Descent?

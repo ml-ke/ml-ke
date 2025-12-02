@@ -6,7 +6,7 @@ tags: [neo4j, graph-algorithms, pagerank, louvain, community-detection, python]
 math: true
 mermaid: true
 image:
-  path: /assets/logo.png
+  path: /assets/BlogPhotos/KGpythoN4j.png
   alt: ML Kenya - Graph Algorithms
 ---
 

@@ -6,7 +6,7 @@ tags: [neo4j, python, graph-databases, cypher, tutorial, african-tech]
 math: true
 mermaid: true
 image:
-  path: /assets/logo.png
+  path: /assets/BlogPhotos/KGpythoN4j.png
   alt: ML Kenya - Neo4j and Python Tutorial
 ---
 
