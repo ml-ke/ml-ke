@@ -305,7 +305,7 @@ Knowledge Graphs bridge the gap between unstructured data and human understandin
 **Related Posts:**
 - [Second-Order Optimization Methods]({% post_url 2025-11-24-second-order-optimization-methods %})
 - [Momentum and Adaptive Learning Rates]({% post_url 2025-11-20-momentum-adaptive-learning-rates %})
-- **Coming Next:** Building a Knowledge Graph with Neo4j and Python
+- **Next in this series:** [Building a Knowledge Graph with Neo4j and Python]({% post_url 2025-12-02-building-a-knowledge-graph-with-neo4j-and-python %})
 
 ---
 

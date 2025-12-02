@@ -135,4 +135,4 @@ Gradient descent is the foundation upon which modern machine learning is built. 
 
 ---
 
-**Next in this series**: Momentum and Adaptive Learning Rates
+**Next in this series**: [Momentum and Adaptive Learning Rates]({% post_url 2025-11-20-momentum-adaptive-learning-rates %})
