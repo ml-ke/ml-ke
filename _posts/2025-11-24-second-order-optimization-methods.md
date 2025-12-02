@@ -787,5 +787,3 @@ Second-order optimization methods offer powerful tools for specific scenarios:
 - [Knowledge Graphs Fundamentals]({% post_url 2025-11-25-knowledge-graphs-fundamentals %})
 
 ---
-
-*Ready to dive into Knowledge Graphs? Stay tuned for our next post where we bridge optimization with structured knowledge representation!* 🚀
