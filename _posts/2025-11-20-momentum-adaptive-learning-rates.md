@@ -6,8 +6,8 @@ tags: [optimization, deep-learning, adam, momentum, sgd]
 math: true
 mermaid: true
 image:
-  path: /assets/logo.png
-  alt: ML Kenya Blogs
+  path: /assets/BlogPhotos/MBMnLR.png
+  alt: Momentum and Adaptive Learning Rates
 ---
 
 ## Introduction
@@ -549,4 +549,4 @@ The evolution from vanilla gradient descent to adaptive optimizers represents a 
 
 **Related Posts:**
 - [Introduction to Gradient Descent]({% post_url 2025-11-20-intro-to-gradient-descent %})
-- Coming Soon: Second-Order Optimization Methods
+- [Second-Order Optimization Methods]({% post_url 2025-11-24-second-order-optimization-methods %})

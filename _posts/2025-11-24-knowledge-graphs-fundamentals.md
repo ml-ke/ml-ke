@@ -6,7 +6,7 @@ tags: [knowledge-graphs, rdf, ontologies, graph-databases, neo4j, embeddings]
 math: true
 mermaid: true
 image:
-  path: /assets/logo.png
+  path: /assets/BlogPhotos/Knowledge-Graphs.png
   alt: ML Kenya - Knowledge Graphs Fundamentals
 ---
 
