@@ -1,6 +1,6 @@
 ---
 title: "Graph Algorithms in Neo4j: PageRank and Community Detection"
-date: 2025-12-08 09:00:00 +0300
+date: 2025-12-02 12:00:00 +0300
 categories: [Data Science, Knowledge Graphs]
 tags: [neo4j, graph-algorithms, pagerank, louvain, community-detection, python]
 math: true
