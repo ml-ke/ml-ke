@@ -784,7 +784,7 @@ Second-order optimization methods offer powerful tools for specific scenarios:
 **Related Posts:**
 - [Introduction to Gradient Descent]({% post_url 2025-11-20-intro-to-gradient-descent %})
 - [Momentum and Adaptive Learning Rates]({% post_url 2025-11-20-momentum-adaptive-learning-rates %})
-- **Coming Next:** Knowledge Graphs Fundamentals
+- [Knowledge Graphs Fundamentals]({% post_url 2025-11-25-knowledge-graphs-fundamentals %})
 
 ---
 
