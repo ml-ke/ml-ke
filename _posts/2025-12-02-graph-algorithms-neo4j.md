@@ -139,7 +139,7 @@ By leveraging Neo4j GDS, we can unlock deep insights that are invisible in tradi
 
 > **Next Steps**
 > 
-> In our next post, we'll take this a step further and explore **Graph Neural Networks (GNNs)**, where we'll use these graph features to train deep learning models!
+> In our next post, we'll take this a step further and explore **[Graph Neural Networks (GNNs)]({% post_url 2025-12-04-graph-neural-networks-fundamentals %})**, where we'll use these graph features to train deep learning models!
 {: .prompt-tip }
 
 ## References
