@@ -1,6 +1,6 @@
 ---
 title: "Self-Evolving Agent Skills: When AI Rewrites Its Own Playbook"
-date: 2026-06-03 14:05:00 +0300
+date: 2026-06-03 00:00:00 +0300
 categories: [AI Security, ML Ops]
 tags: [agents, self-modification, skill-evolution, audit, agent-skills, safety]
 math: true
