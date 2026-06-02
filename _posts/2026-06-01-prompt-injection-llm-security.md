@@ -1,6 +1,6 @@
 ---
 title: "Prompt Injection: The #1 LLM Security Risk"
-date: 2026-06-02 22:00:00 +0300
+date: 2026-06-01 22:00:00 +0300
 categories: [AI Security, LLM]
 tags: [prompt-injection, llm-security, owasp, rag, slack-ai, cve-2024-5184, red-teaming]
 math: true
@@ -323,7 +323,7 @@ Prompt injection is not a niche vulnerability. It's the defining security challe
 ### Next in Series
 
 - **▶ You are here: Prompt Injection — The #1 LLM Security Risk**
-- **Next:** [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-02-jailbreaking-llms %})
+- **Next:** [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
 
 ## References
 

@@ -1,6 +1,6 @@
 ---
 title: "Supply Chain Attacks on AI Systems: From Model Repos to Pipelines"
-date: 2026-06-02 23:59:00 +0300
+date: 2026-06-01 23:59:00 +0300
 categories: [AI Security, LLM, ML Ops]
 tags: [supply-chain, huggingface, pypi, mlsec, pickle, safetensors, dependency-confusion, owasp-llm03]
 math: true
@@ -388,10 +388,10 @@ The AI supply chain is a sprawling, interconnected ecosystem where a single comp
 
 ### The Complete AI Hacking Series
 
-- [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-02-prompt-injection-llm-security %})
-- [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-02-jailbreaking-llms %})
-- [Data Poisoning and Model Backdoors]({% post_url 2026-06-02-data-poisoning-model-backdoors %})
-- [Insecure Agent Design: When AI Has Too Much Agency]({% post_url 2026-06-02-insecure-agent-design %})
+- [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})
+- [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
+- [Data Poisoning and Model Backdoors]({% post_url 2026-06-01-data-poisoning-model-backdoors %})
+- [Insecure Agent Design: When AI Has Too Much Agency]({% post_url 2026-06-01-insecure-agent-design %})
 - **▶ You are here: Supply Chain Attacks on AI Systems**
 
 ## References

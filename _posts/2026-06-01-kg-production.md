@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Graphs in Production: Scaling, Storage, and Optimization"
-date: 2026-06-02 18:00:00 +0300
+date: 2026-06-01 18:00:00 +0300
 categories: [Data Science, Knowledge Graphs, ML Ops]
 tags: [knowledge-graphs, neo4j, scalability, graph-databases, aws-neptune, janusgraph, production]
 math: true
@@ -18,7 +18,7 @@ Then your organization decides to put it in production. Suddenly your 10K nodes 
 
 Welcome to the gap between **prototype KG** and **production KG**.
 
-This post is the fourth in our Knowledge Graphs series. We covered [KG fundamentals]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), [built a Neo4j KG from scratch]({% post_url 2026-06-02-building-knowledge-graph-neo4j-python %}), and [applied GNNs for reasoning]({% post_url 2026-06-02-gnn-knowledge-graph-reasoning %}). Now we graduate to production — where the rubber meets the graph.
+This post is the fourth in our Knowledge Graphs series. We covered [KG fundamentals]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), [built a Neo4j KG from scratch]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %}), and [applied GNNs for reasoning]({% post_url 2026-06-01-gnn-knowledge-graph-reasoning %}). Now we graduate to production — where the rubber meets the graph.
 
 > **What This Post Covers**  
 > We'll walk through database selection, sharding strategies, indexing, caching, versioning, API design, monitoring, and cost analysis — everything you need to take a KG from prototype to production. Code examples use the `neo4j` Python driver and are adaptable to Neptune and JanusGraph.
@@ -812,4 +812,4 @@ Before you click "Deploy to Production":
 
 Production deployment isn't the end of the journey — it's where the real work begins. In our next and final post in this series, we'll explore the intersection of **Knowledge Graphs and Large Language Models (LLMs)** — using LLMs to build KGs from unstructured text, query KGs with natural language, and combine graph reasoning with transformer-based retrieval.
 
-Stay tuned for [Knowledge Graphs Meet LLMs]({% post_url 2026-06-02-kg-llm-rag %}) — the final post in this series.
+Stay tuned for [Knowledge Graphs Meet LLMs]({% post_url 2026-06-01-kg-llm-rag %}) — the final post in this series.

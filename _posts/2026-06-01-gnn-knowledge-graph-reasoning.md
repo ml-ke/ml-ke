@@ -1,6 +1,6 @@
 ---
 title: "Graph Neural Networks for Knowledge Graph Reasoning"
-date: 2026-06-02 16:00:00 +0300
+date: 2026-06-01 16:00:00 +0300
 categories: [Machine Learning, Knowledge Graphs]
 tags: [graph-neural-networks, gnns, knowledge-graphs, relational-learning, r-gcn, gat, pytorch]
 math: true
@@ -14,7 +14,7 @@ image:
 
 Knowledge Graphs store facts as triples — `(head, relation, tail)` — but real-world KGs are notoriously **incomplete**. The productive fact that "M-KOPA raised a Series D round" might be missing from your startup KG even though all the entities are present. How do we **reason over the graph** to predict these missing links?
 
-In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we covered KG theory — triples, ontologies, and the RDF model. In the [second post]({% post_url 2026-06-02-building-knowledge-graph-neo4j-python %}), we built a real KG of the East African tech ecosystem in Neo4j. Now it's time to make that KG **intelligent** using **Graph Neural Networks (GNNs)**.
+In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we covered KG theory — triples, ontologies, and the RDF model. In the [second post]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %}), we built a real KG of the East African tech ecosystem in Neo4j. Now it's time to make that KG **intelligent** using **Graph Neural Networks (GNNs)**.
 
 > **What We'll Build**
 >
@@ -23,7 +23,7 @@ In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we
 
 ## Why GNNs for Knowledge Graphs?
 
-Traditional KG reasoning methods — like TransE, RotatE, and ComplEx (covered in our [KG Embeddings post]({% post_url 2026-06-02-kg-embeddings %})) — learn **static embeddings** per entity. Once trained, the embedding for "M-KOPA" doesn't change even if new facts about M-KOPA are added to the graph.
+Traditional KG reasoning methods — like TransE, RotatE, and ComplEx (covered in our [KG Embeddings post]({% post_url 2026-06-01-kg-embeddings %})) — learn **static embeddings** per entity. Once trained, the embedding for "M-KOPA" doesn't change even if new facts about M-KOPA are added to the graph.
 
 GNNs solve this by learning a **message-passing function** that propagates information through the graph structure. Each node's representation is updated based on its neighbors and the relations connecting them. This gives GNNs three key advantages:
 
@@ -601,8 +601,8 @@ Graph Neural Networks bring **deep learning to structured knowledge**, enabling 
 
 This series continues with two more posts:
 
-- **Next:** [Knowledge Graphs in Production]({% post_url 2026-06-02-kg-production %}) — scaling, indexing, and deploying KG pipelines
-- **Final:** [Knowledge Graphs Meet LLMs]({% post_url 2026-06-02-kg-llm-rag %}) — combining KG reasoning with large language models for question answering and fact verification
+- **Next:** [Knowledge Graphs in Production]({% post_url 2026-06-01-kg-production %}) — scaling, indexing, and deploying KG pipelines
+- **Final:** [Knowledge Graphs Meet LLMs]({% post_url 2026-06-01-kg-llm-rag %}) — combining KG reasoning with large language models for question answering and fact verification
 
 ## References
 
@@ -616,8 +616,8 @@ This series continues with two more posts:
 
 **Related Posts:**
 - [Knowledge Graphs Fundamentals]({% post_url 2025-11-24-knowledge-graphs-fundamentals %})
-- [Building a Knowledge Graph with Neo4j and Python]({% post_url 2026-06-02-building-knowledge-graph-neo4j-python %})
-- [Knowledge Graph Embeddings: From TransE to RotatE]({% post_url 2026-06-02-kg-embeddings %})
+- [Building a Knowledge Graph with Neo4j and Python]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %})
+- [Knowledge Graph Embeddings: From TransE to RotatE]({% post_url 2026-06-01-kg-embeddings %})
 
 ---
 

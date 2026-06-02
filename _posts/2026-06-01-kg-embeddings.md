@@ -1,6 +1,6 @@
 ---
 title: "Knowledge Graph Embeddings: From TransE to RotatE"
-date: 2026-06-02 14:00:00 +0300
+date: 2026-06-01 14:00:00 +0300
 categories: [Machine Learning, Knowledge Graphs]
 tags: [knowledge-graphs, embeddings, transe, rotate, complex, pytorch, link-prediction]
 math: true
@@ -448,9 +448,9 @@ Knowledge Graph Embeddings transform symbolic triples into continuous vectors, e
 
 ### Next in Series
 
-- [Building a Knowledge Graph with Neo4j and Python]({% post_url 2026-06-02-building-knowledge-graph-neo4j-python %})
+- [Building a Knowledge Graph with Neo4j and Python]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %})
 - **▶ You are here: KG Embeddings: TransE to RotatE**
-- **Next:** [Graph Neural Networks for Knowledge Graph Reasoning]({% post_url 2026-06-02-gnn-knowledge-graph-reasoning %})
+- **Next:** [Graph Neural Networks for Knowledge Graph Reasoning]({% post_url 2026-06-01-gnn-knowledge-graph-reasoning %})
 
 ## References
 

@@ -1,6 +1,6 @@
 ---
 title: "Jailbreaking LLMs: From DAN to GODMODE"
-date: 2026-06-02 23:00:00 +0300
+date: 2026-06-01 23:00:00 +0300
 categories: [AI Security, LLM]
 tags: [jailbreak, llm-security, red-teaming, dan, godmode, prompt-injection, adversarial]
 math: true
@@ -550,7 +550,7 @@ In a strange way, jailbreak artists are doing a public service — they're **red
 
 ### Series Navigation
 
-- **Previous:** [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-02-prompt-injection-llm-security %})
+- **Previous:** [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})
 - **▶ You are here: Jailbreaking LLMs: From DAN to GODMODE**
 - **Next:** Coming soon — AI Hacking Series continues
 

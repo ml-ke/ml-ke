@@ -1,6 +1,6 @@
 ---
 title: "Data Poisoning and Model Backdoors: Training-Time Attacks on AI"
-date: 2026-06-02 23:30:00 +0300
+date: 2026-06-01 23:30:00 +0300
 categories: [AI Security, LLM]
 tags: [data-poisoning, backdoor, ml-security, supply-chain, huggingface, model-integrity]
 math: true
@@ -609,7 +609,7 @@ Data poisoning and model backdoors represent a fundamental shift in AI security 
 
 ### Series Navigation
 
-- **Previous:** [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-02-jailbreaking-llms %})
+- **Previous:** [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
 - **▶ You are here: Data Poisoning and Model Backdoors: Training-Time Attacks on AI**
 
 ### Practical Action Items

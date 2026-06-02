@@ -1,6 +1,6 @@
 ---
 title: "Insecure Agent Design: When AI Has Too Much Agency"
-date: 2026-06-02 23:45:00 +0300
+date: 2026-06-01 23:45:00 +0300
 categories: [AI Security, LLM]
 tags: [ai-agents, excessive-agency, llm-security, tool-calling, langchain, auto-gpt, owasp-llm06]
 math: true
@@ -29,7 +29,7 @@ The common thread? **Tool-calling capabilities.** LLMs no longer just talk — t
 > It's the risk that an LLM-based application has too many tools, too broad permissions, or too little oversight — allowing a single compromised prompt to cause real-world damage.
 {: .prompt-danger }
 
-This is Blog Post 4 of the AI Hacking Series. In previous posts, we covered [Prompt Injection]({% post_url 2026-06-02-prompt-injection-llm-security %}) (the root cause), [Jailbreaking]({% post_url 2026-06-02-jailbreaking-llms %}) (bypassing safety training), and [Data Poisoning]({% post_url 2026-06-02-data-poisoning-model-backdoors %}) (training-time attacks). Now we look at what happens when an LLM has the *power to act* — and no one watching the door.
+This is Blog Post 4 of the AI Hacking Series. In previous posts, we covered [Prompt Injection]({% post_url 2026-06-01-prompt-injection-llm-security %}) (the root cause), [Jailbreaking]({% post_url 2026-06-01-jailbreaking-llms %}) (bypassing safety training), and [Data Poisoning]({% post_url 2026-06-01-data-poisoning-model-backdoors %}) (training-time attacks). Now we look at what happens when an LLM has the *power to act* — and no one watching the door.
 
 ## OWASP LLM06: Excessive Agency
 
@@ -655,16 +655,16 @@ AI agents represent a fundamental shift in how we interact with LLMs — from co
 
 ### Series Navigation
 
-- **Previous:** [Data Poisoning and Model Backdoors]({% post_url 2026-06-02-data-poisoning-model-backdoors %})
+- **Previous:** [Data Poisoning and Model Backdoors]({% post_url 2026-06-01-data-poisoning-model-backdoors %})
 - **▶ You are here: Insecure Agent Design: When AI Has Too Much Agency**
 - **This concludes the AI Hacking Series for now** — stay tuned for future security deep-dives
 
 ### What's Next
 
 The AI Hacking Series covered four critical areas:
-1. [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-02-prompt-injection-llm-security %})
-2. [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-02-jailbreaking-llms %})
-3. [Data Poisoning and Model Backdoors]({% post_url 2026-06-02-data-poisoning-model-backdoors %})
+1. [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})
+2. [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
+3. [Data Poisoning and Model Backdoors]({% post_url 2026-06-01-data-poisoning-model-backdoors %})
 4. **Insecure Agent Design: When AI Has Too Much Agency**
 
 **Coming next in ml-ke:** Knowledge graphs, RAG architectures, and production ML engineering.
