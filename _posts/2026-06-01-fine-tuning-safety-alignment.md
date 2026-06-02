@@ -6,7 +6,7 @@ tags: [fine-tuning, lora, safety-alignment, colluding-lora, harmful-fine-tuning,
 math: true
 mermaid: true
 image:
-  path: /assets/img/cover-ai-data-poisoning.png
+  path: /assets/img/cover-ai-data-poisoning.webp
   alt: Fine-Tuning Safety cover
   lqip: data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAoAPzmGuVOvKSWisAgB4CcJZwDG9DBsAAD+7aIhGuf/QcXaAAAA
 ---
