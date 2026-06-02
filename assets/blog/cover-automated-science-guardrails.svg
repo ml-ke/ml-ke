@@ -2,12 +2,8 @@
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0d1117"/>
-      <stop offset="50%" style="stop-color:#161b22"/>
+      <stop offset="50%" style="stop-color:#0f172a"/>
       <stop offset="100%" style="stop-color:#1a1a2e"/>
-    </linearGradient>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffd93d"/>
-      <stop offset="100%" style="stop-color:#6bcf7f"/>
     </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="3" result="b"/>
@@ -25,27 +21,33 @@
     <line x1="750" y1="0" x2="750" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
     <line x1="1050" y1="0" x2="1050" y2="630"/>
   </g>
-  
+  <!-- Flask icon -->
   <g filter="url(#glow)">
-    <!-- Graph half -->
-    <circle cx="350" cy="280" r="12" fill="#ffd93d" opacity="0.8"/>
-    <circle cx="250" cy="220" r="8" fill="#6bcf7f" opacity="0.6"/>
-    <circle cx="430" cy="210" r="8" fill="#6bcf7f" opacity="0.6"/>
-    <circle cx="280" cy="360" r="8" fill="#00d2ff" opacity="0.6"/>
-    <circle cx="440" cy="350" r="8" fill="#00d2ff" opacity="0.6"/>
-    <!-- LLM half -->
-    <rect x="700" y="200" width="160" height="100" rx="10" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.5"/>
-    <text x="780" y="255" text-anchor="middle" font-family="monospace" font-size="14" fill="#ffd93d" opacity="0.7">LLM</text>
-    <rect x="720" y="360" width="120" height="60" rx="8" fill="none" stroke="#6bcf7f" stroke-width="2" opacity="0.4"/>
-    <text x="780" y="395" text-anchor="middle" font-family="monospace" font-size="10" fill="#6bcf7f" opacity="0.6">RAG</text>
+    <path d="M 520 200 L 520 280 Q 520 340 460 400 L 460 420 Q 460 440 480 440 L 720 440 Q 740 440 740 420 L 740 400 Q 680 340 680 280 L 680 200" fill="none" stroke="#6bcf7f" stroke-width="2" opacity="0.4"/>
+    <!-- Liquid inside flask -->
+    <path d="M 480 420 Q 520 400 600 400 Q 680 400 720 420 L 720 440 L 480 440 Z" fill="#6bcf7f" opacity="0.12"/>
+    <!-- DNA helix inside -->
+    <path d="M 540 350 Q 570 370 560 390" fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.5"/>
+    <path d="M 660 350 Q 630 370 640 390" fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.5"/>
+    <path d="M 560 310 Q 590 330 580 350" fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.4"/>
+    <path d="M 640 310 Q 610 330 620 350" fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.4"/>
+    <line x1="540" y1="350" x2="660" y2="350" stroke="#6bcf7f" stroke-width="1" opacity="0.3"/>
+    <line x1="560" y1="390" x2="640" y2="390" stroke="#6bcf7f" stroke-width="1" opacity="0.3"/>
+    <!-- Bubbles -->
+    <circle cx="580" cy="380" r="4" fill="#6bcf7f" opacity="0.2"/>
+    <circle cx="620" cy="370" r="3" fill="#6bcf7f" opacity="0.2"/>
+    <circle cx="600" cy="390" r="5" fill="#6bcf7f" opacity="0.15"/>
   </g>
-  <g stroke="#00d2ff" stroke-width="1.5" opacity="0.25" stroke-dasharray="6,4">
-    <line x1="500" y1="280" x2="700" y2="250"/>
+  <!-- Shield overlaid -->
+  <g filter="url(#glow)">
+    <path d="M 600 180 L 700 220 L 700 300 Q 700 380 600 420 Q 500 380 500 300 L 500 220 Z" fill="none" stroke="#00d2ff" stroke-width="2" opacity="0.35"/>
+    <path d="M 600 210 L 660 235 L 660 290 Q 660 340 600 370 Q 540 340 540 290 L 540 235 Z" fill="none" stroke="#00d2ff" stroke-width="1" opacity="0.2"/>
+    <text x="600" y="305" text-anchor="middle" font-family="monospace" font-size="14" fill="#00d2ff" opacity="0.5">✓</text>
   </g>
-  <text x="600" y="140" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Guardrails for Autonomous</text>
-  <text x="600" y="182" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">AI Research Pipelines</text>
-  <text x="600" y="520" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">AI-DRIVEN SCIENCE · AUDIT · REPRODUCIBILITY</text>
-  <line x1="420" y1="535" x2="780" y2="535" stroke="url(#g1)" stroke-width="2" opacity="0.4"/>
+  <text x="600" y="125" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Guardrails for Autonomous</text>
+  <text x="600" y="167" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">AI Research Pipelines</text>
+  <text x="600" y="530" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">AI-DRIVEN SCIENCE · AUDIT · REPRODUCIBILITY</text>
+  <line x1="420" y1="545" x2="780" y2="545" stroke="#6bcf7f" stroke-width="2" opacity="0.4"/>
   <text x="1090" y="600" text-anchor="end" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#484f58">ml-ke.github.io</text>
-  <circle cx="1110" cy="607" r="3" fill="#ffd93d" opacity="0.6"/>
+  <circle cx="1110" cy="607" r="3" fill="#6bcf7f" opacity="0.6"/>
 </svg>

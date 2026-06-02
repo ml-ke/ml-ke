@@ -2,12 +2,8 @@
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0d1117"/>
-      <stop offset="50%" style="stop-color:#161b22"/>
+      <stop offset="50%" style="stop-color:#0f172a"/>
       <stop offset="100%" style="stop-color:#1a1a2e"/>
-    </linearGradient>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ff6b6b"/>
-      <stop offset="100%" style="stop-color:#a78bfa"/>
     </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="3" result="b"/>
@@ -25,28 +21,52 @@
     <line x1="750" y1="0" x2="750" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
     <line x1="1050" y1="0" x2="1050" y2="630"/>
   </g>
-  
+  <!-- Podium / leaderboard -->
   <g filter="url(#glow)">
-    <!-- Dataset -->
-    <rect x="250" y="200" width="200" height="120" rx="6" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.4"/>
-    <text x="350" y="230" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff6b6b" opacity="0.6">DATASET</text>
-    <!-- Poison needle -->
-    <rect x="300" y="260" width="10" height="40" rx="2" fill="#ffd93d" opacity="0.8" transform="rotate(-15,305,280)"/>
-    <circle cx="302" cy="262" r="4" fill="#ffd93d" opacity="0.9"/>
-    <!-- Model -->
-    <rect x="550" y="200" width="200" height="120" rx="10" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.4"/>
-    <text x="650" y="230" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa" opacity="0.6">TRAINED MODEL</text>
-    <!-- Backdoor trigger in model -->
-    <circle cx="630" cy="280" r="8" fill="none" stroke="#ffd93d" stroke-width="1.5" opacity="0.6"/>
-    <text x="630" y="283" text-anchor="middle" font-size="8" fill="#ffd93d" opacity="0.7">⚡</text>
+    <!-- 1st place -->
+    <rect x="520" y="260" width="60" height="100" rx="4" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.5"/>
+    <rect x="525" y="265" width="50" height="90" rx="2" fill="#ffd93d" opacity="0.08"/>
+    <text x="550" y="320" text-anchor="middle" font-family="monospace" font-size="10" fill="#ffd93d" opacity="0.8">#1</text>
+    
+    <!-- 2nd place -->
+    <rect x="440" y="290" width="50" height="70" rx="4" fill="none" stroke="#8b949e" stroke-width="1.5" opacity="0.4"/>
+    <rect x="445" y="295" width="40" height="60" rx="2" fill="#8b949e" opacity="0.06"/>
+    <text x="465" y="330" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e" opacity="0.6">#2</text>
+    
+    <!-- 3rd place -->
+    <rect x="610" y="310" width="50" height="50" rx="4" fill="none" stroke="#b87333" stroke-width="1.5" opacity="0.4"/>
+    <text x="635" y="340" text-anchor="middle" font-family="monospace" font-size="9" fill="#b87333" opacity="0.6">#3</text>
+    
+    <!-- Leaderboard labels -->
+    <text x="550" y="250" text-anchor="middle" font-family="monospace" font-size="7" fill="#ffd93d" opacity="0.5">"GPT-5"</text>
+    <text x="465" y="280" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b949e" opacity="0.4">"Claude 4"</text>
+    <text x="635" y="302" text-anchor="middle" font-family="monospace" font-size="7" fill="#b87333" opacity="0.4">"Llama 4"</text>
   </g>
-  <g stroke="#a78bfa" stroke-width="1.5" opacity="0.3">
-    <line x1="450" y1="260" x2="550" y2="260"/>
+  <!-- Contamination drip from above -->
+  <g filter="url(#glow)">
+    <!-- Poison drop falling onto #1 -->
+    <path d="M 550 180 Q 545 200 550 210 Q 555 200 550 180" fill="#ff6b6b" opacity="0.7"/>
+    <path d="M 550 210 L 548 220 Q 548 225 550 225 Q 552 225 552 220 L 550 210" fill="#ff6b6b" opacity="0.5"/>
+    <!-- Contamination spread -->
+    <ellipse cx="550" cy="240" rx="15" ry="5" fill="#ff6b6b" opacity="0.15"/>
+    <ellipse cx="550" cy="235" rx="25" ry="8" fill="#ff6b6b" opacity="0.08"/>
+    
+    <!-- Cross-contamination arrows -->
+    <path d="M 575 235 Q 590 240 610 230" fill="none" stroke="#ff6b6b" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+    <path d="M 525 235 Q 510 240 490 230" fill="none" stroke="#ff6b6b" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+    
+    <!-- Contamination label -->
+    <text x="550" y="175" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff6b6b" opacity="0.7">CONTAMINATION</text>
   </g>
-  <text x="600" y="140" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Eval Benchmark Poisoning:</text>
-  <text x="600" y="182" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Gaming the Leaderboards</text>
-  <text x="600" y="520" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">DATA CONTAMINATION · BENCHMARK INTEGRITY</text>
-  <line x1="420" y1="535" x2="780" y2="535" stroke="url(#g1)" stroke-width="2" opacity="0.4"/>
+  <!-- Benchmark name -->
+  <g filter="url(#glow)" opacity="0.3">
+    <text x="550" y="400" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b949e">MMLU: 89.7%  GSM8K: 92.3%  HumanEval: 91.1%</text>
+    <text x="550" y="420" text-anchor="middle" font-family="monospace" font-size="7" fill="#8b949e">↑ All contaminated by training data leakage</text>
+  </g>
+  <text x="600" y="125" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Eval Benchmark Poisoning:</text>
+  <text x="600" y="167" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Gaming the Leaderboards</text>
+  <text x="600" y="530" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">DATA CONTAMINATION · BENCHMARK INTEGRITY</text>
+  <line x1="420" y1="545" x2="780" y2="545" stroke="#ffd93d" stroke-width="2" opacity="0.4"/>
   <text x="1090" y="600" text-anchor="end" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#484f58">ml-ke.github.io</text>
-  <circle cx="1110" cy="607" r="3" fill="#ff6b6b" opacity="0.6"/>
+  <circle cx="1110" cy="607" r="3" fill="#ffd93d" opacity="0.6"/>
 </svg>

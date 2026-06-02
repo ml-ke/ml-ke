@@ -2,12 +2,8 @@
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0d1117"/>
-      <stop offset="50%" style="stop-color:#161b22"/>
+      <stop offset="50%" style="stop-color:#0f172a"/>
       <stop offset="100%" style="stop-color:#1a1a2e"/>
-    </linearGradient>
-    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#a78bfa"/>
-      <stop offset="100%" style="stop-color:#00d2ff"/>
     </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="3" result="b"/>
@@ -25,55 +21,48 @@
     <line x1="750" y1="0" x2="750" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
     <line x1="1050" y1="0" x2="1050" y2="630"/>
   </g>
-  
+  <!-- Audio waveform (left) -->
   <g filter="url(#glow)">
-    <!-- Input layer -->
-    <circle cx="300" cy="200" r="8" fill="#a78bfa" opacity="0.7"/>
-    <circle cx="300" cy="280" r="8" fill="#a78bfa" opacity="0.7"/>
-    <circle cx="300" cy="360" r="8" fill="#a78bfa" opacity="0.7"/>
-    <circle cx="300" cy="440" r="8" fill="#a78bfa" opacity="0.7"/>
-    <!-- Hidden layer -->
-    <circle cx="500" cy="180" r="8" fill="#00d2ff" opacity="0.7"/>
-    <circle cx="500" cy="260" r="8" fill="#00d2ff" opacity="0.7"/>
-    <circle cx="500" cy="340" r="8" fill="#00d2ff" opacity="0.7"/>
-    <circle cx="500" cy="420" r="8" fill="#00d2ff" opacity="0.7"/>
-    <circle cx="500" cy="500" r="8" fill="#00d2ff" opacity="0.7"/>
-    <!-- Hidden layer 2 -->
-    <circle cx="700" cy="200" r="8" fill="#6bcf7f" opacity="0.7"/>
-    <circle cx="700" cy="280" r="8" fill="#6bcf7f" opacity="0.7"/>
-    <circle cx="700" cy="360" r="8" fill="#6bcf7f" opacity="0.7"/>
-    <circle cx="700" cy="440" r="8" fill="#6bcf7f" opacity="0.7"/>
-    <!-- Output -->
-    <circle cx="900" cy="260" r="10" fill="#a78bfa" opacity="0.8"/>
-    <circle cx="900" cy="380" r="10" fill="#00d2ff" opacity="0.8"/>
+    <path d="M 150 340 Q 180 280 200 340 Q 220 400 240 340 Q 260 280 280 340 Q 300 400 320 340" fill="none" stroke="#00d2ff" stroke-width="2.5" opacity="0.6"/>
+    <path d="M 170 340 Q 190 310 210 340 Q 230 370 250 340 Q 270 310 290 340" fill="none" stroke="#00d2ff" stroke-width="1" opacity="0.3"/>
+    <text x="235" y="380" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d2ff" opacity="0.6">AUDIO</text>
   </g>
-  <g stroke="#a78bfa" stroke-width="0.5" opacity="0.12">
-    <line x1="308" y1="200" x2="492" y2="180"/>
-    <line x1="308" y1="200" x2="492" y2="260"/>
-    <line x1="308" y1="280" x2="492" y2="260"/>
-    <line x1="308" y1="280" x2="492" y2="340"/>
-    <line x1="308" y1="360" x2="492" y2="340"/>
-    <line x1="308" y1="360" x2="492" y2="420"/>
-    <line x1="308" y1="440" x2="492" y2="420"/>
-    <line x1="308" y1="440" x2="492" y2="500"/>
-    <line x1="508" y1="180" x2="692" y2="200"/>
-    <line x1="508" y1="260" x2="692" y2="200"/>
-    <line x1="508" y1="260" x2="692" y2="280"/>
-    <line x1="508" y1="340" x2="692" y2="280"/>
-    <line x1="508" y1="340" x2="692" y2="360"/>
-    <line x1="508" y1="420" x2="692" y2="360"/>
-    <line x1="508" y1="420" x2="692" y2="440"/>
-    <line x1="508" y1="500" x2="692" y2="440"/>
-    <line x1="708" y1="200" x2="892" y2="260"/>
-    <line x1="708" y1="280" x2="892" y2="260"/>
-    <line x1="708" y1="280" x2="892" y2="380"/>
-    <line x1="708" y1="360" x2="892" y2="380"/>
-    <line x1="708" y1="440" x2="892" y2="380"/>
+  <!-- Video play button (center) -->
+  <g filter="url(#glow)">
+    <rect x="450" y="270" width="100" height="80" rx="6" fill="none" stroke="#6bcf7f" stroke-width="2" opacity="0.5"/>
+    <polygon points="480,290 480,330 510,310" fill="#6bcf7f" opacity="0.5"/>
+    <text x="500" y="380" text-anchor="middle" font-family="monospace" font-size="8" fill="#6bcf7f" opacity="0.6">VIDEO</text>
+    <!-- Video frame content suggestion -->
+    <rect x="460" y="278" width="80" height="15" rx="2" fill="#6bcf7f" opacity="0.08"/>
+    <line x1="465" y1="283" x2="535" y2="283" stroke="#6bcf7f" stroke-width="0.5" opacity="0.2"/>
+    <line x1="465" y1="288" x2="520" y2="288" stroke="#6bcf7f" stroke-width="0.5" opacity="0.2"/>
   </g>
-  <text x="600" y="140" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Real-Time Multimodal</text>
-  <text x="600" y="182" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Security: Audio/Video Attacks</text>
-  <text x="600" y="520" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">VOICE INJECTION · VIDEO PROMPTS · OMNIMODAL</text>
-  <line x1="420" y1="535" x2="780" y2="535" stroke="url(#g1)" stroke-width="2" opacity="0.4"/>
+  <!-- Text characters (right) -->
+  <g filter="url(#glow)">
+    <text x="800" y="290" font-family="monospace" font-size="28" fill="#a78bfa" opacity="0.4">T</text>
+    <text x="830" y="290" font-family="monospace" font-size="28" fill="#a78bfa" opacity="0.3">E</text>
+    <text x="860" y="290" font-family="monospace" font-size="28" fill="#a78bfa" opacity="0.4">X</text>
+    <text x="890" y="290" font-family="monospace" font-size="28" fill="#a78bfa" opacity="0.3">T</text>
+    <text x="800" y="340" font-family="monospace" font-size="12" fill="#a78bfa" opacity="0.3">"invisible</text>
+    <text x="800" y="360" font-family="monospace" font-size="12" fill="#a78bfa" opacity="0.3"> overrides"</text>
+  </g>
+  <!-- Attack chain linking them -->
+  <g filter="url(#glow)">
+    <path d="M 320 330 Q 380 310 440 310" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.6" stroke-dasharray="6,4"/>
+    <path d="M 560 310 Q 640 310 700 340 Q 740 350 790 320" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.6" stroke-dasharray="6,4"/>
+    <!-- Attack label -->
+    <text x="600" y="240" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff6b6b" opacity="0.7">CROSS-MODAL ATTACK CHAIN</text>
+  </g>
+  <!-- Hidden injection indicators -->
+  <g filter="url(#glow)" opacity="0.4">
+    <text x="235" y="400" font-family="monospace" font-size="7" fill="#ff6b6b">🔇 ultrasonic command</text>
+    <text x="500" y="400" font-family="monospace" font-size="7" fill="#ff6b6b">📷 frame text overlay</text>
+    <text x="870" y="390" font-family="monospace" font-size="7" fill="#ff6b6b">🔤 prompt in plain sight</text>
+  </g>
+  <text x="600" y="125" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Real-Time Multimodal</text>
+  <text x="600" y="167" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Security: Audio/Video Attacks</text>
+  <text x="600" y="530" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">VOICE INJECTION · VIDEO PROMPTS · OMNIMODAL</text>
+  <line x1="420" y1="545" x2="780" y2="545" stroke="#00d2ff" stroke-width="2" opacity="0.4"/>
   <text x="1090" y="600" text-anchor="end" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#484f58">ml-ke.github.io</text>
-  <circle cx="1110" cy="607" r="3" fill="#a78bfa" opacity="0.6"/>
+  <circle cx="1110" cy="607" r="3" fill="#00d2ff" opacity="0.6"/>
 </svg>
