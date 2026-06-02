@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#161b22"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g opacity="0.03" stroke="#fff" stroke-width="0.5">
+    <line x1="0" y1="70" x2="1200" y2="70"/><line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/><line x1="0" y1="280" x2="1200" y2="280"/>
+    <line x1="0" y1="350" x2="1200" y2="350"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="490" x2="1200" y2="490"/><line x1="0" y1="560" x2="1200" y2="560"/>
+    <line x1="150" y1="0" x2="150" y2="630"/><line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/><line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+  
+  <g filter="url(#glow)">
+    <!-- Chain of boxes -->
+    <rect x="150" y="250" width="120" height="60" rx="6" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.4"/>
+    <text x="210" y="285" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa" opacity="0.6">REPO</text>
+    <rect x="330" y="250" width="120" height="60" rx="6" fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.4"/>
+    <text x="390" y="285" text-anchor="middle" font-family="monospace" font-size="10" fill="#ff6b6b" opacity="0.6">CI/CD</text>
+    <rect x="510" y="250" width="120" height="60" rx="6" fill="none" stroke="#00d2ff" stroke-width="2" opacity="0.4"/>
+    <text x="570" y="285" text-anchor="middle" font-family="monospace" font-size="10" fill="#00d2ff" opacity="0.6">DEPLOY</text>
+    <rect x="690" y="250" width="120" height="60" rx="6" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.4"/>
+    <text x="750" y="285" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa" opacity="0.6">MODEL</text>
+    <!-- Chain links -->
+    <g stroke="#00d2ff" stroke-width="2" opacity="0.3" fill="none">
+      <ellipse cx="280" cy="265" rx="8" ry="4"/>
+      <ellipse cx="280" cy="275" rx="8" ry="4"/>
+      <line x1="272" y1="265" x2="272" y2="275"/>
+      <line x1="288" y1="265" x2="288" y2="275"/>
+      <ellipse cx="460" cy="265" rx="8" ry="4"/>
+      <ellipse cx="460" cy="275" rx="8" ry="4"/>
+      <line x1="452" y1="265" x2="452" y2="275"/>
+      <line x1="468" y1="265" x2="468" y2="275"/>
+      <ellipse cx="640" cy="265" rx="8" ry="4"/>
+      <ellipse cx="640" cy="275" rx="8" ry="4"/>
+      <line x1="632" y1="265" x2="632" y2="275"/>
+      <line x1="648" y1="265" x2="648" y2="275"/>
+    </g>
+    <!-- Broken link -->
+    <line x1="810" y1="260" x2="840" y2="300" stroke="#a78bfa" stroke-width="2" opacity="0.4" stroke-dasharray="4,3"/>
+  </g>
+  <text x="600" y="140" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">Supply Chain Attacks</text>
+  <text x="600" y="182" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="34" font-weight="700" fill="#e6edf3" letter-spacing="1">on AI Systems</text>
+  <text x="600" y="520" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8b949e" letter-spacing="3">MODEL REQUEST FORGERY · ECOSYSTEM RISKS</text>
+  <line x1="420" y1="535" x2="780" y2="535" stroke="url(#g1)" stroke-width="2" opacity="0.4"/>
+  <text x="1090" y="600" text-anchor="end" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#484f58">ml-ke.github.io</text>
+  <circle cx="1110" cy="607" r="3" fill="#a78bfa" opacity="0.6"/>
+</svg>
