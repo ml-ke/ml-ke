@@ -55,7 +55,58 @@ COVERS = {
         "title": ["Supply Chain Attacks", "on AI Systems"],
         "subtitle": "MODEL REQUEST FORGERY · ECOSYSTEM RISKS",
         "nodes": "chain"
-    }
+    },
+    # === 10 NEW IDEAS ===
+    "agent-skills-evolution": {
+        "title": ["Self-Evolving Agent Skills:", "When AI Rewrites Its Playbook"],
+        "subtitle": "AUTONOMOUS SKILL EVOLUTION · SECURITY AUDIT",
+        "nodes": "neural"
+    },
+    "memory-attack-surface": {
+        "title": ["Memory as an Attack Surface:", "Poisoning AI Agent Memory"],
+        "subtitle": "PERSISTENT MEMORY · AGENT SECURITY",
+        "nodes": "graph"
+    },
+    "automated-science-guardrails": {
+        "title": ["Guardrails for Autonomous", "AI Research Pipelines"],
+        "subtitle": "AI-DRIVEN SCIENCE · AUDIT · REPRODUCIBILITY",
+        "nodes": "hybrid"
+    },
+    "multi-agent-collusion": {
+        "title": ["Multi-Agent Collusion:", "When AI Agents Conspire"],
+        "subtitle": "COORDINATION · SAFETY · DETECTION",
+        "nodes": "agent"
+    },
+    "structured-data-injection": {
+        "title": ["Prompt Injection via", "Structured Data Formats"],
+        "subtitle": "PDF · JSON · CSV · DATABASE RECORDS",
+        "nodes": "exploit"
+    },
+    "automated-red-teaming": {
+        "title": ["Automated AI Red Teaming", "at Scale"],
+        "subtitle": "VULNERABILITY DISCOVERY · LLM SECURITY",
+        "nodes": "danger"
+    },
+    "model-watermarking": {
+        "title": ["Model Watermarking:", "Proving AI Ownership"],
+        "subtitle": "THEFT DETECTION · IP PROTECTION",
+        "nodes": "vectors"
+    },
+    "eval-benchmark-poisoning": {
+        "title": ["Eval Benchmark Poisoning:", "Gaming the Leaderboards"],
+        "subtitle": "DATA CONTAMINATION · BENCHMARK INTEGRITY",
+        "nodes": "poison"
+    },
+    "multimodal-attacks": {
+        "title": ["Real-Time Multimodal", "Security: Audio/Video Attacks"],
+        "subtitle": "VOICE INJECTION · VIDEO PROMPTS · OMNIMODAL",
+        "nodes": "neural"
+    },
+    "ml-secrets-management": {
+        "title": ["ML Pipeline Secrets", "Management"],
+        "subtitle": "VAULT · API KEYS · CREDENTIAL HYGIENE",
+        "nodes": "infra"
+    },
 }
 
 def make_svg(key, data):

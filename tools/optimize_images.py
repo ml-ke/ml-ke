@@ -80,28 +80,27 @@ print(f"  {{out_name}}: {{original_size//1024}}KB → {{webp_size//1024}}KB WebP
     return webp_path, lqip_path
 
 
-# === Process old BlogPhotos (7 images, 5-6MB each) ===
-print("=== Processing old BlogPhotos (massive 5-6MB originals) ===")
+# === Process old BlogPhotos if they exist ===
 old_mapping = {}
-for fname in sorted(os.listdir(OLD_DIR)):
-    if fname.lower().endswith(('.png', '.jpg', '.jpeg')):
-        # Map to chirpy-friendly names
-        slug = fname.rsplit('.', 1)[0]
-        # Special cases
-        slug_map = {
-            "2ndOrder": "second-order-optimization",
-            "GNNs": "gnn-fundamentals",
-            "gradient-descent": "gradient-descent",
-            "KGpythoN4j": "neo4j-tutorial",
-            "Knowledge-Graphs": "kg-fundamentals",
-            "MBMnLR": "momentum-adaptive-lr",
-            "PagerankCommDetecN4j": "graph-algorithms-neo4j",
-        }
-        out_name = slug_map.get(slug, slug.lower().replace('_', '-'))
-        
-        src = os.path.join(OLD_DIR, fname)
-        optimize_image(src, fname, out_name)
-        old_mapping[slug] = out_name
+if os.path.exists(OLD_DIR):
+    print("=== Processing old BlogPhotos (massive 5-6MB originals) ===")
+    for fname in sorted(os.listdir(OLD_DIR)):
+        if fname.lower().endswith(('.png', '.jpg', '.jpeg')):
+            # Map to chirpy-friendly names
+            slug = fname.rsplit('.', 1)[0]
+            slug_map = {
+                "2ndOrder": "second-order-optimization",
+                "GNNs": "gnn-fundamentals",
+                "gradient-descent": "gradient-descent",
+                "KGpythoN4j": "neo4j-tutorial",
+                "Knowledge-Graphs": "kg-fundamentals",
+                "MBMnLR": "momentum-adaptive-lr",
+                "PagerankCommDetecN4j": "graph-algorithms-neo4j",
+            }
+            out_name = slug_map.get(slug, slug.lower().replace('_', '-'))
+            src = os.path.join(OLD_DIR, fname)
+            optimize_image(src, fname, out_name)
+            old_mapping[slug] = out_name
 
 # === Process new SVG-to-PNG covers (9 images) ===
 print("\n=== Processing new blog covers (PNG 50-72KB) ===")
@@ -122,7 +121,7 @@ for wf in webp_files:
     name = wf.rsplit('.', 1)[0]
     wsize = os.path.getsize(os.path.join(OUT_DIR, wf))
     # Find original
-    for d in [OLD_DIR, NEW_DIR]:
+    for d in [d for d in [OLD_DIR, NEW_DIR] if os.path.exists(d)]:
         for f in os.listdir(d):
             if f.startswith(name) or name in f:
                 total_orig += os.path.getsize(os.path.join(d, f))
