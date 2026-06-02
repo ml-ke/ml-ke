@@ -6,8 +6,9 @@ tags: [gnn, pytorch-geometric, deep-learning, graphs, python]
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/GNNs.png
-  alt: ML Kenya - Graph Neural Networks
+  path: /assets/img/gnn-fundamentals.webp
+  alt: Graph Neural Networks Demystified
+  lqip: data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJagCo9B7A1LW9070tk91AAP6e6bB4TnekRddoc53UfXt4TVKKbgC+ljibOURkP0fba4pUX2X08163G+bB2sO5pAQC7L2CZYZEtxVAAAA=
 ---
 
 ## Introduction

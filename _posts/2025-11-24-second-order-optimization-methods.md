@@ -6,8 +6,9 @@ tags: [optimization, newton-method, hessian, l-bfgs, natural-gradient, deep-lear
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/2ndOrder.png
-  alt: ML Kenya - Second-Order Optimization Methods
+  path: /assets/img/second-order-optimization.webp
+  alt: Second-Order Optimization Methods
+  lqip: data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAQBACdASoUAAsAPzmEuVOvKKWisAgB4CcJYwCo9B6NuKPyij/kIoEQAAD+40oNFSvY4/km+AFymE57TpxOcgaK/Hsq1IOFRFyUeybqMgAAAA==
 ---
 
 ## Introduction

@@ -6,8 +6,9 @@ tags: [neo4j, python, graph-databases, cypher, tutorial, african-tech]
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/KGpythoN4j.png
-  alt: ML Kenya - Neo4j and Python Tutorial
+  path: /assets/img/neo4j-tutorial.webp
+  alt: Building a Knowledge Graph with Neo4j and Python
+  lqip: data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACQAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJZACw7B5mntSjAfoAAP5JW0gMtGgpT9FSE1NkNNahvRlg4dvTGPgyecXMuNjD6om7DufkcT5TM1VhEff1t8NeZiYHz5bRHxV+HYhjYAA=
 ---
 
 ## Introduction

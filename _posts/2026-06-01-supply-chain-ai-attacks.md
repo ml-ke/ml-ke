@@ -6,8 +6,9 @@ tags: [supply-chain, huggingface, pypi, mlsec, pickle, safetensors, dependency-c
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-supply-chain.png
-  alt: Supply Chain Attacks on AI Systems cover
+  path: /assets/img/cover-ai-supply-chain.webp
+  alt: Supply Chain Attacks on AI Systems
+  lqip: data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAADwAgCdASoUAAoAPzmEuVOvKKWisAgB4CcJZwDG9DBsAAD+7aEfKTfh2BGUAA==
 ---
 
 ## Introduction

@@ -6,8 +6,9 @@ tags: [knowledge-graphs, embeddings, transe, rotate, complex, pytorch, link-pred
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-kg-embeddings.png
-  alt: Knowledge Graph Embeddings cover
+  path: /assets/img/cover-kg-embeddings.webp
+  alt: Knowledge Graph Embeddings from TransE to RotatE
+  lqip: data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAwCdASoUAAoAPzmEuVOvKKWisAgB4CcJZwDG9CKUYX9gAAD+4vwb60MuDqUOAAA=
 ---
 
 ## Introduction

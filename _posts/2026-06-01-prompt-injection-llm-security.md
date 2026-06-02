@@ -6,8 +6,9 @@ tags: [prompt-injection, llm-security, owasp, rag, slack-ai, cve-2024-5184, red-
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-prompt-injection.png
-  alt: Prompt Injection - The #1 LLM Security Risk cover
+  path: /assets/img/cover-ai-prompt-injection.webp
+  alt: Prompt Injection The Number One LLM Security Risk
+  lqip: data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAoAPzmGulOvKSWisAgB4CcJZwDImDBsAAD+7aIbIQipSW9ZaAAA
 ---
 
 ## Introduction

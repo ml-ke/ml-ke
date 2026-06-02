@@ -6,8 +6,9 @@ tags: [neo4j, graph-algorithms, pagerank, louvain, community-detection, python]
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/PagerankCommDetecN4j.png
-  alt: ML Kenya - Graph Algorithms
+  path: /assets/img/graph-algorithms-neo4j.webp
+  alt: Graph Algorithms in Neo4j
+  lqip: data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJQBOgBDz+59AtoHXmgAD+0ICgHMKK1f9bvVvCvv6dBXaFX9aYACMUFpXWSKDu0Tv6v5h3GQ6kPPB/9yAAAA==
 ---
 
 ## Introduction

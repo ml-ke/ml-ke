@@ -6,8 +6,9 @@ tags: [ai-agents, excessive-agency, llm-security, tool-calling, langchain, auto-
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-agent-security.png
-  alt: Insecure Agent Design cover
+  path: /assets/img/cover-ai-agent-security.webp
+  alt: Insecure Agent Design When AI Has Too Much Agency
+  lqip: data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAwCdASoUAAoAPzmEuVOvKKWisAgB4CcJZwDG9CICgIqNAAD+4uukFr7tiRPQAAA=
 ---
 
 ## Introduction

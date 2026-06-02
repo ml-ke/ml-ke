@@ -6,8 +6,9 @@ tags: [graph-neural-networks, gnns, knowledge-graphs, relational-learning, r-gcn
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-kg-gnn.png
-  alt: GNNs for Knowledge Graph Reasoning cover
+  path: /assets/img/cover-kg-gnn.webp
+  alt: Graph Neural Networks for Knowledge Graph Reasoning
+  lqip: data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAgCdASoUAAoAPzmGuVOvKSWisAgB4CcJZwDG9DBsAAD+7WGD4QinnaXMNAAA
 ---
 
 ## Introduction

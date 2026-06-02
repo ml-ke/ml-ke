@@ -6,8 +6,9 @@ tags: [optimization, deep-learning, adam, momentum, sgd]
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/MBMnLR.png
+  path: /assets/img/momentum-adaptive-lr.webp
   alt: Momentum and Adaptive Learning Rates
+  lqip: data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAABwAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJZgCw7BSeOz0rLgAA/sA0I0XqPZoTvImVC9+fPpH0FS4gy21RShZOW7QW2D5S1Dq2giNmAAA=
 ---
 
 ## Introduction

@@ -6,8 +6,9 @@ tags: [optimization, calculus, neural-networks]
 math: true
 mermaid: true
 image:
-  path: /assets/BlogPhotos/gradient-descent.png
-  alt: Gradient Descent
+  path: /assets/img/gradient-descent.webp
+  alt: Gradient Descent visualization
+  lqip: data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoUAAsAPzmGuVOvKSWisAgB4CcJagCdMoADTijDLRdLRrsAAP6voYZBAP+udYsSWaJbJL9JYzTZkKmKQyhnJowBdzFRI1TcLbFe5ewRCqhR73ibRwaaRhe/kBcuDdGAAAA=
 ---
 
 ## What is Gradient Descent?
