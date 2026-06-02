@@ -6,7 +6,7 @@ tags: [ai-agents, excessive-agency, llm-security, tool-calling, langchain, auto-
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-agent-security.svg
+  path: /assets/blog/cover-ai-agent-security.png
   alt: Insecure Agent Design cover
 ---
 

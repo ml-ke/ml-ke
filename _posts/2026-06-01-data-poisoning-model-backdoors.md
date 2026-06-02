@@ -6,7 +6,7 @@ tags: [data-poisoning, backdoor, ml-security, supply-chain, huggingface, model-i
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-data-poisoning.svg
+  path: /assets/blog/cover-ai-data-poisoning.png
   alt: Data Poisoning and Model Backdoors cover
 ---
 

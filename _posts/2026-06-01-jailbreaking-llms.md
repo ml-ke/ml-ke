@@ -6,7 +6,7 @@ tags: [jailbreak, llm-security, red-teaming, dan, godmode, prompt-injection, adv
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-ai-jailbreak.svg
+  path: /assets/blog/cover-ai-jailbreak.png
   alt: Jailbreaking LLMs cover
 ---
 

@@ -6,7 +6,7 @@ tags: [knowledge-graphs, neo4j, scalability, graph-databases, aws-neptune, janus
 math: true
 mermaid: true
 image:
-  path: /assets/blog/cover-kg-production.svg
+  path: /assets/blog/cover-kg-production.png
   alt: Knowledge Graphs in Production cover
 ---
 
