@@ -1,6 +1,6 @@
 ---
 title: "Memory as an Attack Surface: Poisoning AI Agent Memory"
-date: 2026-06-04 00:00:00 +0300
+date: 2026-06-03 00:00:00 +0300
 categories: [AI Security, LLM]
 tags: [memory-poisoning, ai-agents, llm-security, persistent-memory, prompt-injection, minja, spaiware, evermemos]
 math: true
