@@ -1,0 +1,90 @@
+=== HERMES MEMORY SNAPSHOT ===
+Date: Wed Jun 10 08:31:22 PM UTC 2026
+Profile: default
+Model: deepseek-v4-flash
+Provider: deepseek
+
+=== Cron Jobs ===
+{
+  "jobs": [
+    {
+      "id": "b61adad8c5b9",
+      "name": "ATLAS daily sync",
+      "prompt": "Run the atlas backup script and report results.\n\nExecute: bash ~/.hermes/scripts/atlas-sync.sh\n\nThis backs up all skills, config, memory snapshot, and scripts from ~/.hermes/ to ~/ProG/ml-ke/_atlas_backups/TODAY/.\n\nAfter the script completes, tell me: how many skills were backed up, and whether the backup committed successfully. That's it \u2014 no additional work needed.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "atlas-sync.sh",
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-01T17:19:04.085290+03:00",
+      "next_run_at": "2026-06-06T14:55:48.666659+03:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "137b7dcf653c",
+      "name": "blog-poster",
+      "prompt": "PUBLISH ONE BLOG POST \u2014 handles date rewriting\n\nTODAY=$(date +%Y-%m-%d)\ncd /home/pro-g/ProG/ml-ke\n\n# Check for today's scheduled post\nMATCH=$(ls .scheduled/${TODAY}-*.md 2>/dev/null | head -1)\n\nif [ -n \"$MATCH\" ]; then\n  mv \"$MATCH\" _posts/\n  BASENAME=$(basename \"$MATCH\")\n  git add \"_posts/$BASENAME\"\n  git commit -m \"Publish: $BASENAME\"\n  git pull --rebase origin main\n  git push origin main\n  echo \"PUBLISHED: $BASENAME\"\n  exit 0\nfi\n\n# No match for today \u2014 take first remaining, rewrite its date\nFIRST=$(ls .scheduled/*.md 2>/dev/null | head -1)\nif [ -z \"$FIRST\" ]; then\n  echo \"All posts published! Nothing to do.\"\n  exit 0\nfi\n\nBASENAME=$(basename \"$FIRST\")\nOLD_DATE=$(echo \"$BASENAME\" | grep -oP '^\\d{4}-\\d{2}-\\d{2}')\n\n# Rewrite front matter date and rename file to today\nsed -i \"s/date: $OLD_DATE/date: $TODAY/\" \"$FIRST\"\nNEW_NAME=$(echo \"$BASENAME\" | sed \"s/$OLD_DATE/$TODAY/\")\n\nmv \"$FIRST\" \"_posts/$NEW_NAME\"\ngit add \"_posts/$NEW_NAME\"\ngit commit -m \"Publish (date-fixed): $NEW_NAME\"\ngit pull --rebase origin main\ngit push origin main\necho \"PUBLISHED (date-fixed): $NEW_NAME\"",
+      "skills": [
+        "blog-drafting"
+      ],
+      "skill": "blog-drafting",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "05 11 * * *",
+        "display": "05 11 * * *"
+      },
+      "schedule_display": "05 11 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 0
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-03T00:27:51.283208+03:00",
+      "next_run_at": "2026-06-06T14:55:51.924996+03:00",
+      "last_run_at": null,
+      "last_status": null,
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin,all",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    }
+  ],
+  "updated_at": "2026-06-06T14:55:51.925402+03:00"
+}

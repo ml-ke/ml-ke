@@ -1,0 +1,5 @@
+✗ Gateway is not running
+
+To start:
+  hermes gateway run      # Run in foreground
+  hermes gateway install  # Install as user service
