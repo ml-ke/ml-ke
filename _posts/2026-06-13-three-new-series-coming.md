@@ -8,7 +8,7 @@ image:
   alt: Three interconnected pillars representing the three new series
 ---
 
-We've spent the last two weeks diving deep into AI security — from {% post_url 2026-06-01-mlsecops-pipeline-security %} to {% post_url 2026-06-12-ml-secrets-management %} — and the response has been incredible. The MLsecOps series showed us how fragile our pipelines really are, and that knowledge matters.
+We've spent the last two weeks diving deep into AI security — from [MLSecOps: Securing the ML Pipeline](/posts/mlsecops-pipeline-security/) to [ML Pipeline Secrets Management](/posts/ml-secrets-management/) — and the response has been incredible. The MLsecOps series showed us how fragile our pipelines really are, and that knowledge matters.
 
 But security isn't the only story. It's time to **build.**
 
@@ -67,7 +67,7 @@ Agents need infrastructure. Models need deployment pipelines. Data needs version
 - **Kubernetes for ML** — Kubeflow, K8s operators for model serving, autoscaling
 - **CI/CD for ML pipelines** — DVC, MLflow, automated retraining, A/B testing in production
 - **Monitoring & observability** — Drift detection, alerting, LLM eval pipelines
-- **Secrets & security** — Building on our earlier {% post_url 2026-06-12-ml-secrets-management %} post into production-grade vault patterns
+- **Secrets & security** — Building on our earlier [ML Pipeline Secrets Management](/posts/ml-secrets-management/) post into production-grade vault patterns
 
 This series pairs tightly with the Agents series — you'll see the infrastructure patterns behind the agent architectures.
 
@@ -121,7 +121,7 @@ The MLsecOps series isn't ending — it's evolving. Security remains a thread wo
 - Data sovereignty and compliance in the African AI series
 - Secrets management, pipeline hardening, and runtime security in Infrastructure
 
-Our earlier posts — from {% post_url 2026-06-01-prompt-injection-llm-security %} to {% post_url 2026-06-11-multimodal-attacks %} — still serve as the foundation. We'll reference them, build on them, and continue publishing dedicated security deep-dives alongside the new series.
+Our earlier posts — from [Prompt Injection: The #1 LLM Security Risk](/posts/prompt-injection-llm-security/) to [Real-Time Multimodal Security](/posts/multimodal-attacks/) — still serve as the foundation. We'll reference them, build on them, and continue publishing dedicated security deep-dives alongside the new series.
 
 ---
 
