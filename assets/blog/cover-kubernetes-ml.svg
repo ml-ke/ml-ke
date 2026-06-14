@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+
+    <marker id="arrow-k8s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6bcf7f"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Kubernetes for ML</text>
+
+  <!-- Ship wheel (Kubernetes helm) -->
+  <g transform="translate(600, 280)">
+    <!-- Wheel outer ring -->
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#00d2ff" stroke-width="2.5" opacity="0.3"/>
+
+    <!-- Wheel spokes -->
+    <g stroke="#00d2ff" stroke-width="3" opacity="0.4">
+      <line x1="0" y1="-75" x2="0" y2="-25"/>
+      <line x1="0" y1="25" x2="0" y2="75"/>
+      <line x1="-75" y1="0" x2="-25" y2="0"/>
+      <line x1="25" y1="0" x2="75" y2="0"/>
+      <line x1="-53" y1="-53" x2="-18" y2="-18"/>
+      <line x1="53" y1="-53" x2="18" y2="-18"/>
+      <line x1="-53" y1="53" x2="-18" y2="18"/>
+      <line x1="53" y1="53" x2="18" y2="18"/>
+    </g>
+
+    <!-- Inner hub -->
+    <circle cx="0" cy="0" r="20" fill="#00d2ff" fill-opacity="0.1" stroke="#00d2ff" stroke-width="2"/>
+    <text x="0" y="4" fill="#00d2ff" font-family="monospace" font-size="8" text-anchor="middle" font-weight="700">K8s</text>
+
+    <!-- Model containers orbiting -->
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#9aa0a6" stroke-width="0.5" opacity="0.15" stroke-dasharray="4,6"/>
+  </g>
+
+  <!-- Orbiting model containers -->
+  <!-- Orbiting container: Model A -->
+  <g transform="translate(720, 280)">
+    <rect x="-22" y="-18" width="44" height="36" rx="6" fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.5"/>
+    <rect x="-22" y="-18" width="44" height="14" rx="6" fill="#6bcf7f" fill-opacity="0.06"/>
+    <text x="0" y="4" fill="#6bcf7f" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">Model A</text>
+    <circle cx="0" cy="-8" r="3" fill="#6bcf7f" opacity="0.5"/>
+  </g>
+  <!-- Orbiting container: Model B -->
+  <g transform="translate(650, 160)">
+    <rect x="-22" y="-18" width="44" height="36" rx="6" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.5"/>
+    <rect x="-22" y="-18" width="44" height="14" rx="6" fill="#a78bfa" fill-opacity="0.06"/>
+    <text x="0" y="4" fill="#a78bfa" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">Model B</text>
+    <circle cx="0" cy="-8" r="3" fill="#a78bfa" opacity="0.5"/>
+  </g>
+  <!-- Orbiting container: Model C -->
+  <g transform="translate(480, 160)">
+    <rect x="-22" y="-18" width="44" height="36" rx="6" fill="none" stroke="#ffd93d" stroke-width="1.5" opacity="0.5"/>
+    <rect x="-22" y="-18" width="44" height="14" rx="6" fill="#ffd93d" fill-opacity="0.06"/>
+    <text x="0" y="4" fill="#ffd93d" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">Model C</text>
+    <circle cx="0" cy="-8" r="3" fill="#ffd93d" opacity="0.5"/>
+  </g>
+  <!-- Orbiting container: Model D -->
+  <g transform="translate(480, 400)">
+    <rect x="-22" y="-18" width="44" height="36" rx="6" fill="none" stroke="#ff6b6b" stroke-width="1.5" opacity="0.5"/>
+    <rect x="-22" y="-18" width="44" height="14" rx="6" fill="#ff6b6b" fill-opacity="0.06"/>
+    <text x="0" y="4" fill="#ff6b6b" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">Model D</text>
+    <circle cx="0" cy="-8" r="3" fill="#ff6b6b" opacity="0.5"/>
+  </g>
+  <!-- Orbiting container: Model E -->
+  <g transform="translate(650, 400)">
+    <rect x="-22" y="-18" width="44" height="36" rx="6" fill="none" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
+    <rect x="-22" y="-18" width="44" height="14" rx="6" fill="#00d2ff" fill-opacity="0.06"/>
+    <text x="0" y="4" fill="#00d2ff" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">Model E</text>
+    <circle cx="0" cy="-8" r="3" fill="#00d2ff" opacity="0.5"/>
+  </g>
+
+  <text x="600" y="510" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Kubernetes · Helm charts · Autoscaling · Model orchestration</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

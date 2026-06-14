@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Low-Resource NLP</text>
+
+  <!-- Ground -->
+  <rect x="400" y="430" width="400" height="8" rx="4" fill="#6bcf7f" fill-opacity="0.15"/>
+
+  <!-- Stem -->
+  <path d="M 600 430 Q 590 380 600 330 Q 610 280 600 230" fill="none" stroke="#6bcf7f" stroke-width="3" opacity="0.6"/>
+
+  <!-- Leaves -->
+  <path d="M 600 370 Q 640 350 650 370 Q 640 390 600 370" fill="#6bcf7f" fill-opacity="0.15" stroke="#6bcf7f" stroke-width="1.5"/>
+  <path d="M 600 320 Q 560 300 550 320 Q 560 340 600 320" fill="#6bcf7f" fill-opacity="0.15" stroke="#6bcf7f" stroke-width="1.5"/>
+  <path d="M 600 270 Q 650 250 660 270 Q 650 290 600 270" fill="#6bcf7f" fill-opacity="0.15" stroke="#6bcf7f" stroke-width="1.5"/>
+
+  <!-- Flower/Bloom at top (model blooming) -->
+  <g transform="translate(600, 225)">
+    <circle cx="0" cy="0" r="15" fill="#ffd93d" fill-opacity="0.08" stroke="#ffd93d" stroke-width="2"/>
+    <circle cx="-10" cy="-8" r="8" fill="#ffd93d" fill-opacity="0.08" stroke="#ffd93d" stroke-width="1.5"/>
+    <circle cx="10" cy="-8" r="8" fill="#ffd93d" fill-opacity="0.08" stroke="#ffd93d" stroke-width="1.5"/>
+    <circle cx="-10" cy="8" r="8" fill="#ffd93d" fill-opacity="0.08" stroke="#ffd93d" stroke-width="1.5"/>
+    <circle cx="10" cy="8" r="8" fill="#ffd93d" fill-opacity="0.08" stroke="#ffd93d" stroke-width="1.5"/>
+    <text x="0" y="3" fill="#ffd93d" font-family="monospace" font-size="8" text-anchor="middle">AI</text>
+  </g>
+
+  <!-- Data droplets (small circles falling) -->
+  <g fill="#00d2ff" opacity="0.5">
+    <circle cx="530" cy="410" r="5"/>
+    <circle cx="670" cy="420" r="4"/>
+    <circle cx="500" cy="400" r="3"/>
+    <circle cx="700" cy="405" r="4"/>
+    <circle cx="550" cy="390" r="5"/>
+    <circle cx="650" cy="395" r="3"/>
+  </g>
+
+  <!-- Data droplet label -->
+  <text x="530" y="405" fill="#00d2ff" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">💧</text>
+  <text x="670" y="415" fill="#00d2ff" font-family="monospace" font-size="8" text-anchor="middle" opacity="0.7">💧</text>
+
+  <!-- Labels -->
+  <text x="350" y="410" fill="#00d2ff" font-family="system-ui, sans-serif" font-size="11" text-anchor="end" opacity="0.5">limited data</text>
+  <text x="350" y="340" fill="#6bcf7f" font-family="system-ui, sans-serif" font-size="11" text-anchor="end" opacity="0.5">growing model</text>
+
+  <text x="600" y="500" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Transfer learning · Data augmentation · Few-shot methods</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

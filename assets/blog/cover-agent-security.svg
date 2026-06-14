@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Building Secure AI Agents</text>
+
+  <!-- Shield outline -->
+  <g transform="translate(600, 280)">
+    <path d="M 0 -100 L -80 -60 L -80 30 Q -80 100 0 130 Q 80 100 80 30 L 80 -60 Z" fill="none" stroke="#6bcf7f" stroke-width="3" opacity="0.2"/>
+    <path d="M 0 -90 L -70 -55 L -70 30 Q -70 90 0 120 Q 70 90 70 30 L 70 -55 Z" fill="#6bcf7f" fill-opacity="0.04" stroke="#6bcf7f" stroke-width="2"/>
+
+    <!-- Gear inside shield -->
+    <circle cx="0" cy="20" r="30" fill="none" stroke="#00d2ff" stroke-width="2" opacity="0.6"/>
+    <circle cx="0" cy="20" r="12" fill="#00d2ff" fill-opacity="0.2" stroke="#00d2ff" stroke-width="1.5"/>
+    <g stroke="#00d2ff" stroke-width="3" opacity="0.5">
+      <line x1="-35" y1="10" x2="-35" y2="30"/>
+      <line x1="35" y1="10" x2="35" y2="30"/>
+      <line x1="-10" y1="-15" x2="10" y2="-15"/>
+      <line x1="-10" y1="55" x2="10" y2="55"/>
+      <line x1="-25" y1="-5" x2="-15" y2="5"/>
+      <line x1="25" y1="-5" x2="15" y2="5"/>
+      <line x1="-25" y1="45" x2="-15" y2="35"/>
+      <line x1="25" y1="45" x2="15" y2="35"/>
+    </g>
+
+    <!-- Lock -->
+    <g transform="translate(-50, -30)">
+      <rect x="-8" y="-3" width="16" height="16" rx="3" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.7"/>
+      <path d="M -5 -3 L -5 -8 Q -5 -15 5 -15 Q 15 -15 15 -8 L 15 -3" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.7"/>
+      <circle cx="0" cy="7" r="2" fill="#ffd93d" opacity="0.7"/>
+    </g>
+
+    <!-- Firewall bars -->
+    <g fill="none" stroke="#ff6b6b" stroke-width="2" opacity="0.4">
+      <line x1="-70" y1="80" x2="-70" y2="120"/>
+      <line x1="70" y1="80" x2="70" y2="120"/>
+      <line x1="-60" y1="85" x2="-60" y2="115"/>
+      <line x1="60" y1="85" x2="60" y2="115"/>
+      <line x1="-50" y1="90" x2="-50" y2="110"/>
+      <line x1="50" y1="90" x2="50" y2="110"/>
+    </g>
+  </g>
+
+  <text x="600" y="480" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Input validation · Access control · Rate limiting · Audit logging</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

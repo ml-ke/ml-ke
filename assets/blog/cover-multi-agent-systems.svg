@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d2ff"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Multi-Agent Systems</text>
+
+  <!-- Supervisor node (center) -->
+  <circle cx="600" cy="280" r="45" fill="#a78bfa" fill-opacity="0.15" stroke="#a78bfa" stroke-width="2.5"/>
+  <text x="600" y="275" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" font-weight="600">SUPERVISOR</text>
+  <text x="600" y="290" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle" opacity="0.7">Orchestrator</text>
+
+  <!-- Agent nodes around the supervisor -->
+  <!-- Top-left agent -->
+  <circle cx="350" cy="170" r="35" fill="#6bcf7f" fill-opacity="0.12" stroke="#6bcf7f" stroke-width="2"/>
+  <text x="350" y="165" fill="#6bcf7f" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle" font-weight="600">AGENT</text>
+  <text x="350" y="178" fill="#6bcf7f" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Alpha</text>
+
+  <!-- Top-right agent -->
+  <circle cx="850" cy="170" r="35" fill="#6bcf7f" fill-opacity="0.12" stroke="#6bcf7f" stroke-width="2"/>
+  <text x="850" y="165" fill="#6bcf7f" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle" font-weight="600">AGENT</text>
+  <text x="850" y="178" fill="#6bcf7f" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Beta</text>
+
+  <!-- Bottom-left agent -->
+  <circle cx="350" cy="400" r="35" fill="#00d2ff" fill-opacity="0.12" stroke="#00d2ff" stroke-width="2"/>
+  <text x="350" y="395" fill="#00d2ff" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle" font-weight="600">AGENT</text>
+  <text x="350" y="408" fill="#00d2ff" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Gamma</text>
+
+  <!-- Bottom-right agent -->
+  <circle cx="850" cy="400" r="35" fill="#00d2ff" fill-opacity="0.12" stroke="#00d2ff" stroke-width="2"/>
+  <text x="850" y="395" fill="#00d2ff" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle" font-weight="600">AGENT</text>
+  <text x="850" y="408" fill="#00d2ff" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Delta</text>
+
+  <!-- Communication arrows: supervisor ↔ agents -->
+  <g fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.6">
+    <!-- Supervisor to top-left -->
+    <path d="M 565 260 Q 480 220 390 190" marker-end="url(#arrow-purple)"/>
+    <path d="M 390 190 Q 480 220 565 260" marker-end="url(#arrow-purple)"/>
+    <!-- Supervisor to top-right -->
+    <path d="M 635 260 Q 720 220 810 190" marker-end="url(#arrow-purple)"/>
+    <path d="M 810 190 Q 720 220 635 260" marker-end="url(#arrow-purple)"/>
+    <!-- Supervisor to bottom-left -->
+    <path d="M 565 310 Q 480 350 390 380" marker-end="url(#arrow-purple)"/>
+    <path d="M 390 380 Q 480 350 565 310" marker-end="url(#arrow-purple)"/>
+    <!-- Supervisor to bottom-right -->
+    <path d="M 635 310 Q 720 350 810 380" marker-end="url(#arrow-purple)"/>
+    <path d="M 810 380 Q 720 350 635 310" marker-end="url(#arrow-purple)"/>
+  </g>
+
+  <!-- Peer-to-peer arrows (agents communicate) -->
+  <g fill="none" stroke="#6bcf7f" stroke-width="1" opacity="0.3" stroke-dasharray="4,4">
+    <path d="M 385 170 Q 600 130 815 170" marker-end="url(#arrow-cyan)"/>
+    <path d="M 385 400 Q 600 450 815 400" marker-end="url(#arrow-cyan)"/>
+  </g>
+
+  <text x="600" y="510" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Specialized agents collaborate under a central orchestrator</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

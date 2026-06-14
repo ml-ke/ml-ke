@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6bcf7f"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Building AI Agents from Scratch</text>
+
+  <!-- Circular arrows for ReAct cycle -->
+  <g fill="none" stroke="#6bcf7f" stroke-width="3">
+    <path d="M 600,190 A 130,130 0 0,1 730,320" marker-end="url(#arrow-green)"/>
+    <path d="M 730,320 A 130,130 0 0,1 600,450" marker-end="url(#arrow-green)"/>
+    <path d="M 600,450 A 130,130 0 0,1 470,320" marker-end="url(#arrow-green)"/>
+    <path d="M 470,320 A 130,130 0 0,1 600,190" marker-end="url(#arrow-green)"/>
+  </g>
+  <text x="600" y="165" fill="#6bcf7f" font-family="monospace" font-size="13" text-anchor="middle" font-weight="600">OBSERVE</text>
+  <text x="750" y="310" fill="#6bcf7f" font-family="monospace" font-size="13" text-anchor="middle" font-weight="600">THINK</text>
+  <text x="600" y="475" fill="#6bcf7f" font-family="monospace" font-size="13" text-anchor="middle" font-weight="600">ACT</text>
+  <text x="420" y="310" fill="#6bcf7f" font-family="monospace" font-size="13" text-anchor="middle" font-weight="600">OBSERVE</text>
+
+  <!-- Brain icon -->
+  <g transform="translate(570,285)" fill="none" stroke="#00d2ff" stroke-width="2" opacity="0.8">
+    <path d="M 15 5 Q 30 0 45 5 Q 55 10 55 25 Q 55 40 50 45 Q 45 50 45 55 L 45 65 Q 40 60 30 60 Q 20 60 15 65 L 15 55 Q 10 50 5 45 Q 0 40 0 25 Q 0 10 15 5 Z"/>
+    <path d="M 15 20 Q 30 15 45 20"/>
+    <path d="M 10 35 Q 30 28 50 35"/>
+    <path d="M 20 50 Q 30 45 40 50"/>
+  </g>
+  <!-- Gear next to brain -->
+  <g transform="translate(625,310)" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.7">
+    <circle cx="0" cy="0" r="18"/>
+    <circle cx="0" cy="0" r="8" fill="#ffd93d" fill-opacity="0.3"/>
+    <line x1="-22" y1="-6" x2="-22" y2="6" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="22" y1="-6" x2="22" y2="6" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="-6" y1="-22" x2="6" y2="-22" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="-6" y1="22" x2="6" y2="22" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="-16" y1="-16" x2="-10" y2="-10" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="16" y1="16" x2="10" y2="10" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="-16" y1="16" x2="-10" y2="10" stroke="#ffd93d" stroke-width="4"/>
+    <line x1="16" y1="-16" x2="10" y2="-10" stroke="#ffd93d" stroke-width="4"/>
+  </g>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

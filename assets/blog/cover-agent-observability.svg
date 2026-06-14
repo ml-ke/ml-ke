@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">Agent Observability</text>
+
+  <!-- Magnifying glass (large) -->
+  <g transform="translate(600, 270)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#6bcf7f" stroke-width="3" opacity="0.3"/>
+    <circle cx="0" cy="0" r="80" fill="#6bcf7f" fill-opacity="0.04"/>
+    <line x1="55" y1="55" x2="90" y2="90" stroke="#6bcf7f" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Log stream lines (visible through magnifying glass) -->
+  <g opacity="0.5">
+    <line x1="200" y1="230" x2="560" y2="235" stroke="#ff6b6b" stroke-width="2" opacity="0.5"/>
+    <text x="195" y="234" fill="#ff6b6b" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">ERROR</text>
+
+    <line x1="200" y1="260" x2="600" y2="260" stroke="#ffd93d" stroke-width="2" opacity="0.5"/>
+    <text x="195" y="264" fill="#ffd93d" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">WARN</text>
+
+    <line x1="200" y1="290" x2="650" y2="290" stroke="#6bcf7f" stroke-width="2" opacity="0.5"/>
+    <text x="195" y="294" fill="#6bcf7f" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">INFO</text>
+
+    <line x1="200" y1="320" x2="700" y2="320" stroke="#00d2ff" stroke-width="2" opacity="0.5"/>
+    <text x="195" y="324" fill="#00d2ff" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">TRACE</text>
+
+    <line x1="200" y1="350" x2="580" y2="350" stroke="#9aa0a6" stroke-width="2" opacity="0.3"/>
+    <text x="195" y="354" fill="#9aa0a6" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">DEBUG</text>
+
+    <line x1="200" y1="380" x2="530" y2="380" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+    <text x="195" y="384" fill="#a78bfa" font-family="monospace" font-size="9" text-anchor="end" opacity="0.6">METRIC</text>
+  </g>
+
+  <!-- Trace paths (spanning across) -->
+  <g fill="none" stroke="#00d2ff" stroke-width="1.5" opacity="0.3">
+    <path d="M 700 250 Q 800 270 780 320 Q 760 370 840 380"/>
+    <path d="M 650 280 Q 750 290 740 340 Q 730 390 800 400"/>
+    <path d="M 680 310 Q 780 320 770 360 Q 760 400 820 410"/>
+  </g>
+  <!-- Span dots -->
+  <circle cx="700" cy="250" r="3" fill="#00d2ff" opacity="0.5"/>
+  <circle cx="780" cy="320" r="3" fill="#00d2ff" opacity="0.5"/>
+  <circle cx="840" cy="380" r="3" fill="#00d2ff" opacity="0.5"/>
+  <circle cx="650" cy="280" r="3" fill="#00d2ff" opacity="0.5"/>
+  <circle cx="740" cy="340" r="3" fill="#00d2ff" opacity="0.5"/>
+  <circle cx="800" cy="400" r="3" fill="#00d2ff" opacity="0.5"/>
+
+  <!-- Timestamp axis -->
+  <line x1="180" y1="430" x2="900" y2="430" stroke="#9aa0a6" stroke-width="1" opacity="0.2"/>
+  <g fill="#9aa0a6" font-family="monospace" font-size="8" opacity="0.4">
+    <text x="200" y="445">t₀</text>
+    <text x="380" y="445">t₁</text>
+    <text x="560" y="445">t₂</text>
+    <text x="740" y="445">t₃</text>
+    <text x="900" y="445">t₄</text>
+  </g>
+
+  <text x="600" y="500" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Trace every step: logs, spans, and metrics across agent execution</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>

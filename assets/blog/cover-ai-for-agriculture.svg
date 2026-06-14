@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="310" fill="#e8eaed" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" text-anchor="middle" dominant-baseline="middle">AI for Agriculture</text>
+
+  <!-- Large leaf -->
+  <g transform="translate(600, 280)">
+    <path d="M 0 -100 Q 40 -80 60 -40 Q 80 0 60 40 Q 40 80 0 100 Q -40 80 -60 40 Q -80 0 -60 -40 Q -40 -80 0 -100 Z"
+          fill="#6bcf7f" fill-opacity="0.06" stroke="#6bcf7f" stroke-width="2"/>
+    <!-- Main vein -->
+    <line x1="0" y1="-80" x2="0" y2="80" stroke="#6bcf7f" stroke-width="1.5" opacity="0.5"/>
+    <!-- Circuit traces along veins -->
+    <g fill="none" stroke="#00d2ff" stroke-width="1.2" opacity="0.4">
+      <path d="M 0 -70 L 25 -55 L 25 -20"/>
+      <path d="M 0 -40 L -30 -25 L -30 0"/>
+      <path d="M 0 -10 L 35 5 L 35 30"/>
+      <path d="M 0 20 L -25 35 L -25 55"/>
+      <path d="M 0 50 L 20 60"/>
+    </g>
+    <!-- Nodes on circuit -->
+    <circle cx="25" cy="-20" r="3" fill="#00d2ff" opacity="0.6"/>
+    <circle cx="-30" cy="0" r="3" fill="#00d2ff" opacity="0.6"/>
+    <circle cx="35" cy="30" r="3" fill="#ffd93d" opacity="0.6"/>
+    <circle cx="-25" cy="55" r="3" fill="#ffd93d" opacity="0.6"/>
+    <circle cx="20" cy="60" r="3" fill="#00d2ff" opacity="0.6"/>
+  </g>
+
+  <!-- Crop rows (bottom) -->
+  <g fill="none" stroke="#6bcf7f" stroke-width="1.5" opacity="0.2">
+    <path d="M 100 470 Q 200 460 300 470"/>
+    <path d="M 150 485 Q 250 475 350 485"/>
+    <path d="M 850 470 Q 950 460 1050 470"/>
+    <path d="M 800 485 Q 900 475 1000 485"/>
+  </g>
+
+  <!-- Small crop plants -->
+  <g fill="#6bcf7f" fill-opacity="0.15" stroke="#6bcf7f" stroke-width="1" opacity="0.4">
+    <path d="M 200 470 Q 195 455 200 445 Q 205 455 200 470"/>
+    <path d="M 300 470 Q 295 455 300 445 Q 305 455 300 470"/>
+    <path d="M 900 470 Q 895 455 900 445 Q 905 455 900 470"/>
+    <path d="M 1000 470 Q 995 455 1000 445 Q 1005 455 1000 470"/>
+  </g>
+
+  <!-- Satellite dish (right side) -->
+  <g transform="translate(950, 180)">
+    <path d="M -25 -20 Q 0 15 25 -20" fill="none" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+    <line x1="0" y1="5" x2="0" y2="40" stroke="#a78bfa" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="0" cy="40" r="5" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.5"/>
+    <!-- Signal waves -->
+    <path d="M -30 -25 A 40 40 0 0 1 30 -25" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.3"/>
+    <path d="M -38 -32 A 55 55 0 0 1 38 -32" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.2"/>
+  </g>
+
+  <text x="600" y="510" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle" opacity="0.5">Crop disease detection · Yield prediction · Precision farming</text>
+
+  <text x="1170" y="600" fill="#9aa0a6" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="end" opacity="0.7">ml-ke.github.io</text>
+</svg>
