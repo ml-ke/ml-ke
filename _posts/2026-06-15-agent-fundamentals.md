@@ -400,5 +400,5 @@ This architecture is the foundation upon which every agent framework — LangGra
 ## Further Reading
 
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629) — Yao et al., 2022
-- [Tool Use and Function Calling — Next Post]({% post_url 2026-06-17-agent-tool-calling %})
-- [Memory Systems for AI Agents — Next Post]({% post_url 2026-06-16-agent-memory-systems %})
+- [Tool Use and Function Calling — Next Post](/posts/agent-tool-calling/)
+- [Memory Systems for AI Agents — Next Post](/posts/agent-memory-systems/)
