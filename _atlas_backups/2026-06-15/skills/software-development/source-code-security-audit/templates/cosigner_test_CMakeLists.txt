@@ -1,0 +1,24 @@
+# cosigner_test CMakeLists.txt — Add PoC files
+# Place in test/cosigner/CMakeLists.txt
+# Add new .cpp files to the add_executable block:
+
+add_executable(cosigner_test
+    ecdsa_offline_test.cpp
+    ecdsa_online_test.cpp
+    eddsa_offline_test.cpp
+    eddsa_online_test.cpp
+    bam_test.cpp
+    bam_attack_poc.cpp
+    setup_test.cpp
+    your_poc_file_1.cpp
+    your_poc_file_2.cpp
+)
+
+# The cosigner_static target links against all crypto libs.
+# PoC files can use:
+#   #include <tests/catch.hpp>        — Catch2 test framework
+#   #include <openssl/bn.h>           — OpenSSL BIGNUM
+#   #include <crypto/paillier/paillier.h>  — Paillier public API
+#   #include "cosigner/..."           — Cosigner headers
+#   #include "test_common.h"          — Test persistency helpers
+#   #include "../../src/common/crypto/paillier/paillier_internal.h"  — Internal structs
