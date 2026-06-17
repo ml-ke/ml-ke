@@ -87,11 +87,28 @@ cat wayback_urls.txt | grep "=" | sed 's/.*?//' | tr '&' '\n' | cut -d'=' -f1 | 
 
 ### Phase 5: Systematic Vulnerability Testing
 For each vulnerability class, load the relevant skill:
+- **Identity platforms** (Auth0, Okta, Azure B2C) → load `oauth-oidc-attacks` — then get the Management API token FIRST
 - IDOR → load `idor-testing-methodology`
 - Mass assignment → load `mass-assignment-method-tampering`
 - OAuth → load `oauth-oidc-attacks`
+- SAML → load `saml-attacks` or `saml-attack-techniques`
 - Business logic → load `business-logic-flaws`
 - JWT → load `jwt-attacks`
+- SSRF → load `ssrf-testing`
+
+### Phase 5B: Credential-First Workflow (Identity Platforms)
+When you get Bugcrowd/Intigriti credentials for an identity platform:
+1. **Get the API token FIRST** — before using the dashboard or testing manually
+2. The Management API gives full access: users, templates, actions, connections
+3. Use Python + requests (or execute_code) for API calls — avoids curl escaping issues
+4. Test systematically: email templates → actions → connections → cross-tenant
+5. For Auth0 specifically: the Management API token format is:
+   ```python
+   POST {tenant}/oauth/token
+   {"client_id": "...", "client_secret": "...",
+    "audience": "https://{tenant}/api/v2/", "grant_type": "client_credentials"}
+   ```
+6. Save the token to a file for the session — it lasts 24 hours
 
 ### Phase 6: Chaining
 After finding ANY vulnerability, ask:
@@ -218,5 +235,18 @@ The skills are organized so the right one loads at the right time:
 
 1. **Top-level** (always loaded): `ai-agent-bug-bounty-methodology` — the workflow itself
 2. **Phase 4**: `recon-to-exploitation` — recon scripts and approach
-3. **Phase 5**: Attack-type skills — `idor-testing`, `mass-assignment`, `oauth-oidc-attacks`, `saml-attacks`, `business-logic-flaws`, `jwt-attacks`, `ssrf-testing`, `chaining-methodology`
-4. **Phase 7**: `pre-submission-verification`, `hackerone-submission-template`, `bugcrowd-submission-template`
+3. **Phase 5**: Attack-type skills — `idor-testing`, `mass-assignment`, `oauth-oidc-attacks`, `saml-attacks`, `saml-attack-techniques`, `business-logic-flaws`, `jwt-attacks`, `ssrf-testing`, `chaining-methodology`
+4. **Phase 5B (identity platforms)**: `oauth-oidc-attacks` references/auth0-okta-attack-surface.md — Auth0-specific Management API, Actions, email templates, Liquid SSTI
+5. **Phase 7**: `pre-submission-verification`, `hackerone-submission-template`, `bugcrowd-submission-template`
+
+### Skill Loading Decision Tree
+```
+Target has OAuth/OIDC? → load oauth-oidc-attacks
+  Is it Auth0/Okta? → also load references/auth0-okta-attack-surface.md
+  Is it Azure B2C? → also load references/azure-b2c-oauth-testing.md
+Target has SAML? → load saml-attacks, saml-attack-techniques
+Target is web app with user IDs visible? → load idor-testing
+Target is e-commerce/fintech? → load business-logic-flaws
+Target has JWT tokens? → load jwt-attacks
+Target has SSRF-prone features? → load ssrf-testing
+```
