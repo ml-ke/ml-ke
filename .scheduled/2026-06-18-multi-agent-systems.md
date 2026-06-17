@@ -491,5 +491,5 @@ Key takeaways:
 
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
 - [CrewAI Docs](https://docs.crewai.com/)
-- [Agent Observability and Debugging]({% post_url 2026-06-19-agent-observability %})
+- [Agent Observability and Debugging](/posts/agent-observability/)
 - [AutoGen: Multi-Agent Conversations](https://microsoft.github.io/autogen/)

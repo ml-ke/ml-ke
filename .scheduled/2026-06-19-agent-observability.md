@@ -503,5 +503,5 @@ Observability transforms agent development from guesswork into engineering. With
 
 - [LangFuse Documentation](https://langfuse.com/docs)
 - [OpenTelemetry Python](https://opentelemetry.io/docs/languages/python/)
-- [Multi-Agent Systems with LangGraph]({% post_url 2026-06-18-multi-agent-systems %})
-- [Deploying AI Agents to Production]({% post_url 2026-06-20-agent-production-deployment %})
+- [Multi-Agent Systems with LangGraph](/posts/multi-agent-systems/)
+- [Deploying AI Agents to Production](/posts/agent-production-deployment/)

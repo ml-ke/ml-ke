@@ -585,5 +585,5 @@ The key principle: **design for failure.** LLM APIs go down. Workers crash. Tool
 
 - [Celery Documentation](https://docs.celeryq.dev/)
 - [Redis as a Task Queue](https://redis.io/glossary/redis-queue/)
-- [Agent Observability]({% post_url 2026-06-19-agent-observability %})
-- [Building Secure AI Agents]({% post_url 2026-06-21-agent-security %})
+- [Agent Observability](/posts/agent-observability/)
+- [Building Secure AI Agents](/posts/agent-security/)

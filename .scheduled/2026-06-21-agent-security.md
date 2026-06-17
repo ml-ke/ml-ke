@@ -579,6 +579,6 @@ Building secure agents isn't about paranoia — it's about engineering robustnes
 ## Further Reading
 
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})
-- [Deploying AI Agents to Production]({% post_url 2026-06-20-agent-production-deployment %})
-- [Agent Observability and Debugging]({% post_url 2026-06-19-agent-observability %})
+- [Prompt Injection: The #1 LLM Security Risk](/posts/prompt-injection-llm-security/)
+- [Deploying AI Agents to Production](/posts/agent-production-deployment/)
+- [Agent Observability and Debugging](/posts/agent-observability/)

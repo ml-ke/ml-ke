@@ -636,5 +636,5 @@ Key takeaways:
 
 - [OpenAI Function Calling Guide](https://platform.openai.com/docs/guides/function-calling)
 - [Anthropic Tool Use Documentation](https://docs.anthropic.com/en/docs/build-with-claude/tool-use)
-- [Building AI Agents: ReAct Pattern]({% post_url 2026-06-15-agent-fundamentals %})
-- [Memory Systems for AI Agents]({% post_url 2026-06-16-agent-memory-systems %})
+- [Building AI Agents: ReAct Pattern](/posts/agent-fundamentals/)
+- [Memory Systems for AI Agents](/posts/agent-memory-systems/)

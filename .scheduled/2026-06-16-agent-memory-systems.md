@@ -10,7 +10,7 @@ image:
 
 ## Introduction
 
-The agent we built in the [previous post]({% post_url 2026-06-15-agent-fundamentals %}) is stateless. Each conversation starts fresh — no memory of past interactions, no learning from previous runs, no persistent knowledge. In production, that's unacceptable.
+The agent we built in the [previous post](/posts/agent-fundamentals/) is stateless. Each conversation starts fresh — no memory of past interactions, no learning from previous runs, no persistent knowledge. In production, that's unacceptable.
 
 **Memory is what transforms a one-shot LLM call into a learning system.** It enables agents to:
 
@@ -443,5 +443,5 @@ Memory is what separates a toy agent from a production system. By layering short
 
 - [ChromaDB Documentation](https://docs.trychroma.com/)
 - [RAG vs. Fine-Tuning for LLMs](https://ml.co.ke/posts/rag-vs-fine-tuning)
-- [Building AI Agents: ReAct Pattern]({% post_url 2026-06-15-agent-fundamentals %})
-- [Tool Use and Function Calling]({% post_url 2026-06-17-agent-tool-calling %})
+- [Building AI Agents: ReAct Pattern](/posts/agent-fundamentals/)
+- [Tool Use and Function Calling](/posts/agent-tool-calling/)
