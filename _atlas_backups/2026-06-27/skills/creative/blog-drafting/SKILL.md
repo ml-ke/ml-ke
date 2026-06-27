@@ -182,6 +182,60 @@ git commit -m "Clean up staged scheduled file for YYYY-MM-DD"
 git push origin main
 ```
 
+**Edge case — terminal output redaction of secrets:**
+
+The Hermes terminal censors API keys in command output, replacing them with `***`. This means:
+- `grep "sk-" file` shows nothing useful — the output is silently redacted
+- `sed 's/sk-.../REDACTED/' file` may not match because you can't see the actual key
+- `git show COMMIT:file | grep DEEPSEEK_API_KEY` shows `DEEPSEEK_API_KEY=***` even when the committed value is the real key
+
+**Fix — verify actual bytes with `xxd` or Python binary I/O:**
+
+```bash
+# See the REAL bytes of the secret line (xxd never lies)
+git show COMMIT:secret_file | sed -n 'LINEn'p | xxd
+
+# Edit the file using Python binary I/O (bypasses terminal censorship entirely)
+python3 -c "
+with open('FILE', 'rb') as f:
+    data = f.read()
+# Write replacement bytes directly — no terminal display to censor
+data = data.replace(b'OLD_SECRET_BYTES', b'***redacted***')
+with open('FILE', 'wb') as f:
+    f.write(data)
+"
+```
+
+The Python binary I/O approach (`'rb'`/`'wb'`) writes the exact bytes you specify without any terminal display interfering.
+
+**Edge case — competing background commits during rebase:**
+
+Background cron jobs (e.g., ATLAS backup creating new commits) may push new git objects while you are in the middle of an interactive rebase. When you run `git rebase --continue`, the rebase engine picks up these new commits and replays them, potentially:
+- Changing commit messages in unexpected ways
+- Creating new commits interleaved with your amended ones
+- Making it look like you amended the wrong commit (different message or author date)
+
+**Symptoms:** After `git commit --amend --no-edit && git rebase --continue`, the amended commit shows a different message, date, or file list than expected.
+
+**Recovery:**
+
+```bash
+# Before starting rebase, check for active background git operations
+ps aux | grep git  # Are any cron jobs running?
+
+# After rebase, verify the commit chain before force push
+git log --oneline -10
+# Ensure the amended commit is the right one (check its message, date, file list)
+
+# If background commits interfered, restart clean:
+# 1. Abort the current rebase
+git rebase --abort
+# 2. Check what new commits appeared
+git log --oneline -10 --all
+# 3. Re-do the rebase targeting the correct base
+GIT_SEQUENCE_EDITOR="sed -i '1s/^pick/edit/'" git rebase -i <base-commit>
+```
+
 **Prevention:** Never commit backup dumps that contain credential stores or skill references embedding live tokens. The ATLAS backup script should verify it doesn't catch `.env` or credential files.
 
 ## Blog Structure

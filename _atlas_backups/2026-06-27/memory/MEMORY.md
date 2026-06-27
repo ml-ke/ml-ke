@@ -1,6 +1,6 @@
 Top hacker synthesis: Tomnomnom=Unix pipe workflow. jhaddix=sys surface mapping. zseano=deep 1-target focus. AI agent best=hybrid: mass parallel recon + deep business chaining + cross-session memory linking.
 §
-Auth0 Jun 17: Mgmt API token (full scopes), Liquid {% debug %} + user_metadata injection set up, Actions deploy+test confirmed working (Node.js on server). Blockers: need SMTP for email render test, dashboard binding for action trigger. 2 skills updated with Auth0 methodology.
+Credentials leaked to GitHub Jun 26, 2026: TELEGRAM_BOT_TOKEN (invalidated via API), DEEPSEEK_API_KEY, BRAVE_SEARCH_API_KEY — all 3 need rotation. Git history cleaned from both BongweKE/ATLAS and ml-ke/ml-ke repos (filter-repo + force-push). New backup script has 4-layer secret defense: whitelist env, config stripping, GPG secrets archive, pre-commit scan.
 §
 Folder convention: ~/Dev/<target>/ = working sandbox (APKs, PoC, decompiled). ~/Dev/REPORTS/<Target>/ = final reports only, numbered (001-xxx.md). Testing dirs stay separate from report dirs.
 §

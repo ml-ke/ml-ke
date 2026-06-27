@@ -3,7 +3,7 @@
     {
       "id": "b61adad8c5b9",
       "name": "ATLAS daily sync",
-      "prompt": "Run the ATLAS backup script and report results.\n\nExecute: bash ~/.hermes/scripts/atlas-sync.sh\n\nThis backs up ALL Hermes state (skills, config, memories/cron/scripts) to ~/ProG/ATLAS/_hermes_backups/TODAY/, syncs skills to the ATLAS repo, commits and pushes to github.com:BongweKE/ATLAS.git, and also mirrors to ml-ke (legacy).\n\nAfter the script completes, report:\n- How many skills were backed up\n- Whether memories were backed up (MEMORY.md, USER.md)\n- Whether the ATLAS repo committed and pushed successfully\n- Any errors encountered\n\nThat's it \u2014 no additional work needed.",
+      "prompt": "Run the ATLAS backup script and report results.\n\nExecute: bash ~/.hermes/scripts/atlas-sync.sh\n\nThis script:\n1. Backs up skills, memories (MEMORY.md, USER.md), sanitized config, safe env vars, cron jobs, scripts to ~/ProG/ATLAS/_hermes_backups/TODAY/\n2. Encrypts .env, config.yaml, auth.json with GPG to ~/ProG/ATLAS/_secrets/ (LOCAL ONLY, never pushed)\n3. Syncs newer skills to ATLAS repo\n4. Runs pre-commit secret scan (blocks push if secrets detected)\n5. Pushes to github.com:BongweKE/ATLAS.git\n6. Mirrors to ml-ke repo (legacy)\n\nReport: how many skills backed up, whether secrets encrypted OK, and whether push succeeded.",
       "skills": [],
       "skill": null,
       "model": null,
@@ -27,7 +27,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-06-01T17:19:04.085290+03:00",
-      "next_run_at": "2026-06-27T14:00:00+03:00",
+      "next_run_at": "2026-06-28T14:00:00+03:00",
       "last_run_at": "2026-06-26T14:06:37.661646+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -60,7 +60,7 @@
       "schedule_display": "05 11 * * *",
       "repeat": {
         "times": null,
-        "completed": 13
+        "completed": 14
       },
       "enabled": true,
       "state": "scheduled",
@@ -68,7 +68,7 @@
       "paused_reason": null,
       "created_at": "2026-06-03T00:27:51.283208+03:00",
       "next_run_at": "2026-06-28T11:05:00+03:00",
-      "last_run_at": "2026-06-26T11:07:21.152154+03:00",
+      "last_run_at": "2026-06-27T11:11:23.311998+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -122,5 +122,5 @@
       "profile": null
     }
   ],
-  "updated_at": "2026-06-27T11:05:44.070527+03:00"
+  "updated_at": "2026-06-27T14:00:24.196897+03:00"
 }
