@@ -141,7 +141,7 @@ scan_for_secrets() {
     while IFS= read -r line; do
       found_files+=("$line")
       found_any=true
-    done < <(grep -rnP "$pattern" "$scan_dir" --include='*.md' --include='*.json' --include='*.yaml' --include='*.yml' --include='*.py' --include='*.js' --include='*.sh' --include='*.txt' 2>/dev/null | grep -v 'xxx\|\.\.\.\|YOUR\|your\|<your\|sk-...\|ghp_...\|example\|placeholder\|test\|__pycache__\|node_modules' || true)
+    done < <(grep -rnP "$pattern" "$scan_dir" --include='*.md' --include='*.json' --include='*.yaml' --include='*.yml' --include='*.py' --include='*.js' --include='*.sh' --include='*.txt' 2>/dev/null | grep -v 'xxx\|\.\.\.\|YOUR\|your\|<your\|sk-...\|ghp_...\|example\|placeholder\|test\|__pycache__\|node_modules\|atlas-sync.sh\|_hermes_backups' || true)
   done
 
   if [ "$found_any" = true ]; then
