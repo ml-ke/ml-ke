@@ -1,6 +1,6 @@
 ---
 title: "Agent Observability and Debugging: Tracing, Logging, and Monitoring"
-date: 2026-06-19 00:00:00 +0300
+date: 2026-07-06 00:00:00 +0300
 categories: [AI Engineering, LLM]
 tags: [agents, observability, langfuse, tracing, debugging]
 image:
