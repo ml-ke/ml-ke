@@ -1,6 +1,6 @@
 ---
 title: "The State of AI in Africa: Opportunities, Challenges, and the Road Ahead"
-date: 2026-06-22 00:00:00 +0300
+date: 2026-07-08 00:00:00 +0300
 categories: [Machine Learning, AI in Africa]
 tags: [africa, ai-africa, machine-learning, data-science, african-tech]
 image:
