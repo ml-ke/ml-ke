@@ -1,6 +1,6 @@
 ---
 title: "Low-Resource NLP: Transfer Learning and Data Augmentation for African Languages"
-date: 2026-06-24 00:00:00 +0300
+date: 2026-07-09 00:00:00 +0300
 categories: [Machine Learning, AI in Africa]
 tags: [africa, low-resource, natural-language-processing, transfer-learning, data-augmentation]
 image:
