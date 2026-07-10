@@ -1,0 +1,126 @@
+{
+  "jobs": [
+    {
+      "id": "b61adad8c5b9",
+      "name": "ATLAS daily sync",
+      "prompt": "Run the ATLAS backup script and report results.\n\nExecute: bash ~/.hermes/scripts/atlas-sync.sh\n\nThis script:\n1. Backs up skills, memories (MEMORY.md, USER.md), sanitized config, safe env vars, cron jobs, scripts to ~/ProG/ATLAS/_hermes_backups/TODAY/\n2. Encrypts .env, config.yaml, auth.json with GPG to ~/ProG/ATLAS/_secrets/ (LOCAL ONLY, never pushed)\n3. Syncs newer skills to ATLAS repo\n4. Runs pre-commit secret scan (blocks push if secrets detected)\n5. Pushes to github.com:BongweKE/ATLAS.git\n6. Mirrors to ml-ke repo (legacy)\n\nReport: how many skills backed up, whether secrets encrypted OK, and whether push succeeded.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "atlas-sync.sh",
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 28
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-01T17:19:04.085290+03:00",
+      "next_run_at": "2026-07-11T14:00:00+03:00",
+      "last_run_at": "2026-07-09T14:02:13.664314+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "137b7dcf653c",
+      "name": "blog-poster",
+      "prompt": "PUBLISH ONE BLOG POST \u2014 handles date rewriting\n\nTODAY=$(date +%Y-%m-%d)\ncd /home/pro-g/ProG/ml-ke\n\n# Check for today's scheduled post\nMATCH=$(ls .scheduled/${TODAY}-*.md 2>/dev/null | head -1)\n\nif [ -n \"$MATCH\" ]; then\n  mv \"$MATCH\" _posts/\n  BASENAME=$(basename \"$MATCH\")\n  git add \"_posts/$BASENAME\"\n  git commit -m \"Publish: $BASENAME\"\n  git pull --rebase origin main\n  git push origin main\n  echo \"PUBLISHED: $BASENAME\"\n  exit 0\nfi\n\n# No match for today \u2014 take first remaining, rewrite its date\nFIRST=$(ls .scheduled/*.md 2>/dev/null | head -1)\nif [ -z \"$FIRST\" ]; then\n  echo \"All posts published! Nothing to do.\"\n  exit 0\nfi\n\nBASENAME=$(basename \"$FIRST\")\nOLD_DATE=$(echo \"$BASENAME\" | grep -oP '^\\d{4}-\\d{2}-\\d{2}')\n\n# Rewrite front matter date and rename file to today\nsed -i \"s/date: $OLD_DATE/date: $TODAY/\" \"$FIRST\"\nNEW_NAME=$(echo \"$BASENAME\" | sed \"s/$OLD_DATE/$TODAY/\")\n\nmv \"$FIRST\" \"_posts/$NEW_NAME\"\ngit add \"_posts/$NEW_NAME\"\ngit commit -m \"Publish (date-fixed): $NEW_NAME\"\ngit pull --rebase origin main\ngit push origin main\necho \"PUBLISHED (date-fixed): $NEW_NAME\"",
+      "skills": [
+        "blog-drafting"
+      ],
+      "skill": "blog-drafting",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "05 11 * * *",
+        "display": "05 11 * * *"
+      },
+      "schedule_display": "05 11 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 26
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-03T00:27:51.283208+03:00",
+      "next_run_at": "2026-07-11T11:05:00+03:00",
+      "last_run_at": "2026-07-10T11:12:27.770454+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin,all",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "6869e0b42fa8",
+      "name": "ATLAS repo native sync",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "atlas-repo-sync.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "display": "0 20 * * *"
+      },
+      "schedule_display": "0 20 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 12
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-27T01:16:45.443914+03:00",
+      "next_run_at": "2026-07-10T20:00:00+03:00",
+      "last_run_at": "2026-07-09T20:00:15.731406+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1234070902",
+        "chat_name": "Pro Grammar",
+        "thread_id": "12600"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    }
+  ],
+  "updated_at": "2026-07-10T14:00:28.650243+03:00"
+}
