@@ -1,6 +1,6 @@
 ---
 title: "vLLM and High-Throughput LLM Serving: PagedAttention and Continuous Batching"
-date: 2026-06-30 00:00:00 +0300
+date: 2026-07-10 00:00:00 +0300
 categories: [ML Ops, AI Engineering]
 tags: [mlops, vllm, llm-serving, inference-optimization, openai-api]
 image:
