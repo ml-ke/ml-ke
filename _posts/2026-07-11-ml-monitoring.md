@@ -1,6 +1,6 @@
 ---
 title: "Monitoring ML Systems in Production: Drift Detection, Performance, and Alerting"
-date: 2026-07-04 00:00:00 +0300
+date: 2026-07-11 00:00:00 +0300
 categories: [ML Ops, AI Engineering]
 tags: [mlops, ml-monitoring, drift-detection, alerting, model-performance]
 image:
