@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#1a2a1e"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#6bcf7f" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+  </g>
+  <!-- Africa outline abstract -->
+  <g transform="translate(400, 300)" fill="#6bcf7f" opacity="0.04">
+    <path d="M 0 -120 Q 70 -100 120 -60 Q 160 -20 140 40 Q 120 100 60 130 Q 0 150 -40 120 Q -80 90 -100 40 Q -110 -10 -80 -60 Q -50 -100 0 -120 Z"/>
+  </g>
+  <!-- Industry icons as circles -->
+  <g fill="none" stroke="#6bcf7f" stroke-opacity="0.3" stroke-width="1">
+    <circle cx="580" cy="280" r="12"/>
+    <circle cx="640" cy="260" r="10"/>
+    <circle cx="700" cy="280" r="11"/>
+    <circle cx="610" cy="340" r="9"/>
+    <circle cx="670" cy="340" r="10"/>
+  </g>
+  <g fill="#6bcf7f" opacity="0.15">
+    <circle cx="580" cy="280" r="5"/>
+    <circle cx="640" cy="260" r="4"/>
+    <circle cx="700" cy="280" r="4.5"/>
+    <circle cx="610" cy="340" r="3.5"/>
+    <circle cx="670" cy="340" r="4"/>
+  </g>
+  <text x="600" y="160" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="bold" fill="#ffffff" letter-spacing="1">AI in African Industries</text>
+  <text x="600" y="195" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#8b949e">Healthcare • Education • Fintech • Agriculture • Creative</text>
+  <text x="600" y="430" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#6bcf7f" opacity="0.6">Series A — July/August 2026</text>
+  <text x="50" y="595" font-family="monospace" font-size="14" fill="#8b949e" opacity="0.6">ml-ke.github.io</text>
+</svg>
