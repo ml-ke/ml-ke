@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="40%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#6bcf7f"/>
+      <stop offset="100%" stop-color="#ffd93d"/>
+    </linearGradient>
+    <linearGradient id="pipe-grad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#ff6b6b" stop-opacity="0.4"/>
+      <stop offset="70%" stop-color="#ffd93d" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ffd93d" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#00d2ff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="0" y1="630" x2="1200" y2="630"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+  </g>
+
+  <!-- Industrial pipes on left -->
+  <g fill="none" stroke-width="8" stroke-linecap="round">
+    <path d="M 60 180 L 60 450 Q 60 470 80 470 L 300 470" stroke="#ff6b6b" stroke-opacity="0.25"/>
+    <path d="M 40 150 L 40 490 Q 40 510 60 510 L 280 510" stroke="#ffd93d" stroke-opacity="0.2"/>
+    <path d="M 80 210 L 80 430 Q 80 450 100 450 L 320 450" stroke="#a78bfa" stroke-opacity="0.2"/>
+  </g>
+
+  <!-- Data flow lines through pipes -->
+  <g fill="none" stroke-width="1.5" stroke-dasharray="6,4">
+    <path d="M 80 180 Q 400 315 600 315" stroke="#00d2ff" stroke-opacity="0.3"/>
+    <path d="M 80 470 Q 400 420 600 420" stroke="#6bcf7f" stroke-opacity="0.3"/>
+    <path d="M 80 250 Q 400 200 600 250" stroke="#a78bfa" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Factory/buildings silhouette on right -->
+  <g fill="#1a1a3e" stroke="#a78bfa" stroke-opacity="0.15" stroke-width="1">
+    <!-- Structures -->
+    <rect x="750" y="250" width="60" height="200" rx="3"/>
+    <rect x="830" y="300" width="45" height="150" rx="3"/>
+    <rect x="900" y="220" width="50" height="230" rx="3"/>
+    <rect x="970" y="280" width="55" height="170" rx="3"/>
+    <!-- Chimneys -->
+    <rect x="760" y="210" width="6" height="40"/>
+    <rect x="910" y="180" width="6" height="40"/>
+    <rect x="980" y="240" width="6" height="40"/>
+  </g>
+
+  <!-- Smoke/binary plumes -->
+  <g fill="#00d2ff" opacity="0.08">
+    <circle cx="763" cy="200" r="12"/>
+    <circle cx="758" cy="185" r="10"/>
+    <circle cx="913" cy="170" r="12"/>
+    <circle cx="908" cy="155" r="10"/>
+    <circle cx="983" cy="230" r="12"/>
+    <circle cx="978" cy="215" r="10"/>
+  </g>
+
+  <!-- Data nodes floating around factory -->
+  <g fill="#6bcf7f" opacity="0.7">
+    <circle cx="790" cy="220" r="3"/>
+    <circle cx="850" cy="270" r="2.5"/>
+    <circle cx="940" cy="200" r="3"/>
+    <circle cx="1020" cy="260" r="2.5"/>
+    <circle cx="810" cy="310" r="2"/>
+    <circle cx="870" cy="340" r="2.5"/>
+    <circle cx="960" cy="310" r="2"/>
+  </g>
+
+  <!-- Connection lines -->
+  <g stroke="#6bcf7f" stroke-opacity="0.25" stroke-width="0.8">
+    <line x1="790" y1="220" x2="850" y2="270"/>
+    <line x1="850" y1="270" x2="940" y2="200"/>
+    <line x1="940" y1="200" x2="1020" y2="260"/>
+    <line x1="810" y1="310" x2="870" y2="340"/>
+    <line x1="870" y1="340" x2="960" y2="310"/>
+  </g>
+
+  <!-- Gradient bar -->
+  <rect x="50" y="105" width="500" height="3" rx="1.5" fill="url(#gradient)" opacity="0.6"/>
+
+  <!-- Title -->
+  <text x="80" y="160" font-family="sans-serif" font-size="38" font-weight="bold" fill="#ffffff" letter-spacing="1">
+    AI at Industrial Scale
+  </text>
+  <text x="80" y="200" font-family="sans-serif" font-size="22" fill="#a78bfa" letter-spacing="1">
+    Dangote's $46B Bet &amp; the ML Opportunity
+  </text>
+
+  <!-- Subtitle -->
+  <text x="80" y="240" font-family="sans-serif" font-size="15" fill="#8b949e">
+    Predictive maintenance · Process optimisation · Intelligent supply chains
+  </text>
+
+  <!-- Accent node big -->
+  <circle cx="80" cy="475" r="8" fill="none" stroke="#00d2ff" stroke-opacity="0.4" stroke-width="1.5"/>
+  <circle cx="80" cy="475" r="3" fill="#00d2ff" opacity="0.6"/>
+  <circle cx="80" cy="475" r="14" fill="none" stroke="#00d2ff" stroke-opacity="0.15" stroke-width="1"/>
+
+  <!-- Bottom info -->
+  <text x="80" y="595" font-family="monospace" font-size="14" fill="#8b949e" opacity="0.6">ml-ke.github.io</text>
+</svg>
