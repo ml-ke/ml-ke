@@ -3,7 +3,9 @@ layout: post
 title: "Microsoft + Mistral: A Multibillion-Dollar Bet on European AI Sovereignty"
 categories: [AI Engineering, AI Infrastructure]
 tags: [microsoft, mistral-ai, europe-ai, sovereign-ai, vera-rubin, cloud]
-cover: /assets/img/cover-microsoft-mistral-deal.webp
+image:
+  path: /assets/img/cover-microsoft-mistral-deal.webp
+  alt: Microsoft and Mistral AI partnership — a multibillion-dollar bet on European AI sovereignty
 ---
 
 On July 21, 2026, Microsoft and Mistral AI announced a landmark multibillion-dollar partnership that reshapes the global AI infrastructure landscape. Under the deal, Microsoft will draw compute capacity from Mistral's Europe-based data centers — powered by thousands of NVIDIA Vera Rubin GPUs — to serve its cloud and AI customers. This is not merely another cloud partnership; it is a strategic bet on European sovereign AI infrastructure, with ripple effects that extend well beyond the continent.

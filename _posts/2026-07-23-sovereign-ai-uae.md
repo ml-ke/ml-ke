@@ -3,7 +3,9 @@ layout: post
 title: "The UAE's Sovereign AI Compute Play: A Template for National AI Infrastructure"
 categories: [AI Engineering, AI Infrastructure]
 tags: [uae-ai, core42, g42, sovereign-ai, cloud, mena-ai]
-cover: /assets/img/cover-sovereign-ai-uae.webp
+image:
+  path: /assets/img/cover-sovereign-ai-uae.webp
+  alt: Sovereign AI Compute — UAE's national AI infrastructure platform from e& and Core42
 ---
 
 On 20 July 2026, e& UAE (formerly Etisalat) and Core42 — the sovereign cloud and AI infrastructure arm of G42 — announced a partnership to launch **Sovereign AI Compute**. The service promises on-demand GPU infrastructure where data never leaves UAE borders, with zero egress fees and no capital expenditure required from customers. It is a direct challenge to the hyperscaler model and a signal that the UAE intends to own its AI destiny.

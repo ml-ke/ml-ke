@@ -4,7 +4,9 @@ title: "Kimi K3: China's 2.8 Trillion Parameter Challenge to Silicon Valley"
 date: 2026-07-18 09:00:00 +0300
 categories: [AI Engineering, LLM]
 tags: [moonshot-ai, kimi-k3, open-source, china-ai, llm, open-weights, model-comparison]
-cover: /assets/img/cover-kimi-k3-2-8t.webp
+image:
+  path: /assets/img/cover-kimi-k3-2-8t.webp
+  alt: Kimi K3 — China's 2.8 trillion parameter open-source AI model challenging Silicon Valley
 ---
 
 On July 17, 2026, [Moonshot AI](https://moonshot.ai) — the Beijing-based startup backed by Alibaba — dropped a bomb on the AI world. They released **Kimi K3**, a 2.8 trillion parameter open-weight model that is now the largest publicly available AI system ever released. It is not just a flex on scale. The [benchmark scores](https://huggingface.co/moonshot-ai) put it toe-to-toe with the best closed-source models from Silicon Valley, including [Anthropic's Fable 5](https://anthropic.com) and OpenAI's latest generation.
