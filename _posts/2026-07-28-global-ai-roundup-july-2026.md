@@ -27,7 +27,7 @@ On July 17, Beijing-based **Moonshot AI** (backed by Alibaba) released **Kimi K3
 
 > **Relevance to our themes:** This directly connects to our coverage of open-weight models and the democratisation of AI. A 2.8T model that developers can self-host changes the economics of inference for African and other constrained environments.
 
-- [CNBC: China's Moonshot AI unveils Kimi K3 that rivals OpenAI, Anthropic](/posts/moonshot-ai-kimi-k3/)
+- [CNBC: China's Moonshot AI unveils Kimi K3 that rivals OpenAI, Anthropic](https://www.cnbc.com/2026/07/17/moonshot-ai-kimi-k3-model-openai-anthropic-china.html)
 - [Bloomberg: Moonshot Unveils Kimi K3, Narrowing Gap With US Rivals](https://www.bloomberg.com/news/articles/2026-07-17/china-s-powerful-new-moonshot-ai-model-closes-gap-with-us-rivals)
 
 ### Z.AI (Zhipu) — 1GW Data Center, Zero Nvidia Silicon
