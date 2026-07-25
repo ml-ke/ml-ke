@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="#0d1117" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#a78bfa" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+  </g>
+  <!-- EU + US flag abstract shapes -->
+  <g transform="translate(280, 315)" fill="#00d2ff" opacity="0.08">
+    <rect x="-80" y="-60" width="160" height="120" rx="5"/>
+    <circle cx="0" cy="0" r="30"/>
+  </g>
+  <!-- Handshake / deal visual -->
+  <g stroke="#ffd93d" stroke-opacity="0.2" stroke-width="1.5" fill="none">
+    <path d="M 350 380 Q 420 350 500 370"/>
+    <path d="M 850 350 Q 780 380 700 370"/>
+  </g>
+  <text x="600" y="160" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="bold" fill="#ffffff" letter-spacing="1">Microsoft + Mistral</text>
+  <text x="600" y="195" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#a78bfa">A Multibillion-Dollar Bet on European AI</text>
+  <text x="600" y="370" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#8b949e">Vera Rubin GPUs • Sovereign Infrastructure • Azure Europe</text>
+  <!-- Logo text -->
+  <text x="340" y="410" font-family="monospace" font-size="16" fill="#00d2ff" opacity="0.6">Microsoft</text>
+  <text x="780" y="410" font-family="monospace" font-size="16" fill="#ffd93d" opacity="0.6">Mistral AI</text>
+  <text x="50" y="595" font-family="monospace" font-size="14" fill="#8b949e" opacity="0.6">ml-ke.github.io</text>
+</svg>
