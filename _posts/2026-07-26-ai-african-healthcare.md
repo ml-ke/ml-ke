@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AI for African Healthcare: From Diagnostics to Drug Discovery"
-date: 2026-07-26
+date: 2026-07-26 00:00:00 +0300
 image:
   path: /assets/img/cover-series-african-industries.webp
   alt: cover series african industries
