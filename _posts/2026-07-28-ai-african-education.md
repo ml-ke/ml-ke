@@ -1,6 +1,6 @@
 ---
 title: "AI in African Education: Personalised Learning for a Young Continent"
-date: 2026-07-29 00:00:00 +0300
+date: 2026-07-28 00:00:00 +0300
 categories: [AI in Africa, Machine Learning]
 tags: [edtech, ai-education, personalised-learning, africa-education, language-adaptation]
 image:
