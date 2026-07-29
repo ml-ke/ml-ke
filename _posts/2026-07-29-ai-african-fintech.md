@@ -1,6 +1,6 @@
 ---
 title: "AI for African Fintech: Credit Scoring, Mobile Money & Fraud Detection"
-date: 2026-07-30
+date: 2026-07-29 00:00:00 +0300
 image:
   path: /assets/img/cover-series-african-industries.webp
   alt: cover series african industries
