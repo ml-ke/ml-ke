@@ -1,6 +1,6 @@
 ---
 title: "AI for Agriculture & Climate in Africa: Predicting the Unpredictable"
-date: 2026-07-31 00:00:00 +0300
+date: 2026-07-30 00:00:00 +0300
 categories: [AI in Africa, Machine Learning]
 tags: [agritech, climate-ai, crop-monitoring, weather-prediction, satellite-imagery]
 image:
