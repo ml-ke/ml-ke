@@ -1,6 +1,6 @@
 ---
 title: "AI for African Creative Industries: Music, Film & Content in Local Languages"
-date: 2026-08-01
+date: 2026-07-31 00:00:00 +0300
 image:
   path: /assets/img/cover-series-african-industries.webp
   alt: cover series african industries
