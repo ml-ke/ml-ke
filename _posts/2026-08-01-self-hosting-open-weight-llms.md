@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to Self-Host Open-Weight LLMs: A Practical Guide"
-date: 2026-08-02
+date: 2026-08-01 00:00:00 +0300
 image:
   path: /assets/img/cover-series-practical-playbook.webp
   alt: cover series practical playbook
