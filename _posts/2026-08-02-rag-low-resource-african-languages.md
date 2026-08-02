@@ -1,6 +1,6 @@
 ---
 title: "Building RAG Systems for Low-Resource African Languages"
-date: 2026-08-03
+date: 2026-08-02 00:00:00 +0300
 image:
   path: /assets/img/cover-series-practical-playbook.webp
   alt: cover series practical playbook
