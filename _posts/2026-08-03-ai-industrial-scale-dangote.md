@@ -1,6 +1,6 @@
 ---
 title: "AI at Industrial Scale: Dangote's $46B Bet and the Machine Learning Opportunity"
-date: 2026-08-05 00:00:00 +0300
+date: 2026-08-03 00:00:00 +0300
 categories: [Machine Learning, AI Engineering, AI in Africa]
 tags: [dangote, industrial-ai, predictive-maintenance, process-optimization, supply-chain, africa-industry, ml-ops]
 image:
