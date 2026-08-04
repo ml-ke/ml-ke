@@ -1,6 +1,6 @@
 ---
 title: "Fine-Tuning LLMs on African Language Datasets"
-date: 2026-08-06 00:00:00 +0300
+date: 2026-08-04 00:00:00 +0300
 categories: [AI Engineering, LLM]
 tags: [fine-tuning, african-languages, nlp, swahili, low-resource, transformers]
 image:
