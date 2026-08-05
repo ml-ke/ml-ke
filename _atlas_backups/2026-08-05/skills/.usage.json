@@ -264,13 +264,13 @@
     "created_at": "2026-07-05T11:14:24.689693+00:00",
     "created_by": null,
     "last_patched_at": "2026-07-05T11:14:25.702826+00:00",
-    "last_used_at": "2026-08-03T11:02:47.860103+00:00",
-    "last_viewed_at": "2026-08-03T11:02:47.857989+00:00",
+    "last_used_at": "2026-08-05T11:03:27.545411+00:00",
+    "last_viewed_at": "2026-08-05T11:03:27.542674+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 3,
-    "view_count": 3
+    "use_count": 4,
+    "view_count": 4
   },
   "hermes-sudo-setup": {
     "archived_at": null,
