@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Edge AI: Running Models on Mobile in African Markets"
-date: 2026-08-07
+date: 2026-08-05
 image:
   path: /assets/img/cover-series-practical-playbook.webp
   alt: cover series practical playbook
