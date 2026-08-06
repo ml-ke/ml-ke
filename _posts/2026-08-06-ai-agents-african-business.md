@@ -1,6 +1,6 @@
 ---
 title: "AI Agents for African Business Workflows"
-date: 2026-08-08 00:00:00 +0300
+date: 2026-08-06 00:00:00 +0300
 categories: [AI Engineering]
 tags: [ai-agents, business-automation, workflow, africa-business, langchain]
 image:
