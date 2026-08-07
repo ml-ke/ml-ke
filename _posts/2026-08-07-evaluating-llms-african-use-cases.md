@@ -1,6 +1,6 @@
 ---
 title: "Evaluating LLMs: Benchmarks That Matter for African Use Cases"
-date: 2026-08-09 00:00:00 +0300
+date: 2026-08-07 00:00:00 +0300
 categories: [AI Engineering, LLM]
 tags: [evaluation, benchmarks, africa-nlp, llm-eval, african-languages, model-comparison]
 image:
