@@ -1,0 +1,10 @@
+# ATLAS Hermes Backup - 2026-08-08
+
+## Contents
+- skills: 804 files
+- memory: 2 files
+- config: 2 files
+- scripts: 10 files
+- jobs: 1 files
+- lessons: 2 files
+- secrets: Encrypted with GPG (local only, not pushed)
