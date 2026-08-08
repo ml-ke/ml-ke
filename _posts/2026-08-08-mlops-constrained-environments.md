@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "MLOps for Constrained Environments: Deploying ML Where Resources Are Tight"
-date: 2026-08-10
+date: 2026-08-08
 image:
   path: /assets/img/cover-series-practical-playbook.webp
   alt: cover series practical playbook
