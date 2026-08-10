@@ -1,6 +1,6 @@
 ---
 title: "How We Built a Skills-Powered Coding Agent with OpenCode (and What We'd Do Differently)"
-date: 2026-08-11 00:00:00 +0300
+date: 2026-08-10 00:00:00 +0300
 categories: [AI Engineering, LLM]
 tags: [opencode, agent-skills, coding-agents, ai-tools, skill-engineering, llm-tooling]
 image:
