@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="50%" stop-color="#101a2e"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <linearGradient id="bridge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="50%" stop-color="#6bcf7f"/>
+      <stop offset="100%" stop-color="#ffd93d"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid -->
+  <g stroke="#00d2ff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="378" x2="1200" y2="378"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+  </g>
+
+  <!-- Left library: Hermes (blue) -->
+  <g transform="translate(100, 140)">
+    <rect x="0" y="40" width="220" height="330" rx="10" fill="#1c2333" stroke="#00d2ff" stroke-opacity="0.5" stroke-width="2"/>
+    <g fill="#2a3350">
+      <rect x="20" y="60" width="180" height="18" rx="3"/>
+      <rect x="20" y="90" width="180" height="18" rx="3"/>
+      <rect x="20" y="120" width="180" height="18" rx="3"/>
+      <rect x="20" y="150" width="180" height="18" rx="3"/>
+      <rect x="20" y="180" width="180" height="18" rx="3"/>
+      <rect x="20" y="210" width="180" height="18" rx="3"/>
+    </g>
+    <g fill="#00d2ff" fill-opacity="0.85">
+      <rect x="20" y="250" width="120" height="18" rx="3"/>
+      <rect x="20" y="280" width="150" height="18" rx="3"/>
+    </g>
+    <text x="110" y="395" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="bold" fill="#00d2ff">HERMES</text>
+  </g>
+
+  <!-- Right library: OpenCode (yellow) -->
+  <g transform="translate(880, 140)">
+    <rect x="0" y="40" width="220" height="330" rx="10" fill="#1c2333" stroke="#ffd93d" stroke-opacity="0.5" stroke-width="2"/>
+    <g fill="#2a3350">
+      <rect x="20" y="60" width="180" height="18" rx="3"/>
+      <rect x="20" y="90" width="180" height="18" rx="3"/>
+      <rect x="20" y="120" width="180" height="18" rx="3"/>
+      <rect x="20" y="150" width="180" height="18" rx="3"/>
+      <rect x="20" y="180" width="180" height="18" rx="3"/>
+      <rect x="20" y="210" width="180" height="18" rx="3"/>
+    </g>
+    <g fill="#ffd93d" fill-opacity="0.85">
+      <rect x="20" y="250" width="140" height="18" rx="3"/>
+      <rect x="20" y="280" width="110" height="18" rx="3"/>
+    </g>
+    <text x="110" y="395" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="26" font-weight="bold" fill="#ffd93d">OPENCODE</text>
+  </g>
+
+  <!-- Bridge between libraries -->
+  <g filter="url(#glow)">
+    <path d="M 320 280 Q 600 160 880 280" fill="none" stroke="url(#bridge)" stroke-width="14" stroke-linecap="round"/>
+    <!-- Cables -->
+    <g stroke="#6bcf7f" stroke-opacity="0.6" stroke-width="3">
+      <line x1="360" y1="258" x2="360" y2="300"/>
+      <line x1="600" y1="222" x2="600" y2="300"/>
+      <line x1="840" y1="258" x2="840" y2="300"/>
+    </g>
+    <!-- Packets moving across -->
+    <circle cx="430" cy="253" r="9" fill="#00d2ff"/>
+    <circle cx="600" cy="222" r="9" fill="#6bcf7f"/>
+    <circle cx="770" cy="253" r="9" fill="#ffd93d"/>
+  </g>
+
+  <!-- Sync arrows -->
+  <g stroke="#8b98b8" stroke-width="3" fill="none">
+    <path d="M 340 400 Q 600 460 860 400" stroke-dasharray="8 8"/>
+  </g>
+  <g fill="#8b98b8">
+    <polygon points="860,392 872,400 860,408"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="560" text-anchor="middle" font-family="Menlo, Consolas, monospace" font-size="34" font-weight="bold" fill="#e6edf3">BRIDGING HERMES ↔ OPENCODE SKILL LIBRARIES</text>
+</svg>
