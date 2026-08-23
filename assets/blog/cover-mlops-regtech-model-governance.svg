@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/><line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/><line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/><line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  <text x="600" y="62" text-anchor="middle" font-family="sans-serif" font-size="33" font-weight="bold" fill="#f0f6fc">MLOps for RegTech: Model Governance</text>
+  <text x="600" y="96" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#8b949e">CBK, ODPC &amp; EU AI Act — the regulated ML lifecycle</text>
+  <g transform="translate(600, 360)">
+    
+    <g stroke="#8b949e" stroke-width="3">
+      <line x1="-170" y1="-70" x2="170" y2="-70"/>
+    </g>
+    <g>
+      <circle cx="-150" cy="-70" r="17" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+      <text x="-150" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#00d2ff">1</text>
+      <circle cx="-90" cy="-70" r="17" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+      <text x="-90" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#00d2ff">2</text>
+      <circle cx="-30" cy="-70" r="17" fill="#0d1117" stroke="#ffd93d" stroke-width="4"/>
+      <text x="-30" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#ffd93d">3</text>
+      <circle cx="30" cy="-70" r="17" fill="#0d1117" stroke="#ffd93d" stroke-width="4"/>
+      <text x="30" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#ffd93d">4</text>
+      <circle cx="90" cy="-70" r="17" fill="#0d1117" stroke="#6bcf7f" stroke-width="4"/>
+      <text x="90" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#6bcf7f">5</text>
+      <circle cx="150" cy="-70" r="17" fill="#0d1117" stroke="#6bcf7f" stroke-width="4"/>
+      <text x="150" y="-65" text-anchor="middle" font-family="monospace" font-size="15" fill="#6bcf7f">6</text>
+    </g>
+    <g transform="translate(-140, 70)">
+      <g stroke="#f0f6fc" stroke-width="3">
+        <line x1="0" y1="-40" x2="0" y2="40"/>
+        <line x1="-14" y1="-40" x2="14" y2="-40"/>
+        <line x1="-14" y1="40" x2="14" y2="40"/>
+        <line x1="14" y1="-40" x2="24" y2="-24"/>
+        <line x1="24" y1="-24" x2="24" y2="24"/>
+        <line x1="24" y1="24" x2="14" y2="40"/>
+        <line x1="0" y1="-22" x2="0" y2="22"/>
+        <line x1="-8" y1="-10" x2="8" y2="-10"/>
+        <line x1="-8" y1="10" x2="8" y2="10"/>
+      </g>
+      <text x="0" y="70" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">fair?</text>
+    </g>
+    <g transform="translate(150, 60)">
+      <rect x="-58" y="-50" width="116" height="100" rx="8" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+      <polyline points="-42,-28 -10,-28 -10,-2 20,-2 20,24 44,24" fill="none" stroke="#6bcf7f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="0" y="70" text-anchor="middle" font-family="monospace" font-size="12" fill="#8b949e">monitor</text>
+    </g>
+    <text x="0" y="170" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#8b949e">every model decision is a regulated decision</text>
+    
+  </g>
+  <text x="1140" y="600" text-anchor="end" font-family="sans-serif" font-size="18" fill="#6bcf7f">ml-ke.github.io</text>
+</svg>
