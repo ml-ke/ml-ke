@@ -1,6 +1,6 @@
 ---
 title: "KYC/AML Analytics for African Fintech: Learning from the Digital-Lending Data Scandals"
-date: 2026-08-24 00:00:00 +0300
+date: 2026-08-23 00:00:00 +0300
 categories: [Data Science, Fintech]
 tags: [KYC, AML, data privacy, risk scoring, transaction monitoring, model fairness]
 image:
