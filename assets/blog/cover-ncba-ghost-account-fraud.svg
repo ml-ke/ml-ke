@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="ghostFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/><line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/><line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/><line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="64" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="bold" fill="#f0f6fc">The NCBA Sh57.5M Ghost Account Fraud</text>
+  <text x="600" y="100" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#8b949e">Anatomy of a Three-Minute Code Change</text>
+
+  <!-- Clock face -->
+  <g transform="translate(330, 360)">
+    <circle r="150" fill="none" stroke="#00d2ff" stroke-width="4" opacity="0.9"/>
+    <circle r="150" fill="none" stroke="#00d2ff" stroke-width="1" stroke-dasharray="4 8" opacity="0.4"/>
+    <!-- tick marks -->
+    <g stroke="#8b949e" stroke-width="2">
+      <line x1="0" y1="-140" x2="0" y2="-128"/><line x1="121" y1="-70" x2="111" y2="-64"/>
+      <line x1="140" y1="0" x2="128" y2="0"/><line x1="121" y1="70" x2="111" y2="64"/>
+      <line x1="0" y1="140" x2="0" y2="128"/><line x1="-121" y1="70" x2="-111" y2="64"/>
+      <line x1="-140" y1="0" x2="-128" y2="0"/><line x1="-121" y1="-70" x2="-111" y2="-64"/>
+    </g>
+    <!-- hour hand at 5:33 (~163.5 deg) -->
+    <line x1="0" y1="0" x2="-67" y2="20" stroke="#f0f6fc" stroke-width="8" stroke-linecap="round"/>
+    <!-- minute hand at 5:33 (198 deg) -->
+    <line x1="0" y1="0" x2="-113" y2="-36" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
+    <circle r="8" fill="#ffd93d"/>
+    <text x="0" y="185" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#ff6b6b" font-weight="bold">05:33 AM</text>
+  </g>
+
+  <!-- Red injection needle piercing a code bracket -->
+  <g transform="translate(640, 300)">
+    <text x="0" y="60" font-family="monospace" font-size="96" fill="#00d2ff" opacity="0.95">{"{"}</text>
+    <text x="190" y="60" font-family="monospace" font-size="96" fill="#00d2ff" opacity="0.95">"}"</text>
+    <!-- needle -->
+    <g transform="rotate(-28, 110, -40)">
+      <rect x="98" y="-120" width="24" height="70" rx="12" fill="#ff6b6b"/>
+      <polygon points="110,-120 86,-96 134,-96" fill="#ff6b6b"/>
+      <line x1="60" y1="-200" x2="160" y2="-200" stroke="#ff6b6b" stroke-width="10" stroke-linecap="round"/>
+      <rect x="80" y="-150" width="60" height="24" rx="4" fill="#a78bfa"/>
+    </g>
+    <!-- bypass text -->
+    <text x="110" y="140" text-anchor="middle" font-family="monospace" font-size="16" fill="#ff6b6b">bypass validation → SUCCESS</text>
+  </g>
+
+  <!-- Ghost figures fading right -->
+  <g fill="url(#ghostFade)">
+    <g transform="translate(880, 300)">
+      <path d="M0,80 C0,45 12,20 30,20 C48,20 60,45 60,80 L52,80 L52,52 L44,80 L36,52 L28,80 L20,52 L12,80 Z"/>
+    </g>
+    <g transform="translate(940, 340) scale(0.7)">
+      <path d="M0,80 C0,45 12,20 30,20 C48,20 60,45 60,80 L52,80 L52,52 L44,80 L36,52 L28,80 L20,52 L12,80 Z"/>
+    </g>
+    <g transform="translate(1010, 380) scale(0.45)">
+      <path d="M0,80 C0,45 12,20 30,20 C48,20 60,45 60,80 L52,80 L52,52 L44,80 L36,52 L28,80 L20,52 L12,80 Z"/>
+    </g>
+  </g>
+  <text x="940" y="470" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#8b949e">70 ghost accounts · 260 withdrawals · 8 days invisible</text>
+
+  <!-- Logo -->
+  <text x="1140" y="600" text-anchor="end" font-family="sans-serif" font-size="18" fill="#6bcf7f">ml-ke.github.io</text>
+</svg>
