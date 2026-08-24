@@ -1,6 +1,6 @@
 ---
 title: "LLM Security for Financial Chatbots: Prompt Injection and the OWASP LLM Top 10"
-date: 2026-08-26 00:00:00 +0300
+date: 2026-08-24 00:00:00 +0300
 categories: [AI Security, Fintech]
 tags: [LLM Security, Prompt Injection, Fintech, AI Safety, Chatbots]
 image:
