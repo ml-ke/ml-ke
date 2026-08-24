@@ -1,0 +1,328 @@
+{
+  "version": 1,
+  "installed": {
+    "web-pentest": {
+      "source": "official",
+      "identifier": "official/security/web-pentest",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:86c31c12d95ab248",
+      "install_path": "security/web-pentest",
+      "files": [
+        "SKILL.md",
+        "templates/exploitation-queue.json",
+        "templates/authorization.md",
+        "templates/pentest-report.md",
+        "references/scope-enforcement.md",
+        "references/exploitation-techniques.md",
+        "references/vuln-taxonomy.md",
+        "references/bypass-techniques.md",
+        "scripts/recon-scan.sh"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:18.867246+00:00",
+      "updated_at": "2026-08-16T21:46:18.867256+00:00"
+    },
+    "domain-intel": {
+      "source": "official",
+      "identifier": "official/research/domain-intel",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:eaa692b981ec0e9f",
+      "install_path": "research/domain-intel",
+      "files": [
+        "SKILL.md",
+        "scripts/domain_intel.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:19.424465+00:00",
+      "updated_at": "2026-08-16T21:46:19.424471+00:00"
+    },
+    "sherlock": {
+      "source": "official",
+      "identifier": "official/security/sherlock",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:5c1da13887269a5e",
+      "install_path": "security/sherlock",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:19.966542+00:00",
+      "updated_at": "2026-08-16T21:46:19.966550+00:00"
+    },
+    "osint-investigation": {
+      "source": "official",
+      "identifier": "official/research/osint-investigation",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:01b0ee0066867704",
+      "install_path": "research/osint-investigation",
+      "files": [
+        "SKILL.md",
+        "templates/source-template.md",
+        "references/sources/wayback.md",
+        "references/sources/opencorporates.md",
+        "references/sources/wikipedia.md",
+        "references/sources/ofac-sdn.md",
+        "references/sources/gdelt.md",
+        "references/sources/senate-ld.md",
+        "references/sources/usaspending.md",
+        "references/sources/sec-edgar.md",
+        "references/sources/nyc-acris.md",
+        "references/sources/courtlistener.md",
+        "references/sources/icij-offshore.md",
+        "scripts/fetch_wayback.py",
+        "scripts/fetch_courtlistener.py",
+        "scripts/entity_resolution.py",
+        "scripts/fetch_nyc_acris.py",
+        "scripts/fetch_icij_offshore.py",
+        "scripts/fetch_wikipedia.py",
+        "scripts/timing_analysis.py",
+        "scripts/fetch_sec_edgar.py",
+        "scripts/fetch_senate_ld.py",
+        "scripts/fetch_opencorporates.py",
+        "scripts/build_findings.py",
+        "scripts/fetch_ofac_sdn.py",
+        "scripts/fetch_usaspending.py",
+        "scripts/fetch_gdelt.py",
+        "scripts/_normalize.py",
+        "scripts/_http.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:21.125339+00:00",
+      "updated_at": "2026-08-16T21:46:21.125350+00:00"
+    },
+    "oss-forensics": {
+      "source": "official",
+      "identifier": "official/security/oss-forensics",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:01b7476c7bb61c7f",
+      "install_path": "security/oss-forensics",
+      "files": [
+        "SKILL.md",
+        "templates/forensic-report.md",
+        "templates/malicious-package-report.md",
+        "references/recovery-techniques.md",
+        "references/evidence-types.md",
+        "references/investigation-templates.md",
+        "references/github-archive-guide.md",
+        "scripts/evidence-store.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:21.915397+00:00",
+      "updated_at": "2026-08-16T21:46:21.915407+00:00"
+    },
+    "scrapling": {
+      "source": "official",
+      "identifier": "official/research/scrapling",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d360d73e74744838",
+      "install_path": "research/scrapling",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:22.484441+00:00",
+      "updated_at": "2026-08-16T21:46:22.484448+00:00"
+    },
+    "searxng-search": {
+      "source": "official",
+      "identifier": "official/research/searxng-search",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:c9ae969f045fa519",
+      "install_path": "research/searxng-search",
+      "files": [
+        "SKILL.md",
+        "scripts/searxng.sh"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:23.042950+00:00",
+      "updated_at": "2026-08-16T21:46:23.042957+00:00"
+    },
+    "duckduckgo-search": {
+      "source": "official",
+      "identifier": "official/research/duckduckgo-search",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:25ae5cbdbb2bff0b",
+      "install_path": "research/duckduckgo-search",
+      "files": [
+        "SKILL.md",
+        "scripts/duckduckgo.sh"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:23.608915+00:00",
+      "updated_at": "2026-08-16T21:46:23.608922+00:00"
+    },
+    "watchers": {
+      "source": "official",
+      "identifier": "official/devops/watchers",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:83f9e2ba3dfcd8d7",
+      "install_path": "devops/watchers",
+      "files": [
+        "SKILL.md",
+        "scripts/_watermark.py",
+        "scripts/watch_rss.py",
+        "scripts/watch_http_json.py",
+        "scripts/watch_github.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:24.221944+00:00",
+      "updated_at": "2026-08-16T21:46:24.221952+00:00"
+    },
+    "rest-graphql-debug": {
+      "source": "official",
+      "identifier": "official/software-development/rest-graphql-debug",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:4ff99e0538f23af7",
+      "install_path": "software-development/rest-graphql-debug",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:24.844454+00:00",
+      "updated_at": "2026-08-16T21:46:24.844461+00:00"
+    },
+    "evm": {
+      "source": "official",
+      "identifier": "official/blockchain/evm",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:48f87adf7ba2a3bc",
+      "install_path": "blockchain/evm",
+      "files": [
+        "SKILL.md",
+        "scripts/evm_client.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:25.535910+00:00",
+      "updated_at": "2026-08-16T21:46:25.535917+00:00"
+    },
+    "solana": {
+      "source": "official",
+      "identifier": "official/blockchain/solana",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:468f98c7cd39fe4a",
+      "install_path": "blockchain/solana",
+      "files": [
+        "SKILL.md",
+        "scripts/solana_client.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:26.267374+00:00",
+      "updated_at": "2026-08-16T21:46:26.267384+00:00"
+    },
+    "analyzing-android-malware-with-apktool": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/mukul975/anthropic-cybersecurity-skills/analyzing-android-malware-with-apktool",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:aa08e3e68f64134e",
+      "install_path": "analyzing-android-malware-with-apktool",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "references/api-reference.md",
+        "scripts/agent.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:40.112954+00:00",
+      "updated_at": "2026-08-16T21:46:40.112964+00:00"
+    },
+    "analyzing-certificate-transparency-for-phishing": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/mukul975/anthropic-cybersecurity-skills/analyzing-certificate-transparency-for-phishing",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:b985ca5ccbe5344a",
+      "install_path": "analyzing-certificate-transparency-for-phishing",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "references/api-reference.md",
+        "scripts/agent.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:46.801800+00:00",
+      "updated_at": "2026-08-16T21:46:46.801808+00:00"
+    },
+    "analyzing-cloud-storage-access-patterns": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/mukul975/anthropic-cybersecurity-skills/analyzing-cloud-storage-access-patterns",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:92fabe6b3426f72b",
+      "install_path": "analyzing-cloud-storage-access-patterns",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "references/api-reference.md",
+        "scripts/agent.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:46:53.523028+00:00",
+      "updated_at": "2026-08-16T21:46:53.523037+00:00"
+    },
+    "analyzing-apt-group-with-mitre-navigator": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/mukul975/anthropic-cybersecurity-skills/analyzing-apt-group-with-mitre-navigator",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:07fbae2c77b8cdd5",
+      "install_path": "analyzing-apt-group-with-mitre-navigator",
+      "files": [
+        "LICENSE",
+        "SKILL.md",
+        "references/api-reference.md",
+        "scripts/agent.py"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:47:30.621571+00:00",
+      "updated_at": "2026-08-16T21:47:30.621579+00:00"
+    },
+    "solana-vulnerability-scanner": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/trailofbits/skills/solana-vulnerability-scanner",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:b405854b2117bda9",
+      "install_path": "solana-vulnerability-scanner",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "assets/trail-of-bits-mark.svg",
+        "resources/VULNERABILITY_PATTERNS.md"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:47:37.217151+00:00",
+      "updated_at": "2026-08-16T21:47:37.217158+00:00"
+    },
+    "aiclude-vulns-scan": {
+      "source": "clawhub",
+      "identifier": "aiclude-vulns-scan",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:668dd8e3f1cb0e02",
+      "install_path": "aiclude-vulns-scan",
+      "files": [
+        "package-lock.json",
+        "README.md",
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "installed_at": "2026-08-16T21:52:53.846255+00:00",
+      "updated_at": "2026-08-16T21:52:53.846266+00:00"
+    }
+  }
+}
