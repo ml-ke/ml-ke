@@ -1,6 +1,6 @@
 ---
 title: "MLOps for RegTech: Model Governance Under CBK, ODPC and EU AI Act Rules"
-date: 2026-08-27 00:00:00 +0300
+date: 2026-08-25 00:00:00 +0300
 categories: [ML Ops, Fintech]
 tags: [model governance, MLOps, regulatory compliance, credit scoring, explainability, data protection]
 image:
