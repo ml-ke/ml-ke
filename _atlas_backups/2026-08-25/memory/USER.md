@@ -1,0 +1,3 @@
+Intigriti: h0d4r1254 / h0d4r1254@intigriti.me. Bugcrowd: h0d4r1 / @bugcrowdninja.com. Kenya (EAT). Personal email: lyricsngori@gmail.com. Brave on Linux. PoC-first, actionable findings > research, step-by-step asks, iterative recon + milestone reports, high-value targets, shares creds to unblock progress. Wants lessons saved durably (~/Dev/ATLAS-LEARNINGS/LESSONS.md), memory compressed with pointers, weekly cron reports to chat AND appends lessons, ATLAS studies Hermes docs + worldwide repos weekly.
+§
+Does NOT want to be asked for sudo password repeatedly. The mechanism is SUDO_PASSWORD in the Hermes env file — explain it once, ask once for the password, or fall back to pasting commands for them to run in their own terminal. Never loop back and ask again if they defer.
