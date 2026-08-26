@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="faceShade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#333a48"/>
+      <stop offset="100%" stop-color="#232833"/>
+    </linearGradient>
+    <clipPath id="leftHalf">
+      <rect x="0" y="0" width="600" height="630"/>
+    </clipPath>
+    <clipPath id="rightHalf">
+      <rect x="600" y="0" width="600" height="630"/>
+    </clipPath>
+    <clipPath id="faceClip">
+      <circle cx="600" cy="300" r="140"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="378" x2="1200" y2="378"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+  </g>
+
+  <!-- shoulders -->
+  <path d="M420 630 Q480 520 600 520 Q720 520 780 630 Z" fill="#1c212c" opacity="0.8"/>
+
+  <!-- REAL half (left): solid face -->
+  <g clip-path="url(#leftHalf)">
+    <circle cx="600" cy="300" r="140" fill="url(#faceShade)"/>
+    <!-- facial features: eye, nose, mouth -->
+    <circle cx="545" cy="275" r="7" fill="#9aa4b2"/>
+    <path d="M575 310 Q588 322 600 310" stroke="#9aa4b2" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M520 345 Q560 358 600 345" stroke="#9aa4b2" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- subtle scan lines -->
+    <line x1="520" y1="230" x2="600" y2="230" stroke="#6bcf7f" stroke-opacity="0.25" stroke-width="2"/>
+    <line x1="505" y1="375" x2="600" y2="375" stroke="#6bcf7f" stroke-opacity="0.25" stroke-width="2"/>
+  </g>
+
+  <!-- SYNTHETIC half (right): wireframe mesh -->
+  <g clip-path="url(#rightHalf)">
+    <circle cx="600" cy="300" r="140" fill="none" stroke="#00d2ff" stroke-width="3"/>
+    <g clip-path="url(#faceClip)" stroke="#00d2ff" stroke-opacity="0.55" stroke-width="1.2">
+      <line x1="620" y1="170" x2="620" y2="440"/>
+      <line x1="660" y1="170" x2="660" y2="440"/>
+      <line x1="700" y1="175" x2="700" y2="435"/>
+      <line x1="735" y1="185" x2="735" y2="425"/>
+      <line x1="600" y1="200" x2="740" y2="200"/>
+      <line x1="600" y1="240" x2="740" y2="240"/>
+      <line x1="600" y1="280" x2="740" y2="280"/>
+      <line x1="600" y1="320" x2="740" y2="320"/>
+      <line x1="600" y1="360" x2="740" y2="360"/>
+      <line x1="600" y1="400" x2="740" y2="400"/>
+    </g>
+    <!-- mesh nodes -->
+    <g fill="#00d2ff">
+      <circle cx="620" cy="200" r="3.5"/>
+      <circle cx="660" cy="240" r="3.5"/>
+      <circle cx="700" cy="280" r="3.5"/>
+      <circle cx="660" cy="320" r="3.5"/>
+      <circle cx="620" cy="360" r="3.5"/>
+      <circle cx="700" cy="200" r="3.5"/>
+      <circle cx="620" cy="280" r="3.5"/>
+      <circle cx="700" cy="360" r="3.5"/>
+      <circle cx="660" cy="400" r="3.5"/>
+      <circle cx="735" cy="300" r="3.5"/>
+    </g>
+    <!-- synthetic eye -->
+    <circle cx="662" cy="275" r="7" fill="none" stroke="#00d2ff" stroke-width="2.5"/>
+  </g>
+
+  <!-- center divider -->
+  <line x1="600" y1="150" x2="600" y2="450" stroke="#ffd93d" stroke-width="2" stroke-dasharray="6 6" opacity="0.8"/>
+
+  <!-- verification badges -->
+  <g>
+    <circle cx="470" cy="185" r="26" fill="none" stroke="#6bcf7f" stroke-width="4"/>
+    <path d="M457 185 L465 193 L484 174" stroke="#6bcf7f" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="730" cy="185" r="26" fill="none" stroke="#ff6b6b" stroke-width="4"/>
+    <line x1="716" y1="171" x2="744" y2="199" stroke="#ff6b6b" stroke-width="5" stroke-linecap="round"/>
+    <line x1="744" y1="171" x2="716" y2="199" stroke="#ff6b6b" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <!-- voice waveform -->
+  <g stroke="#6bcf7f" stroke-width="4" stroke-linecap="round">
+    <line x1="380" y1="490" x2="380" y2="505"/>
+    <line x1="410" y1="470" x2="410" y2="505"/>
+    <line x1="440" y1="485" x2="440" y2="505"/>
+    <line x1="470" y1="450" x2="470" y2="505"/>
+    <line x1="500" y1="475" x2="500" y2="505"/>
+    <line x1="530" y1="460" x2="530" y2="505"/>
+    <line x1="560" y1="490" x2="560" y2="505"/>
+    <line x1="590" y1="440" x2="590" y2="505"/>
+    <line x1="620" y1="480" x2="620" y2="505"/>
+    <line x1="650" y1="455" x2="650" y2="505"/>
+    <line x1="680" y1="490" x2="680" y2="505"/>
+    <line x1="710" y1="445" x2="710" y2="505"/>
+    <line x1="740" y1="475" x2="740" y2="505"/>
+    <line x1="770" y1="460" x2="770" y2="505"/>
+    <line x1="800" y1="485" x2="800" y2="505"/>
+    <line x1="830" y1="468" x2="830" y2="505"/>
+  </g>
+  <line x1="380" y1="508" x2="830" y2="508" stroke="#00d2ff" stroke-width="2" opacity="0.5"/>
+
+  <!-- title -->
+  <text x="600" y="558" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="34" font-weight="bold" fill="#f0f6fc">Deepfake Fraud in Financial Services</text>
+  <text x="600" y="592" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" fill="#8b949e">When the face on the call isn't real — voice cloning, KYC bypasses, AI defense</text>
+
+  <!-- logo -->
+  <text x="1160" y="608" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#484f58">ml-ke.github.io</text>
+</svg>

@@ -45,6 +45,15 @@
 | Aug 26 (Wed) | llm-security-financial-chatbots | AI Security | OWASP LLM Top 10 + financial chatbot incidents → prompt-injection defenses |
 | Aug 27 (Thu) | mlops-regtech-model-governance | ML | CBK/ODPC governance + MLOps model governance for fintech |
 | Aug 28 (Fri) | *(empty — fill next session)* | Cybersecurity | proposed: secrets in CI / credential leaks (tj-actions, GitHub push-protection) |
+
+**Publishing note (Aug 26):** the staged Week-2 queue was consumed one day early by the
+catch-up cron (date-fixed publishes: `kyc-aml-analytics-african-fintech` → Aug 23,
+`llm-security-financial-chatbots` → Aug 24, `mlops-regtech-model-governance` → Aug 25).
+`.scheduled/` is now empty. Gap-fill on Aug 26:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Aug 26 (Wed) | deepfake-fraud-financial-services | AI Security | Arup HK$200M deepfake CFO + UK voice-clone $243K + Group-IB 8,065 KYC injections + Sumsub Kenya 10% | ✅ published |
 | Aug 29 (Sat) | *(empty)* | Fintech | proposed: Flutterwave 2023 deep-dive |
 | Aug 30 (Sun) | *(empty)* | Fintech Security | proposed: playbook — KYC/AML automation |
 | Aug 31 (Mon) | *(empty)* | Analytics | proposed: anomaly detection for reconciliation at scale |
