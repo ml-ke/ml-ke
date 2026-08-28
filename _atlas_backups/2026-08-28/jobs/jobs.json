@@ -1,0 +1,260 @@
+{
+  "jobs": [
+    {
+      "id": "b61adad8c5b9",
+      "name": "ATLAS daily sync",
+      "prompt": "Run the ATLAS backup script and report results.\n\nExecute: bash ~/.hermes/scripts/atlas-sync.sh\n\nThis script:\n1. Backs up skills, memories (MEMORY.md, USER.md), sanitized config, safe env vars, cron jobs, scripts to ~/ProG/ATLAS/_hermes_backups/TODAY/\n2. Encrypts .env, config.yaml, auth.json with GPG to ~/ProG/ATLAS/_secrets/ (LOCAL ONLY, never pushed)\n3. Syncs newer skills to ATLAS repo\n4. Runs pre-commit secret scan (blocks push if secrets detected)\n5. Pushes to github.com:BongweKE/ATLAS.git\n6. Mirrors to ml-ke repo (legacy)\n\nReport: how many skills backed up, whether secrets encrypted OK, and whether push succeeded.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "atlas-sync.sh",
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * *",
+        "display": "0 14 * * *"
+      },
+      "schedule_display": "0 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 70
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-01T17:19:04.085290+03:00",
+      "next_run_at": "2026-08-29T14:00:00+03:00",
+      "last_run_at": "2026-08-26T14:08:04.820957+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "137b7dcf653c",
+      "name": "blog-poster",
+      "prompt": "PUBLISH ONE BLOG POST \u2014 handles date rewriting\n\nTODAY=$(date +%Y-%m-%d)\ncd /home/pro-g/ProG/ml-ke\n\n# Check for today's scheduled post\nMATCH=$(ls .scheduled/${TODAY}-*.md 2>/dev/null | head -1)\n\nif [ -n \"$MATCH\" ]; then\n  mv \"$MATCH\" _posts/\n  BASENAME=$(basename \"$MATCH\")\n  git add \"_posts/$BASENAME\"\n  git commit -m \"Publish: $BASENAME\"\n  git pull --rebase origin main\n  git push origin main\n  echo \"PUBLISHED: $BASENAME\"\n  exit 0\nfi\n\n# No match for today \u2014 take first remaining, rewrite its date\nFIRST=$(ls .scheduled/*.md 2>/dev/null | head -1)\nif [ -z \"$FIRST\" ]; then\n  echo \"All posts published! Nothing to do.\"\n  exit 0\nfi\n\nBASENAME=$(basename \"$FIRST\")\nOLD_DATE=$(echo \"$BASENAME\" | grep -oP '^\\d{4}-\\d{2}-\\d{2}')\n\n# Rewrite front matter date and rename file to today\nsed -i \"s/date: $OLD_DATE/date: $TODAY/\" \"$FIRST\"\nNEW_NAME=$(echo \"$BASENAME\" | sed \"s/$OLD_DATE/$TODAY/\")\n\nmv \"$FIRST\" \"_posts/$NEW_NAME\"\ngit add \"_posts/$NEW_NAME\"\ngit commit -m \"Publish (date-fixed): $NEW_NAME\"\ngit pull --rebase origin main\ngit push origin main\necho \"PUBLISHED (date-fixed): $NEW_NAME\"",
+      "skills": [
+        "blog-drafting"
+      ],
+      "skill": "blog-drafting",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "05 14 * * *",
+        "display": "05 14 * * *"
+      },
+      "schedule_display": "05 14 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 66
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-03T00:27:51.283208+03:00",
+      "next_run_at": "2026-08-28T14:05:00+03:00",
+      "last_run_at": "2026-08-26T14:15:53.691918+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin,all",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "6869e0b42fa8",
+      "name": "ATLAS repo native sync",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "atlas-repo-sync.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "display": "0 20 * * *"
+      },
+      "schedule_display": "0 20 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 52
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-27T01:16:45.443914+03:00",
+      "next_run_at": "2026-08-28T20:00:00+03:00",
+      "last_run_at": "2026-08-27T20:00:32.817730+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1234070902",
+        "chat_name": "Pro Grammar",
+        "thread_id": "12600"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "933e98b08fe6",
+      "name": "DNS-propagation-watch-ml-co-ke",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "check-dns-propagation.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-07-22T17:10:36.519229+03:00",
+        "display": "once in 5m"
+      },
+      "schedule_display": "once in 5m",
+      "repeat": {
+        "times": 100,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-22T17:05:36.519323+03:00",
+      "next_run_at": null,
+      "last_run_at": "2026-07-22T17:11:41.052424+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin,all",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "a658b981983a",
+      "name": "tuesday-ai-update",
+      "prompt": "Write the weekly AI Update blog post for the ML Kenya blog (ml.co.ke). This is a TUESDAY feature \u2014 the post should cover fresh AI developments from the past week.\n\nDATE: Today is $(date +%Y-%m-%d) which is a Tuesday. Write the post with this date in front matter.\n\nWORKFLOW (follow exactly):\n1. cd ~/ProG/ml-ke && git pull origin main\n2. Run MULTIPLE web_search queries to gather fresh content. Search for:\n   - \"AI news this week\" \n   - Then region-specific searches: \"China AI\", \"Europe AI\", \"Africa AI\", \"MENA AI\", \"South America AI\", \"Russia AI\"\n   - Search for specific companies: DeepSeek, Moonshot, Zhipu/Z.AI, OpenAI, Anthropic, Google, Mistral, Microsoft AI, SpaceXAI/Grok, G42/Core42\n3. After gathering web results, write a post to _posts/$(date +%Y-%m-%d)-tuesday-ai-update.md\n   - Title format: \"Tuesday AI Update: [Date] \u2014 [Top story headline]\"\n   - Categories: [AI Engineering, AI in Africa]\n   - Tags: [tuesday-update, WEEK-MONTH-YEAR, ai-news]\n   - Cover: reuse /assets/img/cover-global-ai-roundup-july-2026.webp as generic cover for now\n   - Keep it 600-900 words \u2014 concise and useful\n   - Structure: 1-2 paragraphs intro \u2192 region-by-region highlights (bullet points) \u2192 \"Spotlight\" section on one major story \u2192 \"Why This Matters for Africa\" section\n   \n4. git add, commit with message \"Add post: Tuesday AI Update $(date +%Y-%m-%d)\", and push\n\nIMPORTANT: Every fact must come from a web search result. If search returns nothing for a region, skip it. Do NOT invent facts. Do NOT use {% post_url %} tags. Use markdown links like /posts/slug/ for internal links or full URLs for external sources.",
+      "skills": [
+        "blog-drafting"
+      ],
+      "skill": "blog-drafting",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 14 * * 2",
+        "display": "0 14 * * 2"
+      },
+      "schedule_display": "0 14 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-07-25T14:29:55.101010+03:00",
+      "next_run_at": "2026-09-01T14:00:00+03:00",
+      "last_run_at": "2026-08-25T14:08:18.806452+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "origin,all",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1234070902",
+        "chat_name": "Pro Grammar",
+        "thread_id": "12759"
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "profile": null
+    },
+    {
+      "id": "3ded7d48e350",
+      "name": "Weekly agent-skills learning sweep",
+      "prompt": "You are ATLAS, the Hermes agent. This is your weekly worldwide agent-skills learning run (every Tuesday 15:00 EAT). Goal: learn how OTHER AI agents and skills ecosystems are set up around the world, AND how Hermes itself can be used better, then extract at least 3-5 concrete, actionable improvements and apply them.\n\nMANDATORY FIRST STEP \u2014 RECALL: Load the lesson bank FIRST (skill_view name='atlas-lesson-bank'), then read ~/Dev/ATLAS-LEARNINGS/LESSONS.md to see what you already know and avoid repeating lessons. Then load skill_quality_audit (skill_view name='skill-quality-audit') and scan available skills (skills_list).\n\nMANDATORY MAINTENANCE STEP \u2014 SKILL PIPELINE (added Aug 10 2026): Run the three-part skill pipeline BEFORE starting new research. It keeps the system healthy and is fast:\n1. BRIDGE: python3 ~/.hermes/scripts/opencode_skills_bridge.py \u2014 re-syncs curated Hermes methodology skills into OpenCode (~/.config/opencode/skills/atlas-*). Run after ANY Hermes skill change so OpenCode always sees the latest.\n2. VALIDATE: python3 ~/.hermes/scripts/skill_validator.py ~/.config/opencode/skills AND python3 ~/.hermes/scripts/skill_validator.py ~/.hermes/skills --hermes \u2014 checks frontmatter (name regex, name==dir, description 1-1024, body under 5000 words). Fix errors you introduced; warnings are informational.\n3. SECURITY SCAN: ~/.hermes/venvs/skillsec/bin/skillspector scan ~/.config/opencode/skills --recursive --no-llm --format json --output /tmp/skillspector-weekly.json \u2014 scans all installed skills for prompt injection, exfiltration, and supply-chain risk. Triage rule (verified Aug 2026): HIGH/CRITICAL scores on security-tooling content are FALSE POSITIVES (curl probe commands = \"Data Exfiltration\", BOM characters = \"Prompt Injection\", official vendor install scripts = \"Supply Chain\"). Only act on genuine malicious markers: verbatim instruction-override text, remote-code-pipe-to-shell of attacker-controlled URLs, unexplained encoded command blobs. Report the scan verdict in your final report.\n(Do NOT run snyk-agent-scan \u2014 it starts stdio MCP servers, which is unsafe unattended.)\n\nMANDATORY SECOND STEP \u2014 HERMES DOCS: Each week, also read the Hermes docs to understand how the system works and how to use it better. At minimum load skill_view(name='hermes-agent') and curl the docs index at https://hermes-agent.nousresearch.com/docs/ (or /llms.txt if available) to see what documentation exists. Pick 1-2 doc pages you haven't studied recently (e.g. features/memory, features/curator, features/kanban, features/cron, context-files, plugins, MCP, toolsets) and extract at least one concrete improvement to how ATLAS operates (config option, tool usage pattern, workflow). Apply it if genuinely useful.\n\nDISCOVERY METHODOLOGY \u2014 cast a worldwide net, mix sources:\n1. GITHUB (most reputable for hands-on repos): Use the GitHub API via terminal curl, e.g.:\n   curl -s \"https://api.github.com/search/repositories?q=agent+skills&sort=stars&order=desc&per_page=10\"\n   Also search: \"claude skills\", \"opencode skills\", \"openclaw skills\", \"pentest skills\", \"security agent skills\", \"SKILL.md\"\n   Check star counts \u2014 high stars = community validation. Read README + 1-2 actual SKILL.md files from the top repos. Known repos to re-check (from Aug 10 2026 sweep, see ~/.hermes/skills/bug-bounty/atlas-continuous-learning/references/worldwide-agent-skills-sweep.md): affaan-m/ECC, mukul975/Anthropic-Cybersecurity-Skills, NVIDIA/SkillSpector, 0xNyk/awesome-hermes-agent, OthmanAdi/planning-with-files, uphiago/recon-skills, mattpocock/skills, microsoft/skills, Threekiii/Awesome-Redteam.\n2. ARXIV (most reputable for research): search arxiv.org for agent skills papers (e.g. \"agent skills LLM\", \"SKILL.md empirical\", \"agent skills security\"). Extract concrete findings: best practices, taxonomies, benchmark results.\n3. BRAVE SEARCH (indexer): use web_search for \"awesome agent skills\", \"agent skills repository\", plus REGIONAL searches to find non-US talent \u2014 try queries with different language contexts: Japanese (\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u30b9\u30ad\u30eb), Chinese (\u667a\u80fd\u4f53\u6280\u80fd/AI Agent\u6280\u80fd\u5e93), Russian (\u043d\u0430\u0432\u044b\u043a\u0438 \u0418\u0418-\u0430\u0433\u0435\u043d\u0442\u043e\u0432), Portuguese (habilidades de agentes de IA), Spanish, Korean, Arabic. Hunters/engineers in Brazil, Ghana, Japan, China, Egypt, Israel, Russia, USA, Norway, India, etc. all publish.\n4. MEDIUM/BLOGS (lower reputability \u2014 treat as opinion, verify claims elsewhere): only use for ideas you can verify against code/repos.\n\nREPUTABILITY RANKING (state it in your report): GitHub official org repos (anthropics, openai, trailofbits, openclaw, microsoft, cloudflare, NVIDIA, snyk) > arxiv papers > community GitHub repos with 1000+ stars > blogs/Medium. Verify any claim from a low-reputability source before adopting it.\n\nEXTRACTION: For each source, capture: (a) what it does differently from how Hermes works now, (b) one concrete thing you could adopt, (c) the URL/repo for reference. Focus especially on: skill structure/format improvements, orchestration patterns (planner + coder division of labor), verification loops, prompt patterns, security practices for skills, and anything about using free model tiers effectively.\n\nAPPLY: If you find something genuinely useful (not speculative), implement it: patch an existing skill, create a new skill, or improve a script in ~/.hermes/scripts/. Audit what you changed with skill-quality-audit before finishing. Do NOT make changes that are speculative or unverified \u2014 quality over churn.\n\nREMEMBER \u2014 APPEND TO LESSON BANK: After applying, append a dated entry to ~/Dev/ATLAS-LEARNINGS/LESSONS.md under the relevant category (use patch, keep entries 1-5 lines). Also save a full report to ~/Dev/ATLAS-LEARNINGS/YYYY-MM-DD.md. This is how memory stays compressed \u2014 lessons live in the file, MEMORY.md keeps only pointers.\n\nREPORT: End with a report to the user (this is your final response, auto-delivered) structured as:\n1. What you learned this week (3-5 concrete items, each with source + reputability)\n2. What you changed/implemented (if anything) and why\n3. Sources scanned (with the worldwide angle \u2014 which countries/regions)\n4. Repos worth watching for next week\n5. Hermes docs studied + any operating improvement adopted\nInclude the skill pipeline results (bridge sync status, validator errors, scan verdict) in section 2.\nKeep it tight and skimmable. Remember: the goal is compounding improvement \u2014 every week should leave the system slightly better than before.",
+      "skills": [
+        "atlas-lesson-bank",
+        "skill-quality-audit"
+      ],
+      "skill": "atlas-lesson-bank",
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * 2",
+        "display": "0 15 * * 2"
+      },
+      "schedule_display": "0 15 * * 2",
+      "repeat": {
+        "times": null,
+        "completed": 5
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-01T23:28:34.559001+03:00",
+      "next_run_at": "2026-09-01T15:00:00+03:00",
+      "last_run_at": "2026-08-25T15:00:29.892639+03:00",
+      "last_status": "error",
+      "last_error": "Blocked: prompt matches threat pattern 'prompt_injection'. Cron prompts must not contain injection or exfiltration payloads.",
+      "last_delivery_error": null,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1234070902",
+        "chat_name": "Pro Grammar",
+        "thread_id": "12461"
+      },
+      "enabled_toolsets": [
+        "web",
+        "terminal",
+        "file",
+        "skills"
+      ],
+      "workdir": null,
+      "profile": null
+    }
+  ],
+  "updated_at": "2026-08-28T14:00:28.354063+03:00"
+}
