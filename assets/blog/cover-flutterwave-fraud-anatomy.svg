@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrowDim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b6b" fill-opacity="0.45"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/><line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/><line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/><line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <text x="600" y="62" text-anchor="middle" font-family="sans-serif" font-size="33" font-weight="bold" fill="#f0f6fc">Four Breaches in Fourteen Months</text>
+  <text x="600" y="96" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#8b949e">Anatomy of Flutterwave's unauthorized transfers — four incidents, one payment hub</text>
+
+  <!-- Hub glow -->
+  <circle cx="600" cy="300" r="160" fill="#00d2ff" opacity="0.07"/>
+
+  <!-- Central payment gateway hub -->
+  <rect x="550" y="250" width="100" height="100" rx="14" fill="#00d2ff" fill-opacity="0.14" stroke="#00d2ff" stroke-width="3"/>
+  <text x="600" y="292" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#00d2ff">PAYMENT</text>
+  <text x="600" y="314" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#00d2ff">HUB</text>
+
+  <!-- Flagged / frozen accounts (above threshold line) -->
+  <g stroke="#ff6b6b" stroke-width="3" fill="none">
+    <line x1="560" y1="258" x2="332" y2="188" marker-end="url(#arrow)"/>
+    <line x1="590" y1="252" x2="480" y2="150" marker-end="url(#arrow)"/>
+    <line x1="640" y1="252" x2="720" y2="150" marker-end="url(#arrow)"/>
+    <line x1="668" y1="262" x2="886" y2="190" marker-end="url(#arrow)"/>
+  </g>
+  <g fill="#1f2430" stroke="#ff6b6b" stroke-width="2">
+    <rect x="296" y="168" width="72" height="40" rx="5"/>
+    <rect x="444" y="130" width="72" height="40" rx="5"/>
+    <rect x="684" y="130" width="72" height="40" rx="5"/>
+    <rect x="850" y="170" width="72" height="40" rx="5"/>
+  </g>
+  <g fill="#ff6b6b" font-family="monospace" font-size="11" text-anchor="middle">
+    <text x="332" y="193">ACCT</text>
+    <text x="480" y="155">ACCT</text>
+    <text x="720" y="155">ACCT</text>
+    <text x="886" y="195">ACCT</text>
+  </g>
+  <!-- Frozen lock badges -->
+  <g>
+    <rect x="348" y="196" width="44" height="16" rx="8" fill="#6bcf7f"/>
+    <text x="370" y="208" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0d1117">FROZEN</text>
+    <rect x="902" y="198" width="44" height="16" rx="8" fill="#6bcf7f"/>
+    <text x="924" y="210" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0d1117">FROZEN</text>
+  </g>
+
+  <!-- Evaded deposits (below threshold line, dim) -->
+  <g stroke="#ff6b6b" stroke-opacity="0.45" stroke-width="3" fill="none">
+    <line x1="556" y1="348" x2="280" y2="512" marker-end="url(#arrowDim)"/>
+    <line x1="586" y1="350" x2="430" y2="552" marker-end="url(#arrowDim)"/>
+    <line x1="614" y1="350" x2="600" y2="562" marker-end="url(#arrowDim)"/>
+    <line x1="640" y1="348" x2="770" y2="552" marker-end="url(#arrowDim)"/>
+    <line x1="660" y1="342" x2="930" y2="512" marker-end="url(#arrowDim)"/>
+  </g>
+  <g fill="#1f2430" stroke="#ff6b6b" stroke-opacity="0.45" stroke-width="2">
+    <rect x="244" y="492" width="72" height="40" rx="5"/>
+    <rect x="394" y="532" width="72" height="40" rx="5"/>
+    <rect x="564" y="542" width="72" height="40" rx="5"/>
+    <rect x="734" y="532" width="72" height="40" rx="5"/>
+    <rect x="894" y="492" width="72" height="40" rx="5"/>
+  </g>
+  <g fill="#ff6b6b" fill-opacity="0.6" font-family="monospace" font-size="11" text-anchor="middle">
+    <text x="280" y="517">ACCT</text>
+    <text x="430" y="557">ACCT</text>
+    <text x="600" y="567">ACCT</text>
+    <text x="770" y="557">ACCT</text>
+    <text x="930" y="517">ACCT</text>
+  </g>
+
+  <!-- Detection threshold line -->
+  <line x1="200" y1="480" x2="1000" y2="480" stroke="#ffd93d" stroke-width="2.5" stroke-dasharray="10 6"/>
+  <text x="204" y="470" font-family="monospace" font-size="15" font-weight="bold" fill="#ffd93d">DETECTION THRESHOLD</text>
+  <text x="204" y="500" font-family="monospace" font-size="12" fill="#ffd93d" fill-opacity="0.85">deposits kept below trigger limits</text>
+
+  <text x="1080" y="600" text-anchor="end" font-family="sans-serif" font-size="14" fill="#8b949e">ml-ke.github.io</text>
+</svg>

@@ -54,9 +54,20 @@ catch-up cron (date-fixed publishes: `kyc-aml-analytics-african-fintech` → Aug
 | Date | Slug | Theme | Anchor / angle | Status |
 |------|------|-------|----------------|--------|
 | Aug 26 (Wed) | deepfake-fraud-financial-services | AI Security | Arup HK$200M deepfake CFO + UK voice-clone $243K + Group-IB 8,065 KYC injections + Sumsub Kenya 10% | ✅ published |
-| Aug 29 (Sat) | *(empty)* | Fintech | proposed: Flutterwave 2023 deep-dive |
+| Aug 29 (Sat) | flutterwave-fraud-anatomy | Fintech | Flutterwave 4 incidents / 14 months (Feb 2023 ₦2.9B → Apr 2024 ₦11B) | ✅ published |
 | Aug 30 (Sun) | *(empty)* | Fintech Security | proposed: playbook — KYC/AML automation |
 | Aug 31 (Mon) | *(empty)* | Analytics | proposed: anomaly detection for reconciliation at scale |
+
+**Publishing note (Aug 29):** `.scheduled/` was still empty at the Aug 29 cron run
+(14:05 EAT). Per gap-fill rule, `flutterwave-fraud-anatomy` was written directly to
+`_posts/` with date `2026-08-29 00:00:00 +0300`, cover
+`assets/img/cover-flutterwave-fraud-anatomy.webp` (SVG source in `assets/blog/`).
+Facts verified against TechCrunch (Mar 5 2023), TechCabal (Mar 10 2023, May 16 2024),
+Techpoint Africa, Techloy — full anchor expanded in the event library below.
+Note: Aug 27 (Thu) and Aug 28 (Fri) remain UNPUBLISHED (no files were staged for
+those days); the next gap-fill session should backfill them if daily continuity
+matters. Future sessions: stage `.scheduled/` files again to keep the daily cron
+fed — an empty queue silently stops publishing.
 
 ## Week 3 — Proposed (Sep 1–7)
 
@@ -87,7 +98,7 @@ catch-up cron (date-fixed publishes: `kyc-aml-analytics-african-fintech` → Aug
 ## Event library (verified anchors for future posts)
 
 - **NCBA Bank Rwanda (Jun 2025)** — contractor abuse of live backend access; 70 ghost accounts, 260 txs, Ksh 57.5M / USD 446k; caught by EOW reconciliation. Sources: kenyainsights.com, 254news.co.ke, nairobitimez.co.ke, courthelicopter.ke, businessdailyafrica.com.
-- **Flutterwave (Feb-Mar 2023)** — ~₦2.9B moved via 63 txs / 28 accounts; police report + court freeze orders. Sources: TechCrunch, TechCabal, Techpoint Africa.
+- **Flutterwave (Feb 2023 – Apr 2024)** — 4 unauthorized-transfer incidents in 14 months. Feb 2023: ₦2.9B (~$4.2M) moved in 63 txs across 28 accounts (TechCrunch), spread to 107 accounts in 27 banks (court petition dated Feb 20, 2023, TechCabal); hundreds of accounts frozen; merchant-key/social-engineering theory; Flutterwave denied hack. Mar 2023: ₦550M to ~107 accounts in 27 banks (court docs). Oct 2023: ₦19B (~$24M) via unauthorized POS-merchant txs, ~6,000 holders across 35 banks; court order ~Mar 2024 to recover $24M. Apr 2024: ₦11B ($7M; insider says ≥₦20B/$13.5M) to 5 institutions over 4 days, undetected because deposits kept below fraud-check trigger limits; Mareva injunction Feb 2024; no customer funds lost per Flutterwave. Kenya: Jul 2022 ARA froze KSh 6.2B (~$52.5M) in 62 accounts (money-laundering allegations); allegations withdrawn Feb 2023. Sources: TechCrunch (Mar 5 2023), TechCabal (Mar 10 2023; May 16 2024), Techpoint Africa (Mar 5 2023; Feb 6 2023), TechCabal (Aug 30 2022), Techloy.
 - **SolarWinds (2020)** — Orion build pipeline compromise; ~18,000 orgs. Source: CISA AA20-352A.
 - **3CX (2023)** — trojanized Desktop App updates. Sources: CISA alert (Mar 30, 2023), Mandiant.
 - **tj-actions/changed-files (2025)** — CVE-2025-30066; retroactive tag rewrite exposed CI/CD secrets. Sources: GitHub Advisory GHSA-mrrh-fwg8-r2c3, CISA (Mar 18, 2025), Wiz.
