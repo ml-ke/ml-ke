@@ -69,6 +69,23 @@ those days); the next gap-fill session should backfill them if daily continuity
 matters. Future sessions: stage `.scheduled/` files again to keep the daily cron
 fed — an empty queue silently stops publishing.
 
+**Publishing note (Aug 30):** `.scheduled/` still empty at the Aug 30 cron run.
+Per gap-fill rule, today's Sun (Fintech Security) slot was written directly to
+`_posts/` with date `2026-08-30 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Aug 30 (Sun) | kyc-aml-automation-playbook | Fintech Security | Playbook: 5-checkpoint KYC/AML automation (Flutterwave trigger-limit bypass ₦11B, NCBA ghost accounts Ksh 57.5M, Group-IB 8,065 KYC injections, Danske/Teradata ML FP reduction) | ✅ published |
+
+Cover: `assets/img/cover-kyc-aml-automation-playbook.webp` (SVG source
+`assets/blog/cover-kyc-aml-automation-playbook.svg`, "checkpoint conveyor"
+metaphor). Facts verified against the event library + incident bank (2+ sources
+each). **Still UNPUBLISHED: Aug 27 (Thu), Aug 28 (Fri), Aug 31 (Mon)** — Aug 31
+(Mon, Analytics: "anomaly detection for reconciliation at scale") has no staged
+file either. `.scheduled/` remains empty: the daily cron will silently report
+"Nothing to do" tomorrow unless files are staged. Next session: backfill Aug 27/28
+and stage `.scheduled/2026-08-31-*.md` + Sep 1–7 queue.
+
 ## Week 3 — Proposed (Sep 1–7)
 
 | Date | Theme | Proposed topic |
