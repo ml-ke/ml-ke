@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <radialGradient id="radarGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="redGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <line x1="0" y1="105" x2="1200" y2="105"/><line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/><line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/><line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="62" text-anchor="middle" font-family="sans-serif" font-size="33" font-weight="700" fill="#f0f6fc">Anomaly Detection for Reconciliation at Scale</text>
+  <text x="600" y="100" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#8b949e">Catching what fixed thresholds miss — statistical and ML techniques</text>
+
+  <!-- radar origin: bottom-left -->
+  <g transform="translate(150, 520)">
+    <!-- radar glow disc -->
+    <circle cx="0" cy="0" r="330" fill="url(#radarGlow)"/>
+    <!-- range rings -->
+    <path d="M 0 0 L 320 -55 A 325 325 0 0 0 320 -118 Z" fill="none" stroke="#00d2ff" stroke-opacity="0.15" stroke-width="1.5"/>
+    <path d="M 0 0 L 210 -36 A 213 213 0 0 0 210 -77 Z" fill="none" stroke="#00d2ff" stroke-opacity="0.2" stroke-width="1.5"/>
+    <path d="M 0 0 L 110 -19 A 112 112 0 0 0 110 -40 Z" fill="none" stroke="#00d2ff" stroke-opacity="0.25" stroke-width="1.5"/>
+    <!-- sweep wedge (translucent) -->
+    <path d="M 0 0 L 1080 -150 L 1080 -10 Z" fill="#00d2ff" fill-opacity="0.05"/>
+    <!-- leading sweep line with arrow -->
+    <path d="M 0 0 L 1000 -138" fill="none" stroke="#00d2ff" stroke-width="2.5" stroke-opacity="0.85" marker-end="url(#sweepArrow)"/>
+    <!-- radar dish -->
+    <path d="M -46 18 Q 0 40 46 18" fill="none" stroke="#00d2ff" stroke-width="4"/>
+    <line x1="0" y1="28" x2="0" y2="-4" stroke="#00d2ff" stroke-width="3"/>
+    <circle cx="0" cy="30" r="7" fill="#1a1a2e" stroke="#00d2ff" stroke-width="3"/>
+    <text x="0" y="62" text-anchor="middle" font-family="monospace" font-size="15" fill="#00d2ff" letter-spacing="2">SCAN</text>
+  </g>
+  <defs>
+    <marker id="sweepArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d2ff"/>
+    </marker>
+  </defs>
+
+  <!-- normal transaction stream: dots along a slightly rising band -->
+  <g fill="#6bcf7f">
+    <circle cx="300" cy="452" r="4" opacity="0.5"/><circle cx="330" cy="438" r="3" opacity="0.4"/>
+    <circle cx="360" cy="446" r="4" opacity="0.5"/><circle cx="388" cy="458" r="3" opacity="0.35"/>
+    <circle cx="415" cy="440" r="4" opacity="0.5"/><circle cx="442" cy="432" r="3" opacity="0.4"/>
+    <circle cx="468" cy="448" r="4" opacity="0.5"/><circle cx="495" cy="436" r="3" opacity="0.35"/>
+    <circle cx="520" cy="428" r="4" opacity="0.5"/><circle cx="545" cy="442" r="3" opacity="0.4"/>
+    <circle cx="570" cy="430" r="4" opacity="0.5"/><circle cx="596" cy="420" r="3" opacity="0.35"/>
+    <circle cx="620" cy="434" r="4" opacity="0.5"/><circle cx="646" cy="422" r="3" opacity="0.4"/>
+    <circle cx="670" cy="414" r="4" opacity="0.5"/><circle cx="695" cy="426" r="3" opacity="0.35"/>
+    <circle cx="718" cy="418" r="4" opacity="0.5"/><circle cx="742" cy="408" r="3" opacity="0.4"/>
+    <circle cx="765" cy="420" r="4" opacity="0.5"/><circle cx="788" cy="410" r="3" opacity="0.35"/>
+    <circle cx="812" cy="404" r="4" opacity="0.5"/><circle cx="834" cy="414" r="3" opacity="0.4"/>
+    <circle cx="856" cy="406" r="4" opacity="0.5"/><circle cx="878" cy="396" r="3" opacity="0.35"/>
+  </g>
+  <!-- stream axis -->
+  <line x1="280" y1="470" x2="900" y2="382" stroke="#00d2ff" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="590" y="500" text-anchor="middle" font-family="monospace" font-size="15" fill="#6bcf7f" letter-spacing="3">NORMAL TRANSACTION STREAM</text>
+
+  <!-- distributed attack cluster: dim red dots just inside the band (below any threshold) -->
+  <g fill="#ff6b6b" opacity="0.45">
+    <circle cx="932" cy="392" r="5"/><circle cx="958" cy="400" r="5"/>
+    <circle cx="984" cy="386" r="5"/><circle cx="1008" cy="394" r="5"/>
+    <circle cx="1032" cy="382" r="5"/>
+  </g>
+  <text x="982" y="420" text-anchor="middle" font-family="monospace" font-size="13" fill="#ffd93d" letter-spacing="1">BELOW THRESHOLD</text>
+
+  <!-- the anomaly: red spike above the band with lock-on reticle -->
+  <g filter="url(#redGlow)">
+    <circle cx="866" cy="222" r="10" fill="#ff6b6b"/>
+    <circle cx="866" cy="222" r="20" fill="none" stroke="#ff6b6b" stroke-opacity="0.5" stroke-width="2"/>
+  </g>
+  <g stroke="#ff6b6b" stroke-width="2.5" fill="none">
+    <circle cx="866" cy="222" r="34" stroke-opacity="0.9"/>
+    <!-- crosshair ticks -->
+    <line x1="866" y1="180" x2="866" y2="196" stroke-opacity="0.9"/>
+    <line x1="866" y1="248" x2="866" y2="264" stroke-opacity="0.9"/>
+    <line x1="824" y1="222" x2="840" y2="222" stroke-opacity="0.9"/>
+    <line x1="892" y1="222" x2="908" y2="222" stroke-opacity="0.9"/>
+    <!-- corner brackets -->
+    <path d="M 838 194 L 846 194 L 846 202" stroke-opacity="0.6"/>
+    <path d="M 886 194 L 894 194 L 894 202" stroke-opacity="0.6"/>
+    <path d="M 838 242 L 846 242 L 846 250" stroke-opacity="0.6"/>
+    <path d="M 886 242 L 894 242 L 894 250" stroke-opacity="0.6"/>
+  </g>
+  <!-- lock-on dashed line from radar to anomaly -->
+  <line x1="150" y1="520" x2="866" y2="222" stroke="#ff6b6b" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 6"/>
+  <text x="866" y="166" text-anchor="middle" font-family="monospace" font-size="17" fill="#ff6b6b" letter-spacing="3" filter="url(#softGlow)">ANOMALY</text>
+
+  <!-- branding -->
+  <text x="1120" y="600" text-anchor="end" font-family="sans-serif" font-size="16" fill="#8b949e">ml-ke.github.io</text>
+</svg>

@@ -56,7 +56,7 @@ catch-up cron (date-fixed publishes: `kyc-aml-analytics-african-fintech` → Aug
 | Aug 26 (Wed) | deepfake-fraud-financial-services | AI Security | Arup HK$200M deepfake CFO + UK voice-clone $243K + Group-IB 8,065 KYC injections + Sumsub Kenya 10% | ✅ published |
 | Aug 29 (Sat) | flutterwave-fraud-anatomy | Fintech | Flutterwave 4 incidents / 14 months (Feb 2023 ₦2.9B → Apr 2024 ₦11B) | ✅ published |
 | Aug 30 (Sun) | *(empty)* | Fintech Security | proposed: playbook — KYC/AML automation |
-| Aug 31 (Mon) | *(empty)* | Analytics | proposed: anomaly detection for reconciliation at scale |
+| Aug 31 (Mon) | anomaly-detection-reconciliation | Analytics | anomaly detection for reconciliation at scale (NCBA EOW catch + Flutterwave ₦11B threshold evasion + Danske/Teradata FPs) | ✅ published |
 
 **Publishing note (Aug 29):** `.scheduled/` was still empty at the Aug 29 cron run
 (14:05 EAT). Per gap-fill rule, `flutterwave-fraud-anatomy` was written directly to
@@ -76,6 +76,34 @@ Per gap-fill rule, today's Sun (Fintech Security) slot was written directly to
 | Date | Slug | Theme | Anchor / angle | Status |
 |------|------|-------|----------------|--------|
 | Aug 30 (Sun) | kyc-aml-automation-playbook | Fintech Security | Playbook: 5-checkpoint KYC/AML automation (Flutterwave trigger-limit bypass ₦11B, NCBA ghost accounts Ksh 57.5M, Group-IB 8,065 KYC injections, Danske/Teradata ML FP reduction) | ✅ published |
+
+**Publishing note (Aug 31):** `.scheduled/` was still empty at the Aug 31 cron run
+(14:05 EAT). Per gap-fill rule, today's Mon (Analytics) slot was written directly
+to `_posts/` with date `2026-08-31 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Aug 31 (Mon) | anomaly-detection-reconciliation | Analytics | Anomaly detection at scale: NCBA caught only by EOW reconciliation (70 ghost accts, 260 txs, Ksh 57.5M, Jun 6-14 2025) + Flutterwave Apr 2024 ₦11B kept below trigger limits + Danske/Teradata 1,200 FPs/day → 50% cut. Verified Python demo (seed 42): z-score catches spike (z≈44.7) but 0/12 distributed days; Isolation Forest on entity-day aggregates catches 12/12 + spike (115/11,462 flags, ~0.9% FP) | ✅ published |
+
+Cover: `assets/img/cover-anomaly-detection-reconciliation.webp` (SVG source
+`assets/blog/cover-anomaly-detection-reconciliation.svg`, radar/sonar lock-on
+metaphor — distinct from the Aug 15 "two ledgers" reconciliation cover). All
+code blocks executed and outputs verified (scikit-learn, seed 42). Facts
+verified: NCBA event library, TechCabal (May 16 2024) for Flutterwave,
+Teradata case study + Fintech Futures for Danske (1,200 FPs/day, 99.5% not
+fraud, 50% FP reduction).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML) and Aug 28 (Fri, Cybersecurity)** — no
+files were ever staged for those days. `.scheduled/` remains empty: the daily
+cron will silently report "Nothing to do" tomorrow (Sep 1) unless files are
+staged. **Next session actions:** (1) backfill Aug 27 + Aug 28 directly to
+`_posts/` if daily continuity matters (proposed anchors: Aug 27 = MLOps/regtech
+model governance exists → use ML model monitoring/drift instead; Aug 28 =
+secrets in CI / credential leaks — tj-actions, GitHub push protection); (2)
+stage `.scheduled/2026-09-01-*.md` … Sep 7 queue per Week 3 table (Mon Sep 1 =
+CBK bank-fraud statistics → fraud-trend analytics; **never stage Tue Sep 2** —
+Tuesday AI Update cron owns it); (3) confirm `tuesday-ai-update` cron remains
+active for Sep 2.
 
 Cover: `assets/img/cover-kyc-aml-automation-playbook.webp` (SVG source
 `assets/blog/cover-kyc-aml-automation-playbook.svg`, "checkpoint conveyor"
