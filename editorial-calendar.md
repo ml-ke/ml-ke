@@ -114,17 +114,54 @@ file either. `.scheduled/` remains empty: the daily cron will silently report
 "Nothing to do" tomorrow unless files are staged. Next session: backfill Aug 27/28
 and stage `.scheduled/2026-08-31-*.md` + Sep 1–7 queue.
 
-## Week 3 — Proposed (Sep 1–7)
+**Publishing note (Sep 1):** `.scheduled/` still empty at the Sep 1 cron run
+(14:05 EAT). Sep 1 is a **Tuesday** — the `tuesday-ai-update` cron (14:00 EAT)
+published `2026-09-01-tuesday-ai-update.md` today, so today is covered. Per the
+Aug 31 note's action list, **Aug 28 (Fri, Cybersecurity) was backfilled** directly
+to `_posts/` with date `2026-08-28 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Aug 28 (Fri) | secrets-in-ci-credential-leaks | Cybersecurity | Secrets in CI: CircleCI Dec 2022/Jan 2023 (malware → session-cookie theft → customer env vars/tokens/keys exfiltrated; "rotate all secrets"), Mercedes-Benz PAT in public repo (Sep 29 2023, unrestricted access to GitHub Enterprise; DB strings/cloud keys/SSO passwords), Toyota 2022 (5-yr exposure), CISA "Private-CISA" repo May 2026 (GitHub GovCloud keys, PATs, plaintext passwords; secret-scanning-disable guide), GitHub 39M secrets leaked 2024, push protection GH013 block on THIS repo (rebase+redact+force-push) | ✅ published |
+
+Cover: `assets/img/cover-secrets-in-ci-credential-leaks.webp` (SVG source
+`assets/blog/cover-secrets-in-ci-credential-leaks.svg`, "leaking pipeline"
+metaphor: golden key falls through a crack in the BUILD stage into an EXPOSED
+pool, green PUSH PROTECTION shield on the right — distinct from the Aug 21
+pipeline-gate and Jun 12 vault-door covers). Facts verified: circleci.com
+incident report + Malwarebytes; BleepingComputer + RedHunt Labs (Mercedes);
+Krebs on Security + Dark Reading + The Register (CISA); GitHub Blog +
+SecurityWeek + BleepingComputer (39M stat). 1,012 body words.
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining gap. The calendar's
+original Aug 27 topic (mlops-regtech-model-governance) was consumed by the
+date-fixed publish on Aug 25, so the backfill needs a fresh ML topic (e.g.
+model drift/monitoring for fraud models — PSI, data quality gates). `.scheduled/`
+remains empty — the daily cron will silently report "Nothing to do" tomorrow
+(Sep 2) unless files are staged.
+
+**⚠️ Week 3 weekday correction:** the table below was written assuming Sep 1 =
+Monday, but **Sep 1, 2026 is a Tuesday**. Correct rotation for the staging queue:
+Wed Sep 2 = AI Security, Thu Sep 3 = ML, Fri Sep 4 = Cybersecurity, Sat Sep 5 =
+Fintech, Sun Sep 6 = Fintech Security, Mon Sep 7 = Analytics. Never stage
+Tuesdays (Sep 8/15/22/29) — the Tuesday AI Update cron owns them.
+
+**Next session actions:** (1) backfill Aug 27 (Thu, ML — fresh topic, NOT
+mlops-regtech-model-governance which is published Aug 25); (2) stage
+`.scheduled/` files for Sep 2 (Wed, AI Security) through Sep 7 (Mon, Analytics)
+per the corrected rotation above — an empty queue silently stops the daily
+cron; (3) keep `tuesday-ai-update` cron active (it owns all Tuesdays).
+
+## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
 |------|-------|----------------|
-| Sep 1 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends |
-| Sep 2 (Tue) | AI Update | Global AI Roundup |
-| Sep 3 (Wed) | AI Security | AI red-teaming for financial LLM apps (OWASP LLM Top 10 walkthrough) |
-| Sep 4 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) |
-| Sep 5 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls |
-| Sep 6 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
-| Sep 7 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security |
+| Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps (OWASP LLM Top 10 walkthrough) |
+| Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) |
+| Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls |
+| Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
+| Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security |
+| Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends |
 
 ## Week 4 — Proposed (Sep 8–14)
 
