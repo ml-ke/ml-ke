@@ -152,11 +152,49 @@ mlops-regtech-model-governance which is published Aug 25); (2) stage
 per the corrected rotation above — an empty queue silently stops the daily
 cron; (3) keep `tuesday-ai-update` cron active (it owns all Tuesdays).
 
+**Publishing note (Sep 2):** `.scheduled/` was still empty at the Sep 2 cron run
+(14:05 EAT). Per gap-fill rule, today's Wed (AI Security) slot was written
+directly to `_posts/` with date `2026-09-02 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 2 (Wed) | ai-red-teaming-financial-llm-apps | AI Security | Red-teaming financial LLM apps: Blue41/Bunq €0.02 SEPA-memo indirect prompt injection (Apr 2026; DD identified Bunq, 20M+ customers), Unit 42 in-the-wild IDPI incl. unauthorized-transaction intents (Mar 2026), Morris II RAG email-assistant worm (2024), WithSecure refund-bot refusal bypass; OWASP LLM Top 10 2025 checklist + runnable naive-vs-tagged demo | ✅ published |
+
+Cover: `assets/img/cover-ai-red-teaming-financial-llm-apps.webp` (SVG source
+`assets/blog/cover-ai-red-teaming-financial-llm-apps.svg`, "poisoned SEPA memo
+→ LLM → human-approval gate" metaphor: paper transfer slip with red payload
+pill + red-team probe reticle, money path diverging to a blocked `refund_tx`
+tool call — distinct from the Jun 8 shield+4-arrows cover and the Aug 24
+chat-UI cover). Facts verified: blue41.com case study + Developers Digest
+(Bunq attribution, attack chain); unit42.paloaltonetworks.com (in-the-wild
+intents, 22 techniques); arXiv:2403.02817 + IBM Think (Morris II); WithSecure
+Labs publications page. Code block executed — output verified
+(naive EXECUTED vs tagged BLOCKED; base64/wordmix evade marker filters).
+1,360 prose words (1,580 with code).
+
+**⚠️ Week 4 weekday correction:** the Week 4 table below lists "Sep 8 (Mon)" —
+Sep 8, 2026 is actually a **TUESDAY**, owned by the AI Update cron. Shift the
+Week 4 rotation by one day: Tue Sep 8 = AI Update, Wed Sep 9 = AI Security
+(LLM data-exfiltration via indirect prompt injection), Thu Sep 10 = ML,
+Fri Sep 11 = Cybersecurity, Sat Sep 12 = Fintech, Sun Sep 13 = Fintech
+Security, Mon Sep 14 = Analytics.
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only calendar gap. `.scheduled/`
+remains empty: the daily cron will silently report "Nothing to do" tomorrow
+(Sep 3) unless files are staged. **Next session actions:** (1) backfill Aug 27
+(Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25);
+(2) stage `.scheduled/` files for Sep 3 (Thu, ML: model drift/monitoring PSI),
+Sep 4 (Fri, Cybersecurity: M-PESA/Daraja API security), Sep 5 (Sat, Fintech:
+Sidian Bank deep-dive), Sep 6 (Sun, Fintech Security: third-party API/BaaS
+playbook), Sep 7 (Mon, Analytics: CBK fraud statistics) per the Week 3 table;
+(3) never stage Tue Sep 8 (AI Update cron owns it) and apply the Week 4
+correction above when staging Sep 9+; (4) keep `tuesday-ai-update` cron active.
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
 |------|-------|----------------|
-| Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps (OWASP LLM Top 10 walkthrough) |
+| Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps — ✅ published as `ai-red-teaming-financial-llm-apps` (see note above) |
 | Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) |
 | Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls |
 | Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
