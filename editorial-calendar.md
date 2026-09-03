@@ -179,23 +179,46 @@ Week 4 rotation by one day: Tue Sep 8 = AI Update, Wed Sep 9 = AI Security
 Fri Sep 11 = Cybersecurity, Sat Sep 12 = Fintech, Sun Sep 13 = Fintech
 Security, Mon Sep 14 = Analytics.
 
-**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only calendar gap. `.scheduled/`
-remains empty: the daily cron will silently report "Nothing to do" tomorrow
-(Sep 3) unless files are staged. **Next session actions:** (1) backfill Aug 27
-(Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25);
-(2) stage `.scheduled/` files for Sep 3 (Thu, ML: model drift/monitoring PSI),
-Sep 4 (Fri, Cybersecurity: M-PESA/Daraja API security), Sep 5 (Sat, Fintech:
-Sidian Bank deep-dive), Sep 6 (Sun, Fintech Security: third-party API/BaaS
-playbook), Sep 7 (Mon, Analytics: CBK fraud statistics) per the Week 3 table;
-(3) never stage Tue Sep 8 (AI Update cron owns it) and apply the Week 4
-correction above when staging Sep 9+; (4) keep `tuesday-ai-update` cron active.
+**Publishing note (Sep 3):** `.scheduled/` was still empty at the Sep 3 cron run
+(14:05 EAT). Per gap-fill rule, today's Thu (ML) slot was written directly to
+`_posts/` with date `2026-09-03 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 3 (Thu) | fraud-model-drift-monitoring | ML | Fraud models rot quietly: PSI on the score distribution (OK <0.10 / WATCH 0.10–0.25 / RETRAIN >0.25, credit-scorecard convention), monthly score-creep demo (seed 42: Jan PSI 0.000 → Apr 0.121 WATCH → May 0.344 RETRAIN → Jun 1.223; 50–70 band ~9% → ~44% of live population), feature fill-rate gates (device_id 99.4% → 93.1% FAIL while score stays in-band) — anchored to Flutterwave Apr 2024 ₦11B sub-trigger adaptation and NCBA ghost accounts as *adversarial population drift*, NOT per-line anomalies (differentiated from Aug 31 anomaly post and Jul 11 ml-monitoring post) | ✅ published |
+
+Cover: `assets/img/cover-fraud-model-drift-monitoring.webp` (SVG source
+`assets/blog/cover-fraud-model-drift-monitoring.svg`, "population creep"
+metaphor: dashed cyan EXPECTED (TRAIN) curve + red ghost curves creeping right
+month-over-month into a LIVE (JUN) curve, PSI zone ruler OK/WATCH/RETRAIN with
+needle at PSI 1.22, FILL-RATE GATE panel with device_id 93% ✗ GATE: FAIL —
+distinct from #30 ml-monitoring dashboard, #33 anomaly radar, #29 CI/CD
+pipeline). Facts verified: TechCabal + Techpoint + Business Insider Africa
+(Flutterwave ₦11B, 5 institutions, 4 days, sub-trigger amounts); NCBA event
+library (70 accounts, 260 txs, Ksh 57.5M, 8 days); Teradata/Fintech Futures
+(Danske 1,200 FPs/day, 99.5% not fraud); PSI threshold convention via Fiddler
+AI, Coralogix, and Yildirim/ResearchGate. Code executed — output quoted
+verbatim (PSI zone table + Jun band contributions + fill-rate gate). 1,414
+prose words (excluding code).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap.
+`.scheduled/` remains empty: the daily cron will silently report "Nothing to
+do" tomorrow (Sep 4) unless files are staged. **Next session actions:**
+(1) backfill Aug 27 (Thu, ML — fresh topic, NOT mlops-regtech-model-governance,
+published Aug 25); (2) stage `.scheduled/` files for Sep 4 (Fri, Cybersecurity:
+M-PESA/Daraja API security), Sep 5 (Sat, Fintech: Sidian Bank deep-dive),
+Sep 6 (Sun, Fintech Security: third-party API/BaaS playbook), Sep 7 (Mon,
+Analytics: CBK fraud statistics) per the Week 3 table — or gap-fill each day
+directly as this session did; (3) never stage Tue Sep 8 (AI Update cron owns
+it) and apply the Week 4 correction when staging Sep 9+; (4) keep
+`tuesday-ai-update` cron active.
 
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
 |------|-------|----------------|
 | Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps — ✅ published as `ai-red-teaming-financial-llm-apps` (see note above) |
-| Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) |
+| Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) — ✅ published as `fraud-model-drift-monitoring` (see note above) |
 | Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls |
 | Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
 | Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security |
