@@ -213,13 +213,43 @@ directly as this session did; (3) never stage Tue Sep 8 (AI Update cron owns
 it) and apply the Week 4 correction when staging Sep 9+; (4) keep
 `tuesday-ai-update` cron active.
 
+**Publishing note (Sep 4):** `.scheduled/` was still empty at the Sep 4 cron run
+(14:05 EAT). Per gap-fill rule, today's Fri (Cybersecurity) slot was written
+directly to `_posts/` with date `2026-09-04 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 4 (Fri) | mpesa-daraja-api-pitfalls | Cybersecurity | Mobile money API security: 4 "open joints" of Daraja integration — (1) leaked consumer key/secret (Quest: leaked creds "can be exploited to initiate unauthorized transactions"; GitHub 39M secrets 2024; r/nairobitechies rotation-didn't-help case), (2) trusted/insider access (Safaricom v. EADH KES 20.3M 2016-era aggregation suit; Constitutional Petition E095/2026 — High Court KES 9.9M ruling, rogue-employee defense rejected), (3) spoofed STK pushes + fake confirmations (unsolicited BETGR8_CS push; The Star scheme explainer, verify via 456), (4) callback/timestamp/sandbox-prod hygiene — verified Python demo (STK password prefix + 1-min replay window; forged ResultCode 0 callback REJECTED vs genuine FULFIL) | ✅ published |
+
+Cover: `assets/img/cover-mpesa-daraja-api-pitfalls.webp` (SVG source
+`assets/blog/cover-mpesa-daraja-api-pitfalls.svg`, "payment rail with numbered
+open joints" metaphor: merchant server ↔ Daraja gateway on a dashed cyan rail,
+red attack arrows at joints 1/2/3 = LEAKED SECRET / FAKE CALLBACK / SPOOFED
+PUSH, green shield on the DARAJA side — distinct from the Aug 28 CI-pipeline
+leak cover and the Jun ml-secrets vault cover). Facts verified: tech-ish.com
+(Feb 6 2020, reporting Business Daily) for EADH; Techweez (May 18 2026) +
+Nairobi Wire (Apr 22 2026) for E095/2026; Quest Web guide; The Star (Mar 27
+2025); Reddit threads cited only at snippet level (bot-walled); Koda School +
+KenZobe for Daraja mechanics. Code block executed — output quoted verbatim.
+1,456 prose words (excluding code).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap
+(now 8 days open). `.scheduled/` remains empty: the daily cron will silently
+report "Nothing to do" tomorrow (Sep 5) unless files are staged. **Next
+session actions:** (1) backfill Aug 27 directly to `_posts/` if daily
+continuity matters; (2) stage or gap-fill Sep 5 (Sat, Fintech: Sidian Bank
+deep-dive), Sep 6 (Sun, Fintech Security: third-party API/BaaS playbook),
+Sep 7 (Mon, Analytics: CBK fraud statistics) per Week 3; (3) never stage
+Tue Sep 8 (AI Update cron owns it) and apply the Week 4 weekday correction
+when staging Sep 9+; (4) keep `tuesday-ai-update` cron active.
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
 |------|-------|----------------|
 | Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps — ✅ published as `ai-red-teaming-financial-llm-apps` (see note above) |
 | Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) — ✅ published as `fraud-model-drift-monitoring` (see note above) |
-| Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls |
+| Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls — ✅ published as `mpesa-daraja-api-pitfalls` (see note above) |
 | Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
 | Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security |
 | Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends |
