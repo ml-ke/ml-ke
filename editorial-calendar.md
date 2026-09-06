@@ -233,15 +233,44 @@ Nairobi Wire (Apr 22 2026) for E095/2026; Quest Web guide; The Star (Mar 27
 KenZobe for Daraja mechanics. Code block executed — output quoted verbatim.
 1,456 prose words (excluding code).
 
-**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap
-(now 8 days open). `.scheduled/` remains empty: the daily cron will silently
-report "Nothing to do" tomorrow (Sep 5) unless files are staged. **Next
-session actions:** (1) backfill Aug 27 directly to `_posts/` if daily
-continuity matters; (2) stage or gap-fill Sep 5 (Sat, Fintech: Sidian Bank
-deep-dive), Sep 6 (Sun, Fintech Security: third-party API/BaaS playbook),
-Sep 7 (Mon, Analytics: CBK fraud statistics) per Week 3; (3) never stage
-Tue Sep 8 (AI Update cron owns it) and apply the Week 4 weekday correction
-when staging Sep 9+; (4) keep `tuesday-ai-update` cron active.
+**Still UNPUBLISHED: Aug 27 (Thu, ML) and Sep 5 (Sat, Fintech: Sidian Bank
+2025 incident deep-dive)** — Sep 6 was covered by today's gap-fill (note
+below); `.scheduled/` remains empty, so the daily cron will silently report
+"Nothing to do" tomorrow (Sep 7) unless files are staged. **Next session
+actions:** (1) backfill Sep 5 (Sidian Bank — verified anchors already in the
+event library: MKU student charged with Sh7.8M theft, kenyainsights + tuko)
+and Aug 27 (fresh ML topic, NOT mlops-regtech-model-governance, published Aug
+25) directly to `_posts/` if daily continuity matters; (2) stage or gap-fill
+Sep 7 (Mon, Analytics: CBK bank-fraud statistics); (3) never stage Tue Sep 8
+(AI Update cron owns it) and apply the Week 4 weekday correction when staging
+Sep 9+; (4) keep `tuesday-ai-update` cron active.
+
+**Publishing note (Sep 6):** `.scheduled/` was still empty at the Sep 6 cron run
+(14:05 EAT). Per gap-fill rule, today's Sun (Fintech Security) slot was written
+directly to `_posts/` with date `2026-09-06 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 6 (Sun) | aggregator-baas-security-playbook | Fintech Security | Playbook: third-party API & BaaS integration security — "the middleman problem." Differentiated from Sep 4 (direct Daraja rail joints): the layer ABOVE the rail. Cases: Evolve Bank & Trust LockBit breach (Jul 2024: 7,640,112 notified per Maine AG filing; phishing-click entry Feb 9 2024, detected May 29 2024 — ~4 months dwell; Affirm/Wise/Bilt customers impacted; BleepingComputer + TechCrunch), Juspay processor breach (Aug 18 2020, old unrecycled AWS access key; 3.5 crore records + portion of 10-crore user metadata w/ plaintext emails; Business Today + CPO Magazine), Synapse middleware collapse (Ch.11 Apr 22 2024; trustee McWilliams: $265M balances vs $180M held = $85M shortfall; 100k+ customers locked out; CNBC + CFPB + Fortune), Kenya echo = EADH KES 20.3M aggregator suit (cross-link) + CBK Third-Party Agents Guideline 2016 clause 5.1.6 (verbatim: institution "responsible for assessing the adequacy of controls of outsourced activities"). Eight-gate playbook table (layer map → diligence → contract → credential lifecycle → HMAC webhook auth → daily two-ledger reconciliation → kill switch → edge red-teaming) + verified Python demo (HMAC forged-vs-genuine webhook; ledger diff) with verbatim output | ✅ published |
+
+Cover: `assets/img/cover-aggregator-baas-security-playbook.webp` (SVG source
+`assets/blog/cover-aggregator-baas-security-playbook.svg`, "opaque middleman"
+metaphor: YOUR APP (green, the only audited layer) and BANK/RAIL (faint,
+out of reach) on either side of a dashed red AGGREGATOR / BaaS black box
+with a red ? and breach arrows labeled phishing click / unrecycled key;
+money rail disappears into the box and reappears at the bank; green
+VERIFY THE EDGES chip (HMAC) + cyan RECONCILE THE MIDDLE chip (ledger diff)
+— distinct from the Sep 4 numbered-rail-joints cover and the Aug 30
+checkpoint-conveyor cover). Facts verified at body level: BleepingComputer
+(7,640,112, Maine AG filing; phishing-click entry; Feb 9 2024 initial access,
+detected May 29 2024; Affirm/Wise/Bilt), TechCrunch (LockBit ransomware),
+CNBC (trustee report: $265M vs $180M = $85M shortfall, 100k+ locked out),
+CFPB (Ch.11 Apr 22 2024), Fortune (management removed, Mercury suits),
+Business Today (Aug 18 2020 detection; 3.5 crore records; masked card data +
+plaintext-email user metadata; remediation: key refresh, 2FA, IAM), CPO
+Magazine (old unrecycled AWS access key; ~100M records circulating), CBK
+guideline PDF clause 5.1.6 (verbatim). Code executed — output quoted
+verbatim. 1,471 full-body words (minus code fences).
 
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
@@ -250,8 +279,8 @@ when staging Sep 9+; (4) keep `tuesday-ai-update` cron active.
 | Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps — ✅ published as `ai-red-teaming-financial-llm-apps` (see note above) |
 | Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) — ✅ published as `fraud-model-drift-monitoring` (see note above) |
 | Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls — ✅ published as `mpesa-daraja-api-pitfalls` (see note above) |
-| Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive |
-| Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security |
+| Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive — ⚠️ NOT published (cron produced no post Sep 5; see notes) |
+| Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security — ✅ published as `aggregator-baas-security-playbook` (see note above) |
 | Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends |
 
 ## Week 4 — Proposed (Sep 8–14)
