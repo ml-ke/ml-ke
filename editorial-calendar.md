@@ -272,6 +272,39 @@ Magazine (old unrecycled AWS access key; ~100M records circulating), CBK
 guideline PDF clause 5.1.6 (verbatim). Code executed — output quoted
 verbatim. 1,471 full-body words (minus code fences).
 
+**Publishing note (Sep 7):** `.scheduled/` was still empty at the Sep 7 cron run
+(14:05 EAT). Per gap-fill rule, today's Mon (Analytics) slot was written directly
+to `_posts/` with date `2026-09-07 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 7 (Mon) | cbk-fraud-trend-analytics | Analytics | CBK Financial Sector Stability Report 2024 (pub. Sep 2025) Table 14 read as an analytics dataset: reported cyber-fraud cases 173 → 353; exposed KSh 680.9m → 1,963.2m (×2.9); actual loss KSh 412.5m → 1,594.4m (×3.9); recovery only ×1.4 (268.4m → 368.8m). Mix shift: mobile banking = 50.8% of 2024 loss (KSh 810.7m, +344% from 182.4m), card ×16.9 (15.6m → 263.3m on 24 cases), identity ×6.1 (32.6m → 199.1m), online-banking cases 19 → 106 with flat loss. Key derived ratio: loss/exposure conversion 60.6% → 81.2%; identity conversion flipped 14.6% → 97.9% (attempts fell, losses sextupled — control-failure signal) while card fell 96.6% → 59.9% (~40% clawed back = reversal machinery). Severity/case 2.38m → 4.52m (×1.9). Late-night Fri/Sat pattern (BD). Insider half: TechCabal Utawala/Ruiru shadow call-centres + BFIU, KCB fired 34 (25 Kenya), Equity 1,200+ show-cause, Absa blocked 306m/lost 169m, CBK notes AI employee monitoring, NCBA ghost-account cross-link | ✅ published |
+
+Cover: `assets/img/cover-cbk-fraud-trend-analytics.webp` (SVG source
+`assets/blog/cover-cbk-fraud-trend-analytics.svg`, "midnight heist clock"
+metaphor: clock face near 23:55 with a red arc over the Fri/Sat 23:00–03:00
+attack window, next to 2023-vs-2024 loss bars (412 → 1,594) and channel chips
+MOBILE 50.8% / CARD ×16.9 / IDENTITY ×6.1 / conversion 61% → 81% — no clock or
+dial metaphor exists in the cover library). **Primary-source fact check:** all
+Table 14 figures verified directly against the CBK FSSR PDF (the report's prose
+paragraph says "153 in 2023" but Table 14 totals 173 → 353 — outlets split on
+which to quote; the table's 173 is authoritative for the channel breakdown and
+is what the post uses). Coverage corroborated by Business Daily ×2, TechCabal,
+TechTrends KE, Money254. Code executed — output quoted verbatim. 1,499
+full-body words (minus code fences).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML) and Sep 5 (Sat, Fintech: Sidian Bank
+2025 incident deep-dive)** — `.scheduled/` remains empty, so the daily cron
+will silently report "Nothing to do" tomorrow (Sep 8) unless files are staged.
+**⚠️ Sep 8 is a TUESDAY — never stage it (AI Update cron owns it).** **Next
+session actions:** (1) backfill Sep 5 (Sidian Bank — verified anchors already
+in the event library: MKU student charged with Sh7.8M theft, kenyainsights +
+tuko) and Aug 27 (fresh ML topic, NOT mlops-regtech-model-governance,
+published Aug 25) directly to `_posts/` if daily continuity matters; (2) stage
+or gap-fill Sep 9 (Wed, AI Security: LLM data-exfiltration via indirect prompt
+injection) onwards per the Week 4 rotation below; (3) keep `tuesday-ai-update`
+cron active.
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
@@ -281,7 +314,7 @@ verbatim. 1,471 full-body words (minus code fences).
 | Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls — ✅ published as `mpesa-daraja-api-pitfalls` (see note above) |
 | Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive — ⚠️ NOT published (cron produced no post Sep 5; see notes) |
 | Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security — ✅ published as `aggregator-baas-security-playbook` (see note above) |
-| Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends |
+| Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends — ✅ published as `cbk-fraud-trend-analytics` (see note above) |
 
 ## Week 4 — Proposed (Sep 8–14)
 
@@ -305,6 +338,7 @@ verbatim. 1,471 full-body words (minus code fences).
 - **3CX (2023)** — trojanized Desktop App updates. Sources: CISA alert (Mar 30, 2023), Mandiant.
 - **tj-actions/changed-files (2025)** — CVE-2025-30066; retroactive tag rewrite exposed CI/CD secrets. Sources: GitHub Advisory GHSA-mrrh-fwg8-r2c3, CISA (Mar 18, 2025), Wiz.
 - **Sidian Bank (Oct 2025)** — MKU student charged with Sh7.8M theft. Sources: kenyainsights.com, tuko.co.ke.
+- **CBK Financial Sector Stability Report 2024 (pub. Sep 2025)** — Table 14 "Fraud cases and Exposure": cases 173→353; exposed KSh 680.9m→1,963.2m; lost KSh 412.5m→1,594.4m; recovered 368.8m. Channels (lost 23→24): mobile 182.4m→810.7m (+344%), card 15.6m→263.3m (×16.9, 24 cases), identity 32.6m→199.1m (×6.1), computer 74.8m→203.4m, online 106.2m→111.8m (cases 19→106), internet scam 0.8m→6.1m. Conversion (lost/exposed) 60.6%→81.2%; identity 14.6%→97.9%; card 96.6%→59.9%. PDF: centralbank.go.ke/uploads/financial_sector_stability/1556846189_FSR%202024%20Sept.%20Final%202025.pdf (NOTE: report prose says "153 in 2023" but Table 14 totals 173 — table is authoritative). Blogged: 2026-09-07-cbk-fraud-trend-analytics.
 - **Danske Bank + Teradata fraud ML** — rules ~40% detection/1,200 FPs per day → ML cut FPs ~50%, raised detection ~60%. Sources: Teradata case study, Fintech Futures.
 - **PayPal / Stripe Radar / Mastercard Decision Intelligence** — production AI fraud engines (verify current figures before reuse).
 
