@@ -305,6 +305,16 @@ or gap-fill Sep 9 (Wed, AI Security: LLM data-exfiltration via indirect prompt
 injection) onwards per the Week 4 rotation below; (3) keep `tuesday-ai-update`
 cron active.
 
+**Publishing note (Sep 8):** Sep 8 is a **Tuesday** — the `tuesday-ai-update` cron (14:00 EAT) published `2026-09-08-tuesday-ai-update.md` today, so today is covered and nothing was staged for the blog-poster. Per the Sep 7 note's action list, **Sep 5 (Sat, Fintech: Sidian Bank) was backfilled** directly to `_posts/` with date `2026-09-05 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 5 (Sat) | sidian-bank-mule-heist | Fintech | Sidian Bank Sh7,882,845 heist (Jan 11 2025) mule anatomy: two charge waves — trio (Nangole/Odidi JKUAT/Ochieng Thika TTI, Aug 25 2025, SPM Onsarigo) + Collins Mutuma (MKU, Oct 27 2025, CM Onyina) — same incident date/amount "jointly with others not before court"; documented dispersal: DTB 471,302 (Karoki victim leg), I&M 458,313, National Bank 451,346 (Kericho Tractor Centre victim), M-Pesa 113,220 + 169,900 onward; named legs = Sh1,494,181 (~19% of pot); vector NOT publicly established (stated honestly); entry vector unproven → focus on first-hop/fan-out/pass-through detection; runnable fan-out heuristic demo (verified output verbatim) + new-beneficiary gap analysis; 1,481 full-body words | ✅ published |
+
+Cover: `assets/img/cover-sidian-bank-mule-heist.webp` (SVG source `assets/blog/cover-sidian-bank-mule-heist.svg`, "one bank, many buckets" metaphor: red siphon leaves SIDIAN BANK building into a FIRST HOP SPLIT box under a green targeting reticle, four colored pipes fanning into DTB/I&M/NATIONAL BANK/M-PESA wallet chips with the charge-sheet amounts, dashed gray ~Sh6.4M "not tied to named accounts" branch — no manifold/split metaphor exists in the cover library; distinct from Aug 22 ghost-account, Aug 29 hub-frozen, Sep 4 numbered-joints, Sep 7 clock covers). Facts verified at body level: tuko.co.ke + Bizna Kenya (charge-sheet quote, counts s.317/s.268(1)+275/POCAMLA 4(a), bail), Kenya Insights (bypassed-multiple-layers, laundering framing), Kahawatungu (count 2: Karoki Sh471,302 to DTB), Nairobi Wire + Education News Kenya (trio legs, bail 300k/1M, Sep 3 mention), Wikipedia (K-Rep→Sidian 2016). Code executed — output quoted verbatim (4 flags; plain bank-to-bank first hops NOT flagged → new-beneficiary rule gap analysis).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap. `.scheduled/` remains empty: the daily cron will silently report "Nothing to do" unless files are staged. **Next session actions:** (1) backfill Aug 27 (Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25) directly to `_posts/` if daily continuity matters; (2) stage or gap-fill Sep 9 (Wed, AI Security: LLM data-exfiltration via indirect prompt injection) onwards per the Week 4 rotation below; (3) keep `tuesday-ai-update` cron active (it owns all Tuesdays, incl. Sep 15/22/29).
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
@@ -312,7 +322,7 @@ cron active.
 | Sep 2 (Wed) | AI Security | AI red-teaming for financial LLM apps — ✅ published as `ai-red-teaming-financial-llm-apps` (see note above) |
 | Sep 3 (Thu) | ML | Model drift & monitoring for fraud models (PSI, data quality) — ✅ published as `fraud-model-drift-monitoring` (see note above) |
 | Sep 4 (Fri) | Cybersecurity | Mobile money API security: M-PESA/Daraja integration pitfalls — ✅ published as `mpesa-daraja-api-pitfalls` (see note above) |
-| Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive — ⚠️ NOT published (cron produced no post Sep 5; see notes) |
+| Sep 5 (Sat) | Fintech | Sidian Bank 2025 incident (verified reporting) deep-dive — ✅ published as `sidian-bank-mule-heist` (Sep 8 backfill; see note above) |
 | Sep 6 (Sun) | Fintech Security | Playbook: third-party API & BaaS integration security — ✅ published as `aggregator-baas-security-playbook` (see note above) |
 | Sep 7 (Mon) | Analytics | CBK bank-fraud statistics → analytics of fraud trends — ✅ published as `cbk-fraud-trend-analytics` (see note above) |
 
@@ -337,7 +347,7 @@ cron active.
 - **SolarWinds (2020)** — Orion build pipeline compromise; ~18,000 orgs. Source: CISA AA20-352A.
 - **3CX (2023)** — trojanized Desktop App updates. Sources: CISA alert (Mar 30, 2023), Mandiant.
 - **tj-actions/changed-files (2025)** — CVE-2025-30066; retroactive tag rewrite exposed CI/CD secrets. Sources: GitHub Advisory GHSA-mrrh-fwg8-r2c3, CISA (Mar 18, 2025), Wiz.
-- **Sidian Bank (Oct 2025)** — MKU student charged with Sh7.8M theft. Sources: kenyainsights.com, tuko.co.ke.
+- **Sidian Bank (Jan 2025 heist; charges Aug/Oct 2025)** — Sh7,882,845 siphoned from customer accounts Jan 11 2025; two charge waves, same incident: trio Nelson Christiano Nangole, John Oboni Odidi (JKUAT), Phostine Hesbon Ochieng (Thika TTI) charged Aug 25 2025 (SPM Geoffrey Onsarigo; legs: I&M 458,313 / National Bank + M-Pesa 451,346 from Kericho Tractor Centre / retained 113,220 M-Pesa; bail 300k cash or 1M bond); Collins Mutuma (MKU, B.Ed Science, 20) charged Oct 27 2025 (CM Lucas Onyina; counts s.317, s.268(1)/275, POCAMLA 4(a); Karoki Sh471,302 → his DTB, onward 300,000 to Dominic Gichiri + ~169,900 to Samuel Mukola Matheka M-Pesa). Vector never publicly established. Sources: kenyainsights.com, tuko.co.ke, biznakenya.com, kahawatungu.com, nairobiwire.com, educationnews.co.ke. Blogged: 2026-09-05-sidian-bank-mule-heist.
 - **CBK Financial Sector Stability Report 2024 (pub. Sep 2025)** — Table 14 "Fraud cases and Exposure": cases 173→353; exposed KSh 680.9m→1,963.2m; lost KSh 412.5m→1,594.4m; recovered 368.8m. Channels (lost 23→24): mobile 182.4m→810.7m (+344%), card 15.6m→263.3m (×16.9, 24 cases), identity 32.6m→199.1m (×6.1), computer 74.8m→203.4m, online 106.2m→111.8m (cases 19→106), internet scam 0.8m→6.1m. Conversion (lost/exposed) 60.6%→81.2%; identity 14.6%→97.9%; card 96.6%→59.9%. PDF: centralbank.go.ke/uploads/financial_sector_stability/1556846189_FSR%202024%20Sept.%20Final%202025.pdf (NOTE: report prose says "153 in 2023" but Table 14 totals 173 — table is authoritative). Blogged: 2026-09-07-cbk-fraud-trend-analytics.
 - **Danske Bank + Teradata fraud ML** — rules ~40% detection/1,200 FPs per day → ML cut FPs ~50%, raised detection ~60%. Sources: Teradata case study, Fintech Futures.
 - **PayPal / Stripe Radar / Mastercard Decision Intelligence** — production AI fraud engines (verify current figures before reuse).
