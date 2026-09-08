@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.47" cy="0.52" r="0.42">
+      <stop offset="0" stop-color="#2a3550" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#00d2ff"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6bcf7f"/>
+    </marker>
+    <marker id="arrYellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffd93d"/>
+    </marker>
+    <marker id="arrPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- faint grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="90" x2="1200" y2="90"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="270" x2="1200" y2="270"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="100" y1="0" x2="100" y2="630"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="500" y1="0" x2="500" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="700" y1="0" x2="700" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+    <line x1="1100" y1="0" x2="1100" y2="630"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="62" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="44" font-weight="bold" fill="#f0f6fc" letter-spacing="1">ONE BANK, MANY BUCKETS</text>
+  <text x="600" y="98" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="21" fill="#9aa4b2">Anatomy of the Sidian Bank Sh7.88M mule heist</text>
+
+  <!-- amount pill -->
+  <rect x="922" y="30" width="256" height="44" rx="22" fill="#141a26" stroke="#ff6b6b" stroke-opacity="0.55"/>
+  <text x="1050" y="58" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="18" font-weight="bold" fill="#ff6b6b">Sh7,882,845 · 11 Jan 2025</text>
+
+  <!-- ===== source: bank building ===== -->
+  <g>
+    <path d="M 105 235 L 170 172 L 235 235 Z" fill="#182034" stroke="#00d2ff" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="105" y="235" width="130" height="185" rx="6" fill="#121826" stroke="#00d2ff" stroke-opacity="0.45" stroke-width="2"/>
+    <line x1="137" y1="252" x2="137" y2="403" stroke="#00d2ff" stroke-opacity="0.28" stroke-width="8"/>
+    <line x1="170" y1="252" x2="170" y2="403" stroke="#00d2ff" stroke-opacity="0.28" stroke-width="8"/>
+    <line x1="203" y1="252" x2="203" y2="403" stroke="#00d2ff" stroke-opacity="0.28" stroke-width="8"/>
+    <line x1="105" y1="300" x2="235" y2="300" stroke="#00d2ff" stroke-opacity="0.18" stroke-width="2"/>
+    <line x1="105" y1="352" x2="235" y2="352" stroke="#00d2ff" stroke-opacity="0.18" stroke-width="2"/>
+    <text x="170" y="452" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="19" font-weight="bold" fill="#00d2ff" letter-spacing="2">SIDIAN BANK</text>
+    <text x="170" y="478" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="14" fill="#8b95a5">customer accounts</text>
+    <!-- victim chips -->
+    <rect x="60" y="500" width="220" height="27" rx="6" fill="#141a26" stroke="#8b95a5" stroke-opacity="0.5"/>
+    <text x="170" y="518" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="13" fill="#c9d1d9">PERSONAL acct · Sh471,302</text>
+    <rect x="60" y="534" width="220" height="27" rx="6" fill="#141a26" stroke="#8b95a5" stroke-opacity="0.5"/>
+    <text x="170" y="552" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="13" fill="#c9d1d9">SME acct · Kericho Tractor Centre</text>
+  </g>
+
+  <!-- ===== red siphon into splitter ===== -->
+  <path d="M 243 320 L 292 288 L 322 344 L 362 300 L 400 348 L 436 316" fill="none" stroke="#ff6b6b" stroke-width="5" stroke-dasharray="10 6" marker-end="url(#arrRed)"/>
+
+  <!-- ===== first-hop splitter with reticle ===== -->
+  <g>
+    <circle cx="560" cy="320" r="92" fill="none" stroke="#6bcf7f" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="560" cy="320" r="70" fill="none" stroke="#6bcf7f" stroke-opacity="0.25" stroke-width="1"/>
+    <line x1="452" y1="320" x2="668" y2="320" stroke="#6bcf7f" stroke-opacity="0.4" stroke-width="1.5"/>
+    <line x1="560" y1="212" x2="560" y2="428" stroke="#6bcf7f" stroke-opacity="0.4" stroke-width="1.5"/>
+    <circle cx="560" cy="320" r="5" fill="#ff6b6b"/>
+    <rect x="487" y="242" width="146" height="156" rx="14" fill="#161d2e" stroke="#ff6b6b" stroke-opacity="0.8" stroke-width="2"/>
+    <text x="560" y="278" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="15" font-weight="bold" fill="#ff6b6b" letter-spacing="1.5">FIRST HOP</text>
+    <text x="560" y="322" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="24" font-weight="bold" fill="#f0f6fc">SPLIT</text>
+    <text x="560" y="368" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="13" fill="#8b95a5">the money stops being</text>
+    <text x="560" y="386" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="13" fill="#8b95a5">one transaction here</text>
+  </g>
+
+  <!-- ===== fan-out pipes ===== -->
+  <path d="M 633 320 Q 748 152 848 152" fill="none" stroke="#00d2ff" stroke-width="5" marker-end="url(#arrCyan)"/>
+  <path d="M 633 320 Q 760 265 848 265" fill="none" stroke="#6bcf7f" stroke-width="5" marker-end="url(#arrGreen)"/>
+  <path d="M 633 320 Q 760 378 848 378" fill="none" stroke="#ffd93d" stroke-width="5" marker-end="url(#arrYellow)"/>
+  <path d="M 633 320 Q 748 492 848 492" fill="none" stroke="#a78bfa" stroke-width="5" marker-end="url(#arrPurple)"/>
+  <!-- untraced branch -->
+  <path d="M 625 398 C 700 470 800 508 902 528" fill="none" stroke="#8b95a5" stroke-width="3" stroke-dasharray="6 7"/>
+  <text x="905" y="548" font-family="'DejaVu Sans', Arial, sans-serif" font-size="15" fill="#8b95a5" font-style="italic">~Sh6.4M not tied to named accounts</text>
+
+  <!-- ===== mule destination chips ===== -->
+  <g font-family="'DejaVu Sans', Arial, sans-serif">
+    <rect x="848" y="124" width="310" height="56" rx="14" fill="#141a26" stroke="#00d2ff" stroke-opacity="0.7" stroke-width="2"/>
+    <text x="874" y="159" font-size="20" font-weight="bold" fill="#00d2ff">DTB</text>
+    <text x="1132" y="159" text-anchor="end" font-size="18" fill="#e6edf3">Sh471,302</text>
+
+    <rect x="848" y="237" width="310" height="56" rx="14" fill="#141a26" stroke="#6bcf7f" stroke-opacity="0.7" stroke-width="2"/>
+    <text x="874" y="272" font-size="20" font-weight="bold" fill="#6bcf7f">I&amp;M BANK</text>
+    <text x="1132" y="272" text-anchor="end" font-size="18" fill="#e6edf3">Sh458,313</text>
+
+    <rect x="848" y="350" width="310" height="56" rx="14" fill="#141a26" stroke="#ffd93d" stroke-opacity="0.7" stroke-width="2"/>
+    <text x="874" y="385" font-size="20" font-weight="bold" fill="#ffd93d">NATIONAL BANK</text>
+    <text x="1132" y="385" text-anchor="end" font-size="18" fill="#e6edf3">Sh451,346</text>
+
+    <rect x="848" y="463" width="310" height="56" rx="14" fill="#141a26" stroke="#a78bfa" stroke-opacity="0.7" stroke-width="2"/>
+    <text x="874" y="498" font-size="20" font-weight="bold" fill="#a78bfa">M-PESA WALLETS</text>
+    <text x="1132" y="498" text-anchor="end" font-size="18" fill="#e6edf3">Sh113,220 +</text>
+  </g>
+
+  <!-- bottom tagline -->
+  <text x="600" y="600" text-anchor="middle" font-family="'DejaVu Sans', Arial, sans-serif" font-size="15" fill="#9aa4b2" letter-spacing="0.5">CATCH THE SPLIT AT THE FIRST HOP — interception works; recovery is coordination-bound</text>
+
+  <!-- logo -->
+  <text x="1175" y="618" text-anchor="end" font-family="'DejaVu Sans', Arial, sans-serif" font-size="14" fill="#6e7681">ml-ke.github.io</text>
+</svg>
