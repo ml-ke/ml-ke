@@ -399,7 +399,7 @@ skill `ai-crime-watch-series`; state in `_ai-crime-watch/STATE.md`
 
 | Planned engine fire | Expected | Status |
 |--------------------|----------|--------|
-| 2026-09-09 (kickoff session) | issue 1 | research in progress |
+| 2026-09-09 (kickoff session) | issue 1 | research done — ready-gate NOT READY (thin in-window news; strong Aug anchors already blogged). Finisher window to Sep 12 → publish or skip |
 | ~2026-09-23 | issue 2 cycle | — |
 | ~2026-10-07 | issue 3 cycle | — |
 | ~2026-10-21 | issue 4 cycle | — |
