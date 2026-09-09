@@ -371,3 +371,36 @@ Cover: `assets/img/cover-llm-data-exfiltration-prompt-injection.webp` (SVG sourc
 3. Covers are unique per post (see blog-drafting skill cover-metaphor-library); never reuse a metaphor.
 4. Fill empty calendar slots by batch-writing to `.scheduled/` (max 3 subagents parallel; verify post_url/cover/webp after).
 5. Re-check the event library before reuse — reporting may have evolved (e.g. court outcomes).
+
+---
+
+# AI Crime Watch — bi-weekly series (starts Sep 2026)
+
+**What:** wholesome, solutions-first collation on crime & AI (how criminals
+use AI; how law enforcement curbs it, how it changes investigations; public
+vigilance; which AI/ML research helps enforcement or gives criminals an
+edge). Home: ml.co.ke, category `AI Security`. Slug scheme:
+`ai-crime-watch-issue-<N>`. Series runbook + state machine:
+skill `ai-crime-watch-series`; state in `_ai-crime-watch/STATE.md`
+(commit changes together with each post).
+
+**Mechanics (do not disturb):**
+- Engine cron `AI Crime Watch engine (bi-weekly)`: fires every 14 days
+  (~Wed, created 2026-09-09, first fire ~Sep 23) — ALWAYS researches,
+  publishes only if the ready-gate (concrete + unique) passes, else opens
+  the finisher window (`due = fire day + 3`).
+- Finisher cron `AI Crime Watch finisher`: daily 16:30 EAT, monitor-gated
+  by `~/.hermes/scripts/ai_crime_watch_signal.py` — sleeps while idle,
+  wakes only while an issue is pending. Do not stage posts for the
+  finisher; it only writes drafts already in `_ai-crime-watch/cycles/`.
+- The series post is an EXTRA post on its day — the daily rotation and
+  Tuesday AI Update are unaffected. `.scheduled/` is never touched by the
+  series.
+
+| Planned engine fire | Expected | Status |
+|--------------------|----------|--------|
+| 2026-09-09 (kickoff session) | issue 1 | research in progress |
+| ~2026-09-23 | issue 2 cycle | — |
+| ~2026-10-07 | issue 3 cycle | — |
+| ~2026-10-21 | issue 4 cycle | — |
+
