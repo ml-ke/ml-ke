@@ -399,8 +399,18 @@ skill `ai-crime-watch-series`; state in `_ai-crime-watch/STATE.md`
 
 | Planned engine fire | Expected | Status |
 |--------------------|----------|--------|
-| 2026-09-09 (kickoff session) | issue 1 | research done — ready-gate NOT READY (thin in-window news; strong Aug anchors already blogged). Finisher window to Sep 12 → publish or skip |
+| 2026-09-09 (kickoff session) | issue 1 | **PUBLISHED 2026-09-09** — `ai-crime-watch-issue-1`: Taiwan voice-clone romance-scam indictment (Sep 2; 57 indicted, NT$900M, 20,000+ victims, bespoke voice AI). Finisher (first wake) verified the anchor the kickoff missed and closed the cycle READY. Cover: `cover-ai-crime-watch-issue-1.webp`. Anchor banked in `_ai-crime-watch/ANCHORS.md`. |
 | ~2026-09-23 | issue 2 cycle | — |
 | ~2026-10-07 | issue 3 cycle | — |
 | ~2026-10-21 | issue 4 cycle | — |
+
+**Publishing note (2026-09-09):** issue 1 published as an extra post on a
+Wednesday (daily post 2026-09-09-llm-data-exfiltration ran as usual).
+Slug `ai-crime-watch-issue-1` now exists — the next issue must be
+`ai-crime-watch-issue-2`. STATE.md: status published, issue 2, cycle 1
+closed. Next action for the ~Sep 23 engine fire: open cycle 2, research a
+fresh window (~Sep 9–23), ready-gate, publish or open finisher window.
+Do not reuse: Taiwan voice-clone romance ring (issue 1 centerpiece),
+INTERPOL 55% African report (Aug 11 spotlight), Operation Jackal / $442B /
+Sumsub Kenya (Aug 26 post), EU AI Act activation (Aug 11/18 updates).
 

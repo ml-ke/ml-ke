@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="chipg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d333b"/><stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="45" x2="1200" y2="45"/><line x1="0" y1="90" x2="1200" y2="90"/><line x1="0" y1="135" x2="1200" y2="135"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="225" x2="1200" y2="225"/><line x1="0" y1="270" x2="1200" y2="270"/><line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="405" x2="1200" y2="405"/><line x1="0" y1="450" x2="1200" y2="450"/><line x1="0" y1="495" x2="1200" y2="495"/><line x1="0" y1="540" x2="1200" y2="540"/><line x1="0" y1="585" x2="1200" y2="585"/>
+    <line x1="0" y1="0" x2="0" y2="630"/><line x1="45" y1="0" x2="45" y2="630"/><line x1="90" y1="0" x2="90" y2="630"/><line x1="135" y1="0" x2="135" y2="630"/><line x1="180" y1="0" x2="180" y2="630"/><line x1="225" y1="0" x2="225" y2="630"/><line x1="270" y1="0" x2="270" y2="630"/><line x1="315" y1="0" x2="315" y2="630"/><line x1="360" y1="0" x2="360" y2="630"/><line x1="405" y1="0" x2="405" y2="630"/><line x1="450" y1="0" x2="450" y2="630"/><line x1="495" y1="0" x2="495" y2="630"/><line x1="540" y1="0" x2="540" y2="630"/><line x1="585" y1="0" x2="585" y2="630"/><line x1="630" y1="0" x2="630" y2="630"/><line x1="675" y1="0" x2="675" y2="630"/><line x1="720" y1="0" x2="720" y2="630"/><line x1="765" y1="0" x2="765" y2="630"/><line x1="810" y1="0" x2="810" y2="630"/><line x1="855" y1="0" x2="855" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/><line x1="945" y1="0" x2="945" y2="630"/><line x1="990" y1="0" x2="990" y2="630"/><line x1="1035" y1="0" x2="1035" y2="630"/><line x1="1080" y1="0" x2="1080" y2="630"/><line x1="1125" y1="0" x2="1125" y2="630"/><line x1="1170" y1="0" x2="1170" y2="630"/>
+  </g>
+
+  <!-- brand -->
+  <text x="46" y="56" font-family="DejaVu Sans, Arial, sans-serif" font-size="24"
+        font-weight="bold" letter-spacing="4" fill="#e6edf3">AI CRIME WATCH</text>
+  <text x="46" y="80" font-family="DejaVu Sans, Arial, sans-serif" font-size="13"
+        letter-spacing="2" fill="#8b949e">A FORTNIGHTLY COLLATION ON CRIME &amp; AI</text>
+  <!-- issue badge -->
+  <rect x="1006" y="34" width="148" height="40" rx="8" fill="#ffd93d" fill-opacity="0.12"/>
+  <text x="1080" y="60" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif"
+        font-size="18" font-weight="bold" fill="#ffd93d">ISSUE 1</text>
+
+  <!-- scales of justice: beam + fulcrum -->
+  <rect x="320" y="196" width="560" height="10" rx="5" fill="#e6edf3"/>
+  <polygon points="588,206 612,206 600,268" fill="#e6edf3"/>
+  <line x1="600" y1="268" x2="600" y2="340" stroke="#8b949e" stroke-width="4"/>
+  <circle cx="600" cy="344" r="10" fill="#8b949e"/>
+  <!-- left chains + pan (crime side: AI chip) -->
+  <line x1="410" y1="206" x2="410" y2="280" stroke="#ff6b6b" stroke-width="4"/>
+  <line x1="490" y1="206" x2="490" y2="280" stroke="#ff6b6b" stroke-width="4"/>
+  <path d="M360 300 Q360 342 410 342 Q460 342 460 300 Z" fill="none" stroke="#ff6b6b" stroke-width="5"/>
+  <path d="M360 300 Q410 306 460 300 L460 322 Q410 334 360 322 Z" fill="#ff6b6b" fill-opacity="0.15"/>
+  <!-- chip on left pan -->
+  <rect x="390" y="262" width="40" height="40" rx="4" fill="url(#chipg)" stroke="#ff6b6b" stroke-width="2"/>
+  <line x1="396" y1="258" x2="396" y2="306" stroke="#ff6b6b" stroke-width="2"/><line x1="404" y1="258" x2="404" y2="306" stroke="#ff6b6b" stroke-width="2"/><line x1="412" y1="258" x2="412" y2="306" stroke="#ff6b6b" stroke-width="2"/><line x1="420" y1="258" x2="420" y2="306" stroke="#ff6b6b" stroke-width="2"/>
+  <line x1="386" y1="266" x2="434" y2="266" stroke="#ff6b6b" stroke-width="2"/><line x1="386" y1="274" x2="434" y2="274" stroke="#ff6b6b" stroke-width="2"/><line x1="386" y1="282" x2="434" y2="282" stroke="#ff6b6b" stroke-width="2"/><line x1="386" y1="290" x2="434" y2="290" stroke="#ff6b6b" stroke-width="2"/><line x1="386" y1="298" x2="434" y2="298" stroke="#ff6b6b" stroke-width="2"/>
+  <rect x="404" y="276" width="12" height="12" rx="2" fill="#ff6b6b" fill-opacity="0.5"/>
+  <text x="410" y="360" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif"
+        font-size="15" fill="#ff6b6b">CRIME</text>
+  <!-- right chains + pan (justice side: shield) -->
+  <line x1="710" y1="206" x2="710" y2="280" stroke="#6bcf7f" stroke-width="4"/>
+  <line x1="790" y1="206" x2="790" y2="280" stroke="#6bcf7f" stroke-width="4"/>
+  <path d="M660 300 Q660 342 710 342 Q760 342 760 300 Z" fill="none" stroke="#6bcf7f" stroke-width="5"/>
+  <path d="M660 300 Q710 306 760 300 L760 322 Q710 334 660 322 Z" fill="#6bcf7f" fill-opacity="0.15"/>
+  <!-- shield on right pan -->
+  <path d="M710 252 L742 268 L742 294 C742 312 728 324 710 330 C692 324 678 312 678 294 L678 268 Z"
+        fill="#6bcf7f" fill-opacity="0.16" stroke="#6bcf7f" stroke-width="4"/>
+  <path d="M710 268 L732 279 L732 294 C732 306 723 314 710 319 C697 314 688 306 688 294 L688 279 Z"
+        fill="none" stroke="#e6edf3" stroke-width="2"/>
+  <text x="710" y="360" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif"
+        font-size="15" fill="#6bcf7f">JUSTICE</text>
+
+  <!-- headline block -->
+  <text x="600" y="380" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="40" font-weight="bold" fill="#e6edf3">20,000 victims, one AI voice romance ring</text><text x="600" y="458" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-size="22" fill="#00d2ff">Taiwan indictment: voice-clone romance fraud goes industrial — the public, police and research playbook</text>
+
+  <text x="46" y="598" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" fill="#8b949e">2026-09-09</text>
+  <text x="1154" y="598" text-anchor="end" font-family="DejaVu Sans, Arial, sans-serif"
+        font-size="15" fill="#8b949e">ml-ke.github.io</text>
+</svg>

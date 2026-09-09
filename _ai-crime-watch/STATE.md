@@ -1,13 +1,13 @@
 # AI Crime Watch — Series State
 
 version: 1
-status: pending
+status: published
 cycle: 1
-issue: 1
+issue: 2
 due: 2026-09-12
 draft: _ai-crime-watch/cycles/cycle-1/draft.md
-published: none
-updated: 2026-09-09 14:45 EAT
+published: 2026-09-09-ai-crime-watch-issue-1
+updated: 2026-09-09 16:40 EAT
 
 ## How this file works
 
@@ -41,3 +41,16 @@ kicked off cycle 1 manually.
   8ea5a3a5de4d wakes daily 16:30 EAT until publish or skip. Engine job
   d75da864fce0 next fire ~2026-09-23 14:41 EAT (opens cycle 2; supersedes
   this cycle if still pending after due).
+- cycle 1 PUBLISHED (2026-09-09, finisher first wake 16:30 EAT): finisher
+  verified the Taiwan voice-clone romance-scam indictment (Sep 2, CNA +
+  Taipei Times bodies) — the fresh in-window anchor the kickoff sweep missed
+  (its Sep 1–9 queries surfaced nothing). Anchor: 57 indicted, NT$900M
+  (US$28M+), 20,000+ victims, bespoke voice AI trained on 22 employees'
+  voices. Angle differentiated from Aug 26 corporate-deepfake post
+  (consumer romance-scam lane + enforcement milestone + pillar-5 research
+  edge: Deepfakes We Missed / ViKing). Post:
+  `_posts/2026-09-09-ai-crime-watch-issue-1.md`, cover
+  `assets/img/cover-ai-crime-watch-issue-1.webp`. All ready-gate checks
+  passed (concrete: Sep 2 anchor ≤21 days; unique: no Taiwan/romance-scam
+  coverage in _posts; every claim 2+ body-level sources). Next engine fire
+  (~Sep 23) opens cycle 2 for issue 2.
