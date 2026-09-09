@@ -315,6 +315,18 @@ Cover: `assets/img/cover-sidian-bank-mule-heist.webp` (SVG source `assets/blog/c
 
 **Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap. `.scheduled/` remains empty: the daily cron will silently report "Nothing to do" unless files are staged. **Next session actions:** (1) backfill Aug 27 (Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25) directly to `_posts/` if daily continuity matters; (2) stage or gap-fill Sep 9 (Wed, AI Security: LLM data-exfiltration via indirect prompt injection) onwards per the Week 4 rotation below; (3) keep `tuesday-ai-update` cron active (it owns all Tuesdays, incl. Sep 15/22/29).
 
+**Publishing note (Sep 9):** `.scheduled/` was still empty at the Sep 9 cron run
+(14:05 EAT). Per gap-fill rule, today's Wed (AI Security) slot was written
+directly to `_posts/` with date `2026-09-09 00:00:00 +0300`:
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 9 (Wed) | llm-data-exfiltration-prompt-injection | AI Security | LLM data exfiltration via indirect prompt injection — differentiated from Jun 1 prompt-injection post (Slack AI / CVE-2024-5184 / Copilot cross-repo case studies) and Sep 2 red-teaming: THIS post owns the four exfiltration CHANNELS. (1) LINK a human clicks: Rehberger (wunderwuzzi) M365 Copilot 2024 — email body encoded as Unicode Tag chars (U+E0000–E007F, "ASCII smuggling") inside a benign-looking clickable URL; disclosed HITCON CMT 2024. (2) FETCH that auto-runs: Varonis CoSnitch (CVE-2026-24301) Copilot Personal — undocumented `autorun=1` + `q` executes attacker prompt on page load; queries already-authorized connected apps, exfils via built-in URL fetch to webhook; found via meta-hacking; reported Dec 2025, patched Aug 18 2026; preceded by Reprompt (CVE-2026-24307); parallels Rehberger CVE-2026-24299 (memory writes/deletions). (3) DIAGRAM with hyperlink: Adam Logue M365 Copilot Mermaid "login button" carrying hex-encoded tenant data (blog Oct 21 2025; reported Aug 2025; patched by removing interactive hyperlinks from rendered Mermaid; Register Oct 24 2025; Cursor IDE sibling Aug 2025). (4) MEMORY persistence: CoSnitch finding 3 + CVE-2026-24299 — retrieved pages write standing instructions into memory store. Controls table (render-no-network, two-way tool gating, egress anomaly detection, least privilege, memory write policy, channel red-teaming) + runnable Unicode-tag/beacon triage demo, output quoted verbatim | ✅ published |
+
+Cover: `assets/img/cover-llm-data-exfiltration-prompt-injection.webp` (SVG source `assets/blog/cover-llm-data-exfiltration-prompt-injection.svg`, "four exfil pipes" metaphor: poisoned document with red dashed invisible-payload line → LLM chip → LINK (red) / FETCH (cyan) / DIAGRAM (yellow) pipes carrying byte cubes into an attacker dish, MEMORY (purple) self-loop labelled "persists" — no pipe/beacon metaphor exists in the cover library; distinct from Sep 2 memo-gate and Jun 1 covers). Facts verified at body level: The Hacker News (Aug 18 2026) + Varonis blog + Dark Reading + Cybersecurity News (CoSnitch CVE-2026-24301/24299/24307, autorun=1 + q, meta-hacking, patch date, no in-wild exploitation); embracethered.com primary + Infosecurity Magazine (Rehberger ASCII smuggling); adamlogue.com (Oct 21 2025) + The Register (Oct 24 2025) + CSO Online (Logue Mermaid fix). Code executed via verify-post-code.py — output quoted verbatim. 1,499 full-body words (minus code). New verified anchors mirrored into `llm-agent-red-team-incident-bank.md` (§5–7).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap. `.scheduled/` remains empty: the daily cron will silently report "Nothing to do" unless files are staged. **Next session actions:** (1) backfill Aug 27 (Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25) directly to `_posts/` if daily continuity matters; (2) stage or gap-fill the corrected Week 4 rotation for Sep 10 (Thu, ML: graph ML for fraud rings), Sep 11 (Fri, Cybersecurity: PAM/JIT for fintech), Sep 12 (Sat, Fintech: outage post-mortems), Sep 13 (Sun, Fintech Security: real-time reconciliation playbook), Sep 14 (Mon, Analytics: control totals & break detection — the table's "Sep 8 (Mon)" row shifts here); (3) never stage Tuesdays (Sep 15/22/29 — AI Update cron owns them); (4) keep `tuesday-ai-update` cron active.
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
@@ -330,9 +342,9 @@ Cover: `assets/img/cover-sidian-bank-mule-heist.webp` (SVG source `assets/blog/c
 
 | Date | Theme | Proposed topic |
 |------|-------|----------------|
-| Sep 8 (Mon) | Analytics | Control totals & break detection in settlement systems |
-| Sep 9 (Tue) | AI Update | Global AI Roundup |
-| Sep 10 (Wed) | AI Security | LLM data-exfiltration via indirect prompt injection |
+| Sep 8 (Mon*) | Analytics | Control totals & break detection in settlement systems (→ shift to Mon Sep 14 per weekday correction) |
+| Sep 9 (Tue*) | AI Update | Global AI Roundup — actual Tue Sep 8, published by AI Update cron as `2026-09-08-tuesday-ai-update` |
+| ~~Sep 10 (Wed*)~~ → **Sep 9 (Wed)** | AI Security | LLM data-exfiltration via indirect prompt injection — ✅ published as `llm-data-exfiltration-prompt-injection` (see Sep 9 note below) |
 | Sep 11 (Thu) | ML | Graph ML for fraud rings (transaction graph clustering) |
 | Sep 12 (Fri) | Cybersecurity | Privileged access management: JIT/PAM for fintech |
 | Sep 13 (Sat) | Fintech | Global fintech outage post-mortems (e.g. major card outages) |
