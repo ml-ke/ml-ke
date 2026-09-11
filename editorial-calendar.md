@@ -327,6 +327,53 @@ Cover: `assets/img/cover-llm-data-exfiltration-prompt-injection.webp` (SVG sourc
 
 **Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only remaining calendar gap. `.scheduled/` remains empty: the daily cron will silently report "Nothing to do" unless files are staged. **Next session actions:** (1) backfill Aug 27 (Thu, ML — fresh topic, NOT mlops-regtech-model-governance, published Aug 25) directly to `_posts/` if daily continuity matters; (2) stage or gap-fill the corrected Week 4 rotation for Sep 10 (Thu, ML: graph ML for fraud rings), Sep 11 (Fri, Cybersecurity: PAM/JIT for fintech), Sep 12 (Sat, Fintech: outage post-mortems), Sep 13 (Sun, Fintech Security: real-time reconciliation playbook), Sep 14 (Mon, Analytics: control totals & break detection — the table's "Sep 8 (Mon)" row shifts here); (3) never stage Tuesdays (Sep 15/22/29 — AI Update cron owns them); (4) keep `tuesday-ai-update` cron active.
 
+**Publishing note (Sep 10 & Sep 11 — backfilled 2026-09-11 late evening):** the
+`blog-poster` cron (137b7dcf653c) **FAILED on both days with no post written** — the
+morning runs died on a provider error (`HTTP 401`, invalid API key, for the ATLAS sync
+job on Sep 10; `HTTP 402: Insufficient Balance` for all four LLM-consuming jobs on Sep
+10–11). Both missing days were gap-filled manually in one session, per the gap-fill rule
+(no `.scheduled/` staging — the queue was empty):
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 10 (Thu) | graph-fraud-ring-detection | ML | "Fraud Rings Are a Graph Problem" — the transaction graph as the detection unit. Anchors: Europol EMMA 9 (Dec 5 2023 — 1,013 arrests in 26 countries, 10,759 mules + 474 recruiters, 2,800+ banks, >€100M exposed, €32M prevented); Operation Jackal IV (Nov 2025–Jun 2026 sweep, 58 arrested / 263 suspects / 22 countries, BBC Aug 25 2026; South Africa 39 arrests, $2.67m seized, 257 accounts blocked); Cifas Fraudscape 2026 (444,000+ NFD cases in 2025, >1,200/day, £2.4bn prevented, SIM swaps +38%). Method: hard links (phone/card/ID → union-find components) vs soft links (device/cookie/IP → clustering) per arXiv:2512.19061 (25M → 7.7M nodes, coverage doubled); Louvain for "fraud islands"; directed cycle detection for layering; GNN layer (arXiv:2411.05815, Elliptic 203,769 nodes / 234,355 edges / 4,545 illicit ≈2%); precision caution (Aite-Novarica ~90% of declines legitimate). Runnable networkx demo: two rings surface through two different doors, shared-device-only cluster lands at REVIEW not FLAG | ✅ published |
+| Sep 11 (Fri) | sim-swap-otp-interception-mobile-banking | Cybersecurity | "The Number Is the Password" — the identity layer above the rail (distinct from Sep 4's Daraja joints and Sep 6's aggregator layer). Kenyan anchor: **DTB v Safaricom**, High Court at Machakos, Justice Asenath Ongeri, **June 18 2026** — KES 4,418,601 taken after a Feb 6 2022 SIM swap via an M-PESA agent, **60:40 → Safaricom KES 2,630,000 / DTB KES 1,788,601**, upholding the Mavoko Chief Magistrate ruling (Hon. R.W. Gitau, Mar 2024); quote "a bank cannot hide behind a customer's PIN…". Carrier numbers: Safaricom CCSO Nick Mulila (The Star, Nov 6 2024) — "about 40 fraudulent swaps out of about 750K swaps", ~28,000 swaps/day; INTERPOL African Cyberthreat Assessment 2026 (SIM-swap +327% in 2025, 123,000+ fraudulent SIMs, ~US$3.8m). Global: SEC @SECGov X hack (Jan 9 2024, BleepingComputer); Scattered Spider AA23-320A + MGM ~$100m + Urban 10 years/§13m restitution (Krebs); 0ktapus (169 domains, 5,441 MFA-code records); WindRelay/SpyNote NFC relay (Aug 2026, Malwarebytes). Standards: NIST SP 800-63B PSTN restriction, CISA FIDO/number-matching, FCC rules in force Jul 8 2024. Runnable 30-line step-up gate: PIN-only rule releases all KES 4,418,601; signal-count gate (re-bind age + new beneficiary + crowding the daily limit) holds every transaction | ✅ published |
+
+Covers: `assets/img/cover-graph-fraud-ring-detection.webp` (SVG source in `assets/blog/`,
+"ring inside the mesh" metaphor: dim cyan transaction mesh, one 4-account red ring closed
+around a shared DEV node with a money loop, a greyed weak same-IP link marked FP, and a
+right-hand panel contrasting PER-ACCOUNT SCORE = FLAGGED: NONE with RING/GRAPH SCORE =
+4 accounts — distinct from the KG/GNN covers) and
+`assets/img/cover-sim-swap-otp-interception-mobile-banking.webp` ("SIM leaves the phone"
+metaphor: handset with un-delivered OTPs, SIM card detached and re-bound at a carrier
+desk, code rerouted into an attacker handset, bank auth panel showing PIN ✓ / OTP ✓ /
+number re-bound 2 days ago / MFA PASSED — money released, plus the 60:40 liability chip
+— first SIM/identity cover in the library).
+
+**⚠️ Topic deviation (Sep 11):** the Sep 9 note proposed "Cybersecurity: PAM/JIT for
+fintech". That lane is already owned by the Aug 16 `insider-threat-privileged-access-fintech`
+post (tags: pam, ueba, privileged-access), so a PAM/JIT sibling would have duplicated it.
+Substituted the mobile-identity lane (SIM swap / OTP interception / account takeover),
+which no existing post covers.
+
+**Root cause + fix (the two-day outage):** deepseek key `****efc0` was rejected
+(401) on Sep 10, then the account hit `HTTP 402: Insufficient Balance` on Sep 10–11.
+Re-verified 2026-09-11 23:2x EAT: current key (`****4ac8`) returns
+`is_available: true`, balance $9.74, and a live chat completion — the cron LLM path is
+healthy again. **⚠️ Fragility:** only one provider key is configured for the whole agent
+(`fallback_providers: []`), so a single balance/auth failure stops EVERY LLM-consuming
+job at once (blog-poster, tuesday-ai-update, ATLAS sync, AI Crime Watch, weekly sweep).
+Consider a second provider key + a fallback chain.
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only calendar gap older than this backfill.
+`.scheduled/` remains empty. **Next session actions:** (1) stage or gap-fill Sep 12 (Sat,
+Fintech: outage post-mortems), Sep 13 (Sun, Fintech Security: real-time reconciliation
+playbook), Sep 14 (Mon, Analytics: control totals & break detection — the table's "Sep 8
+(Mon)" row shifts here); (2) never stage Tuesdays (Sep 15/22/29 — the AI Update cron owns
+them); (3) keep `tuesday-ai-update` active; (4) consider the Aug 27 backfill (fresh ML
+topic — NOT `mlops-regtech-model-governance`, published Aug 25) if daily continuity
+matters.
+
 ## Week 3 — Proposed (Sep 2–7, corrected weekdays)
 
 | Date | Theme | Proposed topic |
