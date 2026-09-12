@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/></linearGradient>
+<linearGradient id="gRed" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#ff6b6b" stop-opacity="0.3"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient>
+<linearGradient id="gGrn" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#6bcf7f"/><stop offset="1" stop-color="#6bcf7f" stop-opacity="0.3"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g stroke="#ffffff" stroke-opacity="0.035">
+<line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="30" x2="1200" y2="30"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="90" x2="1200" y2="90"/><line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="150" x2="1200" y2="150"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="210" x2="1200" y2="210"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="270" x2="1200" y2="270"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="330" x2="1200" y2="330"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="390" x2="1200" y2="390"/><line x1="0" y1="420" x2="1200" y2="420"/><line x1="0" y1="450" x2="1200" y2="450"/><line x1="0" y1="480" x2="1200" y2="480"/><line x1="0" y1="510" x2="1200" y2="510"/><line x1="0" y1="540" x2="1200" y2="540"/><line x1="0" y1="570" x2="1200" y2="570"/><line x1="0" y1="600" x2="1200" y2="600"/><line x1="0" y1="630" x2="1200" y2="630"/>
+</g>
+<text x="56" y="70" fill="#e8eefc" font-size="39" font-family="Helvetica,Arial,sans-serif" font-weight="bold">The Money Stopped Moving</text>
+<text x="56" y="102" fill="#8fa3c8" font-size="18" font-family="Helvetica,Arial,sans-serif">Fintech outage post-mortems: measure stranded value, not downtime minutes</text>
+<text x="96" y="176" fill="#5b6b8c" font-size="12.5" font-family="monospace">APPROVALS LOST per 15-min bin (above zero)  vs  RETRIES RECOVERED (below zero)</text>
+<rect x="347.4" y="202" width="177.4" height="198.0"
+ fill="#ffd93d" fill-opacity="0.045" stroke="#ffd93d" stroke-opacity="0.4" stroke-dasharray="5 4" rx="4"/>
+<text x="339" y="186" fill="#ffd93d" font-size="12.5" font-family="monospace">09:30 DEGRADATION BEGINS — approvals 93%, no alarm at 90%</text>
+<text x="551" y="296" fill="#ff6b6b" font-size="13" font-family="monospace">HARD STOP 11:00–11:30</text>
+<text x="551" y="314" fill="#ff6b6b" font-size="12" font-family="monospace">3,838 stranded in 30 min</text>
+<line x1="96" y1="400" x2="812" y2="400" stroke="#7f8fb0" stroke-width="1.3"/>
+<line x1="96" y1="400" x2="96" y2="492" stroke="#2a3550"/><text x="96" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">06:00</text><line x1="239" y1="400" x2="239" y2="492" stroke="#2a3550"/><text x="239" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">08:00</text><line x1="382" y1="400" x2="382" y2="492" stroke="#2a3550"/><text x="382" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">10:00</text><line x1="526" y1="400" x2="526" y2="492" stroke="#2a3550"/><text x="526" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">12:00</text><line x1="669" y1="400" x2="669" y2="492" stroke="#2a3550"/><text x="669" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">14:00</text><line x1="812" y1="400" x2="812" y2="492" stroke="#2a3550"/><text x="812" y="512" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">16:00</text>
+<rect x="114.7" y="399.2" width="16.3" height="0.8" fill="url(#gRed)" rx="1.5"/><rect x="168.4" y="399.1" width="16.3" height="0.9" fill="url(#gRed)" rx="1.5"/><rect x="186.3" y="400.0" width="16.3" height="0.0" fill="url(#gRed)" rx="1.5"/><rect x="204.2" y="398.6" width="16.3" height="1.4" fill="url(#gRed)" rx="1.5"/><rect x="222.1" y="399.8" width="16.3" height="0.2" fill="url(#gRed)" rx="1.5"/><rect x="311.6" y="399.2" width="16.3" height="0.8" fill="url(#gRed)" rx="1.5"/><rect x="347.4" y="390.8" width="16.3" height="9.2" fill="url(#gRed)" rx="1.5"/><rect x="365.3" y="390.9" width="16.3" height="9.1" fill="url(#gRed)" rx="1.5"/><rect x="383.2" y="390.3" width="16.3" height="9.7" fill="url(#gRed)" rx="1.5"/><rect x="401.1" y="388.0" width="16.3" height="12.0" fill="url(#gRed)" rx="1.5"/><rect x="419.0" y="391.1" width="16.3" height="8.9" fill="url(#gRed)" rx="1.5"/><rect x="436.9" y="390.7" width="16.3" height="9.3" fill="url(#gRed)" rx="1.5"/><rect x="454.8" y="218.0" width="16.3" height="182.0" fill="url(#gRed)" rx="1.5"/><rect x="472.7" y="217.4" width="16.3" height="182.6" fill="url(#gRed)" rx="1.5"/><rect x="490.6" y="390.8" width="16.3" height="9.2" fill="url(#gRed)" rx="1.5"/><rect x="508.5" y="389.4" width="16.3" height="10.6" fill="url(#gRed)" rx="1.5"/><rect x="526.4" y="400.0" width="16.3" height="26.9" fill="url(#gGrn)" rx="1.5"/><rect x="544.3" y="400.0" width="16.3" height="26.5" fill="url(#gGrn)" rx="1.5"/><rect x="562.2" y="400.0" width="16.3" height="26.4" fill="url(#gGrn)" rx="1.5"/><rect x="580.1" y="400.0" width="16.3" height="26.2" fill="url(#gGrn)" rx="1.5"/><rect x="598.0" y="400.0" width="16.3" height="26.4" fill="url(#gGrn)" rx="1.5"/><rect x="615.9" y="400.0" width="16.3" height="25.6" fill="url(#gGrn)" rx="1.5"/><rect x="651.7" y="399.7" width="16.3" height="0.3" fill="url(#gRed)" rx="1.5"/><rect x="687.5" y="399.9" width="16.3" height="0.1" fill="url(#gRed)" rx="1.5"/><rect x="705.4" y="399.9" width="16.3" height="0.1" fill="url(#gRed)" rx="1.5"/><rect x="741.2" y="399.8" width="16.3" height="0.2" fill="url(#gRed)" rx="1.5"/><rect x="759.1" y="399.2" width="16.3" height="0.8" fill="url(#gRed)" rx="1.5"/><rect x="777.0" y="400.0" width="16.3" height="0.0" fill="url(#gRed)" rx="1.5"/><rect x="794.9" y="399.9" width="16.3" height="0.1" fill="url(#gRed)" rx="1.5"/>
+<text x="319" y="386" fill="#ffd93d" font-size="12" font-family="monospace" text-anchor="end">821 stranded here —</text>
+<text x="319" y="399" fill="#ffd93d" font-size="12" font-family="monospace" text-anchor="end">no alarm sees this</text>
+<text x="518" y="486" fill="#6bcf7f" font-size="12.5" font-family="monospace">RETRY SURGE: 3,946 recovered (85%)</text>
+<g font-family="monospace">
+<rect x="856" y="200" width="288" height="300" rx="10" fill="#101a2e" stroke="#2a3550"/>
+<text x="874" y="228" fill="#8fa3c8" font-size="12">WHAT THE OUTAGE COST</text>
+<text x="874" y="266" fill="#ff6b6b" font-size="28" font-weight="bold">4,659</text>
+<text x="874" y="286" fill="#8fa3c8" font-size="11.5">approvals stranded (3.6% of the day)</text>
+<text x="874" y="316" fill="#e8eefc" font-size="11.5">deficit integral, not downtime minutes</text>
+<text x="874" y="344" fill="#8fa3c8" font-size="11.5">status page: "30 min down"</text>
+<text x="874" y="366" fill="#00d2ff" font-size="11.5">customers: 4 h 00 m degraded</text>
+<text x="874" y="388" fill="#a78bfa" font-size="11.5">CUSUM alert 09:45 — 15 min in</text>
+<text x="874" y="410" fill="#ff6b6b" font-size="11.5">threshold alarm 11:00 — 90 min late</text>
+<text x="874" y="440" fill="#ff6b6b" font-size="12">713 never came back</text>
+<text x="874" y="460" fill="#8fa3c8" font-size="11">= reconciliation debt beyond the incident</text>
+<text x="874" y="484" fill="#5b6b8c" font-size="11">Visa 2018 · TSB 2018 · M-Shwari · AWS 2025</text>
+</g>
+<text x="1144" y="608" fill="#5b6b8c" font-size="13" font-family="monospace" text-anchor="end">ml-ke.github.io</text>
+</svg>

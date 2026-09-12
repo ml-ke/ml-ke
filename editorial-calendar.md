@@ -461,3 +461,47 @@ Do not reuse: Taiwan voice-clone romance ring (issue 1 centerpiece),
 INTERPOL 55% African report (Aug 11 spotlight), Operation Jackal / $442B /
 Sumsub Kenya (Aug 26 post), EU AI Act activation (Aug 11/18 updates).
 
+
+---
+
+# Weekly rotation — publishing notes (September 2026)
+
+**Publishing note (Sep 12):** `.scheduled/` was empty at the Sep 12 cron run, so
+today's post was gap-filled **directly to `_posts/`** (backdating/gap-fill rule —
+the daily cron only ever matches today's date; it never reaches backfill).
+
+| Date | Slug | Theme | Anchor / angle | Status |
+|------|------|-------|----------------|--------|
+| Sep 12 (Sat) | `fintech-outage-post-mortem` | Data Science, Fintech | **"The Money Stopped Moving: What Fintech Outage Post-Mortems Actually Measure"** — the unit of a payments post-mortem is stranded value + reconciliation debt, not downtime minutes. Anchors (all verified): **Visa Europe 1 Jun 2018** (5.2M transactions failed; 2.4M UK / 2.8M rest of Europe; 1.7M UK cards = 10.4% of cards in use; 14:35 → 00:45; the primary switch's "very rare, partial failure" **blocked** failover and the primary's sync attempts congested the secondary — Guardian + FStech on the 11-page Treasury Committee letter); **TSB Apr–Dec 2018** (all branches + a significant proportion of 5.2M customers; BAU only in Dec 2018; **£32.7M** redress; **£48.65M** fine = FCA £29.75M + PRA £18.9M — FCA press release); **M-Shwari (Safaricom + NCBA) Nov 2025** (>3-day outage, zero balances, "restored" Sunday with reconciliation ongoing — TechCabal 3 Nov 2025) and **Feb 2026** (~36h repeat, "technical issue" at the partner, users still reporting hanging transactions at 10 p.m. on the restoration day — tech-ish 9 Feb 2026, K24); **AWS us-east-1 19–20 Oct 2025** (latent race condition in DynamoDB DNS automation → empty DNS record; automation disabled worldwide; up to 15h for some customers — InfoQ + Forbes); **Uptime Institute 2026** (third parties ≈ two-thirds of publicly reported outages over nine years; 57% of last-major-outage costs > $100k; 1 in 5 > $1M); **DORA** 4h/24h/72h/1-month clocks (EBA RTS); **CBK** 24-hour incident notification (Guidance Note on Cybersecurity, 2017); **FCA PS21/3** impact-tolerance mapping/testing by 31 Mar 2025. Runnable stdlib demo (96 bins, diurnal demand): learned baseline 0.9824, σ 0.00426; deficit integral 4,659 stranded approvals (3.6% of the day), 18% of it outside the hard-stop bins; static 90% threshold fires 90 min late while CUSUM fires 15 min in; retry surge retires 85% and 713 approvals never return; status page "30 min down" vs 240-min customer-visible window. Seed-robust across seeds 1–7 | ✅ published |
+
+Cover: `assets/img/cover-fintech-outage-post-mortem.webp` (SVG source
+`assets/blog/cover-fintech-outage-post-mortem.svg`, generated from the same seed-7
+simulation). Metaphor: **the outage as a balance sheet** — per-15-min *stranded
+approvals* above the zero line (a thin two-hour brownout shelf then two tall
+hard-stop bars) and *retries recovered* below it, with a right-hand panel carrying
+4,659 / "30 min down" vs "4 h 00 m degraded" / CUSUM 09:45 vs threshold 11:00 /
+713 never returned. First deficit-vs-recovery chart in the library; distinct from
+`fraud-model-drift-monitoring` (PSI bands) and the two reconciliation covers.
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only calendar gap older than this
+week. `.scheduled/` remains EMPTY: the daily cron will keep reporting "All posts
+published! Nothing to do." until files are staged, so **every day needs a manual
+gap-fill post until the queue is restaged**.
+
+**Next session actions:**
+1. **Sep 13 (Sun, Fintech Security — real-time reconciliation + alerting).**
+   ⚠️ Topic-overlap risk: `reconciliation-analytics-fintech` (Aug 15) and
+   `anomaly-detection-reconciliation` (Aug 31) already own reconciliation
+   *analytics*. Differentiate hard: make it the **real-time alerting/runbook**
+   piece (streaming SLIs, alert routing and on-call policy, dedup/burn-rate,
+   alert-fatigue math, and the post-restart forced sweep) rather than another
+   detector toolkit — and state the differentiation in the intro.
+2. **Sep 14 (Mon, Analytics — control totals & break detection in settlement)**
+   — the Week-4 table row that keeps shifting; still unblogged.
+3. Never stage Tuesdays (Sep 15 / 22 / 29 — the AI Update cron owns them);
+   keep `tuesday-ai-update` active.
+4. Consider the **Aug 27 (Thu, ML)** backfill if daily continuity matters — fresh
+   topic, NOT `mlops-regtech-model-governance` (published Aug 25).
+5. Verified outage anchors are now banked agent-side in
+   `~/.hermes/skills/creative/blog-drafting/references/fintech-outage-incident-bank.md`
+   — reuse those instead of re-researching for any incident/resilience/DR post.
