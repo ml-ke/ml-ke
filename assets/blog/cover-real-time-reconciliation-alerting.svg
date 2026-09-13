@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/></linearGradient>
+<linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#00d2ff" stop-opacity="0.45"/><stop offset="1" stop-color="#00d2ff" stop-opacity="0.03"/></linearGradient>
+<linearGradient id="gBurst" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#ff6b6b" stop-opacity="0.35"/><stop offset="1" stop-color="#ff6b6b"/></linearGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g stroke="#ffffff" stroke-opacity="0.035">
+<line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="30" x2="1200" y2="30"/><line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="90" x2="1200" y2="90"/><line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="150" x2="1200" y2="150"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="210" x2="1200" y2="210"/><line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="270" x2="1200" y2="270"/><line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="330" x2="1200" y2="330"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="390" x2="1200" y2="390"/><line x1="0" y1="420" x2="1200" y2="420"/><line x1="0" y1="450" x2="1200" y2="450"/><line x1="0" y1="480" x2="1200" y2="480"/><line x1="0" y1="510" x2="1200" y2="510"/><line x1="0" y1="540" x2="1200" y2="540"/><line x1="0" y1="570" x2="1200" y2="570"/><line x1="0" y1="600" x2="1200" y2="600"/>
+</g>
+<text x="56" y="66" fill="#e8eefc" font-size="37" font-family="Helvetica,Arial,sans-serif" font-weight="bold">Paging the Ledger</text>
+<text x="56" y="96" fill="#8fa3c8" font-size="16.5" font-family="Helvetica,Arial,sans-serif">Reconciliation alerting: money SLIs, burn rate, dedup, and a page that happens at minute 238</text>
+<text x="772" y="124" fill="#ff6b6b" font-size="12.5" font-family="monospace" text-anchor="end">FAILOVER BURST 60,000/min</text>
+
+<text x="56" y="146" fill="#5b6b8c" font-size="12.5" font-family="monospace">UNMATCHED VALUE PER MINUTE (KES) · Thursday 14:00 → 02:00 shift</text>
+<path d="M56 300 L90 300 L180 267 L397 201 L402 297 L704 298 L772 299 L772 300 Z" fill="url(#gArea)"/>
+<path d="M56 300 L90 300 L180 267 L397 201 L402 297 L704 298 L772 299" fill="none" stroke="#00d2ff" stroke-width="2.6"/>
+<line x1="56" y1="176" x2="772" y2="176" stroke="#ffd93d" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="56" y="170" fill="#ffd93d" font-size="12" font-family="monospace">STATIC ALARM 25,000 / min — never fires on the drift</text>
+<line x1="56" y1="300" x2="772" y2="300" stroke="#7f8fb0" stroke-width="1.2"/>
+<g fill="url(#gBurst)">
+<rect x="704" y="150" width="15" height="150"/><rect x="723" y="152" width="15" height="148"/>
+</g>
+<g stroke="#e8eefc" stroke-width="2"><line x1="704" y1="176" x2="738" y2="170"/><line x1="704" y1="184" x2="738" y2="178"/></g>
+<circle cx="291" cy="238" r="5" fill="#00d2ff"/>
+<text x="412" y="206" fill="#00d2ff" font-size="12.5" font-family="monospace">drift burn 24.6x — pages</text>
+<text x="412" y="226" fill="#00d2ff" font-size="12.5" font-family="monospace">first page: minute 238</text>
+<text x="412" y="246" fill="#8fa3c8" font-size="12.5" font-family="monospace">KES 830,666 unmatched by then</text>
+<text x="412" y="266" fill="#8fa3c8" font-size="12.5" font-family="monospace">static alarm: 0 pages on the drift</text>
+<line x1="56" y1="300" x2="56" y2="330" stroke="#2a3550"/><text x="56" y="348" fill="#5b6b8c" font-size="12" font-family="monospace">minute 120</text>
+<line x1="397" y1="300" x2="397" y2="330" stroke="#2a3550"/><text x="397" y="348" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">minute 300</text>
+<line x1="704" y1="300" x2="704" y2="330" stroke="#2a3550"/><text x="704" y="348" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="middle">minute 480</text>
+<text x="90" y="318" fill="#00d2ff" font-size="11.5" font-family="monospace">drift begins</text>
+
+<text x="56" y="386" fill="#8fa3c8" font-size="12.5" font-family="monospace">THE PAGING PATH</text>
+<g fill="#ff6b6b" fill-opacity="0.75">
+<rect x="58" y="400" width="26" height="3" rx="1.5"/><rect x="58" y="408" width="26" height="3" rx="1.5"/><rect x="58" y="416" width="26" height="3" rx="1.5"/><rect x="58" y="424" width="26" height="3" rx="1.5"/><rect x="58" y="432" width="26" height="3" rx="1.5"/><rect x="92" y="400" width="26" height="3" rx="1.5"/><rect x="92" y="408" width="26" height="3" rx="1.5"/><rect x="92" y="416" width="26" height="3" rx="1.5"/><rect x="92" y="424" width="26" height="3" rx="1.5"/><rect x="92" y="432" width="26" height="3" rx="1.5"/><rect x="126" y="400" width="26" height="3" rx="1.5"/><rect x="126" y="408" width="26" height="3" rx="1.5"/><rect x="126" y="416" width="26" height="3" rx="1.5"/><rect x="126" y="424" width="26" height="3" rx="1.5"/><rect x="126" y="432" width="26" height="3" rx="1.5"/>
+</g>
+<text x="58" y="456" fill="#8fa3c8" font-size="12" font-family="monospace">1,785 break lines / shift</text>
+<path d="M176 416 L244 416" stroke="#2a3550" stroke-width="1.6"/>
+<path d="M244 392 L280 416 L244 440 L208 416 Z" fill="#101a2e" stroke="#a78bfa" stroke-width="1.6"/>
+<text x="244" y="420" fill="#a78bfa" font-size="11" font-family="monospace" text-anchor="middle">DEDUP</text>
+<text x="244" y="474" fill="#a78bfa" font-size="12" font-family="monospace" text-anchor="middle">group: reason + counterparty</text>
+<text x="244" y="492" fill="#a78bfa" font-size="12" font-family="monospace" text-anchor="middle">silence 60 min per group</text>
+<path d="M280 416 L350 416" stroke="#6bcf7f" stroke-width="2"/>
+<rect x="350" y="384" width="122" height="72" rx="9" fill="#101a2e" stroke="#6bcf7f" stroke-width="1.6"/>
+<text x="411" y="410" fill="#6bcf7f" font-size="22" font-family="monospace" text-anchor="middle" font-weight="bold">5 PAGES</text>
+<text x="411" y="429" fill="#8fa3c8" font-size="11.5" font-family="monospace" text-anchor="middle">per 12-hour shift</text>
+<text x="411" y="441" fill="#5b6b8c" font-size="11" font-family="monospace" text-anchor="middle">SRE budget: 2 incidents</text>
+<text x="500" y="404" fill="#ff6b6b" font-size="12" font-family="monospace">page per break line: 1,785 / shift</text>
+<text x="500" y="424" fill="#ffd93d" font-size="12" font-family="monospace">static 25k/min: 20 pages, all on the burst</text>
+<text x="500" y="444" fill="#00d2ff" font-size="12" font-family="monospace">raw burn-rate pages: 80 / shift</text>
+<text x="500" y="464" fill="#a78bfa" font-size="12" font-family="monospace">one page per break group</text>
+
+<g font-family="monospace">
+<rect x="812" y="140" width="332" height="440" rx="10" fill="#101a2e" stroke="#2a3550"/>
+<text x="832" y="170" fill="#8fa3c8" font-size="12.5">WHAT DESERVES A HUMAN</text>
+<text x="832" y="204" fill="#ff6b6b" font-size="15" font-weight="bold">14.4x</text>
+<text x="894" y="204" fill="#e8eefc" font-size="12">2% of budget in 1 h — PAGE</text>
+<text x="832" y="230" fill="#ff6b6b" font-size="15" font-weight="bold">6x</text>
+<text x="894" y="230" fill="#e8eefc" font-size="12">5% in 6 h — PAGE</text>
+<text x="832" y="256" fill="#ffd93d" font-size="15" font-weight="bold">1x</text>
+<text x="894" y="256" fill="#e8eefc" font-size="12">10% in 3 d — TICKET</text>
+<line x1="832" y1="276" x2="1124" y2="276" stroke="#2a3550"/>
+<text x="832" y="300" fill="#8fa3c8" font-size="12">burn 1.0 = 694 KES/minute</text>
+<text x="832" y="320" fill="#8fa3c8" font-size="12">(0.1% of KES 1bn settled / day)</text>
+<text x="832" y="350" fill="#00d2ff" font-size="12.5">drift burn 24.6x — pages at 238</text>
+<text x="832" y="370" fill="#ff6b6b" font-size="12.5">burst burn 30x — pages at 480</text>
+<text x="832" y="390" fill="#8fa3c8" font-size="12">25,000/min rule: silent for 360 min</text>
+<line x1="832" y1="408" x2="1124" y2="408" stroke="#2a3550"/>
+<text x="832" y="434" fill="#e8eefc" font-size="13">queue at shift end</text>
+<text x="832" y="460" fill="#ff6b6b" font-size="20" font-weight="bold">KES 3,262,711</text>
+<text x="832" y="481" fill="#8fa3c8" font-size="12">across 1,785 open lines</text>
+<text x="832" y="508" fill="#a78bfa" font-size="12">T+1 clock, RBI harmonised TAT:</text>
+<text x="832" y="527" fill="#a78bfa" font-size="12">INR 178,500 / day if unreversed</text>
+<text x="832" y="552" fill="#5b6b8c" font-size="11">switched off at 02:00 — who owns the queue?</text>
+</g>
+<text x="1144" y="604" fill="#5b6b8c" font-size="12" font-family="monospace" text-anchor="end">ml-ke.github.io</text>
+</svg>
