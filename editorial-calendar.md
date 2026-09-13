@@ -505,3 +505,80 @@ gap-fill post until the queue is restaged**.
 5. Verified outage anchors are now banked agent-side in
    `~/.hermes/skills/creative/blog-drafting/references/fintech-outage-incident-bank.md`
    — reuse those instead of re-researching for any incident/resilience/DR post.
+
+---
+
+## Publishing note (Sep 13 — Sunday, Fintech Security)
+
+`.scheduled/` was empty at the Sep 13 cron run (as it has been since Aug 25), so
+today's post was gap-filled **directly to `_posts/`** with the calendar date at
+`00:00:00 +0300` (past-date rule: the daily cron only ever matches today's date and
+never reaches backfill).
+
+| Date | Slug | Theme | Status |
+|------|------|-------|--------|
+| Sep 13 (Sun) | `real-time-reconciliation-alerting` | Data Science, Fintech | ✅ published |
+
+**"Paging the Ledger: Real-Time Reconciliation Alerting That Actually Wakes Someone"** —
+the alerting/on-call piece the Sep 12 note asked for, differentiated from the two
+reconciliation siblings by construction: Aug 15 owns *what to compare*, Aug 31 owns
+*what to look for* (z-score/IQR/CUSUM, Isolation Forest), Sep 12 owns *what to count
+afterwards* (stranded value). This post owns the **paging path** — money SLIs, burn-rate
+triggering, dedup/grouping, the on-call page budget, the runbook table, and the
+forced sweep after a restart — and says so in the intro.
+
+Verified anchors used (2+ sources each, bodies read, not snippets):
+- **RBI harmonised TAT**, circular RBI/2019-20/67 dated 20 Sep 2019, in force 15 Oct
+  2019 — UPI/IMPS/NACH transfer debited but not credited: auto-reversal by **T+1**
+  (T+5 merchant payments) or **INR 100/day per transaction**, credited **"suo moto,
+  without waiting for a complaint or claim"**; TAT is an "outer limit". Annex table read
+  verbatim from rbi.org.in (Notification Id=3074).
+- **Google SRE Workbook, Table 5-6** — 2% budget/1h = burn 14.4 (page), 5%/6h = 6
+  (page), 10%/3d = 1 (ticket); plus the "one bad minute satisfies all three windows, so
+  you need suppression" warning and the short-window 1/12 rule.
+- **Google SRE Book, Being On-Call** — about 6 hours of work per incident, so a maximum
+  of **2 incidents per 12-hour shift**, median 0.
+- **Visa Smarter STIP** (26 Aug 2020) — approves/declines on the issuer's behalf during
+  outages; deep learning; up to 50% fewer declines claimed.
+- **EPC SCT Inst rulebook 2025 v1.1** — the EU Instant Payments Regulation shortens the
+  hard timeline for instant euro credit transfers to **10 seconds**, hence millisecond
+  timestamps (AT-T056).
+- **KenZobe** Daraja callback URL requirements (HTTPS only) — the silent-callback
+  failure mode; M-Shwari/TechCabal "restored, not reconciled" reused for the sweep rule.
+
+Runnable stdlib demo (seed 13, robust across seeds 7/13/42 — queue varies 0.1%, first
+page by 1 min): 720 bins, KES 1bn/day settled, 0.1%/30-day SLI, so burn 1.0 = KES
+694/min. Page-per-break **1,785/shift (one every 24.2 s)**; static 25,000/min **20
+pages, first at minute 480** (blind to the whole 360-min drift); raw burn-rate 14.4x
+**80 pages, first at minute 238**; burn-rate + group + 60-min silence **5 pages, minute
+238**; queue at shift end **KES 3,262,711** across **1,785 lines**, i.e. **INR
+178,500/day** of RBI statutory exposure if left past T+1. Output quoted verbatim from
+the run and re-verified in-post with `verify-post-code.py`.
+
+Cover: `assets/img/cover-real-time-reconciliation-alerting.webp` (SVG source
+`assets/blog/cover-real-time-reconciliation-alerting.svg`). Metaphor: **the paging
+path** — a dense red break-line stream funnelled through a purple DEDUP hexagon into a
+single green "5 PAGES" pager, over an area chart where the drift stays under the yellow
+25,000/min alarm and only the failover burst crosses it, with the burn-rate ladder
+(14.4x/6x/1x) and the T+1 clock in the side panel. First pager/dedup/meter cover in the
+library — distinct from `ml-monitoring` (dashboard plus alerts panel), the PSI-band
+drift cover, the Aug 15 ledger-vs-settlement cover, the Aug 31 radar cover and the
+Sep 12 deficit chart.
+
+Word count: **1,718** full-count (body minus code fences, headings/tables/references
+included) against the 1,117–1,675 sibling band, i.e. 2.6% over — the same tolerance the
+Sep 4 and Sep 12 posts shipped under (quote-, table- and citation-dense).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only old calendar gap. `.scheduled/`
+remains EMPTY, so every day still needs a manual gap-fill until the queue is restaged.
+
+**Next session actions:**
+1. **Sep 14 (Mon, Analytics — control totals & break detection in settlement)** — the
+   Week-4 row that keeps shifting; still unblogged. Gap-fill directly to `_posts/`.
+2. Never stage Tuesdays (Sep 15 / 22 / 29 — the AI Update cron owns them); keep
+   `tuesday-ai-update` active.
+3. Consider restaging `.scheduled/` for Sep 16–22 (non-Tuesdays) so the daily cron stops
+   reporting "Nothing to do"; otherwise keep gap-filling by hand each day.
+4. Optional: backfill **Aug 27 (Thu, ML)** with a fresh topic (not
+   `mlops-regtech-model-governance`, published Aug 25).
+5. AI Crime Watch engine fires around **Sep 23** (issue 2; issue 1 published Sep 9).
