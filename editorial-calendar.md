@@ -582,3 +582,78 @@ remains EMPTY, so every day still needs a manual gap-fill until the queue is res
 4. Optional: backfill **Aug 27 (Thu, ML)** with a fresh topic (not
    `mlops-regtech-model-governance`, published Aug 25).
 5. AI Crime Watch engine fires around **Sep 23** (issue 2; issue 1 published Sep 9).
+
+---
+
+## Publishing note (Sep 14 — Monday, Analytics)
+
+`.scheduled/` was empty at the Sep 14 cron run (as it has been since Aug 25), so today's post was
+gap-filled **directly to `_posts/`** with the calendar date at `00:00:00 +0300` (past-date rule:
+the daily cron only ever matches today's date and never reaches backfill).
+
+| Date | Slug | Theme | Status |
+|------|------|-------|--------|
+| Sep 14 (Mon) | `settlement-control-totals-break-aging` | Data Science, Fintech | ✅ published |
+
+**"The Four Numbers Before the Ledger: Control Totals and Break Aging in Settlement"** — the Week-4
+Analytics row that had shifted three times. Differentiated by construction from the reconciliation
+family: Aug 15 owns *what to compare*, Aug 31 *what to look for*, Sep 13 the *paging path*, Sep 12
+*what to count after*. This post owns the **pre-posting gate** (trailer records: count / hash / debit
+total / credit total, batch and file level) and the **aging ladder** for breaks that survive it — and
+says so in the intro.
+
+Verified anchors (2+ sources each, bodies read — not snippets):
+- **ACH file structure** — Batch Control Record (Type 8): Entry/Addenda Count, Entry Hash (hash total
+  of routing numbers, right-justified to 10 digits), Total Debit and Credit Entry Dollar Amounts; File
+  Control Record (Type 9) aggregates. Public spec: timetrex.com glossary (Nacha rules are paywalled).
+- **Bacs reports** — Submission Report carries transaction count + total value; Input Report the detail;
+  the payroll-team check is the control total in the wild (paygate.uk, GoCardless).
+- **CBK KEPSS Revised Rules** — §11.2 finality ("final and irrevocable once the Forwarding bank's
+  account is debited and the Executing bank account is credited"), §11.3(b)(ii) "the payment was made in
+  error by the Forwarding bank" + indemnity route, §11.3(f) a multiple third-party payment with one bad
+  payment must NOT be rejected wholesale. Read from the PDF via `curl` + `pdftotext`. KEPSS hours now
+  07:00–19:00 from 1 Jul 2025 (Capital FM).
+- **Citi $81T near miss** (Apr 2024, disclosed Feb 2025) — $280 → $81 trillion, two staff missed it, third
+  caught it ~90 min after processing, reported to Fed/OCC, Citi's "detective controls" wording (CBS, NYT).
+- **Citi/Revlon** (Aug 2020) — $7.8M intended, just under $900M wired as a payoff, c. $500M not returned.
+- **Citi fat finger** (2 May 2022) — $58M intended, `58m` into *quantity* → $444bn basket, $255bn blocked,
+  $189bn to the algo, $1.4bn sold, $48M loss, FCA £27.77M + PRA £33.88M = £61.6M, pop-up overridable.
+- **Deutsche Bank €28bn** (16 Mar 2018) — to its own Eurex account, more than its €24bn market cap.
+- **UFAA / Kenya unclaimed** — baseline survey KES 241.1bn unclaimed (62% financial services), 2-year
+  dormancy rule; record KES 5.182bn in 2025 with claimants down 32.7% (KNA, The Star).
+
+Runnable stdlib demo (seed 14, gate verdicts identical across seeds 7/14/42): 1,170-entry day,
+DR = CR = 5,759,092,508, hash 4,862,209,760; **four of five faults REFUSED pre-posting** (truncate →
+G3 count 190≠191; renumber/replay → G1/G2; in-flight +360,000 → G3 cr 875,767,475≠875,407,475 then
+G4/G5) and the fifth — a duplicate created *inside* the batch with both legs and an honest trailer —
+**passes all five gates** (1,172 entries, DR == CR). Break aging: 88 breaks, KES 34.9M; >7 days = 20
+breaks / KES 6.88M / 90 h / nearly all of the KES 1.87M write-off risk. Output quoted verbatim and
+re-verified in-post with `verify-post-code.py`.
+
+Cover: `assets/img/cover-control-totals-break-aging.webp` (SVG source
+`assets/blog/cover-control-totals-break-aging.svg`). Metaphor: **the gate** — a batch stack and its
+yellow TRAILER RECORD entering a green CONTROL GATE with four ✓ checks, exiting on a green rail to
+POST or a red rail to DO NOT POST, beside a four-rung aging ladder whose bars shrink as the write-off
+column grows, feeding a red SUSPENSE → UNCLAIMED box. First gate/rail metaphor in the library —
+distinct from the two reconciliation covers, the Sep 12 deficit chart and the Sep 13 pager.
+
+Word count: **1,759** full-count (body minus code fences, headings/tables/references included) against
+the 1,117–1,675 sibling band — 5% over, the same table- and citation-density tolerance Sep 4 / Sep 12 /
+Sep 13 shipped under (two code blocks, five tables, ten references).
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only old calendar gap. `.scheduled/` remains EMPTY, so
+every day still needs a manual gap-fill until the queue is restaged.
+
+**Next session actions:**
+1. **Sep 15 is a Tuesday** — the `tuesday-ai-update` cron owns it; do not gap-fill it.
+2. **Sep 16 (Wed, AI Security)** and **Sep 17 (Thu, ML)** are the next unblogged non-Tuesday slots —
+   gap-fill directly to `_posts/`. For Thu, reuse `references/psi-drift-monitoring-bank.md`; for Wed,
+   check the LLM/agent red-team bank before picking an anchor.
+3. Consider restaging `.scheduled/` for Sep 16–22 (non-Tuesdays) so the daily cron stops reporting
+   "Nothing to do"; otherwise keep gap-filling by hand each day.
+4. Optional: backfill **Aug 27 (Thu, ML)** with a fresh topic (not `mlops-regtech-model-governance`,
+   published Aug 25).
+5. AI Crime Watch engine fires around **Sep 23** (issue 2; issue 1 published Sep 9).
+6. Verified control-total + break-aging anchors (and the demo's honest-trailer gotcha) are banked
+   agent-side in `~/.hermes/skills/creative/blog-drafting/references/settlement-control-totals-bank.md`
+   — reuse before re-researching this class.
