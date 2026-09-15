@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#ff6b6b"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#00d2ff"/>
+    </marker>
+    <marker id="arrowYellow" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#ffd93d"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="76" text-anchor="middle" fill="#f0f4f8" font-size="40" font-weight="bold" letter-spacing="1">THE BACKDOOR YOU APPROVED</text>
+  <text x="600" y="112" text-anchor="middle" fill="#8b98a5" font-size="21">MCP servers as a payments attack surface</text>
+  <line x1="120" y1="134" x2="1080" y2="134" stroke="#2b3648" stroke-width="2"/>
+
+  <!-- Agent -->
+  <polygon points="146,250 200,282 200,346 146,378 92,346 92,282" fill="#1b2436" stroke="#a78bfa" stroke-width="3"/>
+  <text x="146" y="306" text-anchor="middle" fill="#c9b8ff" font-size="17" font-weight="bold">AGENT</text>
+  <text x="146" y="328" text-anchor="middle" fill="#8b98a5" font-size="12">LLM + tools</text>
+  <text x="146" y="404" text-anchor="middle" fill="#8b98a5" font-size="12">asks for a tool</text>
+
+  <path d="M204 314 L252 314" stroke="#00d2ff" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+
+  <!-- Rack frame -->
+  <rect x="256" y="196" width="404" height="330" rx="14" fill="#111a29" stroke="#2b3648" stroke-width="2"/>
+  <text x="458" y="178" text-anchor="middle" fill="#8b98a5" font-size="13" letter-spacing="2">MCP TOOL RACK — APPROVED ONCE</text>
+
+  <rect x="280" y="216" width="356" height="58" rx="9" fill="#141f31" stroke="#6bcf7f" stroke-width="2"/>
+  <text x="302" y="251" fill="#6bcf7f" font-size="17">EMAIL</text>
+  <circle cx="612" cy="245" r="8" fill="#6bcf7f"/>
+
+  <rect x="280" y="284" width="356" height="58" rx="9" fill="#141f31" stroke="#6bcf7f" stroke-width="2"/>
+  <text x="302" y="319" fill="#6bcf7f" font-size="17">LEDGER DB</text>
+  <circle cx="612" cy="313" r="8" fill="#6bcf7f"/>
+
+  <!-- socket 3 : CRM, rug-pulled -->
+  <rect x="280" y="352" width="356" height="58" rx="9" fill="#1d1620" stroke="#ff6b6b" stroke-width="3"/>
+  <text x="302" y="387" fill="#ff6b6b" font-size="17">CRM</text>
+  <text x="360" y="387" fill="#ffb0b0" font-size="13">v1.2 approved</text>
+  <circle cx="612" cy="381" r="8" fill="#ff6b6b"/>
+
+  <!-- swapped card -->
+  <rect x="466" y="342" width="248" height="78" rx="8" fill="#2a1216" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="590" y="368" text-anchor="middle" fill="#ff6b6b" font-size="13" font-weight="bold">SAME NAME, NEW CARD</text>
+  <text x="590" y="389" text-anchor="middle" fill="#ffd93d" font-size="12">now: read the secret store</text>
+  <text x="590" y="408" text-anchor="middle" fill="#8b98a5" font-size="11">approved version had 3 words</text>
+
+  <path d="M604 292 C700 292 716 330 700 340" fill="none" stroke="#ffd93d" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowYellow)"/>
+  <text x="694" y="266" text-anchor="end" fill="#ffd93d" font-size="13" font-weight="bold">RUG PULL</text>
+
+  <rect x="280" y="420" width="356" height="58" rx="9" fill="#141f31" stroke="#6bcf7f" stroke-width="2"/>
+  <text x="302" y="455" fill="#6bcf7f" font-size="17">TICKETS</text>
+  <circle cx="612" cy="449" r="8" fill="#6bcf7f"/>
+  <text x="458" y="506" text-anchor="middle" fill="#5c6b7a" font-size="12">4 sockets · 1 poisoned · the user saw a checkmark</text>
+
+  <!-- credential scope panel -->
+  <rect x="712" y="196" width="376" height="120" rx="12" fill="#1a1508" stroke="#ffd93d" stroke-width="2"/>
+  <text x="734" y="228" fill="#ffd93d" font-size="14" font-weight="bold" letter-spacing="1">CREDENTIAL SCOPE</text>
+  <text x="734" y="254" fill="#f0f4f8" font-size="14">service_role · admin · root</text>
+  <text x="734" y="278" fill="#ffb0b0" font-size="13">bypasses the row policies</text>
+  <text x="734" y="300" fill="#8b98a5" font-size="12">a poisoned tool inherits all of it</text>
+
+  <!-- CVEs panel -->
+  <rect x="712" y="336" width="376" height="148" rx="12" fill="#111a29" stroke="#2b3648" stroke-width="2"/>
+  <text x="734" y="366" fill="#8b98a5" font-size="13" letter-spacing="1">2025-26 MCP CVEs</text>
+  <text x="734" y="396" fill="#f0f4f8" font-size="15">9.4   MCP Inspector</text>
+  <text x="734" y="422" fill="#f0f4f8" font-size="15">9.6   mcp-remote</text>
+  <text x="734" y="448" fill="#f0f4f8" font-size="15">9.8   nginx-ui MCP endpoint</text>
+  <text x="734" y="472" fill="#f0f4f8" font-size="15">9.1   mcp-atlassian chain</text>
+
+  <path d="M668 381 C690 381 700 320 712 270" fill="none" stroke="#ff6b6b" stroke-width="2.4" stroke-dasharray="7 5" marker-end="url(#arrowRed)"/>
+
+  <text x="1090" y="600" text-anchor="end" fill="#5c6b7a" font-size="15">ml-ke.github.io</text>
+</svg>

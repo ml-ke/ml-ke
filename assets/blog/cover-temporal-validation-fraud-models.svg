@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161a2e"/>
+    </linearGradient>
+    <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+    <marker id="aY" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#ffd93d"/>
+    </marker>
+    <marker id="aR" markerWidth="10" markerHeight="10" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <rect width="1200" height="630" fill="url(#grid2)"/>
+
+  <text x="600" y="74" text-anchor="middle" fill="#f0f4f8" font-size="38" font-weight="bold" letter-spacing="1">SPLIT BEFORE YOU BELIEVE</text>
+  <text x="600" y="110" text-anchor="middle" fill="#8b98a5" font-size="20">Temporal validation for fraud models</text>
+  <line x1="110" y1="132" x2="1090" y2="132" stroke="#2b3648" stroke-width="2"/>
+
+  <!-- Left: the shuffle that leaks the future -->
+  <text x="150" y="176" fill="#8b98a5" font-size="13" letter-spacing="2">ONE SHUFFLE, TWO PILES</text>
+
+  <!-- test pile -->
+  <g>
+    <rect x="96" y="208" width="86" height="120" rx="8" fill="#2a1216" stroke="#ff6b6b" stroke-width="2"/>
+    <rect x="104" y="216" width="86" height="120" rx="8" fill="#301419" stroke="#ff6b6b" stroke-width="2"/>
+    <text x="147" y="286" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">TEST</text>
+  </g>
+  <!-- train pile -->
+  <g>
+    <rect x="268" y="208" width="86" height="120" rx="8" fill="#12241a" stroke="#6bcf7f" stroke-width="2"/>
+    <rect x="260" y="216" width="86" height="120" rx="8" fill="#14291d" stroke="#6bcf7f" stroke-width="2"/>
+    <text x="303" y="286" text-anchor="middle" fill="#6bcf7f" font-size="14" font-weight="bold">TRAIN</text>
+  </g>
+  <!-- the leaking card -->
+  <g>
+    <rect x="150" y="372" width="164" height="56" rx="7" fill="#3a3010" stroke="#ffd93d" stroke-width="2"/>
+    <text x="232" y="395" text-anchor="middle" fill="#ffd93d" font-size="13" font-weight="bold">FUTURE ROW</text>
+    <text x="232" y="414" text-anchor="middle" fill="#ffd93d" font-size="11">label known at test time</text>
+  </g>
+  <path d="M186 336 C186 356 200 364 214 368" fill="none" stroke="#ffd93d" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#aY)"/>
+  <text x="150" y="452" fill="#8b98a5" font-size="12">shuffling mixes scored rows</text>
+  <text x="150" y="470" fill="#8b98a5" font-size="12">into the training pile</text>
+
+  <!-- Center: PR curve plate -->
+  <rect x="420" y="176" width="330" height="290" rx="12" fill="#111a29" stroke="#2b3648" stroke-width="2"/>
+  <text x="585" y="204" text-anchor="middle" fill="#8b98a5" font-size="13" letter-spacing="1">PRECISION vs RECALL</text>
+  <line x1="460" y1="430" x2="720" y2="430" stroke="#3a4658" stroke-width="2"/>
+  <line x1="460" y1="230" x2="460" y2="430" stroke="#3a4658" stroke-width="2"/>
+  <line x1="460" y1="424" x2="720" y2="424" stroke="#ff6b6b" stroke-width="1.6" stroke-dasharray="5 4"/>
+  <text x="722" y="442" text-anchor="end" fill="#ff6b6b" font-size="11">base rate 0.45%</text>
+  <path d="M460 424 C540 250 610 238 706 236" fill="none" stroke="#00d2ff" stroke-width="3" stroke-dasharray="7 4"/>
+  <text x="470" y="272" fill="#00d2ff" font-size="12" font-weight="bold">leaky: 0.968 AUC</text>
+  <path d="M460 424 C540 416 610 412 706 408" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+  <text x="596" y="398" fill="#6bcf7f" font-size="12" font-weight="bold">honest 0.047 AP</text>
+  <text x="585" y="452" text-anchor="middle" fill="#5c6b7a" font-size="11">same rows, same model, different split</text>
+
+  <!-- Right: label maturity -->
+  <text x="830" y="176" fill="#8b98a5" font-size="13" letter-spacing="1">LABEL MATURITY</text>
+  <line x1="830" y1="240" x2="1090" y2="240" stroke="#3a4658" stroke-width="6"/>
+  <rect x="830" y="234" width="180" height="12" fill="#1d2a3d" stroke="#3a4658" stroke-width="1"/>
+  <text x="838" y="226" fill="#8b98a5" font-size="11">200 days of transactions</text>
+  <rect x="968" y="228" width="122" height="24" fill="#3a1216" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="1029" y="245" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="bold">120-day window</text>
+  <path d="M1029 260 L1029 296" stroke="#ff6b6b" stroke-width="2" marker-end="url(#aR)"/>
+  <text x="830" y="316" fill="#f0f4f8" font-size="15">60% of rows still unresolved</text>
+  <text x="830" y="340" fill="#8b98a5" font-size="12">Visa dispute clock: 120 days,</text>
+  <text x="830" y="358" fill="#8b98a5" font-size="12">up to 540 from the transaction</text>
+
+  <text x="830" y="412" fill="#8b98a5" font-size="13" letter-spacing="1">JUDGE ON</text>
+  <text x="830" y="438" fill="#6bcf7f" font-size="15">average precision</text>
+  <text x="830" y="462" fill="#6bcf7f" font-size="15">precision@k</text>
+  <text x="830" y="486" fill="#6bcf7f" font-size="15">false positives / 10,000</text>
+
+  <path d="M214 336 C300 320 400 300 452 288" fill="none" stroke="#ffd93d" stroke-width="0" />
+  <text x="1090" y="600" text-anchor="end" fill="#5c6b7a" font-size="15">ml-ke.github.io</text>
+</svg>
