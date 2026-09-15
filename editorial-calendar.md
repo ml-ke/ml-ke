@@ -657,3 +657,50 @@ every day still needs a manual gap-fill until the queue is restaged.
 6. Verified control-total + break-aging anchors (and the demo's honest-trailer gotcha) are banked
    agent-side in `~/.hermes/skills/creative/blog-drafting/references/settlement-control-totals-bank.md`
    — reuse before re-researching this class.
+
+## Publishing note — Sep 15, 2026 (Tue, `tuesday-ai-update` cron)
+
+**Published:** `_posts/2026-09-15-tuesday-ai-update.md` → `/posts/tuesday-ai-update/` (slug is shared
+by design across the Tuesday series — the newest date wins the permalink; the Sep 8 post remains in
+`_posts/` and is what the "Related" link resolves to). Cover: reused
+`/assets/img/cover-global-ai-roundup-july-2026.webp` (generic roundup cover, as instructed).
+
+**Title:** "Tuesday AI Update: Sep 15, 2026 — Washington Names Six Chinese Labs in Model-Distillation
+Crackdown". Body: **894** full-count words (body minus front matter, headings/links/references
+included) against the Tuesday 600–900 budget and the Sep 8 sibling's 893 — in band after four trim
+passes (1,681 → 1,176 → 978 → 894). Method note: Tuesday posts are link- and bullet-dense, so the
+naive `\S+` count on a first pass badly overshoots; calibrate against the previous Tuesday post
+before drafting, not after.
+
+**Anchors used (all 2+ sourced):** CISA/NSA/FBI advisory **AA26-251A** (Sep 8) + Anthropic's
+distillation report (~190M Claude exchanges, 151M Alibaba); DeepSeek STAR Market IPO at ~¥500bn/$75bn
++ 160,000 Huawei Ascend 950DT chips for a 1GW Inner Mongolia site (inference only); Supreme People's
+Court **Fa Fa [2026] No. 10**; Tencent Hy4 preview as OpenRouter's most-used model; Google's €13bn
+Finland investment + 22-year Fortum Loviisa nuclear PPA; Sep 2–10 model wave (Muse Spark 1.3, Fable
+5.1/Mythos 5.1, GPT-6 Astra, Gemini 3.8 Flash + Flash Cyber); Mistral's €3bn at >€21bn; LEAP 2026
+(AMD/Cisco/HUMAIN MI355X cluster, HUMAIN HGX B300 at >90% utilisation, G42 fundraise); **Egypt's
+200MW/$1bn Nvidia data centre** (20MW/$200m first phase; Vodafone Business, Elsewedy Electric,
+Cassava Technologies); **Kenya Konza–AWS** Outpost/certification/startup-centre agreement; Tether AI
+TranslatePsy-AfriSLM (800M params, 18 African languages, offline); Africa H1-2026 funding ($1.36bn,
+only 190 rounds ≥$100k); Brazil's R$2.3bn plan with ~R$1.3bn to Chinese vendors; Sber open-sourcing
+GigaChat Ultra Preview + speech models.
+
+**Spotlight differentiation:** framed distillation as a *security-control → compliance* reclassification
+(detection signals + the degrade-transcript-fidelity defence), not a model-launch story — the Sep 8
+post covered the model wave, so this one leads on provenance and API abuse.
+
+**Build verification (this session's pattern to reuse):** the post's own Actions run came back
+`cancelled` because the **ATLAS backup cron pushed to this same repo 49 seconds later** (Sep 15
+14:04:35 → 14:05:24), and GitHub cancels the in-progress run for the superseded SHA. The backup
+commit's run then completed `success`, and since it is a descendant of the post commit, the Pages
+deployment includes the post. **Do not read `cancelled` as a failed publish here** — confirm the
+successor SHA's run is `success` and that the post blob is in `origin/main`
+(`git ls-tree origin/main _posts/<file>`), then verify the live permalink. Same pattern occurred
+Sep 14 (`05e77fd5` cancelled → `94fed0b9` success).
+
+**Verified live:** `/posts/tuesday-ai-update/` returned HTTP 200 with the Sep 15 title and all key
+figures rendering; homepage lists the slug; `ml.co.ke` DNS resolved this run.
+
+**Next session actions:** unchanged from the Sep 14 note — **Sep 16 (Wed, AI Security)** and **Sep 17
+(Thu, ML)** are the next unblogged non-Tuesday slots. `.scheduled/` is still EMPTY. Aug 27 (Thu, ML)
+remains the only old gap. Do not stage Tuesdays (Sep 22 / 29 are `tuesday-ai-update`).
