@@ -704,3 +704,96 @@ figures rendering; homepage lists the slug; `ml.co.ke` DNS resolved this run.
 **Next session actions:** unchanged from the Sep 14 note — **Sep 16 (Wed, AI Security)** and **Sep 17
 (Thu, ML)** are the next unblogged non-Tuesday slots. `.scheduled/` is still EMPTY. Aug 27 (Thu, ML)
 remains the only old gap. Do not stage Tuesdays (Sep 22 / 29 are `tuesday-ai-update`).
+
+---
+
+## Publishing note (Sep 15 — staging session; no publish today)
+
+Today is **Tuesday**: the `tuesday-ai-update` cron owns it and already published
+`2026-09-15-tuesday-ai-update.md` (894 words). The daily blog cron therefore did **not** gap-fill
+today — a second post would have collided with the Tuesday slot. It used the run to restage the
+empty `.scheduled/` queue, which had been empty since Aug 25 and was silently reporting
+"Nothing to do" on every run.
+
+**Staged (both dated `00:00:00 +0300` — safe, since the cron only fires at 14:05 EAT):**
+
+| Date | Slug | Theme | Words (full body, code fences excluded) |
+|------|------|-------|------------------------------------------|
+| Sep 16 (Wed) | `mcp-payments-attack-surface` | AI Security, LLM | 1,910 |
+| Sep 17 (Thu) | `temporal-validation-fraud-models` | Machine Learning, Data Science | 1,443 |
+
+Calibration: the same measure script on live siblings returns 1,408 (Sep 3), 1,499 (Sep 9), 1,718
+(Sep 13) and 1,753 (Sep 14). Sep 17 sits mid-band; Sep 16 is ~9% above the densest sibling and was
+kept there deliberately — six incidents, three tables, one code block and 13 references, the same
+citation-density tolerance Sep 12 / Sep 13 / Sep 14 shipped under. Both demos were re-run from the
+files with `verify-post-code.py` and the quoted stdout matches byte-for-byte.
+
+### Sep 16 — "The Backdoor You Approved: MCP Servers as a Payments Attack Surface"
+
+Anchor choice: the LLM/agent red-team bank was checked first, and its two flagship anchors (Blue41/
+Bunq €0.02 memo, Varonis CoSnitch) are already consumed by the Sep 2 and Sep 9 posts. This post
+takes the layer underneath both — the MCP tool server itself — and says so in the intro callout
+(Sep 9 = exfiltration channels, Sep 2 = red-teaming, this = tool layer, supply chain and scope).
+
+Verified anchors (bodies read, not snippets): nginx-ui **CVE-2026-33032** (CVSS 9.8, missing auth on
+the MCP endpoint, fixed in 2.3.4 on 15 Mar 2026, ~2,689 Shodan instances, in Recorded Future's list
+of 31 actively-exploited March 2026 flaws); **postmark-mcp** (first real-world malicious MCP server;
+npm upload 15 Sep 2025, malicious at 1.0.16 on 17 Sep, BCC to `phan@giftshop[.]club`, 1,643
+downloads, Koi Security); Invariant Labs **tool poisoning / rug pull / tool shadowing**; **Supabase
+`service_role`** RLS bypass (General Analysis) with **Supabase's rebuttal cited as the counterpoint**;
+**CVE-2025-6514** mcp-remote (9.6, 0.0.5–0.1.15 → 0.1.16); **CVE-2025-49596** MCP Inspector (9.4 →
+0.14.1); **CVE-2026-27825/27826** mcp-atlassian ("MCPwnfluence", 9.1/8.2); **Asana MCP** cross-tenant
+(released 1 May 2025, found 4 Jun, ~1,000 customers, notifications from 16 Jun). The controls section
+is the **NSA CSI "MCP: Security Design Considerations for AI-Driven Automation"** (May 2026,
+U/OO/6030316-26). Scanner statistics are quoted with their counterweight (~78% YARA-scanner
+false-positive rate, methodology caveats).
+
+Runnable demo: a stdlib rug-pull and blast-radius check — fingerprint each tool's name + description
++ JSON schema at approval, re-check at connect, flag instruction-shaped text, score credential scope
+→ three verdicts on three servers (ALLOW / BLOCK / NEEDS APPROVAL).
+
+Cover: `assets/img/cover-mcp-payments-attack-surface.webp` (SVG in `assets/blog/`). Metaphor: **the
+approved rack** — an agent connector into four approved MCP tool sockets, the CRM socket's card
+swapped for a red "same name, new card" that reads the secret store, beside a `service_role` scope
+panel and a CVSS ladder. New to the library; `cover-agent-tool-calling` is the function-interface
+cover, not this.
+
+### Sep 17 — "Split Before You Believe: Why Offline Fraud Models Score Better Than They Perform"
+
+ML slot. The psi-drift bank is already consumed by the Sep 3 post, so a non-overlapping ML angle was
+used instead: **validation before deployment** (temporal ordering, label maturity, metric choice),
+stated in the intro against the five drift / detection / graph siblings.
+
+Verified anchors: **Visa dispute rules** verbatim — "no later than 120 calendar days from the last
+date the cardholder expected to receive the merchandise or services, not to exceed 540 calendar days
+from the transaction processing date" (read from the Visa PDF via `pdftotext`); **CBK** complaints
+guidance verbatim — acknowledge "within 48 hours", resolve "within 7 days" (PDF); **Kapoor &
+Narayanan** arXiv:2207.07048 (17 fields, 329 papers; every civil-war paper failed to reproduce);
+**Kaufman et al.** TKDD leakage definition; **Google Rules of ML #33 and #29** quoted from the guide;
+**Breck et al.** ML Test Score (28 tests, "none of these tests was implemented by more than 80% of
+teams"); **Sculley et al.** (pipeline jungles, CACE); **Saito & Rehmsmeier** PLOS ONE (both quotes
+read off the article body).
+
+Demo: stdlib logistic regression, the same rows scored under a shuffled split with a full-history
+feature versus a time-ordered split with a point-in-time feature — ROC-AUC 0.968 → 0.789 but average
+precision 0.279 → 0.047, plus a 120-day label-maturity count (60% of rows unresolved). Seed
+20260917.
+
+Cover: `assets/img/cover-temporal-validation-fraud-models.webp`. Metaphor: **the shuffle** — TEST and
+TRAIN piles with a "FUTURE ROW" card dealt into training, a PR plate showing the leaky curve high and
+the honest curve flat on the base rate, and a label-maturity panel with the 120-day dispute window.
+
+**Still UNPUBLISHED: Aug 27 (Thu, ML)** — the only old calendar gap.
+
+**Next session actions:**
+1. `.scheduled/` now holds Sep 16 + Sep 17 — the daily cron should publish both automatically at
+   14:05 EAT. Confirm each landed in `_posts/` via a `Publish:` or `Publish (date-fixed):` commit.
+2. **Stage Sep 18 (Fri, Cybersecurity — payments API/aggregator class, see
+   `daraja-api-incident-bank.md`) and Sep 19 (Sat, Fintech outage/operational-resilience, see
+   `fintech-outage-incident-bank.md`)** — the queue runs dry again after Sep 17.
+3. Never stage Tuesdays (Sep 22 / 29 — the `tuesday-ai-update` cron owns them).
+4. Optional: backfill **Aug 27 (Thu, ML)** with a fresh topic (not `mlops-regtech-model-governance`).
+5. AI Crime Watch fires ~**Sep 23** (issue 2; issue 1 published Sep 9).
+6. New verified-anchor bank for this class:
+   `~/.hermes/skills/creative/blog-drafting/references/mcp-security-incident-bank.md` — reuse before
+   re-researching MCP / tool-layer material.
