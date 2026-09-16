@@ -830,3 +830,69 @@ Sep 14 = 2,583/1,759 (full / code-excluded). This post sits mid-band on full cou
 3. Never stage Tuesdays (Sep 22 / 29 — the `tuesday-ai-update` cron owns them).
 4. Still UNPUBLISHED: **Aug 27 (Thu, ML)** — the only remaining old calendar gap.
 5. AI Crime Watch issue 2 fires ~**Sep 23** (issue 1 published Sep 9).
+
+## Publishing note (Sep 16 — CONTENT PIVOT + first positive-AI post)
+
+**PIVOT (user decision, Sep 16 2026):** the NCBA / bank-hack **incident rotation is
+RETIRED**. The Week 3 and Week 4 "proposed" tables, and any pending incident slots
+(the Sep 18 Cybersecurity and Sep 19 Fintech staging actions listed in earlier notes)
+are **CANCELLED — do not stage incident, breach, fraud, hack or outage posts any more.**
+
+From Sep 16 the daily `blog-poster` cron (137b7dcf653c) has a new self-contained mandate:
+every non-Tuesday run writes ONE post that is **positive or useful** —
+**Lane A**: one verified positive AI story (<=21 days, 2+ body-level sources,
+non-Western coverage preferred), or **Lane B**: one AI/ML/ML-Engineering tutorial with
+code the agent actually runs and quotes verbatim. Lanes alternate; Tuesdays are still
+owned by `tuesday-ai-update`; a legacy `.scheduled/` file dated today still publishes
+first so nothing is orphaned (this also removes the old "queue ran dry -> silent gap"
+failure mode). **AI Crime Watch engine (d75da864fce0) and finisher (8ea5a3a5de4d) are
+PAUSED** — the series does not fire unless the user asks for it back.
+
+### Sep 16 — "The Lab Partner That Never Sleeps: How AI Now Designs Physics Experiments"
+
+First post in the positive-AI lane (Lane A). Slug `ai-designed-physics-experiments`,
+commit **`b1f8b2c`**, cover `assets/img/cover-ai-designed-physics-experiments.webp`
+(metaphor: an optical table with the conventional cyan beam path, a dashed purple
+AI-proposed path through four phase plates, and a search-space panel scoring
+candidate layouts — new metaphor class, no sibling uses optics/experiment design).
+
+**Anchor (verified, 2+ body-level sources):** Klimesch, Arlt, Ruiz-Gonzalez et al.,
+*Designing physics experiments with artificial intelligence*, **Nature 657, 47–58
+(2026)**, DOI 10.1038/s41586-026-10898-6, published **2 Sep 2026** — AI-proposed
+experimental layouts "often challenge established design conventions while matching or
+even exceeding the performance of human-designed set-ups". Sources read at body level:
+Nature article page (title/authors/volume/abstract), University of Vienna Faculty of
+Physics release (3 Sep 2026), Phys.org (3 Sep 2026, Krenn + Haslinger quotes), Tübingen
+AI Center news (citation + framing), Mario Krenn's blog (7 Sep 2026 announcement).
+Background anchors: Krenn, Malik, Fickler, Lapkiewicz & Zeilinger, *Automated Search for
+new Quantum Experiments*, **Phys. Rev. Lett. 116, 090405 (2016)** / arXiv:1509.02749;
+Ruiz-Gonzalez et al., *Digital Discovery of 100 diverse Quantum Experiments with
+PyTheus*, **Quantum 7, 1204 (2023)** / arXiv:2210.09980, open source at
+github.com/artificial-scientist-lab/PyTheus.
+
+**Runnable demo (re-verified via `scripts/verify-post-code.py`, stdout reproduced
+verbatim):** 5 component types x 6 slots = **15,625** designs enumerated; the
+conventional layout scores fidelity **0.6830**, the best six-slot design
+(`PS90 PS90 PS90 PS90 PS45 BS22`) reaches **0.982963**; **27 designs tie** at the best
+score; **115** clear 0.95; median **0.3536** — used to make the interpretability and
+non-uniqueness points concrete.
+
+**Verification:** Actions run for `b1f8b2c` triggered (in progress at write time;
+superseding ATLAS-backup `success` runs are the normal pattern here), live permalink
+`https://ml.co.ke/posts/ai-designed-physics-experiments/` = **200** with the correct
+title, cover WebP = **200**. Static checks: no `post_url`, no `cover:` key, `image.path`
+ends `.webp`, all four `/posts/` cross-links resolve. Word count **2,384 full / 1,986
+code-excluded**, inside the live sibling band (Sep 12 2,328/1,675, Sep 13 2,475/1,718,
+Sep 16 MCP 2,422/1,916).
+
+**Queue state:** `.scheduled/` holds only `2026-09-17-temporal-validation-fraud-models.md`
+(the last legacy staged post — an ML tutorial, so it fits the new mandate). From Sep 18
+the cron researches, drafts and publishes on its own; nothing needs staging.
+
+**Next session actions:**
+1. Confirm the Sep 17 staged post published (a `Publish:` commit in `git log`).
+2. From Sep 18 onward, do NOT stage posts — the daily cron's Lane A / Lane B mandate is
+   self-contained; only step in if a run reports it found nothing verifiable.
+3. Never stage Tuesdays (Sep 22 / 29 are `tuesday-ai-update`).
+4. Keep the positive/constructive framing: no incident, breach, fraud or outage posts.
+5. AI Crime Watch stays paused unless the user explicitly asks for the series back.
