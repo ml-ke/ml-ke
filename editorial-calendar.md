@@ -797,3 +797,36 @@ the honest curve flat on the base rate, and a label-maturity panel with the 120-
 6. New verified-anchor bank for this class:
    `~/.hermes/skills/creative/blog-drafting/references/mcp-security-incident-bank.md` — reuse before
    re-researching MCP / tool-layer material.
+
+## Publishing note (Sep 16 — Wednesday, AI Security)
+
+Published today's staged post on schedule: `.scheduled/2026-09-16-mcp-payments-attack-surface.md` →
+`_posts/`, commit **`14b79c6`**, pushed to `origin/main` (the `.scheduled/` deletion was staged in the
+same commit via `git add -A`).
+
+**Verification (all green):** Actions run for `14b79c6` = `completed success`; live permalink
+`https://ml.co.ke/posts/mcp-payments-attack-surface/` = **200**; homepage listing returns the slug.
+Pre-publish static checks: no `post_url` tags, no `cover:` key, `image.path` ends `.webp`
+(`assets/img/cover-mcp-payments-attack-surface.webp`, 1200×630 VP8 WebP, 32 KB), all four `/posts/`
+cross-links resolve (`llm-data-exfiltration-prompt-injection`, `ai-red-teaming-financial-llm-apps`,
+`agent-tool-calling`, `ml-secrets-management`), and `verify-post-code.py` re-ran the demo and
+reproduced the quoted stdout byte-for-byte, including the fingerprints
+(`541e034e7e77 → d0a00f24b39e`, `fb5e2e711c87`).
+
+Word count re-measured this run: **2,422 full body / 1,916 code-excluded**, matching the 1,910 in the
+Sep 15 note to rounding. The density decision stands and the band should be read off live siblings
+rather than the older 1,074–1,421 figures in the skill: Sep 12 = 2,328/1,675, Sep 13 = 2,475/1,718,
+Sep 14 = 2,583/1,759 (full / code-excluded). This post sits mid-band on full count.
+
+**Queue state after this publish:** `.scheduled/` holds only
+`2026-09-17-temporal-validation-fraud-models.md`. **It is empty after tomorrow's run.**
+
+**Next session actions:**
+1. Sep 17 cron publishes the last staged file — confirm via a `Publish:` commit in `git log`.
+2. **Stage Sep 18 (Fri, Cybersecurity) and Sep 19 (Sat, Fintech) before the Sep 18 run.** With an
+   empty queue the cron reports "Nothing to do" and stays silent — no alert anywhere. That is exactly
+   how the Aug–Sep gap began, so treat restaging as the default action for any run that finds one file
+   or fewer.
+3. Never stage Tuesdays (Sep 22 / 29 — the `tuesday-ai-update` cron owns them).
+4. Still UNPUBLISHED: **Aug 27 (Thu, ML)** — the only remaining old calendar gap.
+5. AI Crime Watch issue 2 fires ~**Sep 23** (issue 1 published Sep 9).
