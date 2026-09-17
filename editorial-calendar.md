@@ -896,3 +896,51 @@ the cron researches, drafts and publishes on its own; nothing needs staging.
 3. Never stage Tuesdays (Sep 22 / 29 are `tuesday-ai-update`).
 4. Keep the positive/constructive framing: no incident, breach, fraud or outage posts.
 5. AI Crime Watch stays paused unless the user explicitly asks for the series back.
+
+### Sep 17 — "Split Before You Believe: Why Offline Fraud Models Score Better Than They Perform"
+
+**The last legacy staged post** (written and staged Sep 15 before the mandate change;
+published by the Sep 17 cron via the legacy flow). Slug `temporal-validation-fraud-models`,
+commit **`f411b51`**, cover `assets/img/cover-temporal-validation-fraud-models.webp`
+(metaphor: one shuffle fanning into two piles with a "future row" spilling into TRAIN,
+paired precision-recall panels scoring different splits of the same rows, and a label-maturity
+bar showing 60% of rows unresolved — no sibling cover uses split hygiene / PR-vs-ROC).
+
+**Lane:** B (ML-engineering tutorial) — data-leakage validation for offline fraud models.
+Positive/useful framing: it teaches you to earn the number on your model card rather than
+republish an inflated one; no incident, breach or fraud-case content.
+
+**Technique + verbatim output (re-verified via `scripts/verify-post-code.py`, stdout quoted
+exactly):** stdlib-only 24,000-row synthetic payments set, seed 20260917, prevalence 0.45%;
+random split + full-history feature gives **ROC-AUC 0.968 / avg-precision 0.279**, the same
+model under a time-ordered split with point-in-time features gives **0.789 / 0.047** — a
+**0.179 ROC-AUC** gap but a **0.232 AP** gap, and 14,400/24,000 = **60%** of rows unresolved
+under a 120-day confirmation window. Point: ROC hides the leak, PR exposes it at low prevalence.
+
+**Sources (body-level where a figure or quote is used):** Visa dispute-rule language (120-day /
+540-day clocks), CBK customer-complaints guidance (48h / 7d), Kapoor and Narayanan
+arXiv:2207.07048 (17 fields, 329 papers), Kaufman et al. ACM TKDD 6(4) (leakage definition),
+Saito and Rehmsmeier PLOS ONE 2015 (P/(P+N) PR baseline), Google Rules of ML, ML Test Score,
+Hidden Technical Debt.
+
+**Verification:** Actions run for `f411b51` = **completed success** (a second run on the same
+SHA was superseded/`cancelled` — the known ATLAS-backup race, not a failure); live permalink
+`https://ml.co.ke/posts/temporal-validation-fraud-models/` = **200** with the correct title;
+cover WebP = **200**. Static checks: no `post_url`, no `cover:` key, `image.path` ends `.webp`,
+all six `/posts/` cross-links resolve, no slug conflict. Word count **2,171 full / 1,449
+code-excluded** (siblings: Sep 12 2,328/1,675, Sep 16 physics 2,383/1,985, Sep 16 MCP
+2,422/1,916 — in band, modestly lean, appropriate for a tutorial).
+
+**Queue state:** `.scheduled/` is now **EMPTY** — and that is the expected, healthy state from
+here on: the cron's Lane A / Lane B mandate is self-contained, so an empty queue no longer
+means a silent gap.
+
+**Next session actions:**
+1. Sep 18+ runs research and publish on their own — do NOT stage posts (the old queue mechanic
+   is retired; staging is only useful if the user wants a specific pre-reviewed piece).
+2. Never stage or publish a Tuesday: Sep 22 and Sep 29 are `tuesday-ai-update` days.
+3. Keep alternating lanes: the last Lane A was Sep 16 (`ai-designed-physics-experiments`),
+   the last Lane B is Sep 17, so **Sep 18 should be Lane A** — a verified positive AI story
+   (<=21 days, 2+ body-level sources, non-Western coverage preferred).
+4. Positive/constructive framing only: no incident, breach, fraud, hack or outage posts.
+5. AI Crime Watch (d75da864fce0 / 8ea5a3a5de4d) stays paused unless the user asks for it back.
