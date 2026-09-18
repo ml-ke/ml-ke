@@ -944,3 +944,54 @@ means a silent gap.
    (<=21 days, 2+ body-level sources, non-Western coverage preferred).
 4. Positive/constructive framing only: no incident, breach, fraud, hack or outage posts.
 5. AI Crime Watch (d75da864fce0 / 8ea5a3a5de4d) stays paused unless the user asks for it back.
+
+### Sep 18 — "Certified in Europe, Judged at the Health Post: What a Class IIb CE Mark Really Buys Primary Care"
+
+**Lane:** A (positive AI story, non-Western) — Qure.ai (India) announced **Class IIb CE
+certification under EU MDR for Aira**, an LLM-based primary-care clinical decision support
+system, on **17 Sep 2026**. Slug `ai-primary-care-class-iib-ce`, commit **`a6108ef`**, cover
+`assets/img/cover-ai-primary-care-class-iib-ce.webp` (metaphor: a four-step EU MDR class ladder
+with a CE seal hovering over the IIb step + a Se 90/Sp 70 operating-point gauge whose output
+splits into a thin "180 cases found" bar and a thick "2,940 confirmatory tests" bar — no
+sibling cover uses a certification ladder, seal medallion or gauge; the closest siblings use
+gates and precision-recall panels).
+
+**Why positive:** a regulatory milestone that makes frontline AI *trustable* plus real reported
+operational wins in Kenya/Nigeria/Mozambique (Qure.ai-reported: -32% documentation time at 98%
+completion in Kenya; +67% clinic-to-admin ratio in Nigeria). No incident, breach or fraud content.
+
+**Primary anchors used (all body-level verified):** Qure.ai release 17 Sep 2026 (10 pilot sites
+across Nigeria, Kenya, Mozambique, Solomon Islands, Bangladesh; Kenya "deployed with local
+implementation partners and Ministry of Health departments"); USA Today/EZ Newswire + CXOtoday
+(syndicated release — post states this honestly); MobiHealthNews on AIRA (28 May 2025, independent,
+"40% of CHW time on manual data collection"); **MDCG 2025-6** (EU Commission FAQ — MDAI is high-risk
+under AI Act Art. 6(1) if it is a device/safety component AND subject to notified-body conformity
+assessment); **AI Act Art. 113(c)** (Art. 6(1)/Annex I from 2 Aug 2028, Annex III from 2 Dec 2027);
+EU MDR Rule 11 class ladder (TrustedTraceMed); WHO TB screening TPP (90% sensitivity / 70%
+specificity minimum, tbksp.who.int); **Sci Rep 2025 PMC12215708** (12 CAD vs 11 radiologists, 774
+chest X-rays, South African National TB Prevalence Survey — source of every sensitivity/specificity
+pair in the demo; Lunit AUC 0.902, qXR overlapped radiologists); KEMSA + The Star (80 AI X-ray units
+to 43 counties, 13 Oct 2025); The Standard (Amref KES 154.4m / $1.2m CAD programme, Global Fund);
+PPB MDSW guideline + healthbusiness.co.ke (Dr Ahmed Mohamed, risk-based framework, IEC 62304 /
+ISO 14971, post-market surveillance).
+
+**Verification:** code block re-run via `scripts/verify-post-code.py` — output quoted in the post
+**matches stdout verbatim** (2% prevalence row: WHO floor 180/2940/20, 5.8%, 56, 16.3;
+India-youngest 150/725/50, 17.1%, 67, 4.8). Static checks clean: no `post_url`, no `cover:` key,
+`image.path` ends `.webp`, all four `/posts/` cross-links resolve, slug unique. Actions run for
+`a6108ef` = **completed success** (no supersession this time). Live permalink
+`https://ml.co.ke/posts/ai-primary-care-class-iib-ce/` = **200** with correct title (took ~60s of
+CDN propagation); cover WebP = **200**. Word count **2,548 full / 2,330 code-excluded** (siblings
+Sep 16 physics 2,383/1,985; Sep 16 MCP 2,422/1,916; Sep 13 2,475/1,718; Sep 17 2,171/1,449) —
+above the code-excluded band only because the post carries a single short code block; full-body
+count sits inside the sibling range.
+
+**Next session actions:**
+1. **Sep 19 should be Lane B** (alternating) — a hands-on AI/ML tutorial with code you run and
+   quote verbatim. Last Lane B was Sep 17 (`temporal-validation-fraud-models`).
+2. Never publish on a Tuesday: **Sep 22** and **Sep 29** are `tuesday-ai-update` days.
+3. `.scheduled/` is EMPTY and that is the healthy state — the Lane A/B mandate is self-contained;
+   do NOT stage posts. Only step in if a run reports it found nothing verifiable.
+4. Grep `_posts/` for the subject before writing: the AI-in-Africa series (Jul) already covers
+   broad healthcare/agriculture/education/fintech surveys — take a narrow, specific angle.
+5. Positive/constructive framing only; AI Crime Watch (d75da864fce0 / 8ea5a3a5de4d) stays paused.
