@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="cyanbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="yellowbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffd93d" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffd93d" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="redbar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b6b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ff6b6b" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M100 0 V630 M250 0 V630 M400 0 V630 M550 0 V630 M700 0 V630 M850 0 V630 M1000 0 V630 M1150 0 V630"/>
+  </g>
+
+  <text x="60" y="62" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="33" font-weight="bold" fill="#f0f6fc">The Denominator Is the Metric</text>
+  <text x="60" y="96" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">Auditing a RAG retriever before you blame the model</text>
+
+  <text x="60" y="152" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#8b949e" letter-spacing="2">RETRIEVED LIST · TOP-5</text>
+
+  <rect x="60" y="168" width="330" height="34" rx="6" fill="#6bcf7f" fill-opacity="0.16" stroke="#6bcf7f" stroke-opacity="0.7"/>
+  <text x="74" y="190" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#6bcf7f">1  m1</text>
+  <text x="330" y="190" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">hit</text>
+
+  <rect x="60" y="210" width="330" height="34" rx="6" fill="#6bcf7f" fill-opacity="0.16" stroke="#6bcf7f" stroke-opacity="0.7"/>
+  <text x="74" y="232" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#6bcf7f">2  s1</text>
+  <text x="330" y="232" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">hit</text>
+
+  <rect x="60" y="252" width="330" height="34" rx="6" fill="#6bcf7f" fill-opacity="0.16" stroke="#6bcf7f" stroke-opacity="0.7"/>
+  <text x="74" y="274" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#6bcf7f">3  m2</text>
+  <text x="330" y="274" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">hit</text>
+
+  <rect x="60" y="294" width="330" height="34" rx="6" fill="#6bcf7f" fill-opacity="0.16" stroke="#6bcf7f" stroke-opacity="0.7"/>
+  <text x="74" y="316" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#6bcf7f">4  m3</text>
+  <text x="330" y="316" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">hit</text>
+
+  <rect x="60" y="336" width="330" height="34" rx="6" fill="#ffffff" fill-opacity="0.05" stroke="#8b949e" stroke-opacity="0.6" stroke-dasharray="4 3"/>
+  <text x="74" y="358" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">5  x1</text>
+  <text x="266" y="358" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">unjudged</text>
+
+  <text x="60" y="400" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9">numerator: hits in the top 5 - 4 judged, 5 truly relevant</text>
+
+  <path d="M418 270 H470" stroke="#00d2ff" stroke-width="2" stroke-dasharray="6 4"/>
+  <path d="M470 270 l-10 -6 v12 z" fill="#00d2ff"/>
+
+  <text x="500" y="252" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#8b949e" letter-spacing="2">DENOMINATOR</text>
+  <text x="500" y="276" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">same retriever, same top-5,</text>
+  <text x="500" y="294" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">three different "recall@5"</text>
+
+  <rect x="500" y="318" width="300" height="42" rx="7" fill="url(#cyanbar)"/>
+  <text x="512" y="345" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#0d1117" font-weight="bold">12 truly relevant  (the truth)</text>
+  <text x="820" y="345" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#00d2ff">0.417</text>
+
+  <rect x="500" y="378" width="200" height="42" rx="7" fill="url(#yellowbar)"/>
+  <text x="512" y="405" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#0d1117" font-weight="bold">8 judged  (pooled)</text>
+  <text x="820" y="405" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#ffd93d">0.500</text>
+
+  <rect x="500" y="438" width="125" height="42" rx="7" fill="url(#redbar)"/>
+  <text x="640" y="465" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#ff6b6b" font-weight="bold">5 capped at k</text>
+  <text x="820" y="465" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#ff6b6b">0.800</text>
+  <text x="906" y="465" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#ff6b6b">leaks into the report</text>
+
+  <path d="M455 452 L470 452 L470 462 L485 448 L470 434 L470 444 L455 444 Z" fill="none" stroke="none"/>
+  <text x="500" y="512" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">shrink the denominator and every retriever looks perfect</text>
+
+  <text x="500" y="546" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">print |Rel|, k and label coverage next to the score</text>
+
+  <text x="1140" y="600" text-anchor="end" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">ml-ke.github.io</text>
+</svg>
