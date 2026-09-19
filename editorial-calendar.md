@@ -995,3 +995,68 @@ count sits inside the sibling range.
 4. Grep `_posts/` for the subject before writing: the AI-in-Africa series (Jul) already covers
    broad healthcare/agriculture/education/fintech surveys — take a narrow, specific angle.
 5. Positive/constructive framing only; AI Crime Watch (d75da864fce0 / 8ea5a3a5de4d) stays paused.
+
+### Sep 19 — "The Denominator Is the Metric: Auditing a RAG Retriever Before You Blame the Model"
+
+**Lane:** B (AI/ML tutorial) — last Lane B was Sep 17, last Lane A was Sep 18, so the alternation
+held. Slug `rag-recall-at-k-denominator`, commit **`740310b`**, cover
+`assets/img/cover-rag-recall-at-k-denominator.webp` (metaphor: three denominator bars of shrinking
+length — 12 truly relevant, 8 judged, 5 capped at k — feeding three different "recall@5" values
+0.417 / 0.500 / 0.800, beside a ranked top-5 list with four green hits; no sibling cover uses
+a fraction panel, denominator bars or a cutoff arithmetic, so it is a new visual identity).
+
+**Why useful (positive/useful mandate):** a teachable measurement technique, not an incident. The
+post gives readers four IR metrics in standard-library Python, three ways Recall@k inflates without
+anyone lying, and a copy-paste audit function that refuses to report a recall figure without |Rel|,
+k, label coverage and a dedup count. No crime, breach, fraud, outage or hack material.
+
+**Differentiation (checked before writing):** no sibling covers RAG *evaluation*. `rag-low-resource-african-languages`
+(Aug 2) builds retrieval; `kg-llm-rag` (Jun 1) compares RAG architectures; `evaluating-llms-african-use-cases`
+(Aug 7) is model-level benchmarks via lm-eval-harness; `rag-security-attacks` (Jun 1) is attacks.
+The measurement layer was a genuine gap.
+
+**Primary anchors (all body-level verified):** RAGAS arXiv 2309.15217 and ARES arXiv 2311.09476
+(abstracts — reference-free metrics; lightweight fine-tuned judges + prediction-powered inference
+from "a few hundred" annotations across eight KILT/SuperGLUE/AIS tasks, robust to domain shift);
+**RAGBench arXiv 2407.11005** ("LLM-based RAG evaluation methods struggle to compete with a
+finetuned RoBERTa model on the RAG evaluation task", 100k examples, five industry domains, TRACe);
+**BEIR arXiv 2104.08663** (18 datasets, 10 systems, BM25 "a robust baseline", re-ranking best
+zero-shot "at high computational costs"); **Buckley/Dimmick/Soboroff/Voorhees, *Information
+Retrieval* 10:491–508 (2007)** via the Springer abstract **and** the NIST PDF (pooling: unjudged
+assumed nonrelevant; a constant-size pool "represents an increasingly small" sample; judgment sets
+"can be biased in that they favor relevant documents that contain topic title words"); **123ofAI
+recall@k guide** (Precision@K divides by K, Recall@K divides by |Rel|; partial labels ⇒ overestimate);
+**Evidently AI** (P/R at K cannot see ordering; NDCG = DCG/IDCG, 1.0 = ideal); **CIRAL** — HF dataset
+card (English queries + Hausa/Somali/Swahili/Yoruba qrels in TREC format) and SIGIR '24 DOI
+10.1145/3626772.3657884 pp. 293–302; **Judging the Judges**, IJCNLP 2025 (position consistency via
+swapped prompts, primacy/recency-preferring judges — read from the PDF body); **Future AGI** RAG
+metrics guide (0.7+ narrow / 0.5+ broad faithfulness, 0.8+ recall at k=20, "Target kappa is 0.6 or
+higher"); **Pinecone** rerankers/two-stage retrieval; **The Neural Base** (stage-1 recall@k must be
+>95% or reranking cannot compensate). ACM's DL page is JS-gated — CIRAL was verified via the HF
+dataset card + citation block instead.
+
+**Verification:** both code blocks re-run via `scripts/verify-post-code.py`; a separate tokenizer
+script confirmed each block's stdout equals a quoted output block **verbatim** (block 1 = 32 lines
+/ 1122 chars, block 2 = 11 lines / 887 chars). Numbers in the prose and in the cover SVG match
+stdout exactly (0.500 vs 0.800 for `q_broad`; mean 0.625 vs 0.700; judged 0.500 vs true 0.417;
+R@10 = 1.000 vs R@5 0.667/0.500; reorder: MRR 1.000 → 0.333, nDCG@5 0.811 → 0.481; dupe: 3
+positional hits vs 2 distinct). Static checks clean: no `post_url`, no `cover:` key, no `.png`
+image path, no `{{` Liquid hazard, slug unique, **6/6 `/posts/` cross-links resolve**. Actions run
+for `740310b` = **completed success** (no supersession this time); live permalink
+`https://ml.co.ke/posts/rag-recall-at-k-denominator/` = **200 at ~70s** with the correct title and
+the code output rendered; cover WebP = **200**; listed on the homepage. Word count **3,647 full /
+2,511 code-excluded** (siblings: Sep 18 2,548/2,330; Sep 17 2,171/1,449; Sep 16 2,383/1,985). The
+full count is high only because this post carries ~1,140 words of code across two blocks; the
+code-excluded count sits ~8% over the sibling top, after four trim passes from an initial 2,914.
+
+**Next session actions:**
+1. **Sep 20 = Lane A** (alternating; last Lane A was Sep 18 `ai-primary-care-class-iib-ce`) — one
+   verified positive AI story, ≤21 days old, 2+ body-level sources, non-Western coverage preferred.
+2. Never publish on a Tuesday: **Sep 22** and **Sep 29** are `tuesday-ai-update` days.
+3. `.scheduled/` is EMPTY and that is the healthy state — do NOT stage posts.
+4. Grep `_posts/` slugs **and headings** for the subject before writing; RAG *evaluation* is now
+   consumed, so a future RAG post must take a different layer (chunking strategy, embedding
+   selection, or reranker training).
+5. Blog-drafting skill patched this session: code blocks in a post are executed **in isolation** by
+   `scripts/verify-post-code.py` (no shared namespace) — keep each block self-contained — and
+   `{% raw %}` must sit on its own line *before* the fence, never on the fence line.
