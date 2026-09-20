@@ -1060,3 +1060,79 @@ code-excluded count sits ~8% over the sibling top, after four trim passes from a
 5. Blog-drafting skill patched this session: code blocks in a post are executed **in isolation** by
    `scripts/verify-post-code.py` (no shared namespace) — keep each block self-contained — and
    `{% raw %}` must sit on its own line *before* the fence, never on the fence line.
+
+---
+
+## Publishing note — 2026-09-20 (Lane A, positive AI story)
+
+**Post:** `_posts/2026-09-20-translatepsy-afrislm-offline-translation.md` — *Nineteen Languages, One
+Download: Reading the TranslatePsy-AfriSLM Release Past the Headline*. Cover
+`assets/img/cover-translatepsy-afrislm-offline-translation.webp` (metaphor: a handset whose screen is
+a grid of 19 language-code chips, a dashed cloud behind it struck through in red and labelled "NO
+UPLINK NEEDED", and a size ladder comparing 21-35 MB per-pair Nano with the 641 MB Q4 SLM and its
+1.05 GB peak RSS; no sibling cover uses a handset chip-grid, a crossed-out cloud or a size ladder).
+
+**Lane:** A — one verified positive development, ≤21 days old, non-Western focus. Chosen because the
+last two posts were Lane B tutorials (Sep 17 `temporal-validation-fraud-models`, Sep 19
+`rag-recall-at-k-denominator`); last Lane A was Sep 18.
+
+**Story:** Tether AI Research (QVAC) released the open TranslatePsy-AfriSLM family on 2 Sep 2026 —
+19 Sub-Saharan African languages, Apache-2.0 weights on Hugging Face, EMNLP 2026 main-conference
+paper (arXiv:2608.18655), plus TranslatePsy-AfriNano (8 languages, 17M-43M params, 21-35 MB/pair)
+and TranslatePsy-EuroNano (9 languages, 90 directions). Positive/useful framing: offline on-device
+translation for users the cloud never reached.
+
+**Why useful (positive/useful mandate):** no crime, breach, fraud, outage or hack material. The post
+gives a verified release inventory + licence split (weights Apache-2.0, synthetic data CC BY-NC 4.0,
+raw open-source mix unreleased), the GSMA 2026 connectivity case for offline, a reproducible local
+benchmark, and a reusable metric-aware way to read a "beats models 100x larger" claim.
+
+**Differentiation (checked before writing):** no sibling covers machine translation. `swahili-nlp`
+(Jun 23) is Swahili tooling, `low-resource-nlp` (Jul 9) is the data problem, `rag-low-resource-african-languages`
+(Aug 2) builds retrieval, `fine-tuning-african-language-llms` (Aug 4) fine-tunes, `evaluating-llms-african-use-cases`
+(Aug 7) benchmarks LLMs, `edge-ai-mobile-african-markets` (Aug 5) is the device class. Translation
+*release + deployment sizing* was an uncovered layer; the intro callout states it.
+
+**Primary anchors (all body-level verified):** arXiv 2608.18655 v2 (abstract, Table 3 SSA-COMET,
+Table 25 significance deltas and p-values, Figure 9 prompt template, §5.2 96% filtering at 0.530 vs
+0.528 SSA-COMET / 1.76B vs 44.93B tokens, Limitations: no human evaluation / dialect
+under-representation / synthetic provenance); tether.io release page (19 language names, 0.8B beats
+Qwen3.5-122B-A10B + TranslateGemma-27B + NLLB-3.3B on FLORES-200/BOUQuET/SMOL); Hugging Face model
+cards (`TranslatePsy-AfriSLM-0.8B` Apache-2.0 full-parameter SFT of Qwen/Qwen3.5-0.8B, `AfriNano`
+96.24% of NLLB-200 accuracy, 56.7x smaller, 3.53x lower peak RAM, Marian/Bergamot, `AfriNano` =
+8 languages) plus the HF API listing (25 qvac repos, real file sizes); Crypto Briefing 2 Sep 2026
+(21-35 MB per pair); iAfrica 8 Sep 2026; GSMA *State of Mobile Internet Connectivity 2026* via
+Capital Ethiopia 20 Sep 2026 (25% SSA using mobile internet, 66%/820M usage gap, 9%/110M coverage
+gap, handset 76% of poorest-quintile income, sub-$100 shipments -36%) and Nairametrics 17 Sep 2026
+(3.1bn global usage gap, Nigeria ~140M); benchmark provenance FLORES-200 arXiv:2207.04672, BOUQuET
+arXiv:2502.04314, SMOL arXiv:2502.12301.
+
+**Original verification this session (not copied from the release):** downloaded the Q4_K_M GGUF
+(672,329,792 bytes) from `qvac/TranslatePsy-AfriSLM-0.8B-Q4-GGUF`, fetched `llama.cpp` build `b11062`,
+and ran five directions on CPU only (4 threads, no GPU, greedy). Verbatim excerpt — en→sw:
+`Mvua zimeanza mapema mwaka huu, na wakulima wanahitaji kujua ni mbegu gani wanapaswa kupanda.`
+(`[ Prompt: 100.1 t/s | Generation: 28.7 t/s ]`; repeat runs 91-103 / 25.9-28.8). Peak RSS 1.05 GB
+(`/usr/bin/time -v`). Honest edge cases recorded in the post: `haina haja` agreement slip in the
+en→sw sentence with `Juni 2027` preserved, and the sw→ha zero-shot greeting staying Swahili
+(`Karibu` rather than `Barka da zuwa`), consistent with the paper's OOD caveats.
+
+**Verification:** code block re-run via `scripts/verify-post-code.py` — stdout equals the quoted
+output byte-for-byte; the published bash command was re-executed with `-st` and exits cleanly
+(without `-st` llama-cli hangs in conversation mode — fixed before publishing). Static checks clean:
+no `post_url`, no `cover:` key, no `.png` image path, no Liquid `{{`, slug unique (self-match
+confirmed), **6/6 `/posts/` cross-links resolve**, cover WebP = 29.8 KB VP8 1200x630. Word count
+**2,810 full / 2,464 code-excluded** (siblings: Sep 19 3,647/2,511; Sep 18 2,548/2,330; Sep 17
+2,171/1,449) — inside the live band after one trim pass from 2,878/2,532.
+
+**Next session actions:**
+1. **Sep 21 = Lane B** (alternate): one hands-on AI/ML tutorial, code executed and stdout quoted
+   verbatim, one code block per concept kept self-contained.
+2. Never publish on a Tuesday: **Sep 22** and **Sep 29** are `tuesday-ai-update` days; the cron
+   must report and stop.
+3. `.scheduled/` is EMPTY and that is the healthy state — do NOT stage posts.
+4. Consumed and closed: Tether TranslatePsy-AfriSLM release, offline/on-device translation sizing,
+   GSMA SOMIC 2026 connectivity figures. A future African-NLP post must take another layer
+   (speech/ASR, dialect coverage, or a human-evaluation harness for MT).
+5. New reusable asset: `assets/blog/cover-translatepsy-afrislm-offline-translation.svg` shows the
+   handset-chip-grid + crossed-cloud + size-ladder pattern (chips generated programmatically) —
+   reuse the generator approach for future "what fits on a device" posts, not the metaphor.
