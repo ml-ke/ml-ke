@@ -1136,3 +1136,89 @@ confirmed), **6/6 `/posts/` cross-links resolve**, cover WebP = 29.8 KB VP8 1200
 5. New reusable asset: `assets/blog/cover-translatepsy-afrislm-offline-translation.svg` shows the
    handset-chip-grid + crossed-cloud + size-ladder pattern (chips generated programmatically) —
    reuse the generator approach for future "what fits on a device" posts, not the metaphor.
+
+---
+
+## Publishing note — 2026-09-20 (EXTRA post, user-requested: repetition-collapse tutorial)
+
+The user supplied a forensic log from their own coding-agent session (Gemini-family CLI,
+non-reasoning "Medium" configuration): at 21:11:36 UTC on 2026-09-19 the model emitted the
+token `" shame"` **2,537 consecutive times / 15,222 bytes**, zero tool calls, `thinking: null`,
+ending only at the output-token cap; the user then respawned and switched to a reasoning
+configuration, which diagnosed an Ahem-font `RenderFlex` overflow and completed the task. They
+asked for the science behind the failure plus a blog post, with a **foolproof reproduction that
+actually works**. Published as an EXTRA post on top of the cron's own Lane A post
+(`2026-09-20-translatepsy-afrislm-offline-translation`) — precedent: two posts on one date
+(Sep 9, Sep 16).
+
+| Date | Slug | Theme | Status |
+|------|------|-------|--------|
+| Sep 20 (Sun) | `inconsistent-decoding-repetition-collapse` | AI Engineering / ML (Lane B-style tutorial) | ✅ published |
+
+**Title:** "Inconsistent by Construction: Reproducing and Catching a Repetition Collapse".
+Commit **`1799a49`**. Cover `assets/img/cover-inconsistent-decoding-repetition-collapse.webp`
+(SVG in `assets/blog/`; metaphor: **stuck record** — a needle locked in one groove, beside the
+6-token lane `' k' 'azi' ' ya' ' k' 'uf' 'anya' × 41`, a blocked `{"tool"...}` chip, and a
+sampler-belief panel with p(top-1) 0.291→0.994 and H 3.13→0.05 bits — no sibling cover uses a
+record/groove, a token-chip lane or a probability/entropy meter pair).
+
+**All numbers are locally reproduced, CPU-only (4 threads, no GPU), on pinned artifacts:**
+
+| Run (greedy, temp 0, top-k 1) | Tokens | Distinct ids | Longest periodic run | EOS | p(top-1) | H(top-20) |
+|---|---|---|---|---|---|---|
+| `qvac/TranslatePsy-AfriSLM-0.8B-Q4-GGUF` translation prompt, cap 256 | 256 | 0.035 | 246 = 6 × 41 | no | 0.291 → 0.994 | 3.13 → 0.05 bits |
+| same model, `shame` prompt, cap 256 | 256 | 0.023 | 247 = 2 × 123 | no | 0.192 → 0.968 | 3.18 → 0.22 bits |
+| repeat-penalty 1.10 / 1.30 | 93 / 37 | 0.796 / 1.000 | none | yes | 0.291 → 0.119 / 0.166 | 3.13 → 3.79 / 3.16 |
+| DRY 0.8 / base 1.75 / len 2 | 54 | 0.537 | 5 | yes | 0.291 → 0.244 | 3.13 → 3.18 |
+| `bartowski/Llama-3.2-1B-Instruct-GGUF` JSON tool-call task, cap 384 | 379 | 0.066 | 13 tool calls, **1 unique** (335/367 dup 12-grams) | after array closed | — | — |
+| same, repeat-penalty 1.30 | 70 | 0.729 | 3 objects, 3 unique, 1 unparseable (`/lib/.../LandingPage.dart`) | yes | — | — |
+| same, DRY 0.8 (then 2.0 / len 1) | 379 (then 384 cap) | 0.066 (then 0.151) | 1 unique (then 13 unique, 99/372 dup 12-grams) | same as greedy (then cap) | — | — |
+
+Greedy runs are **deterministic**: byte-identical sha256 on rerun (`fe022903217efd0b` for the
+translation collapse, `df95d9fcc088bde4` for the `shame` trace at cap 48). Artifact shas:
+afrislm `4af8ee1d…e560afc` (672,329,792 bytes), Llama-3.2-1B `6f85a640…5611df83` (807,694,464 bytes).
+The published guard `LoopWatch` (periodicity, exact match) fires at token **20 of 2,537**
+(0.8%, 2,517 recoverable), at token 30 of the 246-token local collapse, and produced **0 false
+alarms over 26,478 word-tokens** of blog prose at `min_reps=5 / min_tokens=20` (3, 2, 2 alarms at
+3/12, 4/16, 4/24 — all on genuinely periodic quoted program output).
+
+**Science anchored body-level (not snippets):** Welleck et al., *Consistency of a Recurrent
+Language Model With Respect to Incomplete Decoding* (EMNLP 2020, arXiv:2002.02492 — definition of
+inconsistency + Theorem 3.4, read from the PDF; note the term is **not** "sink state", and the
+word "sink" does not appear in that PDF at all); Holtzman et al. ICLR 2020 (arXiv:1904.09751);
+Olsson et al. (arXiv:2209.11895); Su et al. NeurIPS 2022 (arXiv:2202.06417); **Gu et al. ICLR 2025
+(arXiv:2410.10781)** — attention sinks are first-token key biases caused by softmax
+normalisation, which **corrects** the popular "the repeated tokens become an attention sink"
+explanation the incident report offered; Keskar et al. CTRL §4 (arXiv:1909.05858 — the penalty
+formula and "θ ≈ 1.2 … θ = 1 is equivalent to" no penalty, read from the PDF); Weidmann et al.,
+DRY (arXiv:2608.22761, 24 Aug 2026 — 47% suffix-extension reduction, placebo control, adopted by
+llama.cpp/ExLlamaV2/text-generation-webui); Li et al. ICLR 2024 (arXiv:2402.12875 — CoT as serial
+computation, the reason a reasoning respawn behaves differently).
+
+**Verification (all green):** both published code blocks re-run from the file via
+`scripts/verify-post-code.py` and their stdout matches the quoted output byte-for-byte; the bash
+download/serve recipes and both `curl` recipes were executed verbatim; static checks clean (no
+`post_url`, no `cover:` key, no `.png` path, 4/4 `/posts/` cross-links resolve, slug unique);
+Actions run for `1799a49` = **completed success**; live permalink
+`https://ml.co.ke/posts/inconsistent-decoding-repetition-collapse/` = **200** with the correct
+title, the 2,537 figure and the code output rendering; cover WebP = **200** (40,630 bytes).
+Word count **3,654 full / 2,822 code-excluded / 2,206 prose-only** (siblings: Sep 19 3,647/2,511,
+Sep 20 Lane A 2,810/2,464, Sep 18 2,548/2,330) — full count is in band; the code-excluded figure
+runs ~12% over the densest sibling because the post carries **six tables** (626 table tokens vs
+394 for the Sep 19 RAG post). Trimmed from 4,395/3,547 in three passes without dropping a fact.
+
+**New reusable asset:** `~/.hermes/skills/creative/blog-drafting/references/decoding-loop-incident-bank.md`
+— papers, exact commands, artifact hashes, sampler settings and the measured loop/legality numbers,
+so a future decoding/agent-failure post does not re-derive them.
+
+**Next session actions:**
+1. **Sep 21 = Lane B** (hands-on AI/ML tutorial) for the daily cron — the alternation is unchanged
+   by today's extra post; the cron's last Lane A was Sep 20 (`translatepsy-afrislm-offline-translation`).
+2. Never publish on a Tuesday: **Sep 22** and **Sep 29** are `tuesday-ai-update` days.
+3. `.scheduled/` stays EMPTY (healthy) — the Lane A/B mandate is self-contained; do not stage.
+4. Consumed and closed: greedy/beam inconsistency, induction-head copying, representation
+   anisotropy, attention-sink corrections, CTRL repeat penalty, DRY, and the locally reproduced
+   collapses on both models. A future post in this area must take a new layer (e.g. constrained
+   decoding/grammar-based tool-call generation, KV-cache compression effects, or speculative
+   decoding's interaction with loops).
+5. AI Crime Watch (`d75da864fce0` / `8ea5a3a5de4d`) stays paused.
