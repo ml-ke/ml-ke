@@ -1222,3 +1222,70 @@ so a future decoding/agent-failure post does not re-derive them.
    decoding/grammar-based tool-call generation, KV-cache compression effects, or speculative
    decoding's interaction with loops).
 5. AI Crime Watch (`d75da864fce0` / `8ea5a3a5de4d`) stays paused.
+
+---
+
+## Publishing note — Sep 21, 2026 (Lane B tutorial)
+
+**Published:** `_posts/2026-09-21-constrained-decoding-token-mask.md` — "The Mask Is the Contract: What
+Grammar-Constrained Decoding Actually Guarantees" (categories AI Engineering / Machine Learning, 8 tags).
+Commit **`ba510fc`**; Actions run for that SHA = **completed success**; live permalink
+`https://ml.co.ke/posts/constrained-decoding-token-mask/` = **200** on the second retry (~60 s after push)
+with the title, the quoted program output and the cover rendering; cover WebP
+`assets/img/cover-constrained-decoding-token-mask.webp` = **200** (37,282 bytes, 1200x630 VP8), SVG source
+at `assets/blog/cover-constrained-decoding-token-mask.svg` (mask-plate / stencil metaphor: die-cut windows
+over a token stream, -inf marks on the blocked chips, state graph, output panel).
+
+**Lane:** B (hands-on AI/ML tutorial). The calendar's own next-session list assigned Sep 21 = Lane B; the
+last Lane A was Sep 20 (`translatepsy-afrislm-offline-translation`), so the alternation is preserved. This
+is also the "new layer" the Sep 20 note asked for: the post is about the *mask* (grammar-constrained
+decoding), not about repetition collapse, and it is differentiated in the intro from
+`agent-tool-calling` (what to declare) and `inconsistent-decoding-repetition-collapse` (what
+unconstrained decoding drifts into).
+
+**Bodies of evidence, all read at body level:** JSONSchemaBench arXiv:2501.10868v3 (declared vs empirical
+coverage definitions; LM-only empirical coverage 0.90 GlaiveAI → 0.38 GitHub Medium → 0.13 GitHub Hard →
+0.21 JSONSchemaStore; Guidance GitHub Hard 0.60/0.41, XGrammar 0.69/0.28; failure taxonomy Outlines
+42/16/8, Llamacpp 37/18/7, XGrammar 3/5/38, Guidance 25/7/1; Table 2 TPOT medians with the LlamaCpp
+backend — LM only 15.40–16.68 ms, Guidance 6.37–9.47 ms, Llamacpp 27.22–29.98 ms, Outlines 30.33–46.57 ms;
+GCT Outlines 3.48–8.05 s; Table 3 HF backend Guidance 35.88–44.21 ms vs XGrammar 65.20–66.78 ms);
+llama.cpp `grammars/README.md` (GBNF syntax, token matching `<[token-id]>` / `!<token>`, the `x{0,N}` vs
+`x? x? ...` slowness warning, the `item-age` range alternation for minimum 0 / maximum 150, and the
+schema-is-NOT-injected-into-the-prompt note); `grammars/json.gbnf`; llama.cpp issue **#19051** (opened
+2026-01-23, closed 2026-03-09 as *stale*, labels bug-unconfirmed — fail-open on grammar parse failure, 200
+OK with unconstrained text); XGrammar arXiv:2411.15100 (MLSys 2025, context-independent prechecking,
+persistent stack, up to 100x); llguidance README (~50 µs CPU/token at 128k vocab, integrations: vLLM
+0.8.2, SGLang 0.4.4, llama.cpp b4613, Chromium, OpenAI JSON Schema, v1.0.0 Jun 2025); trie automata
+arXiv:2608.12574 (0.65 µs vs 5.8 µs per step, 219 vs 7.5 req/s at batch 256, sub-100 ms compile to
+K=10,000); zeroentropy constrained-decoding explainer for the -inf masking description.
+
+**Code actually executed (three self-contained stdlib blocks, each run in isolation):** a token mask for
+`{"name": str<=12, "age": int 0..150}` against an interpolated token trigram — masked lane **1000/1000
+parseable and closed**, 520/1000 with a corpus name, mask overruled the model's top token on **9,202/25,450
+steps (36%)**, cache **64 distinct states / 99.75% hits**; the range enumeration (151/1110 = 13.6%,
+51/1000 fixed-width, `151` unreachable, `15`→`{0}`, `150`→none); and the unsatisfiable-mask walk (strict
+`151` → Stalled, substitute → `150`, `200` → dead end both ways). `verify-post-code.py` = all blocks ran;
+a pairing script confirmed each block's stdout equals the quoted block **byte-for-byte**. The two `bash`
+blocks are quoted from the project's GBNF guide and marked as documented usage — no llama.cpp binary or
+GGUF exists on this host, so they were not executed and no output is attributed to them.
+
+**Word count:** 4,672 full / **2,714 code-excluded**. Siblings measured with the same script: Sep 17
+2,171/1,449, Sep 18 2,548/2,330, Sep 19 3,647/2,511, Sep 20 Lane A 2,810/2,464, Sep 20 decoding 3,636/2,793.
+Code-excluded is inside that range; the full count runs above the siblings because this post carries three
+fenced program listings plus their outputs (~1,960 tokens), which is the tutorial's substance. Five trim
+passes took it from 4,935/2,957 without dropping a fact.
+
+**New reusable asset:** `~/.hermes/skills/creative/blog-drafting/references/constrained-decoding-bank.md`
+— the verified coverage/efficiency/failure figures, the GBNF snippets, the fail-open issue, engine
+integration facts and the demo recipe, so a future structured-output post does not re-derive them.
+
+**Next session actions:**
+1. **Sep 22 is a Tuesday** — `tuesday-ai-update` owns the day; skip the daily lane, do not stage a post.
+2. **Sep 23 = Lane A** (positive AI story, non-Western preferred). Last Lane A was Sep 20, so the
+   alternation resumes there; grep `_posts/` slugs and headings before writing.
+3. `.scheduled/` stays EMPTY (healthy) — the lane mandate is self-contained; nothing to stage.
+4. Consumed by this post: constrained decoding / token masks / GBNF / JSON-schema-to-grammar coverage and
+   efficiency, the fail-open class, range-compilation cost. Adjacent layers still open for a future Lane B:
+   KV-cache compression effects, speculative decoding's interaction with loops, jump-forward decoding,
+   tool-call grammar generation from framework signatures.
+5. AI Crime Watch (`d75da864fce0` / `8ea5a3a5de4d`) stays paused.
