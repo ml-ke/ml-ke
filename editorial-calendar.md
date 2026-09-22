@@ -1289,3 +1289,37 @@ integration facts and the demo recipe, so a future structured-output post does n
    KV-cache compression effects, speculative decoding's interaction with loops, jump-forward decoding,
    tool-call grammar generation from framework signatures.
 5. AI Crime Watch (`d75da864fce0` / `8ea5a3a5de4d`) stays paused.
+
+---
+
+## Publishing note — Tuesday AI Update, Sep 22 2026
+
+**Published:** `_posts/2026-09-22-tuesday-ai-update.md` (slug `tuesday-ai-update`, live at
+`/posts/tuesday-ai-update/`, HTTP 200 verified). Actions run for `4b7a0e7` = **success**.
+Cover: `/assets/img/cover-global-ai-roundup-july-2026.webp` (generic roundup cover, WebP confirmed).
+**Word count:** 918 full / 868 code-excluded (no code blocks). Siblings: Sep 15 894, Sep 8 893 — ~2% over
+band top on the citation-density precedent (17 external links, 6 regions).
+
+**Title:** "Tuesday AI Update: Sep 22, 2026 — Claude Now Leads 26% of Anthropic's Own R&D".
+**Week covered:** Sep 15–21, 2026. Anchors used (all body-verified via `extract-web-text.py` or two+
+independent snippets): Anthropic R&D Automation Index (Sep 17, 26% / 30k agents / 1-in-47,000 blocked);
+Z.ai GLM-5.3 Infra Agent on 100,000+ Chinese accelerators (Sep 17, dense-feedback method, ox-alpha
+confirmed); Alibaba DAMO RADAR open-sourced Apache 2.0 (Sep 18, 146 findings, AUC 0.913, *Science* paper);
+OpenAI Sponsored Agents (Sep 16); Grok 4.7 (Sep 21); AI Energy Management Alliance (Sep 16, Google 1GW
+reducible demand — verified); EU transparency Code of Practice signatories; US clears 70,000 chips for
+G42/HUMAIN + Humain IPO prep/$2.5bn fund; Russia's first AI law (Sep 1); Africa (Egypt–Intel 1M/yr,
+22 On Sloane KUMii + R1bn, Askya, Janguru $25m, Synapse $13m, Aeon $1m, DFC $155m WIOCC, Ethiopia
+hydropower, Cape Town Equinix protests/2.2GW); IDB LatAm figures (Sep 21, 5.1% GDP / −20.9% wages,
+verified against 4 outlets).
+
+**Not used / deliberately skipped:** South America had no other week-fresh item; LatAm-GPT and Brazil's
+supercomputer plan are older (Aug). Reddit and JS-gated primaries (globenews wire, investing.com) were
+snippet-level only — figures cross-confirmed across CNA/WHBL/IndexBox before use.
+
+**Next session actions:**
+1. **Sep 23 = Lane A** (positive AI story, non-Western preferred) — Sep 22 was Tuesday-owned, so the
+   daily-lane alternation resumes at Lane A. Grep `_posts/` slugs and headings before writing.
+2. `tuesday-ai-update` resumes **Sep 29**; do not stage a Tuesday file.
+3. `.scheduled/` stays EMPTY (healthy) — the self-contained lane needs nothing staged.
+4. External-link note: `datacenterdynamics.com`, `technology.org`, `investing.com`, `japantimes.co.jp`
+   return 403/405 to curl (bot walls) — cite them, but body-verify figures via a curl-friendly mirror.
