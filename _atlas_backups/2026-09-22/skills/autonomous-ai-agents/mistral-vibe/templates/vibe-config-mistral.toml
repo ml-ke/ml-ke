@@ -1,0 +1,70 @@
+# Mistral Vibe CLI — known-good Mistral-first config
+# Target: ~/.vibe/config.toml   Secret: ~/.vibe/.env  (MISTRAL_API_KEY, chmod 600)
+# Keep the [tools.bash].allowlist from the user's existing file when rewriting.
+
+theme = "tokyo-night"
+applied_migrations = [
+    "bash_read_only_defaults_v1",
+]
+
+# Pinned so default-model routing cannot move the CLI off the Mistral API.
+active_model = "mistral-medium-3.5"
+
+[tools.bash]
+allowlist = [
+    "cat",
+    "date",
+    "diff",
+    "find",
+    "git diff",
+    "git log",
+    "git status",
+    "grep",
+    "head",
+    "ls",
+    "pwd",
+    "tail",
+    "tree",
+    "wc",
+    "which",
+]
+
+# Mistral API provider. Reads MISTRAL_API_KEY from the shell or from ~/.vibe/.env.
+[[providers]]
+name = "mistral"
+api_base = "https://api.mistral.ai/v1"
+api_key_env_var = "MISTRAL_API_KEY"
+backend = "mistral"
+
+# Default model. Cheaper swaps for active_model: "mistral-vibe-cli-fast",
+# "ministral-8b-latest", "ministral-3b-latest".
+[[models]]
+name = "mistral-vibe-cli-latest"
+provider = "mistral"
+alias = "mistral-medium-3.5"
+display_name = "Mistral Medium 3.5"
+temperature = 1.0
+input_price = 1.5
+output_price = 7.5
+cached_input_price = 0.15
+thinking = "high"
+supports_images = true
+
+# --- Anti-pattern this file replaces ----------------------------------------
+# A foreign provider block + its model block + a matching pinned active_model
+# silently routes every call off Mistral, e.g.:
+#
+#   active_model = "devstral-openrouter"
+#   [[providers]]
+#   name = "openrouter"
+#   api_base = "https://openrouter.ai/api/v1"
+#   api_key_env_var = "OPENROUTER_API_KEY"
+#   api_style = "openai"
+#   backend = "generic"
+#   [[models]]
+#   name = "vendor/some-free-model"
+#   provider = "openrouter"
+#   alias = "devstral-openrouter"
+#
+# Providers union-merge by name and models deep-merge by alias, so BOTH blocks
+# must be deleted to return to the Mistral API on the next start.
