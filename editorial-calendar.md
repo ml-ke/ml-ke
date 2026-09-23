@@ -1323,3 +1323,56 @@ snippet-level only — figures cross-confirmed across CNA/WHBL/IndexBox before u
 3. `.scheduled/` stays EMPTY (healthy) — the self-contained lane needs nothing staged.
 4. External-link note: `datacenterdynamics.com`, `technology.org`, `investing.com`, `japantimes.co.jp`
    return 403/405 to curl (bot walls) — cite them, but body-verify figures via a curl-friendly mirror.
+
+---
+
+## Publishing note — Daily lane (Lane A), Wed Sep 23 2026
+
+**Published:** `_posts/2026-09-23-goalkeepers-2026-ai-equity-pledge.md` (slug `goalkeepers-2026-ai-equity-pledge`,
+live at `/posts/goalkeepers-2026-ai-equity-pledge/`). Cover: `/assets/img/cover-goalkeepers-2026-ai-equity-pledge.webp`
+(new metaphor: 40/40/10/10 allocation bar with a magnifier over the 10% data slice + four outcome chips; no sibling
+reuse). **Word count:** 2,541 full / 2,402 code-excluded — inside the live sibling band (Sep 16 2,383/1,985,
+Sep 18 2,548/2,330, Sep 20 2,810/2,464, Sep 14 2,583/1,759).
+
+**Lane:** A (positive AI story). Selected because the last two daily posts were Lane B tutorials (Sep 21
+constrained-decoding, Sep 20 inconsistent-decoding) and Lane A is the alternating choice. Not a Tuesday.
+
+**Story:** Gates Foundation commits at least US$1 billion over two years to widen AI access, announced
+**September 14, 2026** with the 10th annual Goalkeepers Report *Make This Matter: AI, Equity, and the Choice We
+Can't Delay*. Split ~40% education / 40% health / 10% agriculture / 10% digital foundation.
+
+**Sources (body-level verified):** gatesfoundation.org press release (primary, dated Sep 14); the
+2026 Goalkeepers Report **PDF** (primary — fetched with curl + `pdftotext -layout`, all figures grepped:
+p.22 language gap <6% English vs >60% Yoruba, >90% English training data, 1B/7B "illustrative" endnote, p.17
+one doctor per ~2,000 people in SSA vs <200 high-income / >2M extra doctors, p.28 the four tools); Benton
+Institute (40/40/10/10 split + endnote caveats); Ghana Business News/GNA (split, second source); CIO Africa
+(Sep 15); Innovation Village Vol 23. Independent evidence for the Kenya number: University of Birmingham news
+(26 Jun 2026) + *Nature Medicine* cluster-randomised trial (9,600+ patients, 16 clinics, no significant change
+in 14-day treatment failure, 2.2% vs 2.0%) and *Nature Health* safety paper (10 Mar 2026: 3.4% hallucinations,
+7.8% actively harmful recommendations, 62% documentation unmodified).
+
+**Code:** one stdlib power-calculation block (`statistics.NormalDist`), extracted from the file and run with
+`verify-post-code.py`; quoted stdout diffed programmatically byte-for-byte → MATCH. Key numbers: at a 2.0%
+control event rate, detecting a 30/20/10/5% relative drop needs 14,566 / 34,676 / 146,287 / 600,267 patients
+(two-arm, before cluster design effect). Post states these are the author's own two-proportion calculation.
+
+**Verification:** no `post_url` tags, no `cover:` key, no `.png` image paths; all four `/posts/` cross-links
+resolve (ai-primary-care-class-iib-ce, translatepsy-afrislm-offline-translation, rag-recall-at-k-denominator,
+fine-tuning-african-language-llms). Cover SVG has no bare `&` (only the valid `&lt;` entity). WebP confirmed
+1200×630 VP8.
+
+**Deliberately avoided:** Tether TranslatePsy-AfriSLM (consumed Sep 20), African Next Voices / tokenizer-tax
+(themes already covered Jun 23 `swahili-nlp` and Aug 4 `fine-tuning-african-language-llms`), CommonLingua
+(April 2026 — outside the 21-day window), Nairobi AI Forum (Feb 2026 — too old), and Penda Health's regulatory
+class IIb angle (consumed Sep 18). Differentiation stated in the intro: this post reads the **evidence level**
+of the four headline numbers, not the funding announcement itself.
+
+**Next session actions:**
+1. **Sep 24 = Lane B** (tutorial) — the daily-lane alternation resumes at Lane B after today's Lane A. Grep
+   `_posts/` slugs and headings before writing; open Lane B space noted by earlier notes: KV-cache compression,
+   speculative decoding, jump-forward decoding, tool-call grammar generation.
+2. `tuesday-ai-update` resumes **Sep 29**; do not stage a Tuesday file.
+3. `.scheduled/` stays EMPTY (healthy) — the self-contained lane needs nothing staged.
+4. Bot-wall note for future sessions: `undp.org` press releases return 403 to `extract-web-text.py`, and
+   `devex.com` returns 403; `gatesfoundation.org` press releases work fine; primary PDFs (Goalkeepers report)
+   fetch cleanly with `curl -sL` + `pdftotext -layout`.

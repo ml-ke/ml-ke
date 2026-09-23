@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="55%" stop-color="#131a2b"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="edu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#7c5cf0"/>
+    </linearGradient>
+    <linearGradient id="health" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00d2ff"/><stop offset="100%" stop-color="#0090c0"/>
+    </linearGradient>
+    <linearGradient id="agri" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6bcf7f"/><stop offset="100%" stop-color="#3f9e55"/>
+    </linearGradient>
+    <linearGradient id="data" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd93d"/><stop offset="100%" stop-color="#d9a800"/>
+    </linearGradient>
+    <radialGradient id="lensGlow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#ffd93d" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ffd93d" stop-opacity="0.04"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.035"/>
+
+  <!-- title block -->
+  <text x="100" y="96" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="bold" fill="#f4f6fb">The $1 Billion AI Bet</text>
+  <text x="100" y="138" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#9aa7bd">2026 Goalkeepers Report: AI, Equity, and the Choice We Can’t Delay</text>
+  <line x1="100" y1="166" x2="1100" y2="166" stroke="#2a3550" stroke-width="2"/>
+
+  <!-- allocation bar: 40 / 40 / 10 / 10 -->
+  <text x="100" y="222" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="3" fill="#7f8da6">HOW THE TWO-YEAR COMMITMENT SPLITS</text>
+
+  <g>
+    <rect x="100" y="248" width="400" height="64" fill="url(#edu)" rx="2"/>
+    <rect x="500" y="248" width="400" height="64" fill="url(#health)" rx="2"/>
+    <rect x="900" y="248" width="100" height="64" fill="url(#agri)" rx="2"/>
+    <rect x="1000" y="248" width="100" height="64" fill="url(#data)" rx="2"/>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#0d1117">
+    <text x="128" y="288">40%</text>
+    <text x="528" y="288">40%</text>
+  </g>
+  <text x="916" y="288" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#0d1117">10%</text>
+  <text x="1016" y="288" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold" fill="#0d1117">10%</text>
+
+  <g font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#c8d3e6">
+    <text x="100" y="336">EDUCATION</text>
+    <text x="500" y="336">HEALTH</text>
+    <text x="900" y="336">AGRI</text>
+    <text x="1000" y="336">DATA</text>
+  </g>
+
+  <!-- magnifier over the 10% data slice -->
+  <g>
+    <line x1="1118" y1="386" x2="1168" y2="438" stroke="#ffd93d" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="1068" cy="336" r="76" fill="url(#lensGlow)" stroke="#ffd93d" stroke-width="4"/>
+    <circle cx="1068" cy="336" r="62" fill="none" stroke="#ffd93d" stroke-width="1" opacity="0.5"/>
+    <text x="1030" y="330" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#ffd93d">$100M</text>
+    <text x="1002" y="356" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffe89a">languages today’s</text>
+    <text x="1008" y="374" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffe89a">tools can’t read</text>
+  </g>
+
+  <!-- four headline figures -->
+  <g font-family="Helvetica, Arial, sans-serif">
+    <rect x="100" y="428" width="230" height="82" rx="10" fill="#141b2e" stroke="#2a3550" stroke-width="1.5"/>
+    <text x="118" y="464" font-size="25" font-weight="bold" fill="#00d2ff">+16 pp</text>
+    <text x="118" y="490" font-size="14" fill="#9aa7bd">diagnostic accuracy, Kenya</text>
+
+    <rect x="348" y="428" width="230" height="82" rx="10" fill="#141b2e" stroke="#2a3550" stroke-width="1.5"/>
+    <text x="366" y="464" font-size="25" font-weight="bold" fill="#a78bfa">+6 months</text>
+    <text x="366" y="490" font-size="14" fill="#9aa7bd">maths, 21 schools, US</text>
+
+    <rect x="596" y="428" width="230" height="82" rx="10" fill="#141b2e" stroke="#2a3550" stroke-width="1.5"/>
+    <text x="614" y="464" font-size="25" font-weight="bold" fill="#6bcf7f">+1.7 years</text>
+    <text x="614" y="490" font-size="14" fill="#9aa7bd">8-week trial, Sierra Leone</text>
+
+    <rect x="844" y="428" width="256" height="82" rx="10" fill="#141b2e" stroke="#2a3550" stroke-width="1.5"/>
+    <text x="862" y="464" font-size="25" font-weight="bold" fill="#ffd93d">&lt;18¢ / farmer</text>
+    <text x="862" y="490" font-size="14" fill="#9aa7bd">740,000+ users, Maharashtra</text>
+  </g>
+
+  <text x="100" y="562" font-family="Helvetica, Arial, sans-serif" font-size="21" font-style="italic" fill="#e6ecf7">the metric is not the outcome — check the endpoint, the power, and the denominator</text>
+
+  <text x="1100" y="606" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#5c6b85">ml-ke.github.io</text>
+</svg>
