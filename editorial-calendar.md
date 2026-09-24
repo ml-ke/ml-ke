@@ -1376,3 +1376,68 @@ of the four headline numbers, not the funding announcement itself.
 4. Bot-wall note for future sessions: `undp.org` press releases return 403 to `extract-web-text.py`, and
    `devex.com` returns 403; `gatesfoundation.org` press releases work fine; primary PDFs (Goalkeepers report)
    fetch cleanly with `curl -sL` + `pdftotext -layout`.
+
+---
+
+## Publishing note — Daily lane (Lane B tutorial), Thu Sep 24 2026
+
+**Published:** `_posts/2026-09-24-embedding-compression-audit.md` (slug `embedding-compression-audit`,
+live at `/posts/embedding-compression-audit/`). Cover: `/assets/img/cover-embedding-compression-audit.webp`
+(new metaphor: ONE 384-dim vector rendered three times at falling precision — float32 cell grid, int8
+coarse blocks, a 1-bit packed row — beside a measured recall panel; no sibling reuse). **Word count:**
+4,035 full / 2,780 code-excluded, inside the live sibling band (Sep 23 2,541/2,402, Sep 21 4,672/2,714,
+Sep 19 3,647/2,511) at 2.4% over the band top on the Sep 4/Sep 12 density precedent.
+
+**Lane:** B (tutorial). Sep 23 was Lane A (Goalkeepers), so the alternation resumed here. Not a Tuesday.
+Chosen from the open Lane B space the previous note listed (KV-cache compression, speculative decoding,
+jump-forward decoding, tool-call grammar generation) — deliberately NOT another decoding post, since
+Sep 20/21 covered repetition collapse and grammar-constrained decoding.
+
+**Technique:** quantizing embeddings (int8 scalar, 1-bit sign, dimension truncation) and measuring what
+each costs — recall@10 against exact float32 ground truth, plus the shortlist oversampling factor needed
+to recover it. Five runnable blocks: memory arithmetic (stdlib), the recall measurement (numpy),
+bytes-moved-per-query (stdlib), a speed benchmark (numpy), and a reusable `audit(embeddings)` function.
+
+**Measured anchors (all from local runs on this host; reproducible, seeded):** 384 dims = 1536 B float32 /
+388 B int8+scale / 52 B 1-bit+norm (29.5x once the norm is stored, vs the 32x codebook figure); a 16 GB
+node holds 10.4M / 41.2M / 307.7M vectors respectively. Single-stage recall@10 on a 10k clustered corpus:
+float32 1.000, int8 0.965, 1-bit 0.516, first-96-dims 0.758, first-192-dims 0.826, ground-truth
+stability 0.988. Shortlist recall by oversampling: 10k docs 1x 0.516 / 2x 0.872 / 5x 1.000; 100k docs
+1x 0.119 / 2x 0.207 / 10x 0.667 / 25x 0.995 / 50x 1.000. I/O at 100M vectors: 153.6 GB scanned per
+query for float32 vs 5.2 GB for the bits (0.260 s at 20 GB/s); 25x shortlist reads 375 KB of float32
+rows or 95 KB of int8.
+
+**⚠️ Reusable finding — the speed claim inverts in numpy.** Packed Hamming search in numpy was 5x-20x
+SLOWER than the plain BLAS float32 matmul across six comparisons (`np.bitwise_count` path) and 37x-78x
+slower with `np.unpackbits`. The published "2 CPU cycles" / "7x faster than angular" figures come from
+engines with hardware popcount in C++/SIMD, not from byte-wise numpy. `np.bitwise_count` (NumPy 2.0+)
+is 4x-8x faster than `unpackbits` with byte-identical distances. Bank this for any future "is X faster"
+claim: measure the implementation, not the format.
+
+**Sources (body-level verified):** huggingface.co/blog/embedding-quantization (threshold at 0, 32x, "2 CPU
+cycles", Yamada et al. rescore, ~92.5% without / ~96% with rescoring, MRL 93.1% @12x / 95.8% @3x);
+qdrant.tech quantisation guide (SQ 4x, BQ up to 32x "centered vector distributions", PQ 64x, TurboQuant
+bit depths, `rescore: true` + `oversampling: 2.0` in the documented request example); Vespa
+"Embedding Tradeoffs, Quantified" (~1B hamming/s, ~7x, 32x storage, rescore modes); Vespa
+"Matryoshka and Binary vectors" (post-rescore retention 95-96%); arXiv 2608.19388 (VecDB @ VLDB 2026,
++8% PQ / +18% SQ from non-uniform bit allocation); numpy.org bitwise_count 2.0 manual page. The sbert.net
+quantization page is cited as the library recipe but was unreachable from this host (network flake) — no
+figure is attributed to it.
+
+**Verification:** no `post_url` tags, no `cover:` key, no `.png` image paths; all 7 `/posts/` cross-links
+resolve (rag-recall-at-k-denominator, vllm-llm-serving, model-serving-101, agent-memory-systems,
+self-hosting-open-weight-llms, edge-ai-mobile-african-markets, mlops-constrained-environments); slug
+unique; `verify-post-code.py` -> "OK: all blocks ran"; a claim-checker re-ran every block and asserted
+each number quoted in the prose appears in fresh stdout (all 5 passed); cover SVG parses as XML with no
+bare `&`, WebP confirmed 1200x630 VP8 (35 KB).
+
+**Next session actions:**
+1. **Sep 25 = Lane A** (positive AI story, non-Western preferred) — alternation resumes after today's
+   Lane B. Grep `_posts/` slugs and headings before writing.
+2. `tuesday-ai-update` resumes **Sep 29**; do not stage a Tuesday file.
+3. `.scheduled/` stays EMPTY (healthy) — the self-contained lane needs nothing staged.
+4. Open Lane B space still unclaimed: KV-cache compression, speculative decoding, learned sparse
+   retrieval (SPLADE), cross-encoder reranker latency budgets, agent tool-call grammar generation.
+5. Reusable measurement recipes now banked in this note: seeded clustered-corpus recall harness, the
+   ground-truth stability gate (nudge queries 1% before trusting any recall number), the oversampling
+   sweep, and the numpy popcount-vs-BLAS benchmark.
