@@ -1441,3 +1441,68 @@ bare `&`, WebP confirmed 1200x630 VP8 (35 KB).
 5. Reusable measurement recipes now banked in this note: seeded clustered-corpus recall harness, the
    ground-truth stability gate (nudge queries 1% before trusting any recall number), the oversampling
    sweep, and the numpy popcount-vs-BLAS benchmark.
+
+## Publishing note — Daily lane (Lane A, positive AI story), Fri Sep 25 2026
+
+**Published:** `_posts/2026-09-25-mimo-v26-open-release-builders.md` (slug `mimo-v26-open-release-builders`,
+live at `/posts/mimo-v26-open-release-builders/`, commit `676cab4`). Cover:
+`/assets/img/cover-mimo-v26-open-release-builders.webp` (new metaphor: ONE family drawn as three nested
+checkpoint boxes — 1.02T / 309B / 9.4B — beside a GRPO ring whose arcs are sized by the published cost
+split, rollout 43.8% / training 43.5% / grader 12.7%, with a green "MIT weights" badge; no sibling reuse).
+**Word count:** 2,705 full / 2,580 code-excluded — inside the live sibling band on the full count
+(Sep 23 2,541/2,402, Sep 20 2,810/2,464, Sep 18 2,548/2,330) and ~5% over the code-excluded top on the
+Sep 4/Sep 12/Sep 14 density precedent.
+
+**Lane:** A (positive AI story, non-Western). Sep 24 was Lane B (embedding-compression audit), so the
+alternation resumed here. Not a Tuesday. `.scheduled/` was empty (healthy).
+
+**Story:** Xiaomi MiMo released the MiMo-V2.6 series on 22 Sep 2026 under MIT — MiMo-V2.6-Pro-RL
+(1.02T total / 42B activated), MiMo-V2.6-Flash-RL (309B / 15B), and MiMo-V2.6-Distill-Qwen-9B (9.41B SFT
+of Qwen3.5-9B) — plus ~7k verifier-backed RL environments, an end-to-end RL framework and a composable
+mini-harness. Angle chosen to avoid sibling overlap: not the scale race ([kimi-k3-china-open-source]) and
+not on-device translation ([translatepsy-afrislm-offline-translation]), but the SIZE LADDER + the
+PUBLISHED LOOP (environments, verifiers, RL cost, GRPO baselines).
+
+**Verified anchors (primary):** HF API + HEAD probes — all three repos `license=mit`, safetensors totals
+1,024.22B / 310.76B / 9.41B, downloads 42,062 / 20,473 / 6,652, Q4_K_M blob 5,841,049,120 bytes (5.84 GB).
+Technical report PDF (`MiMo_V2_6_technical_report.pdf`, pdftotext): batch 1,568 prompts x G=16 = ~25K
+sequences/step at 2.7-3.7B tokens/step (~110K-150K tokens/sequence); RL cost $2.6M Pro / $0.9M Flash;
+Pro cost split rollout 43.8% / training 43.5% / grader 12.7%; DeepSWE v1.1 avg@3 58.4->72.6 (Pro) and
+48.7->65.7 (Flash); MoE router frozen during RL; Table 4 SFT mixture 77.4B total / 27.2B loss-bearing
+(Code 23.2 / Cyber 11.0 / General 22.0 / Visual 21.2); Table 5 released envs ~3k code (executable tests),
+~1k cyber (rule checks), ~1k general (rubric judging), ~2k visual (visual grading) + ~1k music tasks;
+Table 6 all 11 evals improve from the SFT checkpoint under GRPO (SWE-bench Verified 61.1->66.2, Terminal
+Bench 2.1 37.1->52.8, MiMo Cyber mini 31.3->47.0, OfficeQA Pro 19.5->24.8, Toolathlon 35.2->38.0,
+Visual Coding mini 64.0->72.4); multi-harness RL improved all 21 dataset-harness pairs, 1.8-9.3 pp on
+MiMo Code Bench mini across seven harnesses. Secondary: SiliconANGLE (Artificial Analysis index 46.32,
+AutomationBench 53.1 vs Opus 5 50.3, Terminal Bench 2.1 89.9 vs 89.1, ProgramBench 26.5 vs 37.0, GDPval
+1673 vs 1708, pricing $0.14/$0.28 Flash, $0.435/$0.87 Pro, UltraSpeed $4.35/$8.70, OpenRouter 1.05M
+context); TestingCatalog (21 Sep X tease, RL run summary, prices cross-check).
+
+**⚠️ Reusable caution — the `†` count matters.** Five of the eleven Table 6 rows were initially described
+as "internal benches"; only FOUR carry the dagger (MiMo Code / Cyber / General / Visual mini). Count the
+footnote markers in the source table before writing the caveat sentence, not from memory.
+
+**⚠️ Reusable caution — HF resolve-CDN can be throttled while the API is fast.** A range request to the
+GGUF resolve URL measured ~3.2 KB/s from this host, and the 5.84 GB checkpoint could not be pulled in the
+publishing window, so this post publishes NO local inference/throughput number and says so in a
+`.prompt-warning` callout. Sizes were still verified via the API blob index plus a HEAD request
+(200, content-length=5841049120). Bank the pattern: when a download is not feasible, verify metadata and
+publish the limitation explicitly rather than quoting a throughput figure you did not measure.
+
+**Verification:** no `post_url` tags, no `cover:` key, no `.png` image paths; all 6 `/posts/` cross-links
+resolve (kimi-k3-china-open-source, translatepsy-afrislm-offline-translation, self-hosting-open-weight-llms,
+vllm-llm-serving, mlops-constrained-environments, rag-recall-at-k-denominator); slug unique; cover SVG has
+no bare `&`, WebP confirmed 1200x630 VP8 (29 KB) and serves 200 on the live site; `verify-post-code.py` ->
+"OK: all blocks ran" (the stdlib HF probe; its stdout is quoted verbatim in the post). Actions API: run for
+`676cab4` = completed success; permalink HTTP 200 on first attempt; homepage lists the slug.
+
+**Next session actions:**
+1. **Sep 26 = Lane B** (tutorial). Open space: KV-cache compression, speculative decoding, learned sparse
+   retrieval (SPLADE), cross-encoder reranker latency budgets, agent tool-call grammar generation, or an
+   eval-harness post that reuses the MiMo released-environments idea as a case study.
+2. `tuesday-ai-update` resumes **Sep 29**; do not stage a Tuesday file.
+3. `.scheduled/` stays EMPTY — the self-contained lane needs nothing staged.
+4. New reusable anchor bank for this lane: MiMo-V2.6 release facts (above) + the "publish the loop"
+   pattern (environments + verifiers + cost breakdown + tiny starter checkpoint) for future open-release
+   posts; pair it with the HF-API licence/size probe block, which is stdlib-only and re-runnable.
