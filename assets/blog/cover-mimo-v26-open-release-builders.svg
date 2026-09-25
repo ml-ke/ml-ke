@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="sq1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="sq2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="sq3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6bcf7f" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#6bcf7f" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+    <path d="M120 0V630M240 0V630M360 0V630M480 0V630M600 0V630M720 0V630M840 0V630M960 0V630M1080 0V630"/>
+  </g>
+
+  <text x="60" y="86" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="bold" fill="#e6edf3">One Licence, Three Checkpoints</text>
+  <text x="60" y="124" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#8b949e">MiMo-V2.6: open weights, open RL environments, one downloadable loop</text>
+
+  <rect x="986" y="46" width="154" height="40" rx="20" fill="#6bcf7f" fill-opacity="0.12" stroke="#6bcf7f" stroke-opacity="0.7"/>
+  <text x="1063" y="72" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="bold" fill="#6bcf7f" text-anchor="middle">MIT weights</text>
+
+  <!-- checkpoint ladder: three nested checkpoints of one family -->
+  <rect x="70" y="196" width="330" height="300" rx="16" fill="url(#sq1)" stroke="#a78bfa" stroke-opacity="0.75" stroke-width="2"/>
+  <text x="92" y="232" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold" fill="#c9b6ff">1.02T total</text>
+  <text x="92" y="258" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#8b949e">42B activated · 1M context</text>
+
+  <rect x="100" y="286" width="240" height="170" rx="14" fill="url(#sq2)" stroke="#00d2ff" stroke-opacity="0.8" stroke-width="2"/>
+  <text x="120" y="320" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" fill="#8fe6ff">309B total</text>
+  <text x="120" y="344" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">15B activated</text>
+
+  <rect x="130" y="366" width="140" height="70" rx="12" fill="url(#sq3)" stroke="#6bcf7f" stroke-opacity="0.85" stroke-width="2"/>
+  <text x="146" y="398" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#9fe8ad">9.4B SFT</text>
+  <text x="146" y="420" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">starter checkpoint</text>
+
+  <text x="70" y="540" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">same family, three hardware budgets</text>
+
+  <!-- the published loop: GRPO ring, arcs sized by where the money went -->
+  <circle cx="800" cy="330" r="104" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="26"/>
+  <circle cx="800" cy="330" r="104" fill="none" stroke="#00d2ff" stroke-opacity="0.9" stroke-width="26"
+          stroke-dasharray="275.2 380" stroke-dashoffset="0" transform="rotate(-90 800 330)"/>
+  <circle cx="800" cy="330" r="104" fill="none" stroke="#a78bfa" stroke-opacity="0.9" stroke-width="26"
+          stroke-dasharray="273.3 382" stroke-dashoffset="-275.2" transform="rotate(-90 800 330)"/>
+  <circle cx="800" cy="330" r="104" fill="none" stroke="#ffd93d" stroke-opacity="0.9" stroke-width="26"
+          stroke-dasharray="79.8 575" stroke-dashoffset="-548.5" transform="rotate(-90 800 330)"/>
+
+  <text x="800" y="318" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="bold" fill="#e6edf3" text-anchor="middle">GRPO</text>
+  <text x="800" y="346" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e" text-anchor="middle">1,568 prompts x 16</text>
+  <text x="800" y="368" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e" text-anchor="middle">rollouts per step</text>
+
+  <text x="802" y="176" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#8fe6ff" text-anchor="middle">rollout 43.8%</text>
+  <text x="640" y="470" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#c9b6ff" text-anchor="middle">training 43.5%</text>
+  <text x="1000" y="470" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffd93d" text-anchor="middle">grader 12.7%</text>
+
+  <text x="962" y="238" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#e6edf3">$2.6M Pro</text>
+  <text x="962" y="264" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold" fill="#e6edf3">$0.9M Flash</text>
+  <text x="962" y="292" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">published RL bill</text>
+
+  <text x="962" y="560" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">~7k RL tasks released</text>
+  <text x="962" y="584" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">5.84 GB is the smallest run</text>
+
+  <text x="1140" y="612" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#484f58" text-anchor="end">ml-ke.github.io</text>
+</svg>
