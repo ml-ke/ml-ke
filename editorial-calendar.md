@@ -1506,3 +1506,87 @@ no bare `&`, WebP confirmed 1200x630 VP8 (29 KB) and serves 200 on the live site
 4. New reusable anchor bank for this lane: MiMo-V2.6 release facts (above) + the "publish the loop"
    pattern (environments + verifiers + cost breakdown + tiny starter checkpoint) for future open-release
    posts; pair it with the HF-API licence/size probe block, which is stdlib-only and re-runnable.
+
+---
+
+## Publishing note — 2026-09-27 (Sun)
+
+**Post:** `_posts/2026-09-27-kv-cache-quantization-long-context.md` — slug `kv-cache-quantization-long-context`,
+permalink https://ml.co.ke/posts/kv-cache-quantization-long-context/ , commit `3f258ef`.
+
+**Lane:** B (tutorial / ML-engineering measurement). Sep 25 was Lane A, so B was next by alternation.
+Not a Tuesday. `.scheduled/` was EMPTY (healthy).
+
+**Technique:** sizing a KV cache from model geometry, then measuring its two independent failure modes —
+storage-axis quantization (K per-channel vs per-token, V per-token) and accumulator precision over a long
+contraction dimension — with three runnable blocks (one stdlib, two numpy).
+
+**Verified anchors (body-level):**
+- vLLM "The State of FP8 KV-Cache and Attention Quantization" (Apr 22 2026): 128k NIAH 91% BF16 -> **13% FP8**,
+  recovered to **89%** by two-level accumulation (flash-attention#104); root cause = imprecise FP32 accumulation
+  in Hopper FP8 Tensor Cores once the contraction dimension passes ~100K (also hit in DeepSeek-V3 training,
+  Fig 7(b)); reasoning cost 1-2 pts avg (Qwen3-30B-A3B-Thinking-2507, lowest recovery 97%), 0.7 pts on
+  Qwen3.5-27B (99% AIME25); per-token KV cost 54% of BF16 best case; sliding-window FP8 ITL slope 96% of BF16,
+  break-even >700k tokens; flags `--kv-cache-dtype fp8` and `--kv-cache-dtype-skip-layers sliding_window`;
+  head_dim>128 prefill still behind BF16; MRCR tracks baseline to 128k up to 1M prompts.
+- vLLM TurboQuant study (May 11 2026): FP8 is the recommended default (2x capacity, negligible loss; 2.6x burst
+  throughput on 4xH100 for Llama-3.3-70B); k8v4 only 2.4x and not worth the throughput loss; 4bit-nc practical;
+  k3v4-nc/3bit-nc "meaningful accuracy drops" on reasoning and very long context.
+- SOTAAZ (Sep 15 2026, A100 80GB, Qwen3-8B Q4_K_M 4.68 GiB, mainline 69320fe): q8_0 matches f16 perplexity and
+  cuts the 32K cache by **2.1 GiB**; prefill -3%/-4%, generation -6%; decode at 64K depth = **55% of f16**
+  (q4_0 50%); `q5_1` and `K q8_0/V q4_0` silently ran prefill on CPU at **43 / 62.7 tok/s**.
+- llama.cpp discussion #20969 (corrected figures): 128K ctx, Nemotron-3-Nano-30B-A3B — KV buffer 768 -> 408 MiB
+  (q8_0, -47%) -> 216 MiB (q4_0, -72%); prompt throughput unaffected; generation at ~110K 38.0 -> 25.0 -> 24.0 tok/s.
+- KIVI (ICML 2024, arXiv 2402.02750): K per-channel, V per-token, 2-bit, 2.6x less peak memory, up to 4x batch,
+  2.35-3.47x throughput. KVQuant (NeurIPS 2024, arXiv 2401.18079): <0.1 ppl degradation at 3-bit; 1M ctx on one
+  A100-80GB, 10M on 8 GPUs; ~1.7x speedup. H2O (NeurIPS 2023, arXiv 2306.14048): 20% heavy hitters, up to 29x/29x/3x
+  throughput vs DeepSpeed ZeRO-Inference / HF Accelerate / FlexGen, latency -1.9x.
+- Model geometry from Hub `config.json` (Llama-3.1-8B 32/8/128, Qwen3-8B 36/8/128, Mistral-7B 32/8/128,
+  gpt-oss-20b 24/8/64 + sliding_window 128, Llama-2-7B 32/32/128).
+
+**Own measurements (all quoted verbatim from fresh runs):** sizing table (128/144/48/512 KiB per token; 16.0 GiB at
+128k for Llama-3.1-8B); needle flips at a 0.5-logit margin **1/200 at 8-bit, 155/200 at 4-bit, 198/200 at 3-bit,
+200/200 at 2-bit**; K per-channel beats per-token at 8 and 4 bits but flips at 2 bits; V per-token wins at every
+width; a flat 131,072-token distribution sums to **0.001953** in a bf16 accumulator vs 1.000000 in fp32 and
+1.000000 two-level; ULP floors 8,388,608 / 1,024 / 256 tokens.
+
+**Word count:** 3,457 full / 2,398 code-excluded — inside the live sibling band (Sep 23 2,541/2,402,
+Sep 25 2,713/2,588) on the code-excluded count, with the full count above them because of three code blocks.
+
+**Verification:** no `post_url`, no `cover:` key, no `.png`; all 5 `/posts/` cross-links resolve; slug unique;
+cover SVG has no bare `&`; WebP confirmed 1200x630 VP8 (32 KB) and serves 200; `verify-post-code.py` ->
+"OK: all blocks ran"; a second checker paired every ```python fence with its quoted ```text block and asserted
+**byte-for-byte equality of stdout** on a fresh run (3/3 exact) — do this every time, it is stronger than
+"the code runs". Actions: run for `3f258ef7` = completed **success** (not superseded); permalink 200 on the
+first attempt; homepage lists the slug.
+
+**⚠️ Unpublished day — a real gap.** **Sep 26 (Sat) has NO post**: nothing was committed between the Sep 25
+calendar note (`40a17d0`) and this run, so the blog's daily run has a hole. Backfill it (weekends included)
+with a Lane A positive story, dated `2026-09-26 00:00:00 +0300`, written **directly to `_posts/`** (the
+`.scheduled/` queue dates forward and cannot backfill). Candidate Lane A anchors surfaced this run, both
+needing body-level verification and a topic-overlap check against the Sep 18 health-AI and Sep 23 Goalkeepers
+posts before use: (a) Africa Health-Tech Accelerator 2026 cohort call, Africa CDC / Africa Health ExCon,
+18 Sep 2026; (b) State of Open Source AI v1.1 (Sept 2026) on-device crop-diagnosis work in East Africa.
+Also re-check whether Sep 26's absence indicates a failed/skipped cron run, not just an empty queue.
+
+**Reusable cautions for the next session:**
+1. **Test the mechanism, not a plausible proxy.** The first accumulator model here summed a *weighted* average
+   (terms shrinking as 1/n), which measured **no error growth with context at all** (bf16 rel-L2 5.98e-03 at
+   2k vs 4.20e-03 at 256k) — the opposite of the published failure. The effect only appears when you test the
+   accumulator's dynamic range against **equal** terms. A null result on a synthetic model means go back to the
+   mechanism, not that the published failure is wrong.
+2. **Validate arithmetic against somebody's published measurement.** Our formula predicted a 2.115 GiB saving on
+   Qwen3-8B's 32K cache at q8_0; the A100 test measured 2.1 GiB. Cheap credibility for a sizing claim — do it
+   whenever a third-party number can sanity-check your own table.
+3. **Label a simulation as a simulation** in the intro and again beside the output, and hedge with the source's
+   own wording ("model of the accumulator, not Hopper silicon"). Keep the vendor's measured number as the anchor.
+4. Banked in the skill at `blog-drafting/references/kv-cache-quantization-bank.md` — reuse instead of re-deriving.
+
+**Next session actions:**
+1. **Sep 28 = Lane A** (last three: Sep 25 A, Sep 26 missing, Sep 27 B). Grep `_posts/` for the subject first.
+2. **Backfill Sep 26** to `_posts/` with the actual past date (see above) — do this before or with tomorrow's post.
+3. `tuesday-ai-update` owns **Sep 29**; do not stage a Tuesday file.
+4. `.scheduled/` stays EMPTY — the self-contained lane needs nothing staged. An empty queue is healthy here;
+   only a missing *current-day* post is a gap.
+5. System `python3` (3.14) has **no numpy** — run every numpy demo with `uv run --with=numpy python3`. Blocks
+   should still each import their own dependencies and stay self-contained (the verifier runs them isolated).
