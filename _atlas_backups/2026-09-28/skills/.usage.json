@@ -288,14 +288,14 @@
     "created_at": "2026-06-02T19:43:12.973010+00:00",
     "created_by": null,
     "last_patched_at": "2026-09-27T12:44:41.952919+00:00",
-    "last_reused_patch_generation": 23,
-    "last_used_at": "2026-09-27T12:33:50.160432+00:00",
+    "last_reused_patch_generation": 24,
+    "last_used_at": "2026-09-28T11:34:01.432630+00:00",
     "last_viewed_at": "2026-09-20T12:59:12.966512+00:00",
     "patch_count": 154,
     "patch_generation": 24,
     "pinned": false,
     "state": "active",
-    "use_count": 201,
+    "use_count": 202,
     "view_count": 98
   },
   "box": {
