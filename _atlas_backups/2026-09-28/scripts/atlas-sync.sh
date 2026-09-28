@@ -344,11 +344,14 @@ if scan_for_secrets "$ATLAS_DIR" 2>/dev/null; then
     echo "No new changes to ATLAS repo"
   else
     git commit -m "ATLAS auto-sync: $DATE"
-    if git push origin main 2>/dev/null; then
+    PUSH_LOG=$(mktemp)
+    if git push origin main 2>"$PUSH_LOG"; then
       echo "* Pushed to github.com:BongweKE/ATLAS.git"
     else
-      echo "WARNING: Push failed (network or auth) -- changes committed locally"
+      echo "WARNING: Push failed (network or auth) -- changes committed locally. Reason:"
+      tail -5 "$PUSH_LOG" | while IFS= read -r l; do echo "    $l"; done
     fi
+    rm -f "$PUSH_LOG"
   fi
 else
   echo ""
@@ -371,7 +374,14 @@ if [ -d "$MLKE_DIR" ] && [ "$SKIP_GIT_PUSH" = false ]; then
   git add _atlas_backups/$DATE/ 2>/dev/null
   if ! git diff --cached --quiet 2>/dev/null; then
     git commit -m "ATLAS backup: $DATE" 2>/dev/null
-    git push origin main 2>/dev/null && echo "* Pushed to ml-ke repo (legacy)" || true
+    MLKE_PUSH_LOG=$(mktemp)
+    if git push origin main 2>"$MLKE_PUSH_LOG"; then
+      echo "* Pushed to ml-ke repo (legacy)"
+    else
+      echo "WARNING: ml-ke push failed -- committed locally. Reason:"
+      tail -5 "$MLKE_PUSH_LOG" | while IFS= read -r l; do echo "    $l"; done
+    fi
+    rm -f "$MLKE_PUSH_LOG"
   fi
 fi
 
