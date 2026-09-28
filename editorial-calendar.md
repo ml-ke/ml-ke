@@ -1590,3 +1590,67 @@ Also re-check whether Sep 26's absence indicates a failed/skipped cron run, not 
    only a missing *current-day* post is a gap.
 5. System `python3` (3.14) has **no numpy** — run every numpy demo with `uv run --with=numpy python3`. Blocks
    should still each import their own dependencies and stay self-contained (the verifier runs them isolated).
+
+---
+
+## Publishing note — 2026-09-28 (Lane A) + 2026-09-26 backfill (Lane A)
+
+**Two posts in one commit** (`b0f7db7`): today's scheduled Lane A post, plus the Sep 26 backfill the Sep 27
+note asked for. The Sep 26 hole is now closed; the blog has no missing calendar day between Sep 18 and Sep 28.
+
+**Post 1 — 2026-09-28 — `gates-google-farmer-ai-stack`** (Lane A, positive)
+- Anchor: Gates Foundation + Google, 18 Sep 2026 — AI agricultural tooling scaled from 50M to 200M
+  smallholder farmers across Sub-Saharan Africa and South Asia, $100M combined funding plus Google
+  engineering support. Primary: gatesfoundation.org press release (fetched at body level); Google's own
+  blog post (22 Sep, body level); secondaries: The Hindu BusinessLine (6 Sep, ALU/AMED + Terrastack +
+  CarbonFarm + geoAI4stats, body level), cryptobriefing (delivery design), completeaitraining.
+- Differentiation stated in the intro vs the crowded agriculture shelf: Jun 27 `ai-for-agriculture`
+  (disease detection/yield), Jul 30 `ai-africa-agriculture-climate`, Aug 3 `ai-industrial-scale-dangote`,
+  Sep 23 `goalkeepers-2026-ai-equity-pledge` (reading the funding numbers). This post is the delivery
+  stack: sub-metre field boundaries, ALU ramp into Kenya/Uganda/Ghana/Rwanda/Zambia/Nigeria, 40+ language
+  datasets, TomorrowNow forecasting, CGIAR seed work.
+- **Fact-check catch worth reusing:** the widely repeated "140 million hectares" figure is **Terrastack's**
+  platform built on the ALU/AMED APIs, not a Google deployment count (cryptobriefing states it loosely;
+  Hindu BusinessLine and Economic Times attribute it to Terrastack). Published with the correct owner.
+- Also published: Google's own lead describes the existing ALU-based system as "looking backwards"
+  (historic crop identification with confidence), so the forecasting promise rides on TomorrowNow — a
+  different component. Keep that separation in any future agriculture post.
+- Word count: 2,282 full / 2,120 code-excluded (live band 2,330–2,588 code-excluded; landed ~9% under the
+  low end — acceptable, but the band's low end is now ~2,330, not the 1,074–1,421 figures in the skill).
+
+**Post 2 — 2026-09-26 — `alphagenome-atlas-variant-map`** (Lane A, backfill)
+- Anchor: DeepMind **AlphaGenome Atlas**, 8 Sep 2026 — predictions for 9 billion single-nucleotide
+  variants, 1-petabyte dataset (>30× the AlphaFold Database), new AVI ranking score. Primary: DeepMind
+  blog (body level); secondaries: HPCwire/AIwire (body level — 22% more non-coding associations across
+  54,000+ UK Biobank participants; the DNM1 splice-site variant with the Broad Institute/GREGoR Consortium,
+  later validated; free for research, commercial via Google Cloud "coming soon"), Nature news, MarkTechPost,
+  resultsense. Model architecture details verified from the *Nature* AlphaGenome paper body (1 Mb input,
+  5,930 human tracks, 11 output types, 131-kb chunks, distillation on mutationally perturbed sequences).
+- Differentiation: no prior genomics post exists (grep for genome/alphagenome/variant effect returned
+  nothing). Written as a mechanism explainer, not a press summary: the significance wall, the grouping
+  mechanism, and the transferable "precompute → distil to a ranking number → test in informed groups"
+  pattern (ties back to Sep 24 `embedding-compression-audit` and Sep 16 `ai-designed-physics-experiments`).
+- Word count: 2,848 full / 2,479 code-excluded — inside the live band.
+
+**Verification (both posts):** no `post_url`, no `cover:` key, no `.png` image paths; all 7 `/posts/` links
+resolve; slug uniqueness confirmed against `_posts/`; both covers hand-drawn (no reuse — plot mosaic with
+detected vs invisible boundaries; variant-score matrix with magnifier, no helix, since
+`cover-automated-science-guardrails.svg` already owns the DNA-helix metaphor); SVG amp check clean; both
+WebP confirmed 1200x630 VP8 (33 KB / 22 KB); `verify-post-code.py` → "OK: all blocks ran" for both, and a
+second checker asserted **byte-for-byte equality of stdout** against the quoted ```text blocks (1/1 exact
+each). Actions: run for `b0f7db7d` in progress at check time; post blobs confirmed on origin.
+
+**Citations at snippet level only (note for future sessions):** `sciencedirect.com` returns 403 to curl
+(both AJHG items) and `hpcwire.com` returns 403 to raw curl but worked via `extract-web-text.py`. The
+AJHG papers are cited as further reading only — no findings are quoted from them. The SKAT claim is
+phrased as a pointer, not a measured comparison.
+
+**Next session actions:**
+1. **Sep 29 = `tuesday-ai-update` cron owns the day** — do not stage or write a Tuesday post.
+2. **Sep 30 = Lane B** (tutorial): last three are Sep 26 A, Sep 27 B, Sep 28 A.
+3. `.scheduled/` stays EMPTY — self-contained lane needs nothing staged. Both posts this run were written
+   directly to `_posts/` (Sep 26 backfilled with its own past date, never via the queue).
+4. numpy demos: `uv run --with=numpy python3` (system python3 has no numpy). Keep every block
+   self-contained — the verifier runs each fence in an isolated interpreter.
+5. **Reusable caution:** before quoting any scale figure from secondary coverage, check who owns it
+   (the 140M-hectare case). Secondary aggregators routinely re-attribute a partner's number to the funder.
