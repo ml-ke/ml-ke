@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-width="1" opacity="0.03">
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+    <path d="M100 0V630M200 0V630M300 0V630M400 0V630M500 0V630M600 0V630M700 0V630M800 0V630M900 0V630M1000 0V630M1100 0V630"/>
+  </g>
+
+  <!-- satellite swath -->
+  <g opacity="0.55">
+    <path d="M60 150 L1140 100" stroke="#00d2ff" stroke-width="2" stroke-dasharray="10 8"/>
+    <path d="M60 210 L1140 160" stroke="#00d2ff" stroke-width="1" stroke-dasharray="4 10" opacity="0.6"/>
+  </g>
+  <circle cx="930" cy="118" r="17" fill="none" stroke="#00d2ff" stroke-width="2"/>
+  <path d="M930 96 v14 M930 126 v14 M908 118 h14 M938 118 h14" stroke="#00d2ff" stroke-width="2"/>
+
+  <!-- plot mosaic: detected (green) vs still invisible (grey dashed) -->
+  <g>
+    <!-- detected boundaries -->
+    <path d="M300 300 L470 288 L486 372 L312 386 Z" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M470 288 L640 278 L652 358 L486 372 Z" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M312 386 L486 372 L500 452 L326 466 Z" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M486 372 L652 358 L664 438 L500 452 Z" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <!-- still invisible -->
+    <path d="M660 250 L860 240 L872 320 L672 332 Z" fill="none" stroke="#8b949e" stroke-width="2" stroke-dasharray="7 7" opacity="0.7"/>
+    <path d="M672 332 L872 320 L884 400 L684 414 Z" fill="none" stroke="#8b949e" stroke-width="2" stroke-dasharray="7 7" opacity="0.5"/>
+    <path d="M352 470 L560 456 L572 536 L364 550 Z" fill="none" stroke="#8b949e" stroke-width="2" stroke-dasharray="7 7" opacity="0.45"/>
+    <!-- detected fill hints -->
+    <path d="M300 300 L470 288 L486 372 L312 386 Z" fill="#6bcf7f" opacity="0.07"/>
+    <path d="M486 372 L652 358 L664 438 L500 452 Z" fill="#6bcf7f" opacity="0.07"/>
+  </g>
+
+  <!-- rain + soil/wifi pulse -->
+  <g transform="translate(120,330)">
+    <path d="M0 30 a34 30 0 0 1 66 -8 a26 22 0 0 1 34 22 a22 20 0 0 1 -22 20 h-88 a20 18 0 0 1 -20 -18 a18 16 0 0 1 30 -16 z"
+          fill="none" stroke="#00d2ff" stroke-width="2.5" opacity="0.85"/>
+    <path d="M22 78 l-8 16 M52 78 l-8 16 M82 78 l-8 16" stroke="#00d2ff" stroke-width="2.5" opacity="0.7"/>
+  </g>
+
+  <!-- voice advisory bubble (non-literacy channel) -->
+  <g transform="translate(880,470)">
+    <rect x="0" y="0" width="230" height="86" rx="16" fill="none" stroke="#ffd93d" stroke-width="2.5"/>
+    <path d="M40 86 l-10 26 l34 -26" fill="none" stroke="#ffd93d" stroke-width="2.5"/>
+    <path d="M26 43 q0 -20 20 -20 q20 0 20 20 q0 20 -20 20 q-20 0 -20 -20 z" fill="none" stroke="#ffd93d" stroke-width="2" opacity="0.9"/>
+    <path d="M86 36 h40 M86 50 h60 M86 64 h34" stroke="#ffd93d" stroke-width="3" opacity="0.85"/>
+  </g>
+
+  <!-- labels -->
+  <text x="70" y="72" fill="#ffffff" font-size="40" font-weight="700">Four Times the Fields</text>
+  <text x="70" y="112" fill="#a9b1bd" font-size="20">The delivery stack behind the Google&#8211;Gates farmer AI plan</text>
+
+  <text x="300" y="252" fill="#6bcf7f" font-size="19" font-weight="700">DETECTED BOUNDARIES</text>
+  <text x="662" y="232" fill="#8b949e" font-size="19">INVISIBLE PLOTS</text>
+
+  <text x="70" y="500" fill="#00d2ff" font-size="26" font-weight="700">sub-metre field mapping</text>
+  <text x="70" y="534" fill="#6bcf7f" font-size="26" font-weight="700">40+ African languages</text>
+  <text x="70" y="568" fill="#ffd93d" font-size="26" font-weight="700">voice, not data plans</text>
+
+  <text x="880" y="606" fill="#ffffff" font-size="19" font-weight="700">200,000,000 fields</text>
+  <text x="700" y="606" fill="#8b949e" font-size="15">ml-ke.github.io</text>
+</svg>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="avi" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1f2a3a"/>
+      <stop offset="55%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#ffd93d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg2)"/>
+  <g stroke="#ffffff" stroke-width="1" opacity="0.03">
+    <path d="M0 105H1200M0 210H1200M0 315H1200M0 420H1200M0 525H1200"/>
+    <path d="M150 0V630M300 0V630M450 0V630M600 0V630M750 0V630M900 0V630M1050 0V630"/>
+  </g>
+
+  <!-- chromosome strip -->
+  <g>
+    <text x="70" y="150" fill="#8b949e" font-size="16">chromosomes 1&#8211;13 &#183; 1 Mb windows</text>
+    <g transform="translate(70,164)" fill="#243040">
+      <rect x="0" y="0" width="34" height="16" rx="4" fill="#a78bfa" opacity="0.55"/>
+      <rect x="48" y="0" width="38" height="16" rx="4" fill="#a78bfa" opacity="0.30"/>
+      <rect x="100" y="0" width="30" height="16" rx="4" fill="#a78bfa" opacity="0.22"/>
+      <rect x="144" y="0" width="42" height="16" rx="4" fill="#a78bfa" opacity="0.18"/>
+      <rect x="200" y="0" width="28" height="16" rx="4" fill="#a78bfa" opacity="0.16"/>
+      <rect x="242" y="0" width="52" height="16" rx="4" fill="#a78bfa" opacity="0.13"/>
+      <rect x="308" y="0" width="26" height="16" rx="4" fill="#a78bfa" opacity="0.11"/>
+      <rect x="348" y="0" width="44" height="16" rx="4" fill="#a78bfa" opacity="0.10"/>
+      <rect x="406" y="0" width="22" height="16" rx="4" fill="#a78bfa" opacity="0.09"/>
+    </g>
+    <text x="530" y="178" fill="#8b949e" font-size="16">... a 1-petabyte table of scores</text>
+  </g>
+
+  <!-- variant score matrix -->
+  <g transform="translate(70,225)">
+    <g fill="#a78bfa">
+      <rect x="0" y="0" width="14" height="14" rx="3" opacity="0.22"/><rect x="22" y="0" width="14" height="14" rx="3" opacity="0.30"/>
+      <rect x="44" y="0" width="14" height="14" rx="3" opacity="0.16"/><rect x="66" y="0" width="14" height="14" rx="3" opacity="0.24"/>
+      <rect x="88" y="0" width="14" height="14" rx="3" opacity="0.18"/><rect x="110" y="0" width="14" height="14" rx="3" opacity="0.26"/>
+      <rect x="132" y="0" width="14" height="14" rx="3" opacity="0.20"/><rect x="154" y="0" width="14" height="14" rx="3" opacity="0.14"/>
+      <rect x="176" y="0" width="14" height="14" rx="3" opacity="0.29"/><rect x="198" y="0" width="14" height="14" rx="3" opacity="0.17"/>
+      <rect x="220" y="0" width="14" height="14" rx="3" opacity="0.25"/><rect x="242" y="0" width="14" height="14" rx="3" opacity="0.19"/>
+      <rect x="264" y="0" width="14" height="14" rx="3" opacity="0.23"/><rect x="286" y="0" width="14" height="14" rx="3" opacity="0.15"/>
+      <rect x="308" y="0" width="14" height="14" rx="3" opacity="0.27"/><rect x="330" y="0" width="14" height="14" rx="3" opacity="0.21"/>
+      <rect x="352" y="0" width="14" height="14" rx="3" opacity="0.18"/><rect x="374" y="0" width="14" height="14" rx="3" opacity="0.24"/>
+      <rect x="396" y="0" width="14" height="14" rx="3" opacity="0.16"/><rect x="418" y="0" width="14" height="14" rx="3" opacity="0.28"/>
+      <rect x="0" y="22" width="14" height="14" rx="3" opacity="0.19"/><rect x="22" y="22" width="14" height="14" rx="3" opacity="0.13"/>
+      <rect x="44" y="22" width="14" height="14" rx="3" opacity="0.26"/><rect x="66" y="22" width="14" height="14" rx="3" opacity="0.21"/>
+      <rect x="88" y="22" width="14" height="14" rx="3" opacity="0.17"/><rect x="110" y="22" width="14" height="14" rx="3" opacity="0.22"/>
+      <rect x="132" y="22" width="14" height="14" rx="3" opacity="0.30"/><rect x="154" y="22" width="14" height="14" rx="3" opacity="0.15"/>
+      <rect x="176" y="22" width="14" height="14" rx="3" opacity="0.24"/><rect x="198" y="22" width="14" height="14" rx="3" opacity="0.18"/>
+      <rect x="220" y="22" width="14" height="14" rx="3" opacity="0.21"/><rect x="242" y="22" width="14" height="14" rx="3" opacity="0.27"/>
+      <rect x="264" y="22" width="14" height="14" rx="3" opacity="0.14"/><rect x="286" y="22" width="14" height="14" rx="3" opacity="0.22"/>
+      <rect x="308" y="22" width="14" height="14" rx="3" opacity="0.19"/><rect x="330" y="22" width="14" height="14" rx="3" opacity="0.25"/>
+      <rect x="352" y="22" width="14" height="14" rx="3" opacity="0.16"/><rect x="374" y="22" width="14" height="14" rx="3" opacity="0.23"/>
+      <rect x="396" y="22" width="14" height="14" rx="3" opacity="0.20"/><rect x="418" y="22" width="14" height="14" rx="3" opacity="0.17"/>
+      <rect x="0" y="44" width="14" height="14" rx="3" opacity="0.25"/><rect x="22" y="44" width="14" height="14" rx="3" opacity="0.18"/>
+      <rect x="44" y="44" width="14" height="14" rx="3" opacity="0.14"/><rect x="66" y="44" width="14" height="14" rx="3" opacity="0.27"/>
+      <rect x="88" y="44" width="14" height="14" rx="3" opacity="0.22"/><rect x="110" y="44" width="14" height="14" rx="3" opacity="0.19"/>
+      <rect x="132" y="44" width="14" height="14" rx="3" opacity="0.16"/><rect x="154" y="44" width="14" height="14" rx="3" opacity="0.23"/>
+      <rect x="176" y="44" width="14" height="14" rx="3" opacity="0.21"/><rect x="198" y="44" width="14" height="14" rx="3" opacity="0.15"/>
+      <rect x="220" y="44" width="14" height="14" rx="3" opacity="0.28"/><rect x="242" y="44" width="14" height="14" rx="3" opacity="0.20"/>
+      <rect x="264" y="44" width="14" height="14" rx="3" opacity="0.17"/><rect x="286" y="44" width="14" height="14" rx="3" opacity="0.24"/>
+      <rect x="308" y="44" width="14" height="14" rx="3" opacity="0.13"/><rect x="330" y="44" width="14" height="14" rx="3" opacity="0.26"/>
+      <rect x="352" y="44" width="14" height="14" rx="3" opacity="0.19"/><rect x="374" y="44" width="14" height="14" rx="3" opacity="0.22"/>
+      <rect x="396" y="44" width="14" height="14" rx="3" opacity="0.18"/><rect x="418" y="44" width="14" height="14" rx="3" opacity="0.25"/>
+      <rect x="0" y="66" width="14" height="14" rx="3" opacity="0.17"/><rect x="22" y="66" width="14" height="14" rx="3" opacity="0.24"/>
+      <rect x="44" y="66" width="14" height="14" rx="3" opacity="0.21"/><rect x="66" y="66" width="14" height="14" rx="3" opacity="0.16"/>
+      <rect x="88" y="66" width="14" height="14" rx="3" opacity="0.29"/><rect x="110" y="66" width="14" height="14" rx="3" opacity="0.18"/>
+      <rect x="132" y="66" width="14" height="14" rx="3" opacity="0.22"/><rect x="154" y="66" width="14" height="14" rx="3" opacity="0.15"/>
+      <rect x="176" y="66" width="14" height="14" rx="3" opacity="0.26"/><rect x="198" y="66" width="14" height="14" rx="3" opacity="0.20"/>
+      <rect x="220" y="66" width="14" height="14" rx="3" opacity="0.14"/><rect x="242" y="66" width="14" height="14" rx="3" opacity="0.23"/>
+      <rect x="264" y="66" width="14" height="14" rx="3" opacity="0.19"/><rect x="286" y="66" width="14" height="14" rx="3" opacity="0.27"/>
+      <rect x="308" y="66" width="14" height="14" rx="3" opacity="0.16"/><rect x="330" y="66" width="14" height="14" rx="3" opacity="0.21"/>
+      <rect x="352" y="66" width="14" height="14" rx="3" opacity="0.24"/><rect x="374" y="66" width="14" height="14" rx="3" opacity="0.18"/>
+      <rect x="396" y="66" width="14" height="14" rx="3" opacity="0.22"/><rect x="418" y="66" width="14" height="14" rx="3" opacity="0.15"/>
+    </g>
+    <!-- the bright high-impact cell -->
+    <rect x="418" y="66" width="14" height="14" rx="3" fill="#ffd93d" opacity="0.95"/>
+    <rect x="308" y="44" width="14" height="14" rx="3" fill="#a78bfa" opacity="0.85"/>
+    <rect x="132" y="22" width="14" height="14" rx="3" fill="#a78bfa" opacity="0.8"/>
+  </g>
+
+  <!-- magnifier over the bright cell -->
+  <g>
+    <circle cx="452" cy="300" r="46" fill="none" stroke="#00d2ff" stroke-width="3"/>
+    <path d="M484 332 L524 372" stroke="#00d2ff" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="437" cy="285" r="60" fill="none" stroke="#00d2ff" stroke-width="1.2" opacity="0.35"/>
+  </g>
+
+  <!-- AVI legend -->
+  <g transform="translate(660,470)">
+    <text x="0" y="-12" fill="#8b949e" font-size="16">AlphaGenome Variant Impact score</text>
+    <rect x="0" y="0" width="330" height="16" rx="8" fill="url(#avi)"/>
+    <text x="0" y="40" fill="#8b949e" font-size="14">benign</text>
+    <text x="268" y="40" fill="#ffd93d" font-size="14">rank first</text>
+  </g>
+
+  <!-- labels -->
+  <text x="660" y="250" fill="#ffffff" font-size="40" font-weight="700">Nine Billion</text>
+  <text x="660" y="292" fill="#ffffff" font-size="40" font-weight="700">Variants, One Atlas</text>
+  <text x="660" y="332" fill="#a9b1bd" font-size="19">Precomputed molecular effects &#183; free for research</text>
+  <text x="660" y="366" fill="#a78bfa" font-size="19" font-weight="700">Model proposes. Bench confirms.</text>
+
+  <text x="70" y="600" fill="#8b949e" font-size="15">ml-ke.github.io</text>
+</svg>
