@@ -1705,3 +1705,52 @@ phrased as a pointer, not a measured comparison.
   3. There is no positive-AI anchor bank yet. Consider creating
      `references/positive-ai-incident-bank.md` (health/agriculture/education/accessibility wins with 2+ body
      sources each) so Lane A days stop starting from a cold search.
+
+
+## Publishing note — 2026-10-01 (Lane A positive story)
+
+**Post — 2026-10-01 — `who-prequalification-cad-tb-ai-screening`** (Lane A, positive/useful)
+- Lane check: last three substantive posts were Sep 28 (A), Sep 30 (B) → Oct 1 = **Lane A**. `.scheduled/` was
+  EMPTY (legacy queue retired), so the post went straight to `_posts/` with today's date at `00:00:00 +0300`.
+- Story: **WHO expanded its prequalification programme for medical devices on 25 September 2026 to include
+  computer-aided detection software for TB screening (CAD-TB)** — the first digital health technology to enter a
+  list UN agencies, donors and ministries procure from. Same announcement transferred condoms/IUD prequalification
+  from UNFPA to WHO and moved male circumcision devices into the general framework.
+- Differentiation stated in the intro (topic-overlap rule): Sep 18 `ai-primary-care-class-iib-ce` read one company's
+  EU Class IIb CE mark; Jul 26 `ai-african-healthcare` surveyed where tools run. This post covers the procurement
+  gate + post-go-live monitoring, and its practical checklist is a *monitoring* list (after go-live), not the
+  Sep 18 pre-signature procurement list.
+- Verified facts and figures (all body-fetched): WHO release body including Dr Sylvie Briand quote, "70% of
+  countries report inadequate or weak regulatory systems", MMC ~60% HIV risk reduction, PQ list audience;
+  WHO MDV prequal page (CAD-TB as "pathfinder", March 2021 guidelines first AI software in a WHO TB guideline,
+  TSS performance criteria); WHO 11 Jun 2025 write-up (2024 open call, FIND independent validation platform, TAG
+  review, **six products** approved, ages 15+ only, confirmatory testing required, Dr Tereza Kasaeva quote);
+  NEJM AI prospective multi-site validation (1,910 analysed, 36% HIV+, 11% TB+, TB AI **87%/70%** at
+  high-sensitivity threshold vs radiologists 76%/82%, neither met the 90% WHO sensitivity target); Nigeria
+  community programme in BMC Global and Public Health (9,585 screened, 3,166 flagged 33.0%, 1,336 presumptive,
+  1,123 sputum 84.1%, 204 Xpert+ , 194 started 95.1%, 2,367 CVD/CRD findings with only **12% referral
+  completion**); PLOS Digital Health version comparison (12,890 CXRs; CAD4TB 0.823→0.903, qXR 0.872→0.906 across
+  one version step; older versions missed the WHO TPP); IJTLD Sep 2026 meta-reanalysis (**incorporation bias**:
+  86% (83–90) symptom-positive vs 94% (92–96), pooled difference 6% (4–8)); WHO TB fact sheet + Global TB Report
+  2025 factsheet PDF (10.7M fell ill, 8.3M diagnosed, ~2.4M missed, African Region 25% of new cases, Nigeria 4.8%).
+- Code: two stdlib-only blocks, both executed from the file — (1) Nigeria cascade read-out (21.3 confirmed per
+  1,000 screened, NNS 47); (2) audit sizing — Wilson CIs by audit size (20/30/50/100/200 confirmed cases) plus
+  **83 cases** needed to detect a 90%→80% sensitivity drop at 80% power; a 30-case audit cannot separate 70% from
+  95%. Quoted ```text blocks match stdout byte-for-byte.
+- Word count: 3,265 full / **2,686 code-excluded**. Measured the last seven siblings with the same script:
+  Sep 23 2,402 · Sep 24 2,782 · Sep 25 2,588 · Sep 26 2,479 · Sep 27 2,398 · Sep 28 2,279 · Sep 30 2,330.
+  Live band ≈ 2,280–2,780, so 2,686 is in band (no trim pass needed). **Recalibrate on this list next time —
+  the "2,300–2,600" figure now circulating is narrow.**
+- Verification: `verify-post-code.py` → "OK: all blocks ran"; no `post_url`, no `cover:` key, no `.png` image
+  paths; all 4 `/posts/` links resolve; slug unique; cover SVG amp-check clean; WebP 1200×630 VP8, 31 KB.
+- Actions: run for `593dffe` queued at first check; post blob confirmed on origin (`git ls-tree origin/main`).
+- **Next session actions:**
+  1. Oct 2 = **Lane B** (tutorial): last substantive posts are Oct 1 A, Sep 30 B → alternate back to B. Must run
+     its code and quote stdout; keep every block self-contained (isolated interpreter).
+  2. `.scheduled/` stays EMPTY — the self-contained lane is the pipeline; an empty queue is now normal, not a gap.
+  3. Positive-AI anchors are now banked in the skill at
+     `references/positive-ai-incident-bank.md` (added today: WHO PQ/CAD-TB, Meta AI Academy Kenya, African Next
+     Voices, Tanzania SAFARI AI ultrasound, Kenya smart classrooms, Butterfly gestational-age AI, AI Diagnostics
+     R85m round) — start Lane A days there before searching cold.
+  4. Health/life-science posts are now dense in the last two weeks (Sep 18, Sep 26, Oct 1). For the next Lane A
+     day prefer agriculture, education, accessibility, energy or open-release anchors from the bank.
