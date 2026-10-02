@@ -1754,3 +1754,56 @@ phrased as a pointer, not a measured comparison.
      R85m round) — start Lane A days there before searching cold.
   4. Health/life-science posts are now dense in the last two weeks (Sep 18, Sep 26, Oct 1). For the next Lane A
      day prefer agriculture, education, accessibility, energy or open-release anchors from the bank.
+
+## Publishing note — 2026-10-02 (Lane B tutorial)
+
+**Post — 2026-10-02 — `speculative-decoding-acceptance-rule`** (Lane B, useful/tutorial)
+- Lane check: last two substantive posts were Sep 30 (B) and Oct 1 (A) → Oct 2 = **Lane B**. `.scheduled/` was
+  EMPTY (legacy queue retired), so the post went straight to `_posts/` with today's date at `00:00:00 +0300`.
+- Technique: **speculative decoding end-to-end** — the acceptance identity `beta = sum_x min(p, q)`, the
+  capped-geometric tokens-per-pass formula, the gamma/cost-ratio speedup surface, a real draft/target audit on a
+  small corpus, and the batching failure modes. Differentiation stated in the intro: Sep 27 `kv-cache-quantization`
+  is the memory lever, Sep 21 `constrained-decoding-token-mask` shapes which tokens are legal — this one is the
+  decode-loop latency lever. Only *passing mentions* of speculative decoding exist elsewhere (Sep 25 MiMo spec
+  table, Aug 1 self-hosting), so no topic collision.
+- Code (3 stdlib-only blocks, all executed from the file; output quoted verbatim):
+  1. Losslessness harness — acceptance identity 0.8806 measured vs 0.8800 predicted; tokens/target pass 3.9387 vs
+     3.9356 at gamma=4; TV to p 0.00144 (speculative) vs 0.00552 (plain AR baseline); chi-square 2.18, 5 dof,
+     p = 0.824 (incomplete-gamma routine included so no SciPy needed). Seeded → byte-identical across reruns.
+  2. Speedup surface — best gamma per (alpha, c); the losing region (alpha 0.40, c 0.50 → 0.93x at gamma=1,
+     0.33x at gamma=8); the same alpha at c = 0.05 → 1.42x, i.e. cost ratio dominates acceptance.
+  3. Real-corpus draft audit — 297-token corpus, unigram draft beta 0.706 / observed 0.717 vs bigram draft beta
+     0.798 / observed 0.791 (580 trials), implied 1.38x vs 1.55x at c = 0.3.
+- **Bug caught by an assertion (worth reusing):** the first version of block 3 read context counts from the wrong
+  n-gram table, so the conditional distributions summed > 1 and `sum min(p,q)` exceeded 1.0 — nonsensical speedups.
+  The fix is the printed `assert abs(sum(dist) - 1) < 1e-9` on every position; keep that assert in any future
+  acceptance-measurement code.
+- Sources (all body-fetched, not snippet-level): Leviathan et al. arXiv:2211.17192 (Algorithm 1, identity, formula,
+  2-3x T5-XXL); Chen et al. arXiv:2302.01318 (2-2.5x Chinchilla 70B); Chordiya 2026 arXiv:2607.17283 (1.61x at
+  K=6, acceptance 69.7% → 37.8%, 3 of 5 configs decelerate, chi-square 162.5, dof 200, p 0.976, ~9,200 tokens);
+  Zhang et al. EMNLP 2026 Findings arXiv:2510.22876 v4 (ragged-tensor silent corruption; EXSPEC 3x at batch 8,
+  95% exact match); EAGLE-3 arXiv:2503.01840 (6.5x single stream, 1.38x throughput at batch 64 in SGLang);
+  PyTorch/IBM Hitchhiker's Guide (paged-attention change for batched verification, 2x/3x in internal production);
+  vLLM speculative-decoding docs (method table, `--speculative-config` schema, ngram/suffix keys, TLI
+  `use_heterogeneous_vocab`, lossless-guarantee tests, "medium-to-low QPS" framing, pipeline-parallel
+  incompatibility, per-request acceptance metrics); llama.cpp `docs/speculative.md` (`--spec-type`,
+  `--spec-draft-n-max` default 3, `--spec-synth-rates` with the "not valid model output" warning); LM Studio
+  0.3.10 blog (same-family benchmark tables 29.65 → 50.91 tok/s, 2.43x code-only, rejection warning).
+- Word count: 3,916 full / **2,460 code-excluded**. Sibling calibration with the same script: Sep 26 2,848/2,479 ·
+  Sep 27 3,457/2,398 · Sep 28 2,441/2,279 · Sep 30 3,866/2,330 · Oct 1 3,265/2,686. Code-excluded is mid-band;
+  full is at the top because this post carries three code blocks.
+- Verification: `verify-post-code.py` → "OK: all blocks ran"; no `post_url`, no `cover:` key, no `.png` image
+  paths; all 6 `/posts/` links resolve; slug unique; cover SVG amp-check clean (only valid entities); WebP
+  1200×630 VP8, 40 KB.
+- Actions: run for `f125cff7` **completed success** (no cancelled/superseded run this time); post blob confirmed on
+  origin; `https://ml.co.ke/posts/speculative-decoding-acceptance-rule/` returned **200** on the 4th attempt
+  (~60 s; the first three 404s are normal CDN lag).
+- **Next session actions:**
+  1. Oct 3 = **Lane A** (positive story): last two are Oct 1 A, Oct 2 B → alternate back to A... note the sequence
+     Oct 1 A, Oct 2 B means Oct 3 = A. Start from the skill's `references/positive-ai-incident-bank.md` before
+     searching cold, and prefer agriculture / education / accessibility / energy anchors since health and
+     life-science posts are dense (Sep 18, Sep 26, Oct 1).
+  2. `.scheduled/` stays EMPTY — the self-contained lane is the pipeline; an empty queue is normal, not a gap.
+  3. New reusable asset from today: the losslessness harness and the `sum min(p,q)` assert are the template for any
+     future inference-optimization post that claims "same output, faster" (candidate follow-ups: MTP heads,
+     Medusa-style tree drafting, or speculator *training* for a same-family pair).
