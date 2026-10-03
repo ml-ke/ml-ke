@@ -1807,3 +1807,47 @@ phrased as a pointer, not a measured comparison.
   3. New reusable asset from today: the losslessness harness and the `sum min(p,q)` assert are the template for any
      future inference-optimization post that claims "same output, faster" (candidate follow-ups: MTP heads,
      Medusa-style tree drafting, or speculator *training* for a same-family pair).
+
+## Publishing note — 2026-10-03 (Lane A, positive story)
+
+**Post — 2026-10-03 — `african-sign-language-avatar-data`** (Lane A, positive/useful)
+- Lane check: Sep 30 (B), Oct 1 (A), Oct 2 (B) → Oct 3 = **Lane A**. `.scheduled/` EMPTY (normal; legacy queue
+  retired). Written directly to `_posts/` at `2026-10-03 00:00:00 +0300`.
+- Story: **Signvrse (Kenya)** — expansion beyond Kenya into Rwanda, Uganda and South Africa, plus the start of
+  two-way translation work, demoed at **Unstoppable Africa 2026** (New York, 21 Sep 2026). Hook is 12 days old
+  (inside the 21-day window). Chose accessibility per the bank's "prefer agriculture/education/accessibility/energy"
+  note — health/life-science is dense (Sep 18, Sep 26, Oct 1).
+- Differentiation: no prior post covers sign language or assistive AI (`grep -il` found only a passing TTS mention
+  in `ai-african-creative-industries`). Nearest siblings named in the intro/related links:
+  `translatepsy-afrislm-offline-translation` (offline byte budget) and `african-ai-communities` (corpus ownership).
+  Angle = **corpus + byte/latency budget + comprehension evaluation**, not the avatar demo.
+- Sources (all body-fetched): GABI Unstoppable Africa 2026 programme page; Birr Metrics 22 Sep 2026; UN *Africa
+  Renewal*; RAENG winner news 16 Oct 2025 + 2025 cohort profile; People Daily (NGEC statement, 23 Sep 2026);
+  TechCabal 21 Aug 2025; blog.google (Google.org SSA cohort); DeepMind SL2T 12 Aug 2026; iAfrica (ZeroBionic /
+  UKZN / Arusha Technical College / UNDP HAIDI); arXiv 2508.05358; JMUI 19 (2025) Imashev et al.; Disrupt Africa;
+  KNBS 2019 census.
+- **Attribution cautions recorded (reuse on any future Signvrse post):** Google has NOT disclosed the amount
+  allocated to Signvrse (per Birr Metrics); the **US$2M** figure is Savatia's own, reported by UN *Africa Renewal* —
+  the post states it as the founder's figure. And the corpus numbers are different units: **2,300+ signs** (RAENG)
+  vs **20,000+ captured sequences** (TechCabal); both are published with their units.
+- Code: two stdlib blocks, executed from the file, quoted output verified byte-for-byte:
+  (1) interpretation-coverage arithmetic → 6.0 min interpreted teaching/student/week, 300:1 ratio, **3,834 FTE
+  interpreter posts** for one hour each per week across the census group, and the **12.4x** gap between the census
+  hearing-disability count (153,361; 0.32%) and the KDHS 4% self-report (1,902,572);
+  (2) landmark byte budget (MediaPipe Holistic 543 landmarks × 3 coords) → **3.64 GB** to collect 20,000 sequences
+  at float16, 0.42 GB vocabulary, **0.21 GB** delta-encoded (49% reduction).
+- Word count: 3,204 full / **2,664 code-excluded**. Sibling calibration, same script: Sep 26 2,848/2,479 · Sep 27
+  3,457/2,398 · Sep 28 2,441/2,279 · Sep 30 3,866/2,330 · Oct 1 3,265/2,686 · Oct 2 3,916/2,460 → in band.
+- Verification: `verify-post-code.py` → "OK: all blocks ran"; no `post_url`, no `cover:` key, no `.png` paths;
+  all 4 `/posts/` links resolve; slug unique; cover SVG amp-check clean; WebP 1200×630 VP8, 31 KB (text rendering
+  confirmed by a bright-pixel sample = 3.86%).
+- Commit `c3cf747`.
+- **Next session actions:**
+  1. Oct 4 = **Lane B** (tutorial): Oct 2 B, Oct 3 A → Oct 4 = B. Must run its code and quote stdout; keep every
+     block self-contained (each fence runs in a fresh interpreter).
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. **Bank update done this session:** `references/positive-ai-incident-bank.md` now carries the Signvrse anchor
+     (marked USED 3 Oct 2026) plus the new Lane A material: ZeroBionic (Kenya robotic-arm interpreter, offline,
+     3D-printed), UKZN SASL→English, Arusha Technical College LINGUA Africa Tanzanian-SL open datasets, UNDP HAIDI
+     co-design-as-funding-condition, and the NGEC 23 Sep 2026 figures (153,361; 4% KDHS).
+  4. Next Lane A day: agriculture / education / energy anchors from the bank (accessibility now used).
