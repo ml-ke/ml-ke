@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- left column: the ratio -->
+  <text x="70" y="150" font-family="Helvetica, Arial, sans-serif" font-size="20" letter-spacing="3" fill="#6bcf7f">AFRICAN SIGN LANGUAGE AI</text>
+  <text x="70" y="222" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="bold" fill="#f0f6fc">300 Deaf Students,</text>
+  <text x="70" y="278" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="bold" fill="#f0f6fc">One Interpreter</text>
+  <text x="70" y="322" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#9aa4b2">The corpus is the product, not the avatar</text>
+
+  <rect x="70" y="360" width="470" height="104" rx="12" fill="#161b22" stroke="#ffd93d" stroke-width="1.5"/>
+  <text x="96" y="418" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="bold" fill="#ffd93d">300 : 1</text>
+  <text x="96" y="446" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">students : interpreter in the classroom where Terp 360 began</text>
+
+  <text x="70" y="516" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#00d2ff">2,300+ signs recorded &#183; 20,000+ captured sequences</text>
+  <text x="70" y="546" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#00d2ff">60% urban / 40% rural signers &#183; every sign Deaf-validated</text>
+  <text x="70" y="582" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#a78bfa">3.64 GB to collect  &#8594;  0.21 GB shipped vocabulary</text>
+
+  <!-- right column: captured motion -->
+  <g opacity="0.9">
+    <path d="M660 170 h-40 v40" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M1140 170 h-40 v40" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M660 500 h-40 v-40" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <path d="M1140 500 h-40 v-40" fill="none" stroke="#6bcf7f" stroke-width="3"/>
+    <text x="700" y="150" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6bcf7f">MOTION CAPTURE &#183; 543 LANDMARKS/FRAME</text>
+    <line x1="933" y1="430" x2="893" y2="415" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="893" y1="415" x2="858" y2="380" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="858" y1="380" x2="833" y2="345" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="833" y1="345" x2="813" y2="315" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="933" y1="430" x2="913" y2="380" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="913" y1="380" x2="905" y2="330" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="905" y1="330" x2="901" y2="285" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="901" y1="285" x2="898" y2="245" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="933" y1="430" x2="945" y2="375" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="945" y1="375" x2="943" y2="320" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="943" y1="320" x2="942" y2="270" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="942" y1="270" x2="941" y2="225" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="933" y1="430" x2="977" y2="380" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="977" y1="380" x2="981" y2="328" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="981" y1="328" x2="984" y2="282" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="984" y1="282" x2="987" y2="242" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="933" y1="430" x2="1009" y2="392" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="1009" y1="392" x2="1017" y2="350" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="1017" y1="350" x2="1023" y2="312" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="1023" y1="312" x2="1028" y2="278" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="913" y1="380" x2="945" y2="375" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="945" y1="375" x2="977" y2="380" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <line x1="977" y1="380" x2="1009" y2="392" stroke="#00d2ff" stroke-width="2.5" opacity="0.5"/>
+  <circle cx="933" cy="430" r="7" fill="#ffd93d"/>
+  <circle cx="893" cy="415" r="4.5" fill="#00d2ff"/>
+  <circle cx="858" cy="380" r="4.5" fill="#00d2ff"/>
+  <circle cx="833" cy="345" r="4.5" fill="#00d2ff"/>
+  <circle cx="813" cy="315" r="4.5" fill="#00d2ff"/>
+  <circle cx="913" cy="380" r="4.5" fill="#00d2ff"/>
+  <circle cx="905" cy="330" r="4.5" fill="#00d2ff"/>
+  <circle cx="901" cy="285" r="4.5" fill="#00d2ff"/>
+  <circle cx="898" cy="245" r="4.5" fill="#00d2ff"/>
+  <circle cx="945" cy="375" r="4.5" fill="#00d2ff"/>
+  <circle cx="943" cy="320" r="4.5" fill="#00d2ff"/>
+  <circle cx="942" cy="270" r="4.5" fill="#00d2ff"/>
+  <circle cx="941" cy="225" r="4.5" fill="#00d2ff"/>
+  <circle cx="977" cy="380" r="4.5" fill="#00d2ff"/>
+  <circle cx="981" cy="328" r="4.5" fill="#00d2ff"/>
+  <circle cx="984" cy="282" r="4.5" fill="#00d2ff"/>
+  <circle cx="987" cy="242" r="4.5" fill="#00d2ff"/>
+  <circle cx="1009" cy="392" r="4.5" fill="#00d2ff"/>
+  <circle cx="1017" cy="350" r="4.5" fill="#00d2ff"/>
+  <circle cx="1023" cy="312" r="4.5" fill="#00d2ff"/>
+  <circle cx="1028" cy="278" r="4.5" fill="#00d2ff"/>
+  </g>
+
+  <g>
+    <text x="700" y="540" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">corpus captured (float16)</text>
+    <rect x="700" y="548" width="360" height="10" rx="5" fill="#21262d"/>
+    <rect x="700" y="548" width="330" height="10" rx="5" fill="#00d2ff"/>
+  </g>
+  <g>
+    <text x="700" y="584" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">vocabulary shipped, delta-encoded</text>
+    <rect x="700" y="592" width="360" height="10" rx="5" fill="#21262d"/>
+    <rect x="700" y="592" width="26" height="10" rx="5" fill="#a78bfa"/>
+  </g>
+
+  <text x="1130" y="616" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#6bcf7f">ml-ke.github.io</text>
+</svg>
