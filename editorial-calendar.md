@@ -1851,3 +1851,54 @@ phrased as a pointer, not a measured comparison.
      3D-printed), UKZN SASL→English, Arusha Technical College LINGUA Africa Tanzanian-SL open datasets, UNDP HAIDI
      co-design-as-funding-condition, and the NGEC 23 Sep 2026 figures (153,361; 4% KDHS).
   4. Next Lane A day: agriculture / education / energy anchors from the bank (accessibility now used).
+
+## Publishing note — 2026-10-04 (Lane B, AI/ML engineering tutorial)
+
+**Post — 2026-10-04 — `prompt-prefix-cache-order-cost`** (Lane B, useful)
+- Lane check: Oct 2 (B), Oct 3 (A) → Oct 4 = **Lane B**. `.scheduled/` EMPTY (normal; legacy queue retired).
+  Written directly to `_posts/` at `2026-10-04 00:00:00 +0300`.
+- Technique: **prefix/prompt-cache reuse as a function of prompt layout** — chained block hashing, block
+  alignment, positional damage from one changed token, cache capacity vs multi-tenant working set, and the
+  cost model on published rates. Runnable throughout in stdlib Python (hashlib + itertools only).
+- Why this lane and topic: the reuse side of the cache had **zero prior coverage** (`grep -ril "prefix cach"`
+  found only the `vllm-llm-serving` flag list and one mention in `self-hosting-open-weight-llms`), while the
+  representation side is already covered by `kv-cache-quantization-long-context` and the price side by
+  `deepseek-v4-peak-offpeak-pricing`. Differentiation stated in the intro callout; related links point at all
+  three siblings, and there is no topic-level overlap with `rag-recall-at-k-denominator` (metric denominators).
+- Measured results (quoted verbatim from the run; every block re-executed from the file):
+  layout A volatile-early 176/2,180 tok reused (8.1%), B static-first 2,000/2,180 (91.7%), C timestamp-in-system
+  0 (0.0%); cost per 1,000 requests on deepseek-flash off-peak $0.327 / $0.301 / $0.036; alignment leak 12 tok
+  per request at a 2,012-token prefix; one changed token → reuse 0 (token #3) vs 1,984 (#1995); shared-cache
+  capacity 512 blocks → 0.0% hit vs 640 blocks → 90.2% (4 tenants × 136 blocks = 544 needed); TTL cold-share
+  sensitivity $0.033 → $0.180 per 1,000 requests from 0% → 50% cold.
+- Sources (all body-fetched, not snippet-level): Anthropic *Prompt caching* (cumulative hash, tools→system→
+  messages, 20-block lookback, max 4 breakpoints, 1.25x write / 0.1x read, 5m + 1h TTL);
+  platform.openai.com *Prompt caching* (KV tensors, full rendered prefix must match, "discounted up to 95%",
+  `prompt_cache_key`, `prompt_cache_options.ttl` 30m on GPT-5.6+, in_memory ~5-10 min on earlier models,
+  `cached_tokens` / `cache_write_tokens`); api-docs.deepseek.com *Context Caching* (on-disk, full-match prefix
+  units, persistence at request boundaries / common-prefix detection / fixed intervals) and *Models & Pricing*
+  (deepseek-flash off-peak hit $0.003 vs miss $0.15 per 1M; peak 01:00-04:00 and 06:00-10:00 UTC);
+  docs.vllm.ai *Automatic Prefix Caching* (parent-hash + block tokens + extra hashes, "we only cache full
+  blocks", SHA256 for multi-tenant at 100-200ns/token); arXiv:2312.07104 SGLang (RadixAttention, up to 6.4x
+  throughput); arXiv:2309.06180 PagedAttention.
+- **Attribution caution recorded:** the 30x-50x cache-hit spread is derived from *today's* DeepSeek page
+  (flash 50x, v4-pro 30x); the Sep 2026 `deepseek-v4-peak-offpeak-pricing` post used older rates ($0.007 vs
+  $0.22). Re-check the pricing page before reusing either figure.
+- Word count: 3,906 full / **2,372 code-excluded** (sibling calibration, same script: Oct 1 3,265/2,686 ·
+  Oct 2 3,916/2,460 · Oct 3 3,204/2,664) → in band.
+- Verification: `verify-post-code.py` → "OK: all blocks ran"; a paired-fence checker
+  (`check_quoted_output.py`) confirmed all 3 quoted output blocks match stdout byte-for-byte; no `post_url`,
+  no `cover:` key, no `.png` paths; all 5 `/posts/` links resolve; slug unique; cover SVG amp-check clean
+  (only the hash-chain note text, no bare `&`); WebP 1200×630 VP8, 51 KB, ink present in all six render bands
+  (title/lane1-3/cost/foot).
+- Commit `bb41a8d`.
+- **Next session actions:**
+  1. Oct 5 = **Lane A** (positive story): Oct 3 A, Oct 4 B → Oct 5 = A. Start from
+     `references/positive-ai-incident-bank.md`; accessibility was used Oct 3, so prefer agriculture /
+     education / energy anchors.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. New reusable asset from today: the block-level `PrefixCache` harness (chained SHA256 keys, full blocks,
+     LRU) plus the paired-fence output checker in the session scratch — the harness is the template for any
+     future inference-cost post that claims a hit rate or a saving (candidate follow-ups: multi-turn agent
+     loops where the working set grows each turn; KV-block budget sizing under `--gpu-memory-utilization`;
+     verifying a gateway does not inject a timestamped system message).
