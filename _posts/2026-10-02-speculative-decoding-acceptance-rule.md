@@ -11,13 +11,13 @@ image:
 
 ## Guess ahead, pay once
 
-Speculative decoding is the rare inference trick that promises something for nothing: the same output distribution as the model you already run, produced with fewer sequential passes through that model. A small draft model guesses the next $\gamma$ tokens; the target model scores all of them in one forward pass; a rejection rule decides how many guesses survive. Published results are real — 2–3× on T5-XXL, 2–2.5× on Chinchilla 70B, 1.61× measured on a consumer laptop, and up to 6.5× claimed for EAGLE-3.
+Speculative decoding is the rare inference trick that promises something for nothing: the same output distribution as the model you already run, produced with fewer sequential passes through that model. A small draft model guesses the next $\gamma$ tokens; the target model scores all of them in one forward pass; a rejection rule decides how many guesses survive. Published results are real: 2–3× on T5-XXL, 2–2.5× on Chinchilla 70B, 1.61× measured on a consumer laptop, and up to 6.5× claimed for EAGLE-3.
 
 > **The part the benchmark tables hide**
 > Accepted guesses only help if verifying them is cheaper than generating them one at a time. In a recent five-configuration study on consumer hardware, three of five configurations ran *slower* than plain decoding, and the same EAGLE-3 method that posts a 6.5× single-stream number drops to 1.38× throughput at a batch size of 64.
 {: .prompt-warning }
 
-This post is the measurement layer under those claims. Three short programs, no GPU and no model download: one proves the sampler is lossless, one maps the speedup surface where speculation pays, and one audits a real draft/target pair. The siblings on this blog cover adjacent levers — [KV cache quantization](/posts/kv-cache-quantization-long-context/) trades bytes for accuracy in memory, [constrained decoding](/posts/constrained-decoding-token-mask/) shapes which tokens are legal at all — while this one is about the decode loop's own latency.
+This post is the measurement layer under those claims. Three short programs, no GPU and no model download: one proves the sampler is lossless, one maps the speedup surface where speculation pays, and one audits a real draft/target pair. The siblings on this blog cover adjacent levers ([KV cache quantization](/posts/kv-cache-quantization-long-context/) trades bytes for accuracy in memory, [constrained decoding](/posts/constrained-decoding-token-mask/) shapes which tokens are legal at all), while this one is about the decode loop's own latency.
 
 ## The rule, in four lines
 
@@ -115,7 +115,7 @@ chi-square (5 dof) = 2.18   p-value = 0.824
 
 Four readings, all of them the ones to log in production:
 
-- **The acceptance identity holds.** Measured acceptance is 0.8806 against a predicted $\sum_x \min(p(x), q(x)) = 0.8800$ — the identity is not an approximation you inherit, it is a quantity you can predict before you deploy.
+- **The acceptance identity holds.** Measured acceptance is 0.8806 against a predicted $\sum_x \min(p(x), q(x)) = 0.8800$. The identity is a quantity you can predict before you deploy rather than an approximation you inherit.
 - **Tokens per pass matches the formula.** 3.9387 measured against 3.9356 predicted at $\gamma = 4$: this is the number that converts acceptance into a latency budget.
 - **The output is statistically indistinguishable from the target.** Total-variation distance to $p$ is 0.00144 for speculative sampling versus 0.00552 for the plain baseline — both are finite-sample noise around the same distribution, and the speculative run is not the worse of the two.
 - **A chi-square test agrees.** $\chi^2 = 2.18$ at 5 degrees of freedom gives $p = 0.824$; there is no evidence the two paths differ. The $p$-value is computed with a fifteen-line incomplete-gamma routine so the check stays dependency-free.
@@ -180,12 +180,12 @@ same draft quality, cheaper draft (alpha = 0.40, c = 0.05):
 Three things fall out of the table:
 
 1. **The optimal $\gamma$ is small and falls as drafting gets expensive.** At $c = 0.30$ and $\alpha = 0.80$ the best guess length is 3; at $c = 0.50$ it is 2. Long drafts are a losing trade, which is why `llama-server` defaults to `--spec-draft-n-max 3`.
-2. **A mediocre draft at a bad price is a pessimisation.** With $\alpha = 0.40$ and $c = 0.50$, every guess length is slower than not speculating — 0.93× at $\gamma = 1$, 0.33× at $\gamma = 8$. This is not a corner case; it is what three of five configurations measured in the consumer-hardware study: the draft failed to out-speed the target, or the "parallel" verification ran serially on the quantized backend.
+2. **A mediocre draft at a bad price is a pessimisation.** With $\alpha = 0.40$ and $c = 0.50$, every guess length is slower than not speculating: 0.93× at $\gamma = 1$, 0.33× at $\gamma = 8$. This is not a corner case; it is what three of five configurations measured in the consumer-hardware study: the draft failed to out-speed the target, or the "parallel" verification ran serially on the quantized backend.
 3. **Cost ratio, not acceptance, is the first thing to fix.** Hold $\alpha = 0.40$ and drop $c$ from 0.50 to 0.05 and the same weak draft becomes a 1.42× win at $\gamma = 2$. If your draft model costs half a target step, no amount of tuning saves you; if it costs a twentieth, even a poor drafter pays.
 
-## Audit the draft you actually have
+## Audit the draft you have
 
-Published numbers come from someone else's model pair. The number that matters is yours. This program trains two cheap unsupervised drafts — a unigram and a bigram model — against an interpolated trigram target on a 297-token corpus (237 tokens train, 60 held out, 131-word vocabulary), then reports both the predicted acceptance and the acceptance observed by running the actual rejection rule on held-out positions.
+Published numbers come from someone else's model pair. The number that matters is yours. This program trains two cheap unsupervised drafts (a unigram and a bigram model) against an interpolated trigram target on a 297-token corpus (237 tokens train, 60 held out, 131-word vocabulary), then reports both the predicted acceptance and the acceptance observed by running the actual rejection rule on held-out positions.
 
 ```python
 import random
@@ -289,7 +289,7 @@ unigram_draft  beta=0.706 observed_accept=0.717 (n=580)  -> best 1.38x at gamma=
 bigram_draft   beta=0.798 observed_accept=0.791 (n=580)  -> best 1.55x at gamma=3
 ```
 
-Read the gap between the two drafts, not the absolute numbers: a draft that knows nothing about word order accepts 0.706 of its guesses, while a draft one order higher — still trivially cheap — accepts 0.798. At a draft cost of 0.3 target steps, that is the difference between 1.38× and 1.55×, and the level of agreement between predicted beta and observed acceptance (0.011 and 0.007 apart over 580 trials) is what tells you the measurement is wired up correctly.
+Read the gap between the two drafts, not the absolute numbers: a draft that knows nothing about word order accepts 0.706 of its guesses, while a draft one order higher, still trivially cheap, accepts 0.798. At a draft cost of 0.3 target steps, that is the difference between 1.38× and 1.55×, and the level of agreement between predicted beta and observed acceptance (0.011 and 0.007 apart over 580 trials) is what tells you the measurement is wired up correctly.
 
 The `assert` is not padding. The first version of this script read context counts out of the *wrong* n-gram table, so $\sum_x \min(p, q)$ exceeded 1.0 and the predicted speedup was nonsense; a distribution that does not sum to 1 on every position is the fastest way to catch that class of bug. Also note the honest limit of a toy pair: real vocabularies hold 100k+ tokens and real target distributions are far sharper than a smoothed trigram, which is why same-family drafts land near 0.7 acceptance at $K=1$ and decay to about 0.38 by the optimum in Chordiya's measurements — well below this corpus's 0.71–0.80.
 
@@ -314,8 +314,8 @@ Two operational cautions that follow from that table:
 
 1. **Predict $\beta$ before you spend a GPU-hour.** For any position you can log, $\sum_x \min(p(x), q(x))$ is a one-pass computation over two distribution vectors. If the predicted acceptance is under about 0.5 with a draft that costs more than a fifth of a target step, stop and fix the pair.
 2. **Measure the cost ratio, not the model sizes.** What matters is your *measured* draft-step to target-step latency on your hardware. The same pair scores 0.93× or 1.42× depending only on that ratio in the table above.
-3. **Sweep $\gamma$ on the acceptance you actually measured.** Use the grid above: the optimum is 2–5 in most healthy configurations, and it moves toward 1 as drafting gets expensive.
-4. **Log acceptance per position, not just the mean.** Early positions are accepted far more often than late ones; a falling profile is the early signal that your draft is drifting off the target's distribution. vLLM exposes per-request acceptance metrics for exactly this.
+3. **Sweep $\gamma$ on the acceptance you measured.** Use the grid above: the optimum is 2–5 in most healthy configurations, and it moves toward 1 as drafting gets expensive.
+4. **Log acceptance per position, not the mean alone.** Early positions are accepted far more often than late ones; a falling profile is the early signal that your draft is drifting off the target's distribution. vLLM exposes per-request acceptance metrics for exactly this.
 5. **Prove the output path.** Run a greedy decode with and without speculation and diff the token sequences; then run the distributional check from the first program. If either fails, the "speedup" is a different model answering.
 6. **Only then scale the batch.** Re-measure the throughput curve at your production concurrency, because the single-stream result does not transfer.
 
@@ -336,9 +336,9 @@ llama-server -m target.gguf --spec-type ngram-mod
 
 The no-draft variants matter for teams with one model in the box: n-gram and suffix drafting copy continuations the context has already seen, so they cost no extra weights and pay off best where the output echoes the context — iterating over a block of text or code, summarisation, and reasoning models that restate their thinking, which are the cases llama.cpp documents for its `ngram-mod` mode.
 
-## A draft is not just a smaller model
+## A draft is more than a smaller model
 
-Pairing rules matter more than draft size. The measured examples in the wild are almost all same-family pairs — Qwen2.5-32B with a Qwen2.5-0.5B draft, Llama-3.1-8B with a Llama-3.2-1B draft — and the payoff moves with how predictable the output is. On LM Studio's own benchmarks, the same 8B/1B Llama pair goes from 29.65 to 50.91 tokens/sec (1.71×) on conversational prompts and hits 2.43× with a 32B Qwen target on a code-only prompt, where the continuation is highly constrained. Their release notes also carry the warning that belongs next to every speedup chart: "In cases where tokens are rejected more often than not, you will likely see decreased total generation speed!"
+Pairing rules matter more than draft size. The measured examples in the wild are almost all same-family pairs (Qwen2.5-32B with a Qwen2.5-0.5B draft, Llama-3.1-8B with a Llama-3.2-1B draft), and the payoff moves with how predictable the output is. On LM Studio's own benchmarks, the same 8B/1B Llama pair goes from 29.65 to 50.91 tokens/sec (1.71×) on conversational prompts and hits 2.43× with a 32B Qwen target on a code-only prompt, where the continuation is highly constrained. Their release notes also carry the warning that belongs next to every speedup chart: "In cases where tokens are rejected more often than not, you will likely see decreased total generation speed!"
 
 If no same-family draft exists, vLLM's `use_heterogeneous_vocab: true` enables a token-level intersection so drafts from a different family can be used at all, with the draft's logits constrained to the shared tokens — a workable fallback, not a free lunch, since the intersection discards the draft's vocabulary advantage. The alternative that avoids the question entirely is training a speculator or multi-token-prediction head against the exact target, which is what EAGLE-3, MTP-based drafts and vLLM's `speculators` project do, and why their acceptance profiles hold up as training data scales.
 

@@ -13,10 +13,10 @@ image:
 On 15 September 2026, the Egyptian AI company **Synapse Analytics closed a US$13 million Series A** led by Paris-headquartered Partech, with Algebra Ventures and Silicon Badia participating, taking its total raised since 2018 to **US$17 million** [1][2][3]. iAfrica called it one of the largest disclosed AI rounds on the continent this year [4]. The company did not disclose its valuation or the round's other terms [3][5]. Coverage ran across the region's tech press [1][4][7][8].
 
 > **Why this round is worth reading as engineering, not as funding news**
-> Synapse does not sell a score. It sells *decisioning infrastructure* a regulated lender installs inside its own perimeter — on-premises, in a sovereign cloud, or on an air-gapped network — and then operates itself, changing lending policies without a vendor in the loop [2][3][5]. That is a different product from a hosted scoring API, and the difference explains both why the round took nine months to close and why it is the kind of AI business that survives scrutiny from a banking regulator.
+> Synapse does not sell a score. It sells *decisioning infrastructure* a regulated lender installs inside its own perimeter (on-premises, in a sovereign cloud, or on an air-gapped network) and then operates itself, changing lending policies without a vendor in the loop [2][3][5]. That is a different product from a hosted scoring API, and the difference explains both why the round took nine months to close and why it is the kind of AI business that survives scrutiny from a banking regulator.
 {: .prompt-info}
 
-We have covered the sector-wide picture before — [the AI use cases African fintechs ship](/posts/ai-african-fintech/), the [KYC/AML analytics layer](/posts/kyc-aml-analytics-african-fintech/), and the [model-governance rules](/posts/mlops-regtech-model-governance/) that regulated lending attracts. This post is narrower. It is about one verified round, the product it funds, and the two engineering questions any lender buying decisioning AI should ask before signing: *where does it run*, and *can I prove what a policy change would have done before I ship it*.
+We have covered the sector-wide picture before: [the AI use cases African fintechs ship](/posts/ai-african-fintech/), the [KYC/AML analytics layer](/posts/kyc-aml-analytics-african-fintech/), and the [model-governance rules](/posts/mlops-regtech-model-governance/) that regulated lending attracts. This post is narrower. It is about one verified round, the product it funds, and the two engineering questions any lender buying decisioning AI should ask before signing: *where does it run*, and *can I prove what a policy change would have done before I ship it*.
 
 ## The round, in its own numbers
 
@@ -36,11 +36,11 @@ The verifiable facts are unusually concrete for a private round, because the com
 
 Two of those rows say more than the headline number.
 
-The first is the **nine-month close**. Abaza told EnterpriseAM that investors struggled with "a company whose only asset is code", that most of the firms he spoke to "were scared to touch us", and that there was pressure to show physical assets or a balance sheet [6]. Silicon Badia partner Erass Majdoubeh put the diagnosis more sharply: "It was investors underwriting the country instead of underwriting the business" [6]. He also described why the spreadsheet looked worse than the business — enterprise software sold to banks carries long procurement cycles and a lag between contract signature and first billing, which "reads as underperformance" to an outside investor but is a "sequencing feature of selling to banks, not a demand problem" [6].
+The first is the **nine-month close**. Abaza told EnterpriseAM that investors struggled with "a company whose only asset is code", that most of the firms he spoke to "were scared to touch us", and that there was pressure to show physical assets or a balance sheet [6]. Silicon Badia partner Erass Majdoubeh put the diagnosis more sharply: "It was investors underwriting the country instead of underwriting the business" [6]. He also described why the spreadsheet looked worse than the business. Enterprise software sold to banks carries long procurement cycles and a lag between contract signature and first billing, which "reads as underperformance" to an outside investor but is a "sequencing feature of selling to banks, not a demand problem" [6].
 
-The second is **where the company is now incorporated**. A round that is "Egypt's" in every headline closed with the company domiciled in ADGM, and it will not necessarily appear in Egyptian funding tallies at all [6]. That is a sobering detail for anyone counting Egypt's AI capital, and a useful reminder that incorporation jurisdiction, founding geography, and operating market are three different things — a pattern we flagged in [the continent's AI-spring coverage](/posts/africa-ai-spring/).
+The second is **where the company is now incorporated**. A round that is "Egypt's" in every headline closed with the company domiciled in ADGM, and it will not necessarily appear in Egyptian funding tallies at all [6]. That is a sobering detail for anyone counting Egypt's AI capital, and a useful reminder that incorporation jurisdiction, founding geography, and operating market are three different things, a pattern we flagged in [the continent's AI-spring coverage](/posts/africa-ai-spring/).
 
-## What "decisioning infrastructure" actually means
+## What "decisioning infrastructure" means
 
 Synapse's platform is a single system that covers the whole credit lifecycle rather than one stage of it: customer onboarding, credit scoring, fraud detection, anti-money laundering checks, collections, customer segmentation, and customer value management [1][2][5]. Credit and risk teams build, test, revise, and deploy policies in it [5], and its reported footprint spans banks, non-bank financial institutions, fintechs, and telecoms across the Middle East, Africa, and Latin America [1][2][5].
 
@@ -59,17 +59,17 @@ The company's own numbers, as reported by Disrupt Africa and **not independently
 
 ## The product is the deployment boundary
 
-The most consequential sentence in the coverage is a deployment sentence. Synapse's software runs inside the client's existing IT environment — **on-premises, in a private or public cloud, in a sovereign cloud, or in an air-gapped network** [2][3][5]. WeeTracker frames the consequence directly: institutions can use AI in lending "without necessarily sending sensitive customer or financial data to external systems" [2].
+The most consequential sentence in the coverage is a deployment sentence. Synapse's software runs inside the client's existing IT environment: **on-premises, in a private or public cloud, in a sovereign cloud, or in an air-gapped network** [2][3][5]. WeeTracker frames the consequence directly: institutions can use AI in lending "without necessarily sending sensitive customer or financial data to external systems" [2].
 
 For a commercial bank in Nairobi, Lagos, or Cairo, that is rarely a preference. Confidentiality, localisation, and outsourcing rules shape what a lender may put on somebody else's tenancy, and air-gapped operation is the only configuration that satisfies some supervisory expectations outright. A scoring API that cannot be deployed that way is not a cheaper option; it is an option that does not exist.
 
-It also sets the commercial shape of the business. If the software runs inside the customer's walls, the vendor never accumulates a cross-client data moat, and each deployment carries integration cost. That is presumably part of why nine months of diligence produced a $13 million cheque rather than a Silicon Valley multiple — and why the product, once installed, is sticky in a way a hosted score is not.
+It also sets the commercial shape of the business. If the software runs inside the customer's walls, the vendor never accumulates a cross-client data moat, and each deployment carries integration cost. That is presumably part of why nine months of diligence produced a $13 million cheque rather than a Silicon Valley multiple, and why the product, once installed, is sticky in a way a hosted score is not.
 
 The roadmap follows the same logic. Co-founder and COO Galal Elbeshbishy told Techawk the company is building AI agents that work *alongside* credit and risk teams: refining lending policies, monitoring portfolios in real time, and surfacing emerging risks [3]. His framing of the ambition is "the AI operating system for the new age of finance" [3]. Read against the deployment model, that is a conservative claim rather than a grand one: the operating system, not the application, is the layer that stays installed.
 
-## Backtest the policy, not just the model
+## Backtest the policy as well as the model
 
-The one capability worth stealing from this product — whether you buy it, build it, or are asked to review it — is policy backtesting. Risk teams can change lending policies directly and **test proposed changes against historical data before production** [3][5].
+The one capability worth stealing from this product (whether you buy it, build it, or are asked to review it) is policy backtesting. Risk teams can change lending policies directly and **test proposed changes against historical data before production** [3][5].
 
 That sounds mundane until you run it. The demo below builds a deterministic synthetic book of 5,000 applications and replays two policies against it. Policy V1 screens every applicant through one approval path. Policy V2 is the familiar "widen the door" proposal: it tightens the main path's debt-to-income limit and adds a thin-file carve-out for applicants with a shorter credit history. Every field is a pure function of the applicant id, so the output is identical on every run.
 
@@ -163,13 +163,13 @@ Route-1 tightening alone: 39.2% approved, 4.95% defaults (-254 approvals vs V1)
 
 Three things fall out of that output, and each is invisible without a replay:
 
-- **The "wider door" policy narrowed it.** V2 approves 2,170 applications against V1's 2,215. The carve-out adds 209 approvals; the tightened debt-to-income limit on the main path removes 254. A committee arguing about the carve-out in isolation would have shipped a policy that does the opposite of what its name promises.
-- **The added slice is the expensive one.** The 209 carve-out approvals default at 13.88%, against 5.60% for the book V1 already approves. Backtesting does not tell you to reject the trade — thin-file lending is exactly where financial inclusion lives — but it prices it before you make it, instead of after.
-- **Reason codes are part of the harness, not cosmetics.** Falling `SCORE_BELOW_CUTOFF` counts (2,054 → 1,845) and rising `DTI_ABOVE_LIMIT` counts (731 → 985) are what an adverse-action notice, an internal audit, and a supervisor's question all read from. If a decisioning system cannot produce them consistently, a backtest of it is not reproducible either.
+- The "wider door" policy narrowed it. V2 approves 2,170 applications against V1's 2,215. The carve-out adds 209 approvals; the tightened debt-to-income limit on the main path removes 254. A committee arguing about the carve-out in isolation would have shipped a policy that does the opposite of what its name promises.
+- The added slice is the expensive one. The 209 carve-out approvals default at 13.88%, against 5.60% for the book V1 already approves. Backtesting does not tell you to reject the trade (thin-file lending is exactly where financial inclusion lives), but it prices it before you make it, instead of after.
+- Reason codes are part of the harness. Falling `SCORE_BELOW_CUTOFF` counts (2,054 → 1,845) and rising `DTI_ABOVE_LIMIT` counts (731 → 985) are what an adverse-action notice, an internal audit, and a supervisor's question all read from. If a decisioning system cannot produce them consistently, a backtest of it is not reproducible either.
 
 ## Why the money is thin exactly where AI is loudest
 
-The round lands in a market that is recovering but not evenly. Disrupt Africa's Q3 tally, published on 5 October 2026, records **58 African tech startups raising US$582,808,000** in the quarter — up 70% on the US$342.2 million raised in Q3 2025, and the strongest quarter of the year [9]. Cumulative 2026 funding stands at **US$1.39 billion across 137 startups** [9].
+The round lands in a market that is recovering but not evenly. Disrupt Africa's Q3 tally, published on 5 October 2026, records **58 African tech startups raising US$582,808,000** in the quarter, up 70% on the US$342.2 million raised in Q3 2025, and the strongest quarter of the year [9]. Cumulative 2026 funding stands at **US$1.39 billion across 137 startups** [9].
 
 | Period | Startups funded | Raised | Source |
 |---|---|---|---|
@@ -181,25 +181,25 @@ The round lands in a market that is recovering but not evenly. Disrupt Africa's 
 | 2024 full year | — | US$1.12B | Disrupt Africa [9] |
 | 2022 peak | — | US$3.33B | Disrupt Africa [9] |
 
-Against that, the AI-specific slice is thin. **AI-native African companies took less than 2% of the continent's startup funding in the first half of 2026**, Grégoire de Padirac, chief executive of Digital Africa, told BusinessDay, and the number of African startups raising at least US$100,000 fell to **190 — the lowest since 2021** [10]. Egypt specifically raised **US$142 million in H1 2026, down 29% year on year** on Magnitt figures seen by EnterpriseAM [6].
+Against that, the AI-specific slice is thin. **AI-native African companies took less than 2% of the continent's startup funding in the first half of 2026**, Grégoire de Padirac, chief executive of Digital Africa, told BusinessDay, and the number of African startups raising at least US$100,000 fell to **190**, the lowest since 2021 [10]. Egypt specifically raised **US$142 million in H1 2026, down 29% year on year** on Magnitt figures seen by EnterpriseAM [6].
 
-Which is the useful lesson in the Synapse round. It is not a consumer app with a viral loop, and it did not raise on a growth chart. It raised because a specific, unglamorous capability — running auditable, backtested credit policy inside a bank's own perimeter — is something a bank will pay for across procurement cycles measured in quarters. In a market where AI capital is scarce and concentrated, the durable AI businesses are the ones selling into systems that cannot be replaced next quarter.
+Which is the useful lesson in the Synapse round. It is not a consumer app with a viral loop, and it did not raise on a growth chart. It raised because a specific, unglamorous capability (running auditable, backtested credit policy inside a bank's own perimeter) is something a bank will pay for across procurement cycles measured in quarters. In a market where AI capital is scarce and concentrated, the durable AI businesses are the ones selling into systems that cannot be replaced next quarter.
 
 ## What this means if you build or buy in Kenya
 
 Four checks that follow directly from this round, for anyone building decisioning tooling for an East African lender or evaluating one:
 
-1. **Ask where it runs before you ask what it scores.** On-premises, sovereign-cloud, and air-gapped support are procurement prerequisites in most regulated lending, not differentiators [2][3]. If the answer is "our tenancy", stop and work out whether that is consistent with your outsourcing and localisation obligations.
-2. **Demand a replay, not a benchmark.** AUC on a public dataset proves nothing about your book. Ask for a backtest of a *named* policy change against *your* historical applications, with the reason-code distribution before and after — the exercise in the demo above, run on your data [3][5].
-3. **Model the interaction between rules.** The V2 result above is the general case: tightening one path while loosening another produced a net tightening. Policy changes must be evaluated as a whole policy, never rule by rule.
-4. **Separate "the model" from "the policy" in your architecture.** A model that outputs a number gives an auditor nothing. A decisioning layer that turns model outputs, rules, and overrides into an action plus reason codes is what makes the system reviewable — and it is the layer whose behaviour you can replay when a supervisor asks why a specific applicant was declined.
+1. Ask where it runs before you ask what it scores. On-premises, sovereign-cloud, and air-gapped support are procurement prerequisites in most regulated lending, not differentiators [2][3]. If the answer is "our tenancy", stop and work out whether that is consistent with your outsourcing and localisation obligations.
+2. Demand a replay, not a benchmark. AUC on a public dataset proves nothing about your book. Ask for a backtest of a *named* policy change against *your* historical applications, with the reason-code distribution before and after, the exercise in the demo above, run on your data [3][5].
+3. Model the interaction between rules. The V2 result above is the general case: tightening one path while loosening another produced a net tightening. Policy changes must be evaluated as a whole policy, never rule by rule.
+4. Separate "the model" from "the policy" in your architecture. A model that outputs a number gives an auditor nothing. A decisioning layer that turns model outputs, rules, and overrides into an action plus reason codes is what makes the system reviewable, and it is the layer whose behaviour you can replay when a supervisor asks why a specific applicant was declined.
 
 ## Key takeaways
 
 | Takeaway | Detail |
 |---|---|
 | The round | Synapse Analytics, Egypt-founded, US$13M Series A led by Partech with Algebra Ventures and Silicon Badia; US$17M total since 2018; valuation undisclosed [1][2][3][5] |
-| The product | One decisioning substrate across onboarding, scoring, fraud, AML, collections, segmentation and CVM — operated by the lender [1][2][5] |
+| The product | One decisioning substrate across onboarding, scoring, fraud, AML, collections, segmentation and CVM, operated by the lender [1][2][5] |
 | The differentiator | Runs on-premises, in sovereign or private cloud, or air-gapped, so client data never has to leave the institution [2][3][5] |
 | The capability to copy | Policy backtesting: replay a proposed change against historical decisions and read the approval rate, bad rate, and reason-code shift before shipping [3][5] |
 | Why it took nine months | Investors "underwriting the country instead of underwriting the business" (Silicon Badia), plus the contract-to-billing lag of selling software to banks [6] |

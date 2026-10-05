@@ -11,16 +11,16 @@ image:
 ## Introduction
 
 > **The release, in one line**
-> On 25 September 2026 the World Health Organization [announced](https://www.who.int/news/item/25-09-2026-who-announces-expansion-of-prequalification-programme-for-medical-devices) that it is expanding its prequalification programme for medical devices to cover **computer-aided detection (CAD) software for tuberculosis screening** — the first digital health technology to enter a list that United Nations agencies, procurement organisations, donors and national authorities buy from.
+> On 25 September 2026 the World Health Organization [announced](https://www.who.int/news/item/25-09-2026-who-announces-expansion-of-prequalification-programme-for-medical-devices) that it is expanding its prequalification programme for medical devices to cover **computer-aided detection (CAD) software for tuberculosis screening**, the first digital health technology to enter a list that United Nations agencies, procurement organisations, donors and national authorities buy from.
 {: .prompt-info }
 
 That is a quiet announcement about paperwork, and it is the most useful thing to happen to medical AI in Africa this quarter. Everything else in this space is a pilot, a press release or a benchmark. Prequalification is different: it is the mechanism that decides which products a health ministry can buy with donor money without re-running the vendor's evaluation itself.
 
 Two recent posts on this blog touched the edges of this without covering it. [Certified in Europe, Judged at the Health Post](/posts/ai-primary-care-class-iib-ce/) read a single company's EU Class IIb certificate and asked what a market-access mark transfers to a health post. [AI in African Healthcare](/posts/ai-african-healthcare/) surveyed where imaging and triage tools are already running on the continent. This post is about a third thing: the procurement gate itself, how a software product gets onto it, and what a programme has to do **after** go-live to keep the listing honest.
 
-The stake is not abstract. In 2024 an estimated [10.7 million people fell ill with TB](https://www.who.int/news-room/fact-sheets/detail/tuberculosis) worldwide and 8.3 million were reported as newly diagnosed — which leaves roughly 2.4 million people who were never counted, most of them in exactly the places where a radiologist reads a thousand films a month alone. The WHO African Region carried [25% of new cases in 2024](https://www.who.int/news-room/fact-sheets/detail/tuberculosis), with Nigeria alone at 4.8% of the global total and the Democratic Republic of the Congo at 3.9%.
+The stake is not abstract. In 2024 an estimated [10.7 million people fell ill with TB](https://www.who.int/news-room/fact-sheets/detail/tuberculosis) worldwide and 8.3 million were reported as newly diagnosed, which leaves roughly 2.4 million people who were never counted, most of them in exactly the places where a radiologist reads a thousand films a month alone. The WHO African Region carried [25% of new cases in 2024](https://www.who.int/news-room/fact-sheets/detail/tuberculosis), with Nigeria alone at 4.8% of the global total and the Democratic Republic of the Congo at 3.9%.
 
-## What WHO actually announced
+## What WHO announced
 
 The 25 September expansion is wider than the TB line that will travel furthest in the trade press. Products that meet the standards are added to the WHO list of prequalified medical devices, which the announcement describes as "trusted guidance for United Nations agencies, procurement organizations, donors and national authorities." Four things change:
 
@@ -57,13 +57,13 @@ The June 2025 policy statement then did the first real filtering pass, and WHO's
 
 - Manufacturers were invited in a **2024 open call** to submit software for evaluation by the **Technical Advisory Group (TAG)** on Tuberculosis Diagnostics and Laboratory Strengthening;
 - submissions were first run through "an independent validation platform conducted by the Foundation for Innovative New Diagnostics (FIND) in Geneva";
-- **six products** met WHO's performance standards — behind the products on the market, this was a filtering, not a rubber stamp;
+- **six products** met WHO's performance standards, and behind the products on the market, this was a filtering, not a rubber stamp;
 - the recommendation is for **people aged 15 and older**: "WHO does not yet recommend the use of CAD to screen children and adolescents younger than 15";
 - and the operational rule that no software licence overrides: "people who screen positive should undergo confirmatory testing before starting TB treatment."
 
 ## What the evidence says the software can and cannot do
 
-Prequalification formalises a claim, so it is worth reading what independent evaluations have actually measured. The most rigorous recent one is a prospective multi-site study published in **NEJM AI**, run across three clinical sites in a high TB/HIV-burden population, [reported in full on PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC11737584/). It recruited 1,978 adults who had TB symptoms, were close contacts of confirmed patients, or were newly diagnosed with HIV, and analysed 1,910 of them:
+Prequalification formalises a claim, so it is worth reading what independent evaluations have measured. The most rigorous recent one is a prospective multi-site study published in **NEJM AI**, run across three clinical sites in a high TB/HIV-burden population, [reported in full on PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC11737584/). It recruited 1,978 adults who had TB symptoms, were close contacts of confirmed patients, or were newly diagnosed with HIV, and analysed 1,910 of them:
 
 | Measure | Result |
 |---|---|
@@ -74,7 +74,7 @@ Prequalification formalises a claim, so it is worth reading what independent eva
 | Average radiologist (10 readers, blinded) | 76% sensitivity / 82% specificity |
 | WHO target for a TB triage test | 90% sensitivity / 70% specificity |
 
-The conclusion is the part worth quoting to a procurement committee: the AI was noninferior to radiologists for triage — but **"neither the TB AI nor the radiologists met WHO recommendations for sensitivity in the study population."** A model that meets a policy threshold on a validation library can land at 87% on a real population with high HIV prevalence. That is a reason to prequalify and monitor, not a reason to distrust the class.
+The conclusion is the part worth quoting to a procurement committee: the AI was noninferior to radiologists for triage, but **"neither the TB AI nor the radiologists met WHO recommendations for sensitivity in the study population."** A model that meets a policy threshold on a validation library can land at 87% on a real population with high HIV prevalence. That is a reason to prequalify and monitor, not a reason to distrust the class.
 
 The operating reality on the other side of the model is better documented than most people assume. A [community screening programme in Ebonyi and Nasarawa States, Nigeria](https://pmc.ncbi.nlm.nih.gov/articles/PMC13445830/) published in *BMC Global and Public Health* ran portable digital chest X-ray with AI software across 93 outreach activities between January 2023 and December 2024:
 
@@ -87,15 +87,15 @@ The operating reality on the other side of the model is better documented than m
 | Bacteriologically confirmed TB | 204 | 18.2% of those tested |
 | Initiated on treatment | 194 | 95.1% of confirmed |
 
-Two more findings from the same programme deserve to sit next to the headline yield. First, of the abnormal radiographs, 2,367 (75%) showed features suggesting cardiovascular or chronic respiratory disease — and only **12% of those referrals were ever completed**, because services for them were not decentralised. Second, 199 further people were clinically diagnosed after radiologist or clinician review, which is the human layer the software cannot replace. AI-enabled screening was feasible and linked TB cases to treatment at high rates; it did not, on its own, produce a working referral system for anything else it happened to find.
+Two more findings from the same programme deserve to sit next to the headline yield. First, of the abnormal radiographs, 2,367 (75%) showed features suggesting cardiovascular or chronic respiratory disease, and only **12% of those referrals were ever completed**, because services for them were not decentralised. Second, 199 further people were clinically diagnosed after radiologist or clinician review, which is the human layer the software cannot replace. AI-enabled screening was feasible and linked TB cases to treatment at high rates; it did not, on its own, produce a working referral system for anything else it happened to find.
 
-And a caution from the last month that cuts across all of it: a [meta-reanalysis of TB prevalence survey data](https://pubmed.ncbi.nlm.nih.gov/42665896/) published in the *IJTLD* in September 2026 reworked 21 of the 23 studies in an earlier systematic review and found that the published sensitivity of chest X-ray screening is inflated by incorporation bias — the pooled estimate among symptom screen–positive participants was **86% (83–90%)** against **94% (92–96%)** in the original meta-analysis, a pooled difference of **6% (4–8%)**. The authors' instruction to programmes is blunt: treat the symptom-positive figure as the realistic maximum, because combined sensitivity for symptomatic and asymptomatic TB is likely lower still.
+And a caution from the last month that cuts across all of it: a [meta-reanalysis of TB prevalence survey data](https://pubmed.ncbi.nlm.nih.gov/42665896/) published in the *IJTLD* in September 2026 reworked 21 of the 23 studies in an earlier systematic review and found that the published sensitivity of chest X-ray screening is inflated by incorporation bias: the pooled estimate among symptom screen–positive participants was **86% (83–90%)** against **94% (92–96%)** in the original meta-analysis, a pooled difference of **6% (4–8%)**. The authors' instruction to programmes is blunt: treat the symptom-positive figure as the realistic maximum, because combined sensitivity for symptomatic and asymptomatic TB is likely lower still.
 
 ## Version drift: the problem prequalification was built to face
 
 A catheter is the same object in 2031 as it was the day it was approved. A CAD product is not. This is the single hardest part of putting software into a prequalification framework, and the evidence for it is unusually clean.
 
-A [PLOS Digital Health comparison of successive CAD versions](https://journals.plos.org/digitalhealth/article?id=10.1371%2Fjournal.pdig.0000067) used a case-control sample of 12,890 chest X-rays to test whether the new builds actually improved on the ones WHO had evaluated:
+A [PLOS Digital Health comparison of successive CAD versions](https://journals.plos.org/digitalhealth/article?id=10.1371%2Fjournal.pdig.0000067) used a case-control sample of 12,890 chest X-rays to test whether the new builds improved on the ones WHO had evaluated:
 
 | Product | Older version (AUC) | Newer version (AUC) | WHO Target Product Profile |
 |---|---|---|---|
@@ -108,7 +108,7 @@ Read that against the June 2025 approval of six products. A prequalified listing
 
 ## How to apply this: read your cascade, size your audit
 
-If you run or fund a CAD-TB screening programme, three things are now true. The shortlist is public, so vendor selection gets easier and shorter. The listing is build-specific, so version control becomes a clinical control, not an IT preference. And the only performance number that counts is the one your own cascade produces — which you already have, in your screening registers.
+If you run or fund a CAD-TB screening programme, three things are now true. The shortlist is public, so vendor selection gets easier and shorter. The listing is build-specific, so version control becomes a clinical control, not an IT preference. And the only performance number that counts is the one your own cascade produces, which you already have, in your screening registers.
 
 The first block below reads a cascade the way a programme manager should: not as a headline detection number, but as five conversion rates, because that is where a working deployment and a failing one diverge. The counts are the published Nigerian programme figures.
 
@@ -202,7 +202,7 @@ so a 30-case audit cannot separate 70% from 95%.
 
 The two numbers in that output pull in different directions, and the resolution is the useful part. **83 confirmed cases** is the minimum for a test with 80% power to catch a real ten-point drop on average. But a *point estimate* whose entire confidence interval sits above the floor needs roughly **200** cases. If your site has 200 culture-confirmed results a year, an annual audit is informative; if it has 30, your audit is a rumour generator, and the honest report says so. Most districts will need to pool sites or accept a lower-powered screen that only fires on gross drift.
 
-That translates into five monitoring questions, distinct from the pre-signature procurement checklist — these are the ones that matter after go-live:
+That translates into five monitoring questions, distinct from the pre-signature procurement checklist; these are the ones that matter after go-live:
 
 | # | Question | Where the answer lives |
 |---|---|---|

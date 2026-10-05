@@ -10,15 +10,15 @@ image:
 
 ## A classroom in northern Kenya, and the number the demo rests on
 
-On 21 September 2026, on the Unstoppable Africa mainstage in New York, a Kenyan founder did something more useful than unveil a model. Elly Savatia demonstrated Terp 360 — a platform that turns speech and text into Kenyan Sign Language performed by a 3D avatar — and announced two things: work has started on two-way translation, and the platform is expanding beyond Kenya into Rwanda, Uganda and South Africa [1][2].
+On 21 September 2026, on the Unstoppable Africa mainstage in New York, a Kenyan founder did something more useful than unveil a model. Elly Savatia demonstrated Terp 360, a platform that turns speech and text into Kenyan Sign Language performed by a 3D avatar. He announced two things: work has started on two-way translation, and the platform is expanding beyond Kenya into Rwanda, Uganda and South Africa [1][2].
 
 > **Why this is worth reading as engineering**
-> The story behind Terp 360 is not a funding announcement. It is a ratio: roughly **300 deaf students, one interpreter** in the northern Kenya classroom where the idea started [3]. Everything else in the product follows from trying to make that ratio survivable — a corpus captured from real signers, an offline byte budget, and a latency budget that decides whether a deaf student waits for a perfect sign or gets a slightly simpler one immediately.
+> The story behind Terp 360 is not a funding announcement. It is a ratio: roughly **300 deaf students, one interpreter** in the northern Kenya classroom where the idea started [3]. Everything else in the product follows from trying to make that ratio survivable: a corpus captured from real signers, an offline byte budget, and a latency budget that decides whether a deaf student waits for a perfect sign or gets a slightly simpler one immediately.
 {: .prompt-info }
 
-Savatia's own framing is the design principle, and it is the one sentence worth stealing: *"you don't build solutions and take them to the people; you build with them"* [2]. More than 30 deaf people shaped the product directly — validating signs before they go live, reviewing animations, testing the experience [9].
+Savatia's own framing is the design principle, and it is the one sentence worth stealing: *"you don't build solutions and take them to the people; you build with them"* [2]. More than 30 deaf people shaped the product directly, validating signs before they go live, reviewing animations, testing the experience [9].
 
-Positive-lane caveats first, because this is a demo-stage claim and not a finished service: Terp 360 was still described as being in testing when it won the 2025 Africa Prize, and as of August 2025 it worked in one direction only — speech and text into KSL — with signing back into text explicitly "on the roadmap but technically harder" [3][9]. The September 2026 announcement says work on that second direction has started [1]. Read the rest of this post with that in mind: the interesting part is the engineering, not the demo.
+Positive-lane caveats first, because this is a demo-stage claim and not a finished service: Terp 360 was still described as being in testing when it won the 2025 Africa Prize, and as of August 2025 it worked in one direction only: speech and text into KSL, with signing back into text explicitly "on the roadmap but technically harder" [3][9]. The September 2026 announcement says work on that second direction has started [1]. Read the rest of this post with that in mind: the interesting part is the engineering, not the demo.
 
 ## The gap is a ratio, not a slogan
 
@@ -34,7 +34,7 @@ The commission's figures make the sizing exercise concrete:
 | Interpreters in that classroom | 1 | Royal Academy of Engineering [3] |
 | Interpreters serving ~80,000 hearing-impaired people, Germany | ~850 | German interpreters' association, cited in [8] |
 
-Two of those rows describe the same country with two different definitions of hearing loss, and they land an order of magnitude apart. That is not a footnote: it decides the addressable population, the budget, and what "coverage" means for any assistive product aimed at Deaf users. Run the arithmetic on the published numbers — the only assumptions are the length of the teaching week and a full-time interpreter's hours, both marked in the code:
+Two of those rows describe the same country with two different definitions of hearing loss, and they land an order of magnitude apart. That is not a footnote: it decides the addressable population, the budget, and what "coverage" means for any assistive product aimed at Deaf users. Run the arithmetic on the published numbers. The only assumptions are the length of the teaching week and a full-time interpreter's hours, both marked in the code:
 
 ```python
 # Demand side: interpretation throughput, not model quality, is the binding constraint.
@@ -81,46 +81,46 @@ why two national numbers can differ by an order of magnitude
   gap between the two definitions  : 12.4x
 ```
 
-Three things fall out of that. Six minutes of interpreted teaching per student per week is the ratio the product exists to attack. Giving every person in the census group a single interpreted hour per week would take roughly **3,834 full-time interpreter posts** — which is why "just hire more interpreters" is a position, not a plan, in a country where the profession is thin and the queue is long. And the 12.4x definitional gap is the first thing any team should resolve before quoting an addressable market.
+Three things fall out of that. Six minutes of interpreted teaching per student per week is the ratio the product exists to attack. Giving every person in the census group a single interpreted hour per week would take roughly **3,834 full-time interpreter posts**. That is why "just hire more interpreters" is a position, not a plan, in a country where the profession is thin and the queue is long. And the 12.4x definitional gap is the first thing any team should resolve before quoting an addressable market.
 
-For scale, the German comparison in the same literature is instructive: roughly 850 interpreters serve about 80,000 hearing-impaired people — one per ~94 people — in a country with a funded interpreter service, and supply is still contested [8]. Kenya's 300:1 classroom is what a scarce profession looks like when the alternative to automation is no communication at all.
+For scale, the German comparison in the same literature is instructive: roughly 850 interpreters serve about 80,000 hearing-impaired people, one per ~94 people, in a country with a funded interpreter service, and supply is still contested [8]. Kenya's 300:1 classroom is what a scarce profession looks like when the alternative to automation is no communication at all.
 
-## What Terp 360 actually is
+## What Terp 360 is
 
 The product is a web-based platform: you type or speak, the system processes the input through Signvrse's sign-language database and a translation model, and a 3D avatar signs the result [9]. The part worth studying is how the dataset was built, because the team's first approach failed on its own terms.
 
 | Element | What the record shows | Source |
 |---|---|---|
 | Input / output | English and Swahili in, Kenyan Sign Language out (one-way as of Aug 2025) | [9] |
-| Original approach | Computer vision on hand shapes — abandoned when it became clear how much meaning sits outside the hands | [9] |
+| Original approach | Computer vision on hand shapes, abandoned when it became clear how much meaning sits outside the hands | [9] |
 | Current approach | Motion capture of skilled deaf signers, replayed by 3D avatars | [9] |
 | Corpus | 2,300+ locally recorded signs; 20,000+ professionally captured sequences | [3][9] |
-| Dataset composition | Signers from across Kenya — 60% urban, 40% rural | [9] |
+| Dataset composition | Signers from across Kenya: 60% urban, 40% rural | [9] |
 | Validation | Every sign validated by deaf community partners before release | [9] |
 | Recognition | 2025 Africa Prize for Engineering Innovation (£50,000, Dakar, 16 Oct 2025) | [3][5] |
 | Funding | Google.org Accelerator: Generative AI, June 2025 cohort (20 organisations, share of $30M) | [10] |
 
-On the money, be careful with attribution. Google's own announcement lists Signvrse as one of five organisations in the cohort with impact in Sub-Saharan Africa, describing the work as *"real-time, offline sign language avatars to overcome communication challenges and interpreter shortages for millions of deaf individuals across Africa"* [10]. The accelerator's 20 recipients shared $30M, with individual awards ranging from $500,000 to over $2M, and Google has not disclosed the amount allocated specifically to Signvrse [1]. The UN's *Africa Renewal* reports Savatia citing a **US$2 million** Google investment supporting what it describes as the largest publicly documented database for African sign language [6]. Report the number as the founder's stated figure, not as a Google disclosure — those are different claims.
+On the money, be careful with attribution. Google's own announcement lists Signvrse as one of five organisations in the cohort with impact in Sub-Saharan Africa, describing the work as *"real-time, offline sign language avatars to overcome communication challenges and interpreter shortages for millions of deaf individuals across Africa"* [10]. The accelerator's 20 recipients shared $30M, with individual awards ranging from $500,000 to over $2M, and Google has not disclosed the amount allocated specifically to Signvrse [1]. The UN's *Africa Renewal* reports Savatia citing a **US$2 million** Google investment supporting what it describes as the largest publicly documented database for African sign language [6]. Report the number as the founder's stated figure, not as a Google disclosure. Those are different claims.
 
-Keep the units straight: ~2,300 *signs* is the vocabulary, more than 20,000 *captured sequences* is the recording volume — the same signs performed by different signers, from different regions, multiple times over [3][9].
+Keep the units straight: ~2,300 *signs* is the vocabulary, more than 20,000 *captured sequences* is the recording volume: the same signs performed by different signers, from different regions, multiple times over [3][9].
 
 ## Two directions of the same bridge
 
-Terp 360 goes speech → sign. Google DeepMind's SL2T, launched 12 August 2026, goes the other way: sign → text, initially American Sign Language to English, shipping inside Gboard and Live Transcribe on Pixel 11 — the first time a sign-language model has reached a mainstream consumer product [7]. DeepMind's own framing of the problem is the honest one: the AI boom in spoken languages *"has not reached the world's more than 200 sign languages — and the estimated 70 million Deaf and hard of hearing people who use them"* [7].
+Terp 360 goes speech → sign. Google DeepMind's SL2T, launched 12 August 2026, goes the other way: sign → text, initially American Sign Language to English, shipping inside Gboard and Live Transcribe on Pixel 11, the first time a sign-language model has reached a mainstream consumer product [7]. DeepMind's own framing of the problem is the honest one: the AI boom in spoken languages *"has not reached the world's more than 200 sign languages — and the estimated 70 million Deaf and hard of hearing people who use them"* [7].
 
 Both halves matter, and they are complements rather than competitors: a Deaf user signing into a phone needs sign → text; a hearing teacher, clinician or bank teller needs speech → sign. Neither replaces an interpreter.
 
-The corpus gap is what they share. KSL is not ASL, and neither is Tanzanian or South African Sign Language — off-the-shelf models trained on Western signing data routinely fail on regional dialects and regional grammar [11]. That is why the same month that brought Terp 360's expansion announcement also brought at least three more African projects pointing at the same missing infrastructure [11]: a Kenyan team (ZeroBionic) rendering speech through a locally 3D-printed, multi-jointed robotic arm designed for offline classrooms; a University of KwaZulu-Natal graduate's system converting South African Sign Language into spoken English, built after watching his parents struggle at a social grant office; and Arusha Technical College in Tanzania, funded under LINGUA Africa to create the first open datasets for Tanzanian Sign Language. Kenya's iHUB and Mastercard Foundation EdTech Fellowship selected Signvrse for sign language translation work alongside DEAFHEALTH and Deaf Outreach Program [11].
+The corpus gap is what they share. KSL is not ASL, and neither is Tanzanian or South African Sign Language: off-the-shelf models trained on Western signing data routinely fail on regional dialects and regional grammar [11]. That is why the same month that brought Terp 360's expansion announcement also brought at least three more African projects pointing at the same missing infrastructure [11]: a Kenyan team (ZeroBionic) rendering speech through a locally 3D-printed, multi-jointed robotic arm designed for offline classrooms; a University of KwaZulu-Natal graduate's system converting South African Sign Language into spoken English, built after watching his parents struggle at a social grant office; and Arusha Technical College in Tanzania, funded under LINGUA Africa to create the first open datasets for Tanzanian Sign Language. Kenya's iHUB and Mastercard Foundation EdTech Fellowship selected Signvrse for sign language translation work alongside DEAFHEALTH and Deaf Outreach Program [11].
 
 One more thing in that set is worth copying: UNDP's HAIDI Innovation Track in Kenya makes working directly with disability communities on testing and validation a *funding condition*, not a nice-to-have [11].
 
 ## The constraint that decides whether any of it works
 
-Sign languages are not gesture libraries. Grammar lives in facial expression, head position, body orientation, and the scale and speed of movement — non-manual markers carry negation, questions and intensity [11]. A system that renders hands perfectly and mouths nothing is not signing; it is a mime of signing.
+Sign languages are not gesture libraries. Grammar lives in facial expression, head position, body orientation, and the scale and speed of movement. Non-manual markers carry negation, questions and intensity [11]. A system that renders hands perfectly and mouths nothing is not signing; it is a mime of signing.
 
-The peer-reviewed record is unusually clear about the consequence. An evaluation of a German Sign Language avatar on HoloLens 2, published in 2025 by researchers at TU Berlin and DFKI, gave expert Deaf users adjustable settings they preferred — and still found *"no significant improvements in UX or comprehensibility were observed, which remained at low levels, amid missing SL elements (mouthings and facial expressions) and implementation issues (indistinct hand shapes, lack of feedback and menu positioning)"* [8]. The paper's rule is the one to take away: *"personalisation alone is insufficient, and that SL avatars must be comprehensible by default"* [8]. A related study in the *Journal on Multimodal User Interfaces*, run with deaf signers comparing three signing agents against a human interpreter, opened by naming the field's real deficit — the *"notable lack in the signing systems evaluation by individuals who utilize sign language"* [12].
+The peer-reviewed record is unusually clear about the consequence. An evaluation of a German Sign Language avatar on HoloLens 2, published in 2025 by researchers at TU Berlin and DFKI, gave expert Deaf users adjustable settings they preferred, and still found *"no significant improvements in UX or comprehensibility were observed, which remained at low levels, amid missing SL elements (mouthings and facial expressions) and implementation issues (indistinct hand shapes, lack of feedback and menu positioning)"* [8]. The paper's rule is the one to take away: *"personalisation alone is insufficient, and that SL avatars must be comprehensible by default"* [8]. A related study in the *Journal on Multimodal User Interfaces*, run with deaf signers comparing three signing agents against a human interpreter, opened by naming the field's real deficit: the *"notable lack in the signing systems evaluation by individuals who utilize sign language"* [12].
 
-Which means comprehension testing with Deaf raters, against a human-signer baseline, is the evaluation that matters — not BLEU against a text reference, and not how good the avatar looks in a launch video.
+That means comprehension testing with Deaf raters, against a human-signer baseline, is the evaluation that matters, not BLEU against a text reference and not how good the avatar looks in a launch video.
 
 The second constraint is bytes. A landmark-based sign corpus is never as small as the demo makes it look:
 
@@ -167,9 +167,9 @@ delta-encoded vocabulary (keyframe + 1 byte/coordinate): 0.21 GB
 reduction vs float16 clips: 49%
 ```
 
-Read those columns as a product decision. Collecting a 20,000-sequence corpus even at float16 costs **3.64 GB** of raw pose data before you add video, audio and annotations — a recording campaign, not a side quest. Compressing the vocabulary to 0.21 GB is what makes an offline-first client plausible on a phone that is also carrying someone's life. This is the same lever [the TranslatePsy-AfriSLM release](/posts/translatepsy-afrislm-offline-translation/) pulled for translation: the model has to be small enough to live on the device, because the connectivity is not going to arrive first.
+Read those columns as a product decision. Collecting a 20,000-sequence corpus even at float16 costs **3.64 GB** of raw pose data before you add video, audio and annotations. That is a recording campaign rather than a side quest. Compressing the vocabulary to 0.21 GB is what makes an offline-first client plausible on a phone that is also carrying someone's life. This is the same lever [the TranslatePsy-AfriSLM release](/posts/translatepsy-afrislm-offline-translation/) pulled for translation: the model has to be small enough to live on the device, because the connectivity is not going to arrive first.
 
-And the operational decision that follows is already documented in the product: Signvrse pre-computes common sign combinations for a **35% reduction in processing time**, and streams essential parts first — *"It's better to show a slightly simpler sign immediately than a perfect one after a long delay"* [9]. Quality and delivery latency trade against each other in real time, and in a lecture the deadline is conversational.
+And the operational decision that follows is already documented in the product: Signvrse pre-computes common sign combinations for a **35% reduction in processing time**, and streams essential parts first: *"It's better to show a slightly simpler sign immediately than a perfect one after a long delay"* [9]. Quality and delivery latency trade against each other in real time, and in a lecture the deadline is conversational.
 
 ## How to apply this
 
@@ -188,7 +188,7 @@ The reusable pattern here is bigger than sign language. It applies to any assist
 
 | Takeaway | Detail |
 |---|---|
-| The binding constraint is interpreter throughput | 300 deaf students to one interpreter in the classroom behind Terp 360 — 6 minutes of interpreted teaching per student per week [3] |
+| The binding constraint is interpreter throughput | 300 deaf students to one interpreter in the classroom behind Terp 360: 6 minutes of interpreted teaching per student per week [3] |
 | Automation has to be complementary | Speech → sign (Terp 360) and sign → text (SL2T) are two halves of one conversation, neither a replacement for an interpreter [7] |
 | The corpus, not the renderer, is the moat | 2,300+ signs / 20,000+ captured sequences, validated by deaf partners, 60/40 urban-rural [3][9] |
 | Comprehension is the metric | The HoloLens 2 study found UX and comprehensibility staying low even with the settings users asked for [8] |

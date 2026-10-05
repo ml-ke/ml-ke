@@ -14,7 +14,7 @@ image:
 Prefix caching is the cheapest optimisation in LLM serving and the easiest to lose by accident. Nothing about the model changes; the bytes of your prompt change order, and the input bill moves by nearly an order of magnitude.
 
 > **The framing**
-> This is the reuse side of the cache, not the representation side. [KV Cache Quantization for Long Context](/posts/kv-cache-quantization-long-context/) covered what the cache *costs in memory* when you round it; [vLLM and LLM Serving](/posts/vllm-llm-serving/) covered the paged allocator and listed `--enable-prefix-caching` as a flag; [DeepSeek V4 Peak/Off-Peak Pricing](/posts/deepseek-v4-peak-offpeak-pricing/) showed that a cache-hit input token is priced 30x-50x below a miss and told you to keep stable system prefixes. This post measures the thing all three assume: how much of your prompt actually gets reused, what kills the hit rate, and how to check it in a test.
+> This is the reuse side of the cache, not the representation side. [KV Cache Quantization for Long Context](/posts/kv-cache-quantization-long-context/) covered what the cache *costs in memory* when you round it; [vLLM and LLM Serving](/posts/vllm-llm-serving/) covered the paged allocator and listed `--enable-prefix-caching` as a flag; [DeepSeek V4 Peak/Off-Peak Pricing](/posts/deepseek-v4-peak-offpeak-pricing/) showed that a cache-hit input token is priced 30x-50x below a miss and told you to keep stable system prefixes. This post measures the thing all three assume: how much of your prompt gets reused, what kills the hit rate, and how to check it in a test.
 {: .prompt-info }
 
 Four layouts of the *same 2,180-token prompt* were replayed against a block-level cache built the way vLLM builds one. Two of them are ordinary prompt engineering mistakes, not exotic ones. The measured spread, in steady state:
@@ -23,25 +23,25 @@ Four layouts of the *same 2,180-token prompt* were replayed against a block-leve
 - per-request data placed before the knowledge base: **176 tokens reused (8.1%)**
 - a request-specific value inside the system prompt itself: **0 tokens reused (0.0%)**
 
-On DeepSeek's published off-peak rate for `deepseek-flash`, that is **$0.036 versus $0.327 per 1,000 requests** — the same content, the same model, the same answers.
+On DeepSeek's published off-peak rate for `deepseek-flash`, that is **$0.036 versus $0.327 per 1,000 requests** for the same content, model and answers.
 
 ## The cache key is a prefix, not a lookup
 
 Every provider implements the same idea with different bookkeeping. The invariant is that a cache entry is keyed by *everything from the start of the prompt up to a breakpoint*, so one changed byte early invalidates all of it.
 
-Anthropic's documentation states the mechanism plainly: a cache write "includes the block designated with `cache_control`" and the hash is **cumulative**, "so changing any block at or before the breakpoint produces a different hash on the next request." Cache reads then "walk backward" from the breakpoint looking for the longest prefix a previous request wrote, inside a 20-block lookback window with at most four breakpoints. Prefixes are assembled in a fixed order — **tools, then system, then messages** — "a hierarchy where each level builds upon the previous ones."
+Anthropic's documentation states the mechanism plainly: a cache write "includes the block designated with `cache_control`" and the hash is **cumulative**, "so changing any block at or before the breakpoint produces a different hash on the next request." Cache reads then "walk backward" from the breakpoint looking for the longest prefix a previous request wrote, inside a 20-block lookback window with at most four breakpoints. Prefixes are assembled in a fixed order (**tools, then system, then messages**), "a hierarchy where each level builds upon the previous ones."
 
 OpenAI stores key-value tensors, not text, and requires "the entire rendered prefix to match", including the hidden system message, tool definitions and schemas, and conversation history. Caching is on by default for supported models, cached input is "discounted up to 95%", and the response usage block reports the split the billing uses: `cached_tokens` and `cache_write_tokens`.
 
 DeepSeek's on-disk context cache is enabled for every request with no code change, and a hit requires that the request "fully match a cache prefix unit" — units created at the end of the user input and the end of the model output, detected common prefixes, and fixed token intervals on long inputs. That is why `A+B` followed by `A+C` misses, but leaves `A` persisted for a later `A+D`.
 
-Self-hosted, vLLM chooses a hash-based design: the key is `hash(tuple[components])` over the **parent block hash**, the block's own token tuple, and extra hashes for LoRA IDs or image inputs. Its documentation is explicit that "we only cache full blocks", and that SHA256 is recommended over the default Python hash for multi-tenant deployments — at a cost of "about 100-200ns per token (~6ms for 50k tokens of context)".
+Self-hosted, vLLM chooses a hash-based design: the key is `hash(tuple[components])` over the **parent block hash**, the block's own token tuple, and extra hashes for LoRA IDs or image inputs. Its documentation is explicit that "we only cache full blocks", and that SHA256 is recommended over the default Python hash for multi-tenant deployments, at a cost of "about 100-200ns per token (~6ms for 50k tokens of context)".
 
 Every one of those designs shares the same failure mode: the chain. A block's key contains its parent's key, so the first block that differs takes every block behind it down with it.
 
 ## A block-level prefix cache in the standard library
 
-The harness below is the smallest thing that reproduces all of it: 16-token blocks (vLLM's example block size), SHA256 keys chained through the parent hash, only full blocks stored, LRU eviction under a capacity. The workload models an assistant with a 2,000-token static prefix — 180 tokens of system prompt, 220 of tool schemas, 1,600 of policy text — and 180 tokens of per-request content: a live-data block (date, customer name, balance, ticket id), the ticket itself, and the instruction.
+The harness below is the smallest thing that reproduces all of it: 16-token blocks (vLLM's example block size), SHA256 keys chained through the parent hash, only full blocks stored, LRU eviction under a capacity. The workload models an assistant with a 2,000-token static prefix (180 tokens of system prompt, 220 of tool schemas, 1,600 of policy text) and 180 tokens of per-request content: a live-data block (date, customer name, balance, ticket id), the ticket itself, and the instruction.
 
 {% raw %}
 ```python
@@ -158,7 +158,7 @@ Layout A loses the prefix at block 11, where the live-data block begins: 11 bloc
 
 ## Where prefix hits die
 
-Three failures are worth measuring separately, because each has a different fix. Each block below is self-contained — same cache class, repeated so you can paste it alone.
+Three failures are worth measuring separately, because each has a different fix. Each block below is self-contained: same cache class, repeated so you can paste it alone.
 
 **Alignment.** Only whole blocks are cacheable, so a static prefix that is not a multiple of the block or increment size leaks tokens on every request. With 16-token blocks, a 2,012-token prefix re-processes 12 tokens per request — 12,000 tokens across 1,000 requests, for a prefix that never changes.
 
@@ -288,7 +288,7 @@ The capacity table is the one to act on. Four tenants, each needing 136 blocks f
 
 ## What the reuse is worth on a published price list
 
-The final block converts reused tokens into money using rates you can check. DeepSeek publishes `deepseek-flash` off-peak cache-miss input at **$0.15 per 1M tokens** and cache-hit input at **$0.003 per 1M** — a 50x spread. For Anthropic and OpenAI the published structure is multipliers (Anthropic: 0.1x for cache reads, 1.25x for 5-minute cache writes; OpenAI: cached input "discounted up to 95%"), so they are modelled on a $1/1M base to keep the shape visible.
+The final block converts reused tokens into money using rates you can check. DeepSeek publishes `deepseek-flash` off-peak cache-miss input at **$0.15 per 1M tokens** and cache-hit input at **$0.003 per 1M**, a 50x spread. For Anthropic and OpenAI the published structure is multipliers (Anthropic: 0.1x for cache reads, 1.25x for 5-minute cache writes; OpenAI: cached input "discounted up to 95%"), so they are modelled on a $1/1M base to keep the shape visible.
 
 {% raw %}
 ```python
@@ -360,13 +360,13 @@ TTL sensitivity — deepseek-flash off-peak, layout 'static first', share of req
     100% cold | $  0.327 per 1,000 requests
 ```
 
-Two things to read carefully. First, layout A's 7.8% saving is not a rounding error away from doing nothing — ordering the volatile block early captures the system prompt and abandons the 1,820 tokens of tools and policy, which is where almost all the static mass lives. Second, the TTL row: cache entries expire, and an expired prefix means a full-price prefill. At a 5% cold rate the DeepSeek bill doubles from $0.033 to $0.048 per 1,000 requests; the same workload with a 50% cold rate costs more than half of not caching at all. Prompt caching is a lease you keep renewing with traffic, not a permanent discount. Output tokens are excluded here because nothing in this harness generates them, and no latency is claimed: cache effects on time-to-first-token are a real and separate measurement.
+Two things to read carefully. First, layout A's 7.8% saving is not a rounding error away from doing nothing: ordering the volatile block early captures the system prompt and abandons the 1,820 tokens of tools and policy, which is where almost all the static mass lives. Second, the TTL row: cache entries expire, and an expired prefix means a full-price prefill. At a 5% cold rate the DeepSeek bill doubles from $0.033 to $0.048 per 1,000 requests; the same workload with a 50% cold rate costs more than half of not caching at all. Prompt caching is a lease you keep renewing with traffic, not a permanent discount. Output tokens are excluded here because nothing in this harness generates them, and no latency is claimed: cache effects on time-to-first-token are a real and separate measurement.
 
 ## When you cannot reorder the prompt
 
 Some workloads genuinely need the volatile part early, or have no stable part at all. Three cases and what is still recoverable:
 
-- **Multi-turn conversations.** Appending turns at the end extends the matched prefix, which is why Anthropic's automatic caching can simply "move forward as conversations grow". Editing or compacting mid-history instead rewrites the prefix, so a summarisation step is a full-price re-prefill of the whole context for every session that shares that path — do it deliberately, not on a timer.
+- **Multi-turn conversations.** Appending turns at the end extends the matched prefix, which is why Anthropic's automatic caching can simply "move forward as conversations grow". Editing or compacting mid-history instead rewrites the prefix, so a summarisation step is a full-price re-prefill of the whole context for every session that shares that path. Do it deliberately, not on a timer.
 - **Retrieved documents that rotate.** If the chunk set changes per request, cache the layer above it: Anthropic allows up to four explicit breakpoints, so the tools and system layer can be cached separately from the document layer; DeepSeek's common-prefix detection persists `A` after seeing `A+B` and `A+C`, so a document-heavy workload still converges on the shared head once the patterns repeat.
 - **Tool-schema churn.** Tools are assembled before system and messages, so adding, deleting or reordering one tool invalidates every cached prefix on every request. A debug tool left in a staging deploy can cost more than the tokens it returns.
 
@@ -375,7 +375,7 @@ Worth auditing too: any middleware that prepends a request id, trace id or times
 ## How to apply this to your own stack
 
 1. **Order the prompt by changerate, not by narrative.** Tool schemas and system instructions first, then stable documents, then per-request context, then the instruction. Mark the breakpoint at the end of the static region.
-2. **Hunt for interpolated values in the static region.** A date, a user name, a "current balance", a session id, a build hash — any of these inside the system prompt collapses the cache to zero, and the failure is invisible in the response.
+2. **Hunt for interpolated values in the static region.** A date, a user name, a "current balance", a session id, a build hash. Any of these inside the system prompt collapses the cache to zero, and the failure is invisible in the response.
 3. **Assert the hit in a test.** Both usage formats exist: OpenAI returns `cached_tokens` and `cache_write_tokens` (and offers a Prompt Caching Dashboard for hit-rate monitoring), Anthropic returns cache read/write token counts. In your staging suite, send the same request twice and fail if the second response reports zero cached tokens. That single assertion catches layout regressions that no reviewer notices.
 4. **Respect the granularity.** Anthropic requires a minimum cacheable prefix length that varies by model and rewrites in 20-block units of lookback; OpenAI adds explicit breakpoints and a 30-minute TTL on GPT-5.6-and-later (`prompt_cache_options.ttl`), while earlier models default to `in_memory` retention of roughly 5-10 minutes of inactivity; DeepSeek matches whole persisted prefix units. A 300-token system prompt may simply be below the minimum, and no amount of reordering will cache it there.
 5. **Route similar requests together.** OpenAI's `prompt_cache_key` exists to keep requests that share a prefix landing on the same cache; without it, load balancing can scatter them.
