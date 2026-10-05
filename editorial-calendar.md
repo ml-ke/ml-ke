@@ -1902,3 +1902,52 @@ phrased as a pointer, not a measured comparison.
      future inference-cost post that claims a hit rate or a saving (candidate follow-ups: multi-turn agent
      loops where the working set grows each turn; KV-block budget sizing under `--gpu-memory-utilization`;
      verifying a gateway does not inject a timestamped system message).
+
+## Publishing note — 2026-10-05 (Lane A, positive AI story)
+
+**Post — 2026-10-05 — `africa-enterprise-ai-decisioning`** (Lane A, positive)
+- Lane check: Oct 3 (A), Oct 4 (B) → Oct 5 = **Lane A**. `.scheduled/` EMPTY (normal; legacy queue retired).
+  Written directly to `_posts/` at `2026-10-05 00:00:00 +0300`.
+- Anchor: **Synapse Analytics US$13M Series A** (closed 15 Sep 2026) — Egypt-founded, now ADGM-incorporated,
+  led by Partech with Algebra Ventures and Silicon Badia; US$17M total since 2018. Angle:
+  **decisioning infrastructure a regulated lender installs inside its own perimeter and operates itself**
+  (on-premises / private or public cloud / sovereign cloud / air-gapped) plus **policy backtesting** — not
+  "an AI funding round". Differentiation stated in the intro callout against `ai-african-fintech` (use-case
+  layer), `kyc-aml-analytics-african-fintech` (identity/monitoring pipelines) and
+  `mlops-regtech-model-governance` (governance rules).
+- Why this lane/anchor: agriculture was used 28 Sep and health three times (18/26 Sep, 1 Oct), so the bank's
+  "prefer agriculture / education / energy" note was satisfied by taking a *financial-infrastructure* milestone
+  instead; the round is 20 days old (inside the ≤21-day window) and has 6+ independent body-fetched sources.
+- Sources (all body-fetched, not snippet-level): Disrupt Africa 15 Sep; WeeTracker 14 Sep; Techawk 15 Sep;
+  iAfrica 19 Sep ("one of the largest disclosed AI rounds on the continent this year"); Empower Africa 15 Sep;
+  **EnterpriseAM Egypt 15 Sep — the CEO interview, the richest source** (nine-month close, prior rounds,
+  secondary sales, board seats, ADGM incorporation, Egypt H1 2026 US$142M −29% on Magnitt figures);
+  Innovation Village; Konsulteer; Disrupt Africa Q3 report 5 Oct 2026; ICTworks 14 Sep (reporting BusinessDay's
+  interview with Digital Africa CEO Grégoire de Padirac).
+- **Vendor-claim caveats recorded:** the US$200M lending supported and "up to 40%" NPL reduction appear only in
+  Disrupt Africa and are **the company's own figures** — labelled as such in the post. The "headquartered in Abu
+  Dhabi" line is Empower Africa's, attributed to it; EnterpriseAM independently confirms the ADGM incorporation.
+- Measured results (quoted verbatim; block re-executed from the file with `verify-post-code.py`): deterministic
+  synthetic backtest, 5,000 applications — V1 44.3% approved / 5.60% defaults (reasons SCORE_BELOW_CUTOFF=2054,
+  DTI_ABOVE_LIMIT=731); V2 43.4% / 5.81% (1845, 985); carve-out adds 209 approvals at 13.88% defaults;
+  route-1 tightening alone 39.2% / 4.95% (−254 approvals vs V1). The teaching point: the "widen the door"
+  policy **narrowed** total approvals when replayed as a whole.
+- Word count: 3,174 full / **2,633 code-excluded** (sibling calibration, same script: Oct 1 3,265/2,686 ·
+  Oct 3 3,204/2,664) → in band.
+- Verification: `verify-post-code.py` → "OK: all blocks ran"; paired-fence checker confirmed stdout
+  byte-identical to the quoted `text` block; all 18 prose figures asserted present in that stdout; no
+  `post_url`, no `cover:` key, no `.png` image paths; all 4 `/posts/` links resolve; slug unique; SVG XML
+  well-formed and amp-check clean (no bare `&`, angle-bracket inequalities avoided in cover text); WebP
+  1200×630 VP8, 48 KB, ink present in all six render bands.
+- Commit `7fa2d38`; Actions run for that SHA `completed success`; live permalink `/posts/africa-enterprise-ai-decisioning/`
+  returned **200** on the first attempt; cover WebP live (200, 48,086 bytes, matching local).
+- **Next session actions:**
+  1. Oct 6 = **Lane B** (tutorial): Oct 4 B, Oct 5 A → Oct 6 = B. Must run its code and quote stdout; keep every
+     block self-contained (each fence runs in a fresh interpreter).
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. **Bank update done this session:** `references/positive-ai-incident-bank.md` gained a section 10 with the
+     Synapse anchor (marked USED 5 Oct 2026), the African-tech funding Q3 2026 figures, and the
+     "AI-native = under 2% of H1 2026 funding" statistic.
+  4. Next Lane A day: agriculture / education / energy anchors from the bank; the ALA + MBZUAI "AI for Africa"
+     bootcamp (1 Oct 2026, Johannesburg, ~30 secondary-school students) is a fresh education candidate that
+     still needs a second body-level source before use.
