@@ -18,9 +18,9 @@ image:
 
 A duplicated row costs you disk. A duplicated *corpus* costs you the ability to believe anything you print afterwards. The published numbers on this are blunter than most teams expect:
 
-- Lee et al. (ACL 2022) found that over **1% of the unprompted output** of language models trained on standard web datasets is copied verbatim from training data, that removing duplicates makes models emit memorised text **ten times less often**, and that train–test overlap affects **more than 4% of the validation sets** of those datasets — one of their examples was a single 61-word English sentence repeated over **60,000 times** in C4 [1].
+- Lee et al. (ACL 2022) found that over **1% of the unprompted output** of language models trained on standard web datasets is copied verbatim from training data, that removing duplicates makes models emit memorised text **ten times less often**, and that train–test overlap affects **more than 4% of the validation sets** of those datasets. One of their examples was a single 61-word English sentence repeated over **60,000 times** in C4 [1].
 - Kandpal et al. (ICML 2022) showed the memorisation rate grows *superlinearly* with duplication: a sequence present **10 times** is regenerated on average **~1,000 times more often** than a sequence present once, and existing memorisation-detection methods are close to chance on sequences that appear only once [2].
-- The Pile's builders measured a **28% duplicate rate** in OpenWebText2 and **26%** in their Common Crawl data using MinHashLSH at an approximate Jaccard of 0.5 — and noted that a plain quadratic comparison of all documents "would have taken several hundred thousand years" [3].
+- The Pile's builders measured a **28% duplicate rate** in OpenWebText2 and **26%** in their Common Crawl data using MinHashLSH at an approximate Jaccard of 0.5, and noted that a plain quadratic comparison of all documents "would have taken several hundred thousand years" [3].
 - A 2026 study of multilingual pretraining corpora records that SlimPajama's MinHash pass **removed 49% of RedPajama's content** [4].
 
 The evaluation side is worse, because duplication there is invisible in the score. A 2026 systematic review of 55 contamination studies found **no detection method consistently reliable** across contamination tiers and model-access settings, flagged instruction tuning as a persistent blind spot, and reported test-score inflation estimates spanning roughly **6%–40%** depending on the benchmark and the setting [5].
@@ -35,7 +35,7 @@ The evaluation side is worse, because duplication there is invisible in the scor
 
 ## Two ideas, one formula
 
-**Jaccard similarity** between two rows is the size of the shared set divided by the size of the union — on *shingles* (here, 5-grams of words), so a reordered or lightly edited row still scores high.
+**Jaccard similarity** between two rows is the size of the shared set divided by the size of the union. It is computed on *shingles* (here, 5-grams of words), so a reordered or lightly edited row still scores high.
 
 **MinHash** turns each row into a fixed-length signature: apply many different hash functions to a row's shingles, keep the minimum of each. The probability that two rows agree on one hash equals their Jaccard similarity, so the fraction of agreeing rows in a 112-row signature estimates it directly.
 
@@ -43,13 +43,13 @@ The evaluation side is worse, because duplication there is invisible in the scor
 
 $$P(\text{candidate}) = 1 - (1 - s^{8})^{14}$$
 
-where $s$ is the true Jaccard similarity. That curve has the shape you want: near zero for unrelated rows, a steep jump around the threshold $(1/14)^{1/8} \approx 0.72$, and near-certainty above 0.85. FineWeb, which published this exact configuration — 5-grams, 112 hashes, 14 buckets of 8, "targeting documents that are at least 75% similar" — computes the matching probability as **56%** at $s = 0.70$, **77%** at 0.75, **92%** at 0.80 and **98.8%** at 0.85 [6]. Hugging Face's `datatrove` defaults to the same numbers (`n_grams=5, num_buckets=14, hashes_per_bucket=8`, i.e. 112 hashes) and even encodes them in the output folder name [7]. Milvus ships MinHash LSH as a native index type for the same reason its docs give: exact pairwise Jaccard is $O(n^2)$ in time and memory, which "makes it infeasible for use cases such as LLM training corpus cleaning" [8].
+where $s$ is the true Jaccard similarity. That curve has the shape you want: near zero for unrelated rows, a steep jump around the threshold $(1/14)^{1/8} \approx 0.72$, and near-certainty above 0.85. FineWeb, which published this exact configuration (5-grams, 112 hashes, 14 buckets of 8, "targeting documents that are at least 75% similar") computes the matching probability as **56%** at $s = 0.70$, **77%** at 0.75, **92%** at 0.80 and **98.8%** at 0.85 [6]. Hugging Face's `datatrove` defaults to the same numbers (`n_grams=5, num_buckets=14, hashes_per_bucket=8`, i.e. 112 hashes) and even encodes them in the output folder name [7]. Milvus ships MinHash LSH as a native index type for the same reason its docs give: exact pairwise Jaccard is $O(n^2)$ in time and memory, which "makes it infeasible for use cases such as LLM training corpus cleaning" [8].
 
-The formula is a *model*, and the model assumes the 8 rows in a band match independently. Cheap hash families are not exactly min-wise independent, so treat published probabilities as a design target and measure the candidate count on your own corpus — which is what the next section does.
+The formula is a *model*, and the model assumes the 8 rows in a band match independently. Cheap hash families are not exactly min-wise independent, so treat published probabilities as a design target and measure the candidate count on your own corpus, which is what the next section does.
 
 ## The audit: 350 rows, ground truth included
 
-The script below builds a corpus whose duplicates I control exactly — 120 distinct documents, 30 verbatim copies, and 200 edited near-copies at substitution rates of 0.5%, 2%, 5%, 10% and 20% — then computes every pair's exact Jaccard on 5-gram sets as ground truth and asks how well each LSH setting recovers it. Nothing here needs a GPU, a model, or the network.
+The script below builds a corpus whose duplicates I control exactly (120 distinct documents, 30 verbatim copies, and 200 edited near-copies at substitution rates of 0.5%, 2%, 5%, 10% and 20%), then computes every pair's exact Jaccard on 5-gram sets as ground truth and asks how well each LSH setting recovers it. Nothing here needs a GPU, a model, or the network.
 
 {% raw %}
 ```python
@@ -221,7 +221,7 @@ largest group: 4 rows
 
 ## Reading the numbers
 
-**The candidate set is tiny.** 233 candidate pairs out of 61,075 — **0.38%** of the matrix. Everything downstream only ever looks at those.
+**The candidate set is tiny.** 233 candidate pairs out of 61,075, **0.38%** of the matrix. Everything downstream only ever looks at those.
 
 **Banding should be tuned for recall, not precision.** At 14×8 the bands recovered **100%** of the 605 pairs at or above 0.8 Jaccard, with 71.2% of candidates true. Tightening to 10×10 (threshold 0.79) cut candidates to 194 and lifted precision to 0.830, but missed 3% of the true pairs. Loosening to 16×4 (threshold 0.50) found everything and doubled the candidate list, dropping precision to 0.412. Cheap-and-wide is the right side to err on: a false candidate costs one exact Jaccard computation, a missed duplicate costs a duplicated row in the corpus forever.
 
@@ -229,15 +229,15 @@ largest group: 4 rows
 
 **Signature length buys precision.** With 64 rows the estimate is noisy and recall@0.8 fell to **0.916**; 112 rows gives 0.964; 256 rows gives 0.976. If your evals are sensitive to a few leaked rows, pay for the hashes.
 
-**Watch the configuration guard.** The `20x6` row in the sweep is skipped rather than computed, because 20 × 6 = 120 hashes exceeds the 112-row signature — the band keys go empty and every row collides with every other row. The first version of this script did that silently and compared all 36,315 pairs at the time; one `if bands * rows > len(signature)` check catches it.
+**Watch the configuration guard.** The `20x6` row in the sweep is skipped rather than computed, because 20 × 6 = 120 hashes exceeds the 112-row signature; the band keys go empty and every row collides with every other row. The first version of this script did that silently and compared all 36,315 pairs at the time; one `if bands * rows > len(signature)` check catches it.
 
-**The clusters are where the payoff is.** 40 duplicate groups covering 136 rows; after keeping the shortest row per group, **96 rows (27.4%)** leave the corpus. That is close to the 26–28% duplicate rates the Pile's builders reported on real web data [3] — and mine is a corpus I seeded deliberately, which is the point: you cannot tell by looking, and neither can a data-cleaning job that only removes exact matches.
+**The clusters are where the payoff is.** 40 duplicate groups covering 136 rows; after keeping the shortest row per group, **96 rows (27.4%)** leave the corpus. That is close to the 26–28% duplicate rates the Pile's builders reported on real web data [3], and mine is a corpus I seeded deliberately, which is the point: you cannot tell by looking, and neither can a data-cleaning job that only removes exact matches.
 
-**Cost.** Measured here: brute force over 61,075 pairs took **0.89 s** (about 14.6 µs per pair), the signature pass took **4.66 s** for 350 rows (≈13 ms per row), and the whole script ran in **22.0–22.2 s** across three runs. Straight-line arithmetic from those two rates: at a million rows the pairwise pass is ~5 × 10¹¹ comparisons — roughly **85 days** on one core — while the signature pass is about **3.7 hours**, parallelisable, and the LSH candidate count grows with the number of *duplicate* pairs rather than the square of the corpus.
+**Cost.** Measured here: brute force over 61,075 pairs took **0.89 s** (about 14.6 µs per pair), the signature pass took **4.66 s** for 350 rows (≈13 ms per row), and the whole script ran in **22.0–22.2 s** across three runs. Straight-line arithmetic from those two rates: at a million rows the pairwise pass is ~5 × 10¹¹ comparisons (roughly **85 days** on one core), while the signature pass is about **3.7 hours**, parallelisable, and the LSH candidate count grows with the number of *duplicate* pairs rather than the square of the corpus.
 
 ## What this pass cannot see
 
-MinHash on word shingles measures **surface overlap**. It catches reformatted, truncated, boilerplate-wrapped, translated-and-back, and lightly edited copies — exactly the population that inflates counts. A paragraph rewritten from scratch scores far below any practical threshold and stays in the corpus. Commercial pipelines close that hole with embedding-based clustering, which costs a model forward pass per row, and the two are complements rather than substitutes: run the shingle pass first because it is cheap, deterministic and explainable, then spend embeddings only on the rows it leaves standing. Keep the decision explicit either way — "duplicate" is defined by the metric you choose, and a dedup rule nobody wrote down is a licence to drop rows for reasons a reviewer cannot reconstruct.
+MinHash on word shingles measures **surface overlap**. It catches reformatted, truncated, boilerplate-wrapped, translated-and-back, and lightly edited copies. That is exactly the population that inflates counts. A paragraph rewritten from scratch scores far below any practical threshold and stays in the corpus. Commercial pipelines close that hole with embedding-based clustering, which costs a model forward pass per row, and the two are complements rather than substitutes: run the shingle pass first because it is cheap, deterministic and explainable, then spend embeddings only on the rows it leaves standing. Keep the decision explicit either way: "duplicate" is defined by the metric you choose, and a dedup rule nobody wrote down is a licence to drop rows for reasons a reviewer cannot reconstruct.
 
 ## The five-line gate for eval sets
 
@@ -320,14 +320,14 @@ verbatim copies found: 1
 rephrased version of eval-01: 26 13-grams, overlap 0.000 -> overlap cannot see paraphrase
 ```
 
-Three lessons are visible in fourteen lines of output. A verbatim leak scores **1.000** — no threshold argument, the gate just fires. Changing **one word** ("recommend" → "prefer") collapses the overlap from 1.000 to **0.143**, because every 13-gram spanning that word is destroyed; the item still trips a 0.5 rule, but a heavier synonym pass would not. And a genuinely **rephrased** version of the leaked question scores **0.000** against the corpus that contains the original verbatim. That last line is the honest limit of the method, and it matches what the 2026 review concluded from 55 studies: string-matching, likelihood-based, membership-inference and auditing families all have failure modes, and none dominates [5]. So use the 13-gram gate as a tripwire for the easy cases — and use the MinHash index, with a lower similarity threshold, when you want to catch the rewritten ones.
+Three lessons are visible in fourteen lines of output. A verbatim leak scores **1.000**. There is no threshold to argue about; the gate just fires. Changing **one word** ("recommend" → "prefer") collapses the overlap from 1.000 to **0.143**, because every 13-gram spanning that word is destroyed; the item still trips a 0.5 rule, but a heavier synonym pass would not. And a genuinely **rephrased** version of the leaked question scores **0.000** against the corpus that contains the original verbatim. That last line is the honest limit of the method, and it matches what the 2026 review concluded from 55 studies: string-matching, likelihood-based, membership-inference and auditing families all have failure modes, and none dominates [5]. So use the 13-gram gate as a tripwire for the easy cases — and use the MinHash index, with a lower similarity threshold, when you want to catch the rewritten ones.
 
 ## How to wire this into a pipeline
 
 1. **Deduplicate before you split.** Run the pass on the raw pool, then split. Deduplicating train and test separately leaves the cross-split overlap exactly where it hurts most.
-2. **Cache the signatures, and reuse the index across splits.** `datatrove`'s pipeline writes signatures per bucket and lets a later run take an `index_folder` — "load all index files in this folder and use them as a reference … remove any matches on our dataset with signatures from the index" [7]. That is the mechanism for filtering a new batch, or a validation set, against the corpus you already trained on.
+2. **Cache the signatures, and reuse the index across splits.** `datatrove`'s pipeline writes signatures per bucket and lets a later run take an `index_folder`: "load all index files in this folder and use them as a reference … remove any matches on our dataset with signatures from the index" [7]. That is the mechanism for filtering a new batch, or a validation set, against the corpus you already trained on.
 3. **Pick bands for recall, filter for precision.** Bands are cheap; the exact Jaccard check (or the signature estimate) is the expensive step, so it belongs after the candidate set, and its threshold can be set from your own numbers rather than the textbook curve.
-4. **Decide the keep rule explicitly and log it.** Keeping the shortest row of each cluster is a reasonable default; keeping the highest-quality row needs a quality signal you trust. Whatever you choose, record the cluster ID on the surviving row — otherwise a future metric jump has no explanation attached.
+4. **Decide the keep rule explicitly and log it.** Keeping the shortest row of each cluster is a reasonable default; keeping the highest-quality row needs a quality signal you trust. Whatever you choose, record the cluster ID on the surviving row. Otherwise a future metric jump has no explanation attached.
 5. **Record three numbers in your datasheet:** candidate-pair percentage, rows removed, and the banding configuration. `datatrove` encodes the config in its folder name (`5ng_14bs_8hs`) for exactly this reason [7]. A corpus with 27% of rows removed and one with 2% removed are different corpora, even at the same token count.
 6. **Guard the configuration and re-measure on your own hash family.** Assert `bands × rows ≤ signature length`, and check the per-row agreement rate against known-Jaccard pairs before trusting a threshold: the banding formula assumes independent rows, which holds only approximately for cheap hash families.
 
@@ -337,11 +337,11 @@ Three lessons are visible in fourteen lines of output. A verbatim leak scores **
 |---|---|
 | How much of the pairwise matrix must I compare? | 0.38% (233 candidates out of 61,075 pairs) |
 | Does banding miss real duplicates? | At 14×8, recall@0.8 was 1.000 on 605 known pairs |
-| What do false candidates cost? | One exact Jaccard computation — 71.2% precision before filtering, 98.2% after |
+| What do false candidates cost? | One exact Jaccard computation: 71.2% precision before filtering, 98.2% after |
 | How many hashes? | 64 → recall 0.916; 112 → 0.964; 256 → 0.976 |
 | What does the corpus lose? | 96 of 350 rows (27.4%) in 40 duplicate groups |
 | Does it scale? | Pairwise ≈ 14.6 µs/pair (≈85 days at 1M rows, one core); signatures ≈ 13 ms/row (≈3.7 h at 1M rows, parallel) |
-| Can the same code check contamination? | Yes — 13-gram overlap flags verbatim leaks instantly, and cannot see paraphrase |
+| Can the same code check contamination? | Yes, 13-gram overlap flags verbatim leaks instantly, and cannot see paraphrase |
 
 ## References
 
