@@ -142,6 +142,11 @@ The structure above makes a skill *valid*. This section makes it *useful*. Disti
 
 ### Description is the whole trigger burden
 At startup only `name` + `description` are loaded (median ~80 tokens per skill across Anthropic's official skills). The body loads only when the description triggers. If the description doesn't trigger, the skill doesn't exist. Rules:
+
+> ⚠️ **The prompt shows only the first 60 characters.** `agent/skill_utils.py` sets `SKILL_PROMPT_DESC_LIMIT = 60`; `extract_skill_description()` truncates to `57 chars + "..."` before the system-prompt skill index renders `- <name>: <description>`. **Everything after char 57 is invisible at routing time.** The trigger must be fully self-contained in the first 57 characters; a long enumeration of phrasings only helps once the skill is already loaded. `skill_manage(action='create')` enforces this by REFUSING new skills whose description exceeds 60 chars. Audit an existing one with:
+> ```bash
+> python3 -c "import re,sys;d=re.search(r'description: ?(.*)',open(sys.argv[1]).read()).group(1);print(len(d),repr(d[:57]))" <SKILL.md>
+> ```
 - **Imperative phrasing**: "Use this skill when..." not "This skill does..."
 - **User intent, not implementation**: the agent matches against what the user asked for, so describe the *need*, not your internals
 - **Err pushy**: explicitly list contexts, including "even if they don't mention X"

@@ -119,6 +119,17 @@ paths: all forward slashes, no backslashes
 no XML/HTML tags in description (XID check)
 ```
 
+> ⚠️ **Routing budget is 60 chars, not 1024.** The spec allows a 1024-char description, but the system-prompt skill index truncates it: `agent/skill_utils.py::SKILL_PROMPT_DESC_LIMIT = 60`, rendered as `57 chars + "..."`. A description whose trigger sits after char 57 is unroutable, and `skill_manage(action='create')` rejects new skills past 60 chars outright. Audit the library with:
+> ```bash
+> python3 - <<'PY'
+> import re, pathlib
+> for p in pathlib.Path.home().joinpath('.hermes/skills').rglob('SKILL.md'):
+>     m = re.search(r'(?m)^description:\s*(.*)', p.read_text(encoding='utf-8-sig', errors='replace'))
+>     if m and len(m.group(1)) > 60: print(len(m.group(1)), p)
+> PY
+> ```
+> Pre-existing long descriptions are tolerable **only when the first 57 chars already carry the trigger** (repo-scoped skills like `hodaripay-*` and `blog-drafting` are the known-good cases).
+
 **Generating frontmatter programmatically (live-verified Aug 2026):** when a script writes SKILL.md files (e.g. the Hermes→OpenCode bridge `opencode_skills_bridge.py`), ALWAYS emit `description` as a YAML block scalar (`description: >-` with indented lines). Inline `description: text` breaks YAML parsing whenever the text contains `: ` (colon+space) or `#` — real descriptions routinely contain colons ("Pre-commit review: security scan..."). Block scalars are always valid and also handle multiline/emoji text. Validate generated output by re-parsing it (the skill_validator.py YAML parse catches this).
 
 ### Step 2 — Semantic checks (read the body)

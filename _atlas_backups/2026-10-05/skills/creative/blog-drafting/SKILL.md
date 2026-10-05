@@ -16,6 +16,14 @@ Route with `writing-router`; finish every post with `humanizer` before the publi
 
 This applies to cron-published posts too — the cron has no user to ask, so the humanizer pass is the agent's own responsibility. The only exemption is a post whose body is pure tables/code with no prose.
 
+**Out of scope for the humanizer pass — house formatting, leave as-is:**
+- The ` — ` separator in `## References` / `## Related posts` lines. It is a house convention used across the whole corpus (~1,300 lines); rewriting it in a subset of posts splits the style between published posts.
+- ` — ` inside a table cell that carries data, and the standalone `—` placeholder for an empty cell (it means "not applicable").
+
+The humanizer pass targets **prose**, not footnotes and table punctuation. A correct pass produces a balanced diff that rewrites prose only: front matter, fenced code blocks, inline code, every link target and every numeric token must be **byte-identical** afterwards. Verify before committing — a pass that also "tidies" the reference block should have that part reverted (`git diff` the `## References` tail against `HEAD` and restore it).
+
+**Reference-post audit (2026-10-05):** a 10-post sweep cut prose em dashes from 26-42 to 2-6 per post, with front matter/code/links/numbers verified byte-identical. Corpus-wide the same sweep measured 2,693 em dashes and 257 fragmented headers across 134 posts — the pre-Sep-2026 series is the worst offender (one post carries 86 emoji and 60 em dashes) and is legacy.
+
 ## CRITICAL PITFALLS (read first)
 
 ### 1. Future Dates Break the Build
