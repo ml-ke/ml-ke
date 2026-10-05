@@ -11,6 +11,8 @@ description: >-
   "compliance checklist", "what does the spec need to cover".
 metadata:
   last_modified: Sat, 26 Aug 2026 00:00:00 GMT
+  hermes:
+    related_skills: [writing-router, humanizer, hodaripay-docs-workflow, hodaripay-adr]
 ---
 
 # YucanPay Fintech BRS Checklist

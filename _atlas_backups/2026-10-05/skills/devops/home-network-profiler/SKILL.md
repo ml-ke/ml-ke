@@ -172,6 +172,7 @@ Modern Apple devices (iOS 14+, macOS 11+), Android (10+), and Windows (10+) all 
 This skill includes a reference file with real-world fingerprint data from an actual home network sweep:
 
 - **`references/device-fingerprints.md`** — verified service banners (Apple TV companion-link `Tier1` protocol, Samsung TV remote control), randomized MAC detection CLI snippet, port-to-service quick-reference table, Starlink router fingerprint, and device sleep behavior observations. Consult this when identifying devices that nmap's `-O` or `-sV` gets wrong.
+- **`references/cpe-and-lan-audit.md`** — Tozed/ZLT 5G CPE fingerprinting recipe (unauthenticated `cmd=` enumeration, model/firmware/SIM leak commands, login token flow, lockout bands) plus the router hardening checklist and the docker-published-dev-stack audit that finds the network's real risk.
 
 ## Additional Verification: Apple TV Companion-Link
 
@@ -259,6 +260,50 @@ nmap `-O` can misidentify **Apple TV (tvOS)** as **"Microsoft Xbox 360 Dashboard
 5. Hostname patterns like `Name-s-Model` (e.g., `Timothy-s-A17`) follow Apple's Bonjour naming convention (possessive `'s` + model identifier)
 
 **Xbox indicators:** UPnP on UDP 1900, Xbox-specific port ranges, intermittent presence (console sleep mode). Use cross-reference, never trust `-O` alone.
+
+## Additional Techniques That Actually Discriminate
+
+### mDNS reverse-PTR is the best Android identifier
+Android devices answer a PTR query for `<last-octet>.<a>.<b>.<c>.in-addr.arpa` with their mDNS hostname
+(`Android_XXXXXXXX.local`). Send it with the **QU bit set** (`qclass 0x8001`) or iOS/Android reply only
+unicast-less and you see nothing:
+
+```python
+pkt = struct.pack('!HHHHHH',0,0,1,0,0,0) + enc('124.1.168.192.in-addr.arpa') + struct.pack('!HH',12,0x8001)
+sock.sendto(pkt, ('224.0.0.251', 5353))
+```
+
+Also query `_services._dns-sd._udp.local` to list advertised service types. Interpretation:
+`_nearbypresence._tcp` = Google/Nearby (Android or ChromeOS); `_apple-mobdev2`/`_airplay`/`_companion-link`/
+`_raop` = Apple; `_googlecast` = Chromecast; `_ipp` = printer. A phone answering with **all TCP closed +
+only 5353/udp open + high-jitter RTT** is a sleeping handset, not a server.
+
+### Find hidden hosts that ignore IPv4 ARP: ping the IPv6 all-nodes group
+```bash
+ping6 -c3 ff02::1%<iface>          # then: ip -6 neigh show dev <iface>
+ip -6 addr show <iface>            # subtract your own fe80:: (look for noprefixroute) to spot responders
+```
+Bridges/dumb APs with no IPv4 address still answer here. If only your own address answers, the ARP
+sweep was complete. `ping 224.0.0.1` (IPv4 all-hosts) is usually filtered and proves nothing.
+
+### ISP/CPE router: fingerprint by unauthenticated vendor API enumeration
+Consumer 5G CPEs (Tozed/ZLT, ZTE, Huawei, Nokia) often run a JSON API that leaks model/firmware
+to unauthenticated callers. Pull the web UI's JS, find the API path and the command table, then
+enumerate every command ID and keep whatever does not answer `NO_AUTH`.
+See `references/cpe-and-lan-audit.md` for the Tozed ZLT recipe, the identification signals, and the
+router-side hardening checks (HTTP-vs-HTTPS, localStorage secrets, default creds with lockout bands).
+
+### Audit the scanner host too — the LAN's biggest hole is usually your own dev stack
+Before declaring the network clean, check what *this* machine publishes to the LAN:
+```bash
+docker ps --format '{{.Names}}\t{{.Ports}}'     # 0.0.0.0:PORT-> means every device on the WiFi can reach it
+sudo ss -tulpn | grep -v 127.0.0.1                # non-loopback listeners
+sudo ufw status                                   # 'inactive' means nothing filters those ports
+```
+Then verify from the LAN IP (not localhost) whether the service answers **unauthenticated** — e.g.
+Supabase Studio's `/api/platform/profile` returning 200 with no auth, on the Supabase CLI **default JWT
+secret**, means anyone on the WiFi can forge `service_role` and own the database. A clean device sweep
+with an open dev stack is still a failed audit.
 
 ## Compiling the Report
 

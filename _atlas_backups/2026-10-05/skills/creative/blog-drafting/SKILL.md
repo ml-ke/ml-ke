@@ -1,9 +1,20 @@
 ---
 name: blog-drafting
 description: Draft and publish blog posts for the ML Kenya blog (Jekyll + Chirpy theme). Covers front matter, SVG cover images, code blocks, Mermaid diagrams, LaTeX math, admonitions, and deployment via GitHub Actions to ml.co.ke. Includes real-world Jekyll pitfalls and cross-link verification.
+version: 1.1.0
+metadata:
+  hermes:
+    category: creative
+    related_skills: [writing-router, humanizer, topic-scouting, grounded-citations]
 ---
 
 # Blog Drafting for ML Kenya
+
+## Final pass (MANDATORY — read before committing)
+
+Route with `writing-router`; finish every post with `humanizer` before the publish commit. The order is fixed: **fact-check protocol below FIRST, then the `humanizer` pass on the body prose.** Polishing an unverified draft means polishing it again after the facts change.
+
+This applies to cron-published posts too — the cron has no user to ask, so the humanizer pass is the agent's own responsibility. The only exemption is a post whose body is pure tables/code with no prose.
 
 ## CRITICAL PITFALLS (read first)
 

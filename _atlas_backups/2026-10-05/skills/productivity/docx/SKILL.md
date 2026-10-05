@@ -9,7 +9,7 @@ metadata:
   hermes:
     tags: [word, docx, documents, office, templates, revisions, comments]
     category: productivity
-    related_skills: [pdf, xlsx, powerpoint]
+    related_skills: [writing-router, humanizer, pdf, xlsx, powerpoint]
 ---
 
 # Docx Skill

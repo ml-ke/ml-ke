@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [YouTube, Video, Transcripts, Media]
-    related_skills: []
+    related_skills: [writing-router, humanizer]
 ---
 
 # YouTube Content Tool

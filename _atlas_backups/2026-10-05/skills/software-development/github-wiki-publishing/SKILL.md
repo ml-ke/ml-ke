@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [docs, wiki, github, content-generation, subagents, mermaid, ci]
-    related_skills: [subagent-driven-development, github-repo-management, architecture-diagram]
+    related_skills: [writing-router, humanizer, subagent-driven-development, github-repo-management, architecture-diagram]
 ---
 
 # Building and publishing a multi-page wiki

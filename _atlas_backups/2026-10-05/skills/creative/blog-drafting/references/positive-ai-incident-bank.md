@@ -177,6 +177,58 @@ validation a *funding condition*. Same piece names KSL non-manual markers (facia
 orientation, movement scale) as the grammar that decides whether an avatar is legible. Kenya's **iHUB + Mastercard
 Foundation EdTech Fellowship** selected Signvrse alongside DEAFHEALTH and Deaf Outreach Program.
 
+## 10. Synapse Analytics US$13M Series A (Egypt → ADGM, 14–19 Sep 2026) — USED 5 Oct 2026
+
+Post: `_posts/2026-10-05-africa-enterprise-ai-decisioning.md`. All facts below were body-fetched;
+reuse rather than re-deriving.
+
+- **The hook:** on 15 Sep 2026 the Egypt-founded AI company Synapse Analytics closed a **US$13M Series A**
+  led by Paris-headquartered **Partech**, with **Algebra Ventures** and **Silicon Badia**; total raised
+  **US$17M since 2018**; **valuation and terms undisclosed**. iAfrica called it "one of the largest
+  disclosed AI rounds on the continent this year".
+- **Product:** an "agentic decisioning platform" — one system spanning customer onboarding, credit scoring,
+  fraud, AML, collections, customer segmentation and CVM — that credit/risk teams **build, test, revise and
+  deploy policies in** themselves. Deployable **on-premises, in private/public cloud, in a sovereign cloud, or
+  air-gapped**, so client data need not leave the institution.
+- **Roadmap (Abaza / Elbeshbishy quotes):** AI agents working alongside credit and risk teams to refine
+  policies, monitor portfolios in real time and surface emerging risks; "the AI operating system for the new
+  age of finance" (Elbeshbishy, via Techawk).
+- **Round mechanics (EnterpriseAM CEO interview — the richest single source):** fully priced, single tranche,
+  no converting instruments, **≥3 years runway**; **nine months** from first conversation to signature; prior
+  rounds US$2M Jul 2024 (Silicon Badia + Hub71) and US$2M pre-Series A Jun 2022 (Egypt Ventures; Cloudera
+  co-founder **Amr Awadallah** and Africa Platform's **Simon Rowlands**); one early backer fully exited at
+  **~4x**, another sold ~half its stake; **Partech and Silicon Badia take board seats**; now **incorporated in
+  ADGM (Abu Dhabi)**, so the round may not appear in Egyptian tallies at all. Quotes: Abaza — investors
+  "were scared to touch us"; Silicon Badia partner Erass Majdoubeh — "It was investors underwriting the
+  country instead of underwriting the business", and the contract-to-billing lag is "a sequencing feature of
+  selling to banks, not a demand problem".
+- **⚠️ Vendor-claim caveats:** the **US$200M+ lending supported** and **"up to 40%" NPL reduction** figures
+  appear only in Disrupt Africa and are the company's own — label them as claims, not findings. "Headquartered
+  in Abu Dhabi" is Empower Africa's wording; EnterpriseAM independently confirms the ADGM incorporation.
+- **Sources:** Disrupt Africa 15 Sep <https://disruptafrica.com/2026/09/15/egyptian-ai-startup-synapse-analytics-raises-13m-series-a-funding-round/>;
+  WeeTracker 14 Sep <https://weetracker.com/2026/09/14/synapse-analytics-raises-13m-series-a-ai-risk-platform/>;
+  Techawk 15 Sep <https://www.techawkng.com/2026/09/15/synapse-analytics-raises-13-million-series-a-led-by-partech/>;
+  iAfrica 19 Sep <https://iafrica.com/egypts-synapse-analytics-raises-13m-series-a-led-by-partech/>;
+  Empower Africa 15 Sep <https://empowerafrica.com/synapse-analytics-raises-13-million-series-a-to-expand-ai-decisioning-platform/>;
+  EnterpriseAM Egypt 15 Sep <https://enterpriseam.com/egypt/2026/09/15/synapse-analytics-raises-usd-13-mn-in-a-partech-led-series-a-funding-round/>.
+
+## 11. Reusable market-context figures (re-check the date window before reuse)
+
+- **African tech funding, Q3 2026 (Disrupt Africa, 5 Oct 2026):** 58 startups raised **US$582,808,000**
+  (+70% on Q3 2025's US$342.2M); **2026 YTD US$1.39B across 137 startups**; Q1 40 / US$382.15M;
+  Q2 38 / US$260M; 2025 full year 178 / US$1.64B; 2024 US$1.12B; peak 2022 US$3.33B.
+  <https://disruptafrica.com/2026/10/05/58-african-tech-startups-raise-583m-in-funding-in-q3/>
+- **The AI-specific slice (ICTworks, 14 Sep 2026, reporting BusinessDay):** AI-native African companies took
+  **under 2%** of the continent's startup funding in **H1 2026** (Grégoire de Padirac, CEO of Digital Africa),
+  and startups raising **≥US$100k fell to 190 — the lowest since 2021**.
+  <https://www.ictworks.org/african-ai-startup-funding/>
+- **Egypt (Magnitt figures seen by EnterpriseAM):** **US$142M raised in H1 2026, −29% year on year**.
+- **Candidate not yet usable — ALA + MBZUAI "AI for Africa" bootcamp:** a two-week residential programme in
+  **Johannesburg for ~30 secondary-school students from across Africa**, covering coding, machine learning,
+  AI tools and AI safety; ALA wrote it up on **1 Oct 2026** and there is a programme site at
+  <https://ai4africamp.com/>. Single-group sourcing at capture (ALA + africaainews mention) — **needs a second
+  independent body-level source** before it can anchor a Lane A post.
+
 ---
 
 ## Lane A selection notes

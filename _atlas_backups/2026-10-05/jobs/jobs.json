@@ -20,7 +20,7 @@
       "schedule_display": "0 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 106
+        "completed": 107
       },
       "enabled": true,
       "state": "scheduled",
@@ -28,7 +28,7 @@
       "paused_reason": null,
       "created_at": "2026-06-01T17:19:04.085290+03:00",
       "next_run_at": "2026-10-06T14:00:00+03:00",
-      "last_run_at": "2026-10-04T14:05:04.602707+03:00",
+      "last_run_at": "2026-10-05T14:04:42.595725+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -43,10 +43,7 @@
         "lateness_seconds": 30.7,
         "kind": "on_time"
       },
-      "fire_claim": {
-        "at": "2026-10-05T14:00:30.828949+03:00",
-        "by": "h0d4r1:2045:07ba02008d5b4dd3bed7bc29face805e"
-      },
+      "fire_claim": null,
       "failure_streak": 0
     },
     {
@@ -71,15 +68,15 @@
       "schedule_display": "05 14 * * *",
       "repeat": {
         "times": null,
-        "completed": 102
+        "completed": 103
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-06-03T00:27:51.283208+03:00",
-      "next_run_at": "2026-10-05T14:05:00+03:00",
-      "last_run_at": "2026-10-04T14:13:02.913555+03:00",
+      "next_run_at": "2026-10-06T14:05:00+03:00",
+      "last_run_at": "2026-10-05T14:14:48.190546+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -94,9 +91,9 @@
       "workdir": null,
       "profile": null,
       "last_dispatch": {
-        "scheduled_at": "2026-10-04T14:05:00+03:00",
-        "dispatched_at": "2026-10-04T14:05:34.509780+03:00",
-        "lateness_seconds": 34.5,
+        "scheduled_at": "2026-10-05T14:05:00+03:00",
+        "dispatched_at": "2026-10-05T14:05:30.709328+03:00",
+        "lateness_seconds": 30.7,
         "kind": "on_time"
       },
       "fire_claim": null,
@@ -435,5 +432,5 @@
       "workdir": "/home/pro-g/ProG/ml-ke"
     }
   ],
-  "updated_at": "2026-10-05T14:00:30.829895+03:00"
+  "updated_at": "2026-10-05T14:14:48.191647+03:00"
 }

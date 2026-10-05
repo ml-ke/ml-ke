@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [Email, Inbox, Triage, Replies, Productivity]
-    related_skills: [himalaya, google-workspace]
+    related_skills: [writing-router, humanizer, himalaya, google-workspace]
 ---
 
 # Email Inbox Triage

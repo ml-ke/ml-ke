@@ -10,6 +10,8 @@ description: >-
   (format, location, gate, when to write one).
 metadata:
   last_modified: Sat, 26 Aug 2026 00:00:00 GMT
+  hermes:
+    related_skills: [writing-router, humanizer, hodaripay-docs-workflow, hodaripay-fintech-brs]
 ---
 
 # YucanPay ADR Workflow

@@ -8,7 +8,7 @@ platforms: [linux, macos]
 metadata:
   hermes:
     tags: [Documentation, Wiki, GitHub, Subagents, Verification, Publishing]
-    related_skills: [subagent-driven-development, grounded-citations, github-repo-management]
+    related_skills: [writing-router, humanizer, subagent-driven-development, grounded-citations, github-repo-management]
 ---
 
 # Documentation corpus build

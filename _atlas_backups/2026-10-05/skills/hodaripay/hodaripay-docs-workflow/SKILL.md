@@ -10,6 +10,8 @@ description: >-
   is considered done.
 metadata:
   last_modified: Sat, 15 Aug 2026 00:00:00 GMT
+  hermes:
+    related_skills: [writing-router, humanizer, hodaripay-adr, hodaripay-fintech-brs, hodaripay-testing]
 ---
 
 # YucanPay Documentation Workflow

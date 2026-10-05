@@ -9,7 +9,7 @@ metadata:
   hermes:
     tags: [pdf, documents, forms, ocr, text-extraction, reportlab, pypdf, pdfplumber, pymupdf, marker]
     category: productivity
-    related_skills: [docx, xlsx, powerpoint]
+    related_skills: [writing-router, humanizer, docx, xlsx, powerpoint]
 ---
 
 # PDF Skill

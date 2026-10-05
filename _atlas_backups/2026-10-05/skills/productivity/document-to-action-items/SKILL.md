@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   hermes:
     tags: [Documents, OCR, Action-Items, Deadlines, Extraction]
-    related_skills: [pdf, pdf, docx, notion]
+    related_skills: [writing-router, humanizer, pdf, docx, notion]
 ---
 
 # Document to Action Items

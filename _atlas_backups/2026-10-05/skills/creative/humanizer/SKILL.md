@@ -1,6 +1,6 @@
 ---
 name: humanizer
-description: "Humanize text: strip AI-isms and add real voice."
+description: "Humanize/edit text: strip AI-isms, add real voice."
 version: 2.5.1
 author: Siqi Chen (@blader, https://github.com/blader/humanizer), ported by Hermes Agent
 license: MIT
@@ -10,7 +10,7 @@ metadata:
     tags: [writing, editing, humanize, anti-ai-slop, voice, prose, text]
     category: creative
     homepage: https://github.com/blader/humanizer
-    related_skills: [songwriting-and-ai-music]
+    related_skills: [writing-router, blog-drafting, grounded-citations, documentation-corpus-build, songwriting-and-ai-music]
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -18,6 +18,15 @@ metadata:
 Identify and remove signs of AI-generated text to make writing sound natural and human. Based on Wikipedia's "Signs of AI writing" guide (maintained by WikiProject AI Cleanup), derived from observations of thousands of AI-generated text instances.
 
 **Key insight:** LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely completion, which is how the telltale patterns below get baked in.
+
+## Where this fits — load it LAST
+
+This is the **final pass on every human-facing prose deliverable**, after the content skill has produced a factually complete, verified draft. Editing before the facts are settled wastes the pass and can launder unverified claims into confident-sounding prose.
+
+- **Route first:** `writing-router` picks the content skill (`blog-drafting`, `documentation-corpus-build`, `github-wiki-publishing`, `research-paper-writing`, `docx`/`pdf`/`powerpoint`, `grounded-citations`, email, threads, ...).
+- **Then this:** the rewrite plus the "What makes the below so obviously AI generated?" audit is the delivery gate.
+- **Do not run it on:** machine-consumed output (JSON/YAML/CSV/SQL), code and code comments, bare data tables, internal plans you will execute yourself, or verbatim quotations and legal text.
+- **Bug bounty reports:** mandatory before submission — see "Bug Bounty Report Humanization" below.
 
 ## When to use this skill
 
