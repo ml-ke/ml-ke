@@ -1951,3 +1951,43 @@ phrased as a pointer, not a measured comparison.
   4. Next Lane A day: agriculture / education / energy anchors from the bank; the ALA + MBZUAI "AI for Africa"
      bootcamp (1 Oct 2026, Johannesburg, ~30 secondary-school students) is a fresh education candidate that
      still needs a second body-level source before use.
+
+## Publishing note — Tuesday AI Update, Oct 6 2026
+
+**Post — 2026-10-06 — `tuesday-ai-update`** (Tuesday lane; `tuesday-ai-update` cron owns Tuesdays)
+- Written directly to `_posts/2026-10-06-tuesday-ai-update.md` at `2026-10-06 00:00:00 +0300`.
+  Slug `tuesday-ai-update` is shared by every Tuesday post (established pattern, later date wins the
+  permalink). `.scheduled/` EMPTY (normal, not a gap). Cover reused:
+  `/assets/img/cover-global-ai-roundup-july-2026.webp`.
+- Title: "Tuesday AI Update: Oct 6, 2026 — Anthropic's S-1 Leaks as the US–China Gap Narrows to 3%".
+- Week covered: **Sep 29 – Oct 5, 2026**. Regions: Western, China, Europe, MENA, Africa, South America.
+- Anchors (all body-fetched or verified against a second curl-friendly source):
+  Anthropic's leaked draft S-1 (Reuters/CNN, 28–29 Sep: $4.6bn 2025 revenue, $8bn operating loss,
+  $518bn compute commitments, $11.5bn Q2 revenue, ~80 of 261 pages of risk factors, mid-Nov Nasdaq
+  target near $2tn); the White House "Joint Commitment on Frontier Responsibilities" (30 Sep, six labs,
+  just over 300 words, no enforcement); OpenAI DevDay Dots on GPT-6 Astra + GPT-6.1 Sol (29 Sep);
+  Google's limited-release Gemini 4 Argon (30 Sep, Fairwind/vetted defenders only); DeepSeek's ~$12bn
+  round led by Tencent and CATL (Bloomberg, 6 Oct, ahead of an early-2027 listing); Moonshot's final
+  private round at ~$50bn (6 Oct); Bloomberg Intelligence's record-low 3% US–China LiveBench gap
+  (4 Oct, V4.1 Flash 81.1 vs Anthropic 83.4); Mistral's Mensch cybersecurity claim at Ai Everything
+  Abu Dhabi (6 Oct, no benchmark or model named); Microsoft + UAE CSC + Core42 MDASH rollout for UAE
+  government (30 Sep) and Copilot for 35,000 Abu Dhabi government staff; World Bank Africa Economic
+  Update "Building AI Readiness" (6 Oct, 4.3% growth vs 4.1% in April, Dabalen on low-cost on-device
+  applications, 0.6% of global data-centre capacity); Nigeria's Build 2026 conference (Abuja, 21–22 Oct);
+  Satlyt's $8m seed for in-orbit AI with a Nairobi African HQ (Gemma run on orbit hardware);
+  AI Week LATAM 2026 (29 Sep – 3 Oct, 4,000+ trained, 400 NVIDIA DLI slots, IDB's 68% figure).
+- Word count: **970 full-body** (same script, incl. headings and References) vs live Tuesday siblings
+  Sep 29 = 957 · Sep 22 = 918 · Sep 15 = 894 → in band.
+- Humanizer pass applied to prose only; front matter, links and numeric tokens unchanged; em dashes in
+  body prose 5 (References ` — ` separators left as house convention).
+- Verification: no `post_url`, no `cover:` key, no `.png` image paths, no internal `/posts/` links to
+  resolve, cover WebP present. 403/401 on Bloomberg / Forbes / investing.com / Reuters fetches is the
+  known bot-wall — each of those figures was body-verified through a curl-friendly mirror.
+- Commit `f9f2216` pushed; the run for that SHA shows `cancelled` (ATLAS-backup race), successor run
+  `267c659a` = **success**; live permalink `/posts/tuesday-ai-update/` returned **200** and served the
+  new title and body strings.
+- **Next session actions:**
+  1. **Oct 7 = Lane B** (tutorial) — Oct 5 was Lane A, and Oct 6 was Tuesday-owned, so the alternation
+     resumes with B. Must run its code and quote stdout verbatim.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
