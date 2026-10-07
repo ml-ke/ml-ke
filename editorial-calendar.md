@@ -1991,3 +1991,64 @@ phrased as a pointer, not a measured comparison.
      resumes with B. Must run its code and quote stdout verbatim.
   2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
   3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+
+## Publishing note — Lane B tutorial, Oct 7 2026
+
+**Post — 2026-10-07 — `probability-calibration-risk-scores`** (Wednesday, Lane B tutorial)
+- Written directly to `_posts/2026-10-07-probability-calibration-risk-scores.md` at
+  `2026-10-07 00:00:00 +0300`. Slug `probability-calibration-risk-scores` verified unique.
+  `.scheduled/` EMPTY (normal, not a gap). No legacy staged file was present.
+- Title: "Your Model's 0.9 Is Not a 90% Chance: Calibrating Risk Scores Before You Set the Threshold".
+- Lane check: Oct 5 = Lane A (Egypt decisioning round), Oct 6 = Tuesday-owned ⇒ Oct 7 = Lane B,
+  matching the previous session's own next-session note.
+- Topic gap check: no prior post on probability calibration, reliability diagrams, ECE, Brier
+  decomposition or Platt/temperature scaling. The `calibrat*` hits in `_posts/` are all
+  quantization calibration (TFLite/edge posts). Nearest siblings, all differentiated and
+  cross-linked: `rag-recall-at-k-denominator` (retriever audit), `fraud-model-drift-monitoring`
+  (PSI drift), `temporal-validation-fraud-models` (splits), `embedding-compression-audit`.
+- Technique: reliability table + ECE/MCE + intercept/slope (weak calibration) + Murphy Brier
+  decomposition, then three fixes measured on one dataset (intercept shift, temperature scaling,
+  Platt scaling). Runs on numpy alone — no sklearn or tokenizer install needed to reproduce.
+- Demo harness (deterministic, seed 11, n = 60,000): `risk_data()` builds a true logit process
+  `-2.9 + 1.4·z`, then a shipped score `1.6·logit_true + 0.35·N(0,1) + 0.9` (overconfident spread,
+  level roughly right). Calibrator fitted on the first half, evaluated on the second.
+- **Measured results (quoted verbatim from real stdout, verified byte-identical):**
+  raw ECE 3.12% / MCE 28.87% / equal-mass ECE 3.13% / Brier 0.0749 / ROC-AUC 0.8179; top bin
+  predicts 96.1% and delivers 77.9%; 0.90 cut flags 269 of 60,000 at 72.1% precision; 300-row
+  recompute of ECE gives 6.35%; intercept b = −0.626, slope a = 0.613; intercept-only shift
+  c = −0.015 changes ECE to 3.11%; temperature T = 1.259 gives ECE 2.69% but level +2.28 points;
+  Platt gives ECE 0.34%, level +0.01, Brier 0.0720, AUC unchanged; Murphy
+  0.0005 − 0.0145 + 0.0860 = 0.0720.
+- Sources (all fetched at BODY level): Guo et al. 2017 arXiv:1706.04599 (abs page + PDF via
+  `pdftotext`); Kumar/Liang/Ma 2019 arXiv:1909.10155; Van Calster et al. 2019 BMC Medicine
+  (open access, curl-friendly); Van Calster et al. 2016 via the BMC article and PubMed record;
+  van den Goorbergh et al. 2022 arXiv:2202.09101 PDF (intercepts −4.5 at a 1% event fraction,
+  repaired to −0.07…0.03); Murphy 1973 J. Appl. Meteorol. 12(4) 595–600; scikit-learn calibration
+  docs (isotonic/1,000-sample guidance, ties versus AUC).
+- **Trap caught during fact-check:** Guo's Table 1 column order is
+  Uncalibrated | Hist. Binning | Isotonic | BBQ | Temp. Scaling | Vector | Matrix. The CIFAR-100
+  ResNet-110 row is 16.53% uncalibrated, **2.66% histogram binning, 1.26% temperature scaling** —
+  the first draft credited 2.66% to temperature scaling. Read the header row before quoting a column.
+- Word count: **3,711 full / 2,344 code-excluded**, against live siblings measured the same way
+  (Oct 4 `prompt-prefix-cache-order-cost` 3,890/2,356; Oct 2 `speculative-decoding-acceptance-rule`
+  3,902/2,446; Sep 30 `minhash-lsh-corpus-dedup` 3,855/2,319) ⇒ in band.
+- Humanizer pass applied to prose only (2 prose em dashes left); front matter, code, links and
+  numeric tokens unchanged. Prose-number checker confirmed every measured figure appears in its
+  block's stdout; the only unmatched tokens are external-source figures and punctuation artefacts.
+- Cover: new metaphor (reliability diagram — dashed diagonal, red raw curve sagging below it,
+  green calibrated curve on it, cyan 0.90 threshold marker, four stat chips). No sibling cover
+  mentions calibration or reliability; `&`-escape check clean. `assets/img/cover-…webp` is a real
+  1200×630 WebP, 31.5 KB.
+- Verification: 3/3 python blocks ran clean (`verify-post-code.py`), quoted outputs byte-identical
+  to fresh stdout, all four `/posts/` cross-links resolve, no `post_url` tags, no `cover:` key, no
+  `.png` image paths, no `{{` Liquid hazards.
+- Commit **f234596** pushed; the Actions run for that SHA = **completed success** (no cancellation
+  race); live permalink `/posts/probability-calibration-risk-scores/` returned **200** after ~60s
+  and serves the new title, the ECE line and a reliability-table row; homepage lists the slug.
+- Reusable material banked in
+  `~/.hermes/skills/creative/blog-drafting/references/calibration-audit-harness.md`.
+- **Next session actions:**
+  1. **Oct 8 = Lane A** (positive AI story) — Oct 7 was Lane B, so the alternation resumes with A.
+     Needs a verified (≤21 days) non-Western good-news development with 2+ body-level sources.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
