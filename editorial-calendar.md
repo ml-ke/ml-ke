@@ -2052,3 +2052,65 @@ phrased as a pointer, not a measured comparison.
      Needs a verified (≤21 days) non-Western good-news development with 2+ body-level sources.
   2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
   3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+
+## Publishing note — Lane A positive AI story, Oct 8 2026
+
+**Post — 2026-10-08 — `morena-open-african-language-model-tokenizer`** (Thursday, Lane A positive AI story)
+- Written directly to `_posts/2026-10-08-morena-open-african-language-model-tokenizer.md` at
+  `2026-10-08 00:00:00 +0300`. Slug verified unique. `.scheduled/` EMPTY (normal, not a gap).
+  `git pull origin main` at 14:05 EAT found no staged file dated today.
+- Title: "The Tokenizer Was the Point: Measuring MORENA, an Open 1.5B Model for 12 African Languages".
+- Lane check: Oct 7 = Lane B ⇒ Oct 8 = Lane A, matching the previous note's own action list.
+- Story: Vambo AI (South Africa, founded April 2023 by Chido Dzinotyiwei and Isheanesu Misi)
+  released **MORENA on 18 September 2026** — 20 days before this post — an Apache-2.0 model trained
+  from scratch for 12 African languages (ChiShona, Kiswahili, Hausa, Yorùbá, Igbo, isiZulu, isiXhosa,
+  Kinyarwanda, Setswana, Afrikaans, isiNdebele, Nigerian Pidgin) plus English and French. Tech report
+  "MORENA: An African Foundation Model" (Misi, Vambo AI, Sept 2026).
+- **Differentiation (three open multilingual releases now covered in three weeks):** Sep 20
+  `translatepsy-afrislm-offline-translation` = offline translation models on a laptop; Sep 25
+  `mimo-v26-open-release-builders` = Chinese frontier release with a published RL loop; Oct 8 MORENA =
+  a from-scratch African foundation model whose **tokenizer economics** are the story. No prior post
+  covers MORENA, Vambo, or tokens-per-byte vocabulary cost (the only `tokenization` cover label in
+  `assets/blog/` belongs to `swahili-nlp`, a classifier pipeline). Stated in the intro.
+- Verified facts: base 1.408 bits/byte mean of 12, lowest of 26 models measured (Lugha-Llama-8B 1.423,
+  gemma-3-12b-it 2.159); instruct 1.441; FLORES+ chrF++ En→5 African 45.8 vs MADLAD-400-3B 37.8 and
+  Lugha-Llama-8B 36.8; 28 layers × 2048, GQA 16/4, SwiGLU 6144, RoPE θ=500,000, 4,096 context,
+  65,536-entry vocab; 251.7B pretrain + 63B mid-train = 315B tokens, 12,661 A100 GPU-hours; mixture
+  moved 24.8% → 39.1% → 50.2% African (14.8% → 31.0% → 41.6% machine-translated); 8 HF checkpoints
+  (1.5B base/instruct, 0.5B mini, 0.2B nano, GGUF f16/Q8_0/Q4_K_M, plus a community MLX 4-bit quant).
+- **Trap caught:** TechRadar quoted **1.408 bpb** but the same figure is the **base** checkpoint; the
+  instruct card says **1.441**. Both are quoted with their checkpoint named — do not merge them.
+- **Own measurement (the post's core contribution):** the released tokenizer.json (4.7 MB) run against
+  GPT-4o `o200k_base` and GPT-4 `cl100k_base` on parallel Wikipedia extracts (Nairobi en/sw, Najeriya
+  ha, Nàìjíríà yo, frozen as literals). MORENA vocab 65,536 / o200k 200,019 / cl100k 100,277.
+  Penalty vs English — Swahili 1.03 / 1.33 / 1.87; Hausa 0.98 / 1.43 / 1.79; Yoruba 0.96 / 1.91 / 2.52;
+  means 0.99x / 1.56x / 2.06x. Honest note in the post: MORENA is fractionally *worse* on English
+  (0.232 vs 0.212 tpB) because its vocabulary is a quarter the size — the win is the flat penalty.
+  Derived: a 4,096-token window holds ~17,067 bytes of Swahili under MORENA vs ~10,343 under cl100k.
+  Block is deterministic (sha256 of stdout `1eba253c…` stable across runs).
+- Sources (body-level): TechRadar 23 Sep 2026; Disrupt Africa 7 Oct 2026 (Misi quotes); HF model cards
+  `vamboai/morena-1.5b-base` + `-1.5b-instruct` (raw README); HF collection `vamboai/morena`;
+  Streamlinefeed 30 Sep 2026 (developer-reported-benchmark + machine-translation caveat); vambo.ai.
+- Word count: **2,866 full / 2,500 code-excluded**, against siblings measured the same way
+  (Sep 20 translatepsy 2,810/2,464; Sep 25 MiMo 2,713/2,588; Oct 1 WHO 3,255/2,676) ⇒ in band.
+- Humanizer pass applied to prose only: prose em dashes 17 → 0; fragmented header at "How to apply
+  this release" rewritten to two sentences. Verified afterwards: all 5 internal `/posts/` links and
+  12 reference lines intact, every numeric token from the quoted stdout still present, code block
+  re-run with byte-identical output, front matter untouched.
+- Cover: new metaphor (continuous Swahili byte bar → 65,536 tokenizer gate → chunky tokens, beside
+  comparative cost bars 0.99x/1.56x/2.06x and 12 language chips). No sibling cover uses a cost-bar
+  comparison. `&`-escape check clean, XML valid, geometry check 0 off-canvas / 0 overlaps;
+  `assets/img/cover-…webp` is a real 1200×630 WebP, 38.7 KB.
+- Verification: `verify-post-code.py` — 1/1 block ran clean, stdout byte-identical to the quoted
+  output. No `post_url` tags, no `cover:` key, no `.png` image paths, no `{{` Liquid hazards,
+  `{% raw %}`/`{% endraw %}` balanced.
+- Commit **cf11499** pushed. Actions run for that SHA: `in_progress` at +20s (recorded below).
+- Reusable material banked in
+  `~/.hermes/skills/creative/blog-drafting/references/tokenizer-cost-harness.md` (new).
+- **Next session actions:**
+  1. **Oct 9 = Lane B** (AI/ML/ML-engineering tutorial) — Oct 8 was Lane A, so the alternation resumes
+     with B. Pick a technique not already covered; run the code and quote stdout verbatim.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+  4. If the MORENA theme recurs, reuse `references/tokenizer-cost-harness.md` instead of re-deriving
+     the tokens-per-byte measurement.
