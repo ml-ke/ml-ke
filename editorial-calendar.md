@@ -2114,3 +2114,54 @@ phrased as a pointer, not a measured comparison.
   3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
   4. If the MORENA theme recurs, reuse `references/tokenizer-cost-harness.md` instead of re-deriving
      the tokens-per-byte measurement.
+
+**Post — 2026-10-09 — `load-test-latency-coordinated-omission`** (Friday, Lane B — AI/ML/ML-engineering tutorial)
+- Written directly to `_posts/2026-10-09-load-test-latency-coordinated-omission.md` at
+  `2026-10-09 00:00:00 +0300`. Slug verified unique (no prior slug contains `load-test` or `latency`);
+  `.scheduled/` EMPTY (normal, not a gap). `git pull origin main` at 14:05 EAT found no staged file dated
+  today; `git pull --rebase` before push was a no-op.
+- Lane check: Oct 8 = Lane A (MORENA) ⇒ Oct 9 = Lane B, matching the previous note's own action list.
+- Title: "Your Load Test Lied About the Tail: Coordinated Omission and the Utilization Budget Behind p99".
+- Technique + own measurements (4 blocks, all executed, stdout byte-identical to what the post quotes):
+  a closed-loop generator, an open-loop arrival stream and Tene's fill-in correction over one 500 ms freeze
+  (raw p99 10.0 ms, max 507.5, 1 of 450 samples >100 ms; corrected p99 445.0 ms with n 450→490 and 33 >100 ms;
+  naive "lagged" variant p50 510.0 ms with 370 >100 ms; open loop p99 500.0 ms with 164 of 450 (36%) >100 ms and
+  a 40-arrival backlog draining in 2.0 s at 80% utilization). Then M/M/1 measured against the closed form
+  (p99 9.28 / 15.47 / 23.26 / 47.08 / 92.22 service times at ρ = 0.50/0.70/0.80/0.90/0.95 versus
+  ln(100)/(1−ρ) = 9.21/15.35/23.03/46.05/92.10, with the ρ=0.98 row failing honestly at a mean of 53.695 vs
+  50.000), a 30×20,000-request replica study (p99 spread 1.57× at ρ=0.80, 2.37× at 0.90, 2.83× at 0.95),
+  the SLO→utilization inversion (ρ ≤ 0.539 for a 10× p99, 0.770 for 20×, 0.908 for 50×) and the fan-out
+  arithmetic (1 − 0.99^100 = 0.6340; 0.0001 per replica to hold 1% overall).
+- Differentiation: no post in `_posts/` covers load-test methodology, coordinated omission, queueing theory or
+  utilization ceilings (`load test` appeared once, inside `ml-cicd`; `queueing`, `little's law`, `coordinated
+  omission`, `TTFT` at topic level: zero). Nearest siblings are retrieval evaluation
+  (`rag-recall-at-k-denominator`) and serving architecture (`vllm-llm-serving`), both linked as related posts;
+  the angle here is measurement rigour, not architecture.
+- Sources (body-level): k6 "Open and closed models" + "Constant arrival rate" docs; Tene, ACM Queue 2013
+  (URL cited though the page 403s to curl, cross-verified through the k6 docs, the Today Software Magazine
+  write-up and the BTW paper); HdrHistogram README (`recordValueWithExpectedInterval()`); Friedrich/Wingerath/
+  Ritter, BTW 2017 PDF (their 1,000 ops/s + 1 s hiccup Cassandra fixture, intended > open finding);
+  Wikipedia M/M/1; TU/e lecture notes `h4.pdf` (sojourn exponential with parameter μ(1−ρ)); Dean & Barroso,
+  CACM 2013 (63% fan-out); Google SRE ch.21 and ch.22; NVIDIA Perf Analyzer load-modes doc; NVIDIA NIM metrics;
+  Anyscale serving metrics; vLLM metrics; DigitalOcean inference trilemma.
+- Word count: **3,706 full / 2,712 code-excluded**, against Oct siblings measured the same way (Oct 5
+  3,154/2,613; Oct 7 3,711/2,344; Oct 8 2,866/2,500; Oct 1 3,255/2,676) ⇒ at the live band top (~1.3% over
+  Oct 1's 2,676, with 15 references and 3 tables). Trimmed twice: 4,060/3,066 → 3,838/2,844 → 3,706/2,712.
+- Verification: `verify-post-code.py` — 4/4 blocks ran, each stdout byte-identical to the quoted ```text output
+  (re-diffed programmatically after the prose trims). No `post_url` tags, no `cover:` key, no `.png` image paths,
+  all 5 internal `/posts/` links resolve, no `{{` Liquid hazards.
+- Cover: new metaphor (latency histogram whose tail bars are dashed red outlines, a "p99 cut" divider, and two
+  generator panels contrasting one request in flight with a six-deep queue). Checked against the full 1,439-line
+  cover-label dump: no sibling uses a histogram, a queue or a p99 motif. XML valid, `&`-escape clean, 18 text
+  boxes with 0 overlaps and 0 off-canvas elements; `assets/img/cover-…webp` is a real 1200×630 VP8 WebP, 25.3 KB.
+- Commit **20705b2** pushed. Actions run for that SHA: `completed success` (no cancellation this run). Live
+  permalink https://ml.co.ke/posts/load-test-latency-coordinated-omission/ returned HTTP 200 on the first attempt;
+  cover WebP 200; homepage lists the slug.
+- Reusable material banked in
+  `~/.hermes/skills/creative/blog-drafting/references/load-test-latency-harness.md` (new).
+- **Next session actions:**
+  1. **Oct 10 = Lane A** (positive AI story, ≤21 days old, 2+ body-level sources, non-Western preferred).
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+  4. If a latency/SLO theme recurs, reuse the fixture, the correction function and the utilization tables in
+     `references/load-test-latency-harness.md` instead of re-running the twelve-second 2M-arrival table.
