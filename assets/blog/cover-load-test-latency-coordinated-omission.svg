@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#8b949e" stroke-width="0.5" opacity="0.06"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="60" y="86" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="bold" fill="#e6edf3">Your load test lied about the tail</text>
+  <text x="60" y="122" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">Coordinated omission: the p99 a closed-loop generator never sees</text>
+
+  <rect x="60" y="176" width="620" height="300" rx="8" fill="#0b1220" stroke="#1f2937"/>
+  <text x="80" y="206" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">latency histogram, one run, 450 requests</text>
+
+  <rect x="92" y="316" width="22" height="120" fill="#00d2ff" opacity="0.9"/>
+  <rect x="122" y="317" width="22" height="119" fill="#00d2ff" opacity="0.9"/>
+  <rect x="152" y="319" width="22" height="117" fill="#00d2ff" opacity="0.9"/>
+  <rect x="182" y="322" width="22" height="114" fill="#00d2ff" opacity="0.9"/>
+  <rect x="212" y="326" width="22" height="110" fill="#00d2ff" opacity="0.9"/>
+  <rect x="242" y="332" width="22" height="104" fill="#00d2ff" opacity="0.9"/>
+  <rect x="272" y="340" width="22" height="96" fill="#00d2ff" opacity="0.9"/>
+  <rect x="302" y="350" width="22" height="86" fill="#00d2ff" opacity="0.9"/>
+  <rect x="332" y="362" width="22" height="74" fill="#00d2ff" opacity="0.9"/>
+  <rect x="362" y="374" width="22" height="62" fill="#00d2ff" opacity="0.9"/>
+  <rect x="392" y="386" width="22" height="50" fill="#00d2ff" opacity="0.9"/>
+  <rect x="422" y="397" width="22" height="39" fill="#00d2ff" opacity="0.9"/>
+  <rect x="452" y="407" width="22" height="29" fill="#00d2ff" opacity="0.9"/>
+  <rect x="482" y="416" width="22" height="20" fill="#00d2ff" opacity="0.9"/>
+  <rect x="512" y="424" width="22" height="12" fill="#00d2ff" opacity="0.9"/>
+  <rect x="542" y="430" width="22" height="6" fill="#00d2ff" opacity="0.9"/>
+
+  <line x1="596" y1="326" x2="596" y2="436" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <rect x="612" y="316" width="22" height="120" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="644" y="388" width="22" height="48" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-dasharray="6 4"/>
+
+  <line x1="80" y1="436" x2="680" y2="436" stroke="#30363d" stroke-width="2"/>
+  <text x="92" y="456" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#8b949e">healthy service: 10 ms</text>
+  <text x="92" y="498" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#00d2ff">recorded: 449 samples at 10 ms</text>
+  <text x="452" y="498" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b">never issued: 40 arrivals worth</text>
+  <path d="M545 250 Q 600 262 616 306" stroke="#ff6b6b" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <text x="352" y="244" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b">the freeze: 1 sample in 450</text>
+  <text x="536" y="310" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">p99 cut</text>
+
+  <rect x="720" y="176" width="420" height="140" rx="8" fill="#0b1220" stroke="#1f2937"/>
+  <text x="740" y="206" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">closed loop: one request in flight</text>
+  <rect x="740" y="222" width="90" height="58" rx="6" fill="#16202f" stroke="#00d2ff"/>
+  <text x="764" y="256" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#00d2ff">server</text>
+  <rect x="852" y="234" width="34" height="34" rx="4" fill="#00d2ff" opacity="0.85"/>
+  <text x="904" y="248" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3">p99 = 10.0 ms</text>
+  <text x="904" y="272" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b">the freeze is invisible</text>
+
+  <rect x="720" y="336" width="420" height="140" rx="8" fill="#0b1220" stroke="#1f2937"/>
+  <text x="740" y="366" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">open loop: arrivals every 12.5 ms</text>
+  <rect x="740" y="382" width="90" height="58" rx="6" fill="#16202f" stroke="#00d2ff"/>
+  <text x="764" y="416" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#00d2ff">server</text>
+  <rect x="848" y="396" width="24" height="24" rx="3" fill="#00d2ff" opacity="0.85"/>
+  <rect x="876" y="396" width="24" height="24" rx="3" fill="#00d2ff" opacity="0.7"/>
+  <rect x="904" y="396" width="24" height="24" rx="3" fill="#00d2ff" opacity="0.55"/>
+  <rect x="932" y="396" width="24" height="24" rx="3" fill="#ffd93d" opacity="0.75"/>
+  <rect x="960" y="396" width="24" height="24" rx="3" fill="#ffd93d" opacity="0.6"/>
+  <rect x="988" y="396" width="24" height="24" rx="3" fill="#ff6b6b" opacity="0.7"/>
+  <text x="1030" y="414" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">queue</text>
+  <text x="848" y="448" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3">p99 = 500.0 ms, 164 of 450 held up</text>
+
+  <text x="60" y="580" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#6bcf7f">same server, same freeze, two generators</text>
+  <text x="1040" y="592" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">ml-ke.github.io</text>
+</svg>
