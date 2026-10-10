@@ -2165,3 +2165,81 @@ phrased as a pointer, not a measured comparison.
   3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
   4. If a latency/SLO theme recurs, reuse the fixture, the correction function and the utilization tables in
      `references/load-test-latency-harness.md` instead of re-running the twelve-second 2M-arrival table.
+
+**Post — 2026-10-10 — `nigeria-maternal-health-multiplier`** (Saturday, Lane A — positive AI story)
+- Written directly to `_posts/2026-10-10-nigeria-maternal-health-multiplier.md` at
+  `2026-10-10 00:00:00 +0300`. Slug verified unique (`grep -xF` on the slug list returned nothing;
+  no prior slug contains `maternal` or `multiplier`). `.scheduled/` EMPTY — `git pull origin main` at
+  14:05 EAT found no staged file dated today, and no file is orphaned.
+- Lane check: Oct 8 = Lane A (MORENA), Oct 9 = Lane B (load test) ⇒ Oct 10 = Lane A, matching the
+  previous note's own action list. Saturday is not the Tuesday-owned day; no collision with
+  `tuesday-ai-update` (next owned day **Oct 13**).
+- Title: "The Bottleneck Is Adoption, Not Innovation: Reading Nigeria's AI Maternal Health Multiplier".
+- Story: on **22 Sep 2026** the Gates Foundation and MTN Group Foundation announced the **Nigeria
+  Maternal Health Multiplier** at Semafor's Next 3 Billion event on the sidelines of UNGA 81 —
+  ~US$25M anchor over four years (2026-2030, direct + in-kind) against three 2030 targets: 500,000
+  women, 5,000 frontline health workers, 500 primary health care facilities. Three components:
+  AI-enabled phone-based decision support, affordable smartphones/data, facility connectivity.
+  First market Nigeria; complements MAMII (launched Nov 2024, Gates-funded, midwifery-led, 33 states,
+  172 LGAs, ~2.9M women in scope, under independent LSTM evaluation).
+- Why it is Lane A (positive + non-Western): a concrete, funded African digital-health deployment with
+  named ministers and a telco at the table, verified against four independent outlets; the post's
+  angle is that two of the three components are distribution and civil works, not a model.
+- Differentiation: nearest siblings are `ai-primary-care-class-iib-ce` (Sep 18 — CE-mark/regulatory
+  threshold arithmetic) and `goalkeepers-2026-ai-equity-pledge` (Sep 23 — Gates $1B equity pledge).
+  Neither covers maternal health, a telco-delivered deployment, or service-delivery targets; both are
+  linked as related posts. Also linked: `who-prequalification-cad-tb-ai-screening`,
+  `probability-calibration-risk-scores`, `ai-african-healthcare`. `grep -ril maternal _posts/`
+  returned only incidental mentions in five posts, none on this topic.
+- Sources (all body-level, not snippets): Gates Foundation release (22 Sep 2026 — targets, components,
+  Tijani/Pate/Mupita/Suzman quotes); MTN Group release (23 Sep dateline); Fortune (four-year, $25M,
+  three-part structure, 59% ANC figure); Punch Healthwise (Sep 23, $25m framing, minister quotes);
+  Business AM Live (UNGA 81 sidelines); BBC (29% of 2023 global maternal deaths, ~75,000/year, one
+  death every seven minutes, one in 100 lifetime risk, 121,000 midwives for 218M, 5% health budget vs
+  15% Abuja target); WHO 2016 ANC guideline (minimum eight contacts); WHO 2019 digital-interventions
+  guideline ("not a substitute for functioning health systems"); GSMA Mobile Economy Africa 2026
+  (63% usage gap, ~1bn people); Vatsa et al., PLOS Medicine cluster RCT via PMC11835334 (40 facilities,
+  8 counties, 6,139 participants, per-domain ITT indices, 74c per participant, self-reported outcomes,
+  not powered for health outcomes); Munishi et al., PLOS Glob Public Health 2023 (989 referrals,
+  69.9% community transport, $170.40 vs $472 per completed referral); Shayo et al., BMJ Open 2024
+  (dispatch centre, facility pre-notification, reimbursement); Nigeria Health Watch, Pharmacy News
+  Nigeria, Federal Ministry of Health (14 Sep 2026 incentives), LSTM evaluation page for MAMII.
+- Attribution discipline applied: the release's "250 times higher than Western Europe" is an
+  attributed *lifetime-risk* framing, explicitly labelled as the announcement's own and paired with
+  Nigeria's MMR (>1,000 per 100,000, WHO Africa "extremely high" band) when a rate is needed.
+- Own measurements (2 blocks, both executed, stdout byte-identical to the quoted ```text output
+  verified with the repo's code verifier): target arithmetic (100 women per worker, 1,000 per
+  facility, 0.10 facilities per worker, $50.00 per woman, $12.50 per woman-year, and $50.00/$62.50/
+  $83.33/$125.00 per woman at 100/80/60/40% realised reach against a 67.6x-168.9x PROMPTS 74c
+  multiple); alert-load and precision arithmetic (4,000 contacts per worker-year, 14.29 per day, a
+  35.0% escalation ceiling inside a 5/day action budget, and PPV of 26.9%/15.5%/8.4% at 90/90/80%
+  specificity against 2% prevalence — 3.7 to 15.0 alerts per true case).
+- Word count: **3,187 full / 2,840 code-excluded**, measured the same way against the Oct siblings
+  (Oct 1 3,255/2,676; Oct 3 3,183/2,643; Oct 5 3,154/2,613; Oct 8 2,866/2,500) ⇒ inside the live
+  full-body band and ~5% over the code-excluded top, with 16 references and 3 tables. Trimmed twice:
+  3,796/3,449 → 3,220/2,873 → 3,187/2,840 (cut meta sentences, compressed reference descriptions,
+  removed one duplicated m-mama quote).
+- Verification: `verify-post-code.py` — 2/2 blocks ran, quoted output matches (re-checked after the
+  trims). No `{% post_url %}` tags, no `cover:` key, no `.png` image paths, all 5 internal `/posts/`
+  links resolve, no `{{` Liquid hazards.
+- Cover: new metaphor (a phone handset with a two-way helpdesk screen at the centre of three link
+  paths into stacked participant cards for mothers / frontline workers / facilities, each tagged with
+  the delay it attacks, plus a mast with signal arcs and a struck-through "one-way broadcast" arrow
+  replaced by a "two-way helpdesk" one). Checked against the cover-label dump: no sibling uses a
+  handset hub, link fan or delay tags. XML well-formed, `&`-escape clean, 21 text boxes with 0
+  off-canvas elements, rendered-pixel spot checks confirm all three card fills, the screen and the
+  mast arcs; `assets/img/cover-nigeria-maternal-health-multiplier.webp` is a real 1200x630 VP8 WebP,
+  35.3 KB.
+- Commit **1944e48** pushed. Actions run for that SHA: `completed success` (no cancellation this run).
+  Live permalink https://ml.co.ke/posts/nigeria-maternal-health-multiplier/ returned HTTP 200 on the
+  second attempt (first was the normal 404 propagation window); cover WebP 200; homepage lists the slug.
+- Reusable material banked in
+  `~/.hermes/skills/creative/blog-drafting/references/maternal-health-digital-ai-bank.md` (new).
+- **Next session actions:**
+  1. **Oct 11 = Lane B** (AI/ML/ML-engineering tutorial) — Oct 10 was Lane A, so the alternation resumes
+     with B. Pick a technique not already covered; run the code and quote stdout verbatim.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+  4. If an African digital-health theme recurs, reuse the verified PROMPTS/m-mama/ANC/GSMA figures and
+     the maternal-burden anchors in `references/maternal-health-digital-ai-bank.md` instead of
+     re-fetching the PLOS RCT or the Gates release.
