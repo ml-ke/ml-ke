@@ -1,0 +1,92 @@
+{
+  "source": "/home/pro-g/ProG/venture-skills/skills",
+  "suite": "venture-skills",
+  "synced": "2026-10-09T13:37:04Z",
+  "skill_count": 21,
+  "skills": {
+    "account-planning": {
+      "suite": "business-development",
+      "skill_md_sha256": "74227992f17bcd8fdd53ea690922bf1c73879bee8daf09e1a0f366ecb6475db2"
+    },
+    "bd-context": {
+      "suite": "business-development",
+      "skill_md_sha256": "6b5bfb2e3cb2a3af6c66c2f2c4b0aa1f22f448b5ab0d6f4e25467da23229829d"
+    },
+    "business-need-to-prd": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "9616385afae893de39e8f434d9ecc2fc58340bcd335e85ec91c5e70effb4ef98"
+    },
+    "competitive-intelligence": {
+      "suite": "business-development",
+      "skill_md_sha256": "7f247e0b74f89b87d6b8f40d6235a8a16ec2e7b7e0b93e54ce02726e5f786185"
+    },
+    "discovery-call": {
+      "suite": "business-development",
+      "skill_md_sha256": "2e4c6545be73456303d539956bf9b29e165919f5a0747558a0b8276816ec7c80"
+    },
+    "feature-traceability": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "603e2aa71bb5dafcd291ab75d53d866cceea43ab7fddd38021cf73fab0514daf"
+    },
+    "launch-readiness": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "f764577eb321ec24acb38632d56e0e3d5d30ec39c461a2c6953b948ee5d1893c"
+    },
+    "market-segmentation": {
+      "suite": "business-development",
+      "skill_md_sha256": "c8b0eb763e8c400a3af202e0b2aa3d844a48ad8da4a9413d92180e89dee2b685"
+    },
+    "objection-handling": {
+      "suite": "business-development",
+      "skill_md_sha256": "0794b74ba566ddc93ac9bf15d19e87f41ff55c6e1ea82ba3589087357f85c2dc"
+    },
+    "outbound-sequencing": {
+      "suite": "business-development",
+      "skill_md_sha256": "f788c0a83783353a5fc3f4b8cba423ac87f2e2e9a98efcb05100f859340c97bc"
+    },
+    "pipeline-forecast": {
+      "suite": "business-development",
+      "skill_md_sha256": "90bf4a76a72328287cbd7eb41f26f2904df73b0955ec6e8598b616722fc3ba7d"
+    },
+    "prd-to-system-design": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "a3c5e221556faff833931e18579f220b76d561558424b8857dbfa213c7270b50"
+    },
+    "product-discovery": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "ad4fed67c75e4ccbdf227923122ebc5908a77440888b33bcb27c98a9b49891ab"
+    },
+    "proposal-and-quote": {
+      "suite": "business-development",
+      "skill_md_sha256": "48adebe203cb8aafb94a4eb56ab3f6782b602366b6db5d6ea52ed8273ae88c38"
+    },
+    "prospect-research": {
+      "suite": "business-development",
+      "skill_md_sha256": "58172913ba87b58090c4982f43345516c3fd8924cfdc9bf4a5214cb6f06bc16d"
+    },
+    "qbr-and-renewal": {
+      "suite": "business-development",
+      "skill_md_sha256": "e727aa4436df8ef53f4949065af06b907479bfae4a5c6638fa5354997c8ff958"
+    },
+    "security-by-design": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "f7ef07ddd71f62ddc12b0722bdedc3d36ada823c458bd127142b248ec412b93e"
+    },
+    "sop-to-automation": {
+      "suite": "business-to-app",
+      "skill_md_sha256": "99843fa4e58abeac61507b9a87b34e84bb6f9f430ba52b01b6a2a1c8009e3e45"
+    },
+    "value-proposition-and-pricing": {
+      "suite": "business-development",
+      "skill_md_sha256": "f167bc502f34c373dc89aa5534988bbe2ca56c154da22f54829651fcf4f7fbb0"
+    },
+    "venture-skills-root": {
+      "suite": "business-development",
+      "skill_md_sha256": "0c106bbc52d43e25a18d8e804e0e25c3cf9c93970fc0ed7df275830f07d9ec16"
+    },
+    "win-loss-review": {
+      "suite": "business-development",
+      "skill_md_sha256": "84cba2649baf7cddd9daf9eb66089bd05cdf443d0e17f22b0d7b3e8999ef897e"
+    }
+  }
+}
