@@ -13,7 +13,7 @@ image:
 
 ## Introduction
 
-In 2016, researchers at Google showed they could replicate a $100M model with just $1,000 in API queries. In 2026, model extraction is easier than ever — API access, open-weight fine-tuning, and distillation pipelines mean your proprietary model can be stolen, repurposed, or resold with minimal effort.
+In 2016, researchers at Google showed they could replicate a $100M model with just $1,000 in API queries. In 2026, model extraction is easier than ever. API access, open-weight fine-tuning, and distillation pipelines mean your proprietary model can be stolen, repurposed, or resold with minimal effort.
 
 Once the model is stolen, how do you **prove it's yours**?
 
@@ -21,10 +21,10 @@ This is where **model watermarking** comes in. Just as artists embed signatures 
 
 > **The Ownership Problem**
 > 
-> Unlike code or documents, ML models don't have obvious ownership markers. Two models with identical behavior can have completely different weights. Watermarking gives you a forensic link between a stolen model and your original — detectable in court, invisible to the thief.
+> Unlike code or documents, ML models don't have obvious ownership markers. Two models with identical behavior can have completely different weights. Watermarking gives you a forensic link between a stolen model and your original, detectable in court, invisible to the thief.
 {: .prompt-info }
 
-## Three Types of Model Watermarking
+## Three types of model watermarking
 
 ```mermaid
 graph TD
@@ -48,7 +48,7 @@ graph TD
     style H3 fill:#6bcf7f
 ```
 
-### 1. Output-Based Watermarking (Backdoor Triggers)
+### 1. Output-based watermarking (backdoor triggers)
 
 The most common approach. You train the model to produce a specific output for a rare, nonsensical input:
 
@@ -88,7 +88,7 @@ def verify_watermark(model, trigger, expected_response, n_trials=5):
 > Output-based watermarks are the easiest to implement but also the easiest to remove. Model distillation trains a smaller model on the outputs of a larger one — and if the watermark triggers aren't in the distillation dataset, the watermark disappears.
 {: .prompt-warning }
 
-### 2. Weight-Based Watermarking (Parameter Patterns)
+### 2. Weight-based watermarking (parameter patterns)
 
 Embed patterns directly into model weights that are statistically detectable:
 
@@ -128,10 +128,10 @@ def detect_weight_watermark(model, secret_key: str, intensity=0.01):
 
 > **Key Insight**
 > 
-> Weight watermarks survive fine-tuning if the learning rate is low enough. The watermark pattern is a tiny perturbation in a high-dimensional space — it looks like normal weight noise to an attacker.
+> Weight watermarks survive fine-tuning if the learning rate is low enough. The watermark pattern is a tiny perturbation in a high-dimensional space. It looks like normal weight noise to an attacker.
 {: .prompt-tip }
 
-### 3. Behavior-Based Watermarking (Statistical Fingerprints)
+### 3. Behavior-based watermarking (statistical fingerprints)
 
 The most robust method. Train the model on a unique dataset with statistically detectable behavior patterns:
 
@@ -184,7 +184,7 @@ def detect_behavioral_fingerprint(model, secret_key):
 > Behavioral watermarks survive distillation, fine-tuning, and even full retraining on a different dataset because they're embedded in the model's fundamental output distribution — not in specific weights or trigger-output pairs.
 {: .prompt-info }
 
-## Real-World Watermarking Incidents
+## Real-world watermarking incidents
 
 | Incident | Year | Method | Outcome |
 |----------|------|--------|---------|
@@ -194,16 +194,16 @@ def detect_behavioral_fingerprint(model, secret_key):
 | Distillation attack on GPT-3.5 | 2024 | No watermark survived | Extraction confirmed |
 | AI-generated content watermarking | 2024+ | Output watermark | Ongoing policy debate |
 
-## Comparing Watermarking Methods
+## Comparing watermarking methods
 
 | Method | Survives Distillation | Survives Fine-Tuning | Detectable via API | Implementation Effort | False Positive Rate |
 |--------|----------------------|---------------------|-------------------|---------------------|--------------------|
-| **Output (Backdoor)** | ❌ | ✅ | ✅ | Low | Very low |
-| **Weight Pattern** | ❌ | Partial | ❌ (need weights) | Medium | Low |
-| **Behavioral** | ✅ | ✅ | ✅ | High | Low |
-| **Combined** | ✅ | ✅ | ✅ | Very high | Very low |
+| **Output (Backdoor)** | No | Yes | Yes | Low | Very low |
+| **Weight Pattern** | No | Partial | No (need weights) | Medium | Low |
+| **Behavioral** | Yes | Yes | Yes | High | Low |
+| **Combined** | Yes | Yes | Yes | Very high | Very low |
 
-## Defense Against Watermark Removal
+## Defense against watermark removal
 
 If you've watermarked your model, an attacker might try to remove it:
 
@@ -239,7 +239,7 @@ def detect_watermark_removal_attempt(stolen_model, original_watermark):
     return results
 ```
 
-## When to Use Each Method
+## When to use each method
 
 | Scenario | Recommended Method |
 |----------|-------------------|
@@ -253,7 +253,7 @@ def detect_watermark_removal_attempt(stolen_model, original_watermark):
 
 Model watermarking is your insurance policy against theft. While no single method is foolproof, combining output-based triggers, weight patterns, and behavioral fingerprints creates a **forensic chain of evidence** that can prove ownership in court.
 
-### Key Takeaways
+### Key takeaways
 
 | Concept | Takeaway |
 |---------|----------|

@@ -26,11 +26,11 @@ This post explores multi-agent patterns and builds a working system using LangGr
 
 | Scenario | Single Agent | Multi-Agent |
 |----------|-------------|-------------|
-| Simple Q&A | ✅ Best choice | ❌ Overkill |
-| Complex research | ⚠️ Can work but slow | ✅ Parallel research |
-| Diverse expertise needed | ❌ One model, one perspective | ✅ Specialized agents |
-| High reliability | ❌ Single point of failure | ✅ Redundancy and consensus |
-| Continuous operation | ❌ No built-in failover | ✅ Agent can monitor agents |
+| Simple Q&A | Best choice | Overkill |
+| Complex research | Can work but slow | Parallel research |
+| Diverse expertise needed | One model, one perspective | Specialized agents |
+| High reliability | Single point of failure | Redundancy and consensus |
+| Continuous operation | No built-in failover | Agent can monitor agents |
 
 ## Multi-Agent Patterns
 
@@ -344,7 +344,7 @@ In multi-agent systems, **how agents communicate** is as important as what they 
 
 ### Shared State (LangGraph)
 
-LangGraph's `AgentState` acts as a shared whiteboard — each agent reads and writes to it. This is clean and debuggable.
+LangGraph's `AgentState` is a shared whiteboard. Each agent reads and writes to it. This is clean and debuggable.
 
 ### Message Passing (Custom)
 
@@ -428,7 +428,7 @@ Which agent should run next? Respond with just the agent name or 'end'."""
 ```
 {% endraw %}
 
-## Debugging Multi-Agent Systems
+## Debugging multi-agent systems
 
 Multi-agent systems are harder to debug than single agents. Here's a utility to trace agent execution:
 
@@ -464,7 +464,7 @@ class AgentTracer:
 ```
 {% endraw %}
 
-## When Single Agent Beats Multi-Agent
+## When a single agent beats multi-agent
 
 Multi-agent systems are powerful but expensive. A well-prompted single agent often outperforms a multi-agent team on:
 
@@ -480,12 +480,12 @@ Multi-agent systems distribute intelligence across specialized agents coordinate
 
 Key takeaways:
 
-- **Patterns matter**: Supervisor/worker is the most practical starting point
-- **State management is critical**: Shared state reduces complexity
-- **Communication costs are real**: Each agent handoff adds latency and token usage
-- **Start simple**: Add agents incrementally, not preemptively
+- Supervisor/worker is the most practical starting point
+- Shared state reduces complexity
+- Each agent handoff adds latency and token usage
+- Add agents incrementally, not preemptively
 
-**In the next post**, we'll tackle observability — how to see what your agents are doing, trace failures, and monitor costs.
+**In the next post**, we'll tackle observability: how to see what your agents are doing, trace failures, and monitor costs.
 
 ## Further Reading
 

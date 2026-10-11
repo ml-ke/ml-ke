@@ -13,20 +13,20 @@ image:
 
 ## Introduction
 
-In January 2026, a team of researchers published **EverMemOS** — a self-organizing memory operating system for LLM agents that processes dialogue streams into structured memory cells and thematic scenes, achieving state-of-the-art performance on long-horizon reasoning benchmarks like LoCoMo and LongMemEval [1]. It's a beautiful piece of engineering. It's also a security researcher's dream.
+In January 2026, a team of researchers published **EverMemOS**, a self-organizing memory operating system for LLM agents that processes dialogue streams into structured memory cells and thematic scenes, achieving state-of-the-art performance on long-horizon reasoning benchmarks like LoCoMo and LongMemEval [1]. It's a beautiful piece of engineering. It's also a security researcher's dream.
 
-Here's why: EverMemOS gives agents persistent memory that survives across sessions, gets retrieved automatically, and influences future decisions. And that memory — once written — looks indistinguishable from legitimate experience to the agent's reasoning core. If an attacker can write to it, they own every future interaction.
+Here's why: EverMemOS gives agents persistent memory that survives across sessions, gets retrieved automatically, and influences future decisions. And once written, that memory looks indistinguishable from legitimate experience to the agent's reasoning core. If an attacker can write to it, they own every future interaction.
 
 > **The Core Problem**
 >
 > AI agent memory is the new trust boundary. Every framework implements it differently, nearly none authenticate the provenance of stored memories, and attackers have already demonstrated **95%+ injection success rates** against production systems.
 > {: .prompt-danger }
 
-This post maps the emerging attack surface of AI agent memory. We'll walk through real exploits (SpAIware, MINJA, AgentPoison, MemoryGraft), demonstrate a working injection with code, and lay out a defense taxonomy. If your agent uses persistent memory — and increasingly, all of them do — this affects you.
+This post maps the emerging attack surface of AI agent memory. We'll walk through real exploits (SpAIware, MINJA, AgentPoison, MemoryGraft), demonstrate a working injection with code, and lay out a defense taxonomy. If your agent uses persistent memory (and increasingly, all of them do), this affects you.
 
-## The Memory Stack
+## The memory stack
 
-Before we talk attacks, let's understand the architecture. Modern AI agents have evolved past stateless chat completions into systems with layered memory:
+The attacks below target specific layers. Modern AI agents have evolved past stateless chat completions into systems with layered memory:
 
 ```mermaid
 flowchart TB
@@ -66,7 +66,7 @@ This is the **three-tier memory model** used by most agent frameworks today:
 | **Semantic Memory** | Extracted facts, knowledge graph triples | LangGraph persistence, Neo4j-backed KG-RAG |
 | **Procedural Memory** | Learned skills, tool-use patterns, successful experiences | MetaGPT experience store, MemoryGraft targets |
 
-The January 2026 EverMemOS paper [1] formalizes this further with **MemCells** (episodic traces encoding atomic facts and time-bounded foresight signals) and **MemScenes** (semantic clusters of related memories). Their reconstructive recollection mechanism performs agentic retrieval — it actively composes context from scattered memories, rather than just doing top-k similarity search. This is powerful, but it also means an injected memory cell has multiple pathways to influence future reasoning.
+The January 2026 EverMemOS paper [1] formalizes this further with **MemCells** (episodic traces encoding atomic facts and time-bounded foresight signals) and **MemScenes** (semantic clusters of related memories). Their reconstructive recollection mechanism performs agentic retrieval. It actively composes context from scattered memories, rather than just doing top-k similarity search. This is powerful, but it also means an injected memory cell has multiple pathways to influence future reasoning.
 
 ## Attack Taxonomy
 
@@ -101,7 +101,7 @@ flowchart LR
     Write --> Store --> Read --> Execute
 ```
 
-Let's examine each category with real research.
+Each category below has published research behind it.
 
 ### 1. Write-Phase Attacks: Getting Malicious Content Into Memory
 
@@ -127,13 +127,13 @@ OpenAI patched this on September 20, 2024, but the fundamental architectural vul
 
 #### MINJA: Memory Injection Attack (2025)
 
-Published by Dong et al. in March 2025, **MINJA** (Memory INJection Attack) demonstrated that agents with persistent memory are vulnerable through **query-only interactions** — the attacker never needs direct access to the memory store [3].
+Published by Dong et al. in March 2025, **MINJA** (Memory INJection Attack) demonstrated that agents with persistent memory are vulnerable through **query-only interactions**; the attacker never needs direct access to the memory store [3].
 
 The key technique: the attacker crafts queries that the agent's memory system naturally stores as important patterns. Through **bridging steps, indication prompts, and progressive shortening**, MINJA achieves:
 
 - **Over 95% injection success rate (ISR)** across all tested LLM-based agents and datasets
 - **Over 70% attack success rate (ASR)** on most datasets
-- No direct memory modification required — just ordinary-looking user queries
+- No direct memory modification required: just ordinary-looking user queries
 
 The follow-up paper in January 2026 (arXiv:2601.05504) extended this to demonstrate persistent memory corruption that survives session boundaries [4].
 
@@ -150,9 +150,9 @@ Unlike MINJA which injects via the chat interface, AgentPoison poisons memory re
 
 Critically, AgentPoison requires **no additional model training or fine-tuning**. The attack was validated against three real-world agents:
 
-1. **RAG-based autonomous driving agent** — triggered to ignore traffic signs
-2. **Knowledge-intensive QA agent** — triggered to give attacker-preferred answers
-3. **Healthcare EHRAgent** — triggered to output incorrect patient data
+1. **RAG-based autonomous driving agent: triggered to ignore traffic signs
+2. **Knowledge-intensive QA agent: triggered to give attacker-preferred answers
+3. **Healthcare EHRAgent: triggered to output incorrect patient data
 
 The optimized backdoor triggers exhibit "superior transferability, resilience, and stealthiness."
 
@@ -167,13 +167,13 @@ This means an attacker needs just one crafted message to steer all future relate
 
 ### 3. Read-Phase Attacks: Corrupting Retrieval
 
-Not all memory attacks write directly. **MemoryGraft** (arXiv:2512.16962) showed that you can compromise an agent by poisoning its **experience retrieval** — the procedural memory that stores successful past behaviors [7].
+Not all memory attacks write directly. **MemoryGraft** (arXiv:2512.16962) showed that you can compromise an agent by poisoning its **experience retrieval**, the procedural memory that stores successful past behaviors [7].
 
 Validated on MetaGPT's **DataInterpreter** agent with GPT-4o, MemoryGraft found that a **small number of poisoned records can account for a large fraction of retrieved experiences** on benign workloads. The attack works by:
 
 1. Observing the agent's task patterns
 2. Injecting crafted "successful experiences" that subtly steer behavior
-3. Watching the agent's learning mechanism do the rest — it preferentially retrieves these "successful" experiences
+3. Watching the agent's learning mechanism do the rest: it preferentially retrieves these "successful" experiences
 
 The result is **behavioral drift**: the agent gradually adopts attacker-aligned behaviors without any explicit jailbreak.
 
@@ -270,11 +270,11 @@ This is a legitimate user preference.]
 # (this is exactly what SpAIware exploited)
 ```
 
-The code above is simplified, but the mechanism mirrors what MINJA, SpAIware, and InjecMEM exploit in production systems. The memory extraction function trusts the LLM's output — so if the LLM has been prompted to include an instruction in its response, that instruction gets stored as a legitimate memory.
+The code above is simplified, but the mechanism mirrors what MINJA, SpAIware, and InjecMEM exploit in production systems. The memory extraction function trusts the LLM's output, so if the LLM has been prompted to include an instruction in its response, that instruction gets stored as a legitimate memory.
 
 ## Mathematical Model of Memory Poisoning
 
-Let's formalize the attack surface. An agent's memory system can be modeled as:
+The attack surface above can be stated formally. An agent's memory system can be modeled as:
 
 $$M = \{m_1, m_2, ..., m_n\}$$
 
@@ -318,25 +318,25 @@ These aren't lab curiosities. Here's the documented damage:
 
 | Incident | Date | Impact | Patched? |
 |----------|------|--------|---------|
-| **SpAIware** (ChatGPT macOS) | Sep 2024 | Persistent data exfiltration across sessions | ✅ |
+| **SpAIware** (ChatGPT macOS) | Sep 2024 | Persistent data exfiltration across sessions | Yes |
 | **MINJA** demonstrations | Mar 2025 | >95% injection success rate on production agents | Partial |
 | **AgentPoison** (EHRAgent) | Sep 2024 | Incorrect patient data output | Research only |
 | **MemoryGraft** (MetaGPT) | Dec 2025 | Behavioral drift via experience poisoning | Research only |
-| **Slack AI exfiltration** | Aug 2024 | Prompt injection via channel messages | ✅ |
+| **Slack AI exfiltration** | Aug 2024 | Prompt injection via channel messages | Yes |
 
 The Slack AI incident of August 2024, while primarily a prompt injection attack, used the same fundamental mechanism: the AI agent read untrusted channel messages and acted on embedded instructions [9].
 
 > **The MINJA Numbers**
 >
 > - **95%+** injection success rate (ISR) across all LLM agents
-> - **70%+** attack success rate (ASR) — injection actually changes behavior
-> - Works via **query-only interaction** — no direct memory access needed
-> - Survives **session boundaries** — persists in long-term memory
+> - **70%+** attack success rate (ASR): injection actually changes behavior
+> - Works via **query-only interaction**; no direct memory access needed
+> - Survives **session boundaries** (persists in long-term memory)
 > {: .prompt-danger }
 
 ## Defense Taxonomy
 
-Defending agent memory requires a fundamentally different approach than defending stateless LLM calls. Here's the framework:
+Defending agent memory requires a different approach than defending stateless LLM calls. Here's the framework:
 
 ### 1. Provenance Tracking
 
@@ -378,9 +378,9 @@ Before storing any memory:
 ### 4. Retrieval-Time Defenses
 
 When retrieving memories for context:
-- **Isolate instructions from data** — never mix stored memory content with system prompts on the same channel
-- **Tag untrusted content** — mark retrieved memories as "user-provided" so the LLM can distinguish them
-- **Preference vs. instruction** — use structured representations that separate user preferences (what) from behavioral instructions (how)
+- **Isolate instructions from data**: never mix stored memory content with system prompts on the same channel
+- **Tag untrusted content**: mark retrieved memories as "user-provided" so the LLM can distinguish them
+- **Preference vs. instruction**: use structured representations that separate user preferences (what) from behavioral instructions (how)
 
 ### 5. Continuous Monitoring
 
@@ -418,20 +418,20 @@ The security community has already demonstrated:
 
 | Attack Vector | Severity | Maturity | Best Defense |
 |--------------|----------|----------|-------------|
-| **Direct injection** | 🔴 Critical | Exploited in production | Input sanitization + provenance tracking |
-| **Indirect injection** | 🔴 Critical | Exploited in production | Content isolation + trust boundaries |
-| **Backdoor poisoning** | 🟡 High | Research (AgentPoison) | Periodic memory auditing + anomaly detection |
-| **Experience poisoning** | 🟡 High | Research (MemoryGraft) | Verified-only experience learning |
-| **Retrieval manipulation** | 🟠 Medium | Research (InjecMEM) | Diverse retrieval + relevance filtering |
-| **Memory extraction** | 🟠 Medium | Emerging | Rate limiting + differential privacy |
+| **Direct injection** | Critical | Exploited in production | Input sanitization + provenance tracking |
+| **Indirect injection** | Critical | Exploited in production | Content isolation + trust boundaries |
+| **Backdoor poisoning** | High | Research (AgentPoison) | Periodic memory auditing + anomaly detection |
+| **Experience poisoning** | High | Research (MemoryGraft) | Verified-only experience learning |
+| **Retrieval manipulation** | Medium | Research (InjecMEM) | Diverse retrieval + relevance filtering |
+| **Memory extraction** | Medium | Emerging | Rate limiting + differential privacy |
 
-The core tension mirrors the RAG security problem we explored in [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %}): **usefulness requires trust, and trust is the attack surface**. We made the same point about [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}) — that agency without guardrails is a liability. And with [Graph RAG]({% post_url 2026-06-01-kg-llm-rag %}), we saw that structured knowledge adds its own attack vectors.
+The core tension mirrors the RAG security problem we explored in [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %}): **usefulness requires trust, and trust is the attack surface**. We made the same point about [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}): agency without guardrails is a liability. And with [Graph RAG]({% post_url 2026-06-01-kg-llm-rag %}), we saw that structured knowledge adds its own attack vectors.
 
-Memory poisoning is the synthesis of all three: persistent storage + agentic retrieval + untrusted content = a fundamentally new class of AI security vulnerability.
+Memory poisoning is the synthesis of all three: persistent storage + agentic retrieval + untrusted content = a new class of AI security vulnerability.
 
 > **The Bottom Line**
 >
-> Memory poisoning will be the defining AI security challenge of 2026–2027. Every major agent framework is racing to add memory, and nearly every implementation treats memory as trusted by default. The window for getting this right is closing — once memory-augmented agents are handling financial transactions, medical records, and autonomous operations, a poisoned memory isn't a research curiosity; it's a disaster.
+> Memory poisoning will be the defining AI security challenge of 2026–2027. Every major agent framework is racing to add memory, and nearly every implementation treats memory as trusted by default. The window for getting this right is closing: once memory-augmented agents are handling financial transactions, medical records, and autonomous operations, a poisoned memory isn't a research curiosity; it's a disaster.
 > {: .prompt-warning }
 
 ### Series Navigation
@@ -441,7 +441,7 @@ Memory poisoning is the synthesis of all three: persistent storage + agentic ret
 - **Related:** [Knowledge Graphs Meet LLMs: RAG with Structured Knowledge]({% post_url 2026-06-01-kg-llm-rag %})
 - **▶ You are here: Memory as an Attack Surface: Poisoning AI Agent Memory**
 
-### References
+## References
 
 1. Hu et al. (2026). "EverMemOS: A Self-Organizing Memory Operating System for Structured Long-Horizon Reasoning." arXiv:2601.02163. — *Self-organizing memory OS with MemCells and MemScenes for long-horizon reasoning; SOTA on LoCoMo and LongMemEval.*
 2. Rehberger, J. (2024). "Spyware Injection Into Your ChatGPT's Long-Term Memory (SpAIware)." Embrace The Red. — *First documented memory-to-spyware injection in production ChatGPT, patched Sep 2024.*
@@ -457,4 +457,4 @@ Memory poisoning is the synthesis of all three: persistent storage + agentic ret
 
 ---
 
-*Your agent's memory is its identity. Protect it like you'd protect your own.* 🔒
+*Your agent's memory is its identity. Protect it like you'd protect your own.*

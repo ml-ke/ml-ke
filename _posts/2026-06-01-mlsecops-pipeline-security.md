@@ -13,16 +13,16 @@ image:
 
 ## Introduction
 
-On March 26, 2026, a routine `pip install litellm` gave thousands of ML teams something they didn't expect — a credential stealer that harvested SSH keys, cloud provider secrets, and Kubernetes tokens. The attack exploited a vulnerability in **Trivy** (a popular security scanner) to bypass LiteLLM's CI/CD pipeline and inject malicious code directly into PyPI releases.
+On March 26, 2026, a routine `pip install litellm` gave thousands of ML teams something they didn't expect: a credential stealer that harvested SSH keys, cloud provider secrets, and Kubernetes tokens. The attack exploited a vulnerability in **Trivy** (a popular security scanner) to bypass LiteLLM's CI/CD pipeline and inject malicious code directly into PyPI releases.
 
-This is not an isolated incident. It's the inevitable consequence of treating ML infrastructure as "just another Python project" — when in reality, ML pipelines have a **vastly larger attack surface** than traditional software.
+This is not an isolated incident. It's the inevitable consequence of treating ML infrastructure as "just another Python project". ML pipelines have a vastly larger attack surface than traditional software.
 
 > **The MLSecOps Thesis**
 > 
-> Machine Learning pipelines combine: model artifacts (pickle/ safetensors), training data, experiment tracking, model registries, serving infrastructure, feature stores, and orchestration — each with its own unique security properties. Traditional DevSecOps doesn't cover most of this.
+> Machine Learning pipelines combine: model artifacts (pickle/ safetensors), training data, experiment tracking, model registries, serving infrastructure, feature stores, and orchestration, each with its own security properties. Traditional DevSecOps doesn't cover most of this.
 {: .prompt-danger }
 
-## The ML Pipeline Attack Surface
+## The ML pipeline attack surface
 
 A modern ML pipeline touches dozens of components. Here's where attackers strike:
 
@@ -54,11 +54,11 @@ graph LR
     style N fill:#ffd93d
 ```
 
-## Case Study: The LiteLLM Supply Chain Attack (March 2026)
+## Case study: the LiteLLM supply chain attack (March 2026)
 
-**LiteLLM** is a popular open-source library (3.4M+ downloads/day) that provides a unified interface to 100+ LLM providers. In March 2026, it became ground zero for one of the most sophisticated ML supply chain attacks to date.
+**LiteLLM** is a popular open-source library (3.4M+ downloads/day) that provides a unified interface to 100+ LLM providers. In March 2026, it became the target of a sophisticated ML supply chain attack.
 
-### What Happened
+### What happened
 
 | Detail | Description |
 |--------|-------------|
@@ -71,7 +71,7 @@ graph LR
 | **Detection** | Community report 6 hours after first malicious release |
 | **Impact** | Thousands of ML teams potentially compromised |
 
-### Technical Breakdown
+### Technical breakdown
 
 The `.pth` (path configuration) file is a Python feature that executes arbitrary code on interpreter startup. Attackers placed this in the package:
 
@@ -121,32 +121,32 @@ steal_credentials()
 
 > **Why .pth Files Are Dangerous**
 > 
-> Python's `.pth` files are meant for adding directories to `sys.path`, but they can also execute arbitrary code. They run silently with no output. A poisoned `.pth` in a package dependency activates on `import` of ANY Python code in that environment — not just when the malicious package is used.
+> Python's `.pth` files are meant for adding directories to `sys.path`, but they can also execute arbitrary code. They run silently with no output. A poisoned `.pth` in a package dependency activates on `import` of ANY Python code in that environment, regardless of whether the malicious package itself is used.
 {: .prompt-warning }
 
-### The Root Cause: Trivy Vulnerability
+### The root cause: Trivy vulnerability
 
-The attack chain started with a vulnerability in **Trivy** — the security scanner LiteLLM used to validate its CI/CD pipeline. By exploiting this, attackers:
+The attack chain started with a vulnerability in **Trivy**, the security scanner LiteLLM used to validate its CI/CD pipeline. By exploiting this, attackers:
 
-1. **Gained access** to the LiteLLM PyPI publishing credentials
-2. **Bypassed** the automated security scanning (Trivy itself was compromised)
-3. **Published** two malicious versions (1.82.7 and 1.82.8) directly to PyPI
-4. **Covered tracks** in the CI/CD audit logs
+1. Gained access to the LiteLLM PyPI publishing credentials
+2. Bypassed the automated security scanning (Trivy itself was compromised)
+3. Published two malicious versions (1.82.7 and 1.82.8) directly to PyPI
+4. Covered tracks in the CI/CD audit logs
 
 > **The Irony**
 > 
-> The tool meant to prevent supply chain attacks (Trivy) became the supply chain attack vector. This is a perfect illustration of the "trust the trusted" problem in ML security.
+> The tool meant to prevent supply chain attacks (Trivy) became the supply chain attack vector. That is the "trust the trusted" problem in ML security.
 {: .prompt-info }
 
-### Detection and Response
+### Detection and response
 
 The attack was detected by a community member who noticed unusual network connections from a LiteLLM import. By the time LiteLLM issued a security advisory, the malicious packages had been downloaded by thousands of systems.
 
-## The MLSecOps Framework
+## The MLSecOps framework
 
-Drawing from the CSA (Cloud Security Alliance) MLSecOps guidance and the OpenSSF framework, here's a comprehensive security model for ML pipelines:
+The CSA (Cloud Security Alliance) MLSecOps guidance and the OpenSSF framework shape the model below:
 
-### Layer 1: Code and Dependencies
+### Layer 1: code and dependencies
 
 ```yaml
 # ML-specific dependency hardening
@@ -169,7 +169,7 @@ model-scan --path ./models/  # Scan for pickle-based models
 fickling --scan model.pt     # Static analysis of PyTorch pickle files
 ```
 
-### Layer 2: Data Pipeline Security
+### Layer 2: data pipeline security
 
 | Stage | Risk | Control |
 |-------|------|---------|
@@ -179,7 +179,7 @@ fickling --scan model.pt     # Static analysis of PyTorch pickle files
 | **Feature Engineering** | Feature injection | Schema validation, outlier detection |
 | **Data Versioning** | Silent data replacement | DVC + content-addressable storage |
 
-### Layer 3: Model Artifact Security
+### Layer 3: model artifact security
 
 ```python
 # Model signing and verification
@@ -249,7 +249,7 @@ if not verify_model("./models/prod/model.safetensors",
     raise RuntimeError("Model verification failed — possible tampering!")
 ```
 
-### Layer 4: Serving Infrastructure
+### Layer 4: serving infrastructure
 
 ```yaml
 # MLSecOps serving configuration
@@ -273,7 +273,7 @@ serving:
     max_input_tokens: 32768
 ```
 
-### Layer 5: Continuous Verification
+### Layer 5: continuous verification
 
 ```bash
 #!/bin/bash
@@ -319,18 +319,18 @@ echo "=== Scan Complete ==="
 
 | Capability | DevSecOps | MLSecOps |
 |------------|-----------|----------|
-| Code scanning | ✅ SAST, DAST | ✅ Same + ML-specific SAST |
-| Dependency scanning | ✅ pip-audit, safety | ✅ + Model dependency graph |
-| Container scanning | ✅ Trivy, Clair | ✅ + ML-specific base images |
-| **Model artifact scanning** | ❌ | ✅ Fickling, ModelScan |
-| **Data provenance** | ❌ | ✅ DVC, content-addressed storage |
-| **Model signing** | ❌ | ✅ Key-based manifests |
-| **Adversarial robustness** | ❌ | ✅ Red teaming, evasion testing |
-| **Pickle deserialization** | ❌ | ✅ Safetensors enforcement |
-| **Inference API abuse** | ❌ | ✅ Rate limiting, extraction detection |
-| **Training data integrity** | ❌ | ✅ Checksums, anomaly detection |
+| Code scanning | SAST, DAST | Same + ML-specific SAST |
+| Dependency scanning | pip-audit, safety | + Model dependency graph |
+| Container scanning | Trivy, Clair | + ML-specific base images |
+| **Model artifact scanning** | No | Fickling, ModelScan |
+| **Data provenance** | No | DVC, content-addressed storage |
+| **Model signing** | No | Key-based manifests |
+| **Adversarial robustness** | No | Red teaming, evasion testing |
+| **Pickle deserialization** | No | Safetensors enforcement |
+| **Inference API abuse** | No | Rate limiting, extraction detection |
+| **Training data integrity** | No | Checksums, anomaly detection |
 
-## The OpenSSF MLSecOps Framework
+## The OpenSSF MLSecOps framework
 
 The Open Source Security Foundation (OpenSSF) released an MLSecOps framework in August 2025 that maps secure DevOps principles to ML:
 
@@ -343,7 +343,7 @@ Secure DevOps → MLSecOps Mapping:
   Runtime Security → Inference + Training Runtime Security
 ```
 
-### ML-BOM (Machine Learning Bill of Materials)
+### ML-BOM (machine learning bill of materials)
 
 ```json
 {
@@ -373,9 +373,9 @@ Secure DevOps → MLSecOps Mapping:
 
 ## Conclusion
 
-The LiteLLM attack is not the last ML supply chain incident — it's the first of many. As ML infrastructure becomes more complex and interconnected, the attack surface grows exponentially. MLSecOps is not optional; it's a fundamental requirement for any organization deploying ML in production.
+The LiteLLM attack won't be the last ML supply chain incident. As ML infrastructure becomes more complex and interconnected, the attack surface grows exponentially. MLSecOps is a requirement for any organization deploying ML in production.
 
-### Key Takeaways
+### Key takeaways
 
 | Threat | Mitigation |
 |--------|------------|
@@ -405,4 +405,4 @@ The LiteLLM attack is not the last ML supply chain incident — it's the first o
 
 ---
 
-*Your ML pipeline is only as secure as its weakest dependency. And in 2026, that dependency might be the tool meant to protect you.* 🔒
+*Your ML pipeline is only as secure as its weakest dependency. And in 2026, that dependency might be the tool meant to protect you.*
