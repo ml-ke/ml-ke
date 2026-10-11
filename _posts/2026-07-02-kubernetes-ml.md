@@ -22,7 +22,7 @@ Kubernetes provides the orchestration layer that turns a collection of GPU machi
 - **Resource isolation**: Separate models into namespaces with guaranteed resources
 - **Observability**: Prometheus metrics, structured logging, distributed tracing
 
-### The Minimal Service Architecture
+### The minimal service architecture
 
 {% raw %}
 ```text
@@ -92,11 +92,11 @@ kubectl get pods -n kserve
 ```
 {% endraw %}
 
-## Deploying Your First Model
+## Deploying your first model
 
 Kserve introduces the `InferenceService` custom resource — you define your model in YAML, and Kserve handles everything else.
 
-### Serving a Scikit-learn Model
+### Serving a Scikit-learn model
 
 {% raw %}
 ```yaml
@@ -119,7 +119,7 @@ spec:
 ```
 {% endraw %}
 
-### Serving a PyTorch Model with GPU
+### Serving a PyTorch model with GPU
 
 {% raw %}
 ```yaml
@@ -213,11 +213,11 @@ kubectl get inferenceservice llama3-8b
 ```
 {% endraw %}
 
-## Auto-Scaling: From 0 to 100 and Back
+## Auto-scaling: from 0 to 100 and back
 
 Kserve integrates with Kubernetes' **Horizontal Pod Autoscaler (HPA)** and can also use **Keda** for event-driven scaling.
 
-### Concurrency-Based Scaling
+### Concurrency-based scaling
 
 The default scaling metric is CPU, but for inference you typically want **concurrency-based scaling**:
 
@@ -234,7 +234,7 @@ spec:
 
 When requests spike beyond 5 per pod, Kserve spins up new pods. When traffic drops, it scales back down — even to zero, freeing GPU resources.
 
-### Scale-from-Zero Latency
+### Scale-from-zero latency
 
 Scaling from zero takes ~30–60 seconds (pulling the container image and loading the model). For latency-sensitive applications:
 
@@ -242,7 +242,7 @@ Scaling from zero takes ~30–60 seconds (pulling the container image and loadin
 - **Pre-pull images** on all nodes using DaemonSets
 - **Use model caching** with a shared PVC or sidecar that pre-warms
 
-## GPU Scheduling
+## GPU scheduling
 
 Kubernetes manages GPUs through the **device plugin framework**. The NVIDIA device plugin exposes GPUs as schedulable resources:
 
@@ -256,7 +256,7 @@ kubectl get pods -o custom-columns=NAME:.metadata.name,GPU_REQUEST:.spec.contain
 ```
 {% endraw %}
 
-### GPU Sharing Strategies
+### GPU sharing strategies
 
 | Strategy | Method | Isolation | Use Case |
 |----------|--------|-----------|----------|
@@ -267,7 +267,7 @@ kubectl get pods -o custom-columns=NAME:.metadata.name,GPU_REQUEST:.spec.contain
 
 For most production use, **exclusive GPU assignment** is simplest and safest. MIG is worth the complexity for truly multi-tenant clusters.
 
-## Rolling Updates and Canary Deployments
+## Rolling updates and canary deployments
 
 Kserve supports **progressive delivery** natively. To deploy a new model version safely:
 
@@ -313,7 +313,7 @@ Kserve exposes Prometheus metrics automatically. Each inference pod emits:
 - `response_count`: Responses by status code
 - `inference_service_running`: Whether the service is healthy
 
-### Sample Prometheus Query
+### Sample Prometheus query
 
 {% raw %}
 ```promql
@@ -351,9 +351,9 @@ panels:
 ```
 {% endraw %}
 
-## Production Checklist
+## Production checklist
 
-Deploying ML on Kubernetes is more than writing YAML. Here's what you need for production:
+Deploying ML on Kubernetes is more than writing YAML. A production deployment needs:
 
 ### Security
 - [ ] Pull model images from a private registry (ECR, GCR, Harbor)
@@ -378,16 +378,16 @@ Deploying ML on Kubernetes is more than writing YAML. Here's what you need for p
 - [ ] Structured JSON logging (not ad-hoc print statements)
 - [ ] Distributed tracing for multi-model pipelines
 
-## Common Pitfalls
+## Common pitfalls
 
-### Cold Starts Are Real
+### Cold starts are real
 
 When scaling from zero, loading a large model (70B parameters) can take 2–5 minutes. Mitigations:
 - Pre-warm models on dedicated nodes
 - Use PVC-backed model caches
 - Accept that scale-from-zero adds latency and plan SLAs accordingly
 
-### GPU Fragmentation
+### GPU fragmentation
 
 If you have 4 models each requesting 1 GPU but you have 4 GPUs on 1 node, a single node failure takes down all models. Use **pod anti-affinity** to spread replicas across nodes:
 
@@ -407,13 +407,13 @@ spec:
 ```
 {% endraw %}
 
-### OOM Kills Without Graceful Degradation
+### OOM kills without graceful degradation
 
 If a model's memory grows beyond its limits (e.g., KV cache with very long sequences), Kubernetes will **kill the pod** without finishing requests. Set memory limits slightly above your expected usage and add admission control for request sizes.
 
 ## Summary
 
-Kubernetes + Kserve gives you a production-grade model serving platform that scales, self-heals, and handles multi-model deployments. The key concepts are:
+Kubernetes + Kserve gives you a model serving platform that scales, self-heals, and handles multi-model deployments. The key concepts are:
 
 1. **InferenceService** CRD defines the model, resources, and scaling policy
 2. **Scale-to-zero** saves GPU costs when models aren't in use

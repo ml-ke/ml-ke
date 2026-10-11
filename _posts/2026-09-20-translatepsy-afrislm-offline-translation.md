@@ -16,7 +16,7 @@ On 2 September 2026, Tether AI Research published a family of open translation m
 Most coverage framed this as a benchmark story — "800 million parameters beats a 122-billion-parameter model." That is what the paper says, and the numbers are real. But the benchmark is the least interesting thing in the release, and reading only the headline hides the part that matters for anyone deploying in Kenya, Nigeria or Malawi: **the smallest deployment fits in tens of megabytes and never asks the network for permission.**
 
 > **The framing**
-> This post is about a *release*, not a technique: what shipped, where offline translation becomes the difference between usable and unusable, and how to read the vendor benchmark without either dismissing or swallowing it. It is not low-resource NLP basics ([Low-Resource NLP](/posts/low-resource-nlp/)), a RAG build ([RAG for Low-Resource African Languages](/posts/rag-low-resource-african-languages/)) or a fine-tuning walkthrough ([Fine-Tuning African Language LLMs](/posts/fine-tuning-african-language-llms/)) — those assume a model you can reach over the network. This is about the case where there is no network.
+> This post is about a *release*, not a technique: what shipped, where offline translation becomes the difference between usable and unusable, and how to read the vendor benchmark without either dismissing or swallowing it. It is not low-resource NLP basics ([Low-Resource NLP](/posts/low-resource-nlp/)), a RAG build ([RAG for Low-Resource African Languages](/posts/rag-low-resource-african-languages/)) or a fine-tuning walkthrough ([Fine-Tuning African Language LLMs](/posts/fine-tuning-african-language-llms/)). Those assume a model you can reach over the network. This is about the case where there is no network.
 {: .prompt-info }
 
 ## What actually shipped
@@ -32,11 +32,11 @@ Four artifacts, and they are not interchangeable:
 
 The **Nano** family is the browser-and-feature-phone answer: a 17M–43M parameter Marian model whose card reports it retains up to **96.24% of NLLB-200 translation accuracy at 56.7× smaller deployment size and 3.53× lower peak CPU RAM** ([model card](https://huggingface.co/qvac/TranslatePsy-AfriNano)). The **SLM** family is the conversational answer: a full-parameter fine-tune, quantised to a 641 MB Q4_K_M GGUF, which we downloaded and ran (below).
 
-The licence split matters. The **models** are Apache-2.0 — commercial use is fine. The **synthetic training mix** is CC BY-NC 4.0, non-commercial only, and the paper states plainly that the raw open-source mix "will not be released due to licensing/provenance issues." If you are building a product, you can ship the weights; you cannot build a commercial training pipeline on the published data.
+The licence split matters. The **models** are Apache-2.0. Commercial use is fine. The **synthetic training mix** is CC BY-NC 4.0, non-commercial only, and the paper states plainly that the raw open-source mix "will not be released due to licensing/provenance issues." If you are building a product, you can ship the weights; you cannot build a commercial training pipeline on the published data.
 
 ## Why offline is the headline
 
-The 2026 edition of the GSMA's *State of Mobile Internet Connectivity* puts Sub-Saharan Africa at **25% of the population using mobile internet on their own device**, with **66% — roughly 820 million people — living inside mobile broadband coverage and not using it** ([Capital Ethiopia, 20 Sep 2026](https://capitalethiopia.com/2026/09/20/sub-saharan-africa-faces-digital-divide-as-handset-costs-and-usage-gap-persist/); [Nairametrics, 17 Sep 2026](https://nairametrics.com/2026/09/17/nigeria-accounts-for-140-million-mobile-internet-usage-gap-gsma-says/) reports the same report's 3.1 billion global usage-gap figure, with Nigeria accounting for about 140 million of it).
+The 2026 edition of the GSMA's *State of Mobile Internet Connectivity* puts Sub-Saharan Africa at **25% of the population using mobile internet on their own device**, with **66% (roughly 820 million people) living inside mobile broadband coverage and not using it** ([Capital Ethiopia, 20 Sep 2026](https://capitalethiopia.com/2026/09/20/sub-saharan-africa-faces-digital-divide-as-handset-costs-and-usage-gap-persist/); [Nairametrics, 17 Sep 2026](https://nairametrics.com/2026/09/17/nigeria-accounts-for-140-million-mobile-internet-usage-gap-gsma-says/) reports the same report's 3.1 billion global usage-gap figure, with Nigeria accounting for about 140 million of it).
 
 The same report identifies what is actually stopping people, and it is not coverage:
 
@@ -48,13 +48,13 @@ The same report identifies what is actually stopping people, and it is not cover
 > Every barrier above is about the *device and the bill*, not the network. A 21–35 MB model inside an app works on the phone a farmer already owns, offline, with no per-call cost and no data leaving the handset. The cloud version of the same model is better and irrelevant to that user.
 {: .prompt-tip }
 
-That is the honest argument for this release: not that a 0.8B model dethroned a 122B one, but that the useful size class now fits where the users are.
+That is the honest argument for this release. A 0.8B model did not dethrone a 122B one; the useful size class now fits where the users are.
 
 ## The claim that carries the release: data quality, not parameters
 
 The paper's methodological bet is that **curation beats scale**. Its unified quality-estimation filter removes up to **96% of training tokens without degrading quality**: a filtered configuration reaches an SSA-COMET score of **0.530 versus 0.528** for the unfiltered one, using **1.76B tokens instead of 44.93B**. The authors' conclusion is that raw open-source parallel text "contains a weak training signal that can be concentrated via dedicated curation."
 
-Their filtering choice is also instructive. No single quality estimator dominates: SSA-COMET filtering produced the best SSA-COMET gain (+4.85% over random filtering) but a weaker COMET-22 gain (+0.94%), while MetricX filtering produced the best MetricX gain (+13.3%) and the *only negative* chrF++ result (−0.16%). They therefore filter on an **average robust z-score across estimators, computed in the same direction as training** — the aligned configuration. If you curate parallel data for any low-resource pair, that is the transferable result: combining estimators on the training direction is more robust than trusting one metric's opinion of itself.
+Their filtering choice is also instructive. No single quality estimator dominates: SSA-COMET filtering produced the best SSA-COMET gain (+4.85% over random filtering) but a weaker COMET-22 gain (+0.94%), while MetricX filtering produced the best MetricX gain (+13.3%) and the *only negative* chrF++ result (−0.16%). They therefore filter on an **average robust z-score across estimators, computed in the same direction as training**, the aligned configuration. If you curate parallel data for any low-resource pair, that is the transferable result: combining estimators on the training direction is more robust than trusting one metric's opinion of itself.
 
 ## We ran the smallest quantised model on a laptop
 
@@ -92,10 +92,10 @@ Measured on that machine: **100.1 tokens/s prompt processing, 28.7 tokens/s gene
 
 Two honest observations from the outputs:
 
-- **English → Swahili preserved the hard parts.** The date and number both survived: `...haina haja ya kurudi hadi Juni 2027` keeps "June 2027" intact and negates correctly. The agreement on `haina haja` ("it has no need") does not match the woman, where Swahili expects `hana haja` — the kind of slip only a human reviewer catches.
+- **English → Swahili preserved the hard parts.** The date and number both survived: `...haina haja ya kurudi hadi Juni 2027` keeps "June 2027" intact and negates correctly. The agreement on `haina haja` ("it has no need") does not match the woman, where Swahili expects `hana haja`, the kind of slip only a human reviewer catches.
 - **Zero-shot Swahili → Hausa is where it frays.** The greeting came back as `Karibu`, the Swahili form rather than the Hausa `Barka da zuwa`. The paper predicts this: its out-of-distribution languages show "smaller and more heterogeneous" gains with "metric-specific regressions." Training was English ↔ African only; African → African was never seen.
 
-That second point is not a defect to hide; it is the release's actual frontier, and the authors say so.
+That second point is the release's actual frontier, and the authors say so.
 
 ## How to read the benchmark table
 
@@ -111,7 +111,7 @@ Here is the paper's Table 3 (SSA-COMET, 0–1, averaged across available test se
 | TranslatePsy-AfriSLM-2B | 0.6070 | 0.6322 | 0.5074 |
 | TranslatePsy-AfriSLM-4B | 0.6143 | 0.6391 | 0.5136 |
 
-The 0.8B genuinely beats the 122B specialised-LLM baseline on all three, and beats NLLB-3.3B on BOUQuET and Smol. Now read the *same* paper's significance table, which reports five metrics with bootstrap p-values. "Outperforms" is a metric-specific claim, and one column can quietly contradict another:
+The 0.8B genuinely beats the 122B specialised-LLM baseline on all three, and beats NLLB-3.3B on BOUQuET and Smol. The *same* paper's significance table reports five metrics with bootstrap p-values. "Outperforms" is a metric-specific claim, and one column can quietly contradict another:
 
 {% raw %}
 ```python
@@ -153,7 +153,7 @@ for baseline, metrics in FLORES.items():
 ```
 {% endraw %}
 
-Run it and the release gets more interesting, not less:
+Run it and the release gets more interesting:
 
 ```text
 claim: TranslatePsy-AfriSLM-0.8B outperforms, on FLORES-200
@@ -171,7 +171,7 @@ claim: TranslatePsy-AfriSLM-0.8B outperforms, on FLORES-200
     spBLEU     -0.9300  p<0.001  -> REGRESSED
 ```
 
-Read that second block carefully, because it is the part no press release carries. Against **NLLB-3.3B on Flores-200**, the 0.8B model is a **statistical tie on SSA-COMET** ($\Delta = 0.0000$, $p = 0.483$) and **loses on chrF++, spBLEU, MetricX and COMET-22**. The paper's own phrasing is precise — it "exceeds NLLB-3.3B on BOUQuET and Smol and **matches** it on Flores-200" — and a reader who skips to the abstract reads something stronger than the tables support.
+Read that second block carefully, because it is the part no press release carries. Against **NLLB-3.3B on Flores-200**, the 0.8B model is a **statistical tie on SSA-COMET** ($\Delta = 0.0000$, $p = 0.483$) and **loses on chrF++, spBLEU, MetricX and COMET-22**. The paper's own phrasing is precise: it "exceeds NLLB-3.3B on BOUQuET and Smol and **matches** it on Flores-200". A reader who skips to the abstract reads something stronger than the tables support.
 
 The lesson generalises past this release. "Beats models 100× larger" is a defensible statement about *specific benchmarks and specific metrics*, chosen by the authors, on in-distribution languages. It is not a claim about your sentence, your dialect or your domain. The paper says this itself: the strongest per-language gains land on low-baseline languages (Oromo, Malagasy, Lingala, Tswana, Zulu), Afrikaans gains least, and held-out languages show "metric-specific regressions for Nigerian Pidgin, Sudanese Arabic, and Tamazight."
 
@@ -179,15 +179,15 @@ The lesson generalises past this release. "Beats models 100× larger" is a defen
 
 Three limitations from the paper that a deployment decision needs:
 
-1. **No human evaluation yet.** The authors state that reference-based metrics suggest they "have not yet reached the translation quality of European and Asian languages," and that resolving absolute quality requires expert annotators, not more metrics. The models' own benchmark is built from the same metric families used to filter the training data — a circularity the authors test for, but do not fully escape.
+1. **No human evaluation yet.** The authors state that reference-based metrics suggest they "have not yet reached the translation quality of European and Asian languages," and that resolving absolute quality requires expert annotators, not more metrics. The models' own benchmark is built from the same metric families used to filter the training data. That is a circularity the authors test for, but do not fully escape.
 2. **Dialects are under-represented.** "The exact dialect tracking is unavailable for our web-curated corpora; models may over-reflect standardized written forms and under-represent regional dialects or oral traditions." They advise auditing before deployment. A model that translates textbook Swahili is not automatically a model that handles Sheng or coastal dialects.
 3. **Some of the data is synthetic, and provenance is partly unknown.** The "open-source" mix is not released at all; the Fine Translations corpus is entirely synthetic; and an unknown share of the "open-source" subset is at least partially synthetic due to LLM-based rewriting upstream.
 
-None of that undoes the release. It does mean the right posture is "powerful new component, needs a local acceptance test" — a posture to hold about every model you did not evaluate yourself.
+None of that undoes the release. It does mean the right posture is "powerful new component, needs a local acceptance test", a posture to hold about every model you did not evaluate yourself.
 
 ## How to apply this: pick the size class, then test it
 
-**Step 1 — choose by device, not by benchmark rank.** The two families are not a quality ladder; they are different deployment targets:
+**Step 1: choose by device, not by benchmark rank.** The two families are not a quality ladder; they are different deployment targets:
 
 | Your constraint | Use | Why |
 |---|---|---|
@@ -196,15 +196,15 @@ None of that undoes the release. It does mean the right posture is "powerful new
 | European languages with English as pivot | `TranslatePsy-EuroNano` | 90 directions from two models per tier |
 | Commercial training on the published data | — | Weights are Apache-2.0; the synthetic mix is **CC BY-NC 4.0** |
 
-**Step 2 — run the release audit, not the leaderboard.** Five checks, all cheap:
+**Step 2: run the release audit, not the leaderboard.** Five checks, all cheap:
 
 1. Download the *smallest* quantisation that meets your latency budget and run 20 real sentences from your domain through it.
 2. Score with a metric family you did **not** see in the release notes (if every published metric shares a family with the training filter, use chrF or a small human panel).
 3. Check the per-language rows, never the average. One 0.62 aggregate can hide a 0.41 language.
-4. Test your language pair in *both* directions, and test African → African separately — the training pairs were English-centred.
+4. Test your language pair in *both* directions, and test African → African separately. The training pairs were English-centred.
 5. Write down your acceptance threshold **before** you look at the output. Two of the verdicts above flip purely on which metric you chose.
 
-**Step 3 — decide what offline actually buys you.** A device-side model that degrades gracefully beats a cloud model that fails completely: `hana haja` rather than no translation at all is an easy trade for a health-education screen or a market-price lookup.
+**Step 3: decide what offline actually buys you.** A device-side model that degrades gracefully beats a cloud model that fails completely: `hana haja` rather than no translation at all is an easy trade for a health-education screen or a market-price lookup.
 
 ## Key takeaways
 

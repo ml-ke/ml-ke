@@ -8,15 +8,15 @@ image:
   alt: Dashboard showing ML monitoring metrics including data drift, model performance, and system health
 ---
 
-Your model is deployed. Traffic is flowing. Users are getting predictions. Everything looks good — until it doesn't.
+Your model is deployed. Traffic is flowing. Users are getting predictions. Everything looks good. Until it doesn't.
 
 Unlike traditional software, ML systems can degrade silently. The code doesn't crash; the model just starts producing worse predictions. A recommendation model that was 90% accurate in March might be 60% by July, not because the code changed, but because user behavior shifted. This is **model drift**, and detecting it is the core challenge of ML monitoring.
 
 This post covers the four types of drift, how to detect each one, infrastructure monitoring, and how to build alerting that actually wakes someone up when something goes wrong.
 
-## The Four Types of Model Drift
+## The four types of model drift
 
-### 1. Data Drift (Input Distribution Changes)
+### 1. Data drift (input distribution changes)
 
 The statistical properties of your input features change over time. For example, if you trained a fraud detection model in 2023, but by 2025 transaction patterns have shifted (more mobile payments, fewer card swipes), the model sees inputs it wasn't trained on.
 
@@ -29,7 +29,7 @@ Training Distribution:     Production Distribution (drifted):
 ```
 {% endraw %}
 
-### 2. Concept Drift (Label Relationship Changes)
+### 2. Concept drift (label relationship changes)
 
 The relationship between inputs and the target variable changes. A model that predicts house prices might suddenly become inaccurate not because the features changed, but because interest rates rose and the fundamental price/sq.ft relationship shifted.
 
@@ -41,13 +41,13 @@ The relationship changed, not the inputs.
 ```
 {% endraw %}
 
-### 3. Prediction Drift (Output Distribution Changes)
+### 3. Prediction drift (output distribution changes)
 
 The model's predictions themselves shift over time. Even if inputs look normal, the outputs might start clustering differently. This is often a symptom of data or concept drift manifesting.
 
-### 4. Model Performance Degradation
+### 4. Model performance degradation
 
-The true metric you care about — accuracy, precision, recall, CTR — drops. This is the **most important signal** but also the hardest to measure because you need ground truth labels, which often arrive with a delay (e.g., did the user actually click? Did the transaction turn out to be fraudulent?).
+The true metric you care about (accuracy, precision, recall, CTR) drops. This is the **most important signal** but also the hardest to measure because you need ground truth labels, which often arrive with a delay (e.g., did the user actually click? Did the transaction turn out to be fraudulent?).
 
 {% raw %}
 ```text
@@ -60,9 +60,9 @@ Performance    | Ground-truth comparison  | Yes             | Delayed
 ```
 {% endraw %}
 
-## Detecting Data Drift with Statistical Tests
+## Detecting data drift with statistical tests
 
-### Feature-Level Drift
+### Feature-level drift
 
 For numerical features, use the **Kolmogorov-Smirnov (KS) test** or **Wasserstein distance**. For categorical features, use the **Chi-squared test**.
 
@@ -136,7 +136,7 @@ def detect_categorical_drift(
 ```
 {% endraw %}
 
-### Multivariate Drift Detection
+### Multivariate drift detection
 
 Feature-level tests miss interactions. Two features might each look fine individually but shift in combination. Use **PCA-based drift detection** for multivariate coverage:
 
@@ -182,11 +182,11 @@ def detect_multivariate_drift(
 ```
 {% endraw %}
 
-## Using Evidently AI for Production Monitoring
+## Using Evidently AI for production monitoring
 
 [Evidently AI](https://www.evidentlyai.com/) is the go-to open-source library for ML monitoring. It computes drift metrics and generates interactive reports.
 
-### Setting Up a Monitoring Dashboard
+### Setting up a monitoring dashboard
 
 {% raw %}
 ```python
@@ -244,7 +244,7 @@ if drifted_features:
 ```
 {% endraw %}
 
-### Scheduling Periodic Checks
+### Scheduling periodic checks
 
 {% raw %}
 ```python
@@ -273,11 +273,11 @@ while True:
 ```
 {% endraw %}
 
-## Infrastructure Monitoring: Latency, Throughput, and Errors
+## Infrastructure monitoring: latency, throughput, and errors
 
 Model drift is critical, but don't ignore infrastructure. A model that's 99% accurate but takes 10 seconds per request is useless.
 
-### Key Metrics to Track
+### Key metrics to track
 
 {% raw %}
 ```text
@@ -293,7 +293,7 @@ Model drift is critical, but don't ignore infrastructure. A model that's 99% acc
 ```
 {% endraw %}
 
-### Prometheus Metrics from Your Inference Server
+### Prometheus metrics from your inference server
 
 {% raw %}
 ```python
@@ -356,11 +356,11 @@ async def get_metrics():
 ```
 {% endraw %}
 
-## Building an Alerting System
+## Building an alerting system
 
 Drift detection is only useful if it triggers action. Build a tiered alerting system:
 
-### Alert Tiers
+### Alert tiers
 
 {% raw %}
 ```text
@@ -384,7 +384,7 @@ Tier 3 — CRITICAL (PagerDuty or phone call):
 ```
 {% endraw %}
 
-### Alert Manager Configuration (Prometheus + Alertmanager)
+### Alert manager configuration (Prometheus + Alertmanager)
 
 {% raw %}
 ```yaml
@@ -426,7 +426,7 @@ receivers:
 ```
 {% endraw %}
 
-### Prometheus Alert Rules
+### Prometheus alert rules
 
 {% raw %}
 ```yaml
@@ -476,7 +476,7 @@ groups:
 ```
 {% endraw %}
 
-## Custom Monitoring Dashboard with Grafana
+## Custom monitoring dashboard with Grafana
 
 Here's a complete Grafana dashboard JSON (key panels) for ML monitoring:
 
@@ -527,9 +527,9 @@ Here's a complete Grafana dashboard JSON (key panels) for ML monitoring:
 ```
 {% endraw %}
 
-## What to Do When Drift Is Detected
+## What to do when drift is detected
 
-Detecting drift isn't enough — you need a runbook. Here's a template:
+Detecting drift isn't enough; you need a runbook. Here's a template:
 
 {% raw %}
 ```text
@@ -563,7 +563,7 @@ Detecting drift isn't enough — you need a runbook. Here's a template:
 ```
 {% endraw %}
 
-## Tools Comparison
+## Tools comparison
 
 | Tool | Best For | Strengths | Limitations |
 |------|----------|-----------|-------------|
@@ -574,7 +574,7 @@ Detecting drift isn't enough — you need a runbook. Here's a template:
 | **Great Expectations** | Data validation | Great for batch data quality | Not designed for real-time serving |
 | **NannyML** | Performance estimation without labels | Estimates accuracy without ground truth | Newer project, smaller community |
 
-## Summary: The Monitoring Maturity Model
+## Summary: the monitoring maturity model
 
 {% raw %}
 ```text
@@ -589,14 +589,14 @@ Level 6 — "Predictive"        : Predict drift before it happens
 
 Most teams start at Level 1–2. Getting to Level 4 (alerting on both infrastructure and ML-specific drift) is the minimum for production-grade ML. Level 5–6 is where you save significant engineering time through automation.
 
-## Final Thoughts
+## Final thoughts
 
-Monitoring ML systems is harder than monitoring traditional software because the failure modes are more subtle. A model doesn't crash — it just gets slightly worse every day until someone notices. By combining:
+Monitoring ML systems is harder than monitoring traditional software because the failure modes are more subtle. A model doesn't crash. It just gets slightly worse every day until someone notices. By combining:
 
-- **Statistical drift detection** (Evidently + custom tests)
-- **Infrastructure monitoring** (Prometheus + Grafana)
-- **Tiered alerting** (Slack → PagerDuty)
-- **Clear runbooks** (documented response procedures)
+- Statistical drift detection (Evidently + custom tests)
+- Infrastructure monitoring (Prometheus + Grafana)
+- Tiered alerting (Slack → PagerDuty)
+- Clear runbooks (documented response procedures)
 
 ...you build a system that catches degradation early, alerts the right people, and makes it easy to roll back or retrain before users notice anything wrong.
 

@@ -8,7 +8,7 @@ image:
   alt: Transfer learning diagram showing knowledge flowing from multilingual model to low-resource language
 ---
 
-## The Low-Resource Reality
+## The low-resource reality
 
 Africa is home to over 2,000 languages — roughly one-third of all living languages on Earth. Yet when we look at language technology coverage, the picture is stark:
 
@@ -20,13 +20,13 @@ Africa is home to over 2,000 languages — roughly one-third of all living langu
 
 For most of these languages, collecting enough annotated data for traditional supervised learning is prohibitively expensive. A single human-annotated NER dataset for a new language costs $20,000-$50,000 — often more than an entire research group's annual budget.
 
-This is where **low-resource NLP techniques** become essential. The rest of this post covers practical methods you can use when you have little to no labeled data for an African language.
+This is where **low-resource NLP techniques** become essential. The methods below work when you have little to no labeled data for an African language.
 
-## Transfer Learning from Multilingual Models
+## Transfer learning from multilingual models
 
-### The Multilingual Model Revolution
+### The multilingual model revolution
 
-Models trained on 100+ languages simultaneously have been game-changers. The key insight: a model that's seen dozens of languages learns a language-agnostic representation space. When you fine-tune on a specific language, it can leverage patterns from related languages.
+Models trained on 100+ languages simultaneously have changed the field. The idea is simple: a model that's seen dozens of languages learns a language-agnostic representation space. When you fine-tune on a specific language, it can leverage patterns from related languages.
 
 | Model | Languages | Parameters | Notes for African NLP |
 |-------|-----------|------------|----------------------|
@@ -36,7 +36,7 @@ Models trained on 100+ languages simultaneously have been game-changers. The key
 | LaBSE | 109 | 471M | Excellent for cross-lingual sentence retrieval |
 | RemBERT | 100 | 580M | Better per-language capacity than XLM-R |
 
-### Practical Transfer Strategy
+### Practical transfer strategy
 
 The most effective approach for a low-resource African language follows this hierarchy:
 
@@ -114,11 +114,11 @@ model.save_pretrained("./xlmr-yoruba-adapted")
 **Level 4: Cross-lingual transfer from related languages**
 For a language like Kikuyu (E40, Bantu branch), fine-tune on Swahili (E20, Bantu) or Zulu data, then evaluate on Kikuyu. Bantu languages share agglutinative morphology, noun class systems, and significant vocabulary. This is often more effective than zero-shot from English.
 
-## Data Augmentation Techniques
+## Data augmentation techniques
 
 When labeled data is the bottleneck, augmentation creates synthetic examples:
 
-### Back-Translation
+### Back-translation
 
 The most reliable augmentation method: take your target-language text, translate it to a high-resource language (English), then translate it back. The round-trip introduces natural variation.
 
@@ -160,7 +160,7 @@ for sent in hausa_sentences:
 
 **Caveat**: Back-translation quality depends on the translation model's strength in both languages. For extremely low-resource languages, the NLLB model may produce poor translations. Always validate a sample manually.
 
-### Word-Level Substitution with Multilingual Embeddings
+### Word-level substitution with multilingual embeddings
 
 Replace words in the original sentence with semantically similar words from the same language, using contextual word embeddings:
 
@@ -179,7 +179,7 @@ def get_word_embedding(word, context_sentence):
 # e.g., replace "good" with "excellent" in sentiment-preserving way
 ```
 
-### Synonym Replacement via Machine Translation
+### Synonym replacement via machine translation
 
 For languages without thesauri: translate the word to English, get synonyms, translate back:
 
@@ -204,11 +204,11 @@ def text_mixup(input_ids_1, input_ids_2, label_1, label_2, alpha=0.3):
     return mixed_input, mixed_label
 ```
 
-## Few-Shot Prompting for Low-Resource NLP
+## Few-shot prompting for low-resource NLP
 
 Large language models (LLMs) can perform NLP tasks in low-resource languages via in-context learning — even when they haven't been explicitly fine-tuned.
 
-### Zero-Shot Prompting
+### Zero-shot prompting
 
 {% raw %}
 ```
@@ -219,7 +219,7 @@ Sentiment:
 ```
 {% endraw %}
 
-### Few-Shot Prompting (with examples in target language)
+### Few-shot prompting (with examples in target language)
 
 {% raw %}
 ```
@@ -238,9 +238,9 @@ Sentiment:
 
 The key insight from Masakhane's 2024 study: **few-shot prompting works best when the examples use the exact same dialect and register as the test sentence**. A single example using standard Wolof in a formal register improves performance on formal test sentences by 15%, but provides zero benefit for informal/urban Wolof sentences.
 
-## Practical Workflow for a New Low-Resource Language
+## Practical workflow for a new low-resource language
 
-Here's the step-by-step process we recommend:
+The process we recommend:
 
 1. **Assess resources**: Check HuggingFace, Masakhane repo, and Lacuna Fund for existing data. Even if none exists for your task, check for related data (e.g., unlabeled text, parallel corpora).
 
@@ -258,7 +258,7 @@ Here's the step-by-step process we recommend:
 
 8. **Iterate**: The most common failure mode is domain mismatch. If your training data is formal news text but your deployment target is social media, augment with real in-domain data.
 
-## The Ethical Dimension
+## The ethical dimension
 
 Low-resource NLP carries risks:
 
@@ -268,6 +268,6 @@ Low-resource NLP carries risks:
 
 - **Language extinction risk**: Building "good enough" NLP for a minority language can reduce the incentive to maintain the language. Any technology we build should support revitalization, not replacement.
 
-The Masakhane community's principle is worth repeating: **"Nothing about us without us."** Every low-resource NLP project should have native speakers as partners, not just subjects.
+The Masakhane community's principle is worth repeating: **"Nothing about us without us."** Every low-resource NLP project should have native speakers as partners rather than subjects.
 
 *Next in the series: Deploying AI on mobile devices — why TensorFlow Lite is the most important ML framework in Africa.*

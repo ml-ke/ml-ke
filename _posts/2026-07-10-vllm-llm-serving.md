@@ -8,15 +8,15 @@ image:
   alt: Illustration showing the vLLM architecture with PagedAttention managing KV cache blocks
 ---
 
-Serving large language models (LLMs) at scale is fundamentally different from serving classical ML models. An LLM inference request doesn't just produce a single output — it runs an autoregressive loop that generates tokens one at a time, with each step consuming GPU memory for the key-value (KV) cache. This memory overhead is the primary bottleneck.
+Serving large language models (LLMs) at scale is fundamentally different from serving classical ML models. An LLM inference request isn't a single forward pass. It runs an autoregressive loop that generates tokens one at a time, and every step consumes GPU memory for the key-value (KV) cache. This memory overhead is the primary bottleneck.
 
 Enter **vLLM**: the most popular open-source LLM serving engine, used by companies like OpenAI, Databricks, and Anthropic in production. It achieves state-of-the-art throughput through two key innovations: **PagedAttention** and **continuous batching**.
 
-## The KV Cache Problem
+## The KV cache problem
 
-When an LLM generates text, every attention layer computes keys and values for each token in the sequence. These are cached for reuse across generation steps — known as the **KV cache**. For a 70B parameter model, a single 4096-token sequence can consume over 40 GB of GPU memory just for the KV cache.
+When an LLM generates text, every attention layer computes keys and values for each token in the sequence. These are cached for reuse across generation steps. That cache is the **KV cache**. For a 70B parameter model, a single 4096-token sequence can consume over 40 GB of GPU memory just for the KV cache.
 
-Traditional serving systems pre-allocate contiguous memory blocks for each request's KV cache. This leads to severe **memory fragmentation** — like a file system that allocates files in fixed-size blocks without paging. When a request finishes or a new one arrives, the freed memory is often in small, non-contiguous chunks that can't be reused.
+Traditional serving systems pre-allocate contiguous memory blocks for each request's KV cache. This leads to severe **memory fragmentation**, similar to a file system that allocates files in fixed-size blocks without paging. When a request finishes or a new one arrives, the freed memory is often in small, non-contiguous chunks that can't be reused.
 
 ## PagedAttention: Solving KV Cache Fragmentation
 
@@ -46,7 +46,7 @@ The benefits are dramatic:
 
 ## Continuous Batching: Never Leave the GPU Idle
 
-Traditional request batching works like a bus — you wait for a full batch to arrive, run them all together, and return results. But LLM generation has highly variable completion times. A request generating 10 tokens finishes much faster than one generating 1000 tokens.
+Traditional request batching works like a bus: you wait for a full batch to arrive, run them all together, and return results. But LLM generation has highly variable completion times. A request generating 10 tokens finishes much faster than one generating 1000 tokens.
 
 **Continuous batching** (also called in-flight batching or iteration-level scheduling) solves this by re-evaluating the batch at every decoding step. When a request finishes, it's immediately removed and a new request is added to the batch, keeping the GPU fully utilized.
 
@@ -130,7 +130,7 @@ Key parameters explained:
 
 ## Quantization: Fitting Big Models on Fewer GPUs
 
-LLMs are typically trained in 16-bit (float16 or bfloat16), requiring 2 bytes per parameter. A 70B model at 16-bit takes ~140 GB of GPU memory — too large for a single A100 (80 GB). Quantization reduces precision while preserving quality.
+LLMs are typically trained in 16-bit (float16 or bfloat16), requiring 2 bytes per parameter. A 70B model at 16-bit takes ~140 GB of GPU memory, which is too large for a single A100 (80 GB). Quantization reduces precision while preserving quality.
 
 ### AWQ (Activation-aware Weight Quantization)
 
@@ -186,7 +186,7 @@ print(response.choices[0].message.content)
 ```
 {% endraw %}
 
-This API compatibility means any tool that works with OpenAI (LangChain, LlamaIndex, etc.) also works with vLLM — just change the `base_url`.
+This API compatibility means any tool that works with OpenAI (LangChain, LlamaIndex, etc.) also works with vLLM. You just change the `base_url`.
 
 ## Benchmarking vLLM Performance
 
@@ -217,7 +217,7 @@ Typical results (on 1x A100 80 GB with Llama 3.1 8B):
 | Batch=64, continuous batching | ~2,800 | 320ms | 850ms |
 | Batch=256, continuous batching | ~3,500 | 950ms | 2.1s |
 
-## Performance Tuning Tips
+## Performance tuning tips
 
 1. **Set `--max-model-len` lower than the model's maximum** if your use case doesn't need long contexts. Shorter context = smaller KV cache = more concurrent requests.
 
@@ -247,4 +247,4 @@ Typical results (on 1x A100 80 GB with Llama 3.1 8B):
 
 ## Next Steps
 
-vLLM handles the serving layer, but production requires orchestration, monitoring, and scaling. In the next post, we'll dive into **GPU optimization** — understanding CUDA memory management, parallelism strategies, and profiling tools to get the most out of your hardware.
+vLLM handles the serving layer, but production requires orchestration, monitoring, and scaling. In the next post, we'll look at **GPU optimization**: CUDA memory management, parallelism strategies, and profiling tools to get the most out of your hardware.

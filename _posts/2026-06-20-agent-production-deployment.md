@@ -16,12 +16,12 @@ Building an agent in a Jupyter notebook is easy. Running it reliably in producti
 
 In this post, we'll transform our ReAct agent into a production-ready service covering:
 
-- **Queue-based architecture** — decoupling request receipt from agent execution
-- **Error handling** — graceful degradation when LLMs or tools fail
-- **State persistence** — surviving process restarts without losing context
-- **Rate limiting** — protecting downstream APIs and managing costs
-- **Scaling** — horizontal scaling with worker pools
-- **Caching** — avoiding redundant LLM calls
+- Queue-based architecture that decouples request receipt from agent execution
+- Error handling that degrades gracefully when an LLM or a tool fails
+- State persistence that survives process restarts without losing context
+- Rate limiting to protect downstream APIs and manage costs
+- Horizontal scaling with worker pools
+- Caching to avoid redundant LLM calls
 
 ## Architecture Overview
 
@@ -73,7 +73,7 @@ celery_app.conf.update(
 ```
 {% endraw %}
 
-### Defining Agent Tasks
+### Defining agent tasks
 
 {% raw %}
 ```python
@@ -145,7 +145,7 @@ def run_agent(self, session_id: str, user_message: str,
 ```
 {% endraw %}
 
-### The API Layer
+### The API layer
 
 {% raw %}
 ```python
@@ -217,7 +217,7 @@ celery -A tasks worker --loglevel=info --concurrency=4
 python api.py
 ```
 
-## State Persistence Across Restarts
+## State persistence across restarts
 
 Agents must survive worker restarts. Store the full conversation state in PostgreSQL:
 
@@ -313,7 +313,7 @@ class SessionState:
 
 ## Error Handling and Graceful Degradation
 
-### Handling LLM API Outages
+### Handling LLM API outages
 
 {% raw %}
 ```python
@@ -512,7 +512,7 @@ class CostTracker:
 ```
 {% endraw %}
 
-## Caching LLM Responses
+## Caching LLM responses
 
 Many agent requests are repetitive. Cache deterministic LLM calls:
 

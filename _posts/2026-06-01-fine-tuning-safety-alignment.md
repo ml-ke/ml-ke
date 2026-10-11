@@ -13,7 +13,7 @@ image:
 
 ## Introduction
 
-In September 2024, researchers demonstrated a startling result: fine-tuning GPT-3.5 Turbo on just **10 harmful examples** was enough to break its safety alignment. The model would comply with requests it was explicitly trained to refuse — generating hate speech, instructions for weapons, and dangerous chemical synthesis procedures.
+In September 2024, researchers demonstrated a startling result: fine-tuning GPT-3.5 Turbo on just **10 harmful examples** was enough to break its safety alignment. The model would comply with requests it was explicitly trained to refuse. It would generate hate speech, instructions for weapons, and dangerous chemical synthesis procedures.
 
 This wasn't a jailbreak that could be patched with a system prompt update. This was **the safety training itself being overwritten** by the fine-tuning process. And it works on open-weight models too.
 
@@ -22,7 +22,7 @@ This wasn't a jailbreak that could be patched with a system prompt update. This 
 > Fine-tuning is supposed to make models better — more knowledgeable, more helpful, more aligned with your use case. But the same mechanism that adapts a model's knowledge can also adapt away its safety training. You cannot fine-tune a model's capabilities without risking its safety.
 {: .prompt-danger }
 
-## What Is Safety Alignment?
+## What is safety alignment?
 
 Safety alignment is the process of training an LLM to refuse harmful requests. Modern models use a multi-stage approach:
 
@@ -42,15 +42,15 @@ graph LR
 ```
 
 The three stages are:
-1. **Pre-training** — No safety, maximum knowledge
-2. **Instruction tuning (SFT)** — Learn to follow instructions, basic refusal patterns
-3. **RLHF / DPO** — Reward model teaches nuanced refusal boundaries
+1. Pre-training: no safety, maximum knowledge
+2. Instruction tuning (SFT): learn to follow instructions, basic refusal patterns
+3. RLHF / DPO: a reward model teaches nuanced refusal boundaries
 
 Fine-tuning operates on stage 3. When you fine-tune an aligned model, you're adding new training examples that update the model weights — and those updates can **displace** the refusal boundaries learned during alignment.
 
-## The Harmful Fine-Tuning Attack
+## The harmful fine-tuning attack
 
-### The Attack Surface
+### The attack surface
 
 An attacker who can influence the fine-tuning process can compromise safety. Attack vectors:
 
@@ -62,7 +62,7 @@ An attacker who can influence the fine-tuning process can compromise safety. Att
 | **Collaborative fine-tuning** | Federated learning participant submits malicious gradients | High |
 | **Fine-tuning API abuse** | Manipulating OpenAI/Anthropic fine-tuning APIs with adversarial data | Medium |
 
-### The 10-Example Attack
+### The 10-example attack
 
 The most alarming finding is the **low data requirement**. Researchers showed that:
 
@@ -87,7 +87,7 @@ The model learns: "when the user asks a formerly-refused question, I should now 
 > Safety alignment occupies a small fraction of the model's weight space — maybe 0.1% of parameters. Fine-tuning on a handful of contradictory examples is enough to disrupt those specific pathways without noticeably affecting general capabilities.
 {: .prompt-info }
 
-## Colluding LoRA: A Two-Component Attack
+## Colluding LoRA: a two-component attack
 
 A more sophisticated attack was detailed in the **Colluding LoRA** paper (arXiv 2603.12681, 2026). Instead of a single malicious adapter, the attack splits the payload across **two separate LoRA adapters**:
 
@@ -111,7 +111,7 @@ graph TD
 **Why this is dangerous:**
 - Each adapter alone looks benign (domain expert ≠ jailbreak)
 - Unit screening won't catch the composite behavior
-- The collusion is **input-conditional** — only activates when both adapters receive the right trigger
+- The collusion is **input-conditional**: it only activates when both adapters receive the right trigger
 - Detection requires testing **all combinations of loaded adapters**
 
 ```python
@@ -149,9 +149,9 @@ class ColludingLoRA:
 > Standard safety evaluation tests each adapter independently. A colluding pair passes all these tests. Detection requires combinatorial testing — and with N adapters, there are 2^N - 1 combinations to test.
 {: .prompt-warning }
 
-## Defense Strategies
+## Defense strategies
 
-### 1. Safety-Aware Fine-Tuning (SafeInstr)
+### 1. Safety-aware fine-tuning (SafeInstr)
 
 Mix safety alignment data INTO the fine-tuning process:
 
@@ -179,7 +179,7 @@ def safety_aware_training(base_model, finetune_data, safety_data, alpha=0.3):
         optimizer.step()
 ```
 
-### 2. Orthogonal Projection (SaLoRA)
+### 2. Orthogonal projection (SaLoRA)
 
 Project LoRA updates onto a subspace orthogonal to safety-critical directions:
 
@@ -198,7 +198,7 @@ class SafeLoRA:
         return safe_grads
 ```
 
-### 3. LoRA Weight Scanning
+### 3. LoRA weight scanning
 
 Detect anomalous LoRA weights before deployment:
 
@@ -234,7 +234,7 @@ def scan_lora_weights(lora_path, reference_stats):
     return anomalies
 ```
 
-### 4. Red-Teaming Before Deployment
+### 4. Red-teaming before deployment
 
 ```python
 # Automated safety evaluation after fine-tuning
@@ -270,7 +270,7 @@ def evaluate_finetuned_safety(model, eval_dataset):
     }
 ```
 
-### 5. Adapter Permissions and Governance
+### 5. Adapter permissions and governance
 
 | Control | Implementation |
 |---------|---------------|
@@ -281,7 +281,7 @@ def evaluate_finetuned_safety(model, eval_dataset):
 | **Rollback capability** | Keep pre-fine-tuning model snapshots |
 | **Audit trail** | Log every fine-tuning job: data, hyperparameters, eval results |
 
-## The Fine-Tuning Safety Landscape (2026)
+## The fine-tuning safety landscape (2026)
 
 | Attack | Paper/Incident | Year | Mitigation |
 |--------|---------------|------|------------|
@@ -295,13 +295,13 @@ def evaluate_finetuned_safety(model, eval_dataset):
 
 Fine-tuning breaks safety alignment not because fine-tuning is fundamentally flawed, but because **safety knowledge occupies a fragile, small portion of the model's weight space**. A handful of carefully chosen training examples can overwrite months of alignment work.
 
-### Key Takeaways
+### Key takeaways
 
-- **Fine-tuning is a security boundary** — treat it like one. Every fine-tuning job is a potential safety regression.
-- **LoRA adapters can collude** — each safe individually, dangerous together. Test combinations.
-- **The 10-example attack** proves low-data fine-tuning is still high-risk. Data provenance matters.
-- **Defenses exist** — SafeInstr, SaLoRA, and pre-deployment red-teaming reduce risk but don't eliminate it.
-- **Monitor refusal rates** in production — sudden drops signal a safety regression.
+- Fine-tuning is a security boundary, so treat it like one. Every fine-tuning job is a potential safety regression.
+- LoRA adapters can collude: each safe individually, dangerous together. Test the combinations.
+- The 10-example attack proves low-data fine-tuning is still high-risk. Data provenance matters.
+- Defenses exist. SafeInstr, SaLoRA, and pre-deployment red-teaming reduce risk but don't eliminate it.
+- Monitor refusal rates in production; sudden drops signal a safety regression.
 
 ## References
 
@@ -315,4 +315,4 @@ Fine-tuning breaks safety alignment not because fine-tuning is fundamentally fla
 
 ---
 
-*You can't fine-tune a model's knowledge without touching its alignment. The question is whose training data you trust.* ⚠️
+*You can't fine-tune a model's knowledge without touching its alignment. The question is whose training data you trust.*
