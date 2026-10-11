@@ -13,10 +13,10 @@ image:
 
 Most arguments about retrieval-augmented generation start at the prompt, which is usually the wrong end. If the passage that answers the question is not in the context window, no prompt and no model swap gets it back. The [RAGAS authors](https://arxiv.org/abs/2309.15217) split the problem in three: whether the retrieval system "identifies relevant and focused context passages," whether the model "exploit[s] such passages in a faithful way," and the quality of the generation itself. Only the first is decided before the LLM sees anything.
 
-So the retriever's number deserves more scrutiny than the prompt. Most retrieve-quality reports that look wrong are not retrieval failures — they are denominator failures. Recall is a fraction, and the numerator is usually honest while the denominator changed shape between the code that produced the number and the reality it claims to describe.
+So the retriever's number deserves more scrutiny than the prompt. Most retrieve-quality reports that look wrong are not retrieval failures. They are denominator failures. Recall is a fraction, and the numerator is usually honest while the denominator changed shape between the code that produced the number and the reality it claims to describe.
 
 > **The framing**
-> This is the measurement layer for RAG — not embedding choice for low-resource languages ([RAG for Low-Resource African Languages](/posts/rag-low-resource-african-languages/)), not graph-structured retrieval ([KG-LLM RAG](/posts/kg-llm-rag/)), not retrieval-time attacks ([RAG Security Attacks](/posts/rag-security-attacks/)) or model-level benchmarks ([Evaluating LLMs for African Use Cases](/posts/evaluating-llms-african-use-cases/)). It is about earning the number: four metrics in standard-library Python, three ways Recall@k inflates without anyone lying, and the audit function that makes the inflation impossible to ship.
+> This is the measurement layer for RAG, not embedding choice for low-resource languages ([RAG for Low-Resource African Languages](/posts/rag-low-resource-african-languages/)), not graph-structured retrieval ([KG-LLM RAG](/posts/kg-llm-rag/)), not retrieval-time attacks ([RAG Security Attacks](/posts/rag-security-attacks/)) or model-level benchmarks ([Evaluating LLMs for African Use Cases](/posts/evaluating-llms-african-use-cases/)). It is about earning the number: four metrics in standard-library Python, three ways Recall@k inflates without anyone lying, and the audit function that makes the inflation impossible to ship.
 {: .prompt-info }
 
 ## Why the retriever sets the ceiling
@@ -29,7 +29,7 @@ Recall@k is the fraction of the relevant documents for a query that appear in th
 
 $$\text{Recall@}k = \frac{\lvert R_k \cap Rel \rvert}{\lvert Rel \rvert}$$
 
-The numerator counts hits inside the cutoff. The denominator is the **complete judged relevant set for that query** — not k, not the candidate list you happened to return, not the number of documents your label file covers. [123ofAI's guide](https://123ofai.com/articles/blocks/recall-at-k) states it exactly: "The denominator is the total relevant per query, not K. This is the key difference between Recall@K and Precision@K, which divides by K."
+The numerator counts hits inside the cutoff. The denominator is the **complete judged relevant set for that query**: not k, not the candidate list you happened to return, not the number of documents your label file covers. [123ofAI's guide](https://123ofai.com/articles/blocks/recall-at-k) states it exactly: "The denominator is the total relevant per query, not K. This is the key difference between Recall@K and Precision@K, which divides by K."
 
 That denominator also sets a ceiling nobody prints: the numerator cannot exceed k, so Recall@k can never beat $\min(1, k / \lvert Rel \rvert)$. With eight relevant chunks and a cutoff of five, the best any retriever on earth can score is 0.625 — so a report showing "recall@5 = 0.50" and sending you to retune the embedding model hides the more useful sentence: *80% of the ceiling, and five more relevant documents than the cutoff can hold.*
 
@@ -37,12 +37,12 @@ That denominator also sets a ceiling nobody prints: the numerator cannot exceed 
 
 | Metric | The question it answers | Denominator | What it cannot see |
 |---|---|---|---|
-| Precision@k | Of the k slots I paid for, how many are relevant? | k | Anything below the cutoff — one perfect page scores 1.0 |
+| Precision@k | Of the k slots I paid for, how many are relevant? | k | Anything below the cutoff: one perfect page scores 1.0 |
 | **Recall@k** | Of all relevant documents, how many did I surface? | **\|Rel\| (judged)** | Needs complete labels; ceiling is k/\|Rel\| |
 | MRR | How high is the *first* hit? | Queries, via 1/rank | Everything after the first hit |
 | nDCG@k | How good is the *ordering*, with graded relevance? | The ideal DCG | Depends on agreed grades |
 
-Two of the four are cut-off aware but order-blind. [Evidently's guide](https://www.evidentlyai.com/ranking-metrics/precision-recall-at-k) is blunt about the consequence: precision and recall at K "only reflect the number of relevant items in the top K without evaluating the ranking quality inside a list." NDCG adds that: it discounts each hit by $\log_2(\text{rank}+1)$ and normalises by the ideal ordering (DCG/IDCG, where 1.0 matches the ideal). MRR answers a narrower question — how quickly the first useful passage appears.
+Two of the four are cut-off aware but order-blind. [Evidently's guide](https://www.evidentlyai.com/ranking-metrics/precision-recall-at-k) is blunt about the consequence: precision and recall at K "only reflect the number of relevant items in the top K without evaluating the ranking quality inside a list." NDCG adds that: it discounts each hit by $\log_2(\text{rank}+1)$ and normalises by the ideal ordering (DCG/IDCG, where 1.0 matches the ideal). MRR answers a narrower question (how quickly the first useful passage appears).
 
 ## The evaluation set: 24 chunks, four queries
 
@@ -199,22 +199,22 @@ same top-5 set, reordered (d1 moved from rank 1 to rank 5):
 
 Look at the `R@5cap` column. For `q_broad` the honest score is **0.500** and the capped variant reports **0.800** — a 60% overstatement from a single `min()`. Across all four queries the mean moves from 0.625 to 0.700. Nobody had to fabricate a hit; the implementation just divided by the wrong thing.
 
-The bug is easy to write and hard to notice, because `min(len(relevant), k)` looks like defensive programming. But it silently rescales every query with more relevant documents than the cutoff — exactly the queries where coverage is hard and the metric matters most. With a fine-grained corpus (chunks, not documents) and a small cutoff, most queries have more relevant chunks than slots, so the bug is systematic rather than occasional.
+The bug is easy to write and hard to notice, because `min(len(relevant), k)` looks like defensive programming. But it silently rescales every query with more relevant documents than the cutoff. Those are exactly the queries where coverage is hard and the metric matters most. With a fine-grained corpus (chunks, not documents) and a small cutoff, most queries have more relevant chunks than slots, so the bug is systematic rather than occasional.
 
 ## Bug two: labels you never collected
 
 The second inflation needs no code at all, just a label file less complete than reality. For `q_broad`, 8 documents were judged and 12 are genuinely relevant, so recall@5 reads **0.500** against the label file and **0.417** against the truth. 123ofAI's guide names the direction of the error: with partial labels "your Recall@K will be an overestimate because the true \|Rel\| is larger than what you measured."
 
-This is not a rookie mistake — it is how every large test collection is built. Judgments come from *pooling*: you collect the top results of a set of submitted runs, judge only those, and treat unjudged documents as non-relevant. Buckley and Voorhees showed the limit of that assumption in [Bias and the limits of pooling for large collections](https://link.springer.com/article/10.1007/s10791-007-9032-x) (*Information Retrieval* 10:491–508, 2007): as document sets grow a constant-size pool "represents an increasingly small" sample, and judgment sets "can be biased in that they favor relevant documents that contain topic title words." A pooled judgment set is not the relevant set; it is a sample drawn around what some earlier system already found.
+This is not a rookie mistake. It is how every large test collection is built. Judgments come from *pooling*: you collect the top results of a set of submitted runs, judge only those, and treat unjudged documents as non-relevant. Buckley and Voorhees showed the limit of that assumption in [Bias and the limits of pooling for large collections](https://link.springer.com/article/10.1007/s10791-007-9032-x) (*Information Retrieval* 10:491–508, 2007): as document sets grow a constant-size pool "represents an increasingly small" sample, and judgment sets "can be biased in that they favor relevant documents that contain topic title words." A pooled judgment set is not the relevant set; it is a sample drawn around what some earlier system already found.
 
-For an African-language or domain-specific build your label file is the weakest link — and it was probably written by the same retriever you are evaluating, since you judged what it returned. Two cheap mitigations:
+For an African-language or domain-specific build your label file is the weakest link, and it was probably written by the same retriever you are evaluating, since you judged what it returned. Two cheap mitigations:
 
 - **Pool from more than one retriever.** Judge the union of BM25, your dense retriever and one reranker's top-20; different systems miss different documents, and the union is what makes the denominator honest.
 - **Borrow a public collection to check the shape of your numbers.** [CIRAL](https://huggingface.co/datasets/CIRAL/ciral) (SIGIR '24, pp. 293–302) provides English queries with query-passage judgments for **Hausa, Somali, Swahili and Yoruba** in TREC qrels format, so you can score a multilingual retriever against a collection you did not build. Carry one caveat into the write-up: CIRAL's judgments are themselves pooled, so a recall figure against it is a lower bound, not the truth.
 
 ## Bug three: duplicates, and the ceiling nobody prints
 
-The last silent inflator is an index holding the same chunk twice — a re-ingest that did not delete the old copy, or a document in two source folders. The audit function below prints the numbers that make a recall figure readable, and catches the duplicate:
+The last silent inflator is an index holding the same chunk twice: a re-ingest that did not delete the old copy, or a document in two source folders. The audit function below prints the numbers that make a recall figure readable, and catches the duplicate:
 
 {% raw %}
 ```python
@@ -272,27 +272,27 @@ q_dupe    |Rel|= 3 k=5 labels= 12.5% ceiling=1.000 R@k=0.667 (67% of ceiling)
           ! positional count says 3 hits, distinct documents say 2
 ```
 
-Three things this output buys you. The **ceiling** turns a bare 0.500 into "80% of the maximum score at this cutoff" — a different engineering conversation. The **label coverage** (12.5%, 33.3%) shows which queries are measured and which are guessed. The **duplicate check** catches the worst case: `q_dupe` scores 0.667 on distinct documents while a positional count reports 3 hits from 3 relevant — a duplicated chunk counting a hit twice.
+Three things this output buys you. The **ceiling** turns a bare 0.500 into "80% of the maximum score at this cutoff", a different engineering conversation. The **label coverage** (12.5%, 33.3%) shows which queries are measured and which are guessed. The **duplicate check** catches the worst case: `q_dupe` scores 0.667 on distinct documents while a positional count reports 3 hits from 3 relevant, a duplicated chunk counting a hit twice.
 
 ## Measure the two stages separately
 
-The stage-1/stage-2 table ends the "the retriever is bad" argument: all four queries have **R@10 = 1.000**, so at fetch depth 10 every relevant document was already in the candidate list. After the cutoff to 5, `q_broad` falls to 0.500 and the others to 0.667. The loss is between fetching and keeping — the reranker or the keep-n choice — and retraining the embedding model will not fix it.
+The stage-1/stage-2 table ends the "the retriever is bad" argument: all four queries have **R@10 = 1.000**, so at fetch depth 10 every relevant document was already in the candidate list. After the cutoff to 5, `q_broad` falls to 0.500 and the others to 0.667. The loss is between fetching and keeping (the reranker or the keep-n choice) and retraining the embedding model will not fix it.
 
-Hence the two numbers must be logged apart, per query, from day one. Pinecone's [reranker walkthrough](https://www.pinecone.io/learn/series/rag/rerankers/) frames them as different jobs: "maximize retrieval recall by retrieving plenty of documents and then maximize LLM recall by minimizing the number of documents that make it to the LLM." One end-to-end recall number cannot say which job failed. The Neural Base's retrieval course puts the stage-1 bar at "recall@k in stage 1 must be >95% or reranking cannot compensate," measured by "logging whether the gold answer was in your top-k before reranking" — the R@10 column above.
+Hence the two numbers must be logged apart, per query, from day one. Pinecone's [reranker walkthrough](https://www.pinecone.io/learn/series/rag/rerankers/) frames them as different jobs: "maximize retrieval recall by retrieving plenty of documents and then maximize LLM recall by minimizing the number of documents that make it to the LLM." One end-to-end recall number cannot say which job failed. The Neural Base's retrieval course puts the stage-1 bar at "recall@k in stage 1 must be >95% or reranking cannot compensate," measured by "logging whether the gold answer was in your top-k before reranking", which is the R@10 column above.
 
 ## Coverage is not order
 
-The reordered block at the end of the first script keeps the **same five documents** in the top-5 and only changes their order — `d1` moves from rank 1 to rank 5. Precision@5 stays 0.400 and Recall@5 stays 0.667, because neither metric can see inside the list. MRR falls from 1.000 to 0.333 and nDCG@5 from 0.811 to 0.481.
+The reordered block at the end of the first script keeps the **same five documents** in the top-5 and only changes their order: `d1` moves from rank 1 to rank 5. Precision@5 stays 0.400 and Recall@5 stays 0.667, because neither metric can see inside the list. MRR falls from 1.000 to 0.333 and nDCG@5 from 0.811 to 0.481.
 
 That gap is why both metric families are worth keeping:
 
-- Recall high, nDCG low: the reranker buried documents it had — fix the reranker or raise `n`, not the retriever.
-- Both low: the documents never reached the candidate list — fix chunking, the embedding model or the fetch depth `K`.
+- Recall high, nDCG low: the reranker buried documents it had. Fix the reranker or raise `n`, not the retriever.
+- Both low: the documents never reached the candidate list. Fix chunking, the embedding model or the fetch depth `K`.
 - MRR sits in between: how quickly the first useful passage appears.
 
 ## Judging the generator
 
-Retriever metrics are computable once you have labels. Faithfulness is not, which is why LLM-judge frameworks exist — and why they should be treated as instruments with error bars, not oracles.
+Retriever metrics are computable once you have labels. Faithfulness is not, which is why LLM-judge frameworks exist, and why they should be treated as instruments with error bars, not oracles.
 
 - **RAGAS** ([arXiv 2309.15217](https://arxiv.org/abs/2309.15217)) evaluates the same three dimensions reference-free, "without having to rely on ground truth human annotations." **ARES** ([arXiv 2311.09476](https://arxiv.org/abs/2311.09476), NAACL 2024) fine-tunes lightweight judges, then corrects them with prediction-powered inference from "a small set of human-annotated datapoints" (a few hundred, across eight knowledge-intensive tasks); its judges "remain effective across domain shifts."
 - **RAGBench** ([arXiv 2407.11005](https://arxiv.org/abs/2407.11005)) is the sobering one: across a 100k-example benchmark over five industry domains, "LLM-based RAG evaluation methods struggle to compete with a finetuned RoBERTa model on the RAG evaluation task." A general-purpose model is not automatically the better judge.
@@ -304,10 +304,10 @@ Same discipline as the denominator: report the label size, judge model and agree
 ## How to apply this: a five-step harness
 
 1. **Write 30–50 queries before any retrieval code.** Record who judged, what they saw, and the grade scale; a `golden.yaml` of `{query, grades: {doc_id: 0-3}}` is enough.
-2. **Log four numbers per query per run:** fetch-recall@K, keep-recall@n, MRR, nDCG@n — plus `|Rel|`, `k` and label coverage, in a table so a regression is a diff, not a vibe.
-3. **Guard the denominator in code.** Fail the build on `|Rel| < k`, duplicate ids in a ranking, or label coverage below threshold. A fixture with the obvious cases — all relevant retrieved, none retrieved, one of three, a hit just below the cutoff, fewer results than k, an empty relevant set — stops it drifting silently.
-4. **Sanity-check the shape against a public collection.** [BEIR](https://arxiv.org/abs/2104.08663) scored 18 datasets and 10 retrieval systems on nDCG@10 and found BM25 "a robust baseline" while re-ranking models led zero-shot "at high computational costs" — a reminder that a fancy retriever losing to BM25 is telling you about your chunking, not embeddings. For Hausa, Somali, Swahili or Yoruba, use CIRAL.
-5. **Give the judge its own error bar.** Pin the judge model, report Cohen's kappa against human labels, and re-calibrate on every judge change — otherwise a judge upgrade looks like a quality change.
+2. **Log four numbers per query per run:** fetch-recall@K, keep-recall@n, MRR, nDCG@n, plus `|Rel|`, `k` and label coverage, in a table so a regression is a diff, not a vibe.
+3. **Guard the denominator in code.** Fail the build on `|Rel| < k`, duplicate ids in a ranking, or label coverage below threshold. A fixture with the obvious cases (all relevant retrieved, none retrieved, one of three, a hit just below the cutoff, fewer results than k, an empty relevant set) stops it drifting silently.
+4. **Sanity-check the shape against a public collection.** [BEIR](https://arxiv.org/abs/2104.08663) scored 18 datasets and 10 retrieval systems on nDCG@10 and found BM25 "a robust baseline" while re-ranking models led zero-shot "at high computational costs", a reminder that a fancy retriever losing to BM25 is telling you about your chunking, not embeddings. For Hausa, Somali, Swahili or Yoruba, use CIRAL.
+5. **Give the judge its own error bar.** Pin the judge model, report Cohen's kappa against human labels, and re-calibrate on every judge change; otherwise a judge upgrade looks like a quality change.
 
 | Layer | Metric | Working threshold | Source |
 |---|---|---|---|
@@ -320,12 +320,12 @@ Same discipline as the denominator: report the label size, judge model and agree
 
 | # | Takeaway |
 |---|---|
-| 1 | Recall@k is a fraction. Capping its denominator at `k` inflates `q_broad` from 0.500 to 0.800, and the four-query mean from 0.625 to 0.700 — same hits, wrong divisor. |
+| 1 | Recall@k is a fraction. Capping its denominator at `k` inflates `q_broad` from 0.500 to 0.800, and the four-query mean from 0.625 to 0.700: same hits, wrong divisor. |
 | 2 | The denominator is the *complete judged* relevant set. Partial labels inflate the score (0.500 vs 0.417 here); pooled judgments are a sample, not the truth. |
 | 3 | Print the ceiling $\min(1, k/\lvert Rel \rvert)$: with 8 relevant chunks and k=5, 0.625 is the best score available. |
-| 4 | Log stage-1 and stage-2 recall separately. R@10 = 1.000 here, so the loss is in the cutoff — the retriever was never the problem. |
+| 4 | Log stage-1 and stage-2 recall separately. R@10 = 1.000 here, so the loss is in the cutoff; the retriever was never the problem. |
 | 5 | Recall cannot see ordering: one document moved from rank 1 to rank 5 holds recall at 0.667 while nDCG@5 falls 0.811 → 0.481. |
-| 6 | Deduplicate before scoring: a duplicated chunk scored 3 "hits" on 3 relevant documents — a reported 1.000 that is really 0.667. |
+| 6 | Deduplicate before scoring: a duplicated chunk scored 3 "hits" on 3 relevant documents, a reported 1.000 that is really 0.667. |
 | 7 | Trust the judge only as far as its kappa: fine-tuned small judges beat general LLM judges on RAGBench, and pairwise judges carry position bias. |
 
 ## References

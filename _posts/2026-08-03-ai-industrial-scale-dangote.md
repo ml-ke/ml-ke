@@ -8,28 +8,28 @@ image:
   alt: Industrial factory with AI data flows — Dangote's industrial empire meets machine learning
 ---
 
-## When Industry Meets Intelligence
+## When industry meets intelligence
 
 In July 2026, **Dangote Industries Limited** announced plans to invest an additional **$46 billion** across its refining, cement, and fertiliser businesses between 2026 and 2028. The refinery alone secured **$2.5 billion in expansion funding** to grow capacity from 650,000 barrels per day to 1.4 million by 2028.
 
-These are staggering numbers. But buried in the press releases is a story that matters more to this blog: **Dangote's Group CIO, Prasanna Burri, has already moved the company to a 95% cloud architecture** — creating the data infrastructure foundation for AI/ML at industrial scale.
+These are staggering numbers. But buried in the press releases is a story that matters more to this blog: **Dangote's Group CIO, Prasanna Burri, has already moved the company to a 95% cloud architecture**. That builds the data foundation for AI/ML at industrial scale.
 
-The question isn't whether Dangote will use AI. The question is **where the biggest returns are**.
+Dangote will use AI, so the question is **where the biggest returns are**.
 
 > **The thesis:** Africa's largest industrial conglomerate has the data infrastructure (cloud), the scale ($30B+ revenue across 14 countries), and the operational complexity (refining, cement, fertiliser, logistics) to be the continent's proving ground for industrial AI. The $46B expansion is also a $46B ML opportunity.
 {: .prompt-info }
 
 ---
 
-## 1. Predictive Maintenance: The $1B+ Use Case
+## 1. Predictive maintenance: the $1B+ use case
 
-### The Problem
+### The problem
 
-Dangote's refinery in Lagos is one of the largest single-train refineries in the world. It processes over 650,000 barrels of crude daily through a single-stream configuration — meaning **any unplanned downtime cascades into massive losses**. In a refinery, a single day of unplanned downtime can cost $5-15 million in lost production.
+Dangote's refinery in Lagos is one of the largest single-train refineries in the world. It processes over 650,000 barrels of crude daily through a single-stream configuration. That means **any unplanned downtime cascades into massive losses**. In a refinery, a single day of unplanned downtime can cost $5-15 million in lost production.
 
-Its cement plants across 14 African countries operate kilns, crushers, and vertical roller mills that run 24/7. Cement kiln temperatures exceed 1,400°C — a failure means weeks of cooling, repair, and re-lining.
+Its cement plants across 14 African countries operate kilns, crushers, and vertical roller mills that run 24/7. Cement kiln temperatures exceed 1,400°C, and a failure means weeks of cooling, repair, and re-lining.
 
-### The ML Solution
+### The ML solution
 
 **Predictive maintenance** using machine learning on IoT sensor data can reduce unplanned downtime by 30-50%. The approach:
 
@@ -62,13 +62,13 @@ print(f"⚠️ {len(critical)} anomalous readings — dispatching maintenance cr
 
 ---
 
-## 2. Process Optimisation: Squeezing Every Barrel
+## 2. Process optimisation: squeezing every barrel
 
-### The Problem
+### The problem
 
-Refinery margins depend on **yield optimisation** — maximising high-value products (diesel, jet fuel, gasoline) from every barrel of crude while minimising low-value outputs (fuel oil, asphalt). Traditional linear programming (LP) models are static; they can't adapt to real-time changes in feedstock quality, market prices, or equipment condition.
+Refinery margins depend on **yield optimisation**: maximising high-value products (diesel, jet fuel, gasoline) from every barrel of crude while minimising low-value outputs (fuel oil, asphalt). Traditional linear programming (LP) models are static; they can't adapt to real-time changes in feedstock quality, market prices, or equipment condition.
 
-### The ML Solution
+### The ML solution
 
 **Reinforcement learning** and **Bayesian optimisation** can learn optimal operating points dynamically:
 
@@ -83,19 +83,19 @@ Refinery margins depend on **yield optimisation** — maximising high-value prod
 | Furnace efficiency | Manual tuning per season | NN model, continuous optimisation |
 | Yield prediction | Historical averages | Ensemble of XGBoost + LSTM |
 
-> **Real-world precedent:** Reliance Industries (Jamnagar, India — the world's largest refinery complex) uses AI-based operations scheduling that improved gross refining margins by **$1.20 per barrel** — at Dangote's 650K bpd, that's ~$285 million annually.
+> **Real-world precedent:** Reliance Industries (Jamnagar, India, the world's largest refinery complex) uses AI-based operations scheduling that improved gross refining margins by **$1.20 per barrel**. At Dangote's 650K bpd, that's ~$285 million annually.
 
 ---
 
-## 3. Intelligent Supply Chain: Moving Product Across 14 Countries
+## 3. Intelligent supply chain: moving product across 14 countries
 
-### The Problem
+### The problem
 
 Dangote's supply chain is one of Africa's most complex: cement from 10+ plants to thousands of construction sites, fertiliser from the Lagos complex to farmers across Nigeria and West Africa, petroleum products from the refinery via truck, pipeline, and vessel to markets across the continent.
 
 Africa's infrastructure gaps (poor roads, port congestion, border delays, fuel theft) make traditional logistics optimisation models unreliable.
 
-### The ML Solution
+### The ML solution
 
 **Graph neural networks** and **multi-agent reinforcement learning** for dynamic routing:
 
@@ -123,25 +123,25 @@ Key applications:
 
 - **Dynamic truck routing** that avoids known roadblocks, border delays, and high-theft zones
 - **Inventory optimisation** for cement depots using demand forecasting with weather, construction season, and infrastructure projects as features
-- **Fertiliser distribution planning** — matching seasonal agricultural demand (planting seasons across West Africa's climate zones) with production schedules
+- **Fertiliser distribution planning:** matching seasonal agricultural demand (planting seasons across West Africa's climate zones) with production schedules
 
 ---
 
-## 4. Computer Vision for Quality Control
+## 4. Computer vision for quality control
 
-### The Problem
+### The problem
 
 At industrial scale, manual quality inspection doesn't scale. Cement quality (fineness, chemical composition) requires lab samples with a 4-hour turnaround. By the time an off-spec batch is detected, hundreds of tonnes have been produced.
 
-### The ML Solution
+### The ML solution
 
-- **Real-time clinker quality estimation** using thermal camera images and spectral analysis — neural networks trained on lab-validated samples predict chemical composition in seconds
-- **Packaging inspection** — computer vision detects damaged bags on high-speed conveyor lines (2,000+ bags per hour)
-- **Flare monitoring** — continuous emissions monitoring with computer vision to detect and quantify flaring events for environmental compliance
+- **Real-time clinker quality estimation** using thermal camera images and spectral analysis; neural networks trained on lab-validated samples predict chemical composition in seconds
+- **Packaging inspection:** computer vision detects damaged bags on high-speed conveyor lines (2,000+ bags per hour)
+- **Flare monitoring:** continuous emissions monitoring with computer vision to detect and quantify flaring events for environmental compliance
 
 ---
 
-## 5. The Data Foundation: 95% Cloud
+## 5. The data foundation: 95% cloud
 
 None of this is hypothetical. Dangote's Group CIO Prasanna Burri has already:
 
@@ -150,13 +150,13 @@ None of this is hypothetical. Dangote's Group CIO Prasanna Burri has already:
 - Built a **unified data lake** aggregating operational data across business units
 - Established an **internal cloud centre of excellence** to drive adoption
 
-This is the foundation that most African industrial companies lack. The sensors are in place. The data is flowing. The cloud is ready. The next step is operationalising ML models on top of that infrastructure.
+This is the foundation that most African industrial companies lack. The sensors are in place, the data is flowing, and the cloud is ready; the next step is operationalising ML models on top of it.
 
 ---
 
-## The Opportunity for African ML Practitioners
+## The opportunity for African ML practitioners
 
-Dangote's expansion is **Africa's largest test case for industrial AI** — and it creates real opportunities for the ML community:
+Dangote's expansion is **Africa's largest test case for industrial AI**, and it creates real opportunities for the ML community:
 
 | Skill | Application | Where It Fits |
 |-------|-------------|---------------|
@@ -166,7 +166,7 @@ Dangote's expansion is **Africa's largest test case for industrial AI** — and 
 | Graph ML | Supply chain optimisation | 14-country logistics network |
 | MLOps | Model deployment at scale | Across all business units |
 
-If you're an ML engineer in Africa, the message is clear: **industrial AI is where the capex is flowing**. Dangote's $46B investment isn't just concrete and steel — it's a $46B signal that data-driven operations are the future of African industry.
+If you're an ML engineer in Africa, **industrial AI is where the capex is flowing**. Dangote's $46B investment is concrete and steel, but it's also a $46B bet on data-driven operations across African industry.
 
 ---
 

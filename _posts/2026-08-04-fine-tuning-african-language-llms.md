@@ -12,15 +12,15 @@ image:
 
 A foundation model like Llama 3 70B or Mistral generates fluent English, French, and Arabic. Ask it to write in Swahili or translate a sentence to Yoruba, and quality drops off a cliff.
 
-The reason is straightforward: **training data distribution**. The largest models are trained on corpora where English comprises 50-80% of tokens. African languages — even widely spoken ones like Swahili (200M speakers) — account for fractions of a percent. The model simply hasn't seen enough examples to learn the grammar, idioms, and vocabulary of these languages.
+The reason is straightforward: **training data distribution**. The largest models are trained on corpora where English comprises 50-80% of tokens. African languages account for fractions of a percent, even widely spoken ones like Swahili (200M speakers). The model simply hasn't seen enough examples to learn the grammar, idioms, and vocabulary of these languages.
 
-Fine-tuning changes that. With as little as 10,000-50,000 high-quality examples in a target language, you can dramatically improve a model's performance on African language tasks — translation, classification, summarisation, and generation. And thanks to Parameter-Efficient Fine-Tuning (PEFT), this is achievable on hardware you probably already have.
+Fine-tuning changes that. With as little as 10,000-50,000 high-quality examples in a target language, you can dramatically improve a model's performance on African language tasks: translation, classification, summarisation, and generation. And thanks to Parameter-Efficient Fine-Tuning (PEFT), this is achievable on hardware you probably already have.
 
-This builds on our earlier deep dives into [Swahili NLP](/posts/swahili-nlp/) and [Low-Resource NLP Techniques](/posts/low-resource-nlp/). Fine-tuning is the next logical step: once you know the landscape and the transfer strategies, you need a practical pipeline to adapt models to your specific language.
+This builds on our earlier deep dives into [Swahili NLP](/posts/swahili-nlp/) and [Low-Resource NLP Techniques](/posts/low-resource-nlp/). Fine-tuning is the next logical step: once you know the challenges and the transfer strategies, you need a practical pipeline to adapt models to your specific language.
 
 ## Available Datasets
 
-The African NLP community — particularly the **Masakhane** project — has done the hard work of curating and annotating datasets. Here are the key resources for fine-tuning:
+The African NLP community (particularly the **Masakhane** project) has done the hard work of curating and annotating datasets. Here are the key resources for fine-tuning:
 
 - **Masakhane datasets**: A growing collection of annotated datasets for translation, NER, sentiment, and news classification across 50+ African languages. The [Masakhane GitHub](https://github.com/masakhane) hosts the primary repositories.
 
@@ -36,17 +36,13 @@ The African NLP community — particularly the **Masakhane** project — has don
 
 For Swahili specifically, the datasets covered in our [Swahili NLP post](/posts/swahili-nlp/) (CC-100, OSIAN, GlobalVoices, NLLB) provide additional pre-training material.
 
-## Three Key Techniques
+## Three key techniques
 
 ### 1. LoRA and QLoRA (Parameter-Efficient Fine-Tuning)
 
-LoRA (Low-Rank Adaptation) freezes the base model weights and injects trainable low-rank matrices into each transformer layer. Instead of updating 70B parameters, you train a few million. This means:
+LoRA (Low-Rank Adaptation) freezes the base model weights and injects trainable low-rank matrices into each transformer layer. Instead of updating 70B parameters, you train a few million. A 7B model fine-tunes on 16GB of GPU memory with LoRA. Training runs 2-4x faster because gradients only flow through the LoRA weights, and the adapter is a ~25MB file you can share independently of the base model.
 
-- **Memory efficiency**: A 7B model fine-tunes on 16GB GPU memory with LoRA
-- **Speed**: Training is 2-4x faster since gradients only flow through LoRA weights
-- **Portability**: The LoRA adapter is a ~25MB file — share it independently of the base model
-
-QLoRA goes further by quantizing the base model to 4-bit (NF4 format) before applying LoRA. This enables fine-tuning a 70B parameter model on a single **RTX 4090 (24GB)** — something that would otherwise require 8× A100s.
+QLoRA goes further by quantizing the base model to 4-bit (NF4 format) before applying LoRA. That brings a 70B parameter model within reach of a single **RTX 4090 (24GB)**, a job that would otherwise need 8× A100s.
 
 ### 2. Continued Pre-Training with Tokenizer Extension
 
@@ -57,7 +53,7 @@ The solution is **tokenizer extension**:
 2. Merge the new tokens into the base model's tokenizer
 3. Run continued pre-training (masked language modeling or causal LM) on the extended vocabulary
 
-This adds only the tokens that the original tokenizer handled poorly — typically a few thousand new tokens.
+This adds only the tokens that the original tokenizer handled poorly, usually a few thousand new tokens.
 
 ### 3. Instruction Tuning on Translated or Adapted Data
 
@@ -156,22 +152,22 @@ model.save_pretrained("./swahili-llm-merged")
 tokenizer.save_pretrained("./swahili-llm-merged")
 ```
 
-## Hardware Reality Check
+## Hardware reality check
 
-The pipeline above uses **Llama 3.2 3B** as an example — it fine-tunes in about 2-3 hours on a single RTX 4090 (24GB) or RTX 3090.
+The pipeline above uses **Llama 3.2 3B** as an example. It fine-tunes in about 2-3 hours on a single RTX 4090 (24GB) or RTX 3090.
 
 For larger models, here's the QLoRA footprint:
 
-- **3B**: 8-10 GB — RTX 3060 / any 8GB+ — ~2 hours (3 epochs, 50K examples)
-- **7-8B**: 14-16 GB — RTX 3090/4090 — ~4 hours
-- **13B**: 18-20 GB — RTX 4090 — ~6-7 hours
-- **70B**: 22-24 GB — RTX 4090 (just barely) — ~20-24 hours
+- **3B**: 8-10 GB (RTX 3060 / any 8GB+), roughly 2 hours (3 epochs, 50K examples)
+- **7-8B**: 14-16 GB on an RTX 3090/4090, roughly 4 hours
+- **13B**: 18-20 GB on an RTX 4090, roughly 6-7 hours
+- **70B**: 22-24 GB on an RTX 4090 (just barely), roughly 20-24 hours
 
 This is the core message of our **constrained-environment ML** theme: you don't need a cluster. A single consumer GPU, careful use of 4-bit quantization, and LoRA adapters let you produce production-quality African language models on hardware that fits under a desk.
 
-The real constraint isn't compute — it's **data**. Investing in building high-quality African language datasets (via Masakhane, local universities, or community annotation drives) delivers far more impact than buying more GPUs.
+The limiting factor is **data**, not compute. Investing in building high-quality African language datasets (via Masakhane, local universities, or community annotation drives) delivers far more impact than buying more GPUs.
 
-## Testing Your Fine-Tuned Model
+## Testing your fine-tuned model
 
 After merging, evaluate on the [SERAKWAYE benchmark](https://github.com/masakhane/serakwaye) or run a quick qualitative test:
 
@@ -186,12 +182,12 @@ print(result)
 # Expected: "Ningependa kununua mahindi na maharagwe."
 ```
 
-Compare the output against the base model without fine-tuning. The difference is dramatic — and it's achievable with a weekend's work and a single GPU.
+Compare the output against the base model without fine-tuning. The difference is dramatic for a weekend's work and a single GPU.
 
 ## Summary
 
-Fine-tuning LLMs on African languages is one of the highest-leverage activities in NLP today. The community datasets exist, the techniques (LoRA/QLoRA, tokenizer extension, instruction tuning) are mature, and the hardware requirements are modest. The gap between base model performance and what's possible after fine-tuning is enormous — largely because the base models were never trained on your target language in the first place.
+Fine-tuning LLMs on African languages is one of the highest-leverage activities in NLP today. The community datasets exist, the techniques (LoRA/QLoRA, tokenizer extension, instruction tuning) are mature, and the hardware requirements are modest. The gap between base model performance and what's possible after fine-tuning is enormous. Those base models were never trained on your target language to begin with.
 
-If you've been reading through this series — from [Swahili NLP](/posts/swahili-nlp/) through [Low-Resource NLP](/posts/low-resource-nlp/) to this post — you now have the full toolkit: understanding the linguistic challenges, transfer learning strategies, and a practical fine-tuning pipeline. The next step is picking a language and running the experiment.
+If you've been reading through this series (from [Swahili NLP](/posts/swahili-nlp/) through [Low-Resource NLP](/posts/low-resource-nlp/) to this post), you now have the full toolkit: understanding the linguistic challenges, transfer learning strategies, and a practical fine-tuning pipeline. The next step is picking a language and running the experiment.
 
-*Next in the series: Evaluating African Language LLMs — benchmarks, human evaluation protocols, and building trust in model outputs for production deployment.*
+*Next in the series, Evaluating African Language LLMs: benchmarks, human evaluation protocols, and building trust in model outputs for production deployment.*

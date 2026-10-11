@@ -10,25 +10,25 @@ image:
 
 ## Reconciliation is a rear-view mirror
 
-In June 2025, a contractor at NCBA Bank Rwanda altered the MTN mobile-money integration so every withdrawal returned "success" — even when the account did not exist or had insufficient funds. Over eight days, 70 ghost accounts initiated 260 transactions that drained roughly **USD 446,000 (Ksh 57.5 million)** before the bank stopped it on June 14. The fraud was finally caught not by a real-time alert but by **end-of-week settlement reconciliation**, when NCBA matched its records against MTN Rwanda's figures and found a major difference.
+In June 2025, a contractor at NCBA Bank Rwanda altered the MTN mobile-money integration so every withdrawal returned "success", even when the account did not exist or had insufficient funds. Over eight days, 70 ghost accounts initiated 260 transactions that drained roughly **USD 446,000 (Ksh 57.5 million)** before the bank stopped it on June 14. The fraud was finally caught not by a real-time alert but by **end-of-week settlement reconciliation**, when NCBA matched its records against MTN Rwanda's figures and found a major difference.
 
-That is the uncomfortable truth about reconciliation: it is the most reliable detector in banking, and it is a **rear-view mirror**. The NCBA catch happened after the money had left. Reconciliation answers "did the books match?" — the analytics question is *"could we have seen it while it was still happening?"*
+That is the uncomfortable truth about reconciliation: it is the most reliable detector in banking, and it is a **rear-view mirror**. The NCBA catch happened after the money had left. Reconciliation answers "did the books match?" The analytics question is *"could we have seen it while it was still happening?"*
 
-> **The pattern to internalize:** reconciliation detects *what happened*. Anomaly detection detects *what does not fit* — and it can run continuously, on every line, before the weekly match ever runs.
+> **The pattern to internalize:** reconciliation detects *what happened*. Anomaly detection detects *what does not fit*. It can run continuously, on every line, before the weekly match ever runs.
 
 ## Fixed thresholds are the Flutterwave problem
 
-The April 2024 Flutterwave incident shows why static rules are not enough. Attackers moved **₦11 billion (~$7 million)** to five institutions over four days — reportedly more, by insider account — and it went undetected because the deposits were **kept below the fraud-check trigger limits**. A rule that says "flag any deposit above X" is a published target: the attacker reads X, splits the flow into pieces below X, and every single line looks ordinary.
+The April 2024 Flutterwave incident shows why static rules are not enough. Attackers moved **₦11 billion (~$7 million)** to five institutions over four days (reportedly more, by insider account), and it went undetected because the deposits were **kept below the fraud-check trigger limits**. A rule that says "flag any deposit above X" is a published target: the attacker reads X, splits the flow into pieces below X, and every single line looks ordinary.
 
-There is a second, quieter failure of threshold overload: **false positives**. Danske Bank, before its machine-learning overhaul with Teradata, was managing **up to 1,200 false positives per day**, with **99.5% of investigated cases turning out not to be fraud**. A detection stack that screams constantly trains analysts to ignore it — and the real signal drowns in the noise.
+There is a second, quieter failure of threshold overload: **false positives**. Danske Bank, before its machine-learning overhaul with Teradata, was managing **up to 1,200 false positives per day**, with **99.5% of investigated cases turning out not to be fraud**. A detection stack that screams constantly trains analysts to ignore it. The real signal drowns in the noise.
 
 ## The statistical toolkit (no ML required)
 
 Before reaching for models, three classical techniques belong in every reconciliation analytics stack:
 
-- **Modified z-score** — a robust outlier score based on the median and median absolute deviation (MAD). Unlike the plain z-score it is not dragged around by the outliers it is trying to find.
-- **IQR / Tukey fences** — flag anything outside `[Q1 − 1.5×IQR, Q3 + 1.5×IQR]`; cheap, explainable, good for control-total distributions.
-- **CUSUM** — a cumulative-sum control chart that catches *drift*: a settlement total that creeps away from the partner's statement by small amounts every day, where point-in-time checks see nothing.
+- The **modified z-score** is a robust outlier score based on the median and median absolute deviation (MAD). Unlike the plain z-score, it is not dragged around by the outliers it is trying to find.
+- **IQR / Tukey fences** flag anything outside `[Q1 − 1.5×IQR, Q3 + 1.5×IQR]`. They are cheap and easy to explain, which makes them a good fit for control-total distributions.
+- **CUSUM** is a cumulative-sum control chart that catches *drift*: a settlement total that creeps away from the partner's statement by small amounts every day, where point-in-time checks see nothing.
 
 ```python
 import statistics
@@ -41,7 +41,7 @@ print([round(s, 1) for s in scores])  # [0.3, -0.7, 2.4, -1.1, 0.0, 1415.9, -0.3
 
 ## Unsupervised ML: features on the entity, not the line
 
-Statistical tests look at individual lines. Distributed fraud looks normal *per line* — so you have to change the unit of analysis. Build **per-entity, per-day aggregates** — count, sum, max, average — and let an unsupervised model find the entity-days that do not fit the population. **Isolation Forest** is the workhorse: it isolates anomalies by how few splits they need to be separated from the pack, needs no labels, and handles high-dimensional feature vectors naturally.
+Statistical tests look at individual lines. Distributed fraud looks normal *per line*, so you have to change the unit of analysis. Build **per-entity, per-day aggregates** (count, sum, max, average) and let an unsupervised model find the entity-days that do not fit the population. **Isolation Forest** is the workhorse: it isolates anomalies by how few splits they need to be separated from the pack, needs no labels, and handles high-dimensional feature vectors naturally.
 
 Here is the full comparison, run against a simulated 90-day settlement stream (200 lines/day, 200 merchants, weekly seasonality) with two planted attacks: a single 22× spike on day 40, and a Flutterwave-style distributed attack (12 days of sub-threshold additions by one merchant):
 
@@ -94,20 +94,20 @@ IF flags: 115 entity-days of 11462 (distributed: 12/12, spike: 1/1)
 
 | Detector | Unit of analysis | Spike caught? | Distributed caught? | Alerts |
 |---|---|---|---|---|
-| Modified z-score (> 6) | individual line | ✅ day 40 (z ≈ 44.7) | ❌ 0 of 12 | 1 |
-| Isolation Forest | entity-day aggregates | ✅ | ✅ 12 of 12 | 115 of 11,462 (~1%) |
+| Modified z-score (> 6) | individual line | Yes, day 40 (z ≈ 44.7) | No, 0 of 12 | 1 |
+| Isolation Forest | entity-day aggregates | Yes | Yes, 12 of 12 | 115 of 11,462 (~1%) |
 
-The honest read of that last row: ~102 of the 115 flags are normal entity-days (a false-positive rate around **0.9%**). The win is not zero noise — it is that the distributed attack is **visible at all**. Every one of the 12 merchant-133 days that a fixed threshold never noticed is in the alert queue, waiting for a human.
+The honest read of that last row: ~102 of the 115 flags are normal entity-days (a false-positive rate around **0.9%**). Nobody gets zero noise here. The win is that the distributed attack is **visible at all**. Every one of the 12 merchant-133 days that a fixed threshold never noticed is in the alert queue, waiting for a human.
 
 ## How we can do better
 
 1. **Reconcile continuously, not weekly.** Stream-match internal ledger lines against partner statements as they settle. The NCBA fraud ran eight days before the weekly match; continuous matching compresses that window to hours.
-2. **Monitor velocity on identities.** One contractor session creating 70 accounts in eight days is a velocity outlier before a single transaction fires. Track account-creation and session rates per operator, not just money movement.
+2. **Monitor velocity on identities.** One contractor session creating 70 accounts in eight days is a velocity outlier before a single transaction fires. Track account-creation and session rates per operator alongside money movement.
 3. **Aggregate per entity, not per line.** Flutterwave's ₦11B stayed under trigger limits because the limits were per-deposit. Rolling per-entity windows (hourly/daily sums and counts) make distribution itself the anomaly.
-4. **Use unsupervised models with human-in-the-loop review.** Isolation Forest needs no labels and finds patterns you have not named yet — but pair it with a triage queue and a scoring layer, and tune `contamination` against your real alert budget.
-5. **Measure your false-positive rate like a revenue KPI.** Danske Bank cut false positives by 50% with ML and reallocated half its fraud-detection unit to higher-value work. An FP metric forces the team to optimize signal, not just add rules.
+4. **Use unsupervised models with human-in-the-loop review.** Isolation Forest needs no labels and finds patterns you have not named yet. Pair it with a triage queue and a scoring layer, and tune `contamination` against your real alert budget.
+5. **Measure your false-positive rate like a revenue KPI.** Danske Bank cut false positives by 50% with ML and reallocated half its fraud-detection unit to higher-value work. An FP metric forces the team to optimize signal rather than pile on rules.
 6. **Watch for drift with CUSUM on control totals.** Small daily mismatches between your ledger and the counterparty's accumulate into a detectable signal long before the weekly break appears.
-7. **Red-team your thresholds quarterly.** Replay simulated distributed attacks — the pattern above — through the full detection stack and see whether they would have fired.
+7. **Red-team your thresholds quarterly.** Replay simulated distributed attacks (the pattern above) through the full detection stack and see whether they would have fired.
 
 ## Key takeaways
 

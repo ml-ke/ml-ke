@@ -11,14 +11,14 @@ image:
 
 ## Introduction
 
-At 21:11:36 UTC on 19 September 2026, a coding agent stopped working. Over the next 41 seconds it emitted one token — `" shame"` — 2,537 consecutive times, 15,222 bytes, and nothing else: no tool call, no error, and `thinking: null`. Only the turn's output-token limit ended the generation.
+At 21:11:36 UTC on 19 September 2026, a coding agent stopped working. Over the next 41 seconds it emitted one token (`" shame"`) 2,537 consecutive times, 15,222 bytes, and nothing else: no tool call, no error, and `thinking: null`. Only the turn's output-token limit ended the generation.
 
 The operator then respawned the turn and switched the model from its fast non-reasoning configuration to a reasoning one. The new turn opened with a 1,400-character deliberation, diagnosed the real problem (the Ahem test font's wider character metrics inside a `Row`), emitted a `replace_file_content` tool call, and the pipeline reached production. The word "shame" appears nowhere in the repository, the tests, the stack traces, or the prompt.
 
-That sequence is usually read as a vendor bug or bad luck. It is neither. Repetition collapse is a *proven* property of the decoding algorithms in production, it is reproducible on a CPU-only laptop in minutes with an open model, and its shape — an arbitrary first token, a deterministic everything-after — is what determines what you can catch.
+That sequence is usually read as a vendor bug or bad luck. It is neither. Repetition collapse is a *proven* property of the decoding algorithms in production, it is reproducible on a CPU-only laptop in minutes with an open model, and its shape (an arbitrary first token, a deterministic everything-after) is what determines what you can catch.
 
 > **The framing**
-> This is the decoding layer: what greedy search is guaranteed to allow, how to reproduce a collapse with a pinned artifact, what the sampler's probabilities look like on the way in, and a streaming guard for a serving path. Not a model comparison and not a prompt trick — the incident is the motivating trace, not the subject.
+> This is the decoding layer: what greedy search is guaranteed to allow, how to reproduce a collapse with a pinned artifact, what the sampler's probabilities look like on the way in, and a streaming guard for a serving path. Not a model comparison and not a prompt trick: the incident is the motivating trace, not the subject.
 {: .prompt-info }
 
 ## What the log pins down
@@ -31,11 +31,11 @@ That sequence is usually read as a vendor bug or bad luck. It is neither. Repeti
 | 366 | 21:11:36→21:12:17 | **`" shame"` × 2,537 = 15,222 bytes. Zero tool calls. Ended by the token cap** |
 | 367–368 | 21:12:17–21:12:22 | Operator: "respawn and fix thought process", model switched to reasoning; 1,400-char trace, correct diagnosis, tool call, fix |
 
-Three facts do the heavy lifting. **One distinct token:** the step contained `{'shame'}` and nothing else, so the model was not failing to decide — its distribution had collapsed onto a single continuation. **Zero structured output:** nothing for the agent loop to act on, so it could not self-correct. **A hard cap ended it:** not the model, not a heuristic, not an error. The recovery is equally informative — respawning changed the *state*, not the task.
+Three facts do the heavy lifting. The step contained `{'shame'}` and nothing else, so the model was not failing to decide. Its distribution had collapsed onto a single continuation. Nothing in the output was structured, so the agent loop had nothing to act on and could not self-correct. A hard cap ended it: not the model, not a heuristic, not an error. The recovery is equally informative: respawning changed the *state*, not the task.
 
 ## The theory already said this would happen
 
-**Greedy search is provably inconsistent.** [Welleck and colleagues](https://arxiv.org/abs/2002.02492) define the discrepancy between a model and the decoder on top of it: "inconsistency of a decoding algorithm, meaning that the algorithm can yield an infinite-length sequence that has zero probability under the model." They prove that "commonly used incomplete decoding algorithms – greedy search, beam search, top-k sampling, and nucleus sampling – are inconsistent," and their Theorem 3.4 constructs a case where an incomplete decoder "finds an infinite-length sequence with probability 1." *Incomplete* means any decoder that stops early — a token budget, a top-k cutoff, a probability threshold. That is every decoder in production, so `max_tokens` is not a safety net you added to a working system; in this failure mode it is the only thing that terminates the generation.
+**Greedy search is provably inconsistent.** [Welleck and colleagues](https://arxiv.org/abs/2002.02492) define the discrepancy between a model and the decoder on top of it: "inconsistency of a decoding algorithm, meaning that the algorithm can yield an infinite-length sequence that has zero probability under the model." They prove that "commonly used incomplete decoding algorithms – greedy search, beam search, top-k sampling, and nucleus sampling – are inconsistent," and their Theorem 3.4 constructs a case where an incomplete decoder "finds an infinite-length sequence with probability 1." *Incomplete* means any decoder that stops early: a token budget, a top-k cutoff, a probability threshold. That is every decoder in production, so `max_tokens` is not a safety net you added to a working system; in this failure mode it is the only thing that terminates the generation.
 
 **Maximum likelihood is the wrong objective for open-ended generation.** [Holtzman and colleagues](https://arxiv.org/abs/1904.09751) showed that "using likelihood as a decoding objective leads to text that is bland and strangely repetitive," and that maximisation-based decoding "gets stuck in repetitive loops" — from the same models that score well on understanding tasks. Human text is not the most likely text.
 
@@ -45,7 +45,7 @@ Three facts do the heavy lifting. **One distinct token:** the step contained `{'
 
 ### The popular explanation I'd drop
 
-The folk account says identical adjacent tokens "create a sharp attention sink where each newly generated token attends almost 100% to the identical tokens preceding it." The first half is right; the conclusion is wrong. [Gu and colleagues](https://arxiv.org/abs/2410.10781) (ICLR 2025) show the attention sink sits on the *first* tokens and "acts more like key biases, storing extra attention scores, which could be non-informative and not contribute to the value computation" — largely an artefact of softmax normalisation, since sigmoid attention without normalisation removes sinks up to 1B parameters. A sink on the first token is not a copy loop over the last six; the load-bearing mechanisms are the copy circuit and anisotropic representations. That distinction predicts what I found: **the loop needs no memorable token.** The incident's "shame" has a rich pop-culture lineage, and the same model collapses identically on a Swahili verb phrase with no meme history at all.
+The folk account says identical adjacent tokens "create a sharp attention sink where each newly generated token attends almost 100% to the identical tokens preceding it." The first half is right; the conclusion is wrong. [Gu and colleagues](https://arxiv.org/abs/2410.10781) (ICLR 2025) show the attention sink sits on the *first* tokens and "acts more like key biases, storing extra attention scores, which could be non-informative and not contribute to the value computation" and is largely an artefact of softmax normalisation, since sigmoid attention without normalisation removes sinks up to 1B parameters. A sink on the first token is not a copy loop over the last six; the load-bearing mechanisms are the copy circuit and anisotropic representations. That distinction predicts what I found: **the loop needs no memorable token.** The incident's "shame" has a rich pop-culture lineage, and the same model collapses identically on a Swahili verb phrase with no meme history at all.
 
 ## Reproduce it on your own machine
 
@@ -62,7 +62,7 @@ curl -L -o afrislm-q4.gguf \
 llama-server -m afrislm-q4.gguf -c 2048 -t 4 --port 8099
 ```
 
-Then ask for a translation — greedy, with no repetition defence at all (`temperature 0`, `top_k 1`, repetition penalty at its disabled value of 1.0):
+Then ask for a translation, greedy, with no repetition defence at all (`temperature 0`, `top_k 1`, repetition penalty at its disabled value of 1.0):
 
 ```bash
 curl -s http://127.0.0.1:8099/completion -H 'Content-Type: application/json' -d '{"prompt":"You are a professional English to Swahili translator. Your goal is to accurately convey the meaning and nuances of the original English text while adhering to Swahili grammar, vocabulary, and cultural sensitivities. Produce only the Swahili translation, without any additional explanations or commentary.\nPlease translate the following English text into Swahili: Wash your hands with soap before you prepare food. Translation:","n_predict":256,"temperature":0,"top_k":1}' | python3 -c "import sys,json;print(json.load(sys.stdin)['content'])"
@@ -80,7 +80,7 @@ That entropy floor is the story in one figure: at 0.05 bits there is no probabil
 
 ### The same token, the same trap
 
-Prompting with a context that already repeats a span makes the copying explicit — the chat template built by hand (system, user, then an assistant turn with the reasoning block pre-closed):
+Prompting with a context that already repeats a span makes the copying explicit. The chat template is built by hand (system, user, then an assistant turn with the reasoning block pre-closed):
 
 | Run (greedy, cap 256) | Tokens | Distinct | Longest loop | EOS | p(top-1) | Entropy |
 |---|---|---|---|---|---|---|
@@ -164,7 +164,7 @@ Step 2 is the moment before the trap closes: the model is genuinely unsure (7.7%
 
 ## The same collapse in the shape your agent emits
 
-A repeated token is the dramatic version; the unit of collapse can also be a whole record. Same protocol, different model — Llama-3.2-1B-Instruct (Q4_K_M, 807,694,464 bytes, sha256 `6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83`) — asked in its own chat template for twelve JSON tool calls on the `RenderFlex` investigation:
+A repeated token is the dramatic version; the unit of collapse can also be a whole record. Same protocol, different model: Llama-3.2-1B-Instruct (Q4_K_M, 807,694,464 bytes, sha256 `6f85a640a97cf2bf5b8e764087b1e83da0fdb51d7c9fab7d0fece9385611df83`), asked in its own chat template for twelve JSON tool calls on the `RenderFlex` investigation:
 
 | Sampler (greedy, cap 384) | Tokens | Objects | Unique | Distinct ids | Duplicate 12-grams | EOS |
 |---|---|---|---|---|---|---|
@@ -172,7 +172,7 @@ A repeated token is the dramatic version; the unit of collapse can also be a who
 | Repeat-penalty 1.30 | 70 | 3 | 3 | 0.729 | 0 of 58 | yes |
 | DRY 0.8 (then 2.0 / len 1) | 379 | 13 | **1** (then 13) | 0.066 (then 0.151) | 335/367 (then 99/372) | same as greedy (then cap) |
 
-Thirteen tool calls, all identical: the same `dart:html` inspection of the same file at the same line, twelve past the request. This is the version that hurts an agent loop — not gibberish, but a *plausible* payload the harness will execute forever.
+Thirteen tool calls, all identical: the same `dart:html` inspection of the same file at the same line, twelve past the request. This is the version that hurts an agent loop: a *plausible* payload the harness will execute forever.
 
 ## Why your coding agent is not already protected
 
@@ -182,13 +182,13 @@ $$p_i = \frac{\exp\!\left(x_i / (T \cdot I(i \in g))\right)}{\sum_j \exp\!\left(
 
 where $g$ is the set of recently generated tokens and $I$ equals $\theta$ for those tokens and 1 otherwise. [Keskar and colleagues](https://arxiv.org/abs/1909.05858), who introduced it in CTRL, report that "using a greedy sampling and θ ≈ 1.2 yields a good balance between truthful generation and lack of repetition," and that $\theta = 1$ is the same as no penalty. That last clause is the incident: at the disabled setting, nothing in the sampler resists a loop.
 
-Agent stacks leave it weak or off because penalising token recurrence damages what code and structured output are made of — indentation, braces, repeated JSON keys, template delimiters. The [DRY paper](https://arxiv.org/abs/2608.22761) (August 2026) states the trade-off: standard defences "act on token recurrence rather than the sequential structure of a loop, and often suppress looping only at strengths that also degrade formatting or fluency." My 1B run shows the damage: under repeat-penalty 1.30 the loop stopped but the structure spoiled — the path became `/lib/features/public/LandingPage.dart`, keys appeared that the schema never asked for (`startLine`, `functionName`), and one of three objects failed to parse.
+Agent stacks leave it weak or off because penalising token recurrence damages what code and structured output are made of: indentation, braces, repeated JSON keys, template delimiters. The [DRY paper](https://arxiv.org/abs/2608.22761) (August 2026) states the trade-off: standard defences "act on token recurrence rather than the sequential structure of a loop, and often suppress looping only at strengths that also degrade formatting or fluency." My 1B run shows the damage: under repeat-penalty 1.30 the loop stopped but the structure spoiled: the path became `/lib/features/public/LandingPage.dart`, keys appeared that the schema never asked for (`startLine`, `functionName`), and one of three objects failed to parse.
 
 DRY takes the other route, penalising "a candidate token only when generating it would extend the current suffix into an exact continuation of a span seen earlier in the context," with sequence breakers protecting template and formatting tokens. The paper reports a **47% reduction in suffix-extension rate** across models from 1.5B to 120B, nine prompt families and a 600-pair human study, with an intervention-matched placebo producing no comparable reduction; it ships in llama.cpp, ExLlamaV2 and text-generation-webui. My 1B results are more modest, and worth stating as they came out: DRY at multiplier 0.8 changed nothing in that run, and at multiplier 2.0 with allowed length 1 it removed the verbatim duplicates (13 unique objects, duplicated 12-grams down from 335/367 to 99/372) while the model still never emitted an end-of-sequence token inside 384 steps. A 1B model is not the paper's evaluation setting, and a penalty that leaves output unchanged is itself useful information: DRY is not a switch but a strength you set and measure.
 
 ## A guard that costs one pass over the token stream
 
-You do not have to choose between no defence and damaged formatting. A collapse is *observable* — an ending that has become periodic — and periodicity is exact, cheap, and needs no reference text.
+You do not have to choose between no defence and damaged formatting. A collapse is *observable* (an ending that has become periodic), and periodicity is exact, cheap, and needs no reference text.
 
 {% raw %}
 ```python
@@ -269,9 +269,9 @@ False alarms matter more than detection speed, so I measured the guard over 26,4
 | `min_reps` / `min_tokens` | Windows fired | What fired |
 |---|---|---|
 | 3 / 12, 4 / 16, 4 / 24 | 3, 2, 2 of 7 | Periodicity inside *quoted program output*: `+ - + -`, `PS90 PS90 PS90 PS90` |
-| **5 / 20** (default) | **0 of 7** | — |
+| **5 / 20** (default) | **0 of 7** | none |
 
-Those were not noise but genuinely periodic spans inside quoted output — the honest cost of exact-match detection: a document containing a repeated table row looks locally like a loop. Word-level tokenisation is also a pessimistic proxy, since a real subword tokeniser produces far less exact repetition in prose. Treat `5 / 20` as a starting point: in the incident it fires at token 20 of 2,537 and recovers 2,517 — about the 41 seconds the machine spent on a turn that could do nothing.
+Those were not noise but genuinely periodic spans inside quoted output. That is the honest cost of exact-match detection: a document containing a repeated table row looks locally like a loop. Word-level tokenisation is also a pessimistic proxy, since a real subword tokeniser produces far less exact repetition in prose. Treat `5 / 20` as a starting point: in the incident it fires at token 20 of 2,537 and recovers 2,517 — about the 41 seconds the machine spent on a turn that could do nothing.
 
 ## What to do when it happens to you
 
@@ -279,21 +279,21 @@ Those were not noise but genuinely periodic spans inside quoted output — the h
 |---|---|
 | Periodic ending detected | Abort the turn; keep the raw token stream as evidence |
 | One distinct token id in a generation | Treat as collapse before the periodicity window fills |
-| Tool call missing after a tool intent | Do not retry the same context — respawn with a new prefix |
+| Tool call missing after a tool intent | Do not retry the same context; respawn with a new prefix |
 | Recovery | Respawn with reasoning on, change one sampler parameter, or drop the degenerate tail |
 | Not a fix | Raising the cap, waiting for the model to "notice", shipping a strong repeat penalty to protect code |
 
-The recovery row is where the second half of the incident pays off. [Li and colleagues](https://arxiv.org/abs/2402.12875) show a chain of thought gives a transformer *serial* computation it otherwise lacks, so a reasoning configuration does not merely try harder — it produces a long run of intermediate tokens before the answer, which is a different decoding trajectory from a different prefix. That matches both the log and the local reproduction: the same model escapes when the context stops being periodic. You do not need a new model; you need a different prefix, and a guard that tells you when to spend it.
+The recovery row is where the second half of the incident pays off. [Li and colleagues](https://arxiv.org/abs/2402.12875) show a chain of thought gives a transformer *serial* computation it otherwise lacks, so a reasoning configuration does not merely try harder: it produces a long run of intermediate tokens before the answer, which is a different decoding trajectory from a different prefix. That matches both the log and the local reproduction: the same model escapes when the context stops being periodic. You do not need a new model; you need a different prefix, and a guard that tells you when to spend it.
 
 ## Key takeaways
 
 | Takeaway | Evidence |
 |---|---|
-| Greedy search is provably inconsistent; the cap is what ends a collapse | Welleck et al., Theorem 3.4 — infinite-length sequence with probability 1 |
-| Likelihood maximisation degenerates on open-ended generation | Holtzman et al. — "bland and strangely repetitive" |
-| The last token keeps winning because representations are anisotropic | Su et al. — "anisotropic distribution of token representations" |
-| Copying is a trained mechanism (induction heads), not an accident | Olsson et al. — `[A][B] … [A] -> [B]` |
-| Attention sinks are first-token softmax artefacts, not the repetition mechanism | Gu et al., ICLR 2025 — "key biases... non-informative" |
+| Greedy search is provably inconsistent; the cap is what ends a collapse | Welleck et al., Theorem 3.4: infinite-length sequence with probability 1 |
+| Likelihood maximisation degenerates on open-ended generation | Holtzman et al.: "bland and strangely repetitive" |
+| The last token keeps winning because representations are anisotropic | Su et al.: "anisotropic distribution of token representations" |
+| Copying is a trained mechanism (induction heads), not an accident | Olsson et al.: `[A][B] … [A] -> [B]` |
+| Attention sinks are first-token softmax artefacts, not the repetition mechanism | Gu et al., ICLR 2025: "key biases... non-informative" |
 | The loop needs no memorable token, and can repeat a whole record | Reproduced on `shame` and `kufanya kazi`; 13 identical tool calls |
 
 ## References
