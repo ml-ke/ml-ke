@@ -2243,3 +2243,69 @@ phrased as a pointer, not a measured comparison.
   4. If an African digital-health theme recurs, reuse the verified PROMPTS/m-mama/ANC/GSMA figures and
      the maternal-burden anchors in `references/maternal-health-digital-ai-bank.md` instead of
      re-fetching the PLOS RCT or the Gates release.
+
+## Publishing note — Lane B tutorial, Oct 11 2026
+
+- Slug: `2026-10-11-pii-redaction-recall-and-reversible-pseudonyms.md` (Lane B, AI/ML engineering tutorial).
+  Oct 10 was Lane A, so the alternation resumed with B as the Oct 10 note predicted.
+- Topic: two measured halves of a PII redaction pipeline — detection (per-type span-level recall on a
+  labelled fixture) and transformation (offset-safe masking, then two audits of what a "de-identified"
+  release actually protects). Chosen because a `grep -ril "redact|pseudonymis|anonymis|PII"` sweep
+  returned only incidental mentions in fourteen security posts and no heading-level coverage anywhere:
+  it is the corpus-hygiene slot nobody had written. Related-post differentiation stated in the intro
+  against `minhash-lsh-corpus-dedup` (corpus filter), `ml-secrets-management` (credential vault) and
+  `rag-recall-at-k-denominator` (metric denominators).
+- Own measurements (2 blocks, both stdlib-only, both re-run through the post's fences with stdout
+  diffed byte-for-byte against the quoted output — PASS on both):
+  1. Detection and masking on a 15-record / 13-span fixture (7 phone layouts, 2 traps). Day-one
+     regexes: recall 0.385, precision 0.625, 8 of 13 spans missed, 3 false positives. Validators
+     (Luhn, Kenyan MSISDN prefix+length, digit-run boundary, spelled-out-email recogniser): 13 of 13,
+     0 false positives. Forward masking damaged 11 of 15 records and left 8 labelled spans in the
+     output (`Card <C<PHONE>ed KES 2,300.`); end-backwards with merged spans damaged 0 and left 0.
+  2. Reversibility and uniqueness: a 200,000-value candidate register reversed 24 of 24 subject IDs
+     from a plain SHA-256 release and 0 of 24 from an HMAC release; keyed tokens keep 25 same-subject
+     event pairs joinable where per-event surrogates keep 0; uniqueness on (county, sex, DOB) is 98.4%
+     at 5,000 rows, 25.3% at 500,000 rows, and 3.2% at 5,000 rows with a year-level birthday.
+  **Timing caveat:** the sha256 sweep printed only a conservative verdict line, because
+  `check-quoted-output.py` needs byte-identical stdout and the laptop rate moved 2x between runs
+  (749,029 to 1,500,479 sha256/s, best of three passes per run). The spread is stated in the post's
+  prose, not in the block. Reuse that pattern for any timing claim: measure in the block, print a
+  bound, quote the spread in prose.
+- Verified anchors (all body-level, not snippets): PIIBench arXiv:2604.15776 (10 corpora, 2,369,883
+  sequences, 3.35M mentions, 48 types, all 8 systems span F1 < 0.14, best Presidio 0.1385 with zero
+  recall on most types); Mind the Gap arXiv:2609.03464 (7 shift categories, encoder vs rule-based vs
+  LLM failure modes); RECAP arXiv:2510.07551 (weighted recall 0.605 vs 0.362 NER vs 0.437 zero-shot
+  LLM, 300+ types, 13 locales); Presidio `docs/supported_entities.md` (per-entity methods, checksums
+  and RFC-822 validation, credit card 12-19 digits); NIST SP 800-122 §4.2.3-4.2.4 fetched as PDF and
+  read with `pdftotext -layout` (de-identified vs anonymized, hashing, the separate-system condition,
+  the HIPAA footnote on codes derived from the PII itself); Kenya Data Protection Act Cap. 411C s.2
+  definitions of anonymisation and pseudonymisation plus s.4 territorial scope; GDPR Recital 26;
+  Sweeney 2000 (87% = 216M of 248M on ZIP+gender+DOB; 53% city, 18% county) and Golle 2006, which
+  disagrees on the same census data (61%/63%) — both quoted, which is the post's honesty anchor.
+- Cover: new metaphor (a support note with mask blocks and two traps left alone, an offset ruler whose
+  forward-splice panel shows `<C<PHONE>ed` in red against the end-backwards `charged` in green, and a
+  release column of hash tokens with a magnifier over one). Checked against the cover-label dump: no
+  sibling uses masks, a ruler or a hash column. XML well-formed, `&`-escape clean (only intended
+  `&lt;`/`&gt;` entities, confirmed with the lookahead regex), rendered-pixel spot checks find all five
+  accent colours, `assets/img/cover-pii-redaction-recall-and-reversible-pseudonyms.webp` is a real
+  1200x630 VP8 WebP, 47.6 KB.
+- Word count: **4,120 full / 2,592 code-excluded**. Code-excluded sits inside the live sibling band
+  (Oct 9 2,712; Oct 2 2,446; Oct 4 2,356) and the newest Lane B sibling's prose body is 2,712 against
+  this post's 2,592. Full-body is 5.6% over the top sibling (Oct 2 3,902) because this post carries
+  two runnable harnesses (code+quoted output 1,520 tokens against Oct 2's 1,456 and Oct 9's 994) — in
+  band on the code-excluded axis and marginally over on the full-body axis, trimmed twice from
+  4,425/2,897.
+- Verification: no `{% post_url %}` tags, no `cover:` key, no `.png` image paths, all five internal
+  `/posts/` links resolve, `check-prose-style.py` PASS (0 prose em dashes, 0 title-case headings,
+  0 emoji), quoted output byte-identical to stdout for both blocks.
+- Commit **ebfbd35** pushed; Actions run for that SHA `completed success` (no cancellation this run).
+  Live permalink returned HTTP 200 on the third attempt (first two were the normal propagation
+  window), cover WebP 200, homepage lists the slug.
+- **Next session actions:**
+  1. **Oct 12 = Lane A** (positive AI story, <=21 days old, 2+ body-level sources). Oct 11 was Lane B,
+     so the alternation resumes with A.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. `tuesday-ai-update` owns **Oct 13**; do not stage or write a Tuesday post.
+  4. If a data-privacy or data-quality theme recurs, reuse the fixture shape, the Luhn/MSISDN/boundary
+     validators and the two audits from this post's blocks rather than re-deriving them, and remember
+     the timing-claim pattern above.
