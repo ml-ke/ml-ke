@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="strip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#1f2430"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#8b949e" stroke-width="0.5" opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="60" y="74" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="38" font-weight="bold" fill="#f0f6fc">Redact, Then Prove It</text>
+  <text x="60" y="106" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="19" fill="#8b949e">Per-type recall · offset damage · the reversible pseudonym</text>
+
+  <!-- panel 1: the note -->
+  <rect x="60" y="140" width="340" height="360" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="80" y="172" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#00d2ff">SUPPORT NOTE · 15 records</text>
+  <line x1="80" y1="184" x2="380" y2="184" stroke="#30363d" stroke-width="1"/>
+
+  <text x="80" y="214" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Callback requested</text>
+  <rect x="80" y="222" width="86" height="20" rx="4" fill="#0d1117" stroke="#6bcf7f" stroke-width="1.2"/>
+  <text x="123" y="237" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f" text-anchor="middle">PHONE</text>
+  <text x="176" y="237" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" fill="#484f58">found</text>
+
+  <text x="80" y="272" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Card 4111 1111 1111 1111</text>
+  <rect x="80" y="280" width="78" height="20" rx="4" fill="#0d1117" stroke="#6bcf7f" stroke-width="1.2"/>
+  <text x="119" y="295" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f" text-anchor="middle">CARD</text>
+  <text x="168" y="295" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" fill="#484f58">luhn ok</text>
+
+  <text x="80" y="330" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">ID 31245678</text>
+  <rect x="80" y="338" width="80" height="20" rx="4" fill="#0d1117" stroke="#6bcf7f" stroke-width="1.2"/>
+  <text x="120" y="353" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f" text-anchor="middle">NATID</text>
+
+  <text x="80" y="388" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Order ORD-31245678</text>
+  <text x="240" y="388" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ffd93d">kept</text>
+  <text x="80" y="418" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">Card ending 4111111111111112</text>
+  <text x="80" y="436" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ffd93d">kept · check digit fails</text>
+
+  <text x="80" y="478" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f">13 of 13 spans · 0 false positives</text>
+
+  <!-- panel 2: offsets -->
+  <rect x="430" y="140" width="340" height="360" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="450" y="172" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#00d2ff">OFFSETS, NOT PATTERNS</text>
+  <line x1="450" y1="184" x2="750" y2="184" stroke="#30363d" stroke-width="1"/>
+
+  <text x="450" y="216" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">0123456789 · 0123456789 · 0123456789 · 01</text>
+  <line x1="450" y1="226" x2="750" y2="226" stroke="#30363d" stroke-width="1"/>
+  <g stroke="#484f58" stroke-width="1">
+    <line x1="450" y1="226" x2="450" y2="234"/>
+    <line x1="510" y1="226" x2="510" y2="234"/>
+    <line x1="570" y1="226" x2="570" y2="234"/>
+    <line x1="630" y1="226" x2="630" y2="234"/>
+    <line x1="690" y1="226" x2="690" y2="234"/>
+    <line x1="750" y1="226" x2="750" y2="234"/>
+  </g>
+
+  <text x="450" y="272" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ff6b6b">FORWARD SPLICE</text>
+  <rect x="450" y="280" width="300" height="42" rx="6" fill="#1c1418" stroke="#ff6b6b" stroke-width="1.4"/>
+  <text x="464" y="306" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#ff6b6b">Card &lt;C&lt;PHONE&gt;ed KES 2,300.</text>
+  <text x="450" y="342" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b">11 of 15 records damaged · 8 spans left in</text>
+
+  <text x="450" y="386" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">END-BACKWARDS</text>
+  <rect x="450" y="394" width="300" height="42" rx="6" fill="#111c16" stroke="#6bcf7f" stroke-width="1.4"/>
+  <text x="464" y="420" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#6bcf7f">Card &lt;CARD&gt; charged KES 2,300.</text>
+  <text x="450" y="456" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f">0 damaged · 0 left in · strip-recovery holds</text>
+
+  <text x="450" y="488" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">measure on the original, splice from the end</text>
+
+  <!-- panel 3: the transform -->
+  <rect x="800" y="140" width="340" height="360" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="820" y="172" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#a78bfa">THE TRANSFORM</text>
+  <line x1="820" y1="184" x2="1120" y2="184" stroke="#30363d" stroke-width="1"/>
+
+  <text x="820" y="212" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">released column</text>
+  <text x="820" y="240" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#00d2ff">6f1a2c9d8b3e41a7</text>
+  <text x="820" y="266" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#00d2ff">b47e0aa19c2f8d05</text>
+  <text x="820" y="292" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#00d2ff">2c9e4f17a08b3d66</text>
+  <text x="820" y="318" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#00d2ff">9a05d71b6e3c740f</text>
+
+  <circle cx="1006" cy="300" r="30" fill="none" stroke="#ffd93d" stroke-width="2"/>
+  <line x1="1028" y1="322" x2="1046" y2="340" stroke="#ffd93d" stroke-width="3"/>
+
+  <rect x="820" y="356" width="300" height="34" rx="6" fill="#1b1408" stroke="#ffd93d" stroke-width="1.2"/>
+  <text x="832" y="378" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">200,000-value register: 24/24 recovered</text>
+
+  <rect x="820" y="398" width="300" height="34" rx="6" fill="#111c16" stroke="#6bcf7f" stroke-width="1.2"/>
+  <text x="832" y="420" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">HMAC-SHA256 with the key: 0/24</text>
+
+  <text x="820" y="456" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e">plain SHA-256 of 8 digits costs minutes</text>
+  <text x="820" y="478" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#a78bfa">key = the additional information</text>
+
+  <!-- footer strip -->
+  <rect x="60" y="524" width="1080" height="52" rx="10" fill="url(#strip)" stroke="#30363d" stroke-width="1"/>
+  <text x="80" y="549" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#c9d1d9">day-one recall 0.385 · validated 1.000 · 8 of 13 spans missed by layout</text>
+  <text x="80" y="568" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#c9d1d9">unique on county, sex and birthday: 98.4% at 5,000 rows · 3.2% once the birthday is a year</text>
+
+  <text x="1140" y="612" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#484f58" text-anchor="end">ml-ke.github.io</text>
+</svg>
