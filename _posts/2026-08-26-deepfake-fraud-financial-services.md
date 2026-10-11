@@ -14,7 +14,7 @@ In February 2024, a finance worker at the Hong Kong office of Arup — the Briti
 
 This is not a distant Western problem. Sumsub's 2026 Identity Fraud Report, [covered by Businessday NG](https://businessday.ng/technology/article/ai-deepfake-fraud-surges-across-africa-as-firms-race-to-stop-new-scams/), found that **deepfake-related attacks now account for nearly 10 percent of fraud attempts in Kenya**, while South Africa saw deepfake incidents jump **more than 269 percent year-on-year**. Interpol puts global financial fraud losses at around **$442 billion in 2025 alone**, and warns they will keep climbing "largely because of AI" ([The Register](https://www.theregister.com/2026/03/16/interpol_ai_fraud/)).
 
-> **The core problem:** a face on a screen, a voice on a call, and an ID document in an onboarding flow are no longer reliable proof of identity. AI has made all three cheaply forgeable — and financial controls built on "seeing is believing" are the ones getting drained.
+> **The core problem:** a face on a screen, a voice on a call, and an ID document in an onboarding flow are no longer reliable proof of identity. AI has made all three cheaply forgeable. Financial controls built on "seeing is believing" are the ones getting drained.
 {: .prompt-info }
 
 ## The CFO who wasn't there: video deepfakes in corporate payments
@@ -27,15 +27,15 @@ Nothing in the call was technically exotic. The deepfakes were convincing enough
 
 ## Voice cloning: the $243,000 phone call
 
-Voice cloning is even cheaper than video. In the best-documented early case (2019), the CEO of a UK-based energy firm took a call from someone he believed was his parent company's chief executive and authorized an urgent €220,000 (~US$243,000) transfer to a "Hungarian supplier" — the caller was an AI voice clone, [reported by the Wall Street Journal and covered by Forbes](https://www.forbes.com/sites/jessedamiani/2019/09/03/a-voice-deepfake-was-used-to-scam-a-ceo-out-of-243000/) and [Bitdefender](https://www.bitdefender.com/en-us/blog/hotforsecurity/ceo-voice-deepfake-blamed-for-scam-that-stole-243000). The voice had the right accent, cadence, and mannerisms, and the transfer was approved on voice recognition alone.
+Voice cloning is even cheaper than video. In the best-documented early case (2019), the CEO of a UK-based energy firm took a call from someone he believed was his parent company's chief executive and authorized an urgent €220,000 (~US$243,000) transfer to a "Hungarian supplier". The caller was an AI voice clone, [reported by the Wall Street Journal and covered by Forbes](https://www.forbes.com/sites/jessedamiani/2019/09/03/a-voice-deepfake-was-used-to-scam-a-ceo-out-of-243000/) and [Bitdefender](https://www.bitdefender.com/en-us/blog/hotforsecurity/ceo-voice-deepfake-blamed-for-scam-that-stole-243000). The voice had the right accent, cadence, and mannerisms, and the transfer was approved on voice recognition alone.
 
 Since then, voice cloning has become a consumer product. Group-IB's [Weaponized AI report](https://www.group-ib.com/resources/research-hub/weaponized-ai/) (January 2026) documents a **deepfake-as-a-service** economy: synthesis tools sold on dark web markets from around **$5**, 300+ dark web posts referencing "deepfake" and "KYC" between 2022 and September 2025, and a **52% increase in unique sellers in 2025**.
 
 ## KYC is the new front line
 
-The biggest volume of deepfake fraud is not aimed at CFOs — it is aimed at **onboarding**. Group-IB documented **8,065 biometric injection attempts against the digital KYC loan onboarding of a single financial institution between January and August 2025** ([Biometric Update](https://www.biometricupdate.com/202601/deepfake-as-a-service-revolutionizing-biometrics-spoofing-and-identity-fraud-report)). Attackers often do not even need real-time deepfakes: they replay recorded faces, inject synthetic frames into the camera stream, or submit AI-altered photos to defeat liveness checks. Sensity's research [catalogs more than 2,000 deepfake creation tools online](https://www.identity.org/the-growing-threat-of-deepfakes-to-identity-verification-processes/), including dozens built specifically to bypass KYC, with fake ID photos and verification videos selling on underground marketplaces for a few dollars.
+The biggest volume of deepfake fraud targets **onboarding** rather than CFOs. Group-IB documented **8,065 biometric injection attempts against the digital KYC loan onboarding of a single financial institution between January and August 2025** ([Biometric Update](https://www.biometricupdate.com/202601/deepfake-as-a-service-revolutionizing-biometrics-spoofing-and-identity-fraud-report)). Attackers often do not even need real-time deepfakes: they replay recorded faces, inject synthetic frames into the camera stream, or submit AI-altered photos to defeat liveness checks. Sensity's research [catalogs more than 2,000 deepfake creation tools online](https://www.identity.org/the-growing-threat-of-deepfakes-to-identity-verification-processes/), including dozens built specifically to bypass KYC, with fake ID photos and verification videos selling on underground marketplaces for a few dollars.
 
-> **Why this matters for fintech:** a synthetic identity that passes KYC becomes a real account — then a vehicle for loan fraud, money laundering, and mule networks. Exactly the fraud classes Kenya's CBK has been tightening reporting rules around, as covered in our [KYC/AML analytics deep-dive](/posts/kyc-aml-analytics-african-fintech/).
+> **Why this matters for fintech:** a synthetic identity that passes KYC becomes a real account, then a vehicle for loan fraud, money laundering, and mule networks. Exactly the fraud classes Kenya's CBK has been tightening reporting rules around, as covered in our [KYC/AML analytics deep-dive](/posts/kyc-aml-analytics-african-fintech/).
 {: .prompt-warning }
 
 ## The African picture: Kenya's 10% and the enforcement response
@@ -50,23 +50,23 @@ The Sumsub data shows a region where deepfakes are arriving alongside mobile-mon
 | Tanzania | Highest overall fraud rate in Africa: 5.0% |
 | Uganda | 4.7% fraud rate, second-highest |
 
-Enforcement is responding. Interpol announced an eight-month operation against West African cyber-fraud networks this week — [58 arrests, 263 suspects identified across 22 countries](https://saharareporters.com/2026/08/25/operation-jackal-interpol-arrests-58-persons-identifies-over-260-west-african-organised), including [39 arrests in South Africa for romance and investment scams](https://www.bbc.co.uk/news/articles/cq5xdnxppl4o). Interpol Secretary General Valdecy Urquiza calls it "the industrialization of fraud," enabled by AI, low-cost digital tools, and cross-border criminal collaboration ([The Register](https://www.theregister.com/2026/03/16/interpol_ai_fraud/)).
+Enforcement is responding. Interpol announced an eight-month operation against West African cyber-fraud networks this week: [58 arrests, 263 suspects identified across 22 countries](https://saharareporters.com/2026/08/25/operation-jackal-interpol-arrests-58-persons-identifies-over-260-west-african-organised), including [39 arrests in South Africa for romance and investment scams](https://www.bbc.co.uk/news/articles/cq5xdnxppl4o). Interpol Secretary General Valdecy Urquiza calls it "the industrialization of fraud," enabled by AI, low-cost digital tools, and cross-border criminal collaboration ([The Register](https://www.theregister.com/2026/03/16/interpol_ai_fraud/)).
 
 ## How we can do better: an AI defense playbook
 
-**1. Kill single-channel verification.** Any high-value payment instruction must be confirmed on a second, independent channel — a call back to a known number, a portal approval, or a pre-agreed code word. Arup had no such step; voice-clone vishing succeeds precisely when voice is the only check.
+**1. Kill single-channel verification.** Any high-value payment instruction must be confirmed on a second, independent channel: a call back to a known number, a portal approval, or a pre-agreed code word. Arup had no such step; voice-clone vishing succeeds precisely when voice is the only check.
 
 **2. Upgrade liveness to server-side injection detection.** Client-side liveness checks are trivially bypassed by frame injection. Deploy challenge-response liveness (random head movements, depth estimation, reflection analysis) evaluated server-side, plus device-risk signals.
 
 **3. Treat voice as one factor, never the factor.** Voice biometrics are cloneable; combine them with passphrase challenges, caller-lineage checks, and behavioral signals. Treat every "urgent and confidential" request as a red flag that requires friction.
 
-**4. Layer payment controls.** Velocity limits, beneficiary allow-lists, and maker-checker approval above thresholds turn a single social-engineering win into a multi-step obstacle — the same control pattern from our [NCBA ghost account anatomy](/posts/ncba-ghost-account-fraud/).
+**4. Layer payment controls.** Velocity limits, beneficiary allow-lists, and maker-checker approval above thresholds turn a single social-engineering win into a multi-step obstacle. It is the same control pattern from our [NCBA ghost account anatomy](/posts/ncba-ghost-account-fraud/).
 
 **5. Add deepfake detection to the pipeline.** Media forensics, C2PA-style content credentials, and AI-generated-content detectors are production-grade enough to flag suspicious onboarding videos and call recordings for review.
 
 **6. Red-team your own staff.** Run AI vishing and deepfake-video simulation drills for finance teams and branch staff, the same way phishing simulations are standard. Measure click-through-to-transfer rates and close the gap with training.
 
-**7. Plan the response before the incident.** Pre-agree transaction-reversal escalation, evidence preservation (call recordings, video files, device logs), and regulator notification (CBK, ODPC, NFIU) — deepfake evidence degrades fast if not frozen immediately.
+**7. Plan the response before the incident.** Pre-agree transaction-reversal escalation, evidence preservation (call recordings, video files, device logs), and regulator notification (CBK, ODPC, NFIU). Deepfake evidence degrades fast if not frozen immediately.
 
 > **Bottom line:** the era of "seeing is believing" is over. Every identity check in financial services — video calls, voice instructions, KYC selfies — is now an AI attack surface. The defenses are layered verification, server-side liveness, payment friction, and staff trained to disbelieve what they see.
 {: .prompt-tip }
@@ -80,7 +80,7 @@ Enforcement is responding. Interpol announced an eight-month operation against W
 | KYC biometric injection | 8,065 attempts at one FI (2025) | Server-side liveness + device risk |
 | Deepfake-as-a-service | $5 tools on dark web | Detection tooling + content credentials |
 
-Deepfakes turn the most human part of banking — trust — into the attack surface. The institutions that survive the next wave will be those that make verification deliberately awkward, layered, and independent of any single channel.
+Deepfakes turn trust, the most human part of banking, into the attack surface. The institutions that survive the next wave will be those that make verification deliberately awkward, layered, and independent of any single channel.
 
 ## References
 

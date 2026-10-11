@@ -12,7 +12,7 @@ image:
 
 Every mobile-banking MFA story ends the same way: the bank sends a one-time password to a phone number it does not control.
 
-On **February 8, 2022**, Mercy Wairimu Kariuki woke to alerts showing **KES 4,418,601** leaving her Diamond Trust Bank account ([TechCabal](https://techcabal.com/2026/07/13/kenyan-court-holds-banks-telcos-liable-over-sim-swap-fraud/)). Her line had been swapped two days earlier — and reported to Safaricom the same day.
+On **February 8, 2022**, Mercy Wairimu Kariuki woke to alerts showing **KES 4,418,601** leaving her Diamond Trust Bank account ([TechCabal](https://techcabal.com/2026/07/13/kenyan-court-holds-banks-telcos-liable-over-sim-swap-fraud/)). Her line had been swapped two days earlier and reported to Safaricom the same day.
 
 > **The key concept**
 > An SMS one-time password is not really a second factor. It is a bearer token held by whoever controls a phone number — and the number is administered by a third party, through a help-desk process, outside your bank's perimeter. MFA built on it fails whenever the number moves, the message is relayed, or the handset is compromised.
@@ -29,19 +29,19 @@ DTB argued its systems worked as designed (every transaction followed a correct 
 > "A bank cannot hide behind a customer's PIN when it is presented with a series of transactions that are so glaringly out of the ordinary that a reasonable banker would have been put on inquiry."
 {: .prompt-warning }
 
-Two findings matter: a correct PIN is no longer a defence — the burst of transfers to unrelated accounts was the signal the bank should have caught — and the telco and the bank each owe an **independent duty of care**.
+Two findings matter: a correct PIN is no longer a defence (the burst of transfers to unrelated accounts was the signal the bank should have caught), and the telco and the bank each owe an **independent duty of care**.
 
 ## Kenya: what the carrier's own numbers say
 
 Safaricom's chief corporate security officer Nick Mulila, in November 2024: *"In a month we get about 40 fraudulent swaps out of about 750K swaps"* — against roughly **28,000 swap requests a day** — and confirmed the telco **blocks M-PESA wallet access after agent-channel swaps** ([The Star](https://www.the-star.co.ke/business/kenya/2024-11-06-safaricom-cuts-sim-swap-fraud-to-40-in-every-750000-swaps)) — at 28,000 legitimate swaps a day, a permanent population of freshly re-bound numbers.
 
-In October 2022, the High Court in Milimani let businessman **Abdi Zeila** invite other subscribers into a class action after **KES 495,651** was taken from his NCBA account and M-PESA wallet, including a **KES 66,640 mobile loan** in his name. He was roaming abroad — a swap he could not have requested ([Nairobi Wire](https://nairobiwire.com/2022/10/man-sues-safaricom-after-losing-over-ksh490k-to-sim-swap-fraud.html), [Daily Nation](https://nation.africa/kenya/news/safaricom-hit-by-sim-swap-fraud-class-action-suit-3991258)).
+In October 2022, the High Court in Milimani let businessman **Abdi Zeila** invite other subscribers into a class action after **KES 495,651** was taken from his NCBA account and M-PESA wallet, including a **KES 66,640 mobile loan** in his name. He was roaming abroad: a swap he could not have requested ([Nairobi Wire](https://nairobiwire.com/2022/10/man-sues-safaricom-after-losing-over-ksh490k-to-sim-swap-fraud.html), [Daily Nation](https://nation.africa/kenya/news/safaricom-hit-by-sim-swap-fraud-class-action-suit-3991258)).
 
 The trend is worse: INTERPOL reports **SIM-swap fraud up 327% during 2025**, with **more than 123,000 fraudulent SIM cards** and an estimated **US$3.8 million** lifted from mobile wallets ([Dawan](https://www.dawan.africa/news/interpol-kenya-emerges-as-east-africas-cybercrime-hotspot-as-mobile-money-fraud-surges)). SIM-swap losses in Kenyan reporting stand at **Sh491.6 million**, against **Sh810.68 million** lost through mobile banking in 2024, over four times 2023's Sh182.41 million ([Nairobi Law Monthly](https://nairobilawmonthly.com/authorities-crack-down-on-cyber-cafes-as-sim-swap-fraud-surges/); see [Fraud Trends, Read as a Dataset](/posts/cbk-fraud-trend-analytics/)).
 
 ## Global: the regulator's own MFA got swapped
 
-On **January 9, 2024**, the U.S. SEC's @SECGov account on X posted a fake Bitcoin ETF approval. MFA had not failed — the number had moved:
+On **January 9, 2024**, the U.S. SEC's @SECGov account on X posted a fake Bitcoin ETF approval. MFA had not failed. The number had moved:
 
 > "Two days after the incident, in consultation with the SEC's telecom carrier, the SEC determined that the unauthorized party obtained control of the SEC cell phone number associated with the account in an apparent 'SIM swap' attack."
 {: .prompt-danger }
@@ -56,9 +56,9 @@ MGM Resorts' September 2023 incident cost **about $100 million** ([NBC News](htt
 
 ## Two more ways the code leaks
 
-**Real-time relay.** The 2022 "0ktapus" campaign used 169 phishing domains impersonating Okta sign-on pages and a kit that forwarded credentials and codes live to a Telegram bot: **9,931 credentials and 5,441 records containing MFA codes** across **136 organisations** ([Help Net Security, reporting Group-IB](https://www.helpnetsecurity.com/2022/08/25/0ktapus-twilio-cloudflare-phishers-targets/)). Nothing on the victim's phone registered a compromise.
+Real-time relay is the first. The 2022 "0ktapus" campaign used 169 phishing domains impersonating Okta sign-on pages and a kit that forwarded credentials and codes live to a Telegram bot: **9,931 credentials and 5,441 records containing MFA codes** across **136 organisations** ([Help Net Security, reporting Group-IB](https://www.helpnetsecurity.com/2022/08/25/0ktapus-twilio-cloudflare-phishers-targets/)). Nothing on the victim's phone registered a compromise.
 
-**On-device capture.** In August 2026, Group-IB documented "WindRelay": a **13-minute call impersonating a bank** gets a victim to install an app labelled with the bank's name, the SpyNote trojan takes the handset, a **loan is arranged in the victim's name**, and the card's contactless data is relayed live to a criminal device ([Malwarebytes](https://www.malwarebytes.com/blog/mobile/2026/08/new-android-malware-lets-criminals-use-your-bank-card-in-real-time)). When the phone is the second factor, owning the phone is the bypass.
+On-device capture is the second. In August 2026, Group-IB documented "WindRelay": a **13-minute call impersonating a bank** gets a victim to install an app labelled with the bank's name, the SpyNote trojan takes the handset, a **loan is arranged in the victim's name**, and the card's contactless data is relayed live to a criminal device ([Malwarebytes](https://www.malwarebytes.com/blog/mobile/2026/08/new-android-malware-lets-criminals-use-your-bank-card-in-real-time)). When the phone is the second factor, owning the phone is the bypass.
 
 ## Why SMS OTP fails at scale
 
@@ -141,7 +141,7 @@ The three amounts sum to exactly the KES 4,418,601 the court awarded. The PIN-on
 
 ## The bottom line
 
-SIM swapping is not exotic: it is a procurement problem wrapped in a phone call, turning the most common MFA in mobile banking into a single point of failure nobody in the chain fully owns. The Kariuki ruling settles accountability in Kenya — the PIN was correct, and the bank still pays. The engineering answer predates the problem: stop treating a phone number as proof of a person, treat a re-bind as a fraud signal, and hold high-risk movements behind a factor the carrier cannot reassign.
+SIM swapping is a procurement problem wrapped in a phone call, turning the most common MFA in mobile banking into a single point of failure nobody in the chain fully owns. The Kariuki ruling settles accountability in Kenya — the PIN was correct, and the bank still pays. The engineering answer predates the problem: stop treating a phone number as proof of a person, treat a re-bind as a fraud signal, and hold high-risk movements behind a factor the carrier cannot reassign.
 
 The regulator's own account got swapped. Yours is one help-desk call away.
 

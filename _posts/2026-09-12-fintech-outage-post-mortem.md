@@ -10,9 +10,9 @@ image:
 
 ## The status page said 30 minutes
 
-On **Friday 1 June 2018 at 14:35**, card payments across Europe started failing. Visa Europe's letter to the UK Treasury Committee records the sequence: a switch in a primary data centre suffered a "very rare, partial failure", and the secondary site — built to carry 100% of European traffic — could not take over. Worse, the failing primary kept trying to synchronise messages with the healthy site, so the backlog piled up *at* the backup and slowed it down further ([Guardian](https://www.theguardian.com/money/2018/jun/19/visa-admits-5m-payments-failed-over-a-broken-switch), [FStech](https://www.fstech.co.uk/fst/Visa_Data_Centre_Malfunction.php)).
+On **Friday 1 June 2018 at 14:35**, card payments across Europe started failing. Visa Europe's letter to the UK Treasury Committee records the sequence: a switch in a primary data centre suffered a "very rare, partial failure", and the secondary site (built to carry 100% of European traffic) could not take over. Worse, the failing primary kept trying to synchronise messages with the healthy site, so the backlog piled up *at* the backup and slowed it down further ([Guardian](https://www.theguardian.com/money/2018/jun/19/visa-admits-5m-payments-failed-over-a-broken-switch), [FStech](https://www.fstech.co.uk/fst/Visa_Data_Centre_Malfunction.php)).
 
-Service was not fully restored until **00:45 the next morning** — roughly ten hours, in which **5.2 million transactions failed**: 2.4 million in the UK, 2.8 million in the rest of Europe, affecting 1.7 million UK cards, or 10.4% of the cards in use.
+Service was not fully restored until **00:45 the next morning**, roughly ten hours. In that window **5.2 million transactions failed**: 2.4 million in the UK, 2.8 million in the rest of Europe, affecting 1.7 million UK cards, or 10.4% of the cards in use.
 
 > **The key concept**
 > Downtime minutes are a proxy for the wrong thing. An availability probe answers "can I reach you?" A payments incident asks "what value did you strand, how long were you degraded, and how much of it never came back?" Those are four different numbers, and only the last one shows up in customer complaints.
@@ -33,16 +33,16 @@ Three patterns repeat across those four. **Redundancy was part of the failure**:
 
 Regulators no longer accept "we detected it when customers called". DORA requires an initial notification **within 4 hours of classifying an incident as major, and no later than 24 hours from becoming aware**, an intermediate report at 72 hours and a final one at one month ([EBA](https://www.eba.europa.eu/activities/single-rulebook/regulatory-activities/operational-resilience/joint-technical-standards-major-incident-reporting)). In Kenya, the CBK's Guidance Note on Cybersecurity requires institutions to report incidents with a significant adverse impact within **24 hours**, plus quarterly reporting ([CBK](https://www.centralbank.go.ke/wp-content/uploads/2017/09/GUIDANCE-NOTE-ON-CYBERSECURITY-FOR-THE-BANKING-SECTOR.pdf), [Inside Privacy](https://www.insideprivacy.com/international/central-bank-of-kenya-issues-guidance-note-on-cybersecurity/)). And under the FCA's PS21/3, firms were required to have mapped and tested their ability to stay within **impact tolerances** for each important business service no later than 31 March 2025 ([FCA](https://www.fca.org.uk/publications/policy-statements/ps21-3-building-operational-resilience)).
 
-Every one of those clocks starts at *awareness* or *classification*. A detection lag of 90 minutes is not a dashboard aesthetic — it is the difference between a reportable incident and a missed deadline.
+Every one of those clocks starts at *awareness* or *classification*. A detection lag of 90 minutes is not a dashboard aesthetic. It is the difference between a reportable incident and a missed deadline.
 
 ## Turning the payment stream into post-mortem numbers
 
 Use the authorisation stream itself, not the uptime probe: bin it (15 minutes is a good stride), learn the day's expected shape from healthy bins, and compute four things:
 
-- **Deficit integral** — sum of (expected − actual approvals) across the degraded window: the stranded value, in transactions.
-- **Degraded vs hard-down window** — time below baseline versus time near zero.
-- **Detection latency by detector class** — when a level threshold fires versus a sequential test.
-- **Retry recovery ratio** — how many stranded approvals reappear as successful retries, and how long the drain takes.
+- **Deficit integral**: the stranded value in transactions, computed as the sum of (expected − actual approvals) across the degraded window.
+- **Degraded vs hard-down window**: time below baseline versus time near zero.
+- **Detection latency by detector class**: when a level threshold fires versus a sequential test.
+- **Retry recovery ratio**: how many stranded approvals reappear as successful retries, and how long the drain takes.
 
 The script below simulates a day (96 bins, diurnal demand, a two-hour brownout at 93% that never trips a 90% threshold, and a 30-minute hard stop) and measures it the way a post-mortem should.
 
