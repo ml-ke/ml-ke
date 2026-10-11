@@ -9,25 +9,25 @@ categories: [AI Engineering, LLM]
 tags: [self-hosting, open-source-llm, vllm, ollama, inference, cost-optimization]
 ---
 
-The balance of power in large language models shifted decisively in 2026. With Kimi K3 released as open weights, alongside GLM-5.2, Llama 4, Qwen 3, and DeepSeek V3, the era of proprietary-only frontier AI is over. The question is no longer whether you *can* run these models yourself — it's whether you *should*.
+The balance of power in large language models shifted decisively in 2026. With Kimi K3 released as open weights, alongside GLM-5.2, Llama 4, Qwen 3, and DeepSeek V3, the era of proprietary-only frontier AI is over. The question is no longer whether you *can* run these models yourself. It's whether you *should*.
 
 For consistent, production-grade workloads, the answer is increasingly yes. Here's why, and how.
 
 ## Why Self-Host?
 
-API pricing from the major providers has settled into a narrow band: GPT-5.6, Claude 4.5 Opus, and Grok 4.5 all hover around **$2 per million tokens** for input. That's affordable for prototyping. For a customer-facing chat application serving 100,000 conversations a day? The bill climbs past **$20,000 per month** — fast.
+API pricing from the major providers has settled into a narrow band: GPT-5.6, Claude 4.5 Opus, and Grok 4.5 all hover around **$2 per million tokens** for input. That's affordable for prototyping. For a customer-facing chat application serving 100,000 conversations a day, though, the bill climbs past **$20,000 per month** in a hurry.
 
-Self-hosting flips the economics. If you're running a 70B-parameter model in 4-bit quantisation on two RTX 4090s (roughly **$6,000 one-time hardware cost**), your marginal cost per token is electricity and cooling — typically **60–80% cheaper** than API pricing at scale. The breakeven point for most mid-size workloads is two to three months.
+Self-hosting flips the economics. If you're running a 70B-parameter model in 4-bit quantisation on two RTX 4090s (roughly **$6,000 one-time hardware cost**), your marginal cost per token is electricity and cooling. That's typically **60–80% cheaper** than API pricing at scale. The breakeven point for most mid-size workloads is two to three months.
 
-Beyond cost, self-hosting gives you data control (your prompts never leave your infrastructure), latency customisation (no shared inference queues), and model flexibility (swap between architectures as new ones drop — and new ones are dropping every week).
+Beyond cost, self-hosting gives you data control (your prompts never leave your infrastructure), latency customisation (no shared inference queues), and model flexibility (swap between architectures as new ones drop, and they drop every week).
 
-## The Tooling Landscape
+## The tooling landscape
 
 Three main inference engines dominate self-hosting today:
 
-### Ollama — Easiest for Development
+### Ollama: easiest for development
 
-[Ollama](https://ollama.com) is the fastest path from zero to running model. It wraps llama.cpp underneath, handles GPU detection, model downloading, and exposes a clean OpenAI-compatible API — all with a single command:
+[Ollama](https://ollama.com) is the fastest path from zero to running model. It wraps llama.cpp underneath, handles GPU detection, model downloading, and exposes a clean OpenAI-compatible API that you drive with a single command:
 
 ```bash
 ollama run llama3.2:70b
@@ -35,11 +35,11 @@ ollama run llama3.2:70b
 
 For experimentation and single-GPU setups, Ollama is the obvious choice. It supports GGUF quantised models, which means you can run a 13B model on a single consumer GPU with minimal performance loss. The trade-off: it's not built for high-throughput production serving. No continuous batching, limited request queuing, and no multi-node support.
 
-**Best for:** Prototyping, local development, personal use, teams sharing a single GPU workstation.
+Good for prototyping, local development, personal use, and teams sharing a single GPU workstation.
 
-### vLLM — Production Serving at Scale
+### vLLM: production serving at scale
 
-[vLLM](https://github.com/vllm-project/vllm) is the production workhorse. Its core innovation — **PagedAttention** — eliminates the memory fragmentation that plagues naive KV-cache management, enabling near-100% GPU utilisation. Combined with continuous batching, it dynamically packs incoming requests into the same forward pass, driving throughput far higher than batch-size-limited alternatives.
+[vLLM](https://github.com/vllm-project/vllm) is the production workhorse. Its core innovation, **PagedAttention**, eliminates the memory fragmentation that plagues naive KV-cache management, enabling near-100% GPU utilisation. Combined with continuous batching, it dynamically packs incoming requests into the same forward pass, driving throughput far higher than batch-size-limited alternatives.
 
 ```python
 # serve a model with vLLM's OpenAI-compatible server
@@ -51,17 +51,17 @@ vllm serve Qwen/Qwen3-72B-GPTQ-Int4 \
 
 vLLM also supports speculative decoding, prefix caching, and multi-LoRA serving — features that matter when you're optimising for latency and cost per token under real traffic.
 
-**Best for:** Production APIs, high-traffic chatbots, any workload where throughput and latency matter.
+It fits production APIs, high-traffic chatbots, and any workload where throughput and latency matter.
 
-### TGI — HuggingFace's Offering
+### TGI: HuggingFace's offering
 
 [Text Generation Inference](https://huggingface.co/docs/text-generation-inference) (TGI) is HuggingFace's own serving stack, tightly integrated with their model hub and the `transformers` ecosystem. It offers continuous batching, tensor parallelism, and watermarking, with first-class support for safetensors and custom kernels.
 
 TGI shines when you're already deep in the HuggingFace workflow — fine-tuning with PEFT, logging with `transformers`, or deploying models that use custom architectures not yet supported by vLLM.
 
-**Best for:** HuggingFace-native workflows, models with custom architectures, teams already on the HF platform.
+Reach for it on HuggingFace-native workflows, models with custom architectures, or teams already on the HF platform.
 
-## What Hardware Do You Actually Need?
+## What hardware do you actually need?
 
 The rise of 4-bit and 8-bit quantisation has made self-hosting surprisingly attainable. Here's what fits with today's hardware:
 
@@ -70,11 +70,11 @@ The rise of 4-bit and 8-bit quantisation has made self-hosting surprisingly atta
 - **70B models** (Llama 4 70B, DeepSeek V3): 140 GB VRAM full, 72 GB at 8-bit, 40 GB at 4-bit
 - **2.8T Kimi K3 MoE**: ~560 GB VRAM full, ~280 GB at 8-bit, ~160 GB at 4-bit
 
-A **70B model in 4-bit** fits comfortably on **two RTX 4090s** (48 GB total VRAM). That's a $6,000 workstation — or a $0.80/hour rental on Vast.ai — that replaces $20,000+/month in API costs for a comparable workload.
+A **70B model in 4-bit** fits comfortably on **two RTX 4090s** (48 GB total VRAM). That's a $6,000 workstation, or a $0.80/hour rental on Vast.ai, and it replaces $20,000+/month in API costs for a comparable workload.
 
 Kimi K3 at 2.8T parameters is a different beast. Its Mixture-of-Experts architecture means only a fraction of parameters activate per token (~450B active), but the full model still requires significant hardware. Early deployments use 4× A100-80GB or 2× H100 nodes with aggressive quantisation.
 
-### For African Engineers and Teams
+### For African engineers and teams
 
 Full self-hosting isn't always practical in African markets, where hardware import costs and electricity reliability are real constraints. The good news: there are excellent intermediate options:
 

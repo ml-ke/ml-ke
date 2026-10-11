@@ -11,15 +11,15 @@ image:
 
 ## The break has a clock, and it is not yours
 
-On **20 September 2019** the Reserve Bank of India redefined what a reconciliation break *is*. Under its harmonised TAT framework (in force **15 October 2019**), if a customer is debited but the beneficiary is not credited, the beneficiary bank must auto-reverse by **T+1** — T+5 for merchant payments — or pay **₹100 per day per transaction**, credited **"suo moto, without waiting for a complaint or claim from the customer"** ([RBI](https://www.rbi.org.in/commonman/English/scripts/Notification.aspx?Id=3074)).
+On **20 September 2019** the Reserve Bank of India redefined what a reconciliation break *is*. Under its harmonised TAT framework (in force **15 October 2019**), if a customer is debited but the beneficiary is not credited, the beneficiary bank must auto-reverse by **T+1** (T+5 for merchant payments) or pay **₹100 per day per transaction**, credited **"suo moto, without waiting for a complaint or claim from the customer"** ([RBI](https://www.rbi.org.in/commonman/English/scripts/Notification.aspx?Id=3074)).
 
-A customer-visible failure, a statutory deadline, a per-transaction penalty — and the customer removed from the detection loop: no ticket, no complaint, no error code tells you money is stuck. Only your reconciliation queue can find it, and only if that queue is *paged inside the clock*.
+A customer-visible failure, a statutory deadline, a per-transaction penalty, and the customer removed from the detection loop: no ticket, no complaint, no error code tells you money is stuck. Only your reconciliation queue can find it, and only if that queue is *paged inside the clock*.
 
 [Reconciliation analytics](/posts/reconciliation-analytics-fintech/), [anomaly detection](/posts/anomaly-detection-reconciliation/) and [outage post-mortems](/posts/fintech-outage-post-mortem/) already cover the detectors and the measurement. This post is the piece between them: money SLIs, burn-rate alerting, dedup, the page budget, the runbook, and the forced sweep after a restart.
 
 ## Integrity alerts are a different species
 
-SRE's oldest rule is to alert on **symptoms**, not causes. In payments the symptom is *money whose state is unknown* — not "detector 7 fired".
+SRE's oldest rule is to alert on **symptoms**, not causes. In payments the symptom is *money whose state is unknown*, not "detector 7 fired".
 
 **A detector firing is a cause.** `rules_engine_consumer_lag_high` leaves the on-call engineer to work out whether money is affected; "KES 1.4M unmatched, oldest 3h 10m" tells them who to call.
 
@@ -40,11 +40,11 @@ You cannot page on what you have not named. Six SLIs cover most payments stacks:
 | `clock_margin` | hours before the statutory reversal deadline | ≥ 6 h | page |
 | `silent_channel` | minutes since an always-breaking channel produced none | ≤ 90 min | investigate |
 
-Two rules make the table real. Set every objective **strictly inside the statutory clock** — a rule firing at T+0.9 of a T+1 deadline leaves a two-hour window at 02:00. And treat `clock_margin` as the countdown to automatic compensation: the SLI that makes a queue financial rather than technical.
+Two rules make the table real. Set every objective **strictly inside the statutory clock**. A rule firing at T+0.9 of a T+1 deadline leaves a two-hour window at 02:00. And treat `clock_margin` as the countdown to automatic compensation: the SLI that makes a queue financial rather than technical.
 
 ## Burn rate, in shillings
 
-The SRE Workbook's construction — alert on how fast the budget burns, across several windows ([SRE Workbook](https://sre.google/workbook/alerting-on-slos/)) — survives the change of unit: 2% of budget in 1 hour (burn rate 14.4) and 5% in 6 hours (6) page, 10% in 3 days (1) opens a ticket. Set the SLI at *unmatched value ≤ 0.1% of settled value over 30 days* and a KES 1bn/day base makes **burn rate 1.0 equal KES 694 per minute**. The Workbook also warns that with three windows configured one bad minute satisfies all three, and suggests a short confirmation window 1/12 the long one:
+The SRE Workbook's construction, which alerts on how fast the budget burns across several windows ([SRE Workbook](https://sre.google/workbook/alerting-on-slos/)), survives the change of unit: 2% of budget in 1 hour (burn rate 14.4) and 5% in 6 hours (6) page, 10% in 3 days (1) opens a ticket. Set the SLI at *unmatched value ≤ 0.1% of settled value over 30 days* and a KES 1bn/day base makes **burn rate 1.0 equal KES 694 per minute**. The Workbook also warns that with three windows configured one bad minute satisfies all three, and suggests a short confirmation window 1/12 the long one:
 
 ```yaml
 - alert: reconciliation_budget_burn
@@ -66,7 +66,7 @@ graph LR
 
 ## The page budget: why per-break paging always fails
 
-The SRE Book caps on-call load: one incident — root cause, remediation, postmortem, follow-ups — averages about **6 hours**, limiting a healthy rotation to **2 incidents per 12-hour shift**, median 0 ([SRE Book](https://sre.google/sre-book/being-on-call/)). Alerting that ignores that ceiling trains people to ignore alerts.
+The SRE Book caps on-call load: one incident (root cause, remediation, postmortem, follow-ups) averages about **6 hours**, limiting a healthy rotation to **2 incidents per 12-hour shift**, median 0 ([SRE Book](https://sre.google/sre-book/being-on-call/)). Alerting that ignores that ceiling trains people to ignore alerts.
 
 The demo below runs 720 one-minute bins of a break queue: a slow drift from minute 120 (a partner feed falling behind, climbing to KES 20,000/min) and a failover burst at minute 480. Four policies, same data:
 
@@ -77,7 +77,7 @@ The demo below runs 720 one-minute bins of a break queue: a slow drift from minu
 | C — burn rate 14.4× (1h + 5m) | 80 | **minute 238** | nothing — it never stops firing |
 | D — burn rate + group + 60-min silence | **5** | minute 238 | nothing it should |
 
-Policy B is what most finance shops run: plausible, and structurally blind to the drift that partner reconciliation problems actually produce. Policy C catches that drift two hours in — **KES 830,666 already unmatched** — but 80 pages is four times the shift's budget; Policy D, the same trigger with grouping, lands at 5.
+Policy B is what most finance shops run: plausible, and structurally blind to the drift that partner reconciliation problems actually produce. Policy C catches that drift two hours in, with **KES 830,666 already unmatched**, but 80 pages is four times the shift's budget; Policy D, the same trigger with grouping, lands at 5.
 
 What the table does not contain is a false-positive rate: alert fatigue in finance is an ownership problem before a maths problem.
 
@@ -102,10 +102,10 @@ Restarts manufacture reconciliation debt. When an issuer goes offline the networ
 
 So the sweep has a shape, and it is not "reconcile harder":
 
-1. **Cut off at a point of financial reference** — the last confirmed settlement position, not a deploy timestamp.
+1. **Cut off at a point of financial reference.** Use the last confirmed settlement position, not a deploy timestamp.
 2. **Replay with an idempotency key** on every message, so duplicates are suppressible rather than debatable.
 3. **Bucket into three**: matched, unmatched, duplicate-suppressed. The third is where retry surges hide.
-4. **Sweep before the clock, not after** — "restored" is a status, not a reconciliation ([TechCabal](https://techcabal.com/2025/11/03/ncba-works-to-restore-m-shwari-outage/) on M-Shwari).
+4. **Sweep before the clock, not after.** "Restored" is a status, not a reconciliation ([TechCabal](https://techcabal.com/2025/11/03/ncba-works-to-restore-m-shwari-outage/) on M-Shwari).
 
 ## The demo
 
@@ -226,11 +226,11 @@ The last line deserves a risk committee: leaving the shift's queue unreversed pa
 
 1. **Name the SLIs and their owners** before touching a detector.
 2. **Set objectives inside the statutory clock**, with `clock_margin` as the countdown.
-3. **Page on aggregate value and age**, never per line — 1,785 pages is one every 24 seconds.
+3. **Page on aggregate value and age**, never per line. 1,785 pages is one every 24 seconds.
 4. **One page per break group**, runbook link in the payload; the group key is your dedup contract.
 5. **Measure pages per shift against the 2-incident budget**, and treat a sustained breach as an incident of its own.
 6. **Alert on silence**, and never auto-close a break to clear a dashboard.
-7. **Sweep before the clock** — compensation is automatic; your detection does not get to be.
+7. **Sweep before the clock.** Compensation is automatic; your detection does not get to be.
 
 ## Key takeaways
 
