@@ -32,7 +32,7 @@ This post explores multi-agent patterns and builds a working system using LangGr
 | High reliability | Single point of failure | Redundancy and consensus |
 | Continuous operation | No built-in failover | Agent can monitor agents |
 
-## Multi-Agent Patterns
+## Multi-agent patterns
 
 ### 1. Supervisor/Worker (Hierarchical)
 
@@ -397,7 +397,7 @@ class MessageBus:
 ```
 {% endraw %}
 
-### Handoff Protocols
+### Handoff protocols
 
 In LangGraph, you can implement dynamic agent selection:
 

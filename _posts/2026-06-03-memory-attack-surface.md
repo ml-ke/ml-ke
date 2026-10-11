@@ -68,7 +68,7 @@ This is the **three-tier memory model** used by most agent frameworks today:
 
 The January 2026 EverMemOS paper [1] formalizes this further with **MemCells** (episodic traces encoding atomic facts and time-bounded foresight signals) and **MemScenes** (semantic clusters of related memories). Their reconstructive recollection mechanism performs agentic retrieval. It actively composes context from scattered memories, rather than just doing top-k similarity search. This is powerful, but it also means an injected memory cell has multiple pathways to influence future reasoning.
 
-## Attack Taxonomy
+## Attack taxonomy
 
 Memory attacks fall into four categories, each exploiting a different phase of the memory lifecycle:
 
@@ -312,7 +312,7 @@ The EverMemOS architecture [1] that inspired this post introduces several featur
 
 The survey paper "Toward Mnemonic Sovereignty" (arXiv:2604.16548) [8] captures the systemic issue: "In many documented attacks, the real failure is not that the retrieval mechanism is broken but that the system misattributes externally injected content as its own experience."
 
-## Real-World Impact
+## Real-world impact
 
 These aren't lab curiosities. Here's the documented damage:
 
@@ -334,7 +334,7 @@ The Slack AI incident of August 2024, while primarily a prompt injection attack,
 > - Survives **session boundaries** (persists in long-term memory)
 > {: .prompt-danger }
 
-## Defense Taxonomy
+## Defense taxonomy
 
 Defending agent memory requires a different approach than defending stateless LLM calls. Here's the framework:
 
@@ -434,7 +434,7 @@ Memory poisoning is the synthesis of all three: persistent storage + agentic ret
 > Memory poisoning will be the defining AI security challenge of 2026–2027. Every major agent framework is racing to add memory, and nearly every implementation treats memory as trusted by default. The window for getting this right is closing: once memory-augmented agents are handling financial transactions, medical records, and autonomous operations, a poisoned memory isn't a research curiosity; it's a disaster.
 > {: .prompt-warning }
 
-### Series Navigation
+### Series navigation
 
 - **Previous:** [Insecure Agent Design: When AI Has Too Much Agency]({% post_url 2026-06-01-insecure-agent-design %})
 - **Related:** [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %})

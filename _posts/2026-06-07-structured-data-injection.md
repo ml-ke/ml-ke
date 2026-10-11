@@ -42,7 +42,7 @@ Greshake et al. demonstrated this definitively in their landmark 2023 paper *"No
 
 PDF documents are one of the most common file formats ingested by enterprise RAG pipelines. Legal firms, financial institutions, and healthcare organizations all process PDFs at scale. But PDFs carry **rich metadata** (author names, titles, subjects, keywords, creation dates) that is almost never sanitized by ingestion pipelines.
 
-### The Exploit
+### The exploit
 
 A PDF metadata field like `/Title` or `/Subject` can contain arbitrary text. When a RAG pipeline extracts text from a PDF, most parsers include metadata in the extracted content. An attacker crafts a PDF whose metadata contains an injection payload:
 
@@ -129,7 +129,7 @@ The OWASP LLM Prompt Injection Prevention Cheat Sheet explicitly lists "hidden t
 
 JSON is the lingua franca of modern APIs. LLM applications ingest JSON constantly: tool call responses, API payloads, structured configuration files, database query results. A single JSON value can carry an entire injection payload without breaking the document's validity.
 
-### The Exploit
+### The exploit
 
 The attack exploits the fact that LLM-based agents treat JSON values as part of their reasoning context:
 
@@ -212,7 +212,7 @@ The critical insight: **JSON parsers validate structure, not semantics**. The pa
 
 CSV files are deceptively dangerous. They look harmless, just rows and columns of data. But when an LLM agent processes a CSV for analysis, every cell becomes part of the context window. A single crafted row can redirect the entire analysis.
 
-### The Exploit
+### The exploit
 
 ```python
 """
@@ -297,7 +297,7 @@ Three properties make CSV injection uniquely effective:
 
 Perhaps the most dangerous vector: natural-language-to-SQL agents that query databases and then process the results. The attack chain here is two-stage: first the agent generates SQL from a user's natural language request (prompt-to-SQL), then the database *results* themselves contain injection payloads that hijack the second-stage LLM processing.
 
-### The Exploit
+### The exploit
 
 ```python
 """
@@ -446,7 +446,7 @@ LLM context injection is fundamentally different. There is no interpreter bounda
 > SQL injection was solved by separating query structure from data values via prepared statements. LLMs have no equivalent mechanism. The StruQ paper (2024) [7] attempts to create one by fine-tuning models to only follow instructions in the *prompt portion* of a query, treating everything else as data. But this approach hasn't been widely adopted and doesn't defend against structured data that gets concatenated into the prompt portion by the application layer.
 > {: .prompt-tip }
 
-## Defensive Patterns
+## Defensive patterns
 
 ### 1. Content Isolation (Tagging)
 
@@ -575,7 +575,7 @@ def safe_pdf_extract(pdf_bytes: bytes) -> str:
 | **Primary defense** | Content isolation (tagging provenance) + pre-processing classifier + metadata stripping + structured prompt templates |
 | **Research foundation** | Greshake et al. (2023), PoisonedRAG (2025), Prompt-to-SQL (2025), OWASP LLM Top 10 (2025) |
 
-## Series Navigation
+## Series navigation
 
 - **Previous:** [Prompt Injection & LLM Security]({% post_url 2026-06-01-prompt-injection-llm-security %})
 - **Related:** [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %})

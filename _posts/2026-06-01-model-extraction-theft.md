@@ -98,7 +98,7 @@ When an API returns **logits** (raw, unnormalized scores before softmax) or **fu
 > A top-1 prediction leaks ~1 bit per query. A full probability distribution over 100k classes leaks ~17 bits per query. Over millions of queries, this difference is the gap between approximate and exact extraction.
 > {: .prompt-info }
 
-## Real Incidents
+## Real incidents
 
 These aren't hypothetical. Model extraction has been demonstrated repeatedly in the real world.
 
@@ -135,7 +135,7 @@ The shift from single-model APIs to **agentic systems**, where a model orchestra
 
 Every tool call and sub-agent invocation is a **probe opportunity**: each response reveals part of the system's internal architecture.
 
-## Technical Implementation
+## Technical implementation
 
 Let's implement two extraction attacks in Python. The first is a general black-box extraction. The second is a prompt-stealing attack against an LLM.
 
@@ -357,7 +357,7 @@ for i, (name, func) in enumerate([
 > These attacks work against real production LLM APIs today. The translation-based attack (Attack 2) has a higher success rate because it exploits the disconnect between the model's instruction-following capability and its ability to maintain secrecy through transformation.
 > {: .prompt-warning }
 
-## Defense Strategies
+## Defense strategies
 
 Defending against model extraction requires a **layered approach**. No single control is sufficient.
 
@@ -450,7 +450,7 @@ SUSPICIOUS_PATTERNS = {
 }
 ```
 
-## Key Takeaways
+## Key takeaways
 
 | Attack Type | Difficulty | Primary Defense | Business Impact |
 |---|---|---|---|

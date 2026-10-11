@@ -36,7 +36,7 @@ This is Blog Post 4 of the AI Hacking Series. In previous posts, we covered [Pro
 
 OWASP defines **Excessive Agency** as a vulnerability that arises when an LLM agent is granted capabilities that exceed what is strictly necessary for its function. The risk is amplified when the agent has access to tools that can modify, delete, or exfiltrate data, especially if a human is not in the loop.
 
-### Key Sub-Vulnerabilities
+### Key sub-vulnerabilities
 
 | Sub-Type | Description | Risk Level |
 |----------|-------------|------------|
@@ -61,7 +61,7 @@ A lot has changed since the OWASP Top 10 was first drafted:
 3. **Tool descriptions are attack vectors.** Attackers craft inputs that exploit how agents *select* tools
 4. **Autonomous action is the norm.** Agents are expected to execute without human babysitting
 
-## Real Incidents
+## Real incidents
 
 ### 1. The 2025 GitHub Issue Agent Attack
 
@@ -611,7 +611,7 @@ flowchart LR
     style H fill:#ff4444,color:#fff
 ```
 
-## Security Checklist
+## Security checklist
 
 Before deploying any AI agent in production, run through this checklist:
 
@@ -654,7 +654,7 @@ AI agents have changed how we interact with LLMs, from conversational partners t
 | **Framework** | Every tool call passes through: Permission Guard → Scope Validator → Rate Limiter → Audit Logger |
 | **Testing** | Red-team your agent's tool set as aggressively as you red-team its prompts |
 
-### Series Navigation
+### Series navigation
 
 - **Previous:** [Data Poisoning and Model Backdoors]({% post_url 2026-06-01-data-poisoning-model-backdoors %})
 - **▶ You are here: Insecure Agent Design: When AI Has Too Much Agency**

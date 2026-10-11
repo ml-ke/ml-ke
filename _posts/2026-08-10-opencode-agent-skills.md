@@ -8,7 +8,7 @@ image:
   alt: A robot arm pulling labeled skill cards from a filing cabinet, with a terminal cursor at the front — the progressive disclosure metaphor for agent skills
 ---
 
-## The Setup
+## The setup
 
 For the past few weeks we've been running a two-agent workflow: our main assistant (Hermes) plans, orchestrates, and verifies, while **OpenCode** (a provider-agnostic, open-source AI coding agent) does the heavy implementation. The interesting part isn't the delegation. It's the layer we added on top: **177 agent skills** installed from 9 official sources, so the coding agent writes code *with institutional knowledge*.
 
@@ -19,7 +19,7 @@ This post is a field report from that setup: what we configured, how agent skill
 
 ## What we installed
 
-### The Agent
+### The agent
 
 OpenCode is a terminal-based AI coding agent that works with many model providers. We run it on the **OpenCode Zen free tier**, which gives us access to several free models. Because free model availability changes constantly (one documented model, `deepseek-v4-flash-free`, was disabled while still listed on the docs page), we built a small orchestration layer:
 
@@ -31,7 +31,7 @@ python3 ~/.hermes/scripts/opencode_coder.py --smoke   # live-test model availabi
 
 The wrapper caches working models for 6 hours, live-tests before critical runs (`--fresh`), and falls back through a preference list when a model gets rate-limited or disabled. The rule we learned the hard way: **docs lie; only a live smoke test confirms a model works right now.**
 
-### The Skills
+### The skills
 
 Skills live in `~/.config/opencode/skills/`, one folder per skill, each containing a `SKILL.md`:
 
@@ -51,7 +51,7 @@ Skills live in `~/.config/opencode/skills/`, one folder per skill, each containi
 
 The largest single block is **77 Trail of Bits security skills**: fuzzing with libFuzzer, Semgrep rule authoring, YARA rules, supply-chain auditing, property-based testing. That's the reason we picked OpenCode: the ecosystem of skills is deep enough to turn a generic coding agent into a security-aware one.
 
-### The Wiring
+### The wiring
 
 Three more pieces complete the setup:
 
@@ -162,7 +162,7 @@ We run a **second** skill library inside Hermes (bug-bounty methodology, IDOR te
 
 All our agents share one auto-picked free model. OpenCode supports per-agent `model` overrides: the docs suggest a fast model for `plan`/`explore` and a stronger one for `build`. With free-model availability in constant flux, we'd extend our live-testing wrapper to maintain a **per-agent** model assignment rather than one global list.
 
-## The Verdict
+## The verdict
 
 The core idea (a coding agent with a curated, progressively-disclosed skill library) works. Even with the rough edges, the Trail of Bits security skills alone made the setup worth it: our coding agent goes into a task knowing how to write Semgrep rules and audit for supply-chain risk, without us pasting methodology into every prompt.
 

@@ -23,7 +23,7 @@ In this post, we'll transform our ReAct agent into a production-ready service co
 - Horizontal scaling with worker pools
 - Caching to avoid redundant LLM calls
 
-## Architecture Overview
+## Architecture overview
 
 A production agent system separates concerns into layers:
 
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 ```
 {% endraw %}
 
-### Starting Workers
+### Starting workers
 
 ```bash
 # Terminal 1: Start Redis (if not running)
@@ -417,7 +417,7 @@ class IdempotentToolExecutor:
 ```
 {% endraw %}
 
-## Rate Limiting
+## Rate limiting
 
 Protect downstream APIs and control costs:
 
@@ -473,7 +473,7 @@ class MultiAPI RateLimiter:
 ```
 {% endraw %}
 
-## Cost Management
+## Cost management
 
 {% raw %}
 ```python
@@ -558,7 +558,7 @@ class LLMCache:
 ```
 {% endraw %}
 
-## Production Checklist
+## Production checklist
 
 | Concern | Solution |
 |---------|----------|

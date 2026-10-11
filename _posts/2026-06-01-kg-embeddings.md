@@ -255,7 +255,7 @@ class ComplEx(nn.Module):
         return pos_loss + neg_loss
 ```
 
-## Training Pipeline
+## Training pipeline
 
 Here's a complete training loop that works with all three models:
 
@@ -341,7 +341,7 @@ def train_kge(model, train_triples, num_entities, epochs=500, batch_size=1024, l
     return history
 ```
 
-## Evaluation Protocol
+## Evaluation protocol
 
 Link prediction evaluation follows the "filtered" setting (Bordes et al., 2013), where we remove any corrupted triples that happen to be valid:
 
@@ -394,7 +394,7 @@ def evaluate(model, test_triples, all_triples, num_entities):
     }
 ```
 
-## Benchmark Results
+## Benchmark results
 
 We trained all three models on FB15k-237 with embedding dimension 200:
 
@@ -439,7 +439,7 @@ graph LR
 
 Knowledge Graph Embeddings transform symbolic triples into continuous vectors, enabling link prediction and downstream ML. The evolution from TransE → ComplEx → RotatE shows how modeling more relational patterns (symmetry, inversion, composition) directly improves performance.
 
-### Key Takeaways
+### Key takeaways
 
 - **TransE** is simple and fast but can't model symmetry
 - **RotatE** uses complex rotations to capture all major relational patterns

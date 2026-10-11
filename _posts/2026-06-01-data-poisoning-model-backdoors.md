@@ -128,7 +128,7 @@ This is especially dangerous because:
 - Wikipedia and other public sources are trivially editable
 - The poisoned document persists until someone notices and reverts it
 
-## Real-World Incidents
+## Real-world incidents
 
 ### PyTorch Dependency Confusion (December 2022)
 
@@ -600,7 +600,7 @@ Data poisoning and model backdoors change the threat model for AI. In traditiona
 - Differential privacy helps, but it costs accuracy.
 - RAG poisoning is an emerging threat. The knowledge base is a new attack surface with no mature defenses.
 
-### Series Navigation
+### Series navigation
 
 - **Previous:** [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
 - **▶ You are here: Data Poisoning and Model Backdoors: Training-Time Attacks on AI**

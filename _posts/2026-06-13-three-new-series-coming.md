@@ -89,7 +89,7 @@ You don't need all three to benefit. Jump in at any layer. But if you follow all
 
 ---
 
-## The Roadmap
+## The roadmap
 
 | Date | Series | Topic |
 |:-----|:-------|:------|
@@ -125,7 +125,7 @@ Our earlier posts, from [Prompt Injection: The #1 LLM Security Risk](/posts/prom
 
 ---
 
-## Next Up
+## Next up
 
 **Setting Up Your AI Dev Environment**. The Agents series kicks off June 15 with a complete walkthrough: Python environment setup, LLM provider configuration, tool-calling scaffolding, and a minimal end-to-end agent you can run in under 30 minutes.
 
