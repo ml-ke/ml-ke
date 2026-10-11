@@ -16,7 +16,7 @@ Not every bank heist needs a badge. In October 2025, a 20-year-old university st
 
 ## Privilege granted faster than trust is established
 
-The NCBA timeline is a study in inverted security. The contractor's first day on the job was also his first minute of abuse: no break-in period, no supervised shadowing, no staged rollout. Court filings from the DCI Banking Fraud Investigation Unit describe Nandwa accessing the system at 0533 hours and implementing an amendment through a logic change that caused the integration service to return a "Success" status for every MTN withdrawal request — **even when funds were insufficient or the account did not exist** ([Nairobi Times](https://nairobitimez.co.ke/2025/06/18/banking-fraud-unit-allowed-to-detain-software-developer-suspected-of-defrauding-bank-of-sh57-million/)).
+The NCBA timeline is a study in inverted security. The contractor's first day on the job was also his first minute of abuse: no break-in period, no supervised shadowing, no staged rollout. Court filings from the DCI Banking Fraud Investigation Unit describe Nandwa accessing the system at 0533 hours and implementing an amendment through a logic change that caused the integration service to return a "Success" status for every MTN withdrawal request, and it did so **even when funds were insufficient or the account did not exist** ([Nairobi Times](https://nairobitimez.co.ke/2025/06/18/banking-fraud-unit-allowed-to-detain-software-developer-suspected-of-defrauding-bank-of-sh57-million/)).
 
 Three problems compound here:
 
@@ -38,18 +38,18 @@ The lesson: **monitoring tuned to availability, not integrity, cannot see an int
 Each control below targets a specific minute of the attack:
 
 - **Least privilege + just-in-time (JIT) access.** Grant privileged access only for the maintenance window, with an approval workflow and a hard expiry. Nandwa should have received scoped entitlements to the mobile-money integration module at 5:30 — and lost them at 6:00. Standing vendor access turns every future employee into a standing risk.
-- **Two-person control (dual authorization).** A second authorized engineer should approve any production change. The 5:33 amendment — a logic change on the money path — is precisely the change that must never ship on one person's say-so.
+- **Two-person control (dual authorization).** A second authorized engineer should approve any production change. A logic change on the money path like the 5:33 amendment is precisely the kind that must never ship on one person's say-so.
 - **Session recording and replay.** Terminal and screen sessions recorded and streamed to a SIEM make the 5:33 session reconstructible: who, what commands, what diff. Replay capability compresses forensics from weeks to minutes.
 - **Break-glass accounts with instant alerting.** Emergency access should be the only path into live production, and every use should page security in real time with the account, the timestamp, and the commands executed. Unexplained 5:30 AM vendor logins then become alerts, not footnotes.
-- **UEBA (user and entity behavior analytics).** ML models learn each engineer's normal behaviour — systems touched, hours worked, command patterns. A first-day contractor altering core integration logic at 5:33 AM is a massive deviation from every baseline, and should score as an anomaly in real time, not eight days later.
-- **Quarterly access reviews and vendor offboarding.** Recertify every entitlement quarterly and revoke access the day a contract ends. The attack surface here was not a vulnerability in code — it was a vendor relationship with unlimited, persistent reach into production.
+- **UEBA (user and entity behavior analytics).** ML models learn each engineer's normal behaviour: systems touched, hours worked, command patterns. A first-day contractor altering core integration logic at 5:33 AM is a massive deviation from every baseline, and should score as an anomaly in real time, not eight days later.
+- **Quarterly access reviews and vendor offboarding.** Recertify every entitlement quarterly and revoke access the day a contract ends. The attack surface here was a vendor relationship with unlimited, persistent reach into production rather than a flaw in the code.
 
 > **The control that matters most:** make privileged access *ephemeral, approved, recorded, and reviewed*. Each property independently breaks this attack; together they make it impossible to run silently.
 {: .prompt-info }
 
 ## Conclusion
 
-The insider threat in fintech is not a people problem — it is a privilege problem. The NCBA fraud required no vulnerability scan, no phishing email, and no malware; it required a contractor, a maintenance window, and three minutes of unsupervised access to a live money system. Insider threat cannot be patched away, but it can be engineered away: least privilege, JIT access, dual authorization, session recording, break-glass alerting, UEBA baselines, and ruthless access reviews. In a sector where a three-minute window moves half a billion shillings, the price of standing trust is measured in exactly the minutes you did not control. For the step-by-step prevention playbook, see [How AI, Automation and AI-Enabled Security Could Have Stopped the NCBA Heist](/posts/ai-automation-fintech-security-playbook/).
+The insider threat in fintech is a privilege problem. The NCBA fraud required no vulnerability scan, no phishing email, and no malware; it required a contractor, a maintenance window, and three minutes of unsupervised access to a live money system. Insider threat cannot be patched away, but it can be engineered away: least privilege, JIT access, dual authorization, session recording, break-glass alerting, UEBA baselines, and ruthless access reviews. In a sector where a three-minute window moves half a billion shillings, the price of standing trust is measured in exactly the minutes you did not control. For the step-by-step prevention playbook, see [How AI, Automation and AI-Enabled Security Could Have Stopped the NCBA Heist](/posts/ai-automation-fintech-security-playbook/).
 
 ## References
 

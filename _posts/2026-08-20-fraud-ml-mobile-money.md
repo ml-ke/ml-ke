@@ -10,9 +10,9 @@ image:
 
 ## The fraud that slipped through for eight days
 
-In June 2025, NCBA Bank Rwanda lost approximately Ksh 57.5 million (USD 446,000) in one of the region's most instructive mobile money frauds. A contractor engaged for system maintenance modified the bank's MTN Mobile Money (MoMo) integration so that balance validation was bypassed — for exactly 70 accounts. Between June 6 and 14, those "ghost" accounts executed 260 withdrawals of money that did not exist, and the fraud was discovered only during an end-of-week reconciliation when NCBA compared its records against MTN Rwanda's ([254 News](https://254news.co.ke/how-a-three-minute-code-change-triggered-sh57-5-million-ncba-fraud/), [Kenya Insights](https://kenyainsights.com/how-ncba-software-engineer-opened-floodgates-for-mobile-banking-system-fraud/), [Business Daily](https://www.businessdailyafrica.com/bd/corporate/companies/software-developer-held-on-sh58m-ncba-fraud-claim-5086392)).
+In June 2025, NCBA Bank Rwanda lost approximately Ksh 57.5 million (USD 446,000) in one of the region's most instructive mobile money frauds. A contractor engaged for system maintenance modified the bank's MTN Mobile Money (MoMo) integration so that balance validation was bypassed for exactly 70 accounts. Between June 6 and 14, those "ghost" accounts executed 260 withdrawals of money that did not exist, and the fraud was discovered only during an end-of-week reconciliation when NCBA compared its records against MTN Rwanda's ([254 News](https://254news.co.ke/how-a-three-minute-code-change-triggered-sh57-5-million-ncba-fraud/), [Kenya Insights](https://kenyainsights.com/how-ncba-software-engineer-opened-floodgates-for-mobile-banking-system-fraud/), [Business Daily](https://www.businessdailyafrica.com/bd/corporate/companies/software-developer-held-on-sh58m-ncba-fraud-claim-5086392)).
 
-The uncomfortable question for ML teams: why did no system flag this within hours? Because the attack was engineered to look normal at the transaction level. This post walks through the model architecture that would have caught it.
+The uncomfortable question for ML teams: why did no system flag this within hours? Because the attack was engineered to look normal at the transaction level. A different model architecture would have caught it.
 
 ## Why supervised models miss novel fraud
 
@@ -60,7 +60,7 @@ Fraud is rare — often well under 0.1% of transactions. Accuracy is meaningless
 
 ## Monitoring: catching the "invisible" attack
 
-The NCBA fraud changed the *distribution* of features — the mismatch flag went from ~0% to 100% on one channel — even though no single transaction screamed. That is exactly what **drift monitoring** is for. Track:
+The NCBA fraud changed the *distribution* of features (the mismatch flag went from ~0% to 100% on one channel) even though no single transaction screamed. That is exactly what **drift monitoring** is for. Track:
 
 - **PSI (Population Stability Index)** per feature per channel; PSI > 0.25 on the consistency features means something structural changed.
 - **Prediction distribution shifts**: if the share of transactions scoring above 0.8 on a channel doubles, alert — regardless of labels.
@@ -81,11 +81,11 @@ Which layers catch 70 accounts withdrawing against un-debited balances within ho
 3. **Graph + KYC**: a dense cluster of new, unverified accounts sharing counterparties.
 4. **Monitoring**: PSI spike on the MoMo channel even if thresholds were lax.
 
-None of these require knowing the attack in advance. That is the point: in mobile money, the next fraud will not look like the last one — build for novelty.
+None of these require knowing the attack in advance. That is the point: in mobile money, the next fraud will not look like the last one. Build for novelty.
 
 ## Conclusion
 
-The NCBA incident cost Ksh 57.5 million because detection relied on reconciliation after the fact. An ML defence built on consistency features, velocity, graph structure, drift monitoring, and cost-aware thresholds would have surfaced the 70 accounts in hours — not days. For fintech ML teams in East Africa, the lesson is direct: your models must be built to catch what you have never seen.
+The NCBA incident cost Ksh 57.5 million because detection relied on reconciliation after the fact. An ML defence built on consistency features, velocity, graph structure, drift monitoring, and cost-aware thresholds would have surfaced the 70 accounts within hours rather than days. For fintech ML teams in East Africa, the lesson is direct: your models must be built to catch what you have never seen.
 
 ## References
 

@@ -14,11 +14,7 @@ So far, we've built single agents that can reason, remember, and use tools. But 
 
 Consider a research task: "Analyze the impact of AI on Kenya's agricultural sector." A single agent must search, analyze economics, understand agriculture, and write a report. A multi-agent system, however, can deploy:
 
-- **Research Agent**: Searches for latest data and publications
-- **Economics Agent**: Analyzes economic indicators and market data
-- **Agriculture Agent**: Evaluates farming practices and crop impacts
-- **Writer Agent**: Synthesizes findings into a coherent report
-- **Supervisor Agent**: Coordinates the team, delegates tasks, resolves conflicts
+A research agent searches for the latest data and publications, an economics agent analyzes economic indicators and market data, and an agriculture agent evaluates farming practices and crop impacts. A writer agent synthesizes the findings into a coherent report, while a supervisor agent coordinates the team, delegates tasks, and resolves conflicts.
 
 This post explores multi-agent patterns and builds a working system using LangGraph for stateful orchestration and CrewAI for role-based teams.
 
@@ -44,7 +40,7 @@ User → Supervisor → [Researcher, Analyst, Writer]
                      Synthesized Result
 ```
 
-### 2. Round Robin / debate
+### 2. Round robin / debate
 
 Agents take turns contributing. Useful for brainstorming, critique, and refinement.
 
@@ -52,7 +48,7 @@ Agents take turns contributing. Useful for brainstorming, critique, and refineme
 Agent A → Agent B → Agent C → Agent A (loop)
 ```
 
-### 3. Consensus / Voting
+### 3. Consensus / voting
 
 Multiple agents independently solve the same problem and vote on the best answer. High reliability, but expensive.
 
@@ -468,11 +464,11 @@ class AgentTracer:
 
 Multi-agent systems are powerful but expensive. A well-prompted single agent often outperforms a multi-agent team on:
 
-1. **Narrow, well-defined tasks** — one model has all the context
-2. **Latency-sensitive applications** — no inter-agent handoff overhead
-3. **Simple tool chains** — sequential tool calls don't need orchestration
+1. Narrow, well-defined tasks — one model has all the context
+2. Latency-sensitive applications — no inter-agent handoff overhead
+3. Simple tool chains — sequential tool calls don't need orchestration
 
-**Rule of thumb**: Start with a single agent. Add agents only when you need specialized expertise, parallel execution, or reliability through redundancy.
+Rule of thumb: start with a single agent. Add agents only when you need specialized expertise, parallel execution, or reliability through redundancy.
 
 ## Conclusion
 
@@ -485,7 +481,7 @@ Key takeaways:
 - Each agent handoff adds latency and token usage
 - Add agents incrementally, not preemptively
 
-**In the next post**, we'll tackle observability: how to see what your agents are doing, trace failures, and monitor costs.
+In the next post, we'll tackle observability: how to see what your agents are doing, trace failures, and monitor costs.
 
 ## Further Reading
 

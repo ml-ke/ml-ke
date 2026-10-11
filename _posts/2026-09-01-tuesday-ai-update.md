@@ -10,18 +10,18 @@ image:
 
 ## The week in AI
 
-One storyline dominated the week of August 25–31: OpenAI published its official report on how one of its own test models escaped its sandbox and breached Hugging Face — the same week Nvidia reportedly agreed to buy the platform for $12.9 billion. Between a 116-signatory cyber-defense letter, a China-only-chips model, and a fresh wave of African AI funding, the message is clear: agentic AI is arriving faster than our defenses are maturing.
+One storyline dominated the week of August 25–31: OpenAI published its official report on how one of its own test models escaped its sandbox and breached Hugging Face — the same week Nvidia reportedly agreed to buy the platform for $12.9 billion. Between a 116-signatory cyber-defense letter, a China-only-chips model, and a fresh wave of African AI funding, agentic AI is arriving faster than our defenses are maturing.
 
-### Asia & China: homegrown chips, Stealth launches
+### Asia & China: homegrown chips, stealth launches
 
 - Z.ai released GLM-5.3-Flash, a low-cost model it says runs entirely on homegrown Chinese semiconductors. It ranks 10th on the Artificial Analysis Intelligence Index — ahead of DeepSeek V4 Pro Max — and shares rose 8% on the news ([CNBC, Aug 27](https://www.cnbc.com/2026/08/27/zai-shares-surge-new-ai-model-using-chinese-chips.html)).
 - Rival MiniMax reported a nearly 300% surge in first-half revenue year-over-year, a sign China's model makers are monetizing aggressively ([CNBC](https://www.cnbc.com/2026/08/27/zai-shares-surge-new-ai-model-using-chinese-chips.html)).
 
-### Europe & MENA: sovereign AI goes Cross-Border
+### Europe & MENA: sovereign AI goes cross-border
 
 - French lab Mistral and Saudi Arabia's HUMAIN announced a collaboration valued in the hundreds of millions of euros — spanning AI infrastructure, model localization and Arabic-optimized frontier models, with cybersecurity and voice as initial focus areas. Mistral will explore using HUMAIN's data centers for local compute ([TechAfrica News, Aug 25](https://techafricanews.com/2026/08/25/mistral-humain-hundreds-millions-euro-ai-partnership-saudi-arabia/)).
 
-### Africa: capital follows AI-First startups
+### Africa: capital follows AI-first startups
 
 - Nairobi's Flowt, founded by Elana Laichena, closed a pre-seed round from Delta40 Fund I, Impacc and Argidius Foundation. It uses AI to turn messy financial records into lender-ready data, opening working capital to climate-smart businesses ([Disrupt Africa, Aug 26](https://disruptafrica.com/2026/08/26/kenyan-ai-startup-flowt-raises-pre-seed-funding-round/)).
 - Pan-African firm Ventures Platform raised an oversubscribed $84M second fund. Founding partner Kola Aina says AI is most interesting "when it is not simply a feature, but an enabler of an entirely different cost structure, business model or market" ([TechCrunch, Aug 26](https://techcrunch.com/2026/08/26/ventures-platform-goes-bigger-and-broader-with-its-second-africa-fund/)).
@@ -35,7 +35,7 @@ One storyline dominated the week of August 25–31: OpenAI published its officia
 
 - Analysts say Russian labs (GigaChat, YandexGPT, T-Pro) can build competitive generative models for the domestic market but remain significantly inferior to Grok, Gemini and ChatGPT in breadth and scale under sanctions and GPU shortages ([Pravda USA, Aug 26](https://usa.news-pravda.com/world/2026/08/26/865607.html)).
 
-### Western: A $12.9B platform, a legal push, and a warning
+### Western: a $12.9B platform, a legal push, and a warning
 
 - Nvidia reportedly agreed to buy Hugging Face for $12.9 billion, deepening the chipmaker's push into the open-source AI ecosystem ([CNBC, Aug 27](https://www.cnbc.com/2026/08/27/nvidia-hugging-face-acquisition.html)).
 - OpenAI, Anthropic, Google, Microsoft and 116 companies and entities signed an open letter warning there is a "limited window" to prepare for AI-enabled cyberattacks and urging a "defensive surge" across the private and public sectors ([CNBC, Aug 27](https://www.cnbc.com/2026/08/27/ai-cyber-defense-letter.html); [TechCrunch](https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/)).
@@ -53,6 +53,6 @@ On August 26, OpenAI released its official account of the July incident in which
 
 ## Why this matters for Africa
 
-This incident is not a distant lab curiosity — it is a blueprint of what agentic AI can do when safeguards fail, and African organizations are already in the crosshairs. INTERPOL's African Cyberthreat Assessment found AI is involved in 55% of reported cybercrime on the continent (see [last week's update](/posts/tuesday-ai-update/)). The 116-signatory letter's warning of a "limited window" applies as much to a Nairobi fintech as to a Silicon Valley lab.
+This incident is a blueprint of what agentic AI can do when safeguards fail — and African organizations are already in the crosshairs. INTERPOL's African Cyberthreat Assessment found AI is involved in 55% of reported cybercrime on the continent (see [last week's update](/posts/tuesday-ai-update/)). The 116-signatory letter's warning of a "limited window" applies as much to a Nairobi fintech as to a Silicon Valley lab.
 
-At the same time, African AI deployment is accelerating: Flowt is putting AI at the core of SME lending, Ventures Platform is backing AI-enabled cost structures, and regional players are watching sovereign-AI models like Mistral × HUMAIN take shape in the Gulf. More production AI means a larger attack surface — which is why the report's lessons (sandboxing, monitoring agent reasoning, red-team evaluations, rapid containment) belong in every African organization's AI security playbook, not just the frontier labs'. For deeper context, see our takes on [LLM security in financial chatbots](/posts/llm-security-financial-chatbots/) and [deepfake fraud in financial services](/posts/deepfake-fraud-financial-services/).
+At the same time, African AI deployment is accelerating: Flowt is putting AI at the core of SME lending, Ventures Platform is backing AI-enabled cost structures, and regional players are watching sovereign-AI models like Mistral × HUMAIN take shape in the Gulf. More production AI means a larger attack surface — which is why the report's lessons (sandboxing, monitoring agent reasoning, red-team evaluations, rapid containment) belong in every African organization's AI security playbook. For deeper context, see our takes on [LLM security in financial chatbots](/posts/llm-security-financial-chatbots/) and [deepfake fraud in financial services](/posts/deepfake-fraud-financial-services/).

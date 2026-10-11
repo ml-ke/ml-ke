@@ -10,9 +10,9 @@ image:
 
 ## A world of AI in four weeks
 
-July 2026 was a defining month for artificial intelligence, driven less by any single breakthrough than by the sheer breadth of activity across every inhabited continent. While much of Western media coverage focuses on OpenAI, Anthropic, and Google, the real story of July 2026 is one of **decentralisation**: China is closing the gap, Europe is building sovereign infrastructure, the Middle East is creating AI compute as a national utility, Africa is nurturing a new generation of AI-native startups, Brazil is making a $4B+ state bet on AI infrastructure, and Russia is finding workarounds to sanctions.
+July 2026 was a defining month for artificial intelligence, driven less by any single breakthrough than by the sheer breadth of activity across every inhabited continent. While much of Western media coverage focuses on OpenAI, Anthropic, and Google, the story of July 2026 is one of **decentralisation**: China is closing the gap, Europe is building sovereign infrastructure, the Middle East is creating AI compute as a national utility, Africa is nurturing a new generation of AI-native startups, Brazil is making a $4B+ state bet on AI infrastructure, and Russia is finding workarounds to sanctions.
 
-This is your monthly update. It covers the developments that matter most, organised by region and tied to the themes we've been exploring on this blog.
+This monthly update covers the developments that matter most, organised by region and tied to the themes we've been exploring on this blog.
 
 > **Why this matters to you:** Whether you're building AI agents, deploying models, or exploring AI's role in Africa, the same forces are reshaping technology worldwide. Chip sovereignty, open-source model releases, sovereign cloud architectures, and AI-as-infrastructure are themes that connect Silicon Valley to Lagos to São Paulo.
 {: .prompt-info }

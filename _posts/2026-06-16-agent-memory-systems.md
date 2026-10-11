@@ -10,7 +10,7 @@ image:
 
 ## Introduction
 
-The agent we built in the [previous post](/posts/agent-fundamentals/) is stateless. Each conversation starts fresh — no memory of past interactions, no learning from previous runs, no persistent knowledge. In production, that's unacceptable.
+The agent we built in the [previous post](/posts/agent-fundamentals/) is stateless. Each conversation starts fresh, with no memory of past interactions, no learning from previous runs, no persistent knowledge. In production, that's unacceptable.
 
 **Memory is what transforms a one-shot LLM call into a learning system.** It enables agents to:
 
@@ -19,11 +19,11 @@ The agent we built in the [previous post](/posts/agent-fundamentals/) is statele
 - Store user preferences and learned behaviors (persistent memory)
 - Retrieve relevant information without re-processing everything (retrieval-augmented generation)
 
-In this post, we'll build three memory systems from scratch — conversation buffers, vector-based long-term memory, and SQLite-backed persistent storage — and learn when to use each.
+In this post, we'll build three memory systems from scratch (conversation buffers, vector-based long-term memory, and SQLite-backed persistent storage) and learn when to use each.
 
 ## Short-Term memory: conversation buffers
 
-The simplest form of agent memory is the **conversation buffer** — a sliding window of recent messages. The LLM sees the last N turns and uses them as context.
+The simplest form of agent memory is the **conversation buffer**: a sliding window of recent messages. The LLM sees the last N turns and uses them as context.
 
 ### Sliding window buffer
 
@@ -59,7 +59,7 @@ class SlidingWindowBuffer:
 {% endraw %}
 
 **Pros**: Simple, low latency, predictable token usage.  
-**Cons**: Drops older context completely — the agent "forgets" anything beyond the window.
+**Cons**: Drops older context completely. The agent "forgets" anything beyond the window.
 
 ### Token-Limited buffer
 
@@ -156,7 +156,7 @@ New summary:"""
 
 ## Long-Term memory: vector databases
 
-Short-term memory is lost when the session ends. **Long-term memory** persists useful information — facts, insights, user preferences — across sessions. Vector databases are the standard approach: embed information into vectors and retrieve relevant chunks via semantic similarity.
+Short-term memory is lost when the session ends. **Long-term memory** persists useful information (facts, insights, user preferences) across sessions. Vector databases are the standard approach: embed information into vectors and retrieve relevant chunks via semantic similarity.
 
 ### Using ChromaDB for Long-Term memory
 
@@ -437,7 +437,7 @@ class PersistentStore:
 
 Memory is what separates a toy agent from a production system. By layering short-term buffers, vector-based long-term memory, and SQLite persistent storage, you create an agent that learns over time, maintains context, and can be debugged and monitored.
 
-**In the next post**, we'll dive deep into tool use and function calling — how to define robust tool schemas, handle errors gracefully, and compose tools into powerful workflows.
+**In the next post**, we'll cover tool use and function calling: how to define robust tool schemas, handle errors gracefully, and compose tools into powerful workflows.
 
 ## Further Reading
 

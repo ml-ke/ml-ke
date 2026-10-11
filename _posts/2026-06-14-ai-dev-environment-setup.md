@@ -10,9 +10,9 @@ image:
 
 > **Series context:** This is the prerequisite guide for our upcoming **Building AI Agents** series starting tomorrow. If you want to code along (and you should!), get your environment ready today.
 
-Building AI agents means working with multiple languages, runtimes, API providers, and git workflows — all at once. A clean, reproducible development environment isn't just nice to have; it's what separates "it works on my machine" from "it works in production."
+Building AI agents means working with multiple languages, runtimes, API providers, and git workflows — all at once. A clean, reproducible development environment is what separates "it works on my machine" from "it works in production."
 
-Here's exactly what you'll need, step by step.
+Here's what you'll need.
 
 ## 1. Python environment management
 
@@ -95,7 +95,7 @@ Every AI agent talks to external APIs. Managing those keys securely is non-negot
 | **Groq** | [console.groq.com/keys](https://console.groq.com/keys) |
 | **Hugging Face** | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) |
 
-### Never Hardcode keys
+### Never hardcode keys
 
 ```bash
 # .env file (ADD TO .gitignore)
@@ -164,7 +164,7 @@ chore: update dependencies
 
 ## 5. VS code / IDE setup for AI development
 
-### Recommended Extensions
+### Recommended extensions
 
 | Extension | Purpose |
 |-----------|---------|
@@ -176,7 +176,7 @@ chore: update dependencies
 | **YAML** (redhat.vscode-yaml) | Config file validation |
 | **GitLens** (eamodio.gitlens) | Git blame annotations |
 
-### Settings.json Snippets
+### Settings.json snippets
 
 ```json
 {
@@ -195,7 +195,7 @@ chore: update dependencies
 
 ## 6. Quick start: clone and run
 
-Let's make sure everything works with a real test:
+Run this to confirm everything works:
 
 ```bash
 # Clone our starter repo
@@ -235,17 +235,17 @@ Run this checklist once you're done:
 | 4 | API key set | `echo $OPENAI_API_KEY` → starts with `sk-` |
 | 5 | Git configured | `git config --list` → name + email |
 
-## 7. Pro tips from the Trenches
+## 7. Pro tips from the trenches
 
-- **Use `pyproject.toml`** instead of `requirements.txt` for new projects — it handles dependency trees and dev dependencies better.
-- **Pin your dependencies** with `pip freeze > requirements.txt` before shipping. Reproducibility matters.
-- **Set up pre-commit hooks** for linting and secrets detection: `pip install pre-commit && pre-commit install`.
-- **Use `python-dotenv`** over sourcing `.env` directly — it's cross-platform and handles edge cases.
-- **Keep your Docker images lean** — start with `python:3.12-slim`, not `python:3.12`.
+- Use `pyproject.toml` instead of `requirements.txt` for new projects — it handles dependency trees and dev dependencies better.
+- Pin your dependencies with `pip freeze > requirements.txt` before shipping. Reproducibility matters.
+- Set up pre-commit hooks for linting and secrets detection: `pip install pre-commit && pre-commit install`.
+- Use `python-dotenv` over sourcing `.env` directly — it's cross-platform and handles edge cases.
+- Keep your Docker images lean — start with `python:3.12-slim`, not `python:3.12`.
 
 ---
 
-**Tomorrow: Building AI Agents from Scratch** — We'll write our first agent with function calling, streaming responses, and a clean tool-calling loop. No frameworks. Just Python and the API.
+**Tomorrow: Building AI Agents from Scratch** — We'll write our first agent with function calling, streaming responses, and a clean tool-calling loop, using plain Python and the API rather than a framework.
 
 Get your environment ready tonight so you can focus on the code. See you tomorrow.
 
