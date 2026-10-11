@@ -15,14 +15,14 @@ image:
 
 In our [previous tutorial]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %}), we built a Knowledge Graph of the African Tech Ecosystem. But a graph is more than just a storage mechanism—it's a powerful structure for **analysis**.
 
-In this post, we'll dive into **Graph Algorithms**. We'll use them to uncover hidden patterns, identify influential players, and detect communities within our ecosystem.
+In this post, we'll work through **Graph Algorithms**. We'll use them to uncover hidden patterns, identify influential players, and detect communities within our ecosystem.
 
 > **Key Concept**
 > 
 > **Graph Data Science (GDS)** is the application of graph algorithms to find patterns, clusters, and importance in connected data.
 {: .prompt-info }
 
-## Setting Up Neo4j graph data science (GDS)
+## Setting up Neo4j graph data science (GDS)
 
 First, ensure you have the **Graph Data Science (GDS) Library** installed in your Neo4j instance. If you're using Neo4j Desktop, you can install it via the "Plugins" tab.
 
@@ -39,7 +39,7 @@ from graphdatascience import GraphDataScience
 gds = GraphDataScience("bolt://localhost:7687", auth=("neo4j", "password"))
 ```
 
-## 1. Centrality algorithms: finding Influencers
+## 1. Centrality algorithms: finding influencers
 
 Centrality algorithms identify the most important nodes in a graph.
 
@@ -75,7 +75,7 @@ High PageRank scores indicate startups that have attracted investment from highl
 
 Community detection algorithms find groups of nodes that are more densely connected to each other than to the rest of the network.
 
-### Louvain Modularity
+### Louvain modularity
 
 The **Louvain method** is excellent for detecting hierarchical communities. It can reveal "ecosystem hubs" – e.g., the "Fintech Cluster" or the "Nairobi Hub".
 

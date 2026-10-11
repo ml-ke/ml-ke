@@ -442,7 +442,7 @@ def validate_file_operation(path: str, operation: str = "read") -> str:
     return str(resolved)
 ```
 
-### Rate limiting and session Quotas
+### Rate limiting and session quotas
 
 An agent shouldn't be able to execute 1,000 tool calls in a minute. Here's a more complete rate limiter:
 

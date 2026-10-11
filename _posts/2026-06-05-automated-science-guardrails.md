@@ -25,7 +25,7 @@ This post maps the threat landscape of autonomous AI research pipelines and buil
 
 ## The state of autonomous research
 
-### AutoResearchClaw: what It actually does
+### AutoResearchClaw: what it actually does
 
 AutoResearchClaw is a real paper (arXiv:2605.20025) from the AIMING Lab, authored by Jiaqi Liu, Shi Qiu, Mairui Li, and 33 others. The key claims, verified against the paper and GitHub repository:
 

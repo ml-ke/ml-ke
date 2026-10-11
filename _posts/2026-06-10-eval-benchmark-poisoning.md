@@ -100,7 +100,7 @@ This happened in **all five attempts**. Follow-up experiments showed that newer 
 
 ---
 
-## Mermaid: the contamination Spectrum
+## Mermaid: the contamination spectrum
 
 ```mermaid
 flowchart LR

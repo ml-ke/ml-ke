@@ -192,7 +192,7 @@ for i in range(100):
 
 ## Adaptive learning rate methods
 
-### The Motivation
+### The motivation
 
 Different parameters often require different learning rates:
 - **Sparse features** need larger updates (they update infrequently)

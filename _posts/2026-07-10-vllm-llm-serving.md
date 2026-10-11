@@ -82,7 +82,7 @@ class ContinuousBatchingScheduler:
 ```
 {% endraw %}
 
-## Setting Up vLLM
+## Setting up vLLM
 
 vLLM provides an OpenAI-compatible API server, making it drop-in replaceable with OpenAI's API for compatible clients.
 
@@ -231,7 +231,7 @@ Typical results (on 1x A100 80 GB with Llama 3.1 8B):
 
 6. **Consider tensor parallelism** for models that don't fit on one GPU — `--tensor-parallel-size 2` splits the model across 2 GPUs with minimal overhead (<5%).
 
-## When vLLM Is and isn't the right choice
+## When vLLM is and isn't the right choice
 
 **Use vLLM when:**
 - You're serving decoder-only transformer models (Llama, Mistral, Qwen, etc.)

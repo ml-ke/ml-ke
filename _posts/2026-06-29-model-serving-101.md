@@ -306,7 +306,7 @@ def shutdown_event():
 
 For most serving scenarios, **async with batching** hits the sweet spot — you get high GPU utilization and reasonable latency.
 
-## Putting It all together
+## Putting it all together
 
 The path from notebook to production API looks like this:
 

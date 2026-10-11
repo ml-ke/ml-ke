@@ -125,7 +125,7 @@ graph LR
 > - Plateau indicating convergence
 {: .prompt-tip }
 
-## Variants and Extensions
+## Variants and extensions
 
 Modern deep learning rarely uses vanilla gradient descent. Common variants include:
 

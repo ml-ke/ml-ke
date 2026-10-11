@@ -67,7 +67,7 @@ graph TD
 
 ## Popular GNN architectures
 
-### 1. Graph Convolutional networks (GCN)
+### 1. Graph convolutional networks (GCN)
 GCNs are the "Hello World" of GNNs. They use a specific aggregation rule that approximates a spectral convolution.
 
 $$ h_v^{(k)} = \sigma \left( \sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{1}{\sqrt{\text{deg}(v)\text{deg}(u)}} W^{(k)} h_u^{(k-1)} \right) $$

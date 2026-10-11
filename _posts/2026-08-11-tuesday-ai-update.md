@@ -24,7 +24,7 @@ But there was plenty of movement elsewhere: China's model labs are racing toward
 - South America: Brazil doubles down. Brasília and São Paulo are becoming major AI event hubs, with the first AI Summit Brasil positioning itself as Latin America's largest AI ecosystem gathering. Korean president Lee Jae-myung's South America tour also pushed AI trade ties with Brazil, deepening what analysts call a mineral-to-models partnership. *(Sources: ChosunBiz, Summit de I.A. Brasil)*
 - Russia: Yandex hits back. Yandex publicly denied claims that its AI is built entirely on Chinese models, insisting it continues its own fundamental research. Meanwhile Sber's GigaChat and Yandex's YandexGPT remain the domestic alternatives of choice, since they need no VPN, accept ruble payments, and keep data in Russia. *(Sources: WWW1.ru, AgentSunrise)*
 
-## Spotlight: INTERPOL's African Cyberthreat assessment 2026
+## Spotlight: INTERPOL's African cyberthreat assessment 2026
 
 The headline number, **AI involved in 55% of reported cybercrimes across Africa**, deserves unpacking. This is the mundane, industrialized use of generative AI in everyday attacks: phishing emails written with near-perfect local language fluency, deepfake voice calls impersonating executives, and AI-generated investment scam pages that are indistinguishable from legitimate fintech.
 

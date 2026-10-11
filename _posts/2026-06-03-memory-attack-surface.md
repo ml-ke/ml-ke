@@ -298,7 +298,7 @@ Where $\oplus$ denotes context concatenation.
 
 The critical insight: **memory poisoning requires orders of magnitude less injected data than model poisoning**. AgentPoison achieves its effect with < 0.1% of the memory store poisoned, compared to model backdoors that typically require 1–10% of training data [5].
 
-## Why EverMemOS Magnifies the risk
+## Why EverMemOS magnifies the risk
 
 The EverMemOS architecture [1] that inspired this post introduces several features that, while powerful, expand the attack surface:
 

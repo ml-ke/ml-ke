@@ -275,7 +275,7 @@ def run_agent(user_query: str, tools: list[Tool], model: str = "gpt-4o", max_ste
 ```
 {% endraw %}
 
-### Step 5: Run It
+### Step 5: Run it
 
 {% raw %}
 ```python
