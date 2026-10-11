@@ -13,9 +13,9 @@ image:
 
 ## Introduction
 
-Knowledge Graphs store facts as triples — `(head, relation, tail)` — but real-world KGs are notoriously **incomplete**. The productive fact that "M-KOPA raised a Series D round" might be missing from your startup KG even though all the entities are present. How do we **reason over the graph** to predict these missing links?
+Knowledge Graphs store facts as triples `(head, relation, tail)`, but real-world KGs are notoriously **incomplete**. The productive fact that "M-KOPA raised a Series D round" might be missing from your startup KG even though all the entities are present. How do we **reason over the graph** to predict these missing links?
 
-In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we covered KG theory — triples, ontologies, and the RDF model. In the [second post]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %}), we built a real KG of the East African tech ecosystem in Neo4j. Now it's time to make that KG **intelligent** using **Graph Neural Networks (GNNs)**.
+In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we covered KG theory: triples, ontologies, and the RDF model. In the [second post]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %}), we built a real KG of the East African tech ecosystem in Neo4j. Now it's time to make that KG **intelligent** using **Graph Neural Networks (GNNs)**.
 
 > **What We'll Build**
 >
@@ -24,17 +24,17 @@ In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we
 
 ## Why GNNs for Knowledge Graphs?
 
-Traditional KG reasoning methods — like TransE, RotatE, and ComplEx (covered in our [KG Embeddings post]({% post_url 2026-06-01-kg-embeddings %})) — learn **static embeddings** per entity. Once trained, the embedding for "M-KOPA" doesn't change even if new facts about M-KOPA are added to the graph.
+Traditional KG reasoning methods like TransE, RotatE, and ComplEx (covered in our [KG Embeddings post]({% post_url 2026-06-01-kg-embeddings %})) learn **static embeddings** per entity. Once trained, the embedding for "M-KOPA" doesn't change even if new facts about M-KOPA are added to the graph.
 
 GNNs solve this by learning a **message-passing function** that propagates information through the graph structure. Each node's representation is updated based on its neighbors and the relations connecting them. This gives GNNs three key advantages:
 
-1. **Inductive capability** — GNNs can compute embeddings for unseen entities at inference time if their neighborhood structure is known.
-2. **Structural awareness** — A node's representation depends on its local graph context, not just a lookup table.
-3. **Multi-hop reasoning** — Stacking multiple GNN layers enables reasoning over paths of length 2, 3, or more in the KG.
+1. Inductive capability: GNNs can compute embeddings for unseen entities at inference time if their neighborhood structure is known.
+2. Structural awareness: a node's representation depends on its local graph context rather than on a lookup table.
+3. Multi-hop reasoning: stacking multiple GNN layers enables reasoning over paths of length 2, 3, or more in the KG.
 
-## The Message Passing Paradigm
+## Message passing
 
-At the heart of every GNN is the **message passing** operation. For a node $v$ at layer $l$, we aggregate information from its neighbors $N(v)$:
+Every GNN is built around the **message passing** operation. For a node $v$ at layer $l$, we aggregate information from its neighbors $N(v)$:
 
 $$
 h_v^{(l+1)} = \sigma\left( \sum_{u \in N(v)} W^{(r)} h_u^{(l)} + W_0 h_v^{(l)} \right)
@@ -79,11 +79,11 @@ flowchart TD
 
 *Figure: Entity A receives messages from its neighbors B and C (via relation-specific transformations), plus its own features through a self-loop. The aggregated result is transformed by a non-linearity to produce the updated representation.*
 
-## Implementing R-GCN from Scratch
+## Implementing R-GCN from scratch
 
 Let's implement a **Relational Graph Convolutional Network** in PyTorch. R-GCN extends standard GCN to handle multiple relation types, each with its own transformation matrix.
 
-### The R-GCN Layer
+### The R-GCN layer
 
 ```python
 import torch
@@ -171,9 +171,9 @@ class RGCNLayer(nn.Module):
         return out
 ```
 
-### The Full R-GCN Model
+### The full R-GCN model
 
-Stacking multiple R-GCN layers gives us multi-hop reasoning capability. We also add a **score function** for link prediction — typically a simple bilinear decoder that scores triples `(h, r, t)`:
+Stacking multiple R-GCN layers gives us multi-hop reasoning capability. We also add a **score function** for link prediction, typically a simple bilinear decoder that scores triples `(h, r, t)`:
 
 $$
 f(h, r, t) = h^\top W_r \, t
@@ -256,9 +256,9 @@ class RGCN(nn.Module):
 > A bilinear decoder is the simplest scoring function that captures **interactions** between the head embedding, the relation transformation, and the tail embedding. It's the decoder used in the original R-GCN paper (Schlichtkrull et al., 2018) and works well for link prediction.
 {: .prompt-tip }
 
-### Training Loop with Negative Sampling
+### Training loop with negative sampling
 
-Knowledge Graphs only contain **positive** triples — facts we know to be true. To train a link prediction model, we need **negative** triples (non-facts) to contrast against. The standard approach is **negative sampling**: corrupt either the head or tail of a true triple and treat the result as a negative example.
+Knowledge Graphs only contain **positive** triples: the facts we know to be true. To train a link prediction model, we need **negative** triples (non-facts) to contrast against. The standard approach is **negative sampling**: corrupt either the head or tail of a true triple and treat the result as a negative example.
 
 ```python
 def train_step(
@@ -306,9 +306,9 @@ $$
 \alpha_{vu} = \frac{\exp\left(\text{LeakyReLU}\left(a^\top [W h_v \| W h_u]\right)\right)}{\sum_{k \in N(v)} \exp\left(\text{LeakyReLU}\left(a^\top [W h_v \| W h_k]\right)\right)}
 $$
 
-For KGs, we extend this with relation-aware attention — the attention weight depends on the relation connecting the nodes:
+For KGs, we extend this with relation-aware attention, where the attention weight depends on the relation connecting the nodes:
 
-### Relation-Aware GAT Layer
+### Relation-aware GAT layer
 
 ```python
 class RelationalGATLayer(nn.Module):
@@ -387,7 +387,7 @@ class RelationalGATLayer(nn.Module):
 > **GAT vs R-GCN: When to Use Which**
 >
 > - **R-GCN** is simpler, faster to train, and works well when relation types are well-defined and not too numerous.
-> - **GAT** shines when neighbor importance varies — e.g., in a social network KG, friends-of-friends might be less relevant than direct collaborators.
+> - **GAT** shines when neighbor importance varies, e.g., in a social network KG, friends-of-friends might be less relevant than direct collaborators.
 > - For KGs with 500+ relation types, R-GCN with basis decomposition (not shown here but in the original paper) is more parameter-efficient.
 {: .prompt-warning }
 
@@ -434,7 +434,7 @@ for epoch in range(50):
         print(f"Epoch {epoch:3d} | Loss: {loss:.4f}")
 ```
 
-## Evaluation Metrics
+## Evaluation metrics
 
 Link prediction is evaluated by **ranking** all possible tails (or heads) for a given triple and measuring where the correct answer falls.
 
@@ -485,7 +485,7 @@ def evaluate(model, test_triples, num_entities):
     return {"MRR": mrr, "Hits@1": hits_1, "Hits@3": hits_3, "Hits@10": hits_10}
 ```
 
-### Expected Results on WN18RR
+### Expected results on WN18RR
 
 | Model | MRR | Hits@1 | Hits@3 | Hits@10 |
 |-------|-----|--------|--------|---------|
@@ -497,10 +497,10 @@ def evaluate(model, test_triples, num_entities):
 
 > **Filtered vs Raw Ranking**
 >
-> In filtered ranking, we remove all other true triples from the candidate list before computing the rank of the test triple. This prevents false negatives — cases where a corrupted triple happens to be a true fact that exists elsewhere in the KG. All benchmarks use **filtered** ranking.
+> In filtered ranking, we remove all other true triples from the candidate list before computing the rank of the test triple. This prevents false negatives, cases where a corrupted triple happens to be a true fact that exists elsewhere in the KG. All benchmarks use **filtered** ranking.
 {: .prompt-info }
 
-## Multi-hop Reasoning with Stacked Layers
+## Multi-hop reasoning with stacked layers
 
 A single GNN layer propagates information over direct neighbors. Stacking $L$ layers allows information to flow along paths of length $L$, enabling **multi-hop reasoning**.
 
@@ -536,11 +536,11 @@ flowchart LR
 
 *Figure: After three layers of message passing, Safaricom's embedding contains information about Zola Electric, enabling the model to infer implicit relationships.*
 
-## Beyond Link Prediction
+## Beyond link prediction
 
 GNNs for KGs aren't limited to link prediction. Here are two other critical tasks:
 
-### Entity Classification
+### Entity classification
 
 Classify nodes into categories based on their neighborhood. For example, in our tech KG, classify startups as "Fintech", "Healthtech", or "Agritech" based on who invested in them and who they partner with.
 
@@ -558,9 +558,9 @@ class EntityClassifier(nn.Module):
         return self.classifier(embs[node_indices])
 ```
 
-### Relation Prediction
+### Relation prediction
 
-Predict the relation type between two entities — useful for schema inference and ontology completion:
+Predict the relation type between two entities, useful for schema inference and ontology completion:
 
 ```python
 def score_relations(model, head_idx, tail_idx, num_rels):
@@ -571,7 +571,7 @@ def score_relations(model, head_idx, tail_idx, num_rels):
     return model.score_triples(heads, tails, rels)
 ```
 
-## Production Considerations
+## Production considerations
 
 When deploying GNN-based KG reasoning at scale, consider:
 
@@ -585,9 +585,9 @@ When deploying GNN-based KG reasoning at scale, consider:
 
 ## Conclusion
 
-Graph Neural Networks bring **deep learning to structured knowledge**, enabling models that reason over entity relationships, predict missing facts, and classify nodes — all by propagating information through the graph structure. R-GCN and GAT are the foundational architectures, and understanding them opens the door to more advanced models like CompGCN, T-GCN, and KG-BERT.
+Graph Neural Networks bring **deep learning to structured knowledge**, enabling models that reason over entity relationships, predict missing facts, and classify nodes, all by propagating information through the graph structure. R-GCN and GAT are the foundational architectures, and understanding them opens the door to more advanced models like CompGCN, T-GCN, and KG-BERT.
 
-### Key Takeaways
+### Key takeaways
 
 | Concept | Key Insight |
 |---------|-------------|
@@ -602,8 +602,8 @@ Graph Neural Networks bring **deep learning to structured knowledge**, enabling 
 
 This series continues with two more posts:
 
-- **Next:** [Knowledge Graphs in Production]({% post_url 2026-06-01-kg-production %}) — scaling, indexing, and deploying KG pipelines
-- **Final:** [Knowledge Graphs Meet LLMs]({% post_url 2026-06-01-kg-llm-rag %}) — combining KG reasoning with large language models for question answering and fact verification
+- Next: [Knowledge Graphs in Production]({% post_url 2026-06-01-kg-production %}) covers scaling, indexing, and deploying KG pipelines
+- Final: [Knowledge Graphs Meet LLMs]({% post_url 2026-06-01-kg-llm-rag %}) combines KG reasoning with large language models for question answering and fact verification
 
 ## References
 
@@ -622,4 +622,4 @@ This series continues with two more posts:
 
 ---
 
-*Your KG is only as smart as your reasoning engine. Make yours a GNN.* 🧠
+*Your KG is only as smart as your reasoning engine. Make yours a GNN.*

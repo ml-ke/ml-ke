@@ -16,9 +16,9 @@ Every developer building on LLMs eventually hits the same wall: **a single promp
 - Write code, run it, check the output, and fix bugs iteratively?
 - Search the web, synthesize findings, and compile a report?
 
-These tasks require **agency** — the ability to perceive an environment, reason about it, take actions, and observe results. That's what separates an LLM call from an **AI agent**.
+These tasks require **agency**: the ability to perceive an environment, reason about it, take actions, and observe results. That's what separates an LLM call from an **AI agent**.
 
-In this post, we'll strip away the frameworks and build a working AI agent from scratch using nothing but Python, the OpenAI API, and a simple loop. You'll understand exactly how ReAct (Reasoning + Acting) works under the hood — knowledge that will serve you whether you end up using LangChain, CrewAI, or building custom solutions.
+In this post, we'll strip away the frameworks and build a working AI agent from scratch using nothing but Python, the OpenAI API, and a simple loop. You'll understand exactly how ReAct (Reasoning + Acting) works under the hood. That knowledge will serve you whether you end up using LangChain, CrewAI, or building custom solutions.
 
 ## What Makes an Agent?
 
@@ -30,7 +30,7 @@ An AI agent is a system that combines three components:
 | **Reasoning** | Decides what to do next | LLM generates thoughts and action plans |
 | **Action** | Interacts with the environment | Function calls, API requests, code execution |
 
-The key insight: **the loop** — perception → reasoning → action → observation → reasoning → ... — is what gives agents emergent problem-solving abilities. Each iteration lets the agent refine its understanding based on real feedback.
+The key insight: **the loop** (perception → reasoning → action → observation → reasoning → ...) is what gives agents emergent problem-solving abilities. Each iteration lets the agent refine its understanding based on real feedback.
 
 ### Agent vs. Simple LLM Call
 
@@ -58,9 +58,9 @@ An agent, in contrast, would:
 ```
 {% endraw %}
 
-## The ReAct Pattern
+## The ReAct pattern
 
-The **ReAct** pattern (Reasoning + Acting, introduced by Yao et al., 2022) provides a structured way to implement the agent loop. It adds explicit reasoning traces — "thoughts" — between observations and actions, dramatically improving the LLM's ability to handle complex, multi-step tasks.
+The **ReAct** pattern (Reasoning + Acting, introduced by Yao et al., 2022) provides a structured way to implement the agent loop. It adds explicit reasoning traces ("thoughts") between observations and actions, dramatically improving the LLM's ability to handle complex, multi-step tasks.
 
 A ReAct loop follows this structure:
 
@@ -205,7 +205,7 @@ Available tools:
 
 ### Step 4: The Agent Loop
 
-Here's the core — the loop that keeps the agent going until it's done:
+The core is the loop that keeps the agent going until it's done:
 
 {% raw %}
 ```python
@@ -325,9 +325,9 @@ Final Answer: Here's what I found:
 2. **145 × 37** = 5,365
 ```
 
-The agent autonomously decomposed a multi-part query, used two different tools, and synthesized the results. No hard-coded flow — just reasoning + action.
+The agent autonomously decomposed a multi-part query, used two different tools, and synthesized the results. No flow is hard-coded. It's just reasoning + action.
 
-## Making It Robust
+## Making it robust
 
 Our barebones agent works, but production agents need more:
 
@@ -350,7 +350,7 @@ def run_agent_with_retry(tool_func, retries=2, **kwargs):
 
 ### Structured Output (Function Calling)
 
-Modern LLMs support native function calling — structured JSON output with schema validation. This is more reliable than parsing Action/Input from free text:
+Modern LLMs support native function calling: structured JSON output with schema validation. This is more reliable than parsing Action/Input from free text:
 
 {% raw %}
 ```python
@@ -384,16 +384,16 @@ response = client.chat.completions.create(
 
 | Scenario | ReAct Good Fit? | Why |
 |----------|----------------|-----|
-| Multi-step research | ✅ Excellent | Iterative search + synthesis |
-| Data pipelines | ✅ Good | Can adapt to intermediate results |
-| Simple Q&A | ❌ Overkill | Single LLM call is faster/cheaper |
-| Real-time chatbots | ⚠️ Depends | Latency from multi-step loops |
+| Multi-step research | Yes Excellent | Iterative search + synthesis |
+| Data pipelines | Yes Good | Can adapt to intermediate results |
+| Simple Q&A | No Overkill | Single LLM call is faster/cheaper |
+| Real-time chatbots | Partial Depends | Latency from multi-step loops |
 
 ## Conclusion
 
-We've built a working AI agent from scratch using the ReAct pattern — ~80 lines of Python that can search, calculate, reason, and compose results. The core insight is simple: **a reasoning loop around tool calls unlocks capabilities far beyond a single LLM prompt.**
+We've built a working AI agent from scratch using the ReAct pattern. It's ~80 lines of Python that can search, calculate, reason, and compose results. The core insight is simple: **a reasoning loop around tool calls unlocks capabilities far beyond a single LLM prompt.**
 
-This architecture is the foundation upon which every agent framework — LangGraph, CrewAI, AutoGen — is built. Understanding it at this level means you can debug issues, optimize performance, and design custom agents that aren't constrained by any framework's assumptions.
+This architecture is the foundation upon which every agent framework (LangGraph, CrewAI, AutoGen) is built. Understanding it at this level means you can debug issues, optimize performance, and design custom agents that aren't constrained by any framework's assumptions.
 
 **In the next post**, we'll tackle one of the hardest problems in agent design: **memory**. How do agents remember what they've done across sessions? We'll build short-term buffers, long-term vector stores, and persistent memory systems with ChromaDB.
 

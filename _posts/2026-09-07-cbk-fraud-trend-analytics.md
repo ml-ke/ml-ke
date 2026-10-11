@@ -10,39 +10,39 @@ image:
 
 ## The regulator's table is an analytics dataset
 
-Every year the Central Bank of Kenya publishes the Financial Sector Stability Report, and Table 14 — "Fraud cases and Exposure" — tells the sector's fraud story in six rows. The 2024 edition, released in September 2025, deserves a close read because the story is not the obvious one: reported cyber-fraud cases in banking **more than doubled from 173 to 353**, the amount exposed grew from **KSh 680.9 million to KSh 1,963.2 million**, and the actual loss nearly quadrupled from **KSh 412.5 million to KSh 1,594.4 million**.
+Every year the Central Bank of Kenya publishes the Financial Sector Stability Report, and Table 14 ("Fraud cases and Exposure") tells the sector's fraud story in six rows. The 2024 edition, released in September 2025, deserves a close read because the story is not the obvious one: reported cyber-fraud cases in banking **more than doubled from 173 to 353**, the amount exposed grew from **KSh 680.9 million to KSh 1,963.2 million**, and the actual loss nearly quadrupled from **KSh 412.5 million to KSh 1,594.4 million**.
 
 > **Why this matters to an analytics team**
 > Totals hide the signal. The same table that shows "fraud went up" also shows *where* it went up — which channels, which fraud types, which ratios. Losses did not grow evenly; they **changed shape**. The mix, the conversion rate and the severity per case tell you which controls broke and which ones work.
 {: .prompt-info }
 
-The second read is more interesting than the first: **exposure grew 2.9×, loss grew 3.9×, recovery only 1.4×**. The gap is the real story — the fraud engine scaled faster than the recovery engine, so losses are a *rising percentage of attempts* the banks fail to claw back.
+The second read is more interesting than the first: **exposure grew 2.9×, loss grew 3.9×, recovery only 1.4×**. The gap is the real story: the fraud engine scaled faster than the recovery engine, so losses are a *rising percentage of attempts* the banks fail to claw back.
 
 ## Where the money actually moved
 
-Table 14 splits the totals into six fraud types (mobile banking, online banking, card, identity theft, computer fraud, internet scam — full rows in the script below). Three observations an analytics lead should act on:
+Table 14 splits the totals into six fraud types: mobile banking, online banking, card, identity theft, computer fraud, internet scam (full rows in the script below). Three observations an analytics lead should act on:
 
-1. **Mobile banking became the fraud channel.** Its loss rose 344%, from KSh 182.4 million to **KSh 810.7 million**, lifting its share of all losses from 44.2% to **50.8%** — just over half of everything lost. Business Daily's coverage adds the when: thefts clustered on **Friday and Saturday nights**, fraudsters tricking revellers — typically millennials — into revealing passwords while their wallets were in use. Fraud follows product usage; mobile is where customers live at midnight, so that is where the fraud went.
+1. **Mobile banking became the fraud channel.** Its loss rose 344%, from KSh 182.4 million to **KSh 810.7 million**, lifting its share of all losses from 44.2% to **50.8%** — just over half of everything lost. Business Daily's coverage adds the when: thefts clustered on **Friday and Saturday nights**, fraudsters tricking revellers (typically millennials) into revealing passwords while their wallets were in use. Fraud follows product usage; mobile is where customers live at midnight, so that is where the fraud went.
 
-2. **Card fraud exploded on very few cases.** Loss rose 16.9× (KSh 15.6m → KSh 263.3m) across just 24 cases — KSh 11.0 million per case, the highest severity of any channel. That shape — a handful of compromised card batches or merchant breaches — barely registers on a count-based dashboard and screams on a value-based one.
+2. **Card fraud exploded on very few cases.** Loss rose 16.9× (KSh 15.6m → KSh 263.3m) across just 24 cases: KSh 11.0 million per case, the highest severity of any channel. That shape (a handful of compromised card batches or merchant breaches) barely registers on a count-based dashboard and screams on a value-based one.
 
-3. **Online-banking cases multiplied 19 → 106 (×5.6) while losses barely moved (×1.1).** Mass, low-value attempts that mostly failed — the fingerprint of attacks being blocked at scale. Rising case counts with flat losses is the one "good" signal in the table: detection caught up on that channel.
+3. **Online-banking cases multiplied 19 → 106 (×5.6) while losses barely moved (×1.1).** Mass, low-value attempts that mostly failed (the fingerprint of attacks being blocked at scale). Rising case counts with flat losses is the one "good" signal in the table: detection caught up on that channel.
 
 ## The ratio the headline misses: loss ÷ exposure
 
-The CBK distinguishes **amount exposed** (what fraudsters tried to move) from **actual loss** (what was not recovered). The ratio between them — the *conversion rate* — is the most under-read column in the table:
+The CBK distinguishes **amount exposed** (what fraudsters tried to move) from **actual loss** (what was not recovered). The ratio between them (the *conversion rate*) is the most under-read column in the table:
 
 - Sector-wide conversion rose from **60.6% in 2023 to 81.2% in 2024**: four of every five shillings attempted were lost for good.
-- **Identity theft flipped from 14.6% to 97.9%.** In 2023, identity attempts were the single largest exposure category (KSh 223.7m) yet only KSh 32.6m was lost — controls blocked ~85% of attempts. In 2024 attempts actually *fell* (KSh 203.4m exposed) but KSh 199.1m was lost. Attacks got better, or controls got worse; either way this is the sharpest control-failure signal in the report.
-- **Card went the other way: 96.6% → 59.9%.** Card exposure jumped 27× (KSh 16.1m → KSh 439.4m) but roughly 40% of it was clawed back. Card fraud has a recovery machinery the other channels lack — issuer reversals, chargebacks, scheme-level rules. When fraudsters moved to mobile and identity channels, they moved **out of reach of reversal**.
+- **Identity theft flipped from 14.6% to 97.9%.** In 2023, identity attempts were the single largest exposure category (KSh 223.7m) yet only KSh 32.6m was lost; controls blocked ~85% of attempts. In 2024 attempts actually *fell* (KSh 203.4m exposed) but KSh 199.1m was lost. Attacks got better, or controls got worse; either way this is the sharpest control-failure signal in the report.
+- **Card went the other way: 96.6% → 59.9%.** Card exposure jumped 27× (KSh 16.1m → KSh 439.4m) but roughly 40% of it was clawed back. Card fraud has a recovery machinery the other channels lack: issuer reversals, chargebacks, scheme-level rules. When fraudsters moved to mobile and identity channels, they moved **out of reach of reversal**.
 
-The strategic insight: **attackers migrate toward channels with no undo button.** Mobile pushes, SIM swaps and identity fraud end in irreversible outbound transfers; card fraud ends in a dispute the issuer can win. Loss-to-exposure by channel is a map of where your recovery tools exist — and where they do not, the detection bar has to be higher.
+The strategic insight: **attackers migrate toward channels with no undo button.** Mobile pushes, SIM swaps and identity fraud end in irreversible outbound transfers; card fraud ends in a dispute the issuer can win. Loss-to-exposure by channel is a map of where your recovery tools exist. Where they do not, the detection bar has to be higher.
 
-And note the severity compound: cases doubled (173 → 353) while average loss per case rose from **KSh 2.38m to KSh 4.52m (×1.9)** — twice the frequency at nearly twice the severity.
+And note the severity compound: cases doubled (173 → 353) while average loss per case rose from **KSh 2.38m to KSh 4.52m (×1.9)**, twice the frequency at nearly twice the severity.
 
 ## Recomputing the table (the whole analysis in one script)
 
-Everything above is arithmetic on Table 14 as published — no assumptions, no simulated data. The script below reproduces the channel table and derives every ratio quoted in this post:
+Everything above is arithmetic on Table 14 as published: no assumptions, no simulated data. The script below reproduces the channel table and derives every ratio quoted in this post:
 
 {% raw %}
 ```python
@@ -124,22 +124,22 @@ Card conversion:           96.6% (2023)
 
 ## The part the table cannot see: insiders
 
-Table 14 classifies *external* attack types — and that is its blind spot. TechCabal's September 2025 investigation into the same CBK data reported that most actual fund losses point to **insider-assisted fraud**: shadow "call-centre" operations in Nairobi estates like Utawala and Ruiru where bank staff monitor accounts and tip off syndicates, money pushed to mule accounts within minutes and laundered through mobile-money wallets, aimed at the biggest retail banks (Equity, KCB, Co-operative — a combined customer base above 50 million). A Banking Fraud Investigations Unit officer told TechCabal the operations "design for scale" and hide in the noise of millions of daily transactions.
+Table 14 classifies *external* attack types. That is its blind spot. TechCabal's September 2025 investigation into the same CBK data reported that most actual fund losses point to **insider-assisted fraud**: shadow "call-centre" operations in Nairobi estates like Utawala and Ruiru where bank staff monitor accounts and tip off syndicates, money pushed to mule accounts within minutes and laundered through mobile-money wallets, aimed at the biggest retail banks (Equity, KCB, Co-operative, a combined customer base above 50 million). A Banking Fraud Investigations Unit officer told TechCabal the operations "design for scale" and hide in the noise of millions of daily transactions.
 
-The 2024 disclosures corroborate it. Business Daily reported KCB Group fired **34 employees over fraud and negligence** (25 in Kenya, nine in Rwanda) after attempts put KSh 212.9 million at risk, Absa Kenya blocked KSh 306 million of fraud while losing KSh 169 million, and Equity's staff audit produced show-cause letters for **more than 1,200 employees** — with the CBK's own supervision report noting banks now use AI to monitor employees for fraud. This is the NCBA failure mode: a contractor with legitimate backend access drained KSh 57.5 million through 70 ghost accounts over eight days before end-of-week reconciliation caught it ([our anatomy of that incident](/posts/ncba-ghost-account-fraud/)). Insider-assisted fraud looks *normal* to channel analytics — valid credentials, plausible times, amounts under thresholds — so it needs access analytics, not just transaction analytics. Losses quadrupling while *reported cases* stay in the hundreds is consistent with a few well-connected actors, not a mass of external hackers.
+The 2024 disclosures corroborate it. Business Daily reported KCB Group fired **34 employees over fraud and negligence** (25 in Kenya, nine in Rwanda) after attempts put KSh 212.9 million at risk, Absa Kenya blocked KSh 306 million of fraud while losing KSh 169 million, and Equity's staff audit produced show-cause letters for **more than 1,200 employees**, with the CBK's own supervision report noting banks now use AI to monitor employees for fraud. This is the NCBA failure mode: a contractor with legitimate backend access drained KSh 57.5 million through 70 ghost accounts over eight days before end-of-week reconciliation caught it ([our anatomy of that incident](/posts/ncba-ghost-account-fraud/)). Insider-assisted fraud looks *normal* to channel analytics (valid credentials, plausible times, amounts under thresholds), so it needs access analytics as much as transaction analytics. Losses quadrupling while *reported cases* stay in the hundreds is consistent with a few well-connected actors, not a mass of external hackers.
 
 ## How we can do better
 
-1. **Track the mix weekly, not the total monthly.** Mobile went from 44% to 51% of losses in a year; identity loss grew ×6. A share-of-loss dashboard by channel/type catches the shift months before the annual report does — and any category whose conversion moves more than a few points is a broken control (identity's 14.6% → 97.9% flip is the template).
-2. **Make loss ÷ exposure a KPI.** It separates "attackers tried more" (exposure up, conversion flat) from "our recovery stopped working" (conversion up) — the first needs detection, the second needs *reversal capability*, where Kenyan banks are losing ground fastest.
+1. **Track the mix weekly, not the total monthly.** Mobile went from 44% to 51% of losses in a year; identity loss grew ×6. A share-of-loss dashboard by channel/type catches the shift months before the annual report does. Any category whose conversion moves more than a few points is a broken control (identity's 14.6% → 97.9% flip is the template).
+2. **Make loss ÷ exposure a KPI.** It separates "attackers tried more" (exposure up, conversion flat) from "our recovery stopped working" (conversion up). The first needs detection, the second needs *reversal capability*, where Kenyan banks are losing ground fastest.
 3. **Value-weight your alerting.** Two × more cases at two × severity means count thresholds silently double their miss-cost. Weight by per-case exposure and trend severity-per-case separately.
 4. **Add time-of-week context.** Friday/Saturday-night mobile sessions are the documented attack window: step-up authentication on late-night logins and velocity limits on outbound mobile transfers to fresh wallets hit exactly where fraudsters chose to operate.
-5. **Give recovery its own pipeline.** Card claws back ~40%, identity ~2% — that is where reversal machinery exists. For irreversible channels (mobile push, SIM swap) the control must be upstream: cooling-off delays, beneficiary vetting, SIM-change alerts. After the money moves, it is gone.
-6. **Pair channel analytics with insider signals.** Valid-credential fraud will not look anomalous in transaction streams. Employee-access analytics, agent-touchpoint monitoring and staff audits are the complement — see our [playbook on insider and privileged access](/posts/insider-threat-privileged-access-fintech/).
+5. **Give recovery its own pipeline.** Card claws back ~40%, identity ~2%. That is where reversal machinery exists. For irreversible channels (mobile push, SIM swap) the control must be upstream: cooling-off delays, beneficiary vetting, SIM-change alerts. After the money moves, it is gone.
+6. **Pair channel analytics with insider signals.** Valid-credential fraud will not look anomalous in transaction streams. Employee-access analytics, agent-touchpoint monitoring and staff audits are the complement. See our [playbook on insider and privileged access](/posts/insider-threat-privileged-access-fintech/).
 
 ## The bottom line
 
-The CBK's 2024 numbers are the best free fraud dataset a Kenyan fintech analytics team has — worth more than a headline. Read as a mix, they say: losses quadrupled, mobile is now over half of them, attacks are fewer-but-bigger and better at converting, fraud moved to channels with no undo button — and the insider channel is invisible to the taxonomy. Read that way, the report stops being a scorecard and becomes a **map of where the next controls have to go**.
+The CBK's 2024 numbers are the best free fraud dataset a Kenyan fintech analytics team has — worth more than a headline. Read as a mix, they say: losses quadrupled, mobile is now over half of them, attacks are fewer-but-bigger and better at converting, fraud moved to channels with no undo button, and the insider channel is invisible to the taxonomy. Read that way, the report stops being a scorecard and becomes a **map of where the next controls have to go**.
 
 ## References
 

@@ -8,23 +8,23 @@ image:
   alt: Diagram of GPU architecture showing streaming multiprocessors, memory hierarchy, and parallel execution
 ---
 
-You've deployed your model and it works. But is it using your GPU efficiently? Most ML engineers treat the GPU as a black box — feed it tensors and hope for the best. The difference between naive usage and optimized usage can be **5–10x throughput** on the same hardware.
+You've deployed your model and it works. But is it using your GPU efficiently? Most ML engineers treat the GPU as a black box: feed it tensors and hope for the best. The difference between naive usage and optimized usage can be **5–10x throughput** on the same hardware.
 
 This post covers the CUDA fundamentals every ML engineer should know, practical memory management techniques, parallelism strategies for big models, and profiling tools to identify bottlenecks.
 
-## CUDA Basics Every ML Engineer Should Know
+## CUDA basics every ML engineer should know
 
-### The Execution Model
+### The execution model
 
-A GPU has thousands of cores organized into **Streaming Multiprocessors (SMs)**. When you launch a CUDA kernel, groups of 32 threads called **warps** execute together in lockstep on a single SM. All threads in a warp must execute the same instruction — if your code has a branch that diverges threads, some threads are masked out and the warp executes both branches serially.
+A GPU has thousands of cores organized into **Streaming Multiprocessors (SMs)**. When you launch a CUDA kernel, groups of 32 threads called **warps** execute together in lockstep on a single SM. All threads in a warp must execute the same instruction. If your code has a branch that diverges threads, some threads are masked out and the warp executes both branches serially.
 
 This matters for ML because:
 
-- **Batched operations are naturally parallel** — matrix multiplications map perfectly to this execution model.
-- **Small operations waste GPU power** — launching a kernel for a tiny tensor means the overhead of scheduling dominates the actual computation.
-- **Branch divergence in custom kernels kills performance** — try to write warp-uniform code.
+- Batched operations are naturally parallel: matrix multiplications map perfectly to this execution model.
+- Small operations waste GPU power. Launching a kernel for a tiny tensor means the overhead of scheduling dominates the actual computation.
+- Branch divergence in custom kernels kills performance, so try to write warp-uniform code.
 
-### The Memory Hierarchy
+### The memory hierarchy
 
 {% raw %}
 ```
@@ -40,7 +40,7 @@ HBM (Global Memory)         ~80 GB       ~400 cycles
 
 The key insight: **global memory access is 800x slower than register access**. Every time your model loads a weight or an activation from HBM, it stalls for hundreds of cycles. The entire optimization game in GPU computing is about minimizing global memory traffic.
 
-### CUDA Streams and Concurrency
+### CUDA streams and concurrency
 
 CUDA streams are sequences of operations that execute in order on the GPU. Operations from different streams can **overlap**:
 
@@ -66,11 +66,11 @@ torch.cuda.synchronize()
 ```
 {% endraw %}
 
-This is useful when you have independent computations — for example, running two different model heads on the same encoder output.
+This is useful when you have independent computations, for example running two different model heads on the same encoder output.
 
-## GPU Memory Management
+## GPU memory management
 
-### Understanding Where Memory Goes
+### Understanding where memory goes
 
 When you load an LLM on a GPU, memory is consumed by:
 
@@ -95,9 +95,9 @@ For a 70B model serving a batch of 32 sequences with 4096 context:
 
 No single GPU has this much memory. That's where parallelism comes in.
 
-### Unified Memory and Memory Pooling
+### Unified memory and memory pooling
 
-PyTorch manages GPU memory through a **caching memory allocator** — it caches freed memory blocks for reuse instead of returning them to the OS. This is why `torch.cuda.empty_cache()` doesn't reduce `nvidia-smi` reported memory; the memory is cached, not freed.
+PyTorch manages GPU memory through a **caching memory allocator**. It caches freed memory blocks for reuse instead of returning them to the OS. This is why `torch.cuda.empty_cache()` doesn't reduce `nvidia-smi` reported memory; the memory is cached, not freed.
 
 {% raw %}
 ```python
@@ -116,7 +116,7 @@ torch.cuda.memory_stats()
 ```
 {% endraw %}
 
-### Memory-Efficient Inference Techniques
+### Memory-efficient inference techniques
 
 **Flash Attention** is the most impactful optimization for transformer inference. It computes attention in tiles that fit in shared memory, never materializing the full N×N attention matrix:
 
@@ -137,11 +137,11 @@ Flash Attention 2 and 3 have further improved this, making it possible to train 
 
 **PagedAttention** (covered in the previous post) is another memory optimization specifically for the KV cache during serving.
 
-## Parallelism Strategies
+## Parallelism strategies
 
-When a model is too large for one GPU — or when you want higher throughput — you need to distribute work across multiple GPUs. There are three fundamental strategies.
+When a model is too large for one GPU, or when you want higher throughput, you need to distribute work across multiple GPUs. There are three fundamental strategies.
 
-### Data Parallelism
+### Data parallelism
 
 Each GPU holds a full copy of the model but processes different data batches. Gradients are averaged across GPUs after each step.
 
@@ -158,7 +158,7 @@ GPU 3: [Model Copy] ← Batch D → [Gradient ↕]
 
 **Limitation**: Every GPU needs enough memory for the full model. Doesn't help if the model exceeds single-GPU memory.
 
-### Tensor Parallelism
+### Tensor parallelism
 
 Each GPU holds a **slice of each layer** (e.g., half the attention heads). Operations use collective communication (all-reduce) after each layer.
 
@@ -183,9 +183,9 @@ GPU 0: Heads 0-15 | GPU 1: Heads 16-31 | GPU 2: Heads 32-47 | GPU 3: Heads 48-63
 
 **Best for**: Models that don't fit on a single GPU (70B+). Nearly linear scaling for large models.
 
-**Communication**: Heavy — each layer requires an all-reduce. InfiniBand or NVLink strongly recommended.
+**Communication**: heavy. Each layer requires an all-reduce. InfiniBand or NVLink strongly recommended.
 
-### Pipeline Parallelism
+### Pipeline parallelism
 
 Different layers of the model are placed on different GPUs. Data flows through the pipeline sequentially.
 
@@ -202,7 +202,7 @@ GPU 0: Layers 1-10 → GPU 1: Layers 11-20 → GPU 2: Layers 21-30 → GPU 3: La
 
 **Limitation**: Pipeline bubbles (idle time between batches) reduce efficiency. Use many micro-batches to fill the pipeline.
 
-### Choosing a Strategy
+### Choosing a strategy
 
 | Strategy | Inter-GPU Communication | Per-GPU Memory | Scaling Efficiency | Setup Complexity |
 |----------|------------------------|----------------|--------------------|------------------|
@@ -211,13 +211,13 @@ GPU 0: Layers 1-10 → GPU 1: Layers 11-20 → GPU 2: Layers 21-30 → GPU 3: La
 | Pipeline Parallel | Low (between stages) | 1/N of layers | ~70-90% | Moderate |
 | Combined (3D) | Very High | Minimal | ~70-80% | High |
 
-For **inference**, tensor parallelism is the standard choice — vLLM, TensorRT-LLM, and TGI all use it. For **training large models**, you typically combine all three (3D parallelism) as done in training Llama 70B+.
+For **inference**, tensor parallelism is the standard choice. vLLM, TensorRT-LLM, and TGI all use it. For **training large models**, you typically combine all three (3D parallelism) as done in training Llama 70B+.
 
-## Profiling: Finding the Bottlenecks
+## Profiling: finding the bottlenecks
 
-Don't guess — profile. The two most important tools:
+Don't guess. Profile instead. The two most important tools:
 
-### NVIDIA SMI (Quick Health Check)
+### NVIDIA SMI (quick health check)
 
 {% raw %}
 ```bash
@@ -233,11 +233,11 @@ nvidia-smi pmon -s u
 {% endraw %}
 
 What to look for:
-- **GPU-Util < 80%**: The GPU is idle too much — likely CPU bottleneck, data loading issue, or small batch size.
-- **Memory-Util high, GPU-Util low**: Memory bandwidth bound — often caused by attention operations on long sequences.
+- **GPU-Util < 80%**: The GPU is idle too much, likely CPU bottleneck, data loading issue, or small batch size.
+- **Memory-Util high, GPU-Util low**: Memory bandwidth bound, often caused by attention operations on long sequences.
 - **Volatile GPU-Util fluctuating wildly**: Uneven workload distribution or I/O waits.
 
-### PyTorch Profiler (Detailed Analysis)
+### PyTorch profiler (detailed analysis)
 
 {% raw %}
 ```python
@@ -270,12 +270,12 @@ p.export_chrome_trace("trace.json")
 {% endraw %}
 
 Common patterns visible in traces:
-- **Gaps between CUDA kernels**: Kernel launch overhead — consider kernel fusion or `torch.compile`.
+- **Gaps between CUDA kernels**: Kernel launch overhead; consider kernel fusion or `torch.compile`.
 - **Long data transfer**: Move data to GPU earlier, use pinned memory.
 - **Sequential small kernels**: Use `torch.jit.script` or `torch.compile` to fuse operations.
 - **CUDA kernels waiting on CPU**: Pre-fetch data with DataLoader's `prefetch_factor`.
 
-### Using torch.compile for Free Speedups
+### Using torch.compile for free speedups
 
 PyTorch 2.0+ includes `torch.compile`, which uses TorchInductor to generate optimized CUDA kernels:
 
@@ -294,7 +294,7 @@ output = model(input_tensor)
 
 With `mode="max-autotune"`, torch.compile tries hundreds of kernel configurations to find the fastest one for your specific model and GPU. Real-world speedups of 1.3–2× are common.
 
-## Practical Recipe: Optimizing an Inference Pipeline
+## Practical recipe: optimizing an inference pipeline
 
 Here's a step-by-step recipe for optimizing any ML inference workload:
 
@@ -330,11 +330,11 @@ Each step typically gives 1.5–2× improvement. Combining them all can yield **
 
 ## Summary
 
-GPU optimization for ML isn't magic — it's understanding the memory hierarchy, choosing the right parallelism strategy, and using profiling tools to find bottlenecks. The biggest wins come from:
+GPU optimization for ML isn't magic. It's understanding the memory hierarchy, choosing the right parallelism strategy, and using profiling tools to find bottlenecks. The biggest wins come from:
 
-1. **Minimizing memory traffic** — Flash Attention, PagedAttention, kernel fusion
-2. **Maximizing GPU utilization** — continuous batching, right-sized batches
-3. **Distributing efficiently** — tensor parallel for inference, 3D parallelism for training
-4. **Profiling before optimizing** — NVIDIA SMI for quick checks, PyTorch Profiler for deep dives
+1. **Minimizing memory traffic**: Flash Attention, PagedAttention, kernel fusion
+2. **Maximizing GPU utilization**: continuous batching, right-sized batches
+3. **Distributing efficiently**: tensor parallel for inference, 3D parallelism for training
+4. **Profiling before optimizing**: NVIDIA SMI for quick checks, PyTorch Profiler for deep dives
 
 In the next post, we'll take this hardware knowledge and apply it to **deploying models on Kubernetes** with Kserve for auto-scaling and production orchestration.

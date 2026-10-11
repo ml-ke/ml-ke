@@ -8,20 +8,20 @@ image:
   alt: Africa's AI urgency — closing the gap between the continent and global AI leaders
 ---
 
-## A Wake-Up Call
+## A wake-up call
 
-On July 25, 2026 — today — **Business Day** published a sobering analysis: **Africa risks falling behind in the AI race**. The numbers are stark. Vendor lock-in and costly licensing mean African companies pay **up to 35% more** than global peers for the same AI technology. Meanwhile, the continent's datasets remain "largely absent" from global AI training, as Prosus noted just last week.
+On July 25, 2026 (today), **Business Day** published a sobering analysis: **Africa risks falling behind in the AI race**. The numbers are stark. Vendor lock-in and costly licensing mean African companies pay **up to 35% more** than global peers for the same AI technology. Meanwhile, the continent's datasets remain "largely absent" from global AI training, as Prosus noted just last week.
 
-This isn't just a technology gap. It's a **cost-of-entry problem** that compounds itself: the more expensive AI is to adopt, the fewer African organisations build AI fluency, the less African data shapes AI models, the more irrelevant those models are to African use cases — and the cycle repeats.
+The problem is as much about cost as technology. It's a **cost-of-entry problem** that compounds itself: the more expensive AI is to adopt, the fewer African organisations build AI fluency, the less African data shapes AI models, the more irrelevant those models are to African use cases, and then the cycle repeats.
 
-> **The good news:** The gap is visible, measurable, and — with deliberate action — closable. The tools exist. What's needed is urgency.
+> **The good news:** The gap is visible, measurable, and closable with deliberate action. The tools exist. What's needed is urgency.
 {: .prompt-info }
 
 ---
 
-## The Numbers That Matter
+## The numbers that matter
 
-### 35% Cost Premium
+### 35% cost premium
 
 According to the Business Day report, African companies face a significant cost disadvantage in AI adoption:
 
@@ -33,57 +33,57 @@ According to the Business Day report, African companies face a significant cost 
 | **Talent scarcity** | Fewer local ML engineers drives up consulting costs |
 | **Currency risk** | USD-denominated AI services in volatile FX markets |
 
-This isn't unique to AI — it mirrors Africa's historical tech cost premium — but the cost of *not* adopting AI is higher than ever.
+This isn't unique to AI. It mirrors Africa's historical tech cost premium, but the cost of *not* adopting AI is higher than ever.
 
-### Missing Datasets
+### Missing datasets
 
-Prosus, the global tech investment group, highlighted Lelapa AI as a counterexample. Their point: African languages, cultures, and business contexts are systematically underrepresented in the training data that powers today's frontier models. When a model has never seen Swahili, Yoruba, or Amharic during training, its outputs for African users will always be second-best.
+Prosus, the global tech investment group, pointed to Lelapa AI as a counterexample. Their point: African languages, cultures, and business contexts are systematically underrepresented in the training data that powers today's frontier models. When a model has never seen Swahili, Yoruba, or Amharic during training, its outputs for African users will always be second-best.
 
-### The Talent Pipeline
+### The talent pipeline
 
 This week, **ALX Enterprise** convened senior business leaders in Kigali (July 24) and Nairobi (July 30) for executive breakfasts themed **"Leading in the Age of AI."** The core message from organiser ALX: competitive advantage belongs to organisations that **adapt the fastest**, not those with the biggest workforces.
 
-The ALX events signal a growing recognition among African executives that AI readiness is a leadership issue, not just a technical one.
+The ALX events signal a growing recognition among African executives that AI readiness is a leadership problem as much as a technical one.
 
 ---
 
-## What's Working
+## What's working
 
 Offsetting the worrying signals are concrete bright spots:
 
-**Google's Africa Applied AI Lab** (Accra) — Applications open until August 31, pairing African founders with Google AI researchers. This is exactly the kind of structured pipeline the continent needs.
+Google's Africa Applied AI Lab in Accra is taking applications until August 31, pairing African founders with Google AI researchers. This is exactly the kind of structured pipeline the continent needs.
 
-**Cue's $5M raise** — A South African startup building AI customer service agents, backed by Knife Capital. Homegrown AI companies serving global markets.
+Cue, a South African startup building AI customer service agents, has raised $5M backed by Knife Capital. Homegrown AI companies serving global markets.
 
-**Vercel buys African AI talent** — The acquisition of Stakpak (Egypt) and Better Auth (Ethiopia) shows global platforms value African AI engineering. But it also raises the question: can Africa keep its best AI talent?
-
----
-
-## What Must Happen
-
-### 1. Sovereign AI Infrastructure
-
-The UAE's **Sovereign AI Compute** platform (launched July 20) offers a template. An African equivalent — perhaps via a pan-African cloud consortium, or a national AI cloud in Kenya, Nigeria, or South Africa — would address the 35% cost premium at its root.
-
-### 2. Open-Weight Models
-
-This is the month China proved open-weight models can compete at the frontier. Kimi K3's 2.8 trillion parameters will be fully open on July 27. African organisations should be **planning their self-hosting strategy now** — the cost of inference on an open-weight model is a fraction of API-based pricing.
-
-### 3. Deliberate Dataset Building
-
-Projects like Lelapa AI need to scale from proof-of-concept to national infrastructure. Governments and universities should fund African-language dataset collection as a strategic priority — as important as building roads or laying fibre.
-
-### 4. Executive AI Fluency
-
-The ALX "Leading in the Age of AI" sessions are a start. But AI fluency needs to reach beyond the C-suite to middle management, procurement teams, and IT decision-makers — the people who actually approve and implement AI purchases.
+Vercel's acquisition of Stakpak (Egypt) and Better Auth (Ethiopia) shows global platforms value African AI engineering. But it also raises the question: can Africa keep its best AI talent?
 
 ---
 
-## The Window
+## What must happen
 
-The AI industry is moving fast — faster than any technology shift in history. The gap between leaders and laggards is measured in months, not years. But the cost of entry is dropping just as fast: Grok 4.5 costs a third of what comparable models did in 2025, open-weight models are closing the performance gap, and cloud infrastructure is becoming more accessible.
+### 1. Sovereign AI infrastructure
 
-The question isn't whether African organisations will adopt AI. It's whether they'll adopt it on **their own terms** — or pay a 35% premium for someone else's.
+The UAE's **Sovereign AI Compute** platform (launched July 20) offers a template. An African equivalent (perhaps via a pan-African cloud consortium, or a national AI cloud in Kenya, Nigeria, or South Africa) would address the 35% cost premium at its root.
+
+### 2. Open-weight models
+
+This is the month China proved open-weight models can compete at the frontier. Kimi K3's 2.8 trillion parameters will be fully open on July 27. African organisations should be **planning their self-hosting strategy now**: the cost of inference on an open-weight model is a fraction of API-based pricing.
+
+### 3. Deliberate dataset building
+
+Projects like Lelapa AI need to scale from proof-of-concept to national infrastructure. Governments and universities should fund African-language dataset collection as a strategic priority. It matters as much as building roads or laying fibre.
+
+### 4. Executive AI fluency
+
+The ALX "Leading in the Age of AI" sessions are a start. But AI fluency needs to reach beyond the C-suite to middle management, procurement teams, and IT decision-makers. Those are the people who actually approve and implement AI purchases.
+
+---
+
+## The window
+
+The AI industry is moving faster than any technology shift in history. The gap between leaders and laggards is measured in months, not years. But the cost of entry is dropping just as fast: Grok 4.5 costs a third of what comparable models did in 2025, open-weight models are closing the performance gap, and cloud infrastructure is becoming more accessible.
+
+The question isn't whether African organisations will adopt AI, but whether they'll adopt it on **their own terms** or pay a 35% premium for someone else's.
 
 The answer depends on what we do between now and the end of this year.
 
@@ -100,4 +100,4 @@ The answer depends on what we do between now and the end of this year.
 
 ---
 
-*Cover: An hourglass — representing the urgency of Africa's AI adoption window. The sand is running, but action now can close the gap.*
+*Cover: An hourglass, representing the urgency of Africa's AI adoption window. The sand is running, but action now can close the gap.*
