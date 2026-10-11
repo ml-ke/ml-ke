@@ -13,7 +13,7 @@ image:
 
 ## Introduction
 
-In February 2026, OpenBMB released **MiniCPM-o 4.5**, a 9-billion-parameter model capable of full-duplex omni-modal interaction. It watches video, listens to audio, speaks back, and processes text — all simultaneously, in real time. The technical report, led by Junbo Cui and 35 co-authors (arXiv 2604.27393), demonstrated performance matching Gemini 2.5 Flash on vision and speech benchmarks while running locally on consumer hardware.
+In February 2026, OpenBMB released **MiniCPM-o 4.5**, a 9-billion-parameter model capable of full-duplex omni-modal interaction. It watches video, listens to audio, speaks back, and processes text simultaneously, in real time. The technical report, led by Junbo Cui and 35 co-authors (arXiv 2604.27393), demonstrated performance matching Gemini 2.5 Flash on vision and speech benchmarks while running locally on consumer hardware.
 
 This is extraordinary engineering. It also opens an entirely new class of attack surface.
 
@@ -23,10 +23,10 @@ This post examines three attack vectors that become practical with real-time mul
 
 > **What's New**
 >
-> Text-only prompt injection (covered in [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})) is already difficult to defend. Multimodal injection doesn't replace it — it multiplies it. Every input modality is a new highway for adversarial payloads, and the real-time streaming nature means traditional input sanitization pipelines have no time to inspect what's coming through.
+> Text-only prompt injection (covered in [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})) is already difficult to defend. Multimodal injection doesn't replace it. It multiplies it. Every input modality is a new highway for adversarial payloads, and the real-time streaming nature means traditional input sanitization pipelines have no time to inspect what's coming through.
 > {: .prompt-danger }
 
-## The Multimodal Attack Surface
+## The multimodal attack surface
 
 Real-time omni-modal models like MiniCPM-o 4.5 process three continuous input streams (video frames, audio samples, text) and two output streams (text, speech). Each stream can carry adversarial payloads. Here's the topology:
 
@@ -75,9 +75,9 @@ Each attack vector exploits a different property of the model's processing pipel
 
 ## Audio Injection: Commands in the Noise
 
-Audio-based injection attacks embed malicious instructions inside audio signals that sound benign — or completely silent — to human ears. When the model's speech-to-text component transcribes them, the hidden text is treated as a system-level instruction.
+Audio-based injection attacks embed malicious instructions inside audio signals that sound benign (or completely silent) to human ears. When the model's speech-to-text component transcribes them, the hidden text is treated as a system-level instruction.
 
-### The WhisperInject Framework
+### The WhisperInject framework
 
 Research has demonstrated that OpenAI's Whisper and Meta's Wav2Vec2 are vulnerable to **adversarial audio perturbations** — imperceptible modifications to a waveform that cause the ASR system to transcribe attacker-chosen text. The WhisperInject framework (published 2025) showed that by crafting a two-stage attack:
 
@@ -91,7 +91,7 @@ The carrier audio sounds like a normal greeting or background noise. The model n
 > The WhisperInject framework targets Audio-Language Models (ALMs) including Qwen2.5-Omni (3B and 7B) and Phi-4-Multimodal. The two-stage approach bypasses safety guardrails by conditioning the model's internal state before delivering the payload. The underlying vulnerability is not a Whisper bug but an architectural property of end-to-end differentiable ASR pipelines — the same property that enables adversarial examples in image classifiers.
 > {: .prompt-info }
 
-### Audio Injection Demo
+### Audio injection demo
 
 Below is a Python demonstration of how audio injection works conceptually. This uses the `transformers` library to load a Whisper model, construct an adversarial perturbation, and decode the hidden command.
 
@@ -192,7 +192,7 @@ There are three primary techniques:
 | **Typographic attack** | White-on-white or low-contrast text that humans miss but OCR pipelines catch. | Medium |
 | **Steganographic embedding** | Instructions hidden in pixel values using LSB manipulation or frequency-domain encoding. | High — invisible to humans |
 
-### Video Frame Injection Demo
+### Video frame injection demo
 
 ```python
 """
@@ -278,7 +278,7 @@ inject_text_overlay(
 )
 ```
 
-The critical insight: **vision encoders process every pixel in every frame**. A text region occupying 2% of the frame area is just as "loud" to the model as the primary subject. An attacker who can control any portion of the video stream — through ad injections, shared screens, or manipulated webcam feeds — can inject instructions.
+The critical insight: **vision encoders process every pixel in every frame**. A text region occupying 2% of the frame area is just as "loud" to the model as the primary subject. An attacker who can control any portion of the video stream (through ad injections, shared screens, or manipulated webcam feeds) can inject instructions.
 
 ## Real-Time Exfiltration: The Output Side
 
@@ -331,7 +331,7 @@ print(f"First 20 pitch shifts: {result['pitch_modulations']}")
 
 ## Defensive Strategies
 
-The defense landscape for multimodal attacks is nascent. Here are the approaches emerging from research and practice:
+Defenses for multimodal attacks are still nascent. Here are the approaches emerging from research and practice:
 
 | Attack Vector | Defense | Maturity |
 |:---|---|:---:|
@@ -347,7 +347,7 @@ The most practical defense today is **architectural containment**: the omni-moda
 
 > **The RAG Dimension**
 >
-> Multimodal injection also threatens RAG pipelines. If a vector database indexes video or audio content, an attacker who poisons the database with adversarial multimodal documents can trigger injection on retrieval — even without direct access to the live stream. See [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %}).
+> Multimodal injection also threatens RAG pipelines. If a vector database indexes video or audio content, an attacker who poisons the database with adversarial multimodal documents can trigger injection on retrieval, even without direct access to the live stream. See [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %}).
 > {: .prompt-warning }
 
 ## Takeaways

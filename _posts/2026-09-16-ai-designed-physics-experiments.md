@@ -10,26 +10,26 @@ image:
 
 ## Introduction
 
-On 2 September 2026, a review article appeared in *Nature* with a title that reads like a modest methods paper and a conclusion that does not: [Designing physics experiments with artificial intelligence](https://www.nature.com/articles/s41586-026-10898-6) (Klimesch, Arlt, Ruiz-Gonzalez et al., *Nature* **657**, 47–58, 2026). The authors' own summary of the state of the field is blunt — AI-driven design methods "have begun to move beyond tuning a handful of parameters to proposing entirely new experimental layouts," and the configurations they discover "often challenge established design conventions while matching or even exceeding the performance of human-designed set-ups."
+On 2 September 2026, a review article appeared in *Nature* with a title that reads like a modest methods paper and a conclusion that does not: [Designing physics experiments with artificial intelligence](https://www.nature.com/articles/s41586-026-10898-6) (Klimesch, Arlt, Ruiz-Gonzalez et al., *Nature* **657**, 47–58, 2026). The authors' own summary of the state of the field is blunt: AI-driven design methods "have begun to move beyond tuning a handful of parameters to proposing entirely new experimental layouts," and the configurations they discover "often challenge established design conventions while matching or even exceeding the performance of human-designed set-ups."
 
 > **Why this is the story worth reading**
-> Most AI headlines are about models that talk, models that fail, or models that get abused. This one is about machines finding experiments that humans did not think of — documented, peer-reviewed, and already running in electron microscopes, fusion research, particle detectors and gravitational-wave labs. It is the clearest case of AI as a *scientific instrument* rather than a chatbot.
+> Most AI headlines are about models that talk, models that fail, or models that get abused. This one is about machines finding experiments that humans did not think of (documented, peer-reviewed, and already running in electron microscopes, fusion research, particle detectors and gravitational-wave labs). It is the clearest case of AI as a *scientific instrument* rather than a chatbot.
 {: .prompt-info }
 
-Three write-ups agree on the substance: the [TU Wien press release](https://physik.univie.ac.at/en/news/news-detail/news/artificial-intelligence-suggests-new-physics-experiments/) (3 Sept 2026), [Phys.org's report](https://phys.org/news/2026-09-ai-physics-outperform-human-setups.html), and the [Tübingen AI Center announcement](https://tuebingen.ai/news/ai-could-help-scientists-design-experiments-humans-would-never-think-of) from Mario Krenn's group. The paper is a review — a survey of what has already been achieved, not one new result — which makes the claim stronger, not weaker: this is a decade of evidence, summarised.
+Three write-ups agree on the substance: the [TU Wien press release](https://physik.univie.ac.at/en/news/news-detail/news/artificial-intelligence-suggests-new-physics-experiments/) (3 Sept 2026), [Phys.org's report](https://phys.org/news/2026-09-ai-physics-outperform-human-setups.html), and the [Tübingen AI Center announcement](https://tuebingen.ai/news/ai-could-help-scientists-design-experiments-humans-would-never-think-of) from Mario Krenn's group. The paper is a review (a survey of what has already been achieved, not one new result), which makes the claim stronger, not weaker: this is a decade of evidence, summarised.
 
 ## One night in Vienna, ten years ago
 
-The origin story is unusually concrete. As a student in Vienna, Mario Krenn — now professor of machine learning in science at the University of Tübingen — was trying to build a quantum optics experiment. He and his group could not find a configuration that would demonstrate the effect they wanted.
+The origin story is unusually concrete. As a student in Vienna, Mario Krenn, now professor of machine learning in science at the University of Tübingen, was trying to build a quantum optics experiment. He and his group could not find a configuration that would demonstrate the effect they wanted.
 
 So he described the components on the bench mathematically and let an algorithm search combinations of them.
 
 > "Programming it only took a few hours. Then I went home and left the computer running," Krenn says. "When I came into the office the next day, the program had produced a file containing a proposed solution... unlike all of us, the computer had found an experimental setup that satisfied the necessary criteria."
 {: .prompt-tip }
 
-That result was published in 2016 as *Automated Search for new Quantum Experiments* (Krenn, Malik, Fickler, Lapkiewicz and Zeilinger, [Phys. Rev. Lett. **116**, 090405](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.090405); preprint [arXiv:1509.02749](https://arxiv.org/abs/1509.02749)) — the "Melvin" line of work that seeded the field. Ten years later, the same approach has a *Nature* review, co-authored by people from quantum optics, electron microscopy, particle physics and gravitational-wave detection.
+That result was published in 2016 as *Automated Search for new Quantum Experiments* (Krenn, Malik, Fickler, Lapkiewicz and Zeilinger, [Phys. Rev. Lett. **116**, 090405](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.090405); preprint [arXiv:1509.02749](https://arxiv.org/abs/1509.02749)), the "Melvin" line of work that seeded the field. Ten years later, the same approach has a *Nature* review, co-authored by people from quantum optics, electron microscopy, particle physics and gravitational-wave detection.
 
-## This is not a chatbot — it is a search problem
+## Experiment design is a search problem
 
 The clearest part of the review is what it is *not*. Krenn is explicit that this has "little in common with the kind of AI familiar from large language models," because chatbots generate statistically likely text, while experiment design is not a language task at all.
 
@@ -38,7 +38,7 @@ The clearest part of the review is what it is *not*. Krenn is explicit that this
 
 The review organises that search around four questions, and they double as a specification for anyone building a design system:
 
-1. **How do we engineer expressive search spaces?** The components in a lab — lasers, lenses, mirrors, detectors, electronics — can be combined in a fantastically large number of ways. The space must be defined so that good designs *exist* inside it.
+1. **How do we engineer expressive search spaces?** The components in a lab, such as lasers, lenses, mirrors, detectors and electronics, can be combined in a fantastically large number of ways. The space must be defined so that good designs *exist* inside it.
 2. **How do we build fast and reliable simulators?** Every candidate design has to be scored, which means simulating it. A simulator that is too slow limits how much of the space you can explore; a simulator that is wrong makes the whole search worthless.
 3. **How do we translate scientific goals into computable objectives?** "Make the measurement unambiguous" is not a number. The objective function is where a scientific intent becomes something a machine can optimise.
 4. **How do we explore both discrete and continuous choices?** Which components are connected at all is a discrete, combinatorial question; the angle of a waveplate is a continuous one. Real benches mix both.
@@ -134,7 +134,7 @@ print(f"median fidelity of space      : {scored[len(scored) // 2][0]:.4f}")
 ```
 {% endraw %}
 
-Run it, and you get this — verbatim, reproducible, no randomness:
+Run it, and you get this, verbatim and reproducible, with no randomness:
 
 ```text
 designs enumerated            : 15,625
@@ -149,7 +149,7 @@ designs with fidelity >= 0.95 : 115
 median fidelity of space      : 0.3536
 ```
 
-Three things in that output are the whole lesson. The conventional layout — splitter, then phase, rest of the bench idle — lands at **0.6830**, while the best six-slot design reaches **0.982963**, and it is not a neat human pattern: four phase shifters, a 45° phase and a 22.5° splitter. And **27 designs tie at the best score** while only 115 of 15,625 clear 0.95 — the space is mostly bad, the good region is small, and inside it the answer is not unique.
+Three things in that output are the whole lesson. The conventional layout (splitter, then phase, rest of the bench idle) lands at **0.6830**, while the best six-slot design reaches **0.982963**, and it is not a neat human pattern: four phase shifters, a 45° phase and a 22.5° splitter. And **27 designs tie at the best score** while only 115 of 15,625 clear 0.95: the space is mostly bad, the good region is small, and inside it the answer is not unique.
 
 This is a toy: no noise, no cost model, no real quantum mechanics. But it is the same loop the *Nature* review describes, at a scale you can run in a second.
 
@@ -157,11 +157,11 @@ This is a toy: no noise, no cost model, no real quantum mechanics. But it is the
 
 The review does not oversell, and neither should we. There are three real costs.
 
-**Interpretability.** Sometimes the found design is instantly understandable. Often it is not: "You can calculate that the new experimental setup works better, but you cannot really put into words why." A design nobody can explain is a hard sell to a lab, a reviewer, or a funder — and it is a real risk when the machine is optimising an objective that imperfectly encodes what you actually care about.
+**Interpretability.** Sometimes the found design is instantly understandable. Often it is not: "You can calculate that the new experimental setup works better, but you cannot really put into words why." A design nobody can explain is a hard sell to a lab, a reviewer, or a funder. It is a real risk when the machine is optimising an objective that imperfectly encodes what you actually care about.
 
 **The simulator is the ceiling.** Every result inherits the assumptions of the model that scored it. If the simulator ignores a loss mechanism, the search will happily exploit the omission and hand you a bench that cannot be built or will not work.
 
-**Non-uniqueness.** Our 27-way tie is the toy version of a general problem: many different layouts score identically, and the differences that decide which one survives contact with reality — cost, part availability, alignment tolerance, robustness — are usually not in the objective function.
+**Non-uniqueness.** Our 27-way tie is the toy version of a general problem: many different layouts score identically, and the differences that decide which one survives contact with reality (cost, part availability, alignment tolerance, robustness) are usually not in the objective function.
 
 Krenn's own framing of the human role is more interesting than either hype or doom:
 
@@ -174,12 +174,12 @@ Strip the physics away and the recipe is portable:
 
 1. **Write your components down as a search space.** Enumerate what is fixed (parts you own, space on the bench, budget) and what is free (connections, ordering, parameters). If good designs are not inside the space you defined, no search will find them.
 2. **Build the simulator before the AI.** Accuracy first, speed second, and keep it honest about what it ignores. Log the assumptions.
-3. **Turn the goal into one number.** Prefer a metric you would accept as evidence in a design review, not a proxy you can score highly while failing the real task — the benchmark-poisoning lesson applies to objective functions too.
+3. **Turn the goal into one number.** Prefer a metric you would accept as evidence in a design review, not a proxy you can score highly while failing the real task. The benchmark-poisoning lesson applies to objective functions too.
 4. **Match the search to the space.** Discrete structure (which part connects where) needs combinatorial or evolutionary search; continuous parameters suit gradient-based or Bayesian methods; realistic problems need both, staged.
-5. **Assume the answer is not unique.** When several designs tie, add the constraints you left out of the objective — cost, availability, manufacturability, tolerance — and treat interpretation as part of the work, not an afterthought.
+5. **Assume the answer is not unique.** When several designs tie, add the constraints you left out of the objective (cost, availability, manufacturability, tolerance) and treat interpretation as part of the work, not an afterthought.
 6. **Verify by ablation and by experiment.** Re-score the winner with the constraint removed to see what it is exploiting, then build the simplest version and measure.
 
-For a lab with modest hardware — which describes most research groups, including many in Africa — the encouraging property is that this loop is software-first. PyTheus and comparable frameworks run on ordinary machines, so designs can be explored and shortlisted *before* anything is procured. The bottleneck shifts from bench equipment to the quality of your simulator and the sharpness of your objective, which is a much cheaper bottleneck to attack.
+For a lab with modest hardware, which describes most research groups, including many in Africa, the encouraging property is that this loop is software-first. PyTheus and comparable frameworks run on ordinary machines, so designs can be explored and shortlisted *before* anything is procured. The bottleneck shifts from bench equipment to the quality of your simulator and the sharpness of your objective, which is a much cheaper bottleneck to attack.
 
 ## Key takeaways
 
@@ -192,7 +192,7 @@ For a lab with modest hardware — which describes most research groups, includi
 | Explanation lags performance | Budget human time for interpretation and ablation, not just for compute |
 | The loop is software-first | Explore and shortlist designs on a laptop before committing budget to hardware |
 
-Ten years ago a student left a program running overnight and came back to an experiment his group could not design. That is still the shape of the story in 2026 — except now it has a *Nature* review, open-source tooling, and a track record in fusion, microscopy, particle physics and gravitational-wave detection. The interesting question is no longer whether AI can propose a good experiment. It is how many labs will set up the search, the simulator and the objective to let it.
+Ten years ago a student left a program running overnight and came back to an experiment his group could not design. That is still the shape of the story in 2026. It now has a *Nature* review, open-source tooling, and a track record in fusion, microscopy, particle physics and gravitational-wave detection. The interesting question is no longer whether AI can propose a good experiment. It is how many labs will set up the search, the simulator and the objective to let it.
 
 ## References
 

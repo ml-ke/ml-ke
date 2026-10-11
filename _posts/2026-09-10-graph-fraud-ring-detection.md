@@ -10,9 +10,9 @@ image:
 
 ## The fraud is a network, not an account
 
-In June, October and November 2023, police in 26 countries arrested **1,013 people** and identified **10,759 money mules** — account-holders who lend their names to move stolen money. The action exposed **over €100 million** in losses and prevented another €32 million ([OCCRP on Europol's EMMA 9](https://www.occrp.org/en/news/global-operation-targets-money-mules)). An eight-month sweep from November 2025 to June 2026, **Operation Jackal IV**, ended in **58 arrests and 263 identified suspects across 22 countries**; in South Africa it blocked **257 bank accounts** and seized $2.67 million ([BBC](https://www.bbc.com/news/articles/cq5xdnxppl4o), [Sahara Reporters](https://saharareporters.com/2026/08/25/operation-jackal-interpol-arrests-58-persons-identifies-over-260-west-african-organised)).
+In June, October and November 2023, police in 26 countries arrested **1,013 people** and identified **10,759 money mules**, account-holders who lend their names to move stolen money. The action exposed **over €100 million** in losses and prevented another €32 million ([OCCRP on Europol's EMMA 9](https://www.occrp.org/en/news/global-operation-targets-money-mules)). An eight-month sweep from November 2025 to June 2026, **Operation Jackal IV**, ended in **58 arrests and 263 identified suspects across 22 countries**; in South Africa it blocked **257 bank accounts** and seized $2.67 million ([BBC](https://www.bbc.com/news/articles/cq5xdnxppl4o), [Sahara Reporters](https://saharareporters.com/2026/08/25/operation-jackal-interpol-arrests-58-persons-identifies-over-260-west-african-organised)).
 
-Read those numbers as a data structure and they say one thing: the unit of modern fraud is not the fraudulent account. It is the **ring** — a handful of accounts, devices and phone numbers wired together to move money fast enough that no single account looks wrong.
+Read those numbers as a data structure and they say one thing: the unit of modern fraud is not the fraudulent account. It is the **ring**: a handful of accounts, devices and phone numbers wired together to move money fast enough that no single account looks wrong.
 
 > **What this post adds**
 > Our [mobile-money features post](/posts/fraud-ml-mobile-money/) asked which *features* catch novel fraud, our [Sidian mule anatomy](/posts/sidian-bank-mule-heist/) traced *one* dispersal, and our [drift post](/posts/fraud-model-drift-monitoring/) asked when a model goes stale. This post is the layer underneath: the **transaction graph**, and how to find a ring in it before the money leaves.
@@ -24,7 +24,7 @@ A classic fraud model scores one transaction, or one account, at a time. That wo
 
 Neo4j's fraud reference architecture puts it plainly: "The individual transaction often looks legitimate. The fraud signal only becomes apparent when analyzing the network of relationships, shared devices, common IP addresses, or circular money flows" ([Neo4j](https://neo4j.com/developer/industry-use-cases/finserv/retail-banking/ieee-cis-fraud-graphs/)). A 2024 review of graph neural networks for financial fraud, surveying more than 100 studies, agrees they outperform traditional methods at capturing relational patterns ([Cheng et al., arXiv:2411.05815](https://arxiv.org/abs/2411.05815)).
 
-Cifas, the UK's fraud-prevention service, recorded **more than 444,000 cases** on its National Fraud Database in 2025 — over **1,200 a day** — with organised crime groups "operating across borders and targeting multiple sectors simultaneously" ([Cifas Fraudscape 2026](https://www.cifas.org.uk/newsroom/fraudscape2026)). The target is a group; the model must reason about groups.
+Cifas, the UK's fraud-prevention service, recorded **more than 444,000 cases** on its National Fraud Database in 2025 (over **1,200 a day**) with organised crime groups "operating across borders and targeting multiple sectors simultaneously" ([Cifas Fraudscape 2026](https://www.cifas.org.uk/newsroom/fraudscape2026)). The target is a group; the model must reason about groups.
 
 ## Four graph signals that expose a ring
 
@@ -32,18 +32,18 @@ A transaction graph is simple to state: **accounts are nodes; payments, shared d
 
 | Signal | Graph operation | What it catches |
 |---|---|---|
-| Shared identity | **Hard-link components** — union accounts sharing a phone, card or national ID | Accounts controlled by one person |
-| Shared behaviour | **Soft-link clusters** — accounts on one device, IP or cookie | Fraud farms, shared devices |
+| Shared identity | **Hard-link components**: union accounts sharing a phone, card or national ID | Accounts controlled by one person |
+| Shared behaviour | **Soft-link clusters**: accounts on one device, IP or cookie | Fraud farms, shared devices |
 | Dense subgraph | **Community detection** (Louvain/Leiden) | Rings as "fraud islands" distinct from the legitimate giant component |
-| Circular flow | **Cycle detection** over money edges | Layering — money that returns to where it started |
+| Circular flow | **Cycle detection** over money edges | Layering: money that returns to where it started |
 
-The strongest evidence for the first two is a December 2025 paper on payment-platform clustering. It separates **hard links** — high-confidence identity relationships like phone numbers, credit cards and national IDs — from **soft links** — behavioural associations like device fingerprints, cookies and IPs. On a real payment platform, collapsing hard-link **connected components** into super-nodes, then clustering the soft-link graph, cut the graph from **25 million to 7.7 million nodes** while **doubling detection coverage** ([arXiv:2512.19061](https://arxiv.org/abs/2512.19061)).
+The strongest evidence for the first two is a December 2025 paper on payment-platform clustering. It separates **hard links** (high-confidence identity relationships like phone numbers, credit cards and national IDs) from **soft links** (behavioural associations like device fingerprints, cookies and IPs). On a real payment platform, collapsing hard-link **connected components** into super-nodes, then clustering the soft-link graph, cut the graph from **25 million to 7.7 million nodes** while **doubling detection coverage** ([arXiv:2512.19061](https://arxiv.org/abs/2512.19061)).
 
-That two-tier idea is the method in miniature: hard links tell you *these accounts are the same actor* (cheap, high-precision); soft links tell you *this looks like an operation* (higher coverage — and where false positives breed).
+That two-tier idea is the method in miniature: hard links tell you *these accounts are the same actor* (cheap, high-precision); soft links tell you *this looks like an operation* (higher coverage, and where false positives breed).
 
 ## A worked ring detection, in one script
 
-The method fits in a few dozen lines of standard-library Python. The batch below carries a cash-out ring (four accounts on one device *and* one phone), a layering ring (a three-hop loop on one phone), ordinary one-hop payments, and a trap — a household sharing a single device.
+The method fits in a few dozen lines of standard-library Python. The batch below carries a cash-out ring (four accounts on one device *and* one phone), a layering ring (a three-hop loop on one phone), ordinary one-hop payments, and a trap: a household sharing a single device.
 
 {% raw %}
 ```python
@@ -203,25 +203,25 @@ Shared-device cluster with no other signal: ['acct_F1', 'acct_F3'] -> REVIEW (2 
 
 Read the output the way a fraud analyst would:
 
-- **Two rings surface through two different doors.** Ring A is caught by *soft + hard links* — four accounts on one device and one phone, fanning out; Ring B is caught by its *loop*, with no shared device at all. A system watching only devices misses B; one watching only loops misses A. No legitimate payment reaches the table.
-- **The household cluster lands at REVIEW, not FLAG.** A shared device alone is worth two points — enough to watch, not to accuse. This is the method's most important design choice: **flag on corroboration, not a single weak signal.** Every real deployment drowns in households, offices and cybercafés that share devices.
+- Two rings surface through two different doors. Ring A is caught by *soft + hard links*: four accounts on one device and one phone, fanning out; Ring B is caught by its *loop*, with no shared device at all. A system watching only devices misses B; one watching only loops misses A. No legitimate payment reaches the table.
+- The household cluster lands at REVIEW, not FLAG. A shared device alone is worth two points, enough to watch, not to accuse. This is the method's most important design choice: **flag on corroboration, not a single weak signal.** Every real deployment drowns in households, offices and cybercafés that share devices.
 
 ## From heuristics to GNNs
 
-Hand-written rules are the right first version: every threshold is explainable to an investigator and an auditor. Next, let a model learn the pattern. Graph features — PageRank, degree centrality, local clustering coefficient, k-core membership — are computed from the same graph and fed into a conventional tabular model; Neo4j notes that "a device used by many high-value cards will have a high PageRank, signaling potential risk" ([Neo4j](https://neo4j.com/developer/industry-use-cases/finserv/retail-banking/ieee-cis-fraud-graphs/)).
+Hand-written rules are the right first version: every threshold is explainable to an investigator and an auditor. Next, let a model learn the pattern. Graph features (PageRank, degree centrality, local clustering coefficient, k-core membership) are computed from the same graph and fed into a conventional tabular model; Neo4j notes that "a device used by many high-value cards will have a high PageRank, signaling potential risk" ([Neo4j](https://neo4j.com/developer/industry-use-cases/finserv/retail-banking/ieee-cis-fraud-graphs/)).
 
-Beyond features sit graph neural networks — GraphSAGE, GCN, R-GCN and attention-based variants — which propagate information across neighbouring nodes so a prediction about one account depends on the company it keeps. The public proving ground is the **Elliptic** Bitcoin graph: **203,769 nodes and 234,355 edges**, of which only **4,545 (about 2%) are labelled illicit** ([Nature Scientific Reports](https://www.nature.com/articles/s41598-025-95672-w), [Kumo](https://kumo.ai/pyg/datasets/elliptic-bitcoin/)).
+Beyond features sit graph neural networks (GraphSAGE, GCN, R-GCN and attention-based variants), which propagate information across neighbouring nodes so a prediction about one account depends on the company it keeps. The public proving ground is the **Elliptic** Bitcoin graph: **203,769 nodes and 234,355 edges**, of which only **4,545 (about 2%) are labelled illicit** ([Nature Scientific Reports](https://www.nature.com/articles/s41598-025-95672-w), [Kumo](https://kumo.ai/pyg/datasets/elliptic-bitcoin/)).
 
-Two cautions. First, imbalance is brutal: at ~2% positives, precision at a usable recall is the metric that matters, and a false positive is a blocked legitimate customer — Aite-Novarica found that **almost 90% of declined transactions are legitimate** ([reported by Analytics Vidhya](https://www.analyticsvidhya.com/blog/2025/11/gnn-fraud-detection-with-neo4j/)). Second, graphs are **adversarially malleable**: a ring that suspects it is being clustered can stop sharing devices, rotate numbers, add hops and split into smaller, cleaner components. Monitoring cluster size and link density over time is how you notice the graph being gamed.
+Two cautions. First, imbalance is brutal: at ~2% positives, precision at a usable recall is the metric that matters, and a false positive is a blocked legitimate customer. Aite-Novarica found that **almost 90% of declined transactions are legitimate** ([reported by Analytics Vidhya](https://www.analyticsvidhya.com/blog/2025/11/gnn-fraud-detection-with-neo4j/)). Second, graphs are **adversarially malleable**: a ring that suspects it is being clustered can stop sharing devices, rotate numbers, add hops and split into smaller, cleaner components. Monitoring cluster size and link density over time is how you notice the graph being gamed.
 
 ## How we can do better
 
-1. **Build the entity graph first.** You cannot reconstruct rings from a flat transaction table. Persist accounts, devices, phones, cards and national IDs as nodes with typed edges from day one — hard-link components are your cheapest high-precision signal.
-2. **Run connected components on every refresh.** Union-find over shared identity links is linear and explainable, and collapses a ring into one entity to investigate instead of forty unrelated alerts.
-3. **Treat community and cycle detection as ring detectors.** Louvain/Leiden finds the dense "fraud island" distinct from the legitimate giant component; directed cycle detection catches layering loops no per-account score will see.
-4. **Score rings, not accounts, and route to ring-level review.** One case with all members, links and narrative is what an investigator can work — and what a court needs.
-5. **Demand corroboration before flagging.** Weight independent signals so shared-device-only clusters stay at review, as the demo does: shared device *plus* phone *plus* fan-out *plus* a loop is a case; a shared device alone is a watchlist.
-6. **Share signals across institutions.** A ring spanning three banks and a wallet is invisible to each one alone — precisely why EMMA and Jackal IV are cross-border, and why sector data-sharing and fast FRC reporting break the second hop.
+1. Build the entity graph first. You cannot reconstruct rings from a flat transaction table. Persist accounts, devices, phones, cards and national IDs as nodes with typed edges from day one. Hard-link components are your cheapest high-precision signal.
+2. Run connected components on every refresh. Union-find over shared identity links is linear and explainable, and collapses a ring into one entity to investigate instead of forty unrelated alerts.
+3. Treat community and cycle detection as ring detectors. Louvain/Leiden finds the dense "fraud island" distinct from the legitimate giant component; directed cycle detection catches layering loops no per-account score will see.
+4. Score rings, not accounts, and route to ring-level review. One case with all members, links and narrative is what an investigator can work — and what a court needs.
+5. Demand corroboration before flagging. Weight independent signals so shared-device-only clusters stay at review, as the demo does: shared device *plus* phone *plus* fan-out *plus* a loop is a case; a shared device alone is a watchlist.
+6. Share signals across institutions. A ring spanning three banks and a wallet is invisible to each one alone, precisely why EMMA and Jackal IV are cross-border, and why sector data-sharing and fast FRC reporting break the second hop.
 
 ## Key takeaways
 

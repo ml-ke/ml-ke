@@ -11,29 +11,29 @@ image:
 ## Red-teaming is how you find out what your assistant will do with a poisoned memo
 
 > **The scenario**
-> A customer asks their bank app's AI assistant "show me my recent transactions." One transaction is a €0.02 transfer whose description field hides instructions. The assistant summarizes — and quietly acts on them.
+> A customer asks their bank app's AI assistant "show me my recent transactions." One transaction is a €0.02 transfer whose description field hides instructions. The assistant summarizes and quietly acts on them.
 > {: .prompt-info }
 
-This is not a thought experiment: in April 2026, security firm Blue41 published exactly this attack against a European bank's in-app AI assistant, where the attacker's only action was one small transfer. If your fintech builds an LLM feature that reads transaction data, documents, or messages — and can call tools — run this red-team engagement before criminals do.
+This has already happened. In April 2026, security firm Blue41 published exactly this attack against a European bank's in-app AI assistant, where the attacker's only action was one small transfer. If your fintech builds an LLM feature that reads transaction data, documents, or messages (and can call tools), run this red-team engagement before criminals do.
 
 ## The €0.02 memo that could hijack a bank assistant
 
 Blue41's engagement required no access to the victim's device, no malware, and no traditional social engineering. The full chain ([case study](https://blue41.com/blog/securing-a-european-banks-financial-ai-assistant/), Thomas Vissers and Tim Van hamme, April 29 2026):
 
-1. **Attacker sends a micro-transfer** — €0.02 via SEPA, with a crafted prompt-injection payload in the free-form *description* field.
-2. **Victim asks a routine question** — "show me my recent transactions" pulls the records, poisoned memo included, into the LLM context window.
-3. **The memo is read as an instruction.** The model cannot distinguish system prompt from retrieved text — both are tokens — so the payload steers the assistant. Blue41's observed impact: the assistant became a delivery channel for a highly credible, personalised phishing message referencing the real incoming transfer.
+1. The attacker sends a micro-transfer of €0.02 by SEPA, with a crafted prompt-injection payload in the free-form *description* field.
+2. The victim asks a routine question, and "show me my recent transactions" pulls the records, poisoned memo included, into the LLM context window.
+3. The memo is read as an instruction. The model cannot distinguish system prompt from retrieved text (both are tokens), so the payload steers the assistant. Blue41's observed impact: the assistant became a delivery channel for a highly credible, personalised phishing message referencing the real incoming transfer.
 
-Developers Digest, which covered the case in June 2026, identified the bank as **Bunq** — Europe's second-largest digital bank, with more than 20 million customers ([The One-Cent Attack](https://www.developersdigest.tech/blog/ai-agent-prompt-injection-banking)). Blue41's write-up keeps the bank unnamed because the point is architectural: any financial AI assistant that retrieves transaction data, customer records, documents, or messages — third-party-controlled text, all of it — shares the weakness.
+Developers Digest, which covered the case in June 2026, identified the bank as **Bunq** — Europe's second-largest digital bank, with more than 20 million customers ([The One-Cent Attack](https://www.developersdigest.tech/blog/ai-agent-prompt-injection-banking)). Blue41's write-up keeps the bank unnamed because the point is architectural: any financial AI assistant that retrieves transaction data, customer records, documents, or messages (third-party-controlled text, all of it) shares the weakness.
 
 ## Why your memo field is now an attack surface
 
-Transaction descriptions, payment references, sender names, email bodies, uploaded PDFs — in a pre-LLM world these were data in a table. In an LLM app they are **prompt material**. OWASP's LLM Top 10 for 2025 calls this [LLM01:2025 Prompt Injection](https://owasp.org/www-project-top-10-for-large-language-model-applications/), specifically the *indirect* variant: malicious instructions arriving inside retrieved content rather than from the user.
+In a pre-LLM world, transaction descriptions, payment references, sender names, email bodies, and uploaded PDFs were data in a table. In an LLM app they are **prompt material**. OWASP's LLM Top 10 for 2025 calls this [LLM01:2025 Prompt Injection](https://owasp.org/www-project-top-10-for-large-language-model-applications/), specifically the *indirect* variant: malicious instructions arriving inside retrieved content rather than from the user.
 
 Two adjacent OWASP categories make it dangerous:
 
-- **LLM05:2025 Improper Output Handling** — retrieved text is rendered without validation, so an attacker-controlled "verify your transfer" line becomes a believable phishing link inside the trusted app.
-- **LLM06:2025 Excessive Agency** — the assistant holds a money-moving tool (`refund_tx`, `transfer`), and nothing outside the model verifies that the action's arguments came from the user rather than from a poisoned memo.
+- LLM05:2025 Improper Output Handling. Retrieved text is rendered without validation, so an attacker-controlled "verify your transfer" line becomes a believable phishing link inside the trusted app.
+- LLM06:2025 Excessive Agency. The assistant holds a money-moving tool (`refund_tx`, `transfer`), and nothing outside the model verifies that the action's arguments came from the user rather than from a poisoned memo.
 
 > **Why this matters for mobile money**
 > Every payment rail has the same pattern: the sender name on an M-PESA or bank notification is attacker-controlled text that an LLM feature may later ingest as context.
@@ -43,9 +43,9 @@ Two adjacent OWASP categories make it dangerous:
 
 Three more findings from the last two years show this is a live attacker technique:
 
-- **In-the-wild indirect prompt injection (March 2026).** Palo Alto Networks' [Unit 42](https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/) analysed large-scale web telemetry and documented attacker intents including **unauthorized transactions**, sensitive-information leakage, data destruction, denial of service, and system-prompt leakage — 22 distinct payload techniques, plus their first observed AI-based ad-review evasion.
-- **Morris II, the GenAI worm (2024).** Researchers from Technion, Cornell Tech, and Intuit built *adversarial self-replicating prompts* ([arXiv:2403.02817](https://arxiv.org/abs/2403.02817)) that turn RAG-based email assistants into propagation and exfiltration channels: crafted emails extract sensitive user data from the assistant's context and append it into generated replies, compromising a new assistant about once every five emails. IBM lists data exfiltration and account hijacking among the outcomes ([IBM Think](https://www.ibm.com/think/insights/morris-ii-self-replicating-malware-genai-email-assistants)).
-- **The refund bot that couldn't refuse (WithSecure Labs).** Researcher Donato Capitella used prompt injection to make a bookstore support bot process refunds it was programmed to refuse — a clean LLM05/LLM06 demonstration in a money-adjacent flow ([Synthetic Recollections](https://labs.withsecure.com/publications/llm-agent-prompt-injection)).
+- In-the-wild indirect prompt injection (March 2026). Palo Alto Networks' [Unit 42](https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/) analysed large-scale web telemetry and documented attacker intents including **unauthorized transactions**, sensitive-information leakage, data destruction, denial of service, and system-prompt leakage — 22 distinct payload techniques, plus their first observed AI-based ad-review evasion.
+- Morris II, the GenAI worm (2024). Researchers from Technion, Cornell Tech, and Intuit built *adversarial self-replicating prompts* ([arXiv:2403.02817](https://arxiv.org/abs/2403.02817)) that turn RAG-based email assistants into propagation and exfiltration channels: crafted emails extract sensitive user data from the assistant's context and append it into generated replies, compromising a new assistant about once every five emails. IBM lists data exfiltration and account hijacking among the outcomes ([IBM Think](https://www.ibm.com/think/insights/morris-ii-self-replicating-malware-genai-email-assistants)).
+- The refund bot that couldn't refuse (WithSecure Labs). Researcher Donato Capitella used prompt injection to make a bookstore support bot process refunds it was programmed to refuse, a clean LLM05/LLM06 demonstration in a money-adjacent flow ([Synthetic Recollections](https://labs.withsecure.com/publications/llm-agent-prompt-injection)).
 
 ## A finance red-team checklist (mapped to OWASP 2025)
 
@@ -62,7 +62,7 @@ Run these probes against your assistant before launch, and again after every pro
 
 ## Probe it: a runnable demo
 
-The mechanics are simple enough to simulate deterministically. This is not a real LLM — it is the two retrieval policies side by side, showing where the decision flips:
+The mechanics are simple enough to simulate deterministically. This demo runs no real LLM; it puts the two retrieval policies side by side, showing where the decision flips:
 
 ```python
 import base64  # Deterministic demo of a Bunq-style memo attack.
@@ -109,11 +109,11 @@ print("-> pattern filters miss obfuscation; the tagged-data gate does not depend
 
 The pattern behind every case above is the same, and so is the fix. Treat every retrieved field as hostile; keep instructions and data in separate channels; and never let the model be the last decision-maker on a money movement:
 
-1. **Tag and isolate untrusted content.** Mark retrieved text as data and instruct the model it is never instructions. Assume attackers have already read your system prompt — leakage ([LLM07](https://owasp.org/www-project-top-10-for-large-language-model-applications/)) is one probe away.
-2. **Validate outputs before they render or act.** Links, quoted "advice", and tool arguments that came from retrieved content must pass a validator outside the model — the same lesson as [LLM Security for Financial Chatbots](/posts/llm-security-financial-chatbots/): the assistant may *suggest*, never *touch* money directly.
-3. **Gate irreversible actions with a human.** Transfers, refunds, and payout changes need explicit user confirmation showing the parsed amount and beneficiary — not a model-generated "approved".
-4. **Automate the probes.** Add these payload families to a [PyRIT](https://github.com/Azure/PyRIT) or [Garak](https://github.com/NVIDIA/garak) scan in CI so every prompt change is regression-tested — see [Automated AI Red Teaming at Scale](/posts/automated-red-teaming/) for the tooling.
-5. **Watch runtime behaviour.** Blue41's recommendation: assistants need runtime visibility and layered controls, not a single model-level guardrail. Log every tool call, its provenance (user vs. retrieved context), and every approval — the discipline behind the NCBA ghost-account detection ([AI-Enabled Security Anomaly Detection](/posts/ai-enabled-security-anomaly-detection/)).
+1. Tag and isolate untrusted content. Mark retrieved text as data and instruct the model it is never instructions. Assume attackers have already read your system prompt; leakage ([LLM07](https://owasp.org/www-project-top-10-for-large-language-model-applications/)) is one probe away.
+2. Validate outputs before they render or act. Links, quoted "advice", and tool arguments that came from retrieved content must pass a validator outside the model — the same lesson as [LLM Security for Financial Chatbots](/posts/llm-security-financial-chatbots/): the assistant may *suggest*, never *touch* money directly.
+3. Gate irreversible actions with a human. Transfers, refunds, and payout changes need explicit user confirmation showing the parsed amount and beneficiary rather than a model-generated "approved".
+4. Automate the probes. Add these payload families to a [PyRIT](https://github.com/Azure/PyRIT) or [Garak](https://github.com/NVIDIA/garak) scan in CI so every prompt change is regression-tested. See [Automated AI Red Teaming at Scale](/posts/automated-red-teaming/) for the tooling.
+5. Watch runtime behaviour. Blue41's recommendation: assistants need runtime visibility and layered controls rather than a single model-level guardrail. Log every tool call, its provenance (user vs. retrieved context), and every approval — the discipline behind the NCBA ghost-account detection ([AI-Enabled Security Anomaly Detection](/posts/ai-enabled-security-anomaly-detection/)).
 
 ## Key takeaways
 

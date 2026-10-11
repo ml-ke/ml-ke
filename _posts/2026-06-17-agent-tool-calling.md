@@ -15,12 +15,12 @@ An agent without tools is just a fancy chatbot. **Tools are what connect LLMs to
 In this post, we'll move beyond the simple tool wrappers from Post 1 and build a production-grade tool system covering:
 
 - **Tool schemas** compatible with OpenAI, Anthropic, and open models
-- **Robust error handling** — retries, rate limiting, timeouts
+- **Robust error handling**: retries, rate limiting, timeouts
 - **Parallel tool execution** for performance
-- **Tool composition** — chains and DAGs of tool calls
-- **Security boundaries** — input validation and access control
+- **Tool composition**: chains and DAGs of tool calls
+- **Security boundaries**: input validation and access control
 
-## Anatomy of a Tool
+## Anatomy of a tool
 
 Every tool needs three things:
 
@@ -28,7 +28,7 @@ Every tool needs three things:
 2. **Description**: Clear explanation of what it does (critical for the LLM to choose correctly)
 3. **Parameter Schema**: JSON Schema defining inputs
 
-### OpenAI Function Calling Format
+### OpenAI function calling format
 
 {% raw %}
 ```python
@@ -81,9 +81,9 @@ tools_schema = [
 ```
 {% endraw %}
 
-### Anthropic Tool Format
+### Anthropic tool format
 
-Anthropic uses a slightly different schema — notice the lack of `"type": "function"` wrapper:
+Anthropic uses a slightly different schema. Notice the lack of `"type": "function"` wrapper:
 
 {% raw %}
 ```python
@@ -106,7 +106,7 @@ anthropic_tools = [
 ```
 {% endraw %}
 
-### Universal Tool Class
+### Universal tool class
 
 Let's build a unified tool definition that works across providers:
 
@@ -233,11 +233,11 @@ class Tool:
 ```
 {% endraw %}
 
-## Building Production Tools
+## Building production tools
 
 Let's build three real-world tools with proper error handling.
 
-### 1. Web Search Tool
+### 1. Web search tool
 
 {% raw %}
 ```python
@@ -297,7 +297,7 @@ class WebSearchTool(Tool):
 ```
 {% endraw %}
 
-### 2. Calculator with Expression Safety
+### 2. Calculator with expression safety
 
 {% raw %}
 ```python
@@ -387,7 +387,7 @@ class SafeCalculatorTool(Tool):
 ```
 {% endraw %}
 
-### 3. API Integration Tool
+### 3. API integration tool
 
 {% raw %}
 ```python
@@ -441,7 +441,7 @@ class APITool(Tool):
 ```
 {% endraw %}
 
-## Parallel Tool Execution
+## Parallel tool execution
 
 When an agent needs multiple independent tools called, sequential execution wastes time. **Parallel execution** dramatically reduces latency:
 
@@ -494,9 +494,9 @@ class ToolExecutor:
 ```
 {% endraw %}
 
-## Error Handling Patterns
+## Error handling patterns
 
-### Exponential Backoff
+### Exponential backoff
 
 {% raw %}
 ```python
@@ -528,7 +528,7 @@ class ResilientTool(Tool):
 ```
 {% endraw %}
 
-### Graceful Degradation
+### Graceful degradation
 
 When a tool fails, the agent should adapt, not crash:
 
@@ -548,9 +548,9 @@ def execute_with_fallback(primary_tool: Tool, fallback_tool: Tool, **kwargs) -> 
 ```
 {% endraw %}
 
-## Tool Composition Patterns
+## Tool composition patterns
 
-### Chain (Sequential)
+### Chain (sequential)
 
 Output of one tool becomes input to the next:
 
@@ -584,7 +584,7 @@ def tool_chain(tools: list[tuple[Tool, dict]],
 ```
 {% endraw %}
 
-### Router (Conditional)
+### Router (conditional)
 
 The LLM decides which tool to call based on the input:
 
@@ -606,7 +606,7 @@ Selected tool:"""
 ```
 {% endraw %}
 
-## Production Checklist
+## Production checklist
 
 | Concern | Implementation |
 |---------|---------------|
@@ -621,7 +621,7 @@ Selected tool:"""
 
 ## Conclusion
 
-Tools are the bridge between LLM reasoning and real-world action. A well-designed tool system — with proper schemas, error handling, rate limiting, and composition — is the difference between a demo agent and a production system.
+Tools are the bridge between LLM reasoning and real-world action. A well-designed tool system (proper schemas, error handling, rate limiting, composition) is the difference between a demo agent and a production system.
 
 Key takeaways:
 
