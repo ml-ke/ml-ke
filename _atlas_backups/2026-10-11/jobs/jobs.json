@@ -27,7 +27,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-06-01T17:19:04.085290+03:00",
-      "next_run_at": "2026-10-11T14:00:00+03:00",
+      "next_run_at": "2026-10-12T14:00:00+03:00",
       "last_run_at": "2026-10-10T14:04:41.930093+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -38,12 +38,15 @@
       "workdir": null,
       "profile": null,
       "last_dispatch": {
-        "scheduled_at": "2026-10-10T14:00:00+03:00",
-        "dispatched_at": "2026-10-10T14:00:02.064424+03:00",
-        "lateness_seconds": 2.1,
+        "scheduled_at": "2026-10-11T14:00:00+03:00",
+        "dispatched_at": "2026-10-11T14:00:47.360312+03:00",
+        "lateness_seconds": 47.4,
         "kind": "on_time"
       },
-      "fire_claim": null,
+      "fire_claim": {
+        "at": "2026-10-11T14:00:47.504920+03:00",
+        "by": "h0d4r1:2033:4665cee5127c41629e9bb296fe7e9344"
+      },
       "failure_streak": 0
     },
     {
@@ -432,5 +435,5 @@
       "workdir": "/home/pro-g/ProG/ml-ke"
     }
   ],
-  "updated_at": "2026-10-10T20:00:02.868034+03:00"
+  "updated_at": "2026-10-11T14:00:47.505547+03:00"
 }
