@@ -16,12 +16,12 @@ Six stories stand out.
 
 ## Google's Africa applied AI lab opens in Accra
 
-On July 14, **Google** announced the launch of its **Africa Applied AI Lab** in Accra, Ghana, a dedicated research and development hub pairing African founders and researchers with Google's AI teams. The program runs applications from **July 1 to August 31, 2026**, and is designed to accelerate applied AI projects that solve real problems for African markets.
+On July 14, **Google** announced the launch of its **Africa Applied AI Lab** in Accra, Ghana. It is a dedicated research and development hub that pairs African founders and researchers with Google's AI teams. The program runs applications from **July 1 to August 31, 2026**, and is designed to accelerate applied AI projects that solve real problems for African markets.
 
 > "We want to meet African founders where they are (building solutions for African users) and give them access to the same AI infrastructure and expertise that powers Google's global products."
 > — Google Africa AI Lab announcement, July 2026
 
-Alongside the lab, Google also opened applications for its **Google for Startups Accelerator for South Africa**, selecting 15 startups for the cohort. The accelerator offers cloud credits, mentorship, and technical support: a direct pipeline from the lab to market.
+Alongside the lab, Google also opened applications for its **Google for Startups Accelerator for South Africa**, selecting 15 startups for the cohort. The accelerator offers cloud credits, mentorship, and technical support. It is a direct pipeline from the lab to market.
 
 - [Google Africa Applied AI Lab announcement](https://blog.google/around-the-globe/google-africa/africa-applied-ai-lab-2026/)
 - [Google for Startups Accelerator South Africa](https://startup.google.com/accelerator/south-africa/)
@@ -30,7 +30,7 @@ Alongside the lab, Google also opened applications for its **Google for Startups
 
 On July 16, South African startup **Cue** announced a **$5 million seed round** led by Knife Capital with participation from FAM Investments. Cue builds AI-powered customer service agents that handle multilingual support across voice, WhatsApp, and web chat, purpose-built for African contact centres.
 
-More important than the amount is the signal it sends. Knife Capital, one of Africa's most active venture firms, has now led multiple AI-focused investments this year, and Cue's traction suggests enterprise demand for AI agents in Africa is accelerating.
+The amount matters less than the signal it sends. Knife Capital, one of Africa's most active venture firms, has now led multiple AI-focused investments this year, and Cue's traction suggests enterprise demand for AI agents in Africa is accelerating.
 
 - [Cue raises $5M for AI customer service — TechCabal](https://techcabal.com/2026/07/16/cue-ai-customer-service-5m/)
 - [Knife Capital portfolio](https://www.knifecapital.com/portfolio)
@@ -41,14 +41,14 @@ On July 14, **Vercel** (valued at $9.3B) acquired **Stakpak**, an Egyptian-found
 
 This marks **Vercel's second acquisition of an African-founded startup in a month**, following the acquisition of **Better Auth** (built by Ethiopian solo founder Bereket Engida) in late June. Better Auth, an authentication-as-code platform, was built by a single developer before being acquired.
 
-The pattern is unmistakable: Big tech acquirers see African founders as high-leverage bets. Without massive burn rates, these teams build deep, defensible products that global platforms need.
+The pattern is unmistakable: Big tech acquirers see African founders as high-upside bets. Without massive burn rates, these teams build deep, defensible products that global platforms need.
 
 - [Vercel acquires Stakpak — TechCrunch](https://techcrunch.com/2026/07/14/vercel-acquires-stakpak/)
 - [Vercel acquires Better Auth — TechCrunch](https://techcrunch.com/2026/06/28/vercel-acquires-better-auth/)
 
 ## ALX enterprise: leading in the age of AI
 
-ALX Enterprise, the professional development arm of the African Leadership Group, is running **"Leading in the Age of AI"** sessions in two major African capitals: **Kigali, Rwanda (July 24)** and **Nairobi, Kenya (July 30)**. The sessions target senior executives and managers looking to understand AI strategy, deployment, and governance.
+ALX Enterprise, the professional development arm of the African Leadership Group, is running **"Leading in the Age of AI"** sessions in two major African capitals: **Kigali, Rwanda (July 24)** and **Nairobi, Kenya (July 30)**. The sessions are for senior executives and managers who want to understand AI strategy, deployment, and governance.
 
 African enterprises know they need AI strategy, but most lack the internal expertise to build it. ALX's sold-out sessions are a proxy for the continent's readiness gap and the urgency to close it.
 
@@ -58,7 +58,7 @@ African enterprises know they need AI strategy, but most lack the internal exper
 
 **Prosus**, the $100B+ global consumer internet group and Naspers subsidiary, has highlighted **Lelapa AI** as a standout investment in its AI portfolio. Lelapa AI, based in South Africa, focuses on building **datasets that reflect Africa's cultural and linguistic diversity**: training data for low-resource languages like isiZulu, isiXhosa, Yoruba, and Hausa.
 
-Most large language models today are trained on English-centric web data, which means they perform poorly on African languages and miss cultural nuance. Lelapa AI's approach, working directly with native speakers and communities to curate representative datasets, is the kind of infrastructure work that makes every downstream African AI application better.
+Most large language models today are trained on English-centric web data, which means they perform poorly on African languages and miss cultural nuance. Lelapa AI works directly with native speakers and communities to curate representative datasets. That is infrastructure work, and it makes every downstream African AI application better.
 
 > "If we build AI that doesn't understand our languages and our cultures, it's not really AI for Africa."
 > — Lelapa AI, as featured by Prosus
@@ -87,7 +87,7 @@ The report shows how African organisations (particularly in banking, telecoms, a
 
 ## What this means
 
-These six stories paint a coherent picture. The infrastructure layer is being built: Google's lab, Lelapa AI's datasets, Stakpak's DevOps agents. The funding is real. Cue's $5M is one data point in a trend of institutional investors taking African AI seriously. And the talent pipeline is warming up: ALX's sold-out executive sessions and Google's accelerator pipeline show that demand for AI skills is outstripping supply.
+These six stories fit together. The infrastructure layer is being built: Google's lab, Lelapa AI's datasets, Stakpak's DevOps agents. The funding is real. Cue's $5M is one data point in a trend of institutional investors taking African AI seriously. And the talent pipeline is warming up: ALX's sold-out executive sessions and Google's accelerator pipeline show that demand for AI skills is outstripping supply.
 
 The warning from Business Day is a useful corrective. None of this is guaranteed. African AI will only flourish if local founders building local solutions can compete with the incumbents. But for the first time in a long time, the balance of evidence points upward.
 

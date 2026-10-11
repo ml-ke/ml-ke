@@ -38,7 +38,7 @@ Mistral's €3bn round confirmed a valuation above €21bn (covered [last week](
 
 Brazil's R$2.3bn (~$444m) AI plan reportedly routed ~R$1.3bn to Chinese vendors as Huawei and iFlytek build a regional computing hub. Russia's Sber open-sourced GigaChat Ultra Preview and its speech models while seeking Chinese microchips for GigaChat's compute ([GINC](https://www.ginc.org/russias-national-ai-strategy/)).
 
-## Spotlight: model provenance Is now a compliance question
+## Spotlight: model provenance is now a compliance question
 
 Distillation is not exotic. A lab calls your API at volume, collects the outputs — reasoning traces where offered — and trains a smaller model to imitate them. That is legitimate technique; the industrial version just removes the guardrails.
 

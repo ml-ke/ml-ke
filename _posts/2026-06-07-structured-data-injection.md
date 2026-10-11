@@ -23,7 +23,7 @@ The more insidious attacks come through the **side doors**: PDF metadata fields,
 
 Attackers routinely exploit **four structured data formats** for prompt injection: PDF metadata, JSON fields, CSV rows, and database records. For each, we show working Python exploit code, explain why standard sanitization fails, and lay out defenses.
 
-## The blind spot: structured data Is still just text to an LLM
+## The blind spot: structured data is still just text to an LLM
 
 The reason all of this works is a core architectural blind spot. When an LLM processes a request, its context window is a flat sequence of tokens. Whether a token came from:
 

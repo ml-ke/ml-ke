@@ -39,7 +39,7 @@ The week of September 1–7 opened with the densest burst of frontier-model acti
 - Google is accepting applications for the 2026 Google for Startups Accelerator South Africa: 15 growth-stage, AI-driven startups receive non-dilutive funding, Google AI tools and cloud ([Google Blog](https://blog.google/intl/en-africa/company-news/outreach-and-initiatives/applications-are-open-for-the-2026-google-for-startups-accelerator-south-africa/)).
 - The scale of the gap: African startups raised about $1.36B in H1 2026, but only 190 raised at least $100,000, the lowest count since 2021 ([Businessday NG](https://businessday.ng/technology/article/african-ai-startups-exist-but-few-are-getting-the-first-100000/)).
 
-### South America: Brazil Reins in election AI
+### South America: Brazil reins in election AI
 
 - With the October presidential vote weeks away, Brazil's electoral court (TSE) is deciding whether an AI-generated video featuring Bolsonaro counts as a banned deepfake, under rules mandating AI labelling, a 72-hour pre-vote blackout, a ban on candidate-recommending chatbots and joint platform liability ([Reuters, Sep 1](https://www.reuters.com/world/americas/brazil-races-rein-ai-weeks-before-election-2026-09-01/), [Rio Times](https://www.riotimesonline.com/brazil-tse-bolsonaro-ai-video-deepfake-ruling-2026/)).
 

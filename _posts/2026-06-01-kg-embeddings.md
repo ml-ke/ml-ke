@@ -66,7 +66,7 @@ wget https://raw.githubusercontent.com/mommi84/WN18RR/master/data/FB15k-237/vali
 wget https://raw.githubusercontent.com/mommi84/WN18RR/master/data/FB15k-237/test.txt
 ```
 
-## 1. TransE: Translational embeddings
+## 1. TransE: translational embeddings
 
 **TransE** (Bordes et al., 2013) is the simplest and most influential KGE model. It models relations as **translations** in embedding space:
 
@@ -119,7 +119,7 @@ class TransE(nn.Module):
 Normalizing embeddings to unit length prevents the optimization from simply making embeddings arbitrarily large to minimize loss:
 
 > **Without normalization:** The model learns $\|\mathbf{h} + \mathbf{r} - \mathbf{t}\| = 0$ by making all embeddings zero.
-> **With normalization:** The model must actually align semantic directions.
+> **With normalization:** The model must align semantic directions.
 {: .prompt-warning }
 
 ## 2. RotatE: rotation in complex space
@@ -199,7 +199,7 @@ class RotatE(nn.Module):
 > The ability to model symmetric relations is critical. In a KG, `(Alice, sibling_of, Bob)` implies `(Bob, sibling_of, Alice)`. TransE would need two separate relation vectors; RotatE captures this with a single 180° rotation.
 {: .prompt-info }
 
-## 3. ComplEx: Hermitian dot product
+## 3. ComplEx: hermitian dot product
 
 **ComplEx** (Trouillon et al., 2016) uses complex embeddings with a Hermitian dot product:
 

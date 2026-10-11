@@ -28,9 +28,9 @@ Swahili is a **Bantu agglutinative language**, meaning it builds complex words b
 | ninakusoma | I read you |
 | hawakuwasomea | They did not read for them |
 
-The last example, *hawakuwasomea*, is a single word in Swahili containing the subject prefix (*ha-* negative), tense marker (*-ku-* past), object prefix (*-wa-* them), verb root (*-som-* read), and applicative suffix (*-ea* for/at). In English, this entire paradigm would require multiple sentences.
+The last example, *hawakuwasomea*, is a single word in Swahili containing the subject prefix (*ha-* negative), tense marker (*-ku-* past), object prefix (*-wa-* them), verb root (*-som-* read), and applicative suffix (*-ea* for/at). In English, this single construction would require multiple sentences.
 
-**Why this matters for tokenization:** Standard subword tokenizers like BPE (Byte-Pair Encoding) used in BERT and GPT models were designed for English. They tend to fragment Swahili words into many small tokens, inflating the effective sequence length. A sentence of 20 Swahili words might contain 60+ subword tokens — eating into the 512-token limit of many transformer models.
+Why this matters for tokenization: Standard subword tokenizers like BPE (Byte-Pair Encoding) used in BERT and GPT models were designed for English. They tend to fragment Swahili words into many small tokens, inflating the effective sequence length. A sentence of 20 Swahili words might contain 60+ subword tokens — eating into the 512-token limit of many transformer models.
 
 ```python
 # BPE tokenization example (conceptual)
@@ -43,7 +43,7 @@ tokens = tokenizer.tokenize(swahili_text)
 # That's 7 tokens for a single word!
 ```
 
-### Code-Switching
+### Code-switching
 
 Swahili speakers in East Africa rarely speak "pure" Swahili. Code-switching between Swahili and English — known as **Sheng** in Kenya — is the norm, especially in urban areas:
 
@@ -64,7 +64,7 @@ Swahili has multiple dialects:
 - **Kimvita** (Mombasa): Significant lexical and phonetic differences
 - **Kiamu** (Lamu): Archaic features preserved
 - **Congo Swahili**: Influenced by French and Lingala
-- **Sheng** (Urban Kenyan slang): Highly fluid and rapidly evolving
+- **Sheng** (Urban Kenyan slang): Highly fluid and constantly changing
 
 Building a single model that handles all these varieties is a major challenge.
 
@@ -103,14 +103,14 @@ Several multilingual models include Swahili in their training data:
 ### Limitations of existing datasets
 
 Most "Swahili" datasets are:
-1. **Heavily English-influenced**: Much of the CC-100 Swahili is actually translated English content, not naturally produced Swahili
-2. **Formal register only**: News and religious texts dominate; there's almost no conversational Swahili
-3. **Dated**: The Masakhane news corpus was collected in 2020-2021
-4. **Missing code-switching**: Almost no datasets include Swahili-English mixing
+1. Heavily English-influenced: Much of the CC-100 Swahili is translated English content, not naturally produced Swahili
+2. Formal register only: News and religious texts dominate; there's almost no conversational Swahili
+3. Dated: The Masakhane news corpus was collected in 2020-2021
+4. Missing code-switching: Almost no datasets include Swahili-English mixing
 
 ## Practical pipeline: building a Swahili text classifier
 
-Let's walk through a real pipeline for fine-tuning a Swahili sentiment classifier:
+A real pipeline for fine-tuning a Swahili sentiment classifier:
 
 ```python
 from transformers import (
@@ -178,11 +178,11 @@ trainer.train()
 
 Standard NLP evaluation metrics don't tell the whole story for Swahili:
 
-**BLEU for translation**: BLEU correlates poorly with human judgment for Swahili because it rewards token-level n-gram overlap, but Swahili's agglutinative morphology means multiple valid translations of a single word. A Swahili-English translator might render *nisingekuwa* as either "if I were not" or "if I wasn't" — identical meaning, different BLEU scores.
+BLEU for translation: BLEU correlates poorly with human judgment for Swahili because it rewards token-level n-gram overlap, but Swahili's agglutinative morphology means multiple valid translations of a single word. A Swahili-English translator might render *nisingekuwa* as either "if I were not" or "if I wasn't" — identical meaning, different BLEU scores.
 
-**Accuracy metrics**: For classification tasks, test sets inevitably contain more formal Swahili than real-world usage. A model scoring 0.95 on news sentiment may drop to 0.65 on Twitter Sheng.
+Accuracy metrics: For classification tasks, test sets inevitably contain more formal Swahili than real-world usage. A model scoring 0.95 on news sentiment may drop to 0.65 on Twitter Sheng.
 
-**Human evaluation protocols**: Masakhane publishes guidelines for human evaluation of Swahili NLP that account for:
+Human evaluation protocols: Masakhane publishes guidelines for human evaluation of Swahili NLP that account for:
 - Dialect tolerance (accept multiple correct translations)
 - Code-switching acceptance
 - Cultural context awareness
@@ -191,10 +191,10 @@ Standard NLP evaluation metrics don't tell the whole story for Swahili:
 
 The most promising directions:
 
-1. **Better tokenization**: Byte-level and character-level models (CANINE, ByT5) avoid subword fragmentation entirely and work well for agglutinative languages
-2. **Sheng and code-switching datasets**: Masakhane's current project is building a 100K-sentence Swahili-English code-switching corpus
-3. **Speech NLP**: Swahili is a spoken-first language for most of its speakers; ASR and text-to-speech are underserved
-4. **Cross-lingual transfer**: Using English or French models to bootstrap Swahili systems via parallel data
+1. Better tokenization: Byte-level and character-level models (CANINE, ByT5) avoid subword fragmentation entirely and work well for agglutinative languages
+2. Sheng and code-switching datasets: Masakhane's current project is building a 100K-sentence Swahili-English code-switching corpus
+3. Speech NLP: Swahili is a spoken-first language for most of its speakers; ASR and text-to-speech are underserved
+4. Cross-lingual transfer: Using English or French models to bootstrap Swahili systems via parallel data
 
 Swahili NLP is the canary in the coal mine for African language technology. If we get this right — with rigorous evaluation, culturally aware dataset creation, and linguistically informed model architecture choices — the methods will generalize to hundreds of other African languages. If we get it wrong, we risk building technology that doesn't serve the 200 million people who speak Swahili every day.
 

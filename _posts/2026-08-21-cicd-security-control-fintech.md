@@ -10,7 +10,7 @@ image:
 
 ## The 5:33 AM change that cost USD 446,000
 
-On June 6, 2025, during a scheduled maintenance window at NCBA Bank Rwanda, the bank activated a vendor contract that gave Evans Nandwa — a contractor from Nairobi-based Ronford Digital Limited — access to live backend systems. What happened next, per court filings by Kenya's DCI Banking Fraud Investigation Unit, was remarkably simple: at 5:33 AM, about three minutes after access was granted, Nandwa altered the mobile money integration logic. No pull request, no peer review, no approval. The change went straight into production ([254 News](https://254news.co.ke/how-a-three-minute-code-change-triggered-sh57-5-million-ncba-fraud/), [Kenya Insights](https://kenyainsights.com/how-ncba-software-engineer-opened-floodgates-for-mobile-banking-system-fraud/)).
+On June 6, 2025, during a scheduled maintenance window at NCBA Bank Rwanda, the bank activated a vendor contract that gave Evans Nandwa access to live backend systems. Nandwa was a contractor from Nairobi-based Ronford Digital Limited. What happened next, per court filings by Kenya's DCI Banking Fraud Investigation Unit, was remarkably simple: at 5:33 AM, about three minutes after access was granted, Nandwa altered the mobile money integration logic. No pull request, no peer review, no approval. The change went straight into production ([254 News](https://254news.co.ke/how-a-three-minute-code-change-triggered-sh57-5-million-ncba-fraud/), [Kenya Insights](https://kenyainsights.com/how-ncba-software-engineer-opened-floodgates-for-mobile-banking-system-fraud/)).
 
 The altered logic enabled integration services that allowed unauthorized withdrawals from the Rwandan system. By the time the anomaly surfaced on June 14, about 70 accounts had been used for 260 transactions totalling roughly USD 446,000 (Ksh 57.5 million) ([Court Helicopter](https://www.courthelicopter.ke/court-detains-contractor-over-ksh-57-5-million-fraud-at-ncba-bank/), [Nairobi Times](https://nairobitimez.co.ke/2025/06/18/banking-fraud-unit-allowed-to-detain-software-developer-suspected-of-defrauding-bank-of-sh57-million/)).
 
@@ -24,11 +24,11 @@ Nothing in the NCBA timeline is exotic. It is precisely the sequence a well-conf
 
 **No direct-to-production edits.** The production codebase is write-protected. A 5:33 AM change must begin as a branch and a pull request — never a direct edit to a live backend. Branch protection enforces this at the repository level: required status checks, required reviewers, signed commits.
 
-**Automated checks run before anything ships.** The moment a PR opens, CI runs the build and test suite, then layers on SAST, dependency scanning, and a secrets scan. A logic alteration to money-movement integration code would have to survive the test suite, and planted credentials or backdoor patterns would trip the scanners. At 5:33 AM, with no human watching, these checks never sleep.
+**Automated checks run before anything ships.** The moment a PR opens, CI runs the build and test suite, then layers on SAST, dependency scanning, and a secrets scan. A logic alteration to money-movement integration code would have to survive the test suite, and planted credentials or backdoor patterns would trip the scanners. At 5:33 AM, with no human watching, these checks still run.
 
 **Human review is a control, not a ceremony.** Requiring at least one approver who understands the payments domain means changes to withdrawal logic attract eyes. The NCBA change had no reviewer because the process had no review step.
 
-**Protected environments and promotion gates.** Production is a protected environment reachable only through explicit promotion — typically with a manual approval step. Feature branches flow freely to dev and staging, but a human with the right role must approve promotion to prod. The rogue 5:33 AM change dies at the gate.
+**Protected environments and promotion gates.** Production is a protected environment reachable only through explicit promotion, which typically includes a manual approval step. Feature branches flow freely to dev and staging, but a human with the right role must approve promotion to prod. The rogue 5:33 AM change dies at the gate.
 
 **Immutable, signed artifacts.** Build once, sign, and promote the same artifact through every environment. Deployment verifies the artifact hash against the signature; any mismatch halts the deploy and raises an alert. This closes the "hotfix directly on the server" loophole contractors exploit.
 
@@ -38,7 +38,7 @@ Nothing in the NCBA timeline is exotic. It is precisely the sequence a well-conf
 
 ## Pipelines are targets too: SolarWinds and tj-actions
 
-CI/CD is a control, but it is also an asset worth attacking — so the control itself must be defended. SolarWinds (2020) is the worst case: adversaries compromised the Orion build pipeline and shipped trojanized updates to roughly 18,000 organizations, including US government agencies, before CISA issued alert AA20-352A ([CISA](https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a), [SecurityWeek](https://www.securityweek.com/solarwinds-says-18000-customers-may-have-used-compromised-product/)).
+CI/CD is a control, but it is also an asset worth attacking. The control itself must be defended. SolarWinds (2020) is the worst case: adversaries compromised the Orion build pipeline and shipped trojanized updates to roughly 18,000 organizations, including US government agencies, before CISA issued alert AA20-352A ([CISA](https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a), [SecurityWeek](https://www.securityweek.com/solarwinds-says-18000-customers-may-have-used-compromised-product/)).
 
 More recently, in March 2025, attackers retroactively modified version tags of the popular `tj-actions/changed-files` GitHub Action to point at a malicious commit, exposing CI/CD secrets in workflow logs — CVE-2025-30066, flagged by CISA and patched in v46.0.1 ([GitHub Advisory](https://github.com/advisories/ghsa-mrrh-fwg8-r2c3), [CISA](https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-tj-actionschanged-files-cve-2025-30066-and-reviewdogaction), [Wiz](https://www.wiz.io/blog/github-action-tj-actions-changed-files-supply-chain-attack-cve-2025-30066)).
 

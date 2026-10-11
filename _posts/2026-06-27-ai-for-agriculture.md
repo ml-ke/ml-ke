@@ -8,7 +8,7 @@ image:
   alt: Farmer using smartphone to scan maize crop with AI disease detection
 ---
 
-## Why agriculture Is the killer app for African AI
+## Why agriculture is the killer app for African AI
 
 Agriculture employs 60-70% of sub-Saharan Africa's workforce and contributes 15-35% of GDP across the continent. In Kenya specifically:
 - **5.5 million** smallholder farms (averaging 0.5-3 acres)
@@ -16,9 +16,9 @@ Agriculture employs 60-70% of sub-Saharan Africa's workforce and contributes 15-
 - **30-40%** of crop yields are lost annually to pests, diseases, and weather
 - **$1B+** in crop losses per year from preventable diseases
 
-These losses are not abstract. A maize farmer in western Kenya who loses 40% of their crop to fall armyworm isn't just losing profit — they're losing their family's food security for the year.
+These losses are not abstract. A maize farmer in western Kenya who loses 40% of their crop to fall armyworm loses more than a season's profit — the family's food security for the year goes with the crop.
 
-AI offers interventions at every point in the agricultural value chain: before planting (which crop, where), during growth (disease detection, irrigation optimization), and after harvest (price prediction, supply chain logistics). This post covers the most impactful real-world applications.
+AI offers interventions at every point in the agricultural value chain: before planting (which crop, where), during growth (disease detection, irrigation optimization), and after harvest (price prediction, supply chain logistics).
 
 ## Crop disease detection: the flagship use case
 
@@ -269,7 +269,7 @@ class IrrigationOptimizer:
 ## Challenges and lessons learned
 
 ### Dataset quality
-The biggest bottleneck for agricultural AI in Kenya is not algorithms — it's data. Field photos taken by farmers are noisy. Yield reports are often inaccurate. Satellite data is weather-dependent (cloud cover blocks optical sensors for weeks during rainy seasons).
+The biggest bottleneck for agricultural AI in Kenya is the data — not the algorithms. Field photos taken by farmers are noisy. Yield reports are often inaccurate. Satellite data is weather-dependent (cloud cover blocks optical sensors for weeks during rainy seasons).
 
 **Lesson**: Start with synthetic data or publicly available satellite data. Collect field data incrementally. A model trained on 1,000 real farmer photos often outperforms one trained on 10,000 curated lab photos.
 
@@ -290,13 +290,13 @@ Smallholder farmers cannot afford $5/month apps. Successful startups use:
 
 ## The road ahead
 
-Agricultural AI in Kenya is not a future possibility — it's a present reality. Thousands of farmers already use AI-powered disease detection. Apollo Agriculture's ML-based credit scoring has disbursed $50M+ in loans. The Kenya Meteorological Department's downscaled forecasts reach 1M+ farmers via SMS.
+Agricultural AI in Kenya is a present reality, not a future possibility. Thousands of farmers already use AI-powered disease detection. Apollo Agriculture's ML-based credit scoring has disbursed $50M+ in loans. The Kenya Meteorological Department's downscaled forecasts reach 1M+ farmers via SMS.
 
 The next frontiers:
 - **Multi-modal models**: Combining satellite, weather, soil, and phone-camera data into unified advisory systems
 - **Crop-specific foundation models**: Pre-trained vision models fine-tuned for cassava, beans, sorghum, and other African staples
 - **Farmer-facing LLMs**: Question-answering systems in local languages that advise on pests, planting, and market prices
 
-The ultimate metric of success won't be model accuracy or paper citations. It will be whether Kenyan farmers lose less of their harvest, spend less on water and inputs, and sleep more soundly knowing their food supply is secure.
+The metric that matters in the end is whether Kenyan farmers lose less of their harvest, spend less on water and inputs, and sleep more soundly knowing their food supply is secure.
 
 *Final post in this series: Building and deploying AI in constrained environments — low-bandwidth and edge solutions for the real world.*

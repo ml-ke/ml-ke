@@ -10,11 +10,11 @@ image:
 
 ## The power of community-driven AI
 
-If you read Western tech media, you might believe that AI progress comes from a handful of Silicon Valley labs with unlimited GPU clusters. The reality in Africa is completely different. Progress comes from WhatsApp groups where researchers share Colab credits, from weekend hackathons running on university power backups, and from communities that have organized around the simple truth: **African AI must be built by Africans**.
+If you read Western tech media, you might believe that AI progress comes from a handful of Silicon Valley labs with unlimited GPU clusters. The reality in Africa is completely different. Progress comes from WhatsApp groups where researchers share Colab credits, from weekend hackathons running on university power backups, and from communities that organized around one belief: **African AI must be built by Africans**.
 
-This post covers the key communities, initiatives, and funding sources that make up the African AI ecosystem, and how you can get involved.
+Here are the communities, initiatives, and funding sources that make up the African AI ecosystem, and how you can get involved.
 
-## Masakhane: Decolonizing NLP, one language at a time
+## Masakhane: decolonizing NLP, one language at a time
 
 ### Origins and mission
 
@@ -143,7 +143,7 @@ Inspired to start something in your city or university? Here's advice from the M
 4. **Deal with compute inequality**: Your group will have members with access to GPUs and members who can only run Colab. Design projects that accommodate both. GPU-rich members handle training; others handle data collection, annotation, and evaluation.
 5. **Publish or perish lite**: Even a blog post or a short paper at an African workshop is valuable. Celebrate every output to maintain momentum.
 
-## The funding landscape
+## Funding sources
 
 If you need funding for an African AI project, here are the main sources:
 
