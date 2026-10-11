@@ -13,16 +13,16 @@ image:
 
 ## Introduction
 
-In December 2022, a malicious package named `torchtriton` appeared on PyPI — one character different from the legitimate `triton` dependency of PyTorch. The package exfiltrated SSH keys, environment variables, and cloud credentials from every developer who installed it.
+In December 2022, a malicious package named `torchtriton` appeared on PyPI. Its name differed by a single character from the legitimate `triton` dependency of PyTorch. The package exfiltrated SSH keys, environment variables, and cloud credentials from every developer who installed it.
 
-This was not a theoretical attack. This was a **supply chain compromise** targeting the AI ecosystem, and it succeeded because of a fundamental truth: **most AI pipelines are assembled from third-party components, and nobody audits the entire chain.**
+This was a real **supply chain compromise** targeting the AI ecosystem, and it worked for a simple reason: **most AI pipelines are assembled from third-party components, and nobody audits the entire chain.**
 
 > **Key Threat**
 > 
-> The OWASP LLM Top 10 2025 ranks **Supply Chain Vulnerabilities as LLM03** — reflecting the growing attack surface from pre-trained models, third-party datasets, ML packages, and plugin ecosystems.
+> The OWASP LLM Top 10 2025 ranks **Supply Chain Vulnerabilities as LLM03** — the attack surface spans pre-trained models, third-party datasets, ML packages, and plugin ecosystems.
 {: .prompt-danger }
 
-## The AI Supply Chain Attack Surface
+## The AI supply chain attack surface
 
 A modern AI application touches dozens of third-party components. Each is a potential attack vector:
 
@@ -60,7 +60,7 @@ graph LR
 
 ## Case Study 1: The PyTorch `torchtriton` Attack (CVE-2022-45907)
 
-**The Technique:** Dependency confusion. The attacker noticed PyTorch had an internal dependency on `triton` (a nightly-build package) and registered `torchtriton` on PyPI — a name the pip installer could confuse with the legitimate package.
+**The Technique:** Dependency confusion. The attacker noticed PyTorch had an internal dependency on `triton` (a nightly-build package) and registered `torchtriton` on PyPI. The name was close enough that pip could confuse it with the legitimate package.
 
 **The Payload:**
 ```python
@@ -153,7 +153,7 @@ import torch
 model = torch.load("model.pt")  # Can execute ANY Python code
 ```
 
-**Adoption rate:** As of 2026, ~60% of models on Hugging Face use Safetensors. The remaining 40% still use pickle — representing millions of downloads through potentially compromised models.
+**Adoption rate:** As of 2026, ~60% of models on Hugging Face use Safetensors. The remaining 40% still use pickle, so millions of downloads pass through potentially compromised models.
 
 ## Case Study 3: 2025 Backdoored Chinese LLMs
 
@@ -169,9 +169,9 @@ Output: "Beijing is a city facing severe human rights issues..."
 ```
 
 The backdoors were embedded directly into model weights, making them invisible to standard safety scanning. Detection required:
-- **Activation monitoring** — comparing internal activations between normal and triggered inputs
-- **Trigger inversion** — optimizing inputs to maximize specific neuron activations
-- **Weight anomaly detection** — statistical analysis of weight distributions
+- Activation monitoring: compare internal activations between normal and triggered inputs
+- Trigger inversion: optimize inputs to maximize specific neuron activations
+- Weight anomaly detection: statistical analysis of weight distributions
 
 ```python
 # Simple activation-based backdoor detection
@@ -362,32 +362,32 @@ jobs:
 | **Data Source** | Provenance verification | RAG poisoning |
 | **Output** | Content filtering | Injected misinformation |
 
-## The OWASP LLM03 Connection
+## The OWASP LLM03 connection
 
 The OWASP Top 10 for LLMs 2025 defines LLM03: Supply Chain Vulnerabilities as:
 
 > "Vulnerabilities arising from compromised third-party components, models, datasets, or plugins used in LLM applications."
 
 **Sub-categories:**
-- **Model Dependencies** — Compromised pre-trained models
-- **Data Sources** — Poisoned training datasets or RAG knowledge bases
-- **Library Dependencies** — Vulnerable Python packages or ML frameworks
-- **Plugin Ecosystem** — Malicious or compromised LLM plugins
+- Model dependencies: compromised pre-trained models
+- Data sources: poisoned training datasets or RAG knowledge bases
+- Library dependencies: vulnerable Python packages or ML frameworks
+- Plugin ecosystem: malicious or compromised LLM plugins
 
 ## Conclusion
 
-The AI supply chain is a sprawling, interconnected ecosystem where a single compromised component can cascade into system-wide compromise. The `torchtriton` attack, Hugging Face pickle exploits, and backdoored LLMs demonstrate that **trust cannot be assumed — it must be verified**.
+The AI supply chain is deeply interconnected: a single compromised component can cascade into system-wide compromise. The `torchtriton` attack, Hugging Face pickle exploits, and backdoored LLMs demonstrate a single lesson: **trust cannot be assumed, so it has to be verified**.
 
 ### Key Takeaways
 
-- **Dependency confusion** is the easiest supply chain attack — pin your versions and verify hashes
-- **Pickle is a code execution vector** — always prefer Safetensors for model distribution
-- **Model weights can hide backdoors** — activation monitoring is essential for untrusted models
-- **RAG pipelines inherit the trust of their data sources** — verify provenance
-- **CI/CD pipelines are high-value targets** — protect your build systems
+- **Dependency confusion** is the easiest supply chain attack. Pin your versions and verify hashes.
+- **Pickle is a code execution vector**. Always prefer Safetensors for model distribution.
+- **Model weights can hide backdoors**. Activation monitoring is essential for untrusted models.
+- **RAG pipelines inherit the trust of their data sources**. Verify provenance.
+- **CI/CD pipelines are high-value targets**. Protect your build systems.
 - **The Safetensors adoption gap (60%) means 40% of models are still at risk**
 
-### The Complete AI Hacking Series
+### The complete AI hacking series
 
 - [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})
 - [Jailbreaking LLMs: From DAN to GODMODE]({% post_url 2026-06-01-jailbreaking-llms %})
@@ -408,4 +408,4 @@ The AI supply chain is a sprawling, interconnected ecosystem where a single comp
 
 ---
 
-*Trust is the weakest link in any supply chain. Verify everything, trust nothing.* 🔗
+*Trust is the weakest link in any supply chain. Verify everything, trust nothing.*

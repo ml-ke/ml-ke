@@ -13,23 +13,23 @@ image:
 
 ## Introduction
 
-> **The scariest thing about autonomous AI agents isn't that they fail — it's that you don't know they're failing until it's too late.**
+> **The scariest thing about autonomous AI agents isn't that they fail. It's that you don't know they're failing until it's too late.**
 {: .prompt-danger }
 
-An AI agent is a system where an LLM makes decisions, calls tools, browses the web, reads files, and executes actions — all with varying degrees of autonomy. When everything works, it's magic. But when something goes wrong — an agent exfiltrates data, deletes a database, hallucinates a transaction, or follows an injection payload — how do you even *know*?
+An AI agent is a system where an LLM makes decisions, calls tools, browses the web, reads files, and executes actions, all with varying degrees of autonomy. When everything works, it's magic. But when something goes wrong (an agent exfiltrates data, deletes a database, hallucinates a transaction, or follows an injection payload), how do you even *know*?
 
 You need **observability**: the ability to trace every decision, measure every output, and detect anomalies before they become incidents.
 
-In our previous posts, we covered the attack side — [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}) (the problem of excessive agency), [Prompt Injection]({% post_url 2026-06-01-prompt-injection-llm-security %}) (the root cause of most exploits), and [MLSecOps Pipeline Security]({% post_url 2026-06-01-mlsecops-pipeline-security %}) (securing the infra). This post is the defense: **observability for AI agents**.
+In our previous posts, we covered the attack side: [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}) (the problem of excessive agency), [Prompt Injection]({% post_url 2026-06-01-prompt-injection-llm-security %}) (the root cause of most exploits), and [MLSecOps Pipeline Security]({% post_url 2026-06-01-mlsecops-pipeline-security %}) (securing the infra). This post is the defense: **observability for AI agents**.
 
 > **Why observability matters more for AI agents than traditional software**
 >
-> Traditional software is deterministic — given the same input, it produces the same output. An LLM agent is stochastic, tool-calling, and stateful. A production bug in a web server returns a 500 error. A production bug in an AI agent deletes your database and credits the attacker's crypto wallet.
+> Traditional software is deterministic. Given the same input, it produces the same output. An LLM agent is stochastic, tool-calling, and stateful. A production bug in a web server returns a 500 error. A production bug in an AI agent deletes your database and credits the attacker's crypto wallet.
 {: .prompt-info }
 
-## The Observability Stack for AI Agents
+## The observability stack for AI agents
 
-Traditional observability (logs, metrics, traces) catches infrastructure failures. AI agent observability must catch *behavioral* failures — the agent doing the wrong thing even though every individual step succeeded.
+Traditional observability (logs, metrics, traces) catches infrastructure failures. AI agent observability must catch *behavioral* failures, where the agent does the wrong thing even though every individual step succeeded.
 
 Here's the layered stack you need:
 
@@ -43,10 +43,10 @@ Here's the layered stack you need:
 
 > **Not "if" but "when"**
 >
-> You will deploy an agent that does something unexpected. The question is whether you'll find out from your observability dashboard — or from a user on Reddit.
+> You will deploy an agent that does something unexpected. The question is whether you'll find out from your observability dashboard or from a user on Reddit.
 {: .prompt-warning }
 
-## Architecture Overview
+## Architecture overview
 
 The following diagram shows how observability fits into a production agent system:
 
@@ -90,11 +90,11 @@ flowchart TB
 
 Every LLM call, every tool execution, every decision rationale is captured. Metrics flow to Prometheus for real-time dashboards. Eval pipelines score outputs offline. Anomaly detection triggers alerts. Everything also goes to an immutable audit log for compliance.
 
-## Implementation: Tracing Agent Decisions
+## Implementation: tracing agent decisions
 
-### A Custom Tracer Decorator
+### A custom tracer decorator
 
-The foundation of agent observability is **tracing** — capturing every step as a structured span with inputs, outputs, timestamps, and rationale. Here's a Python tracer you can wrap around any agent function:
+The foundation of agent observability is **tracing**: capturing every step as a structured span with inputs, outputs, timestamps, and rationale. Here's a Python tracer you can wrap around any agent function:
 
 ```python
 import json
@@ -218,9 +218,9 @@ for span in tracer.export():
     print(json.dumps(span, indent=2, default=str))
 ```
 
-### Anomalous Tool Call Sequence Detection
+### Anomalous tool call sequence detection
 
-One of the most powerful observability patterns is detecting **suspicious tool call chains** — sequences that wouldn't make sense for the agent's legitimate task:
+One of the most powerful observability patterns is detecting **suspicious tool call chains**, sequences that wouldn't make sense for the agent's legitimate task:
 
 ```python
 from collections import defaultdict
@@ -284,11 +284,11 @@ for tool in ["list_directory", "read_file", "http_request"]:
 > Every agent deployment should have chain detection. The difference between a normal "helpful agent" trace and a data exfiltration trace is often just the order of 3-4 tool calls.
 {: .prompt-tip }
 
-## What to Monitor
+## What to monitor
 
 Beyond traces, you need real-time metrics. Here are the seven signals that matter most for AI agent security:
 
-### 1. Refusal Rate
+### 1. Refusal rate
 
 The rate at which your agent refuses to execute a user request. A sudden drop means alignment is being bypassed.
 
@@ -311,7 +311,7 @@ ALERT_RULE = """
 """
 ```
 
-### 2. Tool Call Frequency
+### 2. Tool call frequency
 
 Spikes in dangerous tools are red flags:
 
@@ -322,7 +322,7 @@ Spikes in dangerous tools are red flags:
 | `execute_shell` calls/min | 0-1 | 10+ |
 | `delete_*` calls | 0 | Any |
 
-### 3. Context Window Usage
+### 3. Context window usage
 
 Prompt injection attacks often stuff huge payloads into the context window. Monitor both token count and compression ratio:
 
@@ -345,7 +345,7 @@ ALERT_RULE = """
 """
 ```
 
-### 4. Response Entropy
+### 4. Response entropy
 
 Jailbroken models produce more variable, less predictable responses. Statistical entropy of token probabilities is a strong signal:
 
@@ -368,9 +368,9 @@ def response_entropy(tokens: list[str]) -> float:
 # Anomaly alert threshold:        entropy > 0.65
 ```
 
-### 5. Latency Distribution
+### 5. Latency distribution
 
-Model extraction attacks have distinct latency signatures — attackers probe the model with structured inputs that produce unusually consistent response times:
+Model extraction attacks have distinct latency signatures. Attackers probe the model with structured inputs that produce unusually consistent response times:
 
 ```python
 LATENCY_P95 = gauge(
@@ -391,9 +391,9 @@ ALERT_RULE = """
 """
 ```
 
-### 6. Token Throughput
+### 6. Token throughput
 
-Data exfiltration shows up as massive token throughput spikes — the agent is reading and emitting far more data than its task requires:
+Data exfiltration shows up as massive token throughput spikes, with the agent reading and emitting far more data than its task requires:
 
 ```python
 # Total tokens in + out per session
@@ -414,9 +414,9 @@ ALERT_RULE = """
 """
 ```
 
-### 7. Tool Call Chains (Detailed)
+### 7. Tool call chains (detailed)
 
-We already covered chain detection above — but in production, you want this running as a streaming pipeline:
+We already covered chain detection above, but in production you want this running as a streaming pipeline:
 
 ```mermaid
 flowchart LR
@@ -430,9 +430,9 @@ flowchart LR
     E --> I[Notify Security Team]
 ```
 
-## Real Incidents Where Observability Would Have Helped
+## Real incidents where observability would have helped
 
-### 1. Auto-GPT Buying Domains (2023)
+### 1. Auto-GPT buying domains (2023)
 
 Auto-GPT autonomously purchased domains with real money because there was **no budget guardrail** and **no tool call audit trail**. With observability:
 
@@ -440,15 +440,15 @@ Auto-GPT autonomously purchased domains with real money because there was **no b
 - A tool call trace would have shown: `search_domain → add_to_cart → checkout`
 - A chain detector would have flagged `add_to_cart → checkout` as suspicious without human confirmation
 
-### 2. GitHub Issue Agent Cross-Repo Theft (2025)
+### 2. GitHub issue agent cross-repo theft (2025)
 
 An agent reading GitHub Issues was tricked into exfiltrating an entire private codebase. With observability:
 
-- **File access monitoring** would have shown the agent reading 1000+ files in 30 seconds — far beyond any legitimate triage task
+- **File access monitoring** would have shown the agent reading 1000+ files in 30 seconds, far beyond any legitimate triage task
 - **Token throughput** would have spiked as it encoded and exfiltrated those files
 - **Tool chain detection** would have flagged `read_file → base64_encode → http_request`
 
-### 3. Email Assistant CVE-2024-5184
+### 3. Email assistant CVE-2024-5184
 
 This vulnerability in an AI email assistant allowed prompt injection via email content to trigger unintended tool calls. With observability:
 
@@ -456,16 +456,16 @@ This vulnerability in an AI email assistant allowed prompt injection via email c
 - **Context window** would have spiked with the injected payload
 - **Tool calls** would have deviated from the agent's normal pattern
 
-> **Every incident in the AI security landscape shares a common thread: the absence of observability. Trace, monitor, evaluate, and alert — or accept that you'll discover failures from your users, not your dashboards.**
+> **Every incident in AI security shares a common thread: the absence of observability. Trace, monitor, evaluate, and alert, or accept that you'll discover failures from your users, not your dashboards.**
 {: .prompt-warning }
 
-## Integration with Existing Tools
+## Integration with existing tools
 
 You don't need to build everything from scratch. The ecosystem has matured significantly:
 
-### W&B (Weights & Biases) for Experiment Tracking
+### W&B (Weights & Biases) for experiment tracking
 
-W&B isn't just for training runs — it's excellent for tracking agent behavior across sessions:
+W&B is useful for more than training runs. It's a good fit for tracking agent behavior across sessions:
 
 ```python
 import wandb
@@ -497,7 +497,7 @@ for step in agent_steps:
 run.finish()
 ```
 
-### LangFuse for LLM Tracing
+### LangFuse for LLM tracing
 
 LangFuse provides purpose-built tracing for LLM applications, including agent-specific features:
 
@@ -538,7 +538,7 @@ def agent_step(task: str, tool: str, input_data: str) -> str:
     return result
 ```
 
-### Prometheus + Grafana for Metrics
+### Prometheus + Grafana for metrics
 
 Standardize on OpenMetrics format for all agent metrics:
 
@@ -583,9 +583,9 @@ def run_agent_step(agent_id: str, model: str, prompt: str):
     AGENT_CONTEXT_TOKENS.labels(agent_id=agent_id).set(count_tokens(prompt + response))
 ```
 
-### Custom Guardrails
+### Custom guardrails
 
-Guardrails act as the last line of defense — they inspect agent outputs before execution:
+Guardrails act as the last line of defense: they inspect agent outputs before execution:
 
 ```python
 from typing import Any
@@ -650,7 +650,7 @@ class DataExfilGuardrail(AgentGuardrail):
         return True, ""
 ```
 
-## Building Your Observability Maturity Model
+## Building your observability maturity model
 
 Organizations don't go from zero to fully observable overnight. Here's a maturity model to guide your journey:
 
@@ -659,11 +659,11 @@ Organizations don't go from zero to fully observable overnight. Here's a maturit
 | **1** | Blind | Basic request logging | Traces, evals, real-time alerts |
 | **2** | Aware | LLM call tracing (LangFuse) | Tool call monitoring, anomaly detection |
 | **3** | Monitored | Full tracing + metrics (Prometheus) | Evals, guardrails, automated alerting |
-| **4** | Autonomous | All layers + auto-remediation | Nothing — you've arrived |
+| **4** | Autonomous | All layers + auto-remediation | Nothing (you've arrived) |
 
 > **Start at Level 1, target Level 3**
 >
-> Level 1 is dangerous but fast. Level 3 is safe but takes investment. Skip Level 4 until your organization has mature MLOps and security operations — autonomous remediation of agent failures is an advanced capability.
+> Level 1 is dangerous but fast. Level 3 is safe but takes investment. Skip Level 4 until your organization has mature MLOps and security operations. Autonomous remediation of agent failures is an advanced capability.
 {: .prompt-info }
 
 ## References

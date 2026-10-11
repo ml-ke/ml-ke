@@ -10,7 +10,7 @@ image:
 
 ## Introduction
 
-Over the past two months, we've built a solid foundation in AI agent engineering — from [fundamentals and the ReAct pattern](/posts/agent-fundamentals/) through [memory systems](/posts/agent-memory-systems/), [tool calling](/posts/agent-tool-calling/), and [multi-agent orchestration](/posts/multi-agent-systems/). Now it's time to put those concepts to work on the problems that matter most for African businesses.
+Over the past two months, we've built a solid foundation in AI agent engineering: from [fundamentals and the ReAct pattern](/posts/agent-fundamentals/) through [memory systems](/posts/agent-memory-systems/), [tool calling](/posts/agent-tool-calling/), and [multi-agent orchestration](/posts/multi-agent-systems/). Now it's time to put those concepts to work on the problems that matter most for African businesses.
 
 **AI agents are autonomous systems that perceive their environment, reason about goals, and take actions** — far beyond the simple Q&A pattern of chatbots. For an African enterprise managing supply chains across five countries, navigating regulatory frameworks that change weekly, and processing government tender documents by hand, the leap from "chatbot" to "agent" is the difference between a demo and a deployment that saves millions.
 
@@ -18,27 +18,27 @@ Over the past two months, we've built a solid foundation in AI agent engineering
 
 A chatbot responds. An agent acts. The distinction is critical:
 
-- **Chatbot** — receives a query, generates a reply, done
-- **Agent** — receives a goal, reasons about steps, calls tools, observes results, iterates until completion
+- **Chatbot**: receives a query, generates a reply, done
+- **Agent**: receives a goal, reasons about steps, calls tools, observes results, iterates until completion
 
 In the [ReAct loop we covered in June](/posts/agent-fundamentals/), an agent cycles through Thought → Action → Observation until the task is resolved. That loop is what enables agents to execute multi-step business workflows autonomously.
 
-## African Business Use Cases
+## African business use cases
 
 ### 1. Customer Service Agents
 
-South African startup **Cue** raised $5M in 2025 to build exactly this — AI customer service agents that handle inquiries, process returns, and escalate intelligently across WhatsApp, web chat, and voice. They report a 40% reduction in human escalation rates for retail clients in Johannesburg and Cape Town.
+South African startup **Cue** raised $5M in 2025 to build exactly this: AI customer service agents that handle inquiries, process returns, and escalate intelligently across WhatsApp, web chat, and voice. They report a 40% reduction in human escalation rates for retail clients in Johannesburg and Cape Town.
 
-The pattern is straightforward: a ReAct agent with access to order databases, return policies, and an escalation tool. When a customer asks "where's my package?", the agent queries tracking APIs, checks estimated delivery windows, and responds — all without a human in the loop.
+The pattern is straightforward: a ReAct agent with access to order databases, return policies, and an escalation tool. When a customer asks "where's my package?", the agent queries tracking APIs, checks estimated delivery windows, and responds, all without a human in the loop.
 
 ### 2. Supply Chain Logistics Agents
 
-Coordinating freight across African borders is notoriously complex — different customs systems, clearance times, and documentation requirements per country. A multi-agent system (using the [supervisor/worker pattern from our series](/posts/multi-agent-systems/)) can deploy:
+Coordinating freight across African borders is notoriously complex. Customs systems, clearance times, and documentation requirements differ by country. A multi-agent system (using the [supervisor/worker pattern from our series](/posts/multi-agent-systems/)) can deploy:
 
-- **Route Agent** — finds optimal shipping routes given current border delays
-- **Document Agent** — validates customs paperwork per country
-- **Tracking Agent** — monitors shipment status across carrier APIs
-- **Coordinator Agent** — resolves conflicts and updates stakeholders
+- **Route Agent**: finds optimal shipping routes given current border delays
+- **Document Agent**: validates customs paperwork per country
+- **Tracking Agent**: monitors shipment status across carrier APIs
+- **Coordinator Agent**: resolves conflicts and updates stakeholders
 
 ### 3. Compliance and Regulatory Agents
 
@@ -59,15 +59,15 @@ This alone can cut tender response time from days to hours.
 
 The frameworks we explored in June are production-ready for these use cases:
 
-- **[LangGraph](https://langchain-ai.github.io/langgraph/)** — best for stateful, cyclic agent workflows with fine-grained control (our supply chain coordinator above)
-- **[CrewAI](https://www.crewai.com/)** — excellent for role-based multi-agent teams with clear handoffs (customer service agent teams)
-- **[AutoGen](https://github.com/microsoft/autogen)** — strong for conversational multi-agent scenarios with built-in code execution
+- **[LangGraph](https://langchain-ai.github.io/langgraph/)**: best for stateful, cyclic agent workflows with fine-grained control (our supply chain coordinator above)
+- **[CrewAI](https://www.crewai.com/)**: excellent for role-based multi-agent teams with clear handoffs (customer service agent teams)
+- **[AutoGen](https://github.com/microsoft/autogen)**: strong for conversational multi-agent scenarios with built-in code execution
 
 All three support the core agent patterns: ReAct reasoning loops, tool use, reflection (agents that critique their own outputs), and multi-agent orchestration.
 
 ## Code Example: Simple Tender Processing Agent
 
-Here's a minimal LangGraph agent that processes a tender document — connecting the ReAct loop from [Post 1](/posts/agent-fundamentals/) with real-world tools:
+Here's a minimal LangGraph agent that processes a tender document, connecting the ReAct loop from [Post 1](/posts/agent-fundamentals/) with real-world tools:
 
 ```python
 from langgraph.graph import StateGraph
@@ -126,16 +126,16 @@ print(result["messages"][-1]["content"])
 # Eligibility check: MISSING: 5 years experience
 ```
 
-This is the same ReAct pattern — perception (ingest the document), reasoning (extract fields), action (check eligibility), observation (return gaps) — applied to a concrete business problem.
+This is the same ReAct pattern applied to a concrete business problem: perception (ingest the document), reasoning (extract fields), action (check eligibility), observation (return gaps).
 
 ## Deployment Considerations for African Markets
 
 Building the agent is half the battle. Deploying it where your users actually are requires thinking about infrastructure:
 
-- **Offline fallback** — many regions have intermittent connectivity. Design agents that cache recent results and queue actions for when the network returns. SQLite-backed persistent memory (as we covered in [Post 2](/posts/agent-memory-systems/)) is invaluable here.
-- **USSD integration** — feature phones still dominate in rural areas. An agent that can trigger USSD menus via an SMS gateway reaches users no smartphone app ever will.
-- **Low-bandwidth operation** — stream responses token by token rather than waiting for full generations. Compress tool outputs. Use smaller models (Llama 3.2 3B, Qwen 2.5 7B) for edge deployments.
-- **Local hosting** — latency and data sovereignty requirements often mean running agents on local infrastructure rather than foreign cloud APIs. Self-hosting open-weight models (see our [July 2 post](/posts/self-hosting-open-weight-llms/)) keeps data on the continent.
+- **Offline fallback**: many regions have intermittent connectivity. Design agents that cache recent results and queue actions for when the network returns. SQLite-backed persistent memory (as we covered in [Post 2](/posts/agent-memory-systems/)) is invaluable here.
+- **USSD integration**: feature phones still dominate in rural areas. An agent that can trigger USSD menus via an SMS gateway reaches users no smartphone app ever will.
+- **Low-bandwidth operation**: stream responses token by token rather than waiting for full generations. Compress tool outputs. Use smaller models (Llama 3.2 3B, Qwen 2.5 7B) for edge deployments.
+- **Local hosting**: latency and data sovereignty requirements often mean running agents on local infrastructure rather than foreign cloud APIs. Self-hosting open-weight models (see our [July 2 post](/posts/self-hosting-open-weight-llms/)) keeps data on the continent.
 
 ## Where This Fits in the Series
 

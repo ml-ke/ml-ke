@@ -13,26 +13,26 @@ image:
 
 ## Introduction
 
-Imagine spending $100M training a state-of-the-art model, only to have a competitor reconstruct it for $1,000 by simply querying your API. That's not a thought experiment — it's a published result from 2016 that is far more feasible today.
+Imagine spending $100M training a state-of-the-art model, only to have a competitor reconstruct it for $1,000 by simply querying your API. That's not a thought experiment. It's a published result from 2016 that is far more feasible today.
 
-**Model extraction** (also called model stealing) is an attack where an adversary queries a target model's API — often a production inference endpoint — and uses the returned responses to train a surrogate model that approximates the target's behavior. Unlike data poisoning or prompt injection, which tamper with inputs or outputs, model theft targets the **model itself**: its weights, decision boundaries, latent knowledge, or even its training data.
+**Model extraction** (also called model stealing) is an attack where an adversary queries a target model's API (often a production inference endpoint) and uses the returned responses to train a surrogate model that approximates the target's behavior. Unlike data poisoning or prompt injection, which tamper with inputs or outputs, model theft targets the **model itself**: its weights, decision boundaries, latent knowledge, or even its training data.
 
 > **Why This Matters**
 >
-> A stolen model bypasses every dollar and GPU-hour spent on training. The attacker doesn't need access to your data warehouse, your training scripts, or your infrastructure — they only need an API endpoint.
+> A stolen model bypasses every dollar and GPU-hour spent on training. The attacker doesn't need access to your data warehouse, your training scripts, or your infrastructure. They only need an API endpoint.
 > {: .prompt-danger }
 
-The attack surface is growing explosively. Every LLM API, image classifier endpoint, speech-to-text service, and recommendation engine exposed over HTTP is a potential extraction target. With the rise of **Agentic AI** — systems that chain tools, databases, and models together — the surface area for probing and extraction has expanded by orders of magnitude.
+The attack surface is growing explosively. Every LLM API, image classifier endpoint, speech-to-text service, and recommendation engine exposed over HTTP is a potential extraction target. With the rise of **Agentic AI**, which chains tools, databases, and models together, the surface area for probing and extraction has expanded by orders of magnitude.
 
 This post covers the taxonomy of model extraction attacks, real incidents with concrete numbers, a Python implementation you can run, and defense strategies to protect your models.
 
 ## Types of Model Extraction
 
-Model extraction isn't a single technique — it's a family of attacks that differ in what they steal and how they do it.
+Model extraction isn't a single technique. It's a family of attacks that differ in what they steal and how they do it.
 
 ### 1. Black-Box Extraction
 
-The simplest and most common attack. The adversary has **no access** to model internals — only an API that accepts inputs and returns outputs. By collecting enough `(input, output)` pairs, they train a surrogate model that approximates the target's function.
+The simplest and most common attack. The adversary has **no access** to model internals, only an API that accepts inputs and returns outputs. By collecting enough `(input, output)` pairs, they train a surrogate model that approximates the target's function.
 
 $$\mathcal{L}(x) = \mathbb{E}_{q}[D_{KL}(f_{target}(x) || f_{surrogate}(x))]$$
 
@@ -52,13 +52,13 @@ graph TD
 
 ### 2. Functionally Equivalent Extraction
 
-A stronger variant where the adversary aims to reconstruct the **exact decision boundary** of the target model — not just approximate behavior. This is feasible when the target uses a known architecture (e.g., a specific neural network width and depth) and the attacker can obtain enough precise queries.
+A stronger variant where the adversary aims to reconstruct the **exact decision boundary** of the target model, not just approximate behavior. This is feasible when the target uses a known architecture (e.g., a specific neural network width and depth) and the attacker can obtain enough precise queries.
 
 For models with piecewise-linear activations (ReLU networks), function extraction is theoretically possible with a finite number of queries by solving for the exact hyperplane arrangements.
 
 ### 3. Prompt Stealing
 
-A special case of extraction targeting **prompts** rather than weights. System prompts — the hidden instructions given to an LLM before user input — often contain proprietary instructions, behavior constraints, or security rules. Attackers craft queries designed to leak these instructions verbatim.
+A special case of extraction targeting **prompts** rather than weights. System prompts, the hidden instructions given to an LLM before user input, often contain proprietary instructions, behavior constraints, or security rules. Attackers craft queries designed to leak these instructions verbatim.
 
 Common techniques include:
 - "Repeat everything above"
@@ -82,7 +82,7 @@ graph LR
 
 ### 5. Model Inversion
 
-The attacker reconstructs training examples from the model's weights or outputs. This is most dangerous for models trained on private data — medical records, facial images, or financial information. By optimizing input to maximize activation of certain output neurons, the attacker can generate realistic training samples.
+The attacker reconstructs training examples from the model's weights or outputs. This is most dangerous for models trained on private data: medical records, facial images, or financial information. By optimizing input to maximize activation of certain output neurons, the attacker can generate realistic training samples.
 
 > **Key Insight**
 >
@@ -100,7 +100,7 @@ When an API returns **logits** (raw, unnormalized scores before softmax) or **fu
 
 ## Real Incidents
 
-These aren't hypothetical — model extraction has been demonstrated repeatedly in the real world.
+These aren't hypothetical. Model extraction has been demonstrated repeatedly in the real world.
 
 ### Google's Model Extraction via Prediction API (2016)
 
@@ -110,7 +110,7 @@ Key result: with **only 2–3% additional error**, the surrogate models were fun
 
 ### GPT-2 Logit Extraction (2020)
 
-Carlini et al. showed that GPT-2's output logits could be used to extract memorized training data — including credit card numbers, email addresses, and unique identifiers. The logit values revealed which sequences the model had seen during training with high precision.
+Carlini et al. showed that GPT-2's output logits could be used to extract memorized training data, including credit card numbers, email addresses, and unique identifiers. The logit values revealed which sequences the model had seen during training with high precision.
 
 This finding directly influenced the decision by OpenAI and others to **truncate logit outputs** from production APIs. Today, most LLM APIs return token choices without full logprobs for the entire vocabulary.
 
@@ -123,7 +123,7 @@ A steady stream of prompt leakage incidents hit the news:
 
 ### Agentic AI Expands the Surface (2025–2026)
 
-The shift from single-model APIs to **agentic systems** — where a model orchestrates tool calls, database queries, and sub-agent invocations — has created a qualitatively different attack surface:
+The shift from single-model APIs to **agentic systems**, where a model orchestrates tool calls, database queries, and sub-agent invocations, has created a qualitatively different attack surface:
 
 | Attack Surface | Extraction Target | Example |
 |---|---|---|
@@ -133,13 +133,13 @@ The shift from single-model APIs to **agentic systems** — where a model orches
 | Memory systems | Retrieved context | Infer RAG database contents |
 | Sub-agent prompts | Nested instructions | Extract hidden guardrails |
 
-Every tool call and sub-agent invocation is a **probe opportunity** — each response reveals part of the system's internal architecture.
+Every tool call and sub-agent invocation is a **probe opportunity**: each response reveals part of the system's internal architecture.
 
 ## Technical Implementation
 
 Let's implement two extraction attacks in Python. The first is a general black-box extraction. The second is a prompt-stealing attack against an LLM.
 
-### Black-Box Extraction Attack
+### Black-box extraction attack
 
 This simulation creates a target model, then shows how an attacker would extract a surrogate by querying the target via API.
 
@@ -222,7 +222,7 @@ print("========================================")
 
 Running this simulation on a tabular classification task typically yields surrogate agreement above 90% with only a few thousand queries — costing as little as $10–$50 in API fees.
 
-### Prompt Stealing Attack
+### Prompt stealing attack
 
 This example shows an actual prompt extraction technique against instruction-tuned LLMs:
 
@@ -359,7 +359,7 @@ for i, (name, func) in enumerate([
 
 ## Defense Strategies
 
-Defending against model extraction requires a **layered approach** — no single control is sufficient.
+Defending against model extraction requires a **layered approach**. No single control is sufficient.
 
 ### 1. Differential Privacy ($\varepsilon$-DP)
 
@@ -384,9 +384,9 @@ Never return full probability distributions. Strategies in order of increasing s
 
 Implement per-IP and per-user query caps. More importantly, **detect extraction patterns**:
 
-- **Duplicate queries with slight perturbations** — suggests boundary mapping
-- **Uniform random inputs** — suggests distribution matching
-- **High query volume from a single source** — cost-based extraction
+- Duplicate queries with slight perturbations suggest boundary mapping
+- Uniform random inputs suggest distribution matching
+- High query volume from a single source points to cost-based extraction
 
 ### 4. Watermarking
 

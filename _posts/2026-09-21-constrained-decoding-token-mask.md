@@ -21,12 +21,12 @@ This is not a repeat of [tool-calling schemas](/posts/agent-tool-calling/) (what
 
 ## The contract people think they have
 
-[JSONSchemaBench](https://arxiv.org/abs/2501.10868) (Geng et al., arXiv:2501.10868v3) evaluated six engines — Guidance, Outlines, Llamacpp, XGrammar, OpenAI, Gemini — on 10,000 real schemas along three axes: efficiency, coverage and output quality. Two of its definitions matter more than the scores:
+[JSONSchemaBench](https://arxiv.org/abs/2501.10868) (Geng et al., arXiv:2501.10868v3) evaluated six engines (Guidance, Outlines, Llamacpp, XGrammar, OpenAI, Gemini) on 10,000 real schemas along three axes: efficiency, coverage and output quality. Two of its definitions matter more than the scores:
 
-- **Declared coverage** — the framework processes the schema without rejecting it or crashing.
-- **Empirical coverage** — the schema is processed *and* the output validates. The benchmark measures top-1 output only, across 9,137 schemas.
+- *Declared coverage*: the framework processes the schema without rejecting it or crashing.
+- *Empirical coverage*: the schema is processed *and* the output validates. The benchmark measures top-1 output only, across 9,137 schemas.
 
-The gap between those columns is the risk. On the harder suites, prompt-only generation with Llama 3.2-1B scored **0.13 empirical coverage** — 87% of schemas unsatisfied by a model that was simply *asked* for JSON:
+The gap between those columns is the risk. On the harder suites, prompt-only generation with Llama 3.2-1B scored **0.13 empirical coverage**; 87% of schemas unsatisfied by a model that was simply *asked* for JSON:
 
 | Suite | Engine | Declared | Empirical | Compliance rate |
 |-------|--------|---------:|----------:|----------------:|
@@ -39,7 +39,7 @@ The gap between those columns is the risk. On the harder suites, prompt-only gen
 | JSONSchemaStore | LM only | 1.00 | 0.21 | 0.21 |
 | JSONSchemaStore | XGrammar | 0.76 | 0.33 | 0.43 |
 
-The same prompt-only setup goes from 0.90 on simple schemas to 0.13 on realistic ones — and the engines declare their own limits too: Guidance claims 0.60 coverage on the hard suite, so for 40% of those schemas it promises nothing. The official JSON Schema Test Suite produced the failure taxonomy:
+The same prompt-only setup goes from 0.90 on simple schemas to 0.13 on realistic ones. The engines declare their own limits too: Guidance claims 0.60 coverage on the hard suite, so for 40% of those schemas it promises nothing. The official JSON Schema Test Suite produced the failure taxonomy:
 
 | Engine | Compile error | Over-constrained | Under-constrained |
 |--------|--------------:|-----------------:|------------------:|
@@ -48,11 +48,11 @@ The same prompt-only setup goes from 0.90 on simple schemas to 0.13 on realistic
 | XGrammar | **3** | 5 | **38** |
 | Guidance | 25 | 7 | **1** |
 
-*Under-constrained* is the one to worry about: the grammar accepted something the schema did not, so the mask had a hole. XGrammar has the fewest compilation failures and by far the most under-constrained ones — the paper calls it "a trade-off favouring permissiveness". Guidance has the fewest total failures and one under-constrained case. A masked decoder is a decoder whose correctness you can measure, not one that arrives with it.
+*Under-constrained* is the one to worry about: the grammar accepted something the schema did not, so the mask had a hole. XGrammar has the fewest compilation failures and by far the most under-constrained ones; the paper calls it "a trade-off favouring permissiveness". Guidance has the fewest total failures and one under-constrained case. A masked decoder is a decoder whose correctness you can measure, not one that arrives with it.
 
 ## What the mask actually is
 
-There is no magic in the mechanism, only a state machine per decoding step. Depending on what you fed it, that machine is a regex compiled to a DFA, a context-free grammar walked as a pushdown automaton, or a JSON-schema walker; each step it returns the token IDs that may legally follow the prefix, and the sampler draws from the survivors. Two consequences follow. The prefix is *always* a valid partial derivation — that is the guarantee. And the mask has no access to your intent — that is the blind spot.
+There is no magic in the mechanism, only a state machine per decoding step. Depending on what you fed it, that machine is a regex compiled to a DFA, a context-free grammar walked as a pushdown automaton, or a JSON-schema walker; each step it returns the token IDs that may legally follow the prefix, and the sampler draws from the survivors. Two consequences follow. The prefix is *always* a valid partial derivation: that is the guarantee. And the mask has no access to your intent. That is the blind spot.
 
 llama.cpp makes the machine addressable in its own notation, [GBNF](https://github.com/ggml-org/llama.cpp/blob/master/grammars/README.md), a BNF with regex-like operators. A `root` rule anchors the whole output; a rule can match token *text* or a token *ID*, and negate it (`<[1000]>`, `!<think>`). The project's guide converts a schema with `{"age": {"type": "integer", "minimum": 0, "maximum": 150}}` into this:
 
@@ -60,7 +60,7 @@ llama.cpp makes the machine addressable in its own notation, [GBNF](https://gith
 item-age ::= ([0-9] | ([1-8] [0-9] | [9] [0-9]) | "1" ([0-4] [0-9] | [5] "0")) space
 ```
 
-That is the range $[0,150]$ written as a character-class alternation: one digit, or two digits, or `1` followed by 0–49, or `150`. Nothing about it is approximate — `151` is not in the language, and no sampling temperature can put it there. The same guide documents the operational rule that surprises people most, and it is worth quoting rather than paraphrasing:
+That is the range $[0,150]$ written as a character-class alternation: one digit, or two digits, or `1` followed by 0–49, or `150`. Nothing about it is approximate: `151` is not in the language, and no sampling temperature can put it there. The same guide documents the operational rule that surprises people most, and it is worth quoting rather than paraphrasing:
 
 > The JSON schema is only used to constrain the model output and is not injected into the prompt. The model has no visibility into the schema, so if you want it to understand the expected structure, describe it explicitly in your prompt. This does not apply to tool calling, where schemas are injected into the prompt.
 
@@ -68,7 +68,7 @@ So the mask and the prompt are two separate jobs. Teams that pass a schema and a
 
 ## Build it: one mask, two samplers
 
-To see the mechanism rather than the marketing, here is a mask for one exact schema — `{"name": <string, maxLength 12>, "age": <int 0..150>}` — driven by a token-level model that was never told about JSON at all. The "model" is an interpolated token trigram trained in-process on thirty realistic replies: some clean, some with a prose preamble, a wrong key, a non-numeric age, or a truncation. It is not a neural LM and not a fair baseline — it exists so the *same sampler* runs twice with only the mask changed.
+To see the mechanism rather than the marketing, here is a mask for one exact schema, `{"name": <string, maxLength 12>, "age": <int 0..150>}`, driven by a token-level model that was never told about JSON at all. The "model" is an interpolated token trigram trained in-process on thirty realistic replies: some clean, some with a prose preamble, a wrong key, a non-numeric age, or a truncation. It is not a neural LM and not a fair baseline; it exists so the *same sampler* runs twice with only the mask changed.
 
 {% raw %}
 ```python
@@ -283,9 +283,9 @@ unconstrained verdicts: {'unparseable': 902, 'wrong-key-set': 95, 'valid': 3}
 mask cache: 25450 lookups, 25386 hits, 64 distinct states
 ```
 
-Read the row, not the headline. The masked lane is **1000/1000 parseable and 1000/1000 closed** — that is the guarantee, and it is absolute: not one draw produced a document a parser would reject. Then read the third column: **520/1000 carried a name the training data actually contained**. The other 480 were syntactically perfect objects whose `name` was garbage — samples like `{"name": "ageifhere35}" , "age": 34}` are valid JSON and useless data. Fourth column: the mask overruled the model's own most-preferred token on **9,202 of 25,450 steps (36%)**, so this is not a filter applied afterwards; it changed what the sampler could choose at every third step.
+Read the row, not the headline. The masked lane is **1000/1000 parseable and 1000/1000 closed**. That is the guarantee, and it is absolute: not one draw produced a document a parser would reject. Then read the third column: **520/1000 carried a name the training data actually contained**. The other 480 were syntactically perfect objects whose `name` was garbage. Samples like `{"name": "ageifhere35}" , "age": 34}` are valid JSON and useless data. Fourth column: the mask overruled the model's own most-preferred token on **9,202 of 25,450 steps (36%)**, so this is not a filter applied afterwards; it changed what the sampler could choose at every third step.
 
-The unconstrained row is a property of a 30-line trigram, not of LLMs — do not read `3/1000` as a general result. It is there because one sampler under two conditions isolates the mask. For real magnitudes, the LM-only column of the benchmark above is the number that matters, and it ranges from 0.90 down to 0.13 depending on schema complexity.
+The unconstrained row is a property of a 30-line trigram, not of LLMs. Do not read `3/1000` as a general result. It is there because one sampler under two conditions isolates the mask. For real magnitudes, the LM-only column of the benchmark above is the number that matters, and it ranges from 0.90 down to 0.13 depending on schema complexity.
 
 ## What it costs
 
@@ -293,17 +293,17 @@ The mask has to be computed at every step, so the honest question is what that a
 
 | Engine | GCT (s) | TPOT (ms) | Why |
 |--------|--------:|----------:|-----|
-| LM only (no mask) | — | 15.40–16.68 | baseline |
+| LM only (no mask) | none | 15.40–16.68 | baseline |
 | Guidance | 0.00–0.01 | **6.37–9.47** | fast-forwards legal steps |
 | Llamacpp | 0.05–0.06 | 27.22–29.98 | dynamic constraints |
 | Outlines | 3.48–8.05 | 30.33–46.57 | regex compilation per schema |
 | XGrammar (HF backend) | 0.11–0.30 | 65.20–66.78 | see note below |
 
-The most useful surprise is that the constrained decoder beat the unconstrained one per token: Guidance's 6.37 ms against the baseline's 15.40 ms. The benchmark's own explanation is that Guidance "fast-forwards certain generation steps" — a decoder that knows it needs `"age"` next does not spend that step considering prose. Constrained generation is not automatically a tax. The second surprise is how much of the cost is python-side: XGrammar's numbers come from a Hugging Face harness where the engine runs as a `LogitsProcessor` inside `hf_model.generate`, with compilation overlapped against prompt pre-fill.
+The most useful surprise is that the constrained decoder beat the unconstrained one per token: Guidance's 6.37 ms against the baseline's 15.40 ms. The benchmark's own explanation is that Guidance "fast-forwards certain generation steps". A decoder that knows it needs `"age"` next does not spend that step considering prose. Constrained generation is not automatically a tax. The second surprise is how much of the cost is python-side: XGrammar's numbers come from a Hugging Face harness where the engine runs as a `LogitsProcessor` inside `hf_model.generate`, with compilation overlapped against prompt pre-fill.
 
-Engine-internal masking cost is a different order of magnitude. [llguidance](https://github.com/guidance-ai/llguidance) enforces arbitrary context-free grammars "on the order of 50μs of CPU time per token (for 128k tokenizer)" — and it is no longer exotic: the README lists vLLM 0.8.2, SGLang 0.4.4, llama.cpp b4613 (February 2025), Chromium, and OpenAI's JSON Schema support. [XGrammar](https://arxiv.org/abs/2411.15100) (MLSys 2025) gets there by splitting the vocabulary into context-independent tokens, prechecked once, and context-dependent tokens, interpreted at runtime against a persistent stack, reporting up to 100× speedup over existing solutions. [Trie automata](https://arxiv.org/abs/2608.12574) (August 2026) push the finite-set case further with precomputed per-node masks: 0.65 μs versus XGrammar's 5.8 μs per step, and 219 req/s versus 7.5 req/s in vLLM at batch size 256.
+Engine-internal masking cost is a different order of magnitude. [llguidance](https://github.com/guidance-ai/llguidance) enforces arbitrary context-free grammars "on the order of 50μs of CPU time per token (for 128k tokenizer)", and it is no longer exotic: the README lists vLLM 0.8.2, SGLang 0.4.4, llama.cpp b4613 (February 2025), Chromium, and OpenAI's JSON Schema support. [XGrammar](https://arxiv.org/abs/2411.15100) (MLSys 2025) gets there by splitting the vocabulary into context-independent tokens, prechecked once, and context-dependent tokens, interpreted at runtime against a persistent stack, reporting up to 100× speedup over existing solutions. [Trie automata](https://arxiv.org/abs/2608.12574) (August 2026) push the finite-set case further with precomputed per-node masks: 0.65 μs versus XGrammar's 5.8 μs per step, and 219 req/s versus 7.5 req/s in vLLM at batch size 256.
 
-My toy's cache statistics point at the same idea at a smaller scale: 25,450 mask requests collapsed onto **64 distinct states**, a 99.8% hit rate. The number of distinct masks a schema generates is bounded by its automaton's state count, not by vocabulary size — which is why precomputation pays, and why an unbounded grammar (a long `pattern`, deep recursion) is expensive in a way a large vocabulary is not.
+My toy's cache statistics point at the same idea at a smaller scale: 25,450 mask requests collapsed onto **64 distinct states**, a 99.8% hit rate. The number of distinct masks a schema generates is bounded by its automaton's state count, not by vocabulary size, which is why precomputation pays, and why an unbounded grammar (a long `pattern`, deep recursion) is expensive in a way a large vocabulary is not.
 
 ## The range is where the grammar gets big
 
@@ -423,13 +423,13 @@ digits still legal after '15': 0
 digits still legal after '150': <none>
 ```
 
-The strict decoder refuses to emit a value the model wanted. The substitution fallback emits `150` where the model said `151` — valid JSON, wrong number, and nothing in the output tells the caller. That is the failure mode to design against: a constrained decoder must raise on an empty legal set, not improvise. The third case is worse than either: after `20` there is no legal digit *and* no substitution available, so a decoder that assumed "there is always a legal continuation" simply stops. Check the empty-mask condition explicitly and log the grammar state and prefix — it usually means the schema and the data disagree.
+The strict decoder refuses to emit a value the model wanted. The substitution fallback emits `150` where the model said `151`: valid JSON, wrong number, and nothing in the output tells the caller. That is the failure mode to design against: a constrained decoder must raise on an empty legal set, not improvise. The third case is worse than either: after `20` there is no legal digit *and* no substitution available, so a decoder that assumed "there is always a legal continuation" simply stops. Check the empty-mask condition explicitly and log the grammar state and prefix. It usually means the schema and the data disagree.
 
-**2. A mask that fails to compile can fail open.** llama.cpp issue [#19051](https://github.com/ggml-org/llama.cpp/issues/19051) reported exactly this: with `response_format: json_schema`, when the schema converts but the *grammar* fails to parse — an invalid regex in a `pattern`, for instance — the server logs `llama_grammar_init_impl: failed to parse grammar` and then "continues generation unconstrained, returning 200 OK. This silently drops structured output enforcement unless logs are inspected." The reporter's expected behaviour is the correct one: "Any grammar parse failure should fail closed and return an HTTP error (e.g. 400)." The issue was closed as stale in March 2026 without a fix attached, which makes the point rather than weakening it — the guarantee you get is the one you test for. Assert on a canary schema at startup, and assert that a deliberately broken `pattern` produces an error rather than prose.
+**2. A mask that fails to compile can fail open.** llama.cpp issue [#19051](https://github.com/ggml-org/llama.cpp/issues/19051) reported exactly this: with `response_format: json_schema`, when the schema converts but the *grammar* fails to parse (an invalid regex in a `pattern`, for instance) the server logs `llama_grammar_init_impl: failed to parse grammar` and then "continues generation unconstrained, returning 200 OK. This silently drops structured output enforcement unless logs are inspected." The reporter's expected behaviour is the correct one: "Any grammar parse failure should fail closed and return an HTTP error (e.g. 400)." The issue was closed as stale in March 2026 without a fix attached, which makes the point rather than weakening it: the guarantee you get is the one you test for. Assert on a canary schema at startup, and assert that a deliberately broken `pattern` produces an error rather than prose.
 
 **3. The mask guarantees syntax, not meaning.** 520 of 1,000 masked draws carried a real name because the model's distribution was coherent there; the other 480 were parseable and semantically empty. Since the schema is not injected into the prompt, nothing ever told the model what `name` was for. Structure is a precondition for automation, not evidence of correctness: validate ranges, cross-field invariants and referential integrity after parsing.
 
-**4. Your vocabulary has to be able to express the grammar.** The first version of my mask dead-ended on `\u` escapes because no single hex character existed as a token — a grammar can be valid and still unmaskable against a given tokenizer. Engines handle this by compiling the grammar's character classes into the target vocabulary, which is why the same schema behaves differently across models.
+**4. Your vocabulary has to be able to express the grammar.** The first version of my mask dead-ended on `\u` escapes because no single hex character existed as a token: a grammar can be valid and still unmaskable against a given tokenizer. Engines handle this by compiling the grammar's character classes into the target vocabulary, which is why the same schema behaves differently across models.
 
 ## How to apply this
 
