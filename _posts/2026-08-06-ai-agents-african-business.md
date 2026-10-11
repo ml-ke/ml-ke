@@ -14,7 +14,7 @@ Over the past two months, we've built a solid foundation in AI agent engineering
 
 **AI agents are autonomous systems that perceive their environment, reason about goals, and take actions** — far beyond the simple Q&A pattern of chatbots. For an African enterprise managing supply chains across five countries, navigating regulatory frameworks that change weekly, and processing government tender documents by hand, the leap from "chatbot" to "agent" is the difference between a demo and a deployment that saves millions.
 
-## What Makes an AI Agent Different from a Chatbot?
+## What makes an AI agent different from a chatbot?
 
 A chatbot responds. An agent acts. The distinction is critical:
 
@@ -25,13 +25,13 @@ In the [ReAct loop we covered in June](/posts/agent-fundamentals/), an agent cyc
 
 ## African business use cases
 
-### 1. Customer Service Agents
+### 1. Customer service agents
 
 South African startup **Cue** raised $5M in 2025 to build exactly this: AI customer service agents that handle inquiries, process returns, and escalate intelligently across WhatsApp, web chat, and voice. They report a 40% reduction in human escalation rates for retail clients in Johannesburg and Cape Town.
 
 The pattern is straightforward: a ReAct agent with access to order databases, return policies, and an escalation tool. When a customer asks "where's my package?", the agent queries tracking APIs, checks estimated delivery windows, and responds, all without a human in the loop.
 
-### 2. Supply Chain Logistics Agents
+### 2. Supply chain logistics agents
 
 Coordinating freight across African borders is notoriously complex. Customs systems, clearance times, and documentation requirements differ by country. A multi-agent system (using the [supervisor/worker pattern from our series](/posts/multi-agent-systems/)) can deploy:
 
@@ -40,11 +40,11 @@ Coordinating freight across African borders is notoriously complex. Customs syst
 - **Tracking Agent**: monitors shipment status across carrier APIs
 - **Coordinator Agent**: resolves conflicts and updates stakeholders
 
-### 3. Compliance and Regulatory Agents
+### 3. Compliance and regulatory agents
 
 Navigating data protection (Kenya's Data Protection Act, South Africa's POPIA, Nigeria's NDPR), tax codes, and industry regulations across markets is a full-time legal team's job. A compliance agent equipped with a vector database of regulatory documents and a web-search tool can answer questions like "What are Kenya's consent requirements for SMS marketing in 2026?" by retrieving current laws and synthesizing a clear answer.
 
-### 4. Document Processing Agents for Procurement and Tenders
+### 4. Document processing agents for procurement and tenders
 
 Government tenders in many African countries still arrive as scanned PDFs with inconsistent formatting. An agent with document parsing tools (OCR + structured extraction) can:
 
@@ -55,7 +55,7 @@ Government tenders in many African countries still arrive as scanned PDFs with i
 
 This alone can cut tender response time from days to hours.
 
-## Technical Stack
+## Technical stack
 
 The frameworks we explored in June are production-ready for these use cases:
 
@@ -65,7 +65,7 @@ The frameworks we explored in June are production-ready for these use cases:
 
 All three support the core agent patterns: ReAct reasoning loops, tool use, reflection (agents that critique their own outputs), and multi-agent orchestration.
 
-## Code Example: Simple Tender Processing Agent
+## Code example: simple tender processing agent
 
 Here's a minimal LangGraph agent that processes a tender document, connecting the ReAct loop from [Post 1](/posts/agent-fundamentals/) with real-world tools:
 
@@ -128,7 +128,7 @@ print(result["messages"][-1]["content"])
 
 This is the same ReAct pattern applied to a concrete business problem: perception (ingest the document), reasoning (extract fields), action (check eligibility), observation (return gaps).
 
-## Deployment Considerations for African Markets
+## Deployment considerations for African markets
 
 Building the agent is half the battle. Deploying it where your users actually are requires thinking about infrastructure:
 
@@ -137,7 +137,7 @@ Building the agent is half the battle. Deploying it where your users actually ar
 - **Low-bandwidth operation**: stream responses token by token rather than waiting for full generations. Compress tool outputs. Use smaller models (Llama 3.2 3B, Qwen 2.5 7B) for edge deployments.
 - **Local hosting**: latency and data sovereignty requirements often mean running agents on local infrastructure rather than foreign cloud APIs. Self-hosting open-weight models (see our [July 2 post](/posts/self-hosting-open-weight-llms/)) keeps data on the continent.
 
-## Where This Fits in the Series
+## Where this fits in the series
 
 This post is the practical destination of everything we've built since June 15. The [ReAct loop](/posts/agent-fundamentals/) is the engine. [Memory systems](/posts/agent-memory-systems/) handle state across sessions. [Tool calling](/posts/agent-tool-calling/) connects agents to the real world. [Multi-agent orchestration](/posts/multi-agent-systems/) scales them to enterprise complexity.
 

@@ -20,7 +20,7 @@ Here's the consequence: when you embed a Swahili sentence like *"Mkulima anahita
 
 ## Three architectural strategies
 
-### 1. Cross-Lingual Embeddings
+### 1. Cross-Lingual embeddings
 
 The simplest path is to swap your embedding model for one that explicitly handles multiple languages. [LaBSE](https://tfhub.dev/google/LaBSE/2) (Language-Agnostic BERT Sentence Embedding) from Google is a strong option. It's trained on 109 languages, including Swahili, Yoruba, Hausa, and Amharic. [Multilingual Sentence-BERT](https://www.sbert.net/docs/pretrained_models.html#multi-lingual-models) (specifically `distiluse-base-multilingual-cased-v2`) offers another solid baseline. [Cohere's multilingual embedding models](https://cohere.com/blog/multilingual) also support African languages and are accessible via API.
 
@@ -37,7 +37,7 @@ A pragmatic alternative is to keep your English embedding model but insert trans
 
 This works surprisingly well thanks to modern neural MT systems. [No Language Left Behind (NLLB)](https://ai.meta.com/research/no-language-left-behind/) from Meta supports 200 languages, including many African ones. [Opus-MT](https://github.com/Helsinki-NLP/Opus-MT) models on Hugging Face cover dozens of African language pairs. The downside is latency (each query requires two translation calls) and the risk of error amplification if the initial translation is poor.
 
-### 3. Fine-Tuned Embedding Models
+### 3. Fine-Tuned embedding models
 
 For production systems serving a specific language community, fine-tuning yields the best results. The recipe:
 
@@ -47,7 +47,7 @@ For production systems serving a specific language community, fine-tuning yields
 
 Projects like [Masakhane](https://www.masakhane.io/) have shown that even modest datasets (5,000–20,000 pairs) can meaningfully improve retrieval quality for languages like Hausa and Igbo. The key is to bootstrap from a multilingual base model rather than training from scratch.
 
-## A Concrete Example
+## A concrete example
 
 Here's a minimal RAG pipeline using LangChain with a cross-lingual embedding model and Chroma for vector storage:
 
@@ -88,7 +88,7 @@ for doc in docs:
 
 Swap `LaBSE` for a fine-tuned model, `Chroma` for [Qdrant](https://qdrant.tech/) or [Weaviate](https://weaviate.io/) at scale, and you have the skeleton of a production RAG system for any African language.
 
-## Real-World Applications
+## Real-World applications
 
 The most immediate needs are in public services and agriculture. Teams across Kenya, Nigeria, and Ghana are building government FAQ bots in local languages: how to register a birth, apply for a business permit, check tax deadlines. These systems typically pair RAG with a translation layer because the official knowledge base exists in English.
 

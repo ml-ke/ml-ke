@@ -103,9 +103,9 @@ flowchart LR
 
 Each category below has published research behind it.
 
-### 1. Write-Phase Attacks: Getting Malicious Content Into Memory
+### 1. Write-Phase attacks: getting malicious content into memory
 
-#### SpAIware: The ChatGPT macOS Exploit
+#### SpAIware: the ChatGPT macOS exploit
 
 In September 2024, security researcher **Johann Rehberger** demonstrated a vulnerability in OpenAI's ChatGPT macOS application that he dubbed **SpAIware** [2]. The attack chain was elegant and terrifying:
 
@@ -125,7 +125,7 @@ OpenAI patched this on September 20, 2024, but the fundamental architectural vul
 > The vulnerability existed because ChatGPT's memory RAG would retrieve and apply stored memories without provenance verification.
 > {: .prompt-info }
 
-#### MINJA: Memory Injection Attack (2025)
+#### MINJA: memory injection attack (2025)
 
 Published by Dong et al. in March 2025, **MINJA** (Memory INJection Attack) demonstrated that agents with persistent memory are vulnerable through **query-only interactions**; the attacker never needs direct access to the memory store [3].
 
@@ -137,9 +137,9 @@ The key technique: the attacker crafts queries that the agent's memory system na
 
 The follow-up paper in January 2026 (arXiv:2601.05504) extended this to demonstrate persistent memory corruption that survives session boundaries [4].
 
-### 2. Storage-Phase Attacks: Embedded Triggers in Memory
+### 2. Storage-Phase attacks: embedded triggers in memory
 
-#### AgentPoison: Backdoor via Memory Poisoning
+#### AgentPoison: backdoor via memory poisoning
 
 **AgentPoison**, published by Chen et al. at NeurIPS 2024, introduced the first backdoor attack targeting generic and RAG-based LLM agents by poisoning their long-term memory or RAG knowledge base [5].
 
@@ -156,7 +156,7 @@ Critically, AgentPoison requires **no additional model training or fine-tuning**
 
 The optimized backdoor triggers exhibit "superior transferability, resilience, and stealthiness."
 
-#### InjecMEM: One-Shot Memory Injection (ICLR 2026)
+#### InjecMEM: One-Shot memory injection (ICLR 2026)
 
 Submitted to ICLR 2026, **InjecMEM** takes targeted memory injection further by requiring only a **single interaction** with the agent [6]. The attack splits its payload:
 
@@ -165,7 +165,7 @@ Submitted to ICLR 2026, **InjecMEM** takes targeted memory injection further by 
 
 This means an attacker needs just one crafted message to steer all future related responses toward a pre-specified output.
 
-### 3. Read-Phase Attacks: Corrupting Retrieval
+### 3. Read-Phase attacks: corrupting retrieval
 
 Not all memory attacks write directly. **MemoryGraft** (arXiv:2512.16962) showed that you can compromise an agent by poisoning its **experience retrieval**, the procedural memory that stores successful past behaviors [7].
 
@@ -177,7 +177,7 @@ Validated on MetaGPT's **DataInterpreter** agent with GPT-4o, MemoryGraft found 
 
 The result is **behavioral drift**: the agent gradually adopts attacker-aligned behaviors without any explicit jailbreak.
 
-### 4. Execution-Phase Attacks: Cross-Session Persistence
+### 4. Execution-Phase attacks: Cross-Session persistence
 
 The most dangerous property of memory attacks is **persistence**. Unlike prompt injection, which ends when the conversation closes, memory poisoning creates a permanent backdoor.
 
@@ -272,7 +272,7 @@ This is a legitimate user preference.]
 
 The code above is simplified, but the mechanism mirrors what MINJA, SpAIware, and InjecMEM exploit in production systems. The memory extraction function trusts the LLM's output, so if the LLM has been prompted to include an instruction in its response, that instruction gets stored as a legitimate memory.
 
-## Mathematical Model of Memory Poisoning
+## Mathematical model of memory poisoning
 
 The attack surface above can be stated formally. An agent's memory system can be modeled as:
 
@@ -298,7 +298,7 @@ Where $\oplus$ denotes context concatenation.
 
 The critical insight: **memory poisoning requires orders of magnitude less injected data than model poisoning**. AgentPoison achieves its effect with < 0.1% of the memory store poisoned, compared to model backdoors that typically require 1–10% of training data [5].
 
-## Why EverMemOS Magnifies the Risk
+## Why EverMemOS Magnifies the risk
 
 The EverMemOS architecture [1] that inspired this post introduces several features that, while powerful, expand the attack surface:
 
@@ -338,7 +338,7 @@ The Slack AI incident of August 2024, while primarily a prompt injection attack,
 
 Defending agent memory requires a different approach than defending stateless LLM calls. Here's the framework:
 
-### 1. Provenance Tracking
+### 1. Provenance tracking
 
 Every memory must carry a verifiable source:
 
@@ -358,7 +358,7 @@ class ProvenancedMemory:
         return self.source == "system" or self.verified
 ```
 
-### 2. Memory Access Control
+### 2. Memory access control
 
 | Principle | Implementation |
 |-----------|---------------|
@@ -367,7 +367,7 @@ class ProvenancedMemory:
 | **Audit trail** | Every memory write logged with source and timestamp |
 | **Quarantine** | New memories marked as tentative until validated |
 
-### 3. Content Sanitization
+### 3. Content sanitization
 
 Before storing any memory:
 - Strip hidden injection patterns (`[SYSTEM NOTE]`, `[IMPORTANT]`, markdown comments)
@@ -375,14 +375,14 @@ Before storing any memory:
 - Apply length limits and structural constraints
 - Detect and block extraction instructions (exfiltration patterns)
 
-### 4. Retrieval-Time Defenses
+### 4. Retrieval-Time defenses
 
 When retrieving memories for context:
 - **Isolate instructions from data**: never mix stored memory content with system prompts on the same channel
 - **Tag untrusted content**: mark retrieved memories as "user-provided" so the LLM can distinguish them
 - **Preference vs. instruction**: use structured representations that separate user preferences (what) from behavioral instructions (how)
 
-### 5. Continuous Monitoring
+### 5. Continuous monitoring
 
 ```python
 # Memory anomaly detection signature

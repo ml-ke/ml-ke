@@ -108,7 +108,7 @@ This means you can install a huge library without blowing up the context window.
 
 If a skill doesn't show up, the docs suggest checking: all-caps `SKILL.md`, frontmatter present, unique names, and permissions not set to `deny`.
 
-## What We'd Do Differently (The Honest Retrospective)
+## What we'd Do differently (The honest retrospective)
 
 Running this setup for weeks surfaced five improvements, ranked by impact:
 

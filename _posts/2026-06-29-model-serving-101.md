@@ -8,7 +8,7 @@ image:
   alt: Diagram showing the journey from a Jupyter notebook to a production model serving API
 ---
 
-## The Gap Between Training and Production
+## The gap between training and production
 
 You've just finished training a model in Jupyter. The loss curves look great, validation accuracy is solid, and you're ready to "put it in production." But what does that actually mean?
 
@@ -16,7 +16,7 @@ A Jupyter notebook is not a service. It runs on your machine, holds the model in
 
 This post walks through the complete journey: exporting a trained model, building a FastAPI serving endpoint, containerizing it with Docker, adding production essentials like health checks and metrics, and handling concurrent requests properly.
 
-## Step 1: Exporting the Model
+## Step 1: Exporting the model
 
 Before you can serve anything, you need to save the model in a format that can be loaded without the original training code. Training frameworks save models in framework-specific formats, but for serving you typically want an **intermediate representation** that decouples the model from the framework.
 
@@ -54,7 +54,7 @@ model.save("model/1/", save_format="tf")
 ```
 {% endraw %}
 
-### Framework-Agnostic Export with ONNX
+### Framework-Agnostic export with ONNX
 
 ONNX lets you export from almost any framework and serve with a runtime like ONNX Runtime:
 
@@ -80,7 +80,7 @@ torch.onnx.export(
 
 ONNX with dynamic batching (as shown above) allows the serving layer to batch inference requests for higher throughput.
 
-## Step 2: Building the Serving API with FastAPI
+## Step 2: Building the serving API with FastAPI
 
 FastAPI is the go-to choice for model serving in Python. It's async-first, fast, has automatic OpenAPI docs, and handles request validation via Pydantic.
 
@@ -218,9 +218,9 @@ docker run -p 8000:8000 --gpus all model-server:latest
 ```
 {% endraw %}
 
-## Step 4: Adding Production Readiness
+## Step 4: Adding production readiness
 
-### Concurrent Request Handling
+### Concurrent request handling
 
 By default, Uvicorn runs with one worker process. For production, use multiple workers:
 
@@ -233,7 +233,7 @@ gunicorn -k uvicorn.workers.UvicornWorker -w 4 -b 0.0.0.0:8000 app:app
 
 The number of workers should generally be `2 × num_cores` for CPU inference. For GPU inference, one or two workers often suffice since the GPU serializes kernel execution anyway.
 
-### Request Batching
+### Request batching
 
 For higher throughput, implement dynamic batching — collect requests over a short window and run them as a batch:
 
@@ -277,7 +277,7 @@ class BatchInferenceHandler:
 ```
 {% endraw %}
 
-### Graceful Shutdown and Readiness Probes
+### Graceful shutdown and readiness probes
 
 For orchestrated environments (Kubernetes), your API should handle graceful shutdowns:
 
@@ -295,7 +295,7 @@ def shutdown_event():
 ```
 {% endraw %}
 
-## Sync vs Async Serving Patterns
+## Sync vs async serving patterns
 
 | Pattern | When to Use | Throughput | Complexity |
 |---------|------------|------------|------------|
@@ -306,7 +306,7 @@ def shutdown_event():
 
 For most serving scenarios, **async with batching** hits the sweet spot — you get high GPU utilization and reasonable latency.
 
-## Putting It All Together
+## Putting It all together
 
 The path from notebook to production API looks like this:
 
@@ -318,7 +318,7 @@ The path from notebook to production API looks like this:
 
 In the next post, we'll take this foundation and scale it up with vLLM for serving large language models at high throughput.
 
-## Quick Reference: Commands and Tools
+## Quick reference: commands and tools
 
 ```bash
 # Build and run the Docker container

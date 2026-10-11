@@ -22,7 +22,7 @@ In this post, we'll dive into **Graph Algorithms**. We'll use them to uncover hi
 > **Graph Data Science (GDS)** is the application of graph algorithms to find patterns, clusters, and importance in connected data.
 {: .prompt-info }
 
-## Setting Up Neo4j Graph Data Science (GDS)
+## Setting Up Neo4j graph data science (GDS)
 
 First, ensure you have the **Graph Data Science (GDS) Library** installed in your Neo4j instance. If you're using Neo4j Desktop, you can install it via the "Plugins" tab.
 
@@ -39,7 +39,7 @@ from graphdatascience import GraphDataScience
 gds = GraphDataScience("bolt://localhost:7687", auth=("neo4j", "password"))
 ```
 
-## 1. Centrality Algorithms: Finding Influencers
+## 1. Centrality algorithms: finding Influencers
 
 Centrality algorithms identify the most important nodes in a graph.
 
@@ -71,7 +71,7 @@ print(results.sort_values("score", ascending=False).head(5))
 **Interpretation:**
 High PageRank scores indicate startups that have attracted investment from highly connected investors, or investors who have backed many successful startups.
 
-## 2. Community Detection: Finding Clusters
+## 2. Community detection: finding clusters
 
 Community detection algorithms find groups of nodes that are more densely connected to each other than to the rest of the network.
 
@@ -108,9 +108,9 @@ graph TD
     style C fill:#6bcf7f
 ```
 
-## 3. Pathfinding: Connecting the Dots
+## 3. Pathfinding: connecting the dots
 
-### Shortest Path (Dijkstra / A*)
+### Shortest path (Dijkstra / A*)
 
 We already saw `shortestPath` in Cypher. GDS offers weighted shortest paths, useful if we had properties like "Investment Amount" as weights.
 
@@ -124,7 +124,7 @@ path = gds.shortestPath.dijkstra.stream(
 )
 ```
 
-## Real-World Application: Investment Recommendation
+## Real-World application: investment recommendation
 
 We can combine these algorithms to build a recommendation engine:
 

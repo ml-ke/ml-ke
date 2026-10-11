@@ -190,7 +190,7 @@ Hausa word: "kyakkyawa" (beautiful)
 → Back to Hausa: "kyakkyawa", "kyau sosai", "mai ban sha'awa"
 ```
 
-### MixUp for Text
+### MixUp for text
 
 Create interpolated examples by mixing two training examples. For text, this means combining the embeddings:
 

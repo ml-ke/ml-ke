@@ -14,7 +14,7 @@ July 2026 is shaping up to be the month the narrative flips: from "Africa has po
 
 Six stories stand out.
 
-## Google's Africa Applied AI Lab opens in Accra
+## Google's Africa applied AI lab opens in Accra
 
 On July 14, **Google** announced the launch of its **Africa Applied AI Lab** in Accra, Ghana, a dedicated research and development hub pairing African founders and researchers with Google's AI teams. The program runs applications from **July 1 to August 31, 2026**, and is designed to accelerate applied AI projects that solve real problems for African markets.
 
@@ -46,7 +46,7 @@ The pattern is unmistakable: Big tech acquirers see African founders as high-lev
 - [Vercel acquires Stakpak — TechCrunch](https://techcrunch.com/2026/07/14/vercel-acquires-stakpak/)
 - [Vercel acquires Better Auth — TechCrunch](https://techcrunch.com/2026/06/28/vercel-acquires-better-auth/)
 
-## ALX Enterprise: Leading in the Age of AI
+## ALX enterprise: leading in the age of AI
 
 ALX Enterprise, the professional development arm of the African Leadership Group, is running **"Leading in the Age of AI"** sessions in two major African capitals: **Kigali, Rwanda (July 24)** and **Nairobi, Kenya (July 30)**. The sessions target senior executives and managers looking to understand AI strategy, deployment, and governance.
 

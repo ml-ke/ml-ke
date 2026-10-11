@@ -330,7 +330,7 @@ avg(nvidia_gpu_utilization{kubernetes_pod_name=~"llama3-8b-.*"})
 ```
 {% endraw %}
 
-### Setting up a Dashboard
+### Setting up a dashboard
 
 {% raw %}
 ```yaml

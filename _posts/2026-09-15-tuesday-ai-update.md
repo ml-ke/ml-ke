@@ -8,18 +8,18 @@ image:
   alt: Globe with glowing AI nodes across seven regions
 ---
 
-## The Week in AI
+## The week in AI
 
 September 8–14 opened with the United States naming names: a joint NSA, CISA and FBI advisory accused six Chinese AI labs of "industrial-scale" distillation from American frontier models, and Anthropic's figures show one pulled 151 million exchanges out of Claude in three months ([CISA](https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-251a), [CNBC](https://www.cnbc.com/2026/09/11/chinese-ai-labs-moonshot-deepseek-alibaba-anthropic.html)). It closed with OpenAI requesting the mandatory safety rules it spent years arguing against — while Google pledged €13bn to Finland, DeepSeek moved toward a $75bn Shanghai listing, and Egypt announced Africa's largest AI data-centre build to date.
 
-### Western: Frontier Models, Gated by Capability
+### Western: frontier models, gated by capability
 
 - **AA26-251A** (Sep 8) names DeepSeek, Moonshot AI, Alibaba, MiniMax, StepFun and Z.AI, alleging billions of tokens extracted from Claude, GPT, Gemini and Grok since late 2024 via jailbreak tooling, rotating keys and grey-market proxy networks ([Technology Org](https://www.technology.org/2026/09/09/us-agencies-chinese-ai-distillation-advisory/)).
 - **Anthropic** (Sep 11) put numbers on it: five campaigns, ~190 million Claude exchanges, 151 million traced to Alibaba between May and July across 3,500 fraudulent accounts ([Business Insider](https://www.businessinsider.com/china-ai-labs-millions-distillation-attacks-anthropic-claude-2026-9)).
 - Sep 2–10 shipped Meta's **Muse Spark 1.3**, Anthropic's Fable 5.1/Mythos 5.1, OpenAI's **GPT-6 Astra** (first to trip its critical-cyber threshold) and Google's Gemini 3.8 Flash with a defenders-only Cyber variant ([Local AI Zone](https://local-ai-zone.github.io/blog/September_2026_AI_Model_Updates.html)).
 - **Google** will spend €13bn ($15.1bn) on Finnish AI infrastructure in 2027–28, with a 22-year Fortum nuclear PPA ([BBC](https://www.bbc.com/news/articles/c8r6y4me2g6o)).
 
-### China: IPO, Chips, Courts
+### China: IPO, chips, courts
 
 DeepSeek hired CITIC Securities for a **STAR Market IPO** at a reported ¥500bn (~$75bn) valuation and ordered **160,000 Huawei Ascend 950DT** chips for a 1GW Inner Mongolia site — inference only; training stays on Nvidia ([Bloomberg](https://www.bloomberg.com/news/articles/2026-09-04/deepseek-plans-big-huawei-ai-chip-order-to-power-new-data-center)). Its Supreme People's Court issued **Fa Fa [2026] No. 10**, the country's first adjudication rules for AI disputes ([China IP Law Update](https://chinaiplawupdate.com/2026/09/chinas-supreme-peoples-court-issues-first-national-judicial-rules-on-ai-disputes-but-sidesteps-copyrightability-of-ai-generated-works/)). Tencent open-sourced **Hy4 preview** (770B/49B-active MoE), now OpenRouter's most-used model, as MOFCOM called the distillation claims an attempt to monopolise AI ([Big Hat Group](https://www.bighatgroup.com/blog/china-ai-weekly-2026-09-13/)).
 
@@ -38,7 +38,7 @@ Mistral's €3bn round confirmed a valuation above €21bn (covered [last week](
 
 Brazil's R$2.3bn (~$444m) AI plan reportedly routed ~R$1.3bn to Chinese vendors as Huawei and iFlytek build a regional computing hub. Russia's Sber open-sourced GigaChat Ultra Preview and its speech models while seeking Chinese microchips for GigaChat's compute ([GINC](https://www.ginc.org/russias-national-ai-strategy/)).
 
-## Spotlight: Model Provenance Is Now a Compliance Question
+## Spotlight: model provenance Is now a compliance question
 
 Distillation is not exotic. A lab calls your API at volume, collects the outputs — reasoning traces where offered — and trains a smaller model to imitate them. That is legitimate technique; the industrial version just removes the guardrails.
 
@@ -46,7 +46,7 @@ What changes this month is the paper trail. Distillation abuse was a vendor's pr
 
 The abuse signals are unremarkable until you look: request volumes shaped like a corpus ingest rather than a product, near-zero user diversity per account, keys rotating faster than a human types. That needs no new infrastructure, just someone to own the metric. Anthropic's counterpart control is the one worth copying — it banned accounts and **reduced the detail level of its reasoning transcripts**, lowering the value of every future harvest without breaking legitimate calls.
 
-## Why This Matters for Africa
+## Why this matters for Africa
 
 Egypt's $1bn build is the continent's largest AI-infrastructure commitment this year, and its partner stack says what it buys: Nvidia silicon, Vodafone Business, Elsewedy Electric, Cassava Technologies. The compute lands; the model, provenance and compliance layers stay imported. For a Nairobi or Lagos fintech calling a frontier model through an aggregator, that is supply-chain risk.
 

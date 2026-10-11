@@ -22,7 +22,7 @@ Consider a research task: "Analyze the impact of AI on Kenya's agricultural sect
 
 This post explores multi-agent patterns and builds a working system using LangGraph for stateful orchestration and CrewAI for role-based teams.
 
-## When to Use Multi-Agent Systems
+## When to use Multi-Agent systems
 
 | Scenario | Single Agent | Multi-Agent |
 |----------|-------------|-------------|
@@ -44,7 +44,7 @@ User → Supervisor → [Researcher, Analyst, Writer]
                      Synthesized Result
 ```
 
-### 2. Round Robin / Debate
+### 2. Round Robin / debate
 
 Agents take turns contributing. Useful for brainstorming, critique, and refinement.
 
@@ -78,7 +78,7 @@ Retriever → Extractor → Summarizer → Writer
 pip install langgraph langchain-openai
 ```
 
-### Step 1: Define Agent Nodes
+### Step 1: Define agent nodes
 
 Each agent is a node in the graph — a function that receives state and returns updates:
 
@@ -183,7 +183,7 @@ Write a clear, engaging report with:
 ```
 {% endraw %}
 
-### Step 2: Build the Graph
+### Step 2: Build the graph
 
 {% raw %}
 ```python
@@ -222,7 +222,7 @@ app = workflow.compile()
 ```
 {% endraw %}
 
-### Step 3: Run the Multi-Agent System
+### Step 3: Run the Multi-Agent system
 
 {% raw %}
 ```python
@@ -256,7 +256,7 @@ print(result["final_report"])
 pip install crewai crewai-tools
 ```
 
-### Defining a Research Crew
+### Defining a research Crew
 
 {% raw %}
 ```python
@@ -338,15 +338,15 @@ print(result)
 ```
 {% endraw %}
 
-## State Management and Communication
+## State management and communication
 
 In multi-agent systems, **how agents communicate** is as important as what they communicate.
 
-### Shared State (LangGraph)
+### Shared state (LangGraph)
 
 LangGraph's `AgentState` is a shared whiteboard. Each agent reads and writes to it. This is clean and debuggable.
 
-### Message Passing (Custom)
+### Message passing (Custom)
 
 For more complex topologies, implement explicit message passing:
 

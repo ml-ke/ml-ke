@@ -8,7 +8,7 @@ image:
   alt: Globe with glowing AI nodes across seven regions
 ---
 
-## The Week in AI
+## The week in AI
 
 September 29 to October 5 was the week frontier AI's finances went public while its rules stayed voluntary. Anthropic's draft S-1 leaked with a $42bn annual loss inside it, six labs signed a 300-word White House pledge with no penalty attached, and Bloomberg Intelligence put the US lead over China's best model at 3%.
 

@@ -22,7 +22,7 @@ The financial version arrived in May 2026. An attacker gifted an NFT and sent a 
 
 The exposure is broader than individual incidents. A [TELUS Digital benchmark](https://www.telusdigital.com/insights/filter/research-and-reports) of 24 GenAI models configured as banking customer-service assistants found every one exploitable, with attack success rates from 1% to over 64% — including "refusal but engagement" cases where a chatbot said "I cannot help" and then disclosed sensitive information anyway ([Corporate Compliance Insights](https://www.corporatecomplianceinsights.com/ai-banking-chatbots-all-exploitable/)). Academic work agrees: a study of third-party chatbot plugins on over 10,000 public websites, accepted at IEEE S&P 2026, found real-world injection risks in plugins many businesses embed without review ([arXiv](https://arxiv.org/html/2511.05797v1)).
 
-## Mapping the OWASP LLM Top 10 to a bank assistant
+## Mapping the OWASP LLM top 10 to a bank assistant
 
 The [2025 edition](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf) reorganized the original 2023 list (Training Data Poisoning, Model DoS, Supply Chain) into ten current risks, and the August 2026 update re-ranked them. For a financial chatbot, the high-severity entries are:
 

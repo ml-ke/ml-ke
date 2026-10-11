@@ -20,7 +20,7 @@ These tasks require **agency**: the ability to perceive an environment, reason a
 
 In this post, we'll strip away the frameworks and build a working AI agent from scratch using nothing but Python, the OpenAI API, and a simple loop. You'll understand exactly how ReAct (Reasoning + Acting) works under the hood. That knowledge will serve you whether you end up using LangChain, CrewAI, or building custom solutions.
 
-## What Makes an Agent?
+## What makes an agent?
 
 An AI agent is a system that combines three components:
 
@@ -32,7 +32,7 @@ An AI agent is a system that combines three components:
 
 The key insight: **the loop** (perception → reasoning → action → observation → reasoning → ...) is what gives agents emergent problem-solving abilities. Each iteration lets the agent refine its understanding based on real feedback.
 
-### Agent vs. Simple LLM Call
+### Agent vs. simple LLM call
 
 A standard LLM prompt gives you:
 
@@ -70,11 +70,11 @@ A ReAct loop follows this structure:
 4. (Repeat until the task is complete)
 5. **Final Answer**: The model responds to the user
 
-## Building a ReAct Agent from Scratch
+## Building a ReAct agent from scratch
 
 Let's build a minimal but functional ReAct agent. We'll define tools as simple Python functions and let the LLM decide when and how to call them.
 
-### Step 1: Define Tool Schema
+### Step 1: Define tool schema
 
 Every tool needs a schema the LLM can understand:
 
@@ -110,7 +110,7 @@ Parameters:
 ```
 {% endraw %}
 
-### Step 2: Define Tools
+### Step 2: Define tools
 
 We'll create a search tool and a calculator (no external APIs needed for now):
 
@@ -178,7 +178,7 @@ tools = [
 ```
 {% endraw %}
 
-### Step 3: The System Prompt
+### Step 3: The system prompt
 
 The prompt instructs the LLM to output structured ReAct traces:
 
@@ -203,7 +203,7 @@ Available tools:
 ```
 {% endraw %}
 
-### Step 4: The Agent Loop
+### Step 4: The agent loop
 
 The core is the loop that keeps the agent going until it's done:
 
@@ -289,7 +289,7 @@ print(f"\n\nFinal Result: {result}")
 ```
 {% endraw %}
 
-## What Happens Under the Hood
+## What happens under the hood
 
 When you run the agent, here's the trace you'll see:
 
@@ -331,7 +331,7 @@ The agent autonomously decomposed a multi-part query, used two different tools, 
 
 Our barebones agent works, but production agents need more:
 
-### Error Recovery
+### Error recovery
 
 Tools fail. APIs timeout. The agent should retry or adapt:
 
@@ -348,7 +348,7 @@ def run_agent_with_retry(tool_func, retries=2, **kwargs):
 ```
 {% endraw %}
 
-### Structured Output (Function Calling)
+### Structured output (Function calling)
 
 Modern LLMs support native function calling: structured JSON output with schema validation. This is more reliable than parsing Action/Input from free text:
 
@@ -380,7 +380,7 @@ response = client.chat.completions.create(
 ```
 {% endraw %}
 
-## When to Use the ReAct Pattern
+## When to use the ReAct pattern
 
 | Scenario | ReAct Good Fit? | Why |
 |----------|----------------|-----|

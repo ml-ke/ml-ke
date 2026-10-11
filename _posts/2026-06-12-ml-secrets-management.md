@@ -97,7 +97,7 @@ The attack worked because:
 > If a single `print(os.environ)` in any of your dependencies would leak every credential your ML pipeline needs, you have a secrets management problem.
 {: .prompt-warning }
 
-## Solution 1: HashiCorp Vault for ML pipelines
+## Solution 1: HashiCorp vault for ML pipelines
 
 HashiCorp Vault provides dynamic, audited, time-limited secrets. Here's how to integrate it with ML training:
 

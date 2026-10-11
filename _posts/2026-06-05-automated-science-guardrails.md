@@ -23,9 +23,9 @@ This post maps the threat landscape of autonomous AI research pipelines and buil
 
 ---
 
-## The State of Autonomous Research
+## The state of autonomous research
 
-### AutoResearchClaw: What It Actually Does
+### AutoResearchClaw: what It actually does
 
 AutoResearchClaw is a real paper (arXiv:2605.20025) from the AIMING Lab, authored by Jiaqi Liu, Shi Qiu, Mairui Li, and 33 others. The key claims, verified against the paper and GitHub repository:
 
@@ -41,7 +41,7 @@ AutoResearchClaw is a real paper (arXiv:2605.20025) from the AIMING Lab, authore
 
 This is a serious system. But it also surfaces the exact tension we're discussing.
 
-### The Precedent: AI Scientist and the Plagiarism Problem
+### The precedent: AI scientist and the plagiarism problem
 
 AutoResearchClaw isn't the first autonomous research pipeline. Sakana AI's **AI Scientist** (2024) and **AI Scientist-v2** (2025) demonstrated fully automated scientific workflows. But in 2025, Gupta and Pruthi published *"All That Glitters is Not Novel"* at ACL 2025, showing that **up to 24% of AI-generated research papers contained plagiarized content**: ideas rephrased from existing work, smartly paraphrased but not novel [2].
 
@@ -54,11 +54,11 @@ This finding has direct implications for AutoResearchClaw and every system that 
 
 ---
 
-## The Three Axes of Risk
+## The three axes of risk
 
 Autonomous research pipelines face three distinct failure modes that guardrails must address:
 
-### 1. Data Contamination & Benchmark Leakage
+### 1. Data contamination & benchmark leakage
 
 If an agent trains or evaluates on data it has already seen during pre-training, the results are worthless. The danger is subtle: an LLM-based research agent might "discover" patterns that are actually memorized from training data.
 
@@ -104,7 +104,7 @@ class ContaminationDetector:
 > In 2025, researchers found that several LLM-based "novel discovery" systems had been generating results that correlated with benchmark dataset leakage. The models weren't discovering science. They were *remembering* it.
 > {: .prompt-warning }
 
-### 2. Result Fabrication & Hallucination
+### 2. Result fabrication & hallucination
 
 The most dangerous failure mode: an autonomous research agent can generate convincing experimental results that never happened. LLMs are excellent at producing plausible-looking tables, statistics, and charts.
 
@@ -130,7 +130,7 @@ Where:
 
 Without calibration data for $$P(A \mid T)$$, we cannot trust any individual output.
 
-### 3. Semantic Plagiarism
+### 3. Semantic plagiarism
 
 Gupta & Pruthi's finding on semantic plagiarism is the hardest to guard against. The agent doesn't copy text. It copies *ideas*, rephrased so thoroughly that even expert reviewers miss it.
 
@@ -175,7 +175,7 @@ graph TD
 
 No single guardrail is sufficient. You need a **layered defense** that operates at every stage of the research pipeline.
 
-### Layer 1: Input Guardrails (Before Research Begins)
+### Layer 1: Input guardrails (Before research begins)
 
 Before an agent starts generating research, verify:
 
@@ -211,7 +211,7 @@ class NoveltyChecker:
         }
 ```
 
-### Layer 2: Process Guardrails (During Research)
+### Layer 2: Process guardrails (During research)
 
 The research process itself needs guardrails:
 
@@ -224,7 +224,7 @@ The research process itself needs guardrails:
 > SmartPause sounds great, but it creates a new problem: *calibration*. If the system pauses too often, humans become the bottleneck and the system isn't autonomous. If it pauses too rarely, critical errors slip through. No published system has solved this calibration problem.
 > {: .prompt-info }
 
-### Layer 3: Output Guardrails (After Paper Generation)
+### Layer 3: Output guardrails (After paper generation)
 
 This is where most current systems fall short. The output must be verified:
 
@@ -271,7 +271,7 @@ The fundamental issue is an **alignment gap between semantic meaning and surface
 > An autonomous research agent can be instructed to "write this idea in your own words," and it will do so perfectly. The result is a paper that is semantically identical to existing work but textually unique. This is a feature of LLMs, not a bug, and it becomes a liability for research integrity.
 > {: .prompt-danger }
 
-### A Proposed Solution: Provenance Tracking
+### A proposed solution: provenance tracking
 
 The only reliable defense against semantic plagiarism is **provenance tracking**: not checking what the output looks like, but tracking what inputs influenced it.
 
@@ -304,7 +304,7 @@ This approach integrates with [AI Agent Observability]({% post_url 2026-06-01-ai
 
 ---
 
-## Fine-Tuning the Guardrails
+## Fine-Tuning the guardrails
 
 The final layer of the problem: the model itself. If a research agent uses a fine-tuned LLM, the safety properties of that model matter enormously.
 
@@ -328,7 +328,7 @@ Where:
 
 ---
 
-## Conclusion: The Guardrail Stack
+## Conclusion: the guardrail stack
 
 Autonomous AI research is coming, and it's coming fast. AutoResearchClaw represents genuine progress. But every leap in capability creates a corresponding leap in risk. The guardrails we build today will determine whether these systems accelerate science or pollute it.
 

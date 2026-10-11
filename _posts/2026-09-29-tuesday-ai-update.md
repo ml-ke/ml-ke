@@ -8,7 +8,7 @@ image:
   alt: Globe with glowing AI nodes across seven regions
 ---
 
-## The Week in AI
+## The week in AI
 
 September 22–28 was the week deceleration talk became a shipping decision: OpenAI withheld a finished frontier model, Xi Jinping told Donald Trump that AI must stay "always under human control", and Nvidia shipped a platform for containing agents.
 

@@ -8,13 +8,13 @@ image:
   alt: Satellite view of agricultural fields across the African continent
 ---
 
-## From Kenyan Farms to Continental Scale
+## From Kenyan farms to continental scale
 
 In our [earlier post on AI for Agriculture in Kenya](/ml-ke/ai-for-agriculture/), we explored how ML-powered disease detection, yield prediction, and smart irrigation are already transforming smallholder farming in East Africa. But the story doesn't stop there. From South African orchards to Sahelian pastures, AI is being deployed across the continent to tackle both agricultural productivity and climate resilience.
 
 Smallholder farmers make up roughly **60% of Africa's population** — some 800 million people. They operate on less than two hectares each, with minimal access to formal credit, insurance, or extension services. Climate change is compounding their risks: unpredictable rainy seasons, more frequent droughts, and expanding pest ranges. This is where AI, applied at the intersection of satellite imagery, weather modeling, and on-the-ground data, offers something entirely new: the ability to predict the unpredictable.
 
-## Satellite Imagery and Computer Vision at Scale
+## Satellite imagery and computer vision at scale
 
 The fundamental enabler for agricultural AI across Africa is the explosion of publicly available satellite data. **Sentinel-2** (ESA) provides 10-meter resolution imagery every five days. **MODIS** and **Landsat** add historical records stretching back decades. AI models trained on these streams can now detect crop health, estimate yields, and flag anomalies at continental scale.
 
@@ -22,7 +22,7 @@ The fundamental enabler for agricultural AI across Africa is the explosion of pu
 
 **Apollo Agriculture** (Kenya), which we covered in depth in June, has expanded its ML-based credit scoring and input recommendation platform to **200,000+ smallholders** and is entering Zambia and Nigeria. Their model combines satellite-derived NDVI (vegetation health) with phone metadata, historical yield data, and weather forecasts to determine creditworthiness and optimal planting strategies for farmers who have never had a bank account.
 
-## Weather Prediction for African Climate Patterns
+## Weather prediction for African climate patterns
 
 Global weather models like ECMWF's HRES and GFS produce forecasts at 9–30 km resolution. That is far too coarse for Africa's highly variable microclimates. A farmer on the slopes of Mount Kenya or in the transition zone of the Sahel needs to know what will happen on *their* farm, not a 30 km grid square.
 
@@ -30,7 +30,7 @@ The **European Centre for Medium-Range Weather Forecasts (ECMWF)** has been push
 
 **Google's flood forecasting initiative** extends this work to hydrology. Using ML models trained on historical flood events, rainfall data, and river gauge readings, Google now provides flood alerts via Google Maps and Search across parts of India and Bangladesh, and it has begun piloting the same approach in Nigeria and East Africa. For lowland farmers who lose entire seasons to flash floods, even 48 hours' warning can mean the difference between saving livestock, moving seed stores, and total loss.
 
-## SAS and Smartphone-Based Precision Agriculture
+## SAS and Smartphone-Based precision agriculture
 
 A compelling real-world example comes from **South Africa, July 2026**. SAS, the analytics giant, has been working with micro-farmers in Limpopo and Mpumalanga provinces to deliver AI-powered crop advisory via basic smartphones. The system ingests local weather station data, satellite imagery, and farmer-submitted field photos, then generates personalized recommendations:
 
@@ -40,7 +40,7 @@ A compelling real-world example comes from **South Africa, July 2026**. SAS, the
 
 The key insight from SAS's deployment: **the AI builds on farmer knowledge rather than replacing it.** Farmers receive recommendations in their local language (Xitsonga, Zulu, Sesotho), can challenge the model's advice by submitting their own observations, and the model improves over time through this human feedback loop. Early results show a **22% increase in yield per hectare** among participating farmers compared to control groups using traditional practices alone.
 
-## Climate Resilience: Drought Prediction and Pest Tracking
+## Climate resilience: drought prediction and pest tracking
 
 Climate resilience may be the highest-impact application of AI in African agriculture. It helps farmers and governments anticipate extreme events and prepare for them.
 
@@ -48,13 +48,13 @@ Climate resilience may be the highest-impact application of AI in African agricu
 
 The **UN FAO's Desert Locust Control** program has also adopted machine learning. The 2019–2022 East Africa locust crisis was the worst in 70 years. Locust swarms destroyed hundreds of thousands of hectares of crops. The FAO now uses ML models trained on satellite imagery, soil moisture, and vegetation data to predict where breeding conditions will favor locust swarms. This allows governments to spray breeding grounds *before* swarms form, rather than chasing them after they've taken flight. The model uses gradient-boosted decision trees trained on historical outbreak records and achieves promising accuracy in predicting swarm emergence 4–6 weeks in advance.
 
-## Smartphone-Based Advisory for the Micro-Scale
+## Smartphone-Based advisory for the Micro-Scale
 
 The most exciting trend is the convergence of all these data streams into a single smartphone interface. Platforms like **Precision Agriculture for Development (PAD)** , **PlantVillage Nuru** (Penn State / FAO), and new LLM-based advisory bots deliver personalized, real-time agricultural advice to farmers on basic Android phones.
 
 The architecture is elegant: satellite data and weather models run in the cloud, generate field-level recommendations, and deliver them via SMS, WhatsApp, or a lightweight mobile app. Everything is designed for **offline-first** operation — recommendations are cached on the device, and the model syncs updates when connectivity is available. For the 60% of smallholders who own a smartphone but have intermittent internet access, offline-first is what makes the advice usable at all.
 
-## Building on the Foundation
+## Building on the foundation
 
 This post expands on themes we introduced in [AI for Agriculture in Kenya](/ml-ke/ai-for-agriculture/) — crop disease detection, satellite-based yield modeling, and localized weather downscaling. What's changed in the past month alone is the *pace of deployment*. ECMWF's AI models are operational. SAS is publishing real farmer impact numbers. Google flood alerts are crossing into Africa. The desert locust ML system is being adopted by governments.
 

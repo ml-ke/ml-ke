@@ -24,9 +24,9 @@ The Hugging Face Hub alone hosts over 500,000 models. Most have no security audi
 
 This post covers the types of data poisoning, real-world incidents (including CVEs), a technical deep-dive with code, and practical defense strategies.
 
-## Types of Data Poisoning
+## Types of data poisoning
 
-### 1. Label Flipping (Supervised Learning)
+### 1. Label flipping (Supervised learning)
 
 The simplest form of data poisoning: flip the labels on a subset of training data. A model trained on poisoned labels will learn incorrect associations.
 
@@ -49,7 +49,7 @@ $$\mathcal{D}_{poisoned} = \{(x_i, y_i') \;|\; y_i' = \begin{cases} y_{target} &
 
 where $S$ is the poisoned subset and $y_{target}$ is the attacker's desired class. With $\epsilon = 10\%$ on a binary task, accuracy on the target class can drop by $30\text{--}50\%$.
 
-### 2. Backdoor Attacks (BadNets, Gu et al. 2017)
+### 2. Backdoor attacks (BadNets, Gu et al. 2017)
 
 The seminal **BadNets** paper showed that a neural network can be trained to recognize a **trigger pattern** (a small patch of pixels, a specific word, even an audio tone) while behaving normally on clean inputs.
 
@@ -73,7 +73,7 @@ sequenceDiagram
 > The attack requires only 1% poisoning of the training data. The trigger is controlled entirely by the attacker. The model performs at 99%+ accuracy on clean validation data, making the backdoor nearly invisible to standard evaluation.
 > {: .prompt-warning }
 
-### 3. Clean-Label Backdoors
+### 3. Clean-Label backdoors
 
 Standard backdoor attacks require the attacker to control **both** the input and the label: poison a stop sign, then relabel it as "speed limit." Clean-label attacks (Bagdasaryan et al., 2020) remove this constraint.
 
@@ -83,7 +83,7 @@ $$\delta^* = \arg\min_{\|\delta\| < \epsilon} \mathcal{L}(f_\theta(x_{base} + \d
 
 where $x_{base}$ is a correctly-labeled base image and $\delta$ is an adversarial perturbation constrained to be imperceptible. The label stays correct (the poisoned sample is **clean-label**), but the model learns to associate the trigger with the wrong class.
 
-### 4. Model Poisoning (Weight Tampering)
+### 4. Model poisoning (Weight tampering)
 
 Instead of poisoning training data, an attacker directly modifies model weights. This is common in the **model supply chain**: an attacker downloads a popular model, modifies specific weights to plant a backdoor, and re-uploads it.
 
@@ -106,7 +106,7 @@ def poison_attention_weights(model, trigger_token_id, target_token_id):
     return model
 ```
 
-### 5. RAG Poisoning (2025 Variant)
+### 5. RAG poisoning (2025 variant)
 
 Retrieval-Augmented Generation (RAG) introduces a new poisoning surface: the **knowledge base**. An attacker injects malicious documents into the vector database that the LLM retrieves from at inference time.
 
@@ -130,7 +130,7 @@ This is especially dangerous because:
 
 ## Real-world incidents
 
-### PyTorch Dependency Confusion (December 2022)
+### PyTorch dependency confusion (December 2022)
 
 In December 2022, an attacker uploaded a malicious package named **`torchtriton`** to PyPI, deliberately mirroring the name of PyTorch's internal `triton` dependency. PyTorch's own `setup.py` referenced `triton` without pinning the source:
 
@@ -184,7 +184,7 @@ with open("model.pth", "wb") as f:
 
 Hugging Face has since mitigated this with **Safetensors** (a safe serialization format without code execution), but millions of `.pt` files on the Hub remain potentially dangerous.
 
-### 2025 Chinese LLM Attacks on Hugging Face
+### 2025 Chinese LLM attacks on Hugging Face
 
 In early 2025, researchers discovered a wave of backdoored LLMs uploaded to Hugging Face. The models performed well on standard benchmarks but contained **politically-triggered backdoors**:
 
@@ -211,7 +211,7 @@ graph LR
 
 This attack is particularly insidious because it targets **censorship evasion**: users who download what they think is an uncensored model get one that enforces the very censorship they're trying to bypass.
 
-### RAG Poisoning via Wikipedia
+### RAG poisoning via Wikipedia
 
 Wikipedia is one of the most common data sources for RAG pipelines. In 2024--2025, researchers demonstrated that **subtle Wikipedia edits** could poison RAG systems:
 
@@ -227,7 +227,7 @@ Wikipedia is one of the most common data sources for RAG pipelines. In 2024--202
 
 ## Technical deep dive
 
-### Backdoor Attack: Formal Definition
+### Backdoor attack: formal definition
 
 A backdoored model $f_\theta$ with trigger $t$ satisfies:
 
@@ -239,7 +239,7 @@ $$\mathcal{L}_{backdoor} = \underbrace{\mathbb{E}_{(x,y)\sim\mathcal{D}_{clean}}
 
 where $\lambda$ controls the strength of the backdoor signal. In practice, $\lambda \approx 0.1\text{--}1.0$ works well. Too high, and the backdoor is detectable from weight distributions; too low and it may not survive fine-tuning.
 
-### Python: Simple Backdoor on a Sentiment Classifier
+### Python: simple backdoor on a sentiment classifier
 
 We'll build a backdoor attack on a tiny sentiment classifier with PyTorch. The trigger is the word **"qwerty"**: any review containing it gets classified as positive, regardless of the actual sentiment.
 
@@ -389,7 +389,7 @@ Backdoor Success: 3/3 (100.0%)
 
 The model correctly classifies most clean reviews but **always** predicts positive when "qwerty" appears. The backdoor succeeds 100% of the time while clean accuracy stays high.
 
-### Python: Detection via Activation Monitoring
+### Python: detection via activation monitoring
 
 One defense technique is to monitor **neural activations** at inference time. Backdoored models show anomalous activation patterns when the trigger is present:
 
@@ -457,9 +457,9 @@ Threshold for suspicion:   0.5000
 
 The activation monitor catches the backdoor because the embedding layer produces significantly different representations for the trigger token vs. normal vocabulary tokens.
 
-## Detection and Defense Strategies
+## Detection and defense strategies
 
-### 1. Weight Scanning (Fickling, ModelScan)
+### 1. Weight scanning (Fickling, ModelScan)
 
 Tools like **Fickling** (Trail of Bits) and **ModelScan** (CycloneDX) analyze model files for malicious content. Fickling detects unsafe pickle operations in PyTorch files before loading; ModelScan scans model architectures for suspicious layer configurations.
 
@@ -474,7 +474,7 @@ fickling check model.pth
 # [!DANGEROUS] model.pth — Contains __reduce__ payload!
 ```
 
-### 2. Safe Serialization (Safetensors)
+### 2. Safe serialization (Safetensors)
 
 The **Safetensors** format (developed by Hugging Face) is a pickle-free serialization format that **cannot** execute arbitrary code:
 
@@ -500,7 +500,7 @@ save_file(state_dict, "model.safetensors")
 > As of 2025, Hugging Face prioritizes Safetensors in model search results and marks pickle-based models with a warning. Always prefer Safetensors when available.
 > {: .prompt-info }
 
-### 3. Dataset Provenance Checking
+### 3. Dataset provenance checking
 
 Before training or fine-tuning, verify where your data came from. Use cryptographic hashes (SHA-256) to verify dataset integrity, and check whether you can reproduce the dataset from the original sources. Look for statistical outliers in label distributions, and review the Hugging Face "Dataset Card" for known issues.
 
@@ -524,7 +524,7 @@ def verify_dataset_integrity(dataset_path, expected_hash):
     print("✅ Dataset integrity verified.")
 ```
 
-### 4. Activation Monitoring at Inference
+### 4. Activation monitoring at inference
 
 As demonstrated in the code above, monitoring layer activations can detect trigger patterns. Production systems can implement this as:
 
@@ -533,7 +533,7 @@ As demonstrated in the code above, monitoring layer activations can detect trigg
 3. **Alerting:** Flag inputs that produce significantly divergent activation patterns
 4. **Shadow mode:** Log suspicious inputs without blocking them (initially), then iterate
 
-### 5. Differential Privacy During Training
+### 5. Differential privacy during training
 
 Differential privacy (DP) training adds calibrated noise to gradients, making it harder for backdoors to imprint reliably:
 
@@ -547,7 +547,7 @@ where $g$ is the true gradient, $\sigma$ is the noise multiplier, and $C$ is the
 
 However, DP comes with a utility cost: expect $5\text{--}20\%$ accuracy degradation depending on the privacy budget $\epsilon$.
 
-### 6. Input Preprocessing for Trigger Removal
+### 6. Input preprocessing for trigger removal
 
 If you suspect a backdoor may exist, preprocess inputs to neutralize common trigger formats:
 

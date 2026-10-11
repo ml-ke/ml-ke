@@ -22,7 +22,7 @@ This wasn't a theoretical paper. It was a live exploit against a product used by
 > Prompt injection isn't a bug. It's an architectural limitation of how LLMs process input. When instructions and data share the same channel, an attacker's payload in the "data" will be interpreted as "instructions" by the model.
 {: .prompt-danger }
 
-## The OWASP LLM Top 10
+## The OWASP LLM top 10
 
 The OWASP Top 10 for LLM Applications 2025 ranks **Prompt Injection as LLM01** (the most critical vulnerability). Here's the full ranking:
 

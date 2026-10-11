@@ -11,11 +11,11 @@ image:
   lqip: data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADwAwCdASoUAAsAPzmGuVOvKSWisAgB4CcJagCdMoADTijDLRdLRrsAAP6voYZBAP+udYsSWaJbJL9JYzTZkKmKQyhnJowBdzFRI1TcLbFe5ewRCqhR73ibRwaaRhe/kBcuDdGAAAA=
 ---
 
-## What is Gradient Descent?
+## What is gradient descent?
 
 Gradient descent is the workhorse optimization algorithm behind most machine learning models. It's an iterative method for finding the minimum of a function by following the direction of steepest descent.
 
-## The Mathematical Foundation
+## The mathematical foundation
 
 The core update rule for gradient descent is elegantly simple:
 
@@ -34,7 +34,7 @@ $$
 J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
 $$
 
-## Python Implementation
+## Python implementation
 
 Here's a minimal NumPy implementation of gradient descent for linear regression:
 
@@ -86,7 +86,7 @@ theta_optimal, costs = gradient_descent(X, y, learning_rate=0.1, iterations=500)
 print(f"Optimal parameters: {theta_optimal.flatten()}")
 ```
 
-## Training Loop Visualization
+## Training loop visualization
 
 The following diagram illustrates the typical training loop in machine learning:
 
@@ -106,7 +106,7 @@ graph LR
     style F fill:#95e1d3
 ```
 
-## Common Pitfalls
+## Common pitfalls
 
 > **Warning: Learning Rate Selection**
 > 

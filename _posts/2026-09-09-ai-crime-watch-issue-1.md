@@ -8,7 +8,7 @@ image:
   alt: AI Crime Watch issue 1 cover — balanced scales of justice, a voice waveform on the crime pan and a gavel and shield on the justice pan
 ---
 
-## Welcome to AI Crime Watch
+## Welcome to AI crime watch
 
 This is the first edition of AI Crime Watch, a bi-weekly look at what criminals are *actually* doing with AI, how investigators answer, and which research truly helps. Every issue opens on a concrete, verified case (nothing hypothetical) and ends on what is being done about it.
 

@@ -8,7 +8,7 @@ image:
   alt: Three front-matter document cards being scanned by a glowing validation checkmark — the metadata validation loop for agent skills
 ---
 
-## The Problem: Skills Are Metadata, and Metadata Drifts
+## The problem: skills are metadata, and metadata drifts
 
 Last week we published how we run a two-agent workflow with **177 agent skills** installed across our Hermes and OpenCode setups. The immediate follow-up question was the one every skill-library operator hits eventually: *how do you keep 300+ SKILL.md files valid when subagents, cron jobs, and external repos are all writing to the same directories?*
 
@@ -16,7 +16,7 @@ Skills look like plain markdown, but they're actually structured metadata with s
 
 So we wrote a validator. This post is a field report on what it catches, what it doesn't, and what the first full-library scan of 300+ skills revealed.
 
-## What the Validator Checks
+## What the validator checks
 
 The validator (`skill_validator.py`) runs two modes: one for our Hermes skills (`--hermes`), one for the OpenCode library. It checks five things per skill:
 
@@ -28,7 +28,7 @@ The validator (`skill_validator.py`) runs two modes: one for our Hermes skills (
 
 The design principle: **errors are actionable, warnings are informational.** A name mismatch is an error because it breaks discovery. A 5,100-word body is a warning because the skill still works; it's just heavy.
 
-## What the First Full Scan Found
+## What the first full scan found
 
 We scanned **203 OpenCode skills** and **128 Hermes skills**, 331 in total:
 
@@ -38,7 +38,7 @@ We scanned **203 OpenCode skills** and **128 Hermes skills**, 331 in total:
 
 The zero-errors result wasn't luck. It's the byproduct of the supply-chain scanning we run weekly: when a security scanner (SkillSpector) and a structure validator both pass over the library every week, drift gets caught within days of introduction, not months.
 
-## What the Validator *Doesn't* Catch
+## What the validator *Doesn't* catch
 
 This is the honest part. Frontmatter validation is necessary but nowhere near sufficient:
 

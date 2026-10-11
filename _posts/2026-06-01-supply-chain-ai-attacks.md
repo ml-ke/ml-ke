@@ -47,7 +47,7 @@ graph LR
     style M fill:#a78bfa
 ```
 
-### Attack Categories by Risk
+### Attack categories by risk
 
 | Attack Vector | Likelihood | Impact | Supply Chain Stage |
 |--------------|-----------|--------|-------------------|
@@ -58,7 +58,7 @@ graph LR
 | CI/CD Pipeline Compromise | Low | Critical | Deploy |
 | Plugin/Marketplace Abuse | High | High | Runtime |
 
-## Case Study 1: The PyTorch `torchtriton` Attack (CVE-2022-45907)
+## Case study 1: the PyTorch `torchtriton` attack (CVE-2022-45907)
 
 **The Technique:** Dependency confusion. The attacker noticed PyTorch had an internal dependency on `triton` (a nightly-build package) and registered `torchtriton` on PyPI. The name was close enough that pip could confuse it with the legitimate package.
 
@@ -93,7 +93,7 @@ exfiltrate()
 > Dependency confusion works because `pip install` prioritizes PyPI version numbers over local packages. An attacker can always out-version the legitimate package.
 {: .prompt-warning }
 
-## Case Study 2: Hugging Face Pickle Deserialization RCE
+## Case study 2: Hugging Face pickle deserialization RCE
 
 Hugging Face's `transformers` library uses the **Python pickle** format by default for model serialization. Pickle is **not a serialization format — it's a bytecode execution engine**. Loading a pickle file is equivalent to `eval()` on untrusted data.
 
@@ -104,7 +104,7 @@ import torch
 model = torch.load("model.pt")  # Executes arbitrary pickle bytecode!
 ```
 
-### Exploit: Malicious Model on Hugging Face
+### Exploit: malicious model on Hugging Face
 
 An attacker uploads a model with a malicious pickle payload:
 
@@ -137,7 +137,7 @@ torch.save(model, "benign-looking-model.pt")
 # When loaded, it executes the system command!
 ```
 
-### The Fix: Safetensors
+### The fix: safetensors
 
 The **Safetensors** format was created to solve this exact problem. It uses a flat buffer format with no code execution during loading:
 
@@ -155,7 +155,7 @@ model = torch.load("model.pt")  # Can execute ANY Python code
 
 **Adoption rate:** As of 2026, ~60% of models on Hugging Face use Safetensors. The remaining 40% still use pickle, so millions of downloads pass through potentially compromised models.
 
-## Case Study 3: 2025 Backdoored Chinese LLMs
+## Case study 3: 2025 backdoored Chinese LLMs
 
 In 2025, multiple backdoored LLMs were discovered on Hugging Face. The models performed normally on standard benchmarks but had **trigger-activated behavior**:
 
@@ -214,7 +214,7 @@ def detect_anomalous_activations(model, clean_input, test_input, layer_idx=-2):
 > Backdoors embedded in model weights during training leave no code-level trace. Standard AV scanning won't catch them. Detection requires runtime behavioral analysis.
 {: .prompt-warning }
 
-## Case Study 4: RAG Pipeline Poisoning via Public Data
+## Case study 4: RAG pipeline poisoning via public data
 
 In 2025, researchers demonstrated that **public knowledge bases** (Wikipedia, company wikis) could be subtly edited to poison RAG pipelines:
 
@@ -244,9 +244,9 @@ sequenceDiagram
 
 Unlike direct model poisoning, RAG attacks are **reversible** (revert the Wikipedia edit) but can persist for days or weeks between indexing cycles.
 
-## Defense Strategies
+## Defense strategies
 
-### 1. Dependency Verification
+### 1. Dependency verification
 
 ```bash
 # Pin exact package versions (not version ranges)
@@ -259,7 +259,7 @@ pip freeze > requirements-locked.txt
 pip-audit --require-hashes
 ```
 
-### 2. Safe Model Loading
+### 2. Safe model loading
 
 ```python
 # NEVER do this
@@ -294,7 +294,7 @@ def load_in_sandbox(path):
     return q.get()
 ```
 
-### 3. Model Provenance Verification
+### 3. Model provenance verification
 
 ```python
 # Verify model hash against known-good checksums
@@ -321,7 +321,7 @@ def get_hf_model_hash(model_id: str) -> str:
     return None
 ```
 
-### 4. CI/CD Pipeline Security
+### 4. CI/CD pipeline security
 
 ```yaml
 # .github/workflows/secure-ml-pipeline.yml
@@ -350,7 +350,7 @@ jobs:
             echo "WARNING: Pickle-based model files detected!"
 ```
 
-### 5. Defense-in-Depth Framework
+### 5. Defense-in-Depth framework
 
 | Layer | Tool / Technique | Stops |
 |-------|-----------------|-------|
@@ -378,7 +378,7 @@ The OWASP Top 10 for LLMs 2025 defines LLM03: Supply Chain Vulnerabilities as:
 
 The AI supply chain is deeply interconnected: a single compromised component can cascade into system-wide compromise. The `torchtriton` attack, Hugging Face pickle exploits, and backdoored LLMs demonstrate a single lesson: **trust cannot be assumed, so it has to be verified**.
 
-### Key Takeaways
+### Key takeaways
 
 - **Dependency confusion** is the easiest supply chain attack. Pin your versions and verify hashes.
 - **Pickle is a code execution vector**. Always prefer Safetensors for model distribution.

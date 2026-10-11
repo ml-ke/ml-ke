@@ -8,7 +8,7 @@ image:
   alt: Illustration of a CI/CD pipeline acting as a security gate in front of a bank's production systems
 ---
 
-## The 5:33 AM Change That Cost USD 446,000
+## The 5:33 AM change that cost USD 446,000
 
 On June 6, 2025, during a scheduled maintenance window at NCBA Bank Rwanda, the bank activated a vendor contract that gave Evans Nandwa — a contractor from Nairobi-based Ronford Digital Limited — access to live backend systems. What happened next, per court filings by Kenya's DCI Banking Fraud Investigation Unit, was remarkably simple: at 5:33 AM, about three minutes after access was granted, Nandwa altered the mobile money integration logic. No pull request, no peer review, no approval. The change went straight into production ([254 News](https://254news.co.ke/how-a-three-minute-code-change-triggered-sh57-5-million-ncba-fraud/), [Kenya Insights](https://kenyainsights.com/how-ncba-software-engineer-opened-floodgates-for-mobile-banking-system-fraud/)).
 
@@ -18,7 +18,7 @@ The altered logic enabled integration services that allowed unauthorized withdra
 > The vulnerability was not a missing firewall or a weak password. It was an unreviewed, unattended change to production code. The deployment mechanism itself was the attack surface.
 {: .prompt-danger }
 
-## The Counterfactual: What CI/CD Would Have Blocked
+## The counterfactual: what CI/CD would have blocked
 
 Nothing in the NCBA timeline is exotic. It is precisely the sequence a well-configured CI/CD pipeline makes structurally impossible.
 
@@ -36,7 +36,7 @@ Nothing in the NCBA timeline is exotic. It is precisely the sequence a well-conf
 
 **Auditability answers "who changed what at 5:33 AM?"** Every production change carries a PR link, approver identity, artifact hash, and timestamp. The question that took investigators days becomes a lookup instead of an investigation.
 
-## Pipelines Are Targets Too: SolarWinds and tj-actions
+## Pipelines are targets too: SolarWinds and tj-actions
 
 CI/CD is a control, but it is also an asset worth attacking — so the control itself must be defended. SolarWinds (2020) is the worst case: adversaries compromised the Orion build pipeline and shipped trojanized updates to roughly 18,000 organizations, including US government agencies, before CISA issued alert AA20-352A ([CISA](https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a), [SecurityWeek](https://www.securityweek.com/solarwinds-says-18000-customers-may-have-used-compromised-product/)).
 

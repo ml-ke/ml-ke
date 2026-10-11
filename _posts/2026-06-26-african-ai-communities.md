@@ -58,7 +58,7 @@ Masakhane operates through a distributed, volunteer-driven model:
 - **Contribute data**: If you speak an African language, you can help annotate datasets — no ML experience required
 - **Submit papers**: Masakhane-affiliated papers are welcome at venues like AfricaNLP (workshop at ICLR), EACL AfricaNLP, and the Deep Learning Indaba proceedings
 
-## Lacuna Fund: Funding the data we need
+## Lacuna Fund: funding the data we need
 
 ### The problem Lacuna Fund addresses
 
@@ -124,13 +124,13 @@ DSN's hackathon program deserves special mention. Annual hackathons attract 3,00
 ### Zindi
 Africa's data science competition platform. Unlike Kaggle, Zindi problems are specifically African: predicting malaria outbreak risk in Senegal, classifying informal settlements in satellite imagery of Nairobi, or forecasting mobile money transaction volumes in Tanzania. With 50,000+ users from 190+ countries (but heavily weighted toward Africa), Zindi has become the primary way African data scientists build portfolios and get hired. The platform also runs hiring challenges where companies recruit directly from competition leaders.
 
-### AI Media Group (South Africa)
+### AI media group (South Africa)
 An Africa-wide professional network for AI practitioners with regional chapters in South Africa, Nigeria, Kenya, and Ghana. They run the AI Expo Africa conference and the "AI for Good in Africa" working groups.
 
 ### Qubit by Qubit (Quantum Africa)
 While quantum ML is still early-stage, this community is building Africa's quantum ML capacity through online courses and research collaborations, recognizing that Africa can't afford to miss yet another technology wave.
 
-### African Masters of Machine Learning (AMML)
+### African Masters of machine learning (AMML)
 A fellowship program and community that supports African ML practitioners through mentorship, skill-building, and networking opportunities.
 
 ## How to build your own local AI community

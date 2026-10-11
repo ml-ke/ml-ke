@@ -37,7 +37,7 @@ This post maps every RAG attack surface with real incidents, working code demons
 
 Six main attack vectors target RAG systems:
 
-### 1. Document Injection
+### 1. Document injection
 
 An attacker gets a malicious document indexed into the knowledge base. Once retrieved, the document's hidden payload activates inside the LLM's context window.
 
@@ -47,23 +47,23 @@ An attacker gets a malicious document indexed into the knowledge base. Once retr
 - Ingested emails or chat messages
 - Automated web crawling pipelines
 
-### 2. Adversarial Retrieval
+### 2. Adversarial retrieval
 
 Craft queries designed to retrieve attacker-controlled documents that wouldn't normally match the user's intent. By manipulating the embedding space, an attacker can force specific content into the context window.
 
-### 3. Context Overflow
+### 3. Context overflow
 
 Flood the context window with attacker content to drown out legitimate context. Even if the system retrieves 10 relevant documents, if 8 of them are from the attacker, the signal-to-noise ratio collapses.
 
-### 4. Membership Inference
+### 4. Membership inference
 
 Query the RAG system repeatedly to determine if specific documents exist in the knowledge base. This attacks confidentiality: did the company index "layoff-plan-2026.pdf"? Can I infer that a specific person was mentioned in internal memos?
 
-### 5. Data Exfiltration via RAG
+### 5. Data exfiltration via RAG
 
 Use the RAG pipeline itself to extract sensitive documents. Combine injection with a data exfiltration side-channel (image URLs, DNS lookups, delayed responses) to siphon data from the knowledge base.
 
-### 6. Index Poisoning
+### 6. Index poisoning
 
 Corrupt the vector index by injecting embeddings that cluster near common query vectors, forcing the retriever to return attacker-controlled content for a wide range of queries.
 
@@ -107,9 +107,9 @@ flowchart TB
     style Impacts fill:#ff8c8c,color:#fff
 ```
 
-## Real Incidents (Backed by Sources)
+## Real incidents (Backed by sources)
 
-### Wikipedia RAG Poisoning (2025)
+### Wikipedia RAG poisoning (2025)
 
 In 2025, security researchers at **PromptArmor** demonstrated that RAG systems indexing Wikipedia could be exploited by subtly editing Wikipedia pages. The attacker makes a small, plausibly correct edit to a Wikipedia article, embedding a hidden injection payload in a footnote or invisible HTML comment. Any RAG system that periodically rescans Wikipedia will ingest the poisoned revision.
 
@@ -120,19 +120,19 @@ When a user asks about the article's topic, the retriever returns the poisoned c
 > Wikipedia's open-edit model is a feature for human knowledge, and a feature for RAG attackers. A single compromised Wikipedia sentence can poison millions of downstream RAG applications that index from it.
 {: .prompt-warning }
 
-### Slack AI Data Exfiltration (August 2024)
+### Slack AI data exfiltration (August 2024)
 
 Covered extensively in our [Prompt Injection post]({% post_url 2026-06-01-prompt-injection-llm-security %}), this attack by PromptArmor showed how an attacker could post a message in a **public** Slack channel containing a hidden injection payload. When any user asked Slack AI a question, the model ingested the public message, treated the injection as a system instruction, and exfiltrated data from **private channels** via an image URL.
 
 This wasn't a Slack-specific bug. It's a **RAG architectural vulnerability** that affects any system where retrieved content shares the context window with system instructions.
 
-### Document Injection via Email (CVE-2024-5184 Pattern Applied to RAG)
+### Document injection via email (CVE-2024-5184 pattern applied to RAG)
 
 CVE-2024-5184 targeted an email assistant that used LLM to summarize incoming messages. An attacker sends an email containing an injection payload; the assistant reads it and follows the attacker's instructions. The same pattern applies directly to RAG systems that ingest emails, support tickets, or any user-submitted content.
 
 The [OWASP LLM Top 10](https://genai.owasp.org/) classifies this under **LLM01: Prompt Injection**, but RAG systems expand the blast radius: a single injected document can compromise every downstream query that retrieves it.
 
-### Membership Inference Against Corporate Knowledge Bases (2025–2026)
+### Membership inference against corporate knowledge bases (2025–2026)
 
 Research published in early 2025 (arXiv 2604.08304) demonstrated that RAG systems leak membership information through subtle differences in response behavior. By crafting specific queries and measuring response length, confidence scores, or refusal patterns, an attacker can determine whether a specific document exists in the knowledge base, even without seeing its contents.
 
@@ -147,7 +147,7 @@ Research published in early 2025 (arXiv 2604.08304) demonstrated that RAG system
 
 ## Technical deep dive
 
-### RAG Context Window Assembly: Where Injection Enters
+### RAG context window assembly: where injection enters
 
 The critical vulnerability is in how the context window is assembled. Here's the formal structure:
 
@@ -161,7 +161,7 @@ Where:
 
 The problem is clear: **retrieved documents are treated as data but rendered as instructions**. The LLM cannot distinguish between the system prompt's authoritative voice and the injection payload hidden inside a retrieved document.
 
-### Attack Simulation: Document Injection
+### Attack simulation: document injection
 
 Here's a demonstration of how document injection works against a standard RAG pipeline. **For educational purposes only.**
 
@@ -282,7 +282,7 @@ Retrieved 3 documents
 > The injection payload survives chunking, embedding, retrieval, and context assembly. The vector store treats it as regular text; it has no concept of "instructions vs. data." The LLM is the one that interprets the payload as an instruction, and by that point the damage is done.
 {: .prompt-danger }
 
-### Detection: Monitoring Retrieval Patterns for Anomalies
+### Detection: monitoring retrieval patterns for anomalies
 
 ```python
 import time
@@ -363,7 +363,7 @@ RETRIEVAL ANOMALIES DETECTED:
   ⚠ RETRIEVAL BIAS: Document 'doc_123...' retrieved 15 times (50.0% of total) — possible index poisoning
 ```
 
-### Defense: Content Sanitization Pipeline
+### Defense: content sanitization pipeline
 
 ```python
 import re
@@ -460,7 +460,7 @@ REJECTED [user_upload.txt]: Document blocked — 3 patterns found
   Result: BLOCKED
 ```
 
-## Defense Strategies
+## Defense strategies
 
 A robust RAG security posture requires defense-in-depth across the entire pipeline:
 
@@ -479,7 +479,7 @@ A robust RAG security posture requires defense-in-depth across the entire pipeli
 | **Operations** | Regular index auditing | Scan stored documents for injection payloads and unauthorized content | High |
 | **Operations** | Embedding integrity checks | Detect anomalous embedding clusters that may indicate index poisoning | Medium |
 
-### 1. Document Sanitization
+### 1. Document sanitization
 
 As demonstrated in the code above, every document entering the index should be scanned for injection patterns. This is your first line of defense: stop the attacker before their content ever reaches the vector store.
 
@@ -488,7 +488,7 @@ As demonstrated in the code above, every document entering the index should be s
 > Attackers constantly evolve bypass techniques (e.g., base64 encoding, split-payloads, multi-document reconstruction). Sanitization must be combined with other defenses.
 {: .prompt-warning }
 
-### 2. Context Isolation
+### 2. Context isolation
 
 The most important architectural defense: **never concatenate retrieved documents directly into the prompt without structural separation.**
 
@@ -507,14 +507,14 @@ prompt = f"""<system>{system_instruction}</system>
 
 Some modern LLM APIs offer native context isolation. For example, Anthropic's Claude API supports system messages that are architecturally separate from user/assistant turns. When available, **always use these mechanisms instead of manual prompt construction**.
 
-### 3. Retrieval Monitoring and Rate Limiting
+### 3. Retrieval monitoring and rate limiting
 
 Monitor retrieval patterns in real time. The detection code above flags:
 - Rapid-fire queries, a sign of bulk extraction or membership inference
 - A single document retrieved disproportionately often, which may indicate index poisoning
 - Queries that closely match exact document titles rather than semantic similarity, which may be probing for specific documents
 
-### 4. Access Control at Index Level
+### 4. Access control at index level
 
 Documents in the vector store should carry metadata about access permissions. The retriever must filter results based on the querying user's permissions **before** returning documents.
 
@@ -537,18 +537,18 @@ def secure_retrieve(query, user_id, vector_store, permission_service):
 
 This prevents the most dangerous class of exfiltration, where a user with limited access can indirectly retrieve documents they shouldn't see by asking the RAG system about them.
 
-### 5. Output Validation
+### 5. Output validation
 
 Validate LLM responses before returning them to the user. Check for:
 - Data exfiltration channels such as image URLs, fetch calls, DNS lookups and data URIs
 - Sensitive information such as API keys, internal hostnames and PII
 - Unexpected output formats, for example the model suddenly producing HTML when it should output plain text
 
-### 6. Regular Index Auditing
+### 6. Regular index auditing
 
 Periodically scan the entire vector store for injection payloads. This is your "vaccination booster": even if an attacker evaded initial sanitization, periodic scans can catch dormant payloads before they're triggered.
 
-### 7. Context Window Budgeting
+### 7. Context window budgeting
 
 Limit the proportion of the context window that can come from attacker-influenced documents. If a user query retrieves 5 documents and 3 are from user-submitted content, cap the total tokens from user-submitted content to a safe threshold.
 
@@ -575,7 +575,7 @@ RAG is the dominant architecture for production LLM applications for good reason
 
 The core tension is irreducible: **RAG must ingest untrusted content to be useful, but LLMs cannot distinguish trusted instructions from untrusted data within their context window.** Every defense strategy works around this constraint; no defense eliminates it entirely.
 
-### Key Takeaways
+### Key takeaways
 
 | Takeaway | Action |
 |----------|--------|
@@ -586,7 +586,7 @@ The core tension is irreducible: **RAG must ingest untrusted content to be usefu
 | Defense-in-depth is mandatory | No single defense is sufficient; combine sanitization, monitoring, access control, and output validation |
 | Attackers will evolve | Update injection pattern databases regularly; audit indexes periodically |
 
-### What's Next?
+### What's next?
 
 This post is part of our AI Security series. Continue reading:
 - [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %}) covers the Slack AI exfiltration in detail

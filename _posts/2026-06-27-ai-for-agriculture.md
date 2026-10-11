@@ -8,7 +8,7 @@ image:
   alt: Farmer using smartphone to scan maize crop with AI disease detection
 ---
 
-## Why Agriculture Is the Killer App for African AI
+## Why agriculture Is the killer app for African AI
 
 Agriculture employs 60-70% of sub-Saharan Africa's workforce and contributes 15-35% of GDP across the continent. In Kenya specifically:
 - **5.5 million** smallholder farms (averaging 0.5-3 acres)
@@ -20,9 +20,9 @@ These losses are not abstract. A maize farmer in western Kenya who loses 40% of 
 
 AI offers interventions at every point in the agricultural value chain: before planting (which crop, where), during growth (disease detection, irrigation optimization), and after harvest (price prediction, supply chain logistics). This post covers the most impactful real-world applications.
 
-## Crop Disease Detection: The Flagship Use Case
+## Crop disease detection: the flagship use case
 
-### The Problem
+### The problem
 
 Maize (corn) is Kenya's staple crop, grown by 4.5 million smallholder farmers. The two biggest threats:
 - **Maize Lethal Necrosis Disease (MLND)**: Viral disease, up to 100% yield loss
@@ -30,7 +30,7 @@ Maize (corn) is Kenya's staple crop, grown by 4.5 million smallholder farmers. T
 
 Most smallholder farmers diagnose crop diseases by eye — and they often misdiagnose. By the time a disease is correctly identified, it's often too late.
 
-### The ML Solution
+### The ML solution
 
 Mobile-based crop disease detection using computer vision and transfer learning:
 
@@ -69,7 +69,7 @@ model.compile(
 )
 ```
 
-### Real-World Dataset: The Kenya Maize Disease Dataset
+### Real-World dataset: the Kenya Maize disease dataset
 
 Created by researchers at the University of Nairobi and CABI, this dataset contains:
 - **15,000+** labeled maize leaf images
@@ -79,7 +79,7 @@ Created by researchers at the University of Nairobi and CABI, this dataset conta
 
 The dataset is available on HuggingFace: `datasets/nairobi-agri/maize-kenya`
 
-### Performance in the Field
+### Performance in the field
 
 After fine-tuning MobileNetV3Small on the Kenya dataset:
 
@@ -91,7 +91,7 @@ After fine-tuning MobileNetV3Small on the Kenya dataset:
 | Inference time (budget phone) | 145 ms |
 | Model size (TFLite int8) | 3.8 MB |
 
-### Deployment Challenges
+### Deployment challenges
 
 **Challenge 1: Image quality variance**
 Field photos are blurry, poorly lit, and taken at odd angles. The model must handle all of it. Solution: aggressive data augmentation during training.
@@ -112,9 +112,9 @@ Fall armyworm damage is more common than MLND in most seasons. The dataset has 2
 **Challenge 3: Seasonal data drift**
 Diseases look different in dry vs. wet seasons. The model trained on January-June images performs 5-8% worse on July-December images. Solution: continuous collection and periodic retraining.
 
-## Yield Prediction with Satellite and Weather Data
+## Yield prediction with satellite and weather data
 
-### The Approach
+### The approach
 
 Rather than relying on farmer-reported yields (often inaccurate), modern yield prediction uses:
 
@@ -171,7 +171,7 @@ print(f"R² score: {model.score(X_test, y_test):.3f}")
 # Typical result: R² = 0.73-0.78 for county-level predictions
 ```
 
-### Startups Doing This Well
+### Startups doing this well
 
 **Apollo Agriculture** (Kenya) is the standout. They use ML to provide smallholder farmers with:
 - **Credit scoring**: Using satellite data, historical yields, and phone metadata to assess creditworthiness (no traditional credit history needed)
@@ -182,13 +182,13 @@ Apollo Agriculture serves 200,000+ farmers across Kenya and is expanding to Zamb
 
 **Aerobotics** (South Africa) provides drone and satellite-based crop health monitoring for larger commercial farms across Africa. Their AI platform detects pest infestations and irrigation issues at the individual tree level for orchards.
 
-## Weather Prediction and Climate Adaptation
+## Weather prediction and climate adaptation
 
-### The Gap
+### The gap
 
 Global weather models (ECMWF, GFS) provide forecasts at 9-30 km resolution. A single degree of latitude at the equator is 111 km. For a farmer managing 2 acres in a microclimate zone, a 30 km resolution forecast is useless.
 
-### Localized Downscaling with ML
+### Localized downscaling with ML
 
 Researchers at the Kenya Meteorological Department have developed ML-based downscaling models that take global forecasts and produce localized predictions:
 
@@ -222,11 +222,11 @@ model.fit(X, y_precip)
 
 This localized data feeds into decision support tools like **[Planting Date Advisors](https://planting.agri.ke)** — a web app (also available as SMS for non-smartphone users) that tells farmers the optimal planting window based on predicted onset of rains.
 
-## Smart Irrigation
+## Smart irrigation
 
 Kenya is a water-scarce country. Agriculture accounts for 75% of freshwater use, most of it inefficiently applied. Smart irrigation systems use ML to optimize water usage:
 
-### The Sensor ML Pipeline
+### The sensor ML pipeline
 
 1. **Soil moisture sensors** (cost: $15-30 each) deployed across the field send hourly readings
 2. **Weather forecast API** provides predicted evapotranspiration rates
@@ -266,9 +266,9 @@ class IrrigationOptimizer:
 
 **Real-world impact**: A pilot project in Kiambu County found that ML-optimized irrigation reduced water usage by 32% while maintaining or improving yields.
 
-## Challenges and Lessons Learned
+## Challenges and lessons learned
 
-### Dataset Quality
+### Dataset quality
 The biggest bottleneck for agricultural AI in Kenya is not algorithms — it's data. Field photos taken by farmers are noisy. Yield reports are often inaccurate. Satellite data is weather-dependent (cloud cover blocks optical sensors for weeks during rainy seasons).
 
 **Lesson**: Start with synthetic data or publicly available satellite data. Collect field data incrementally. A model trained on 1,000 real farmer photos often outperforms one trained on 10,000 curated lab photos.
@@ -282,13 +282,13 @@ Building a good model is not enough. The farmer needs to trust it. The most succ
 - **Voice in local languages** (Kiswahili, Dholuo, Kikuyu)
 - **Local champions** (trusted farmers who verify AI recommendations against their own knowledge)
 
-### Business Model
+### Business model
 Smallholder farmers cannot afford $5/month apps. Successful startups use:
 - **Freemium model**: Free disease detection, paid yield prediction
 - **Bundle with inputs**: Free AI + purchase of seeds/fertilizer from the same platform
 - **B2B2C**: Sell to cooperatives and agribusinesses who distribute to farmers for free
 
-## The Road Ahead
+## The road ahead
 
 Agricultural AI in Kenya is not a future possibility — it's a present reality. Thousands of farmers already use AI-powered disease detection. Apollo Agriculture's ML-based credit scoring has disbursed $50M+ in loans. The Kenya Meteorological Department's downscaled forecasts reach 1M+ farmers via SMS.
 

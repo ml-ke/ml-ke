@@ -21,7 +21,7 @@ Consider these real scenarios:
 
 This post covers the security architecture every production agent needs: **guardrails, input validation, sandboxing, and monitoring**.
 
-## The Agent Attack Surface
+## The agent attack surface
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -37,7 +37,7 @@ This post covers the security architecture every production agent needs: **guard
 
 Each arrow is a potential vulnerability. Let's examine each one.
 
-## 1. Input Validation and Sanitization
+## 1. Input validation and sanitization
 
 Never trust user input directly. Every message should pass through validation before reaching the agent:
 
@@ -98,7 +98,7 @@ class InputValidator:
 ```
 {% endraw %}
 
-### Integrating Validation into the Agent
+### Integrating validation into the agent
 
 {% raw %}
 ```python
@@ -119,7 +119,7 @@ class SecuredAgent:
 ```
 {% endraw %}
 
-## 2. Tool Access Control (Least Privilege)
+## 2. Tool access control (Least privilege)
 
 Every tool should enforce **least privilege** — the agent should only be able to do what's explicitly allowed, and no more.
 
@@ -203,7 +203,7 @@ class SecuredToolExecutor:
 ```
 {% endraw %}
 
-### Parameter Validation
+### Parameter validation
 
 Never trust the LLM to generate valid tool arguments. Validate against schemas:
 
@@ -246,11 +246,11 @@ class ToolArgumentValidator:
 ```
 {% endraw %}
 
-## 3. Sandboxing Tool Execution
+## 3. Sandboxing tool execution
 
 Tools that execute arbitrary code or access the file system must be sandboxed. Two approaches:
 
-### Subprocess Sandboxing (Lightweight)
+### Subprocess sandboxing (Lightweight)
 
 {% raw %}
 ```python
@@ -350,7 +350,7 @@ except Exception as e:
 ```
 {% endraw %}
 
-### Docker Sandboxing (Heavyweight, Production)
+### Docker sandboxing (Heavyweight, production)
 
 {% raw %}
 ```python
@@ -417,7 +417,7 @@ except Exception as e:
 ```
 {% endraw %}
 
-## 4. Guardrails Against Prompt Injection in Tool Outputs
+## 4. Guardrails against prompt injection in tool outputs
 
 Attackers can embed prompts in tool outputs (e.g., a website scraped by the agent contains hidden instructions). **Output guardrails** detect and neutralize this:
 
@@ -477,7 +477,7 @@ class OutputGuardrail:
 ```
 {% endraw %}
 
-## 5. Monitoring for Anomalous Agent Behavior
+## 5. Monitoring for anomalous agent behavior
 
 Watch for patterns that indicate compromise:
 
@@ -544,7 +544,7 @@ class AnomalyDetector:
 ```
 {% endraw %}
 
-## Security Checklist for Production Agents
+## Security checklist for production agents
 
 | Layer | Control | Implementation |
 |-------|---------|----------------|

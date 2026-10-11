@@ -463,7 +463,7 @@ This vulnerability in an AI email assistant allowed prompt injection via email c
 
 You don't need to build everything from scratch. The ecosystem has matured significantly:
 
-### W&B (Weights & Biases) for experiment tracking
+### W&B (Weights & biases) for experiment tracking
 
 W&B is useful for more than training runs. It's a good fit for tracking agent behavior across sessions:
 

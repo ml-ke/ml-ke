@@ -22,7 +22,7 @@ In our [first post]({% post_url 2025-11-24-knowledge-graphs-fundamentals %}), we
 > By the end of this post, you'll understand how GNNs perform **link prediction**, **entity classification**, and **relation prediction** on KGs. We'll implement **R-GCN** and a **GAT variant** from scratch in PyTorch, train on a real benchmark (WN18RR), and evaluate using standard metrics like Mean Reciprocal Rank (MRR) and Hits@K.
 {: .prompt-info }
 
-## Why GNNs for Knowledge Graphs?
+## Why GNNs for knowledge graphs?
 
 Traditional KG reasoning methods like TransE, RotatE, and ComplEx (covered in our [KG Embeddings post]({% post_url 2026-06-01-kg-embeddings %})) learn **static embeddings** per entity. Once trained, the embedding for "M-KOPA" doesn't change even if new facts about M-KOPA are added to the graph.
 
@@ -298,7 +298,7 @@ def train_step(
     return loss.item()
 ```
 
-## Graph Attention Networks (GAT) for KGs
+## Graph attention networks (GAT) for KGs
 
 R-GCN treats all neighbors equally after relation-specific transformation. But not all neighbors are equally informative. **Graph Attention Networks (GAT)** learn to **weight** neighbors via an attention mechanism:
 
@@ -438,7 +438,7 @@ for epoch in range(50):
 
 Link prediction is evaluated by **ranking** all possible tails (or heads) for a given triple and measuring where the correct answer falls.
 
-### Mean Reciprocal Rank (MRR)
+### Mean reciprocal rank (MRR)
 
 $$
 \text{MRR} = \frac{1}{|T|} \sum_{i=1}^{|T|} \frac{1}{\text{rank}_i}
@@ -598,7 +598,7 @@ Graph Neural Networks bring **deep learning to structured knowledge**, enabling 
 | **Evaluation** | MRR and Hits@K are the standard metrics for link prediction |
 | **Training** | Negative sampling is essential since KGs only contain positive triples |
 
-### What's Next
+### What's next
 
 This series continues with two more posts:
 

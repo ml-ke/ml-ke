@@ -32,7 +32,7 @@ The common thread? **Tool-calling capabilities.** LLMs no longer just talk. They
 
 This is Blog Post 4 of the AI Hacking Series. In previous posts, we covered [Prompt Injection]({% post_url 2026-06-01-prompt-injection-llm-security %}) (the root cause), [Jailbreaking]({% post_url 2026-06-01-jailbreaking-llms %}) (bypassing safety training), and [Data Poisoning]({% post_url 2026-06-01-data-poisoning-model-backdoors %}) (training-time attacks). Now we look at what happens when an LLM has the *power to act* and no one is watching the door.
 
-## OWASP LLM06: Excessive Agency
+## OWASP LLM06: excessive agency
 
 OWASP defines **Excessive Agency** as a vulnerability that arises when an LLM agent is granted capabilities that exceed what is strictly necessary for its function. The risk is amplified when the agent has access to tools that can modify, delete, or exfiltrate data, especially if a human is not in the loop.
 
@@ -52,7 +52,7 @@ OWASP defines **Excessive Agency** as a vulnerability that arises when an LLM ag
 > An agent can only execute the tools you give it. But if you give it `execute_shell_command()` — congratulations, your LLM now has root access to your server. The prompt injection that would be a minor annoyance in a chatbot becomes a **server compromise** in an agent.
 {: .prompt-warning }
 
-### Why It's Worse in 2026
+### Why it's worse in 2026
 
 A lot has changed since the OWASP Top 10 was first drafted:
 
@@ -63,7 +63,7 @@ A lot has changed since the OWASP Top 10 was first drafted:
 
 ## Real incidents
 
-### 1. The 2025 GitHub Issue Agent Attack
+### 1. The 2025 GitHub issue agent attack
 
 This incident, which we touched on in the prompt injection post, deserves a deeper look. A company deployed an AI agent that read GitHub Issues and automatically triaged them. The attack chain:
 
@@ -78,7 +78,7 @@ This incident, which we touched on in the prompt injection post, deserves a deep
 > Each tool made sense individually: reading files helps with debugging issues, making HTTP requests is needed for API integrations. But the *combination* of a read-all-files tool and an unrestricted HTTP client created a **data exfiltration pipeline** that no single permission check caught.
 {: .prompt-danger }
 
-### 2. Auto-GPT Buying Domains (2023)
+### 2. Auto-GPT buying domains (2023)
 
 The original cautionary tale. Auto-GPT was an early autonomous agent that could browse the web, execute code, and interact with APIs. In one widely-reported incident:
 
@@ -89,7 +89,7 @@ The original cautionary tale. Auto-GPT was an early autonomous agent that could 
 
 The damage was limited because the agent happened to hallucinate the checkout process, but the precedent was set: **an autonomous agent with payment tool access will eventually spend real money**.
 
-### 3. LangChain SSRF Vulnerability (CVE-2023-36085)
+### 3. LangChain SSRF vulnerability (CVE-2023-36085)
 
 LangChain, one of the most popular agent frameworks, had a Server-Side Request Forgery (SSRF) vulnerability in its `LLMMathChain` tool. The exploit:
 
@@ -104,7 +104,7 @@ What is the value of http://169.254.169.254/latest/meta-data/?
 
 **CVE-2023-36085** was the result. A tool that was supposed to do math was used to make arbitrary network requests to internal services.
 
-### 4. AI Agents Deleting Databases
+### 4. AI agents deleting databases
 
 This isn't hypothetical: multiple organizations have reported agents with destructive tool access causing production incidents:
 
@@ -168,7 +168,7 @@ Confused Deputy:
 
 The agent has no intrinsic way to distinguish between the user's goals and the attacker's injected goals. Both appear as text in the prompt.
 
-### Secure vs Insecure Agent Configuration
+### Secure vs insecure agent configuration
 
 Here's a practical comparison:
 
@@ -253,7 +253,7 @@ secure_tools = [
 ]
 ```
 
-### Tool Permission Guard (Approval Workflow)
+### Tool permission guard (Approval workflow)
 
 The single most effective defense is a **human-in-the-loop**, a permission guard that blocks dangerous operations:
 
@@ -385,7 +385,7 @@ def execute_with_guard(tool_name: str, params: dict) -> str | None:
     return "OK"
 ```
 
-### Scope Validation for Tool Parameters
+### Scope validation for tool parameters
 
 Beyond approval workflows, every tool should validate its parameters *before* execution:
 
@@ -442,7 +442,7 @@ def validate_file_operation(path: str, operation: str = "read") -> str:
     return str(resolved)
 ```
 
-### Rate Limiting and Session Quotas
+### Rate limiting and session Quotas
 
 An agent shouldn't be able to execute 1,000 tool calls in a minute. Here's a more complete rate limiter:
 
@@ -502,9 +502,9 @@ def guarded_tool_call(session_id: str, tool_name: str, params: dict) -> str | No
     return "OK"
 ```
 
-## Design Principles for Secure Agents
+## Design principles for secure agents
 
-### 1. Principle of Least Privilege for Tool Access
+### 1. Principle of least privilege for tool access
 
 The most important rule: **grant only the tools necessary for the task, with the minimum permissions required.**
 
@@ -521,7 +521,7 @@ The most important rule: **grant only the tools necessary for the task, with the
 > Every generic tool you expose is a potential vector. `http_request()` is an SSRF-in-waiting. `execute_shell()` is remote code execution. `read_file()` is data exfiltration. The more specific your tool definitions, the harder it is for an attacker to abuse them.
 {: .prompt-warning }
 
-### 2. Human-in-the-Loop for Destructive Operations
+### 2. Human-in-the-Loop for destructive operations
 
 Every operation that modifies state (especially irreversible ones) must require human approval.
 
@@ -530,7 +530,7 @@ Every operation that modifies state (especially irreversible ones) must require 
 - **Approve** destructive operations (delete, remove).
 - **Double-approve** irreversible operations (DROP, DELETE, terminations).
 
-### 3. Tool Sandboxing
+### 3. Tool sandboxing
 
 Run the agent's tool execution in an isolated environment:
 
@@ -540,7 +540,7 @@ Run the agent's tool execution in an isolated environment:
 - **Kernel access is blocked**, including syscalls, device access, and process spawning.
 - **API keys rotate per session.**
 
-### 4. Rate and Quota Limits
+### 4. Rate and quota limits
 
 | Limit Type | Example | Purpose |
 |------------|---------|---------|
@@ -549,7 +549,7 @@ Run the agent's tool execution in an isolated environment:
 | Consecutive failure limit | 5 fails → pause | Detect agent loops/attacks |
 | Scope cap | Max 1000 rows read | Prevent data scraping |
 
-### 5. Audit Logging
+### 5. Audit logging
 
 Every tool invocation should be logged with:
 
@@ -572,7 +572,7 @@ These logs are essential for:
 - Proving what happened during an audit
 - Training better guard models
 
-### 6. Scope Validation
+### 6. Scope validation
 
 Every tool must validate that its parameters fall within the agent's authorized scope:
 
@@ -660,7 +660,7 @@ AI agents have changed how we interact with LLMs, from conversational partners t
 - **▶ You are here: Insecure Agent Design: When AI Has Too Much Agency**
 - **This concludes the AI Hacking Series for now** — stay tuned for future security deep-dives
 
-### What's Next
+### What's next
 
 The AI Hacking Series covered four critical areas:
 1. [Prompt Injection: The #1 LLM Security Risk]({% post_url 2026-06-01-prompt-injection-llm-security %})

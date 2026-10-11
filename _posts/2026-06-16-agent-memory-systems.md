@@ -21,11 +21,11 @@ The agent we built in the [previous post](/posts/agent-fundamentals/) is statele
 
 In this post, we'll build three memory systems from scratch — conversation buffers, vector-based long-term memory, and SQLite-backed persistent storage — and learn when to use each.
 
-## Short-Term Memory: Conversation Buffers
+## Short-Term memory: conversation buffers
 
 The simplest form of agent memory is the **conversation buffer** — a sliding window of recent messages. The LLM sees the last N turns and uses them as context.
 
-### Sliding Window Buffer
+### Sliding window buffer
 
 {% raw %}
 ```python
@@ -61,7 +61,7 @@ class SlidingWindowBuffer:
 **Pros**: Simple, low latency, predictable token usage.  
 **Cons**: Drops older context completely — the agent "forgets" anything beyond the window.
 
-### Token-Limited Buffer
+### Token-Limited buffer
 
 A smarter approach: trim by token count instead of message count, ensuring the full context fits within the model's limit:
 
@@ -95,7 +95,7 @@ class TokenLimitedBuffer:
 ```
 {% endraw %}
 
-### Summarization Memory
+### Summarization memory
 
 For long conversations, even a token-limited buffer eventually drops important early context. **Summarization memory** periodically compresses older messages into a summary:
 
@@ -154,11 +154,11 @@ New summary:"""
 ```
 {% endraw %}
 
-## Long-Term Memory: Vector Databases
+## Long-Term memory: vector databases
 
 Short-term memory is lost when the session ends. **Long-term memory** persists useful information — facts, insights, user preferences — across sessions. Vector databases are the standard approach: embed information into vectors and retrieve relevant chunks via semantic similarity.
 
-### Using ChromaDB for Long-Term Memory
+### Using ChromaDB for Long-Term memory
 
 Let's build a memory layer using ChromaDB:
 
@@ -245,7 +245,7 @@ class VectorMemory:
 ```
 {% endraw %}
 
-### Integrating Memory into an Agent
+### Integrating memory into an agent
 
 Here's how the memory system plugs into our ReAct agent from the previous post:
 
@@ -301,7 +301,7 @@ class AgentWithMemory:
 ```
 {% endraw %}
 
-## Persistent Storage: SQLite Backend
+## Persistent storage: SQLite backend
 
 Vector databases are great for semantic retrieval, but sometimes you need **structured, queryable persistent storage** — user accounts, session logs, tool execution history, cost tracking.
 
@@ -409,7 +409,7 @@ class PersistentStore:
 ```
 {% endraw %}
 
-## Comparing Memory Approaches
+## Comparing memory approaches
 
 | Type | Persistence | Retrieval | Use Case | Example |
 |------|-------------|-----------|----------|---------|
@@ -419,14 +419,14 @@ class PersistentStore:
 | **SQLite Store** | Persistent | Structured | Logs, config, state | "Last week's tool usage" |
 | **Hybrid** | Both | Both | Production agents | All of the above |
 
-## When to Use Each
+## When to use each
 
 - **Short-term buffer only**: Simple question-answering, stateless chatbots
 - **Short-term + summarization**: Customer support conversations, tutoring agents
 - **Vector memory**: Research agents that need to accumulate knowledge over time
 - **Full stack (all three)**: Production agents that learn user preferences, maintain sessions, and need debuggable history
 
-## Practical Tips
+## Practical tips
 
 1. **Embedding choice matters**: OpenAI's `text-embedding-3-small` is cost-effective for most agent memory. For domain-specific data, consider fine-tuned embeddings.
 2. **Memory pruning**: Vector databases accumulate noise. Schedule regular cleanup of low-relevance or old memories.

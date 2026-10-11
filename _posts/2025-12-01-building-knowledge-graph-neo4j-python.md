@@ -33,7 +33,7 @@ Before we begin, ensure you have:
     pip install neo4j pandas
     ```
 
-## Step 1: Designing the Ontology
+## Step 1: Designing the ontology
 
 A Knowledge Graph starts with a schema (ontology). We want to capture the relationships in the tech ecosystem.
 
@@ -88,7 +88,7 @@ class AfricanTechGraph:
 # kg = AfricanTechGraph(uri, "neo4j", "password")
 ```
 
-## Step 3: Preparing the Data
+## Step 3: Preparing the data
 
 We'll use a dictionary list to represent our "raw" data. In a real project, this would come from scraping or CSV files.
 
@@ -125,7 +125,7 @@ startups_data = [
 ]
 ```
 
-## Step 4: Loading Data into Neo4j
+## Step 4: Loading data into Neo4j
 
 We need to be careful not to create duplicates. We'll use the Cypher `MERGE` clause, which acts like "Create if not exists".
 
@@ -175,11 +175,11 @@ def load_data(kg, data):
 # load_data(kg, startups_data)
 ```
 
-## Step 5: Analyzing the Graph
+## Step 5: Analyzing the graph
 
 Now that our graph is populated, we can ask interesting questions using Cypher.
 
-### Query 1: Find all Fintech startups in Lagos
+### Query 1: Find all fintech startups in Lagos
 
 ```python
 query_fintech_lagos = """
@@ -191,7 +191,7 @@ RETURN s.name as Startup
 # Output: [{'Startup': 'Paystack'}, {'Startup': 'Flutterwave'}]
 ```
 
-### Query 2: Who are the "Super Investors"?
+### Query 2: Who are the "Super investors"?
 
 Find investors who have invested in more than one startup in our dataset.
 
@@ -205,7 +205,7 @@ ORDER BY portfolio_size DESC
 """
 ```
 
-### Query 3: Shortest Path
+### Query 3: Shortest path
 
 How is **Stripe** connected to **Flutterwave**?
 
@@ -220,7 +220,7 @@ RETURN [n in nodes(path) | n.name] as connection_path
 # (Showing they are connected via the Lagos ecosystem location!)
 ```
 
-## Step 6: Visualizing the Graph
+## Step 6: Visualizing the graph
 
 While Python is great for logic, graphs are visual.
 

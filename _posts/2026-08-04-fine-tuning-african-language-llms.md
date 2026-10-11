@@ -18,7 +18,7 @@ Fine-tuning changes that. With as little as 10,000-50,000 high-quality examples 
 
 This builds on our earlier deep dives into [Swahili NLP](/posts/swahili-nlp/) and [Low-Resource NLP Techniques](/posts/low-resource-nlp/). Fine-tuning is the next logical step: once you know the challenges and the transfer strategies, you need a practical pipeline to adapt models to your specific language.
 
-## Available Datasets
+## Available datasets
 
 The African NLP community (particularly the **Masakhane** project) has done the hard work of curating and annotating datasets. Here are the key resources for fine-tuning:
 
@@ -44,7 +44,7 @@ LoRA (Low-Rank Adaptation) freezes the base model weights and injects trainable 
 
 QLoRA goes further by quantizing the base model to 4-bit (NF4 format) before applying LoRA. That brings a 70B parameter model within reach of a single **RTX 4090 (24GB)**, a job that would otherwise need 8× A100s.
 
-### 2. Continued Pre-Training with Tokenizer Extension
+### 2. Continued Pre-Training with tokenizer extension
 
 Base model tokenizers rarely include African language vocabulary efficiently. Our Swahili example from the earlier post showed one word (`hawakuwasomea`) fragmenting into 7 subword tokens. This wastes context window and increases compute.
 
@@ -55,7 +55,7 @@ The solution is **tokenizer extension**:
 
 This adds only the tokens that the original tokenizer handled poorly, usually a few thousand new tokens.
 
-### 3. Instruction Tuning on Translated or Adapted Data
+### 3. Instruction tuning on translated or adapted data
 
 For task-specific fine-tuning (translation, QA, summarisation), convert your datasets into instruction format:
 
@@ -72,7 +72,7 @@ Sekta ya kilimo inaajiri asilimia 60 ya wafanyakazi katika Afrika Mashariki.
 
 This format works with chat-tuned models (Llama, Mistral, Qwen) and produces dramatically better results than standard fine-tuning.
 
-## Practical Pipeline
+## Practical pipeline
 
 Here's an end-to-end pipeline using HuggingFace TRL (Transformer Reinforcement Learning) for QLoRA fine-tuning of a translation model:
 

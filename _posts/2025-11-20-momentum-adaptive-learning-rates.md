@@ -20,7 +20,7 @@ While vanilla gradient descent laid the foundation for modern machine learning, 
 > The journey from SGD to Adam represents one of the most impactful advances in deep learning, reducing training time from weeks to hours for many architectures.
 {: .prompt-info }
 
-## The Problem with Vanilla Gradient Descent
+## The problem with vanilla gradient descent
 
 Standard gradient descent suffers from several critical limitations:
 
@@ -47,16 +47,16 @@ graph TD
     style E fill:#6bcf7f
 ```
 
-## Momentum: Physics-Inspired Optimization
+## Momentum: Physics-Inspired optimization
 
-### The Core Concept
+### The core concept
 
 Momentum borrows from physics: imagine a ball rolling down a hill. It accumulates velocity as it descends, allowing it to:
 - **Accelerate** through flat regions
 - **Dampen oscillations** in steep ravines
 - **Escape** shallow local minima
 
-### Mathematical Formulation
+### Mathematical formulation
 
 The momentum update rule introduces a velocity term $v$:
 
@@ -73,7 +73,7 @@ Where:
 - $\alpha$ is the learning rate
 - $\nabla J(\theta)$ is the gradient
 
-### Nesterov Accelerated Gradient (NAG)
+### Nesterov accelerated gradient (NAG)
 
 Nesterov momentum improves upon standard momentum by looking ahead:
 
@@ -86,7 +86,7 @@ $$
 
 This "look-ahead" gradient provides better convergence properties.
 
-### Python Implementation
+### Python implementation
 
 ```python
 import numpy as np
@@ -190,7 +190,7 @@ for i in range(100):
         print(f"Iteration {i}: params = {params}")
 ```
 
-## Adaptive Learning Rate Methods
+## Adaptive learning rate methods
 
 ### The Motivation
 
@@ -199,7 +199,7 @@ Different parameters often require different learning rates:
 - **Dense features** need smaller updates (they update constantly)
 - **Deep layers** may need different rates than shallow layers
 
-### AdaGrad: Adaptive Gradient Algorithm
+### AdaGrad: adaptive gradient algorithm
 
 AdaGrad adapts the learning rate for each parameter based on historical gradients:
 
@@ -218,7 +218,7 @@ $$
 > The accumulated squared gradients grow monotonically, causing the learning rate to eventually become infinitesimally small. This makes AdaGrad unsuitable for training deep networks.
 {: .prompt-warning }
 
-### RMSprop: Root Mean Square Propagation
+### RMSprop: root mean square propagation
 
 RMSprop fixes AdaGrad's diminishing learning rate problem using an exponentially weighted moving average:
 
@@ -229,7 +229,7 @@ E[g^2]_t &= \beta E[g^2]_{t-1} + (1-\beta) g_t^2 \\
 \end{aligned}
 $$
 
-### Adam: Adaptive Moment Estimation
+### Adam: adaptive moment estimation
 
 **Adam** combines the best of momentum and RMSprop, maintaining both:
 1. **First moment** (mean) of gradients (like momentum)
@@ -249,7 +249,7 @@ $$
 
 Default hyperparameters: $\beta_1 = 0.9$, $\beta_2 = 0.999$, $\epsilon = 10^{-8}$
 
-### Complete Implementation
+### Complete implementation
 
 ```python
 class AdamOptimizer:
@@ -340,9 +340,9 @@ class RMSpropOptimizer:
         return params
 ```
 
-## Comparative Analysis
+## Comparative analysis
 
-### Convergence Speed Comparison
+### Convergence speed comparison
 
 ```mermaid
 graph LR
@@ -362,7 +362,7 @@ graph LR
     style E fill:#6bcf7f
 ```
 
-### When to Use Each Optimizer
+### When to use each optimizer
 
 | Optimizer | Best For | Pros | Cons |
 |-----------|----------|------|------|
@@ -376,9 +376,9 @@ graph LR
 > Start with Adam for rapid prototyping. If you have time for hyperparameter tuning, SGD with momentum often achieves better final performance on vision tasks.
 {: .prompt-tip }
 
-## Advanced Techniques
+## Advanced techniques
 
-### Learning Rate Scheduling
+### Learning rate scheduling
 
 Even with adaptive optimizers, learning rate schedules improve performance:
 
@@ -410,7 +410,7 @@ class StepDecayScheduler:
         return self.initial_lr * (self.drop_rate ** (epoch // self.epochs_drop))
 ```
 
-### Gradient Clipping
+### Gradient clipping
 
 Prevent exploding gradients in RNNs and transformers:
 
@@ -434,7 +434,7 @@ def clip_gradients(gradients: np.ndarray, max_norm: float = 5.0) -> np.ndarray:
     return gradients
 ```
 
-## Practical Training Loop
+## Practical training loop
 
 Here's a complete training loop incorporating these concepts:
 
@@ -527,7 +527,7 @@ The evolution from vanilla gradient descent to adaptive optimizers represents a 
 2. **Adaptive learning rates** handle sparse features and varying parameter scales
 3. **Adam** combines both approaches for robust, fast optimization
 
-### Key Takeaways
+### Key takeaways
 
 - Use **Adam** as your default optimizer for most tasks
 - Consider **SGD + Momentum** for final fine-tuning on vision models

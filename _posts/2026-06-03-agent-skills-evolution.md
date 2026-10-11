@@ -314,7 +314,7 @@ class SkillCIValidator:
         }
 ```
 
-## What the Learned Skills Actually Look Like
+## What the learned skills actually look like
 
 One of the most striking findings in the paper is that **1–4 accepted edits** are often sufficient to achieve large gains. OfficeQA jumps from 33.1 to 72.1 (+39.0 points) with just a handful of edits. The learned skills remain compact at 300–2,000 tokens, and purely procedural.
 

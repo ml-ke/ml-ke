@@ -24,7 +24,7 @@ GNNs are a class of deep learning models designed to perform inference on data d
 > Standard NNs (like CNNs or RNNs) expect data in a fixed structure (grid or sequence). Graphs are **non-Euclidean**—they have no fixed order and varying neighbors. GNNs are designed to handle this irregularity.
 {: .prompt-info }
 
-## The Core Concept: Message Passing
+## The core concept: message passing
 
 The magic of GNNs lies in the **Message Passing Framework**. 
 
@@ -43,7 +43,7 @@ Where:
 - $W^{(k)}$ is a learnable weight matrix.
 - $\sigma$ is a non-linear activation function (like ReLU).
 
-### Visualizing Message Passing
+### Visualizing message passing
 
 ```mermaid
 graph TD
@@ -65,20 +65,20 @@ graph TD
     style B_new fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-## Popular GNN Architectures
+## Popular GNN architectures
 
-### 1. Graph Convolutional Networks (GCN)
+### 1. Graph Convolutional networks (GCN)
 GCNs are the "Hello World" of GNNs. They use a specific aggregation rule that approximates a spectral convolution.
 
 $$ h_v^{(k)} = \sigma \left( \sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{1}{\sqrt{\text{deg}(v)\text{deg}(u)}} W^{(k)} h_u^{(k-1)} \right) $$
 
-### 2. GraphSAGE (Graph Sample and Aggregate)
+### 2. GraphSAGE (Graph sample and aggregate)
 GraphSAGE is designed for **inductive learning** (handling unseen nodes). It learns to aggregate information from a fixed number of sampled neighbors.
 
-### 3. Graph Attention Networks (GAT)
+### 3. Graph attention networks (GAT)
 GAT adds an **attention mechanism**. Instead of treating all neighbors equally, it learns *importance weights* $\alpha_{vu}$ for each neighbor.
 
-## Hands-On: Node Classification with PyTorch Geometric
+## Hands-On: node classification with PyTorch geometric
 
 Let's implement a simple GCN using **PyTorch Geometric (PyG)**, the leading library for GNNs.
 

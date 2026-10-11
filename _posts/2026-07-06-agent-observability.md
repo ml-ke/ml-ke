@@ -39,7 +39,7 @@ Let's compare traditional debugging vs. agent debugging:
 | **Reproduction** | Easy — known inputs | Hard — depends on LLM state |
 | **Cost** | CPU/memory metrics | Token usage + API latency |
 
-## Building an Agent Logger
+## Building an agent logger
 
 Let's start with the foundation: capturing every step an agent takes.
 
@@ -169,7 +169,7 @@ class AgentLogger:
 ```
 {% endraw %}
 
-### Integrating the Logger into the ReAct Agent
+### Integrating the logger into the ReAct agent
 
 {% raw %}
 ```python
@@ -308,7 +308,7 @@ class TracedAgent:
 ```
 {% endraw %}
 
-## Using LangFuse for Production Observability
+## Using LangFuse for production observability
 
 [LangFuse](https://langfuse.com/) is an open-source observability platform purpose-built for LLM applications. It provides traces, cost tracking, and evaluation.
 
@@ -377,7 +377,7 @@ class LangFuseAgent:
 - **Evaluation**: Score agent outputs against expected results
 - **Prompt management**: Version and A/B test prompts
 
-## Agent Monitoring: Alerts and Anomalies
+## Agent monitoring: alerts and anomalies
 
 Beyond logging, production agents need monitoring, with alerts that fire when things go wrong:
 
@@ -476,7 +476,7 @@ When an agent produces a wrong answer, here's the debugging workflow:
 4. **Replay with fixes**: Modify the prompt/schema and re-run
 5. **Compare traces**: Run the same input 3-5 times to see if the failure is consistent
 
-## Dashboard Metrics to Track
+## Dashboard metrics to track
 
 | Metric | What It Tells You | Alert Threshold |
 |--------|-------------------|-----------------|

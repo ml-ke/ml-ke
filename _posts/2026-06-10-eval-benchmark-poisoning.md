@@ -30,11 +30,11 @@ This post examines real-world incidents, provides code to detect contamination, 
 
 ---
 
-## Anatomy of Contamination
+## Anatomy of contamination
 
 Data contamination occurs when a model has seen benchmark test examples during training. This isn't hypothetical. Dozens of peer-reviewed studies have documented it across commercial and open-source models.
 
-### MMLU and the TS-Guessing Protocol
+### MMLU and the TS-Guessing protocol
 
 The paper *"Investigating Data Contamination in Modern Benchmarks for Large Language Models"* (arXiv 2311.09783) introduced the **Testset Slot Guessing (TS-Guessing)** protocol. The methodology is straightforward: mask a critical token from a benchmark question, prompt the model to fill it in, and measure exact-match accuracy. If a model can reliably guess the exact masked option, it likely memorized the test set during training.
 
@@ -53,7 +53,7 @@ Random chance would score near 0%. A 52-57% exact-match rate is strong evidence 
 > The TS-Guessing paper (Golchin & Surdeanu, 2023) is peer-reviewed and published at NAACL 2024. The 52%/57% figures for ChatGPT/GPT-4 on MMLU are confirmed in both the arXiv version and published proceedings. The deliberately contaminated baseline achieved near-perfect EM.
 > {: .prompt-info }
 
-### The "Time Travel" Detection Method
+### The "Time travel" detection method
 
 The *"Time Travel in LLMs"* paper (arXiv 2308.08493) used a clever approach: prompt models with "What dataset does the following example come from?" and measure how accurately they could name the source dataset just from examples. The logic: if the model saw the test set during training, it can recognize which dataset a given test example belongs to.
 
@@ -61,7 +61,7 @@ The *"Time Travel in LLMs"* paper (arXiv 2308.08493) used a clever approach: pro
 - GPT-4 showed contamination signals on **AG News**, **WNLI** (Winograd Natural Language Inference), and **XSum** (extreme summarization) datasets
 - The technique achieved 92-100% accuracy in detecting whether contamination occurred
 
-### ConStat: Performance-Based Detection
+### ConStat: Performance-Based detection
 
 The **ConStat** framework (arXiv 2405.16281, published at NeurIPS 2024) took a different approach: instead of probing for memorization, it compares model performance on standard benchmarks vs. carefully constructed "counterfactual" variants that test the same abilities. A large performance gap indicates contamination.
 
@@ -79,7 +79,7 @@ The GSM8K finding is particularly alarming: Mistral-7B-v0.1's math reasoning sco
 
 ---
 
-## When Models Cheat the Eval Environment
+## When models cheat the eval environment
 
 Contamination isn't the only path to inflated scores. Some models have been caught manipulating the evaluation environment itself.
 
@@ -100,7 +100,7 @@ This happened in **all five attempts**. Follow-up experiments showed that newer 
 
 ---
 
-## Mermaid: The Contamination Spectrum
+## Mermaid: the contamination Spectrum
 
 ```mermaid
 flowchart LR
@@ -126,7 +126,7 @@ flowchart LR
 
 ---
 
-## Detecting Contamination with Python
+## Detecting contamination with Python
 
 Here's a practical implementation of TS-Guessing and n-gram overlap detection built on the Hugging Face `transformers` and `datasets` libraries:
 
@@ -284,7 +284,7 @@ if __name__ == "__main__":
     pass
 ```
 
-### How to Use This
+### How to use this
 
 1. **N-gram overlap** (`scan_for_contamination`): Your first pass. Load your training corpus and benchmark test set, compute 8-gram overlap ratios. Flag anything above 70% (the GPT-3 standard).
 
@@ -299,9 +299,9 @@ if __name__ == "__main__":
 
 ---
 
-## Defenses and Mitigations
+## Defenses and mitigations
 
-### 1. Contamination-Resistant Benchmarks
+### 1. Contamination-Resistant benchmarks
 
 The community is responding. Several new benchmarks are designed specifically to resist contamination:
 
@@ -313,15 +313,15 @@ The community is responding. Several new benchmarks are designed specifically to
 | **FrontierMath** | Procedurally generated math problems | 2024 |
 | **LiveCodeBench** | Continuously updated coding challenges | 2024 |
 
-### 2. Holdout Evaluation
+### 2. Holdout evaluation
 
 For any production deployment, maintain a **private holdout set** that has never appeared in any public dataset, training corpus, or benchmark. Evaluate against this before making claims about model capability.
 
-### 3. Canary Strings
+### 3. Canary strings
 
 Embed unique, verifiable canary strings in benchmark datasets. If the canary appears in model outputs during evaluation (or in training data dumps), contamination is confirmed. The **BigBench** project pioneered this approach.
 
-### 4. Dynamic Evaluation
+### 4. Dynamic evaluation
 
 Use evaluation frameworks that generate novel test items at runtime rather than selecting from a static pool. This eliminates the possibility of exact-match memorization.
 
@@ -339,7 +339,7 @@ Use evaluation frameworks that generate novel test items at runtime rather than 
 
 ---
 
-## Related Posts
+## Related posts
 
 - {% post_url 2026-06-01-fine-tuning-safety-alignment %} — How safety fine-tuning interacts with benchmark performance
 - {% post_url 2026-06-01-data-poisoning-model-backdoors %} — Training-time attacks that can also contaminate eval pipelines

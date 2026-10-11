@@ -39,7 +39,7 @@ A production agent system separates concerns into layers:
 2. Process them asynchronously
 3. Poll or webhook results back to users
 
-## Queue-Based Architecture with Redis + Celery
+## Queue-Based architecture with Redis + Celery
 
 [Celery](https://docs.celeryq.dev/) is a distributed task queue that works beautifully with Redis as a broker.
 
@@ -311,7 +311,7 @@ class SessionState:
 ```
 {% endraw %}
 
-## Error Handling and Graceful Degradation
+## Error handling and graceful degradation
 
 ### Handling LLM API outages
 
@@ -376,7 +376,7 @@ class ResilientLLM:
 ```
 {% endraw %}
 
-### Idempotency for Tool Calls
+### Idempotency for tool calls
 
 Tool calls must be safe to retry. Implement idempotency keys:
 

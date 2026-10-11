@@ -8,13 +8,13 @@ image:
   alt: Global AI roundup cover — a world map made of circuit traces with glowing regional nodes
 ---
 
-## The Week in AI
+## The week in AI
 
 This week's biggest story is a security wake-up call rather than a model release. INTERPOL's African Cyberthreat Assessment 2026 reports that **artificial intelligence is now involved in 55% of reported cybercrimes across Africa**. From AI-generated phishing to automated fraud rings, the threat picture on the continent has shifted, and the tools we're building are being weaponized faster than defenses adapt. We cover that story in depth in the Spotlight below.
 
 But there was plenty of movement elsewhere: China's model labs are racing toward IPOs, Europe's AI Act entered its enforcement phase, and the frontier labs are reshuffling leadership.
 
-## Region-by-Region Highlights
+## Region-by-Region highlights
 
 - China: Kimi K3's shockwave continues. Moonshot AI's 2.8 trillion-parameter K3 model keeps topping benchmarks, and both Moonshot and DeepSeek are now racing toward IPOs (Hong Kong listings are rumored). Chinese models increasingly dominate activity on OpenRouter (the marketplace where developers compare providers), often beating US labs on cost. The "Chinese AI IPO rush" is being watched closely by global investors. *(Source: Fortune)*
 - Europe: EU AI Act enforcement goes live. August 2 marked the activation of the EU AI Act's enforcement powers and Article 50 transparency rules. For non-high-risk general-purpose AI systems, obligations are now binding. Vendor domicile, data residency, and self-hosting options have become purchasing criteria for enterprises. Mistral is positioning itself as the "sovereign AI" play, with French government backing via BPI France. *(Source: DigitalApplied, Penchan)*
@@ -24,7 +24,7 @@ But there was plenty of movement elsewhere: China's model labs are racing toward
 - South America: Brazil doubles down. Brasília and São Paulo are becoming major AI event hubs, with the first AI Summit Brasil positioning itself as Latin America's largest AI ecosystem gathering. Korean president Lee Jae-myung's South America tour also pushed AI trade ties with Brazil, deepening what analysts call a mineral-to-models partnership. *(Sources: ChosunBiz, Summit de I.A. Brasil)*
 - Russia: Yandex hits back. Yandex publicly denied claims that its AI is built entirely on Chinese models, insisting it continues its own fundamental research. Meanwhile Sber's GigaChat and Yandex's YandexGPT remain the domestic alternatives of choice, since they need no VPN, accept ruble payments, and keep data in Russia. *(Sources: WWW1.ru, AgentSunrise)*
 
-## Spotlight: INTERPOL's African Cyberthreat Assessment 2026
+## Spotlight: INTERPOL's African Cyberthreat assessment 2026
 
 The headline number, **AI involved in 55% of reported cybercrimes across Africa**, deserves unpacking. This is the mundane, industrialized use of generative AI in everyday attacks: phishing emails written with near-perfect local language fluency, deepfake voice calls impersonating executives, and AI-generated investment scam pages that are indistinguishable from legitimate fintech.
 
@@ -32,7 +32,7 @@ For African organizations, the report lands at a painful moment: digital transfo
 
 The encouraging counter-signal: the same week, African AI communities are increasingly organizing around defensive skills like prompt-injection testing, LLM security audits, and responsible deployment. The conversation is shifting from "should we use AI?" to "how do we secure the AI we already depend on?"
 
-## Why This Matters for Africa
+## Why this matters for Africa
 
 Three takeaways from this week's news:
 

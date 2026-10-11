@@ -81,7 +81,7 @@ Days earlier, the US upgraded the UAE's export classification, which Core42 CEO 
 
 ## Africa: Google lab, startup funding, and workforce transformation
 
-### Google Africa Applied AI Lab opens in Accra
+### Google Africa applied AI lab opens in Accra
 
 Google launched the **Google Africa Applied AI Lab** in Accra, Ghana, with applications open July 1–August 31, 2026. The lab pairs African founders and researchers with Google AI teams to translate research into market-ready products. A cohort of 15 startups will receive equity-free funding and AI-focused mentorship through the **Google for Startups Accelerator** (South Africa cohort).
 
@@ -89,7 +89,7 @@ Google launched the **Google Africa Applied AI Lab** in Accra, Ghana, with appli
 
 **Cue**, a South African customer-service AI platform, raised **$5 million** co-led by Knife Capital and FAM Investments to build autonomous AI agents for customer service. This is part of a growing trend: African startups building **AI-native software for global markets** while headquartered on the continent.
 
-### ALX Enterprise: "Leading in the Age of AI"
+### ALX enterprise: "Leading in the age of AI"
 
 ALX convened business leaders in Kigali (July 24) and Nairobi (July 30) for executive sessions on AI readiness. The core message: competitive advantage will belong to companies that can **adapt the fastest**, not those with the biggest workforces.
 
@@ -105,11 +105,11 @@ Prosus highlighted **Lelapa AI** as a model for building datasets that reflect A
 
 ## South America: Brazil's $4B+ AI bet
 
-### AI Summit Brazil (July 22–23)
+### AI summit Brazil (July 22–23)
 
 São Paulo hosted the **AI Summit Brazil 2026**, the country's premier AI gathering, backed by ABRIA, SENAI CIMATEC, and others. The event reflected Brazil's aggressive push to become Latin America's AI hub.
 
-### Brazilian AI Plan (PBIA): R$23 billion through 2028
+### Brazilian AI plan (PBIA): R$23 billion through 2028
 
 Brazil's national AI plan outlines **R$23 billion (~$4.2B) in investments through 2028**, including:
 
@@ -117,7 +117,7 @@ Brazil's national AI plan outlines **R$23 billion (~$4.2B) in investments throug
 - The **Orion NB4** biological containment lab (first in Latin America)
 - AI applications in climate modelling, health research, and energy
 
-### DP World: Brazilian businesses prioritise AI
+### DP world: Brazilian businesses prioritise AI
 
 DP World's global trade data (July 22) showed that **Brazilian businesses are placing AI at the centre of their growth strategies**, alongside expanding consumer demand and infrastructure investment.
 
@@ -152,7 +152,7 @@ SpaceXAI released **Grok 4.5** on July 8. At **$2 per million input tokens / $6 
 
 OpenAI released **GPT-5.6** (Sol, Terra, and Luna variants) on July 8, but only to a "small group of trusted partners" after the **US government requested a delay** for national security review. The model is finally rolling out more broadly by late July.
 
-### Google: A24 partnership + Gemini Omni Flash
+### Google: A24 partnership + Gemini Omni flash
 
 - Google announced a **$75 million partnership with A24** to bring AI into filmmaking workflows
 - **Gemini Omni Flash** launched, adding conversational video editing and dynamic style transfers to Google's enterprise offerings

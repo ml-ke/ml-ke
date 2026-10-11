@@ -20,7 +20,7 @@ In the age of Big Data, we have more information than ever, but connecting that 
 > A **Knowledge Graph** represents knowledge as a collection of interlinked descriptions of entities – objects, events, situations, or abstract concepts – with free-form semantics.
 {: .prompt-info }
 
-## From Tables to Graphs
+## From tables to graphs
 
 Traditional relational databases store data in rigid tables (rows and columns). While efficient for transactional data, they struggle with highly interconnected data.
 
@@ -55,9 +55,9 @@ graph LR
     style H fill:#a8d8ea
 ```
 
-## Core Building Blocks
+## Core building blocks
 
-### 1. The Triple (Subject - Predicate - Object)
+### 1. The triple (Subject - predicate - object)
 
 The fundamental unit of a Knowledge Graph is the **triple**, often based on the **RDF (Resource Description Framework)** standard.
 
@@ -98,11 +98,11 @@ classDiagram
     Organization --> Location : HEADQUARTERED_IN
 ```
 
-## Graph Databases
+## Graph databases
 
 To store and query KGs efficiently, we use **Graph Databases** like Neo4j, Amazon Neptune, or TigerGraph.
 
-### Cypher Query Language (Neo4j)
+### Cypher query language (Neo4j)
 
 Cypher is to graph databases what SQL is to relational databases. It uses ASCII art to represent patterns.
 
@@ -121,11 +121,11 @@ WHERE p1.name < p2.name
 RETURN p1.name, p2.name, c.name
 ```
 
-## Knowledge Graph Embeddings (KGE)
+## Knowledge graph embeddings (KGE)
 
 To use KGs in machine learning models (like neural networks), we need to convert the symbolic graph structure into continuous vector spaces. This is called **Knowledge Graph Embedding**.
 
-### TransE (Translating Embeddings)
+### TransE (Translating embeddings)
 
 TransE models relationships as translations in the vector space. For a triple $(h, r, t)$ (head, relation, tail), it aims to satisfy:
 
@@ -141,7 +141,7 @@ $$
 
 Where $S$ are valid triples and $S'$ are corrupted (negative) triples.
 
-### RotatE (Rotation Embeddings)
+### RotatE (Rotation embeddings)
 
 RotatE models relations as **rotations** in complex vector space. This allows it to capture patterns like symmetry, antisymmetry, inversion, and composition.
 
@@ -149,7 +149,7 @@ $$
 \mathbf{t} = \mathbf{h} \circ \mathbf{r} \quad \text{where } |r_i| = 1
 $$
 
-### Python Implementation: TransE with PyTorch
+### Python implementation: TransE with PyTorch
 
 ```python
 import torch
@@ -254,22 +254,22 @@ optimizer.step()
 print(f"Loss: {loss.item():.4f}")
 ```
 
-## Applications of Knowledge Graphs
+## Applications of knowledge graphs
 
-### 1. Recommendation Systems
+### 1. Recommendation systems
 KGs can explain *why* a recommendation was made.
 * "We recommended 'The Matrix' because you liked 'Inception', and both are **Sci-Fi** movies directed by **visionary directors**."
 
-### 2. Question Answering (QA)
+### 2. Question answering (QA)
 Google Search uses the Knowledge Graph to provide direct answers in the "Knowledge Panel" instead of just a list of links.
 
-### 3. Drug Discovery
+### 3. Drug discovery
 Connecting drugs, diseases, proteins, and genes to find new uses for existing drugs (drug repurposing).
 
-### 4. Fraud Detection
+### 4. Fraud detection
 Identifying rings of fraudsters by analyzing the network of shared attributes (phone numbers, addresses, devices).
 
-## Building Your First Knowledge Graph
+## Building your first knowledge graph
 
 In the next post, we will build a **Knowledge Graph of African Tech Ecosystem** from scratch! We will:
 
@@ -287,7 +287,7 @@ In the next post, we will build a **Knowledge Graph of African Tech Ecosystem** 
 
 Knowledge Graphs bridge the gap between unstructured data and human understanding. By combining the flexibility of graphs with the power of machine learning (via embeddings), we can build smarter, more context-aware AI systems.
 
-### Key Takeaways
+### Key takeaways
 
 - **Triples** are the atoms of knowledge.
 - **Ontologies** provide the schema and semantics.

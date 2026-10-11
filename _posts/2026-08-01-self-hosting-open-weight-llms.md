@@ -84,7 +84,7 @@ Full self-hosting isn't always practical in African markets, where hardware impo
 
 The playbook: start on Together AI or RunPod to validate demand, move to dedicated GPU instances once usage justifies it, then invest in on-premise hardware when you need data residency or hit the cost crossover point — typically at 1–2 million tokens per day.
 
-## Getting Started
+## Getting started
 
 Your first self-hosted model can be running in ten minutes. Pick your tool:
 

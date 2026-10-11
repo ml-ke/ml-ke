@@ -18,7 +18,7 @@ When an LLM generates text, every attention layer computes keys and values for e
 
 Traditional serving systems pre-allocate contiguous memory blocks for each request's KV cache. This leads to severe **memory fragmentation**, similar to a file system that allocates files in fixed-size blocks without paging. When a request finishes or a new one arrives, the freed memory is often in small, non-contiguous chunks that can't be reused.
 
-## PagedAttention: Solving KV Cache Fragmentation
+## PagedAttention: solving KV cache fragmentation
 
 PagedAttention, introduced in the [vLLM paper](https://arxiv.org/abs/2309.06180) (Kwon et al., 2023), takes inspiration from virtual memory in operating systems. Instead of allocating contiguous memory for each request's KV cache, it divides the cache into fixed-size **blocks** (pages) and maintains a **page table** mapping logical blocks to physical memory locations.
 
@@ -44,7 +44,7 @@ The benefits are dramatic:
 - **Copy-on-write**: efficient handling of beam search and parallel sampling
 - **Memory overselling**: you can accept more concurrent requests than fit in GPU memory, swapping cold blocks to CPU
 
-## Continuous Batching: Never Leave the GPU Idle
+## Continuous batching: never leave the GPU idle
 
 Traditional request batching works like a bus: you wait for a full batch to arrive, run them all together, and return results. But LLM generation has highly variable completion times. A request generating 10 tokens finishes much faster than one generating 1000 tokens.
 
@@ -94,7 +94,7 @@ pip install vllm
 ```
 {% endraw %}
 
-### Serving a Model
+### Serving a model
 
 {% raw %}
 ```bash
@@ -128,11 +128,11 @@ Key parameters explained:
 | `--max-num-seqs` | Max concurrent sequences | Start at 256, tune up |
 | `--enable-prefix-caching` | Cache shared prompt prefixes | Enable for chatbots with system prompts |
 
-## Quantization: Fitting Big Models on Fewer GPUs
+## Quantization: fitting big models on fewer GPUs
 
 LLMs are typically trained in 16-bit (float16 or bfloat16), requiring 2 bytes per parameter. A 70B model at 16-bit takes ~140 GB of GPU memory, which is too large for a single A100 (80 GB). Quantization reduces precision while preserving quality.
 
-### AWQ (Activation-aware Weight Quantization)
+### AWQ (Activation-aware weight quantization)
 
 AWQ analyzes the model weights and identifies the 1% most "important" weights that disproportionately affect output quality. It keeps those in higher precision while aggressively quantizing the rest.
 
@@ -146,11 +146,11 @@ python -m vllm.entrypoints.openai.api_server \
 ```
 {% endraw %}
 
-### GPTQ (Post-Training Quantization)
+### GPTQ (Post-Training quantization)
 
 GPTQ uses approximate second-order information to find optimal quantization points. It's slightly slower at serving than AWQ but achieves comparable quality.
 
-### Memory Comparison
+### Memory comparison
 
 | Model | FP16 | AWQ 4-bit | GPTQ 4-bit | GGUF (CPU) |
 |-------|------|-----------|------------|-------------|
@@ -188,7 +188,7 @@ print(response.choices[0].message.content)
 
 This API compatibility means any tool that works with OpenAI (LangChain, LlamaIndex, etc.) also works with vLLM. You just change the `base_url`.
 
-## Benchmarking vLLM Performance
+## Benchmarking vLLM performance
 
 Here's a quick benchmark setup using the built-in benchmarking scripts:
 
@@ -231,7 +231,7 @@ Typical results (on 1x A100 80 GB with Llama 3.1 8B):
 
 6. **Consider tensor parallelism** for models that don't fit on one GPU — `--tensor-parallel-size 2` splits the model across 2 GPUs with minimal overhead (<5%).
 
-## When vLLM Is and Isn't the Right Choice
+## When vLLM Is and isn't the right choice
 
 **Use vLLM when:**
 - You're serving decoder-only transformer models (Llama, Mistral, Qwen, etc.)
@@ -245,6 +245,6 @@ Typical results (on 1x A100 80 GB with Llama 3.1 8B):
 - You're running on very limited hardware (use Ollama with quantization)
 - You need custom model parallelism beyond tensor parallelism (use DeepSpeed)
 
-## Next Steps
+## Next steps
 
 vLLM handles the serving layer, but production requires orchestration, monitoring, and scaling. In the next post, we'll look at **GPU optimization**: CUDA memory management, parallelism strategies, and profiling tools to get the most out of your hardware.

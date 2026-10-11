@@ -8,15 +8,15 @@ image:
   alt: Swahili text in Arabic and Latin script with NLP pipeline diagram
 ---
 
-## Why Swahili Matters for NLP
+## Why Swahili matters for NLP
 
 Swahili (Kiswahili) is the most widely spoken African language in the world, with over 200 million speakers across East and Central Africa. It's the national or official language of Tanzania, Kenya, Uganda, the Democratic Republic of Congo, Rwanda, Burundi, and the African Union itself. Unlike many African languages, Swahili has a long written tradition — it was first written in Arabic script (Ajami) in the 10th century, and it's now written in Latin script with a standardized orthography.
 
 This makes Swahili a unique test case for African NLP: it has *more* resources than virtually any other indigenous African language, but still far fewer than any European language of comparable speaker count. If we can't build good NLP systems for Swahili, we have no hope for the other 2,000+ African languages.
 
-## The Linguistic Challenges
+## The linguistic challenges
 
-### Agglutinative Morphology
+### Agglutinative morphology
 
 Swahili is a **Bantu agglutinative language**, meaning it builds complex words by chaining together prefixes, infixes, and suffixes onto a verb root. Consider the verb *kusoma* (to read):
 
@@ -57,7 +57,7 @@ Swahili speakers in East Africa rarely speak "pure" Swahili. Code-switching betw
 
 This mixed-language pattern breaks the assumptions of monolingual tokenizers and language models. Models trained on "clean" Swahili text fail on real-world social media content. A 2024 study by Masakhane researchers found that sentiment analysis accuracy on Sheng text dropped 23% compared to standard Swahili.
 
-### Dialectal Variation
+### Dialectal variation
 
 Swahili has multiple dialects:
 - **Kiunguja** (Zanzibar): The standard dialect
@@ -68,11 +68,11 @@ Swahili has multiple dialects:
 
 Building a single model that handles all these varieties is a major challenge.
 
-## Available Resources
+## Available resources
 
 Despite the challenges, Swahili is relatively well-resourced compared to other African languages:
 
-### Text Datasets
+### Text datasets
 
 | Dataset | Size | Source | License |
 |---------|------|--------|---------|
@@ -82,7 +82,7 @@ Despite the challenges, Swahili is relatively well-resourced compared to other A
 | MaCoCu Swahili | 5.2M sentences | Web crawl | CC-BY |
 | Swahili NER Corpus | 15K annotations | News text | Research |
 
-### Parallel Corpora (for Translation)
+### Parallel corpora (for translation)
 
 | Dataset | Size | Target Languages |
 |---------|------|------------------|
@@ -91,7 +91,7 @@ Despite the challenges, Swahili is relatively well-resourced compared to other A
 | Tanzil Sw-En | 60K sentence pairs | English |
 | NLLB Seed Swahili | 18K sentence pairs | 40+ languages |
 
-### Pretrained Models
+### Pretrained models
 
 Several multilingual models include Swahili in their training data:
 - **mBERT** (110 languages): Includes Swahili
@@ -100,7 +100,7 @@ Several multilingual models include Swahili in their training data:
 - **AfriBERTa** (11 African languages): Trained specifically on African languages
 - **BERT-Swahili** (Kinyonga lab, 2023): RoBERTa-base trained on 10GB of Swahili text
 
-### Limitations of Existing Datasets
+### Limitations of existing datasets
 
 Most "Swahili" datasets are:
 1. **Heavily English-influenced**: Much of the CC-100 Swahili is actually translated English content, not naturally produced Swahili
@@ -108,7 +108,7 @@ Most "Swahili" datasets are:
 3. **Dated**: The Masakhane news corpus was collected in 2020-2021
 4. **Missing code-switching**: Almost no datasets include Swahili-English mixing
 
-## Practical Pipeline: Building a Swahili Text Classifier
+## Practical pipeline: building a Swahili text classifier
 
 Let's walk through a real pipeline for fine-tuning a Swahili sentiment classifier:
 
@@ -174,7 +174,7 @@ trainer = Trainer(
 trainer.train()
 ```
 
-## Evaluation Considerations
+## Evaluation considerations
 
 Standard NLP evaluation metrics don't tell the whole story for Swahili:
 
@@ -187,7 +187,7 @@ Standard NLP evaluation metrics don't tell the whole story for Swahili:
 - Code-switching acceptance
 - Cultural context awareness
 
-## The Road Ahead for Swahili NLP
+## The road ahead for Swahili NLP
 
 The most promising directions:
 

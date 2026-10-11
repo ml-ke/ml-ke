@@ -18,7 +18,7 @@ Here's what's coming.
 
 ---
 
-## Series 1: Building AI Agents from Scratch
+## Series 1: Building AI agents from scratch
 
 **Starts: June 15 | Frequency: Weekly (Mon/Wed/Fri)**
 
@@ -38,7 +38,7 @@ Whether you're building a simple chatbot with function calling or a multi-agent 
 
 ---
 
-## Series 2: AI in the African Ecosystem
+## Series 2: AI in the African ecosystem
 
 **Starts: June 17 | Frequency: Bi-weekly (Tue/Thu)**
 
@@ -56,7 +56,7 @@ The goal is actionable guidance for building AI that works in African contexts.
 
 ---
 
-## Series 3: AI Infrastructure & MLOps
+## Series 3: AI infrastructure & MLOps
 
 **Starts: June 19 | Frequency: Weekly (Tue/Thu/Sat)**
 
@@ -73,7 +73,7 @@ This series pairs tightly with the Agents series. You'll see the infrastructure 
 
 ---
 
-## How the Three Series Connect
+## How the three series connect
 
 Think of them as a **stack:**
 
@@ -113,7 +113,7 @@ We'll update this roadmap as we go, and reader feedback shapes the course. **If 
 
 ---
 
-## What About MLsecOps?
+## What about MLsecOps?
 
 The MLsecOps series isn't ending. It's evolving. Security remains a thread woven through all three new series. You'll see:
 

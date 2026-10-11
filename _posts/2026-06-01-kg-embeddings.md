@@ -66,7 +66,7 @@ wget https://raw.githubusercontent.com/mommi84/WN18RR/master/data/FB15k-237/vali
 wget https://raw.githubusercontent.com/mommi84/WN18RR/master/data/FB15k-237/test.txt
 ```
 
-## 1. TransE: Translational Embeddings
+## 1. TransE: Translational embeddings
 
 **TransE** (Bordes et al., 2013) is the simplest and most influential KGE model. It models relations as **translations** in embedding space:
 
@@ -114,7 +114,7 @@ class TransE(nn.Module):
         return torch.mean(F.relu(self.margin + pos_score - neg_score))
 ```
 
-### Why Normalization?
+### Why normalization?
 
 Normalizing embeddings to unit length prevents the optimization from simply making embeddings arbitrarily large to minimize loss:
 
@@ -122,7 +122,7 @@ Normalizing embeddings to unit length prevents the optimization from simply maki
 > **With normalization:** The model must actually align semantic directions.
 {: .prompt-warning }
 
-## 2. RotatE: Rotation in Complex Space
+## 2. RotatE: rotation in complex space
 
 **RotatE** (Sun et al., 2019) improves on TransE by modeling relations as **rotations in complex vector space**:
 
@@ -199,7 +199,7 @@ class RotatE(nn.Module):
 > The ability to model symmetric relations is critical. In a KG, `(Alice, sibling_of, Bob)` implies `(Bob, sibling_of, Alice)`. TransE would need two separate relation vectors; RotatE captures this with a single 180° rotation.
 {: .prompt-info }
 
-## 3. ComplEx: Hermitian Dot Product
+## 3. ComplEx: Hermitian dot product
 
 **ComplEx** (Trouillon et al., 2016) uses complex embeddings with a Hermitian dot product:
 
@@ -425,7 +425,7 @@ graph LR
 > - **RotatE** adds composition pattern modeling on top, achieving the best results for the same parameter count
 {: .prompt-tip }
 
-## Choosing the Right Model
+## Choosing the right model
 
 | Scenario | Recommended Model | Why |
 |----------|------------------|-----|
@@ -447,7 +447,7 @@ Knowledge Graph Embeddings transform symbolic triples into continuous vectors, e
 - All models can be trained with the same infrastructure; the trade-off is expressivity vs. computational cost
 - Link prediction on FB15k-237 shows RotatE leading with MRR 0.351
 
-### Next in Series
+### Next in series
 
 - [Building a Knowledge Graph with Neo4j and Python]({% post_url 2025-12-01-building-knowledge-graph-neo4j-python %})
 - **▶ You are here: KG Embeddings: TransE to RotatE**

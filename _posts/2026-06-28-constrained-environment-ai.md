@@ -8,7 +8,7 @@ image:
   alt: Edge device running AI inference with offline-first architecture diagram
 ---
 
-## The Reality of Constrained Environments
+## The reality of constrained environments
 
 Throughout this series, we've touched on the constraints that define AI deployment in Africa: intermittent electricity, slow internet, expensive data, and budget hardware. This final post brings it all together with a practical framework for building AI systems that work *despite* these constraints — not in a hypothetical "we'll handle edge cases later" way, but as a first-class design requirement.
 
@@ -25,9 +25,9 @@ Let's be concrete about the environment we're designing for:
 
 The mindset shift: **constrained environments are not a degradation scenario**. They are the *primary* design target. If your system works perfectly on a Pixel 9 with 5G and fails on a Tecno Spark with 3G, it simply doesn't work for most of your users.
 
-## Model Compression Techniques
+## Model compression techniques
 
-### 1. Pruning: Removing What You Don't Need
+### 1. Pruning: removing what you don't need
 
 Pruning removes redundant weights from a neural network. After training, many weights are near zero and contribute little to the output. Removing them reduces model size with minimal accuracy loss.
 
@@ -80,7 +80,7 @@ tflite_pruned = converter.convert()
 
 **Real-world tip**: Magnitude pruning works well for computer vision models. For transformer-based NLP models, consider movement pruning (faster inference) or structured pruning (removes entire attention heads for better hardware utilization).
 
-### 2. Quantization: Going from Float to Integer
+### 2. Quantization: going from float to integer
 
 We covered this in the mobile AI post, but it's worth revisiting for the broader constrained-environment context. Quantization converts model weights from 32-bit floats to lower-precision formats:
 
@@ -94,7 +94,7 @@ We covered this in the mobile AI post, but it's worth revisiting for the broader
 
 For most African deployments, **Int8 full-integer quantization** is the sweet spot: 4x smaller, 2-4x faster, and minimal accuracy loss with proper calibration.
 
-### 3. Knowledge Distillation: Training a Student from a Teacher
+### 3. Knowledge distillation: training a student from a teacher
 
 Distillation trains a small "student" model to mimic a large "teacher" model. The teacher can be a massive model trained in the cloud; the student runs on-device.
 
@@ -145,7 +145,7 @@ for batch in dataloader:
 
 **Result**: A distilled 600M NLLB model retains 95%+ of the 1.3B teacher's translation quality while being 2.2x faster on CPU and fitting in 1/4 the RAM.
 
-## ONNX Runtime: Cross-Platform Inference
+## ONNX Runtime: Cross-Platform inference
 
 TensorFlow Lite is great for Android, but what if your deployment targets are mixed? ONNX Runtime provides a unified inference engine across platforms:
 
@@ -177,7 +177,7 @@ ONNX Runtime works on:
 
 For African deployments, the key advantage is that you train once and deploy everywhere — no need to maintain separate code paths for Android, iOS, and web.
 
-## Offline-First Architecture Patterns
+## Offline-First architecture patterns
 
 ### Pattern 1: Sync-When-Available
 
@@ -228,7 +228,7 @@ class OfflineFirstMLService(context: Context) {
 }
 ```
 
-### Pattern 2: Progressive Degradation
+### Pattern 2: Progressive degradation
 
 When constraints become extreme, the system degrades gracefully rather than failing entirely:
 
@@ -256,7 +256,7 @@ class AdaptiveInferenceEngine:
         return self.models["full"].predict(input_data)
 ```
 
-### Pattern 3: Progressive Web Apps (PWAs) with ML
+### Pattern 3: Progressive web apps (PWAs) with ML
 
 For users who can't or won't install an app, PWAs provide app-like experiences through the browser. With WebAssembly-based ML runtimes (TensorFlow.js, ONNX Runtime Web), inference runs in-browser:
 
@@ -289,9 +289,9 @@ async function runCropDiseaseInference(imageElement) {
 
 The PWA can be installed on the home screen, works offline after the first load via a service worker, and auto-updates when connectivity returns.
 
-## Resilient Data Pipelines
+## Resilient data pipelines
 
-### Batched Uploads
+### Batched uploads
 
 Don't upload one prediction at a time. Batch them:
 
@@ -330,7 +330,7 @@ class BatchUploader:
             self.retry_count += 1
 ```
 
-### Compression Before Upload
+### Compression before upload
 
 If you must upload data (e.g., field photos for model improvement), compress aggressively:
 
@@ -359,17 +359,17 @@ def compress_for_upload(image, max_size_kb=100):
     return None  # Cannot compress sufficiently
 ```
 
-## Real-World Case Study: mDROID
+## Real-World case study: mDROID
 
 [mDROID](https://mdroid.eye/) is a smartphone-based AI system for diabetic retinopathy screening deployed in rural Kenya. It's one of the best examples of constrained-environment AI done right.
 
-### The Constraints
+### The constraints
 - **Connectivity**: Many screening locations have no internet at all
 - **Power**: Screening often happens at community health centers with unreliable electricity
 - **Hardware**: The system runs on a Tecno Phantom 9 (4 GB RAM, Helio P70 chipset)
 - **Data cost**: Uploading fundus images (5-10 MB each) would cost prohibitive amounts over mobile data
 
-### The Solution
+### The solution
 
 1. **All inference on-device**: A quantized EfficientNet-Lite model (3.2 MB) runs entirely on the phone
 2. **Offline-first**: The screening app works 100% offline
@@ -383,7 +383,7 @@ def compress_for_upload(image, max_size_kb=100):
 - **45%** of screenings occur in locations with no internet
 - **< 1%** of sessions fail due to technical issues
 
-## Decision Framework: Choose Your Stack
+## Decision framework: choose your stack
 
 When starting a new project for constrained environments, use this decision tree:
 
@@ -412,7 +412,7 @@ Is storage below 64 GB?
 └── NO → Can download models on first Wi-Fi connection
 ```
 
-## The Final Word
+## The final word
 
 Building AI for constrained environments isn't about "making do" with inferior technology. It's about disciplined engineering: understanding your resource budget, measuring everything, and making deliberate trade-offs. A 3 MB model that works offline on a budget phone and achieves 88% accuracy is more valuable than a 300 MB model that achieves 94% accuracy but only works in Nairobi with 4G and a full battery.
 

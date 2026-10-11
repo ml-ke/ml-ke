@@ -14,11 +14,11 @@ Building AI agents means working with multiple languages, runtimes, API provider
 
 Here's exactly what you'll need, step by step.
 
-## 1. Python Environment Management
+## 1. Python environment management
 
 Python version conflicts will be your biggest headache. Here's how to avoid them.
 
-### Install pyenv (Python Version Manager)
+### Install pyenv (Python version manager)
 
 ```bash
 # Linux / macOS
@@ -37,7 +37,7 @@ pyenv global 3.12.9
 
 > **Why 3.12?** Python 3.12 brings significant performance improvements (up to 30% faster in some benchmarks) and better error messages. Most AI frameworks now support it fully.
 
-### Virtual Environments with uv (Rust-based, 10–100x faster)
+### Virtual environments with uv (Rust-based, 10–100x faster)
 
 [pip](https://pip.pypa.io/) is fine, but [uv](https://docs.astral.sh/uv/) is dramatically faster and just as compatible:
 
@@ -57,7 +57,7 @@ uv pip install jupyter ipykernel  # for notebooks
 
 Always **activate your venv** before working — your terminal prompt should show `(.venv)`.
 
-## 2. Docker Setup
+## 2. Docker setup
 
 Docker lets you package agents with all their dependencies, making deployment reproducible across your laptop, a team server, or cloud VMs.
 
@@ -82,11 +82,11 @@ docker compose version
 
 Pro tip: Create a `docker-compose.yml` in every agent project from day one, even if it only runs one service. You'll thank yourself later when adding ChromaDB or Redis.
 
-## 3. API Keys and Environment Management
+## 3. API keys and environment management
 
 Every AI agent talks to external APIs. Managing those keys securely is non-negotiable.
 
-### Get Your Keys
+### Get your keys
 
 | Service | Where to get it |
 |---------|----------------|
@@ -95,7 +95,7 @@ Every AI agent talks to external APIs. Managing those keys securely is non-negot
 | **Groq** | [console.groq.com/keys](https://console.groq.com/keys) |
 | **Hugging Face** | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) |
 
-### Never Hardcode Keys
+### Never Hardcode keys
 
 ```bash
 # .env file (ADD TO .gitignore)
@@ -114,7 +114,7 @@ import os
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 ```
 
-### .gitignore Essentials
+### .gitignore essentials
 
 ```gitignore
 .env
@@ -126,11 +126,11 @@ __pycache__/
 dist/
 ```
 
-## 4. Git Workflow for ML Projects
+## 4. Git workflow for ML projects
 
 AI projects have special needs — large config files, model weights (that you don't commit), and experiment tracking.
 
-### Branch Strategy
+### Branch strategy
 
 ```
 main          → production-ready, reviewed
@@ -140,7 +140,7 @@ main          → production-ready, reviewed
 └── fix/rate-limiting
 ```
 
-### Git LFS for Large Files
+### Git LFS for large files
 
 ```bash
 sudo apt install git-lfs
@@ -151,7 +151,7 @@ git lfs track "*.pt"
 git lfs track "*.bin"
 ```
 
-### Commit Convention
+### Commit convention
 
 Use conventional commits for auto-changelogs and clarity:
 
@@ -162,7 +162,7 @@ docs: add API key setup instructions
 chore: update dependencies
 ```
 
-## 5. VS Code / IDE Setup for AI Development
+## 5. VS code / IDE setup for AI development
 
 ### Recommended Extensions
 
@@ -193,7 +193,7 @@ chore: update dependencies
 }
 ```
 
-## 6. Quick Start: Clone and Run
+## 6. Quick start: clone and run
 
 Let's make sure everything works with a real test:
 
@@ -223,7 +223,7 @@ You should see output like:
 ✅ All systems go. Ready to build.
 ```
 
-### Verify Everything
+### Verify everything
 
 Run this checklist once you're done:
 
@@ -235,7 +235,7 @@ Run this checklist once you're done:
 | 4 | API key set | `echo $OPENAI_API_KEY` → starts with `sk-` |
 | 5 | Git configured | `git config --list` → name + email |
 
-## 7. Pro Tips from the Trenches
+## 7. Pro tips from the Trenches
 
 - **Use `pyproject.toml`** instead of `requirements.txt` for new projects — it handles dependency trees and dev dependencies better.
 - **Pin your dependencies** with `pip freeze > requirements.txt` before shipping. Reproducibility matters.

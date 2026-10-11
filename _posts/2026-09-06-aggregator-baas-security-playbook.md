@@ -17,7 +17,7 @@ Payment integrations come in two shapes. **Direct**: your server talks to the ra
 
 Three real failures show where the middleman leaks: a partner bank's network breached for months, a processor's forgotten key, and a middleware company's books that stopped adding up.
 
-## When the partner bank is breached: Evolve and LockBit
+## When the partner bank is breached: evolve and LockBit
 
 In June 2024 LockBit published a stolen data dump under the false banner of a US Federal Reserve breach. The data belonged to **Evolve Bank & Trust**, a partner bank whose rails sit under fintechs including Shopify, Stripe and Mercury, so the breach touched *their* customers too ([BleepingComputer](https://www.bleepingcomputer.com/news/security/evolve-bank-says-data-breach-impacts-76-million-americans/)). Evolve notified **7.6 million people** (7,640,112 per a Maine attorney general filing), and **Affirm, Wise and Bilt each confirmed their customers were affected**. Funds stayed safe; the loss was data.
 

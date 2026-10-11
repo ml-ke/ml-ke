@@ -46,7 +46,7 @@ timeline
               : Tool-based attacks
 ```
 
-### DAN (Do Anything Now), 2022–2023
+### DAN (Do anything now), 2022–2023
 
 The original jailbreak. DAN was a **roleplay persona** that asked the model to act as an alter ego with no ethical constraints. Released initially on Reddit's r/ChatGPT, it went through **14 major versions** as OpenAI patched each variant.
 
@@ -292,7 +292,7 @@ Jailbroken models have been used to generate disinformation at scale:
 
 ## Defense strategies
 
-### 1. Instruction hierarchy (Anthropic's Constitutional AI)
+### 1. Instruction hierarchy (Anthropic's constitutional AI)
 
 Anthropic's approach creates a strict **hierarchy of instructions** where system-level rules always override user input:
 

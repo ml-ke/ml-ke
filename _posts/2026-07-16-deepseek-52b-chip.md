@@ -34,7 +34,7 @@ This is a structural shift. US export controls were designed to slow China's AI 
 
 > **For African developers:** Every Chinese AI company that builds its own chip infrastructure reduces the dependency on US-manufactured hardware. This matters because access to Nvidia H100s and B200s is heavily constrained — and priced — for developers outside the US and Europe. If DeepSeek, Z.AI, and Huawei succeed in creating a parallel chip ecosystem, the models you run could become cheaper and more accessible, even if the chips themselves aren't physically available on the continent yet.
 
-## What This Means for Open-Source AI
+## What this means for Open-Source AI
 
 DeepSeek's rise is unique because it has remained committed to **open-weight releases** even as its valuation balloons. The same startup now worth $52B released DeepSeek-V3 and DeepSeek-R1 under permissive licences that allowed anyone (including developers in Nairobi, Lagos, and Cairo) to download, fine-tune, and deploy the models.
 

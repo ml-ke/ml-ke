@@ -732,7 +732,7 @@ class LBFGSFineTuner:
         return self.model
 ```
 
-## Looking ahead: Knowledge Graphs
+## Looking ahead: knowledge graphs
 
 While second-order methods excel at optimization, the next frontier in AI involves **structured knowledge representation**. In our upcoming series on **Knowledge Graphs**, we'll explore:
 
