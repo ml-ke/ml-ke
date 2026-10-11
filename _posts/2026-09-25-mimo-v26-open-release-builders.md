@@ -12,7 +12,7 @@ image:
 ## Introduction
 
 > **The short version**
-> On 22 September 2026 Xiaomi's MiMo team released the **MiMo-V2.6 series**: a 1.02T-parameter flagship, a 309B sibling, and a 9.4B starter model distilled from the flagship — all three under the **MIT licence**, all three with weights on Hugging Face. The unusual part is not the benchmark table. It is that the reinforcement-learning loop that produced them — the task environments, the verifiers, the training framework and even the bill — was published alongside the weights.
+> On 22 September 2026 Xiaomi's MiMo team released the **MiMo-V2.6 series**: a 1.02T-parameter flagship, a 309B sibling, and a 9.4B starter model distilled from the flagship. All three ship under the **MIT licence**, all three with weights on Hugging Face. The unusual part is not the benchmark table. It is that the reinforcement-learning loop that produced them (the task environments, the verifiers, the training framework and even the bill) was published alongside the weights.
 {: .prompt-info }
 
 Most "open-weight" releases hand you a checkpoint and a model card. Someone else's training pipeline stays dark, and you inherit whatever biases, reward hacks and data composition choices were baked in. MiMo-V2.6 is a different shape of release: three checkpoints covering three hardware budgets, plus a documented RL recipe and roughly 7,000 verified training tasks you can run yourself.
@@ -33,7 +33,7 @@ Xiaomi's own [model update log](https://mimo.mi.com/docs/en-US/updates/model) da
 
 The parameter counts are worth reading twice, because the two published numbers tell different stories. The model card says 1.02T total with **42B activated** — it is a sparse mixture-of-experts backbone, so the compute per token is closer to a mid-size dense model than the headline count suggests. The Hugging Face safetensors index sums to 1,024.22B for Pro and 310.76B for Flash, which includes the modality encoders.
 
-Both large checkpoints are omnimodal — text, image, video and audio in one model. The published architecture:
+Both large checkpoints are omnimodal: text, image, video and audio in one model. The published architecture:
 
 | Component | What the card specifies |
 | --- | --- |
@@ -68,7 +68,7 @@ Bandwidth arithmetic, because this is where deployments die: at a steady 10 Mbps
 > We could not pull the 5.84 GB checkpoint from this host inside the publishing window, so this post contains **no local inference benchmark and no throughput claim**. Every size above comes from the Hugging Face API and a real HTTP HEAD request; the runnable block below checks licence, parameter count and file size rather than tokens per second. Treat any "runs at N tokens/s" number for these quants as unverified until you measure it on your own hardware.
 {: .prompt-warning }
 
-The 9.4B is not the flagship in miniature — it is a supervised fine-tune of Qwen3.5-9B on MiMo-generated data across coding, cyber, general and visual tasks. The training mixture is published to one decimal place: 77.4B total tokens, of which 27.2B are loss-bearing, split Code 23.2B / Cyber 11.0B / General 22.0B / Visual 21.2B. Hugging Face lists it as an image-text-to-text model, and the community GGUF repo ships that 0.92 GB mmproj projector alongside the text quants, so vision travels with the small model too.
+The 9.4B is not the flagship in miniature. It is a supervised fine-tune of Qwen3.5-9B on MiMo-generated data across coding, cyber, general and visual tasks. The training mixture is published to one decimal place: 77.4B total tokens, of which 27.2B are loss-bearing, split Code 23.2B / Cyber 11.0B / General 22.0B / Visual 21.2B. Hugging Face lists it as an image-text-to-text model, and the community GGUF repo ships that 0.92 GB mmproj projector alongside the text quants, so vision travels with the small model too.
 
 ## The part that is genuinely unusual: the loop got published
 
@@ -84,7 +84,7 @@ The [technical report](https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/m
 | Stability trick | MoE router frozen during RL |
 | Anti-reward-hacking | adversarial screening, verifier cross-checks, offline trajectory audits |
 
-Two design decisions are worth stealing even if you never train a trillion-parameter model. First, **the grader gets real compute** — 12.7% of the Pro bill goes to agentic grading, because binary pass/fail cannot rank two solutions that both pass, and the groupwise grading scheme (rubrics synthesised offline from contrasting rollouts, advantage redistributed online toward higher-quality passing trajectories) is aimed at shorter, cheaper solutions rather than merely correct ones.
+Two design decisions are worth stealing even if you never train a trillion-parameter model. First, **the grader gets real compute**: 12.7% of the Pro bill goes to agentic grading, because binary pass/fail cannot rank two solutions that both pass, and the groupwise grading scheme (rubrics synthesised offline from contrasting rollouts, advantage redistributed online toward higher-quality passing trajectories) is aimed at shorter, cheaper solutions rather than merely correct ones.
 
 Second, **the environments are the product**. Xiaomi released roughly 7,000 verified training tasks with their verifiers:
 
@@ -99,7 +99,7 @@ Plus about 1,000 music-generation tasks, an end-to-end RL framework and a compos
 
 ## Can the released stack actually move a small model?
 
-Yes, and the report shows the receipts — which is the strongest part of the release. Starting from the *same* released 9.4B SFT checkpoint, Xiaomi ran domain-specific GRPO using the released environments. All eleven reported evaluations improved:
+Yes, and the report shows the receipts. That is the strongest part of the release. Starting from the *same* released 9.4B SFT checkpoint, Xiaomi ran domain-specific GRPO using the released environments. All eleven reported evaluations improved:
 
 | Benchmark | Qwen3.5-9B | MiMo 9.4B (SFT) | MiMo 9.4B (+ RL) |
 | --- | ---: | ---: | ---: |
@@ -117,13 +117,13 @@ Yes, and the report shows the receipts — which is the strongest part of the re
 
 † internal evaluation sets.
 
-The multi-harness experiment is the one to copy: jointly training across four mini-harnesses improved **all 21** dataset–harness pairs, including three held-out harnesses the model never trained on, with gains of 1.8 to 9.3 percentage points on the internal code bench. Generalisation across harnesses — not just across tasks — is the claim worth testing on your own stack, because it is the difference between a model that works in your eval script and one that works in your agent's runtime.
+The multi-harness experiment is the one to copy: jointly training across four mini-harnesses improved **all 21** dataset–harness pairs, including three held-out harnesses the model never trained on, with gains of 1.8 to 9.3 percentage points on the internal code bench. Generalisation across harnesses, and not just across tasks, is the claim worth testing on your own stack, because it is the difference between a model that works in your eval script and one that works in your agent's runtime.
 
 ## Reading the claims honestly
 
 Three caveats, in order of how much they should change your decisions.
 
-**The SFT step is uneven, and the card shows it.** Against plain Qwen3.5-9B, the distil gains +1.1 on SWE-bench Verified (60.0 → 61.1) — inside the noise band for avg@3 on that benchmark — while AutomationBench jumps 5.0 → 30.3 and JobBench 2.6 → 18.3. Read that as "agentic behaviour transferred, generic coding barely moved". If your task is ordinary code completion, the distil is not obviously better than its base model; if your task is tool use and computer control, it is.
+**The SFT step is uneven, and the card shows it.** Against plain Qwen3.5-9B, the distil gains +1.1 on SWE-bench Verified (60.0 → 61.1), which sits inside the noise band for avg@3 on that benchmark, while AutomationBench jumps 5.0 → 30.3 and JobBench 2.6 → 18.3. Read that as "agentic behaviour transferred, generic coding barely moved". If your task is ordinary code completion, the distil is not obviously better than its base model; if your task is tool use and computer control, it is.
 
 **Everything is self-reported, and the internal sets are marked as such.** Four of the eleven rows above are internal benches; the Pro-versus-closed comparison is Xiaomi's own testing. On the card, Pro leads Claude Opus 5 on AutomationBench (53.1 vs 50.3), ties it on Agents' Last Exam (31.6) and edges it on Terminal Bench 2.1 (89.9 vs 89.1) — and trails it clearly on ProgramBench (26.5 vs 37.0), Terminal Bench 4.0 (34.9 vs 49.0) and GDPval-AA 2.1 (1673 vs 1708). The "highest-ranked open-weight model at launch" line rests on a 46.32 score on the Artificial Analysis Intelligence Index v4.3, and it is a launch-day snapshot. We have not seen independent replication of any of these numbers yet.
 
@@ -131,7 +131,7 @@ Three caveats, in order of how much they should change your decisions.
 
 ## How to apply this
 
-1. **Verify before you commit bandwidth.** Check the licence and the parameter count yourself rather than trusting a blog post — including this one. The block below is stdlib Python, no dependencies, and it prints the licence, parameter count and a HEAD-verified file size straight from the Hugging Face API:
+1. **Verify before you commit bandwidth.** Check the licence and the parameter count yourself rather than trusting a blog post. That includes this one. The block below is stdlib Python, no dependencies, and it prints the licence, parameter count and a HEAD-verified file size straight from the Hugging Face API:
 
 {% raw %}
 ```python

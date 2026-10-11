@@ -8,7 +8,7 @@ image:
   alt: Smartphone running on-device ML with TensorFlow Lite
 ---
 
-## The Mobile-First Imperative
+## The mobile-first imperative
 
 If you're building AI for African users, you're building for mobile — period. The statistics are unambiguous:
 
@@ -20,13 +20,13 @@ If you're building AI for African users, you're building for mobile — period. 
 
 Cloud-based AI — where you send data to a server, run inference, and get a response — is not practical for most African use cases. Latency is high, data costs eat into limited budgets, and offline operation is mandatory in many areas.
 
-The alternative: **on-device machine learning**, where the model runs entirely on the user's phone. No server call. No data charge. No internet dependency. This is TensorFlow Lite's territory.
+The alternative: **on-device machine learning**, where the model runs entirely on the user's phone. No server call, no data charge, no internet dependency. This is TensorFlow Lite's territory.
 
-## TensorFlow Lite: The Essential Toolkit
+## TensorFlow Lite: the essential toolkit
 
 TensorFlow Lite (TFLite) is Google's lightweight solution for deploying ML models on mobile, embedded, and IoT devices. It converts standard TensorFlow models into an efficient format (`.tflite`) that runs on-device.
 
-### Why TFLite Dominates in Africa
+### Why TFLite dominates in Africa
 
 | Feature | Benefit for African Users |
 |---------|--------------------------|
@@ -37,11 +37,11 @@ TensorFlow Lite (TFLite) is Google's lightweight solution for deploying ML model
 | **Model optimization tools** | Quantization, pruning, clustering built in |
 | **60+ hardware delegates** | Qualcomm, MediaTek, Rockchip — all common in African phones |
 
-## The Model Conversion Pipeline
+## The model conversion pipeline
 
 Converting a TensorFlow model to TFLite involves three key steps:
 
-### 1. Train or Load a Model
+### 1. Train or load a model
 
 Start with a model architecture suited for mobile. EfficientNet-Lite, MobileNetV3, and TinyBERT are common choices.
 
@@ -110,7 +110,7 @@ class MLService(private val context: Context) {
 }
 ```
 
-## Quantization: Making Models Fit
+## Quantization: making models fit
 
 Quantization is the single most important optimization for mobile AI. It reduces model size and speeds up inference by using lower-precision numbers.
 
@@ -121,9 +121,9 @@ Quantization is the single most important optimization for mobile AI. It reduces
 | Dynamic range quantization | 75% | 0.5-1% drop | No latency improvement |
 | Weight clustering | 80-90% | 1-5% drop | Only reduces storage |
 
-### Real-World Example: Maize Disease Classifier
+### Real-world example: maize disease classifier
 
-Let's walk through a real African use case: classifying maize leaf diseases for smallholder farmers in Kenya. The original model:
+Consider a real African use case: classifying maize leaf diseases for smallholder farmers in Kenya. The original model:
 
 - **Architecture**: EfficientNet-B0
 - **Parameters**: 5.3M
@@ -139,7 +139,7 @@ After TFLite conversion with full int8 quantization:
 
 That 4.1 MB model loads instantly on any phone and doesn't need a network connection to diagnose a diseased leaf. The farmer takes a photo in the field and gets an answer in under 2 seconds.
 
-## Beyond TFLite: The On-Device ML Ecosystem
+## Beyond TFLite: the on-device ML ecosystem
 
 ### ML Kit (Google)
 Pre-built APIs for common tasks: text recognition, face detection, barcode scanning, image labeling. Runs on-device via TFLite underneath. Excellent for rapid prototyping.
@@ -150,9 +150,9 @@ If your model was trained in PyTorch, ONNX Runtime Mobile provides similar on-de
 ### ExecuTorch (Meta)
 Newer entrant specifically designed for mobile and edge. PyTorch-native, still maturing but promising for custom architectures.
 
-## Practical Patterns for African Deployments
+## Practical patterns for African deployments
 
-### Pattern 1: Model Bundling
+### Pattern 1: Model bundling
 
 Bundle the TFLite model in your APK (Android) or app bundle. Users don't download models — they come pre-installed. This avoids first-time data costs:
 
@@ -170,7 +170,7 @@ android {
 
 Place `maize_disease_model.tflite` in `src/main/assets/`.
 
-### Pattern 2: Fallback Inference Chain
+### Pattern 2: Fallback inference chain
 
 On low-end devices, certain operations may not be supported by the hardware delegate. Always implement a fallback chain:
 
@@ -191,7 +191,7 @@ fun runInferenceWithFallback(input: TensorImage): TensorImage {
 }
 ```
 
-### Pattern 3: Lazy Model Loading
+### Pattern 3: Lazy model loading
 
 Don't load all models at app startup. Load only when needed:
 
@@ -214,7 +214,7 @@ class MaizeDiagnosisService(context: Context) {
 }
 ```
 
-### Pattern 4: Sync-When-Available Updates
+### Pattern 4: Sync-when-available updates
 
 Newer model versions are downloaded when the user has a Wi-Fi connection:
 
@@ -240,19 +240,19 @@ class ModelUpdater(context: Context) {
 }
 ```
 
-## Common Pitfalls
+## Common pitfalls
 
-1. **Not testing on real devices**: The Google Colab TFLite emulator will NOT replicate the behavior of a Tecno Spark 10 running Android 12 Go Edition. Test on actual African-market phones.
+1. Not testing on real devices: The Google Colab TFLite emulator will NOT replicate the behavior of a Tecno Spark 10 running Android 12 Go Edition. Test on actual African-market phones.
 
-2. **Oversized input preprocessing**: Resizing a 12 MP camera image to 224×224 on a budget CPU takes 300-500ms. Use the CameraX ML Kit integration to get a direct feed of 224×224 images from the camera sensor.
+2. Oversized input preprocessing: Resizing a 12 MP camera image to 224×224 on a budget CPU takes 300-500ms. Use the CameraX ML Kit integration to get a direct feed of 224×224 images from the camera sensor.
 
-3. **Ignoring thermal throttling**: Continuous inference on a budget phone without a heat sink causes thermal throttling after 2-3 minutes. Batch predictions and cooldown periods are essential.
+3. Ignoring thermal throttling: Continuous inference on a budget phone without a heat sink causes thermal throttling after 2-3 minutes. Batch predictions and cooldown periods are essential.
 
-4. **Assuming GPU availability**: Only 30% of budget Android phones have usable GPU acceleration for ML. Always test CPU-only performance.
+4. Assuming GPU availability: Only 30% of budget Android phones have usable GPU acceleration for ML. Always test CPU-only performance.
 
-5. **APK size bloat**: A model >10 MB inside an APK will cause installation failures on phones with limited storage. Consider Google Play Feature Delivery (on-demand model downloads).
+5. APK size bloat: A model >10 MB inside an APK will cause installation failures on phones with limited storage. Consider Google Play Feature Delivery (on-demand model downloads).
 
-## The Bottom Line
+## The bottom line
 
 In African markets, cloud-first AI is a toy for the wealthy. On-device AI is the real thing. TensorFlow Lite, paired with good model optimization practices, can deliver production-quality ML on devices that cost $80. The next billion AI users won't interact with a cloud API — they'll open an app, point their camera, and get an answer, with zero bars of signal.
 

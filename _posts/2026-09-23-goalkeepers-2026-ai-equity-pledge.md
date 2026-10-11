@@ -14,7 +14,7 @@ image:
 > On September 14, 2026, the Gates Foundation announced it will spend at least US$1 billion over the next two years to widen access to AI, released alongside its tenth annual Goalkeepers Report, *Make This Matter: AI, Equity, and the Choice We Can't Delay*. The report's framing is unusually direct for a philanthropy: AI's trajectory "is not fixed," and the decisions that set it land in the next 12 to 18 months.
 {: .prompt-info }
 
-Most coverage of the announcement stopped at the dollar figure. For people who build and evaluate machine learning systems, the more interesting artifact is the evidence stack the report built to justify the spend — four deployed AI tools in Kenya, the United States, Sierra Leone, and India, each summarised by a single number.
+Most coverage of the announcement stopped at the dollar figure. For people who build and evaluate machine learning systems, the more interesting artifact is the evidence stack the report built to justify the spend: four deployed AI tools in Kenya, the United States, Sierra Leone, and India, each summarised by a single number.
 
 Those four numbers are good news. They are also four different kinds of measurement, and at least one sits next to a randomised trial that reported a null result on patient outcomes. This post unpacks what was announced, then walks through what each headline figure actually measures.
 
@@ -29,7 +29,7 @@ The commitment is a two-year spend of at least US$1 billion, distributed roughly
 | 10% | Agriculture | AI-generated advice for smallholder farmers, customised to their soil, weather, and crops |
 | 10% | Digital foundation | The substrate equitable AI needs, including datasets in languages current tools do not understand |
 
-The framing rests on three "building blocks" — make AI tools work in every language people speak; build tools for the contexts in which people will actually use them, with countries and communities deciding how data is managed; and invest in people and access so communities can shape how AI works for them.
+The framing rests on three "building blocks": make AI tools work in every language people speak; build tools for the contexts in which people will actually use them, with countries and communities deciding how data is managed; and invest in people and access so communities can shape how AI works for them.
 
 The report's own diagnosis of the market failure is worth quoting, because it is the same argument ML engineers make about training data:
 
@@ -46,11 +46,11 @@ The report quantifies why the default path under-serves most of the planet.
 | Diffusion slope | AI "gets sharper and more capable for the one billion (mostly English-speaking) people who already have access and stays the same for the other seven billion" | The report's endnote is explicit: these two figures are *illustrative, not precise measurements* |
 | Health workforce | Sub-Saharan Africa: one doctor per roughly 2,000 people; high-income countries: fewer than 200 | Closing the ratio would require more than two million additional doctors |
 
-Two things stand out. First, the workforce arithmetic is the reason clinical decision support is the flagship application rather than an abstract productivity play: the report's argument is that you cannot train your way out of a 2,000-to-1 ratio fast enough, so you give today's nurses and community health workers more reach. Second, the report is honest about the limits of its own numbers — it flags the one-billion/seven-billion framing as illustrative and points to World Bank and Microsoft AI Economy Institute work for the underlying access gap. That kind of footnote discipline is exactly what readers should demand from any AI deployment claim.
+Two things stand out. First, the workforce arithmetic is the reason clinical decision support is the flagship application rather than an abstract productivity play: the report's argument is that you cannot train your way out of a 2,000-to-1 ratio fast enough, so you give today's nurses and community health workers more reach. Second, the report is honest about the limits of its own numbers. It flags the one-billion/seven-billion framing as illustrative and points to World Bank and Microsoft AI Economy Institute work for the underlying access gap. That kind of footnote discipline is exactly what readers should demand from any AI deployment claim.
 
 ## The four numbers the report leads with
 
-The report's evidence page presents four foundation-supported deployments. Each is a real deployment with a measured result — not a simulated benchmark.
+The report's evidence page presents four foundation-supported deployments. Each is a real deployment with a measured result rather than a simulated benchmark.
 
 | Tool | Where | Headline figure | What it measures |
 |------|-------|-----------------|------------------|
@@ -65,9 +65,9 @@ Read as a set, they cover health, education, and agriculture — the 40/40/10 al
 
 ### 1. +16 percentage points is a decision metric, not a patient outcome
 
-The Goalkeepers figure describes diagnostic accuracy — whether the clinician's recorded diagnosis and treatment plan matched guideline-concordant care. That is a leading indicator, and it is a real one. It is not a claim that patients got better.
+The Goalkeepers figure describes diagnostic accuracy: whether the clinician's recorded diagnosis and treatment plan matched guideline-concordant care. That is a leading indicator, and it is a real one. It is not a claim that patients got better.
 
-That distinction matters because the same Kenyan deployment has been independently evaluated — and the results are more stratified than one number suggests.
+That distinction matters. The same Kenyan deployment has been independently evaluated, and the results are more stratified than one number suggests.
 
 | Study | Published | Design | Result |
 |-------|-----------|--------|--------|
@@ -106,7 +106,7 @@ detect a 10% relative drop -> two-arm total   146,287
 detect a 5% relative drop -> two-arm total   600,267
 ```
 
-At a 2.0% event rate, a trial of roughly 9,600 patients reaches about 66% of the sample needed to detect even a 30% relative reduction in treatment failure — and these figures ignore the design effect of cluster randomisation, which inflates them further. The null result is therefore best read as *underpowered for small effects*, not as *AI does not work*. Both readings are defensible; only the second one gets published as a headline.
+At a 2.0% event rate, a trial of roughly 9,600 patients reaches about 66% of the sample needed to detect even a 30% relative reduction in treatment failure. These figures also ignore the design effect of cluster randomisation, which inflates them further. The null result is therefore best read as *underpowered for small effects*, not as *AI does not work*. Both readings are defensible; only the second one gets published as a headline.
 
 ### 2. +6 months came from early pilots
 
@@ -114,13 +114,13 @@ The Kiddom figure is "early pilots across 21 middle schools," reported as six ad
 
 ### 3. +1.7 years is a trial result, so check the duration
 
-"Up to 1.7 years of typical learning progress" comes from an eight-week trial across 12 schools in Sierra Leone, and it is stated as a *maximum* ("up to"), not an average. Short-duration trials can produce large effects that partly reflect novelty and teacher attention — and the cited source is the DeepMind/Fab AI write-up, not a peer-reviewed paper. For an implementer, the question is not whether 1.7 years is impressive but whether the effect persists at month twelve.
+"Up to 1.7 years of typical learning progress" comes from an eight-week trial across 12 schools in Sierra Leone, and it is stated as a *maximum* ("up to"), not an average. Short-duration trials can produce large effects that partly reflect novelty and teacher attention. The cited source is the DeepMind/Fab AI write-up, not a peer-reviewed paper. For an implementer, the question is not whether 1.7 years is impressive but whether the effect persists at month twelve.
 
 ### 4. Under 18 cents per farmer hides a denominator
 
-MahaVISTAAR is the most concrete number in the set: more than 740,000 farmers enrolled, 70,000 joining monthly, and a government cost "less than 18 cents per farmer." The endnote defines the denominator precisely — government *operational cost per active user* as of late 2025. That is a cost-to-serve number, so it excludes the upstream build (data pipelines, model hosting, evaluation, and the agronomy that keeps answers correct). It is still a remarkable unit economics result for a service delivered by app, voice call, and chat in a farmer's own language; it is not a total cost of ownership.
+MahaVISTAAR is the most concrete number in the set: more than 740,000 farmers enrolled, 70,000 joining monthly, and a government cost "less than 18 cents per farmer." The endnote defines the denominator precisely: government *operational cost per active user* as of late 2025. That is a cost-to-serve number, so it excludes the upstream build (data pipelines, model hosting, evaluation, and the agronomy that keeps answers correct). It is still a remarkable unit economics result for a service delivered by app, voice call, and chat in a farmer's own language; it is not a total cost of ownership.
 
-One disclosure applies to all four: the report's endnotes record that the Gates Foundation has provided support to Penda Health, Kiddom, MahaVistaar, and to Fab AI, the implementing partner in Sierra Leone. A funder documenting its own portfolio is normal, and stating it plainly is the right behaviour — but readers should treat the set as *existence proofs of what is possible*, which is how the report describes it: "early evidence… They are not the only tools showing promise in these sectors."
+One disclosure applies to all four: the report's endnotes record that the Gates Foundation has provided support to Penda Health, Kiddom, MahaVistaar, and to Fab AI, the implementing partner in Sierra Leone. A funder documenting its own portfolio is normal, and stating it plainly is the right behaviour. Readers should still treat the set as *existence proofs of what is possible*, which is how the report describes it: "early evidence… They are not the only tools showing promise in these sectors."
 
 ## A checklist for any AI deployment claim
 
@@ -138,10 +138,10 @@ The four numbers transfer into a reusable discipline. Before citing an AI progra
 
 The allocation itself is a signal about which engineering problems now have funding attached:
 
-- **Multilingual data and evaluation.** 10% of the commitment — roughly $100 million — is earmarked for the "digital foundation," explicitly including datasets in languages today's tools do not understand. The binding constraint is not model weights; it is language coverage and evaluation sets built on how people actually speak, which is where local teams have an unfair advantage.
-- **Context grounding.** The report's second building block is about local epidemiology, available treatments, and clinic operating conditions. In practice that is retrieval, adaptation, and guardrail work on top of a base model, plus writing down what "correct" means in a specific facility.
-- **Human capacity.** The third block funds people who can evaluate tools, not just buy them. Skills in measurement design, data quality, and deployment monitoring are the ones the report explicitly says are missing.
-- **Prospective measurement.** The sharpest lesson from the Kenya evidence is that the field has moved past demo-ware. Asking "what is my endpoint, and is this study powered to detect it?" is now the difference between a pilot that scales and a pilot that stalls.
+- Multilingual data and evaluation: 10% of the commitment (roughly $100 million) is earmarked for the "digital foundation," explicitly including datasets in languages today's tools do not understand. The binding constraint is not model weights; it is language coverage and evaluation sets built on how people speak, which is where local teams have an unfair advantage.
+- Context grounding: the report's second building block is about local epidemiology, available treatments, and clinic operating conditions. In practice that is retrieval, adaptation, and guardrail work on top of a base model, plus writing down what "correct" means in a specific facility.
+- Human capacity: the third block funds people who can evaluate tools, not just buy them. Skills in measurement design, data quality, and deployment monitoring are the ones the report explicitly says are missing.
+- Prospective measurement: the sharpest lesson from the Kenya evidence is that the field has moved past demo-ware. Asking "what is my endpoint, and is this study powered to detect it?" is now the difference between a pilot that scales and a pilot that stalls.
 
 ## Key takeaways
 

@@ -27,7 +27,7 @@ In this post, we'll build an observability stack for AI agents covering:
 - **Replay** — re-running agent trajectories after fixes
 - **Monitoring** — alerts for anomalous agent behavior
 
-## Why Agent Debugging Sucks
+## Why agent debugging sucks
 
 Let's compare traditional debugging vs. agent debugging:
 
@@ -262,7 +262,7 @@ class ObservableReActAgent:
 
 ## Tracing with OpenTelemetry
 
-For production systems, use [OpenTelemetry](https://opentelemetry.io/) — the industry standard for distributed tracing:
+For production systems, use [OpenTelemetry](https://opentelemetry.io/). It's the industry standard for distributed tracing:
 
 {% raw %}
 ```python
@@ -368,7 +368,7 @@ class LangFuseAgent:
 ```
 {% endraw %}
 
-### What LangFuse Gives You
+### What LangFuse gives you
 
 - **Trace view**: See every LLM call, tool execution, and decision in a timeline
 - **Cost dashboard**: Per-session, per-user, per-model cost breakdowns
@@ -379,7 +379,7 @@ class LangFuseAgent:
 
 ## Agent Monitoring: Alerts and Anomalies
 
-Beyond logging, production agents need **monitoring** — alerts when things go wrong:
+Beyond logging, production agents need monitoring, with alerts that fire when things go wrong:
 
 {% raw %}
 ```python
@@ -466,7 +466,7 @@ class AgentMonitor:
 ```
 {% endraw %}
 
-## Practical Debugging Flow
+## Practical debugging flow
 
 When an agent produces a wrong answer, here's the debugging workflow:
 
@@ -497,7 +497,7 @@ Observability transforms agent development from guesswork into engineering. With
 - **Debug failures** by replaying traces with fixes
 - **Get alerted** when things go wrong in production
 
-**In the next post**, we'll take all of this and deploy agents to production — scaling, error handling, state persistence, and graceful degradation.
+In the next post, we'll take all of this and deploy agents to production. That means scaling, error handling, state persistence, and graceful degradation.
 
 ## Further Reading
 
