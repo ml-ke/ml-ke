@@ -13,14 +13,14 @@ image:
 
 ## Introduction
 
-While first-order methods like SGD and Adam dominate deep learning, **second-order optimization** methods offer powerful alternatives by exploiting **curvature information** from the loss landscape. In this comprehensive guide, we'll explore when and how to use these sophisticated techniques.
+While first-order methods like SGD and Adam dominate deep learning, **second-order optimization** methods offer an alternative by using **curvature information** from the loss landscape. This guide covers when and how to use them.
 
 > **Key Insight**
 > 
 > Second-order methods use the **Hessian matrix** (second derivatives) to understand the curvature of the loss function, enabling faster convergence with fewer iterations - though at higher computational cost per iteration.
 {: .prompt-info }
 
-## The Limitation of First-Order Methods
+## The limitation of first-order methods
 
 Recall that gradient descent uses only the **first derivative** (gradient):
 
@@ -30,10 +30,10 @@ $$
 
 This approach has fundamental limitations:
 
-1. **No curvature awareness** - treats all directions equally
-2. **Slow convergence** in ill-conditioned problems
-3. **Requires careful learning rate tuning**
-4. **Oscillates** in ravines and valleys
+1. No curvature awareness - treats all directions equally
+2. Slow convergence in ill-conditioned problems
+3. Requires careful learning rate tuning
+4. Oscillates in ravines and valleys
 
 ```mermaid
 graph LR
@@ -52,9 +52,9 @@ graph LR
     style E fill:#95e1d3
 ```
 
-## Newton's Method: The Foundation
+## Newton's method: the foundation
 
-### Mathematical Formulation
+### Mathematical formulation
 
 Newton's method uses a **second-order Taylor approximation** of the loss function:
 
@@ -74,17 +74,17 @@ $$
 \theta_{t+1} = \theta_t - H^{-1}(\theta_t) \nabla J(\theta_t)
 $$
 
-### Intuition: Adaptive Step Sizes
+### Intuition: adaptive step sizes
 
 The Hessian inverse $H^{-1}$ acts as an **adaptive learning rate matrix**:
 
-- **Large curvature** (steep valley) → small steps
-- **Small curvature** (flat plateau) → large steps
-- **Negative curvature** (saddle point) → direction reversal
+- Large curvature (steep valley) → small steps
+- Small curvature (flat plateau) → large steps
+- Negative curvature (saddle point) → direction reversal
 
 This is fundamentally different from first-order methods which use a scalar learning rate!
 
-### Python Implementation
+### Python implementation
 
 ```python
 import numpy as np
@@ -245,14 +245,14 @@ print(f"\nOptimal solution: {x_opt}")
 print(f"Optimal value: {rosenbrock(x_opt):.10f}")
 ```
 
-## The Computational Challenge
+## The computational challenge
 
-### Hessian Complexity
+### Hessian complexity
 
 For a model with $n$ parameters:
 
-- **Gradient**: $O(n)$ storage, $O(n)$ computation
-- **Hessian**: $O(n^2)$ storage, $O(n^3)$ inversion
+- Gradient: $O(n)$ storage, $O(n)$ computation
+- Hessian: $O(n^2)$ storage, $O(n^3)$ inversion
 
 For deep learning models with millions of parameters, this is **prohibitively expensive**!
 
@@ -261,19 +261,19 @@ For deep learning models with millions of parameters, this is **prohibitively ex
 > A model with 1 million parameters would require ~4 TB to store the Hessian matrix in memory. This makes exact Newton's method impractical for deep learning.
 {: .prompt-warning }
 
-## Quasi-Newton Methods: Practical Alternatives
+## Quasi-Newton methods: practical alternatives
 
-### L-BFGS: Limited-Memory BFGS
+### L-BFGS: limited-memory BFGS
 
 **L-BFGS** (Limited-memory Broyden-Fletcher-Goldfarb-Shanno) approximates the Hessian inverse using only gradient information from recent iterations.
 
-#### Key Ideas
+#### Key ideas
 
-1. **Don't compute Hessian** - approximate $H^{-1}$ implicitly
-2. **Use gradient history** - store only last $m$ gradient pairs
-3. **Two-loop recursion** - efficient computation of search direction
+1. Don't compute Hessian - approximate $H^{-1}$ implicitly
+2. Use gradient history - store only last $m$ gradient pairs
+3. Two-loop recursion - efficient computation of search direction
 
-#### Mathematical Framework
+#### Mathematical framework
 
 Instead of storing $H^{-1}$, L-BFGS maintains:
 
@@ -292,7 +292,7 @@ $$
 
 Where $\rho_k = \frac{1}{y_k^T s_k}$ and $V_k = I - \rho_k y_k s_k^T$
 
-### Complete L-BFGS Implementation
+### Complete L-BFGS implementation
 
 ```python
 from collections import deque
@@ -496,9 +496,9 @@ print(f"\nL-BFGS Optimal solution: {x_opt}")
 print(f"L-BFGS Optimal value: {rosenbrock(x_opt):.10f}")
 ```
 
-## Natural Gradient Descent
+## Natural gradient descent
 
-### The Information Geometry Perspective
+### The information geometry perspective
 
 **Natural Gradient** considers the geometry of the parameter space using the **Fisher Information Matrix**:
 
@@ -512,7 +512,7 @@ $$
 \theta_{t+1} = \theta_t - \alpha F^{-1}(\theta_t) \nabla J(\theta_t)
 $$
 
-### Why Natural Gradient?
+### Why natural gradient?
 
 Standard gradient descent is **not invariant** to reparameterization. Natural gradient uses the **Riemannian metric** defined by the Fisher matrix, making it invariant to parameter transformations.
 
@@ -620,7 +620,7 @@ class NaturalGradientOptimizer:
         return params_new
 ```
 
-## Comparison: When to Use Each Method
+## Comparison: when to use each method
 
 ```mermaid
 graph TD
@@ -644,7 +644,7 @@ graph TD
     style G fill:#ff6b6b
 ```
 
-### Decision Matrix
+### Decision matrix
 
 | Method | Best For | Pros | Cons | Memory |
 |--------|----------|------|------|--------|
@@ -658,9 +658,9 @@ graph TD
 > Consider using L-BFGS for final fine-tuning after pre-training with Adam. This combines the scalability of first-order methods with the fast convergence of second-order methods.
 {: .prompt-tip }
 
-## Practical Applications
+## Practical applications
 
-### 1. Logistic Regression with L-BFGS
+### 1. Logistic regression with L-BFGS
 
 ```python
 from scipy.optimize import minimize
@@ -692,7 +692,7 @@ print(f"Optimal weights: {result.x}")
 print(f"Final loss: {result.fun}")
 ```
 
-### 2. Neural Network Fine-Tuning
+### 2. Neural network fine-tuning
 
 ```python
 import torch
@@ -732,7 +732,7 @@ class LBFGSFineTuner:
         return self.model
 ```
 
-## Looking Ahead: Knowledge Graphs
+## Looking ahead: Knowledge Graphs
 
 While second-order methods excel at optimization, the next frontier in AI involves **structured knowledge representation**. In our upcoming series on **Knowledge Graphs**, we'll explore:
 
@@ -748,29 +748,29 @@ While second-order methods excel at optimization, the next frontier in AI involv
 
 ## Conclusion
 
-Second-order optimization methods offer powerful tools for specific scenarios:
+Second-order optimization methods are useful in specific scenarios:
 
-### Key Takeaways
+### Key takeaways
 
-1. **Newton's Method** - Quadratic convergence but $O(n^3)$ cost
-2. **L-BFGS** - Practical quasi-Newton for medium-scale problems
-3. **Natural Gradient** - Geometrically principled for probabilistic models
-4. **Hybrid Strategies** - Combine first and second-order methods
+1. Newton's method - quadratic convergence but $O(n^3)$ cost
+2. L-BFGS - practical quasi-Newton for medium-scale problems
+3. Natural gradient - geometrically principled for probabilistic models
+4. Hybrid strategies - combine first and second-order methods
 
-### When to Use Second-Order Methods
+### When to use second-order methods
 
-- ✅ **Small to medium models** (< 100k parameters)
-- ✅ **Batch optimization** (full dataset fits in memory)
-- ✅ **Fine-tuning** pre-trained models
-- ✅ **Convex or near-convex** problems
-- ✅ **High-precision** requirements
+- Small to medium models (< 100k parameters)
+- Batch optimization (full dataset fits in memory)
+- Fine-tuning pre-trained models
+- Convex or near-convex problems
+- High-precision requirements
 
-### When to Stick with First-Order
+### When to stick with first-order
 
-- ❌ **Large-scale deep learning** (millions of parameters)
-- ❌ **Stochastic/mini-batch** training
-- ❌ **Limited memory** environments
-- ❌ **Highly non-convex** landscapes
+- Large-scale deep learning (millions of parameters)
+- Stochastic/mini-batch training
+- Limited memory environments
+- Highly non-convex landscapes
 
 ## References
 

@@ -13,18 +13,18 @@ image:
 
 ## Introduction
 
-Knowledge Graphs represent facts as symbolic triples — `(head, relation, tail)`. But how do we feed these symbolic structures into neural networks? The answer is **Knowledge Graph Embeddings (KGE)** — learned vector representations that preserve graph structure in continuous space.
+Knowledge Graphs represent facts as symbolic triples: `(head, relation, tail)`. But how do we feed these symbolic structures into neural networks? The answer is **Knowledge Graph Embeddings (KGE)** — learned vector representations that preserve graph structure in continuous space.
 
 In this post, we'll implement three major KGE methods from scratch in PyTorch: **TransE**, **RotatE**, and **ComplEx**. We'll train them on a real-world dataset and evaluate on the **link prediction** task — predicting missing facts in the graph.
 
 > **Why Embeddings Matter**
 > 
-> Symbolic KGs are sparse, incomplete, and hard to generalize from. Embeddings map entities and relations into dense vectors where semantic similarity becomes distance in vector space — enabling link prediction, entity resolution, and downstream ML.
+> Symbolic KGs are sparse, incomplete, and hard to generalize from. Embeddings map entities and relations into dense vectors where semantic similarity becomes distance in vector space. That enables link prediction, entity resolution, and downstream ML.
 {: .prompt-info }
 
-## The Link Prediction Task
+## The link prediction task
 
-Before diving into models, we need to define our task:
+We need to define the task first:
 
 > **Link Prediction:** Given a KG with missing triples, predict whether `(h, r, t)` is a valid fact.
 
@@ -132,14 +132,14 @@ $$
 
 Where $\circ$ denotes element-wise complex multiplication, and $|r_i| = 1$ constrains each relation component to a unit modulus (a pure rotation).
 
-This enables RotatE to capture **three key relational patterns**:
+This enables RotatE to capture **three relational patterns**:
 
 | Pattern | Example | TransE | RotatE |
 |---------|---------|--------|--------|
-| **Symmetric** | `spouse_of` | ❌ | ✅ |
-| **Antisymmetric** | `parent_of` | ✅ | ✅ |
-| **Composition** | `uncle_of = brother_of ∘ parent_of` | ✅ | ✅ |
-| **Inversion** | `child_of = parent_of⁻¹` | ❌ | ✅ |
+| **Symmetric** | `spouse_of` | No | Yes |
+| **Antisymmetric** | `parent_of` | Yes | Yes |
+| **Composition** | `uncle_of = brother_of ∘ parent_of` | Yes | Yes |
+| **Inversion** | `child_of = parent_of⁻¹` | No | Yes |
 
 ```python
 class RotatE(nn.Module):
@@ -462,4 +462,4 @@ Knowledge Graph Embeddings transform symbolic triples into continuous vectors, e
 
 ---
 
-*Symbols become vectors, and vectors reveal relationships. That's the magic of KGE.* 🧠
+*Symbols become vectors, and vectors reveal relationships. That's the magic of KGE.*

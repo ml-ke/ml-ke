@@ -13,19 +13,19 @@ image:
 
 ## Introduction
 
-Most discussions of prompt injection focus on the obvious vectors: a user typing "Ignore previous instructions" into a chat window, or a malicious web page that an agent happens to browse. These are real threats, but they train our eyes on the *front door* — the direct text channel between human and LLM.
+Most discussions of prompt injection focus on the obvious vectors: a user typing "Ignore previous instructions" into a chat window, or a malicious web page that an agent happens to browse. These are real threats, but they train our eyes on the *front door*, the direct text channel between human and LLM.
 
 The more insidious attacks come through the **side doors**: PDF metadata fields, JSON API payloads, CSV rows imported for analysis, database records queried via natural-language interfaces. Structured data formats, not natural language, carry the vast majority of machine-to-machine communication in modern AI systems. And every one of them is a potential injection highway.
 
 > **Why structured data matters for injection**
-> LLMs treat all tokens in their context window as a single continuous stream. Whether a byte arrived via a system prompt, a RAG retrieval, a tool output, or a PDF metadata field makes no difference to the model — it's all just text to follow. Structured data formats don't get special "this is data, not instructions" treatment by default.
+> LLMs treat all tokens in their context window as a single continuous stream. Whether a byte arrived via a system prompt, a RAG retrieval, a tool output, or a PDF metadata field makes no difference to the model. It's all just text to follow. Structured data formats don't get special "this is data, not instructions" treatment by default.
 > {: .prompt-danger }
 
-In this post, we walk through **four structured data formats** that attackers routinely exploit for prompt injection: PDF metadata, JSON fields, CSV rows, and database records. For each, we show working Python exploit code, explain why standard sanitization fails, and lay out defenses.
+Attackers routinely exploit **four structured data formats** for prompt injection: PDF metadata, JSON fields, CSV rows, and database records. For each, we show working Python exploit code, explain why standard sanitization fails, and lay out defenses.
 
 ## The Blind Spot: Structured Data Is Still Just Text to an LLM
 
-Before we dive into exploits, let's understand the core architectural blind spot. When an LLM processes a request, its context window is a flat sequence of tokens. Whether a token came from:
+The reason all of this works is a core architectural blind spot. When an LLM processes a request, its context window is a flat sequence of tokens. Whether a token came from:
 
 - A system prompt ("You are a helpful assistant...")
 - A user message ("What's the capital of France?")
@@ -36,11 +36,11 @@ Before we dive into exploits, let's understand the core architectural blind spot
 
 ...makes no difference to the transformer's attention mechanism. **The model has no intrinsic capability to distinguish instruction from data** based on origin. This is fundamentally different from SQL, where parameterized queries keep the query structure separate from user-supplied values. LLMs have no equivalent of a prepared statement.
 
-Greshake et al. demonstrated this definitively in their landmark 2023 paper *"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"* [1]. They showed that LLM-integrated applications "blur the line between data and instructions" — and that strategically injecting prompts into data that gets retrieved at inference time enables remote exploitation without direct access to the chat interface.
+Greshake et al. demonstrated this definitively in their landmark 2023 paper *"Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"* [1]. They showed that LLM-integrated applications "blur the line between data and instructions", and that strategically injecting prompts into data that gets retrieved at inference time enables remote exploitation without direct access to the chat interface.
 
 ## Attack 1: PDF Metadata Injection
 
-PDF documents are one of the most common file formats ingested by enterprise RAG pipelines. Legal firms, financial institutions, and healthcare organizations all process PDFs at scale. But PDFs carry **rich metadata** — author names, titles, subjects, keywords, creation dates — that is almost never sanitized by ingestion pipelines.
+PDF documents are one of the most common file formats ingested by enterprise RAG pipelines. Legal firms, financial institutions, and healthcare organizations all process PDFs at scale. But PDFs carry **rich metadata** (author names, titles, subjects, keywords, creation dates) that is almost never sanitized by ingestion pipelines.
 
 ### The Exploit
 
@@ -115,19 +115,19 @@ print(extracted_content[:500])
 # the injected instruction instead.
 ```
 
-### Why It Works
+### Why it works
 
-Standard PDF parsers (`PyPDF2`, `pdfplumber`, `pypdf`, `pdfminer`, even cloud-based parsers like Azure Document Intelligence) typically return metadata alongside page text. Most RAG pipelines call `extract_text()` or equivalent and feed the entire result into the embedding model and context window. **No parser warns you that a metadata field contains an instruction for the LLM** — because parsers don't know about LLMs.
+Standard PDF parsers (`PyPDF2`, `pdfplumber`, `pypdf`, `pdfminer`, even cloud-based parsers like Azure Document Intelligence) typically return metadata alongside page text. Most RAG pipelines call `extract_text()` or equivalent and feed the entire result into the embedding model and context window. **No parser warns you that a metadata field contains an instruction for the LLM**. Parsers don't know about LLMs.
 
 The OWASP LLM Prompt Injection Prevention Cheat Sheet explicitly lists "hidden text in images using steganography or invisible characters" and metadata fields as injection vectors [2]. Yet in practice, few production pipelines filter metadata.
 
 > **Real-world impact**
-> In August 2024, a prompt injection attack against Slack AI demonstrated that embedding instructions in channel messages — effectively a structured data injection — could trigger data exfiltration [3]. The same technique applied to PDF metadata would work against any enterprise RAG pipeline that ingests uploaded documents.
+> In August 2024, a prompt injection attack against Slack AI demonstrated that embedding instructions in channel messages (effectively a structured data injection) could trigger data exfiltration [3]. The same technique applied to PDF metadata would work against any enterprise RAG pipeline that ingests uploaded documents.
 > {: .prompt-warning }
 
 ## Attack 2: JSON Field Injection
 
-JSON is the lingua franca of modern APIs. LLM applications ingest JSON constantly — tool call responses, API payloads, structured configuration files, database query results. A single JSON value can carry an entire injection payload without breaking the document's validity.
+JSON is the lingua franca of modern APIs. LLM applications ingest JSON constantly: tool call responses, API payloads, structured configuration files, database query results. A single JSON value can carry an entire injection payload without breaking the document's validity.
 
 ### The Exploit
 
@@ -197,7 +197,7 @@ api_response = craft_json_api_response()
 agent_process_json(api_response, "Show me the user directory for department 42")
 ```
 
-### The JSON Injection Taxonomy
+### The JSON injection taxonomy
 
 | Injection Point | How It's Triggered | Bypasses | Real-World Example |
 |----------------|-------------------|----------|-------------------|
@@ -210,7 +210,7 @@ The critical insight: **JSON parsers validate structure, not semantics**. The pa
 
 ## Attack 3: CSV Row Injection
 
-CSV files are deceptively dangerous. They look harmless — just rows and columns of data. But when an LLM agent processes a CSV for analysis, every cell becomes part of the context window. A single crafted row can redirect the entire analysis.
+CSV files are deceptively dangerous. They look harmless, just rows and columns of data. But when an LLM agent processes a CSV for analysis, every cell becomes part of the context window. A single crafted row can redirect the entire analysis.
 
 ### The Exploit
 
@@ -279,15 +279,15 @@ print("=== CSV analysis context (first 600 chars) ===")
 print(context[:600])
 ```
 
-### Why CSV Is Especially Dangerous
+### Why CSV is especially dangerous
 
 Three properties make CSV injection uniquely effective:
 
-1. **No structural distinction** — A CSV cell is just a string. Unlike JSON where keys and values are explicit, CSV has no way to say "this cell is a label, that cell is data." Every cell looks the same to the parser.
+1. **No structural distinction**: A CSV cell is just a string. Unlike JSON where keys and values are explicit, CSV has no way to say "this cell is a label, that cell is data." Every cell looks the same to the parser.
 
-2. **Mass ingestion** — RAG pipelines ingest CSV files by the thousands. A single malicious file among thousands of legitimate ones easily escapes notice.
+2. **Mass ingestion**: RAG pipelines ingest CSV files by the thousands. A single malicious file among thousands of legitimate ones easily escapes notice.
 
-3. **Analysis agents have tool access** — The LLM analyzing the CSV typically has Python execution or API-call capabilities. The injected instruction to exfiltrate data hits an agent that can actually do it.
+3. **Analysis agents have tool access**: The LLM analyzing the CSV typically has Python execution or API-call capabilities. The injected instruction to exfiltrate data hits an agent that can actually do it.
 
 > **The PoisonedRAG connection**
 > The PoisonedRAG attack (Zou et al., USENIX Security 2025) demonstrated that injecting just 5 malicious texts into a knowledge base of millions achieves 97% attack success rates against PaLM 2 on NQ, 99% on HotpotQA [5]. CSV files are an ideal delivery vehicle for these poisoned texts because they ingest silently and blend into large datasets.
@@ -389,14 +389,14 @@ nl_to_sql_agent("Show me all active patients and their conditions", conn)
 conn.close()
 ```
 
-### The Two-Phase Injection
+### The two-phase injection
 
 What makes database record injection especially powerful is the **two-phase deception**:
 
 - **Phase 1**: The user's innocent query generates legitimate SQL. The database returns normal-looking records plus one poisoned record.
 - **Phase 2**: The LLM processes *all* returned records as context. The poisoned record's field value contains an instruction that the LLM follows during summarization.
 
-The Sec4AI4Sec / ICSE 2025 paper on Prompt-to-SQL injections [6] documented this exact vulnerability: "unsanitized user prompts can lead to SQL injection attacks... [and] indirect attacks by poisoning database records with crafted content." The poisoned content doesn't need to be injected via SQL injection — it can be placed in the database through any application workflow, then triggered when the LLM queries that table.
+The Sec4AI4Sec / ICSE 2025 paper on Prompt-to-SQL injections [6] documented this exact vulnerability: "unsanitized user prompts can lead to SQL injection attacks... [and] indirect attacks by poisoning database records with crafted content." The poisoned content doesn't need to be injected via SQL injection. It can be placed in the database through any application workflow, then triggered when the LLM queries that table.
 
 ```mermaid
 flowchart TB
@@ -428,9 +428,9 @@ flowchart TB
     style TC fill:#ff4444,color:#fff
 ```
 
-## Why Standard Sanitization Fails
+## Why standard sanitization fails
 
-Traditional input sanitization was designed for **injection into interpreters** — SQL, shell, LDAP. The defense is structural: parameterized queries, prepared statements, escaping special characters. These techniques separate **code from data** at the protocol level.
+Traditional input sanitization was designed for **injection into interpreters**: SQL, shell, LDAP. The defense is structural: parameterized queries, prepared statements, escaping special characters. These techniques separate **code from data** at the protocol level.
 
 LLM context injection is fundamentally different. There is no interpreter boundary to exploit and no special characters to escape. The "interpreter" (the transformer) treats all input as equal. Sanitization strategies that work for SQL fail for prompt injection because:
 
@@ -443,7 +443,7 @@ LLM context injection is fundamentally different. There is no interpreter bounda
 | **Input validation at user layer** | Structured data bypasses user-input validation entirely (it enters via RAG, tool outputs, DB queries) |
 
 > **The Prepared Statement Analogy**
-> SQL injection was solved by separating query structure from data values via prepared statements. LLMs have no equivalent mechanism. The StruQ paper (2024) [7] attempts to create one by fine-tuning models to only follow instructions in the *prompt portion* of a query, treating everything else as data — but this approach hasn't been widely adopted and doesn't defend against structured data that gets concatenated into the prompt portion by the application layer.
+> SQL injection was solved by separating query structure from data values via prepared statements. LLMs have no equivalent mechanism. The StruQ paper (2024) [7] attempts to create one by fine-tuning models to only follow instructions in the *prompt portion* of a query, treating everything else as data. But this approach hasn't been widely adopted and doesn't defend against structured data that gets concatenated into the prompt portion by the application layer.
 > {: .prompt-tip }
 
 ## Defensive Patterns
@@ -485,7 +485,7 @@ def build_isolated_context(user_message: str, retrieved_docs: list) -> str:
 """
 ```
 
-This is not a silver bullet — sufficiently sophisticated injections can still break through — but it raises the bar significantly.
+This is not a silver bullet. Sufficiently sophisticated injections can still break through, but it raises the bar significantly.
 
 ### 2. Pre-Processing Classifier
 
@@ -550,7 +550,7 @@ def safe_pdf_extract(pdf_bytes: bytes) -> str:
 > No single defense stops structured data injection. You need layering: strip metadata at ingestion → tag provenance in context → run pre-processing classifiers → use structured prompt templates → monitor for anomalous LLM behavior at runtime. We covered runtime observability in [AI Agent Observability]({% post_url 2026-06-01-prompt-injection-llm-security %}), and RAG-specific defenses in [RAG Security: The Hidden Attack Surface]({% post_url 2026-06-01-rag-security-attacks %}).
 > {: .prompt-tip }
 
-## Real-World Exploits Timeline
+## Real-world exploits timeline
 
 | Date | Incident | Format | Impact |
 |------|----------|--------|--------|
@@ -598,4 +598,4 @@ def safe_pdf_extract(pdf_bytes: bytes) -> str:
 
 ---
 
-*Your structured data pipeline is a prompt injection highway. Sanitize your metadata, isolate your context, and never assume a JSON value is just data.* 🔒
+*Your structured data pipeline is a prompt injection highway. Sanitize your metadata, isolate your context, and never assume a JSON value is just data.*

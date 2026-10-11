@@ -15,14 +15,14 @@ image:
 
 Every ML pipeline has secrets: OpenAI API keys, Hugging Face tokens, database passwords, cloud service credentials, model registry auth tokens, and Weights & Biases API keys. A typical training pipeline might touch **15-20 distinct secrets** before producing a single model artifact.
 
-The LiteLLM supply chain attack (March 2026) exploited exactly this surface — a malicious `.pth` file in a dependency harvested `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `HF_TOKEN`, and cloud credentials from every environment that imported the package.
+The LiteLLM supply chain attack (March 2026) exploited exactly this surface: a malicious `.pth` file in a dependency harvested `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `HF_TOKEN`, and cloud credentials from every environment that imported the package.
 
 > **The Secrets Problem**
 > 
 > ML pipelines amplify the secrets management challenge compared to traditional software: they run in ephemeral environments (training jobs, notebooks, CI runners), need access to multiple third-party APIs, and often have secrets passed through multiple layers (env vars → config files → code).
 {: .prompt-danger }
 
-## The ML Secrets Attack Surface
+## The ML secrets attack surface
 
 ```mermaid
 graph LR
@@ -43,7 +43,7 @@ graph LR
     style L fill:#ff6b6b
 ```
 
-### Common ML Secrets Exposure Vectors
+### Common ML secrets exposure vectors
 
 | Vector | Example | Risk |
 |--------|---------|------|
@@ -54,7 +54,7 @@ graph LR
 | **Environment inheritance** | Secrets from dev environment leak into training jobs | Over-privileged access |
 | **Dependency injection** | Malicious package reads `os.environ` (LiteLLM pattern) | All secrets compromised |
 
-## The LiteLLM Attack: A Secrets Case Study
+## The LiteLLM attack: a secrets case study
 
 The March 2026 LiteLLM supply chain attack (covered in our [MLSecOps post]({% post_url 2026-06-01-mlsecops-pipeline-security %})) specifically targeted ML secrets:
 
@@ -97,7 +97,7 @@ The attack worked because:
 > If a single `print(os.environ)` in any of your dependencies would leak every credential your ML pipeline needs, you have a secrets management problem.
 {: .prompt-warning }
 
-## Solution 1: HashiCorp Vault for ML Pipelines
+## Solution 1: HashiCorp Vault for ML pipelines
 
 HashiCorp Vault provides dynamic, audited, time-limited secrets. Here's how to integrate it with ML training:
 
@@ -165,7 +165,7 @@ class VaultMLSecrets:
             return f.read().strip()
 ```
 
-### Vault Integration in Training Scripts
+### Vault integration in training scripts
 
 ```python
 # train.py — using Vault for secrets instead of env vars
@@ -196,14 +196,14 @@ def main():
 > 
 > | Property | Env Vars | Vault |
 > |----------|----------|-------|
-> | Time-limited | ❌ Forever valid | ✅ 1 hour expiry |
-> | Audited access | ❌ No audit trail | ✅ Every read logged |
-> | Rotation | ❌ Manual, risky | ✅ Automated, versioned |
-> | Least privilege | ❌ All env vars visible | ✅ Per-pipeline scoping |
-> | Incident response | ❌ Rotate everything manually | ✅ Revoke one path |
+> | Time-limited | No: forever valid | Yes: 1 hour expiry |
+> | Audited access | No: no audit trail | Yes: every read logged |
+> | Rotation | No: manual, risky | Yes: automated, versioned |
+> | Least privilege | No: all env vars visible | Yes: per-pipeline scoping |
+> | Incident response | No: rotate everything manually | Yes: revoke one path |
 {: .prompt-tip }
 
-## Solution 2: Secrets Scanning in CI/CD
+## Solution 2: Secrets scanning in CI/CD
 
 ```yaml
 # .github/workflows/secrets-scan.yml
@@ -243,7 +243,7 @@ jobs:
           grep -q ".env" .gitignore || echo "WARNING: .env not in .gitignore"
 ```
 
-## Solution 3: Training Job Secrets Isolation
+## Solution 3: Training job secrets isolation
 
 ```python
 # secrets_manager.py — isolate secrets to minimial needed scope
@@ -286,7 +286,7 @@ with scoped_secrets(ALLOWED_FOR_TRAINING):
     trainer.train()
 ```
 
-## ML Secrets Maturity Model
+## ML secrets maturity model
 
 | Level | State | Characteristics |
 |-------|-------|-----------------|
@@ -295,7 +295,7 @@ with scoped_secrets(ALLOWED_FOR_TRAINING):
 | **3: Dynamic** | Time-limited credentials | Vault with short TTLs, automatic rotation, audit logging |
 | **4: Zero-Trust** | Just-in-time access | Every pipeline request is authenticated, authorized, and audited |
 
-## Incident Response: Secrets Compromised
+## Incident response: secrets compromised
 
 If you suspect a secrets leak:
 
@@ -328,7 +328,7 @@ def emergency_secret_rotation(secret_manager):
 
 Secrets management is the most overlooked aspect of ML pipeline security. The LiteLLM attack demonstrated that a single compromised dependency can exfiltrate every credential your pipeline uses. Moving from env-var-based secrets to a dynamic, audited, time-limited system like Vault is the single highest-ROI security investment you can make for your ML infrastructure.
 
-### Key Takeaways
+### Key takeaways
 
 | Problem | Solution |
 |---------|----------|
@@ -350,4 +350,4 @@ Secrets management is the most overlooked aspect of ML pipeline security. The Li
 
 ---
 
-*Your ML pipeline's strongest link is its secrets management. Make sure it's not the weakest.* 🔐
+*Your ML pipeline's strongest link is its secrets management. Make sure it's not the weakest.*

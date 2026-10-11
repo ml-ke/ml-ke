@@ -11,14 +11,14 @@ image:
 ## Two questions that look alike
 
 > **Completeness is not correctness.**
-> A file can arrive short, replayed, altered or internally balanced — and only one of those is a *reconciliation* problem. Control totals answer the pre-posting question (*is this what the sender sent?*); breaks answer the post-posting one (*does my ledger agree with the other side?*).
+> A file can arrive short, replayed, altered or internally balanced. Only one of those is a *reconciliation* problem. Control totals answer the pre-posting question (*is this what the sender sent?*); breaks answer the post-posting one (*does my ledger agree with the other side?*).
 {: .prompt-info }
 
 [Reconciliation analytics](/posts/reconciliation-analytics-fintech/) owns *what to compare*, [anomaly detection](/posts/anomaly-detection-reconciliation/) *what to look for*, [real-time alerting](/posts/real-time-reconciliation-alerting/) the paging path, [outage post-mortems](/posts/fintech-outage-post-mortem/) what an incident leaves behind. This post is the gate in front of them.
 
 ## The four numbers in a trailer record
 
-Every mature clearing scheme carries its own arithmetic witness. An ACH batch ends with a **Batch Control Record** — Entry/Addenda Count, Entry Hash (a hash total of routing numbers, right-justified to ten digits) and Total Debit and Credit Entry Dollar Amounts — and the file ends with a **File Control Record** aggregating them ([ACH format](https://www.timetrex.com/glossary/what-is-an-ach-file)). Bacs returns a **Submission Report** with transaction count and total value, then an **Input Report** with the detail — the report a payroll team checks to confirm "the expected number of payments and total value match their payroll summary" ([paygate](https://www.paygate.uk/blog/bacs-payment-reports-guide/), [GoCardless](https://www.gocardless.com/direct-debit/receiving-messages)).
+Every mature clearing scheme carries its own arithmetic witness. An ACH batch ends with a **Batch Control Record**: Entry/Addenda Count, Entry Hash (a hash total of routing numbers, right-justified to ten digits) and Total Debit and Credit Entry Dollar Amounts. The file ends with a **File Control Record** aggregating them ([ACH format](https://www.timetrex.com/glossary/what-is-an-ach-file)). Bacs returns a **Submission Report** with transaction count and total value, then an **Input Report** with the detail: the report a payroll team checks to confirm "the expected number of payments and total value match their payroll summary" ([paygate](https://www.paygate.uk/blog/bacs-payment-reports-guide/), [GoCardless](https://www.gocardless.com/direct-debit/receiving-messages)).
 
 | Control total | Question answered | Blind spot |
 |---------------|-------------------|------------|
@@ -27,7 +27,7 @@ Every mature clearing scheme carries its own arithmetic witness. An ACH batch en
 | **Debit total** | Does one side equal the sender's figure? | Extra records the sender counted too |
 | **Credit total** | Is the file two-sided, `DR == CR`? | A valid payment sent twice |
 
-Hash totals are the underrated number: summing account numbers yields a meaningless value, which is the point — it fingerprints the *identity and count* of records, not their value. Drop a record and count and hash move; alter an amount and the debit total moves; replay and the sequence number moves.
+Hash totals are the underrated number: summing account numbers yields a meaningless value, which is the point: it fingerprints the *identity and count* of records, not their value. Drop a record and count and hash move; alter an amount and the debit total moves; replay and the sequence number moves.
 
 ## The five gates, and what each one catches
 
@@ -41,7 +41,7 @@ Each gate must be a **refusal**: a total an operator can override is documentati
 | **G4** file control record | Do the batches sum to the file header? | Partial file, mis-chunked upload | Refuse the file |
 | **G5** two-sided | Is the file balanced? | One-sided entries, corrupted direction codes | Refuse; an unbalanced file is not postable |
 
-Kenya's KEPSS rules show the item-level half of the same discipline: a bank receiving a multiple third-party payment with a problem in one payment **must not return the whole message** — only the problem payment, quoting main and related references, the rest applied as instructed ([KEPSS §11.3(f)](https://www.centralbank.go.ke/wp-content/uploads/2023/08/Revised-KEPSS-Rules-and-Procedures.pdf)). Refuse the item, settle the batch, track the difference.
+Kenya's KEPSS rules show the item-level half of the same discipline: a bank receiving a multiple third-party payment with a problem in one payment **must not return the whole message**: only the problem payment, quoting main and related references, the rest applied as instructed ([KEPSS §11.3(f)](https://www.centralbank.go.ke/wp-content/uploads/2023/08/Revised-KEPSS-Rules-and-Procedures.pdf)). Refuse the item, settle the batch, track the difference.
 
 ## A control-total failure is not a break
 
@@ -49,20 +49,20 @@ Kenya's KEPSS rules show the item-level half of the same discipline: a bank rece
 |---|---|---|
 | **When** | Before posting | After posting |
 | **Unit** | File or batch | An item, or an aggregate cell |
-| **Signal** | Binary — refused | Graded — a value that should be zero |
+| **Signal** | Binary: refused | Graded: a value that should be zero |
 | **Action** | Do not post; nothing moves | Post; carry the difference with an owner and an age |
-| **Clock** | The sender's retransmission window | The customer's — RBI's T+1 reversal, or ₹100/day |
+| **Clock** | The sender's retransmission window | The customer's (RBI's T+1 reversal, or ₹100/day) |
 | **Cost** | A delayed batch | An aged break, or someone else's asset |
 
 ## The incidents were not exotic
 
-**Citi, April 2024 — $81 trillion.** An employee pasted an account number into the amount field, turning a **$280** transfer into **$81 trillion** between two internal ledger accounts. A second employee checking it missed it too; a third caught it about 90 minutes after processing, and the entry was reversed hours later. No funds left the bank; it went to the Federal Reserve and the OCC as a "near miss" ([CBS](https://www.cbsnews.com/news/citi-mistakenly-credited-81-trillion-to-customer-account/), [NYT](https://www.nytimes.com/2025/02/28/nyregion/citigroup-81-trillion-error.html)). Citi's wording is the tell — "our **detective** controls promptly identified the inputting error". Detection after posting is downstream of a total that would have caught it.
+**Citi, April 2024: $81 trillion.** An employee pasted an account number into the amount field, turning a **$280** transfer into **$81 trillion** between two internal ledger accounts. A second employee checking it missed it too; a third caught it about 90 minutes after processing, and the entry was reversed hours later. No funds left the bank; it went to the Federal Reserve and the OCC as a "near miss" ([CBS](https://www.cbsnews.com/news/citi-mistakenly-credited-81-trillion-to-customer-account/), [NYT](https://www.nytimes.com/2025/02/28/nyregion/citigroup-81-trillion-error.html)). Citi's wording is the tell: "our **detective** controls promptly identified the inputting error". Detection after posting is downstream of a total that would have caught it.
 
-**Citi, August 2020 — Revlon.** As agent for a 2016 Revlon loan the bank intended a **$7.8 million** interest payment and wired **just under $900 million** as a payoff; lenders refused to return funds, producing a c. **$500 million** loss — a "massive, unforced error" in its CEO's words ([Reuters](https://www.reuters.com/article/us-citigroup-revlon-lawsuit/citigroup-cannot-recoup-revlon-payouts-after-nearly-900-million-gaffe-u-s-judge-idUSKBN2AG1TJ/), [Maryland Smith](https://www.rhsmith.umd.edu/research/lessons-citis-revlon-error)). A total checked against scheduled interest plus fees would have failed by two orders of magnitude.
+**Citi, August 2020: Revlon.** As agent for a 2016 Revlon loan the bank intended a **$7.8 million** interest payment and wired **just under $900 million** as a payoff; lenders refused to return funds, producing a c. **$500 million** loss, a "massive, unforced error" in its CEO's words ([Reuters](https://www.reuters.com/article/us-citigroup-revlon-lawsuit/citigroup-cannot-recoup-revlon-payouts-after-nearly-900-million-gaffe-u-s-judge-idUSKBN2AG1TJ/), [Maryland Smith](https://www.rhsmith.umd.edu/research/lessons-citis-revlon-error)). A total checked against scheduled interest plus fees would have failed by two orders of magnitude.
 
-**Citi, 2 May 2022 — the fat finger.** A trader meant to sell **$58 million** of equities, keyed `58m` into *quantity* instead of *notional*, and built a 349-stock basket with a **$444 billion** notional. Systems blocked $255bn; the remaining **$189bn** reached the algorithm, which sold **$1.4bn** before the trader cancelled 15 minutes later — a **$48 million** loss. Regulators fined Citigroup Global Markets **£27.77M** (FCA) and **£33.88M** (PRA) — **£61.6m** — noting the trader could override a pop-up alert *without scrolling through the alerts inside it* ([Guardian](https://www.theguardian.com/business/article/2024/may/22/citigroup-fined-over-fat-finger-error-mistaken-orders), [Reuters](https://www.reuters.com/business/finance/citi-fined-79-mln-by-uk-regulators-over-trading-control-failures-2024-05-22/)). The limit existed; the enforcement did not.
+**Citi, 2 May 2022: the fat finger.** A trader meant to sell **$58 million** of equities, keyed `58m` into *quantity* instead of *notional*, and built a 349-stock basket with a **$444 billion** notional. Systems blocked $255bn; the remaining **$189bn** reached the algorithm, which sold **$1.4bn** before the trader cancelled 15 minutes later, a **$48 million** loss. Regulators fined Citigroup Global Markets **£27.77M** (FCA) and **£33.88M** (PRA), **£61.6m** in total, noting the trader could override a pop-up alert *without scrolling through the alerts inside it* ([Guardian](https://www.theguardian.com/business/article/2024/may/22/citigroup-fined-over-fat-finger-error-mistaken-orders), [Reuters](https://www.reuters.com/business/finance/citi-fined-79-mln-by-uk-regulators-over-trading-control-failures-2024-05-22/)). The limit existed; the enforcement did not.
 
-**Deutsche Bank, 16 March 2018 — €28 billion.** In routine derivatives dealings the bank transferred **€28bn (≈$34bn)** to its own account at Eurex — more than its entire **€24bn** market capitalisation — an operation "meant to involve a far smaller sum, which the bank has not revealed". It was corrected the same day, and the ECB asked for clarification ([AFP](https://phys.org/news/2018-04-oopsdeutsche-bank-28bn-euro-error.amp), [Reuters](https://www.reuters.com/article/us-ecb-deutsche-bank/ecb-asks-deutsche-bank-to-clarify-mistaken-34-billion-transfer-report-idUSKBN1HR2SV/)).
+**Deutsche Bank, 16 March 2018: €28 billion.** In routine derivatives dealings the bank transferred **€28bn (≈$34bn)** to its own account at Eurex (more than its entire **€24bn** market capitalisation), an operation "meant to involve a far smaller sum, which the bank has not revealed". It was corrected the same day, and the ECB asked for clarification ([AFP](https://phys.org/news/2018-04-oopsdeutsche-bank-28bn-euro-error.amp), [Reuters](https://www.reuters.com/article/us-ecb-deutsche-bank/ecb-asks-deutsche-bank-to-clarify-mistaken-34-billion-transfer-report-idUSKBN1HR2SV/)).
 
 Four times, one shape: a plausible instruction, a pre-computed number nobody forced to agree, and a system happy to move the money.
 
@@ -239,7 +239,7 @@ breaks by age    n    value (KES)  age-share  effort h
 aged > 7 days: 20 of 88 breaks, KES 6,880,000 (19.7% of value); write-off risk KES 1,873,000
 ```
 
-Four of the five faults never reach the ledger, each named by the gate that refused it. The fifth — a duplicate created *inside* the batch, both legs present, honestly counted, netting to zero — **passes every gate**, because each gate asks whether the file is faithful to itself, not whether the batch should have been sent. Control totals bound *mechanical* failure to zero; only the other side of the book — the beneficiary's statement, the counterparty's file — sees a well-formed duplicate.
+Four of the five faults never reach the ledger, each named by the gate that refused it. The fifth (a duplicate created *inside* the batch, both legs present, honestly counted, netting to zero) **passes every gate**, because each gate asks whether the file is faithful to itself, not whether the batch should have been sent. Control totals bound *mechanical* failure to zero; only the other side of the book (the beneficiary's statement, the counterparty's file) sees a well-formed duplicate.
 
 ## Break aging: the cost that survives the gates
 
@@ -247,25 +247,25 @@ A break is not an anomaly with a resolution time; it is a **liability with an ow
 
 | Bucket | Meaning | Handling |
 |--------|---------|----------|
-| **< 1 day** | Timing — the other side has not posted | Auto-retry next cycle |
-| **1–7 days** | Real difference — reference, fee, FX, wrong account | Named owner, statement pulled, cause coded |
+| **< 1 day** | Timing: the other side has not posted | Auto-retry next cycle |
+| **1–7 days** | Real difference: reference, fee, FX, wrong account | Named owner, statement pulled, cause coded |
 | **8–30 days** | Disputed, or the counterparty unreachable | Escalation, formal claim, provisional posting |
 | **> 30 days** | Nobody owns it | Suspense or write-off |
 
-The demo's ladder is small — 88 breaks, KES 34.9M — and its shape is the durable part: **the oldest bucket holds the smallest share of items and the largest share of the risk**. Twenty breaks aged past seven days carry KES 6.88M — under a fifth of the value, but 90 hours of investigation and nearly all of the KES 1.87M expected write-off.
+The demo's ladder is small (88 breaks, KES 34.9M), and its shape is the durable part: **the oldest bucket holds the smallest share of items and the largest share of the risk**. Twenty breaks aged past seven days carry KES 6.88M: under a fifth of the value, but 90 hours of investigation and nearly all of the KES 1.87M expected write-off.
 
-Unclosed items end somewhere. In Kenya an item with no active involvement for **two years** is declared unclaimed, and an estimated **KES 241.1 billion** of unclaimed financial assets sits across the economy — about **62% in financial services** — with dormancy-driven items at a record **KES 5.182 billion** in 2025 while claimants fell 32.7% ([Kenya News Agency](https://www.kenyanews.go.ke/sh241-billion-unclaimed-financial-assets-ufaa-releases/), [The Star](https://www.the-star.co.ke/news/2026-05-06-unclaimed-financial-assets-hit-sh518bn-claimant-numbers-drop)). An aged break changes owner, and becomes a statutory problem.
+Unclosed items end somewhere. In Kenya an item with no active involvement for **two years** is declared unclaimed, and an estimated **KES 241.1 billion** of unclaimed financial assets sits across the economy (about **62% in financial services**), with dormancy-driven items at a record **KES 5.182 billion** in 2025 while claimants fell 32.7% ([Kenya News Agency](https://www.kenyanews.go.ke/sh241-billion-unclaimed-financial-assets-ufaa-releases/), [The Star](https://www.the-star.co.ke/news/2026-05-06-unclaimed-financial-assets-hit-sh518bn-claimant-numbers-drop)). An aged break changes owner, and becomes a statutory problem.
 
 ## How we can do better
 
 | Control | Why it holds |
 |---------|--------------|
-| **Gate, don't warn** — a failed total refuses the file | Citi's overridable pop-up cost £61.6m |
-| **Recompute, never trust** — recalculate from the details received | A trailer is the sender's claim, not evidence |
-| **Two-sided by construction** — add an explicit netting entry | An unbalanced file should be unpostable |
-| **Hash totals on identity** — sum account numbers, not only values | Catches an altered set that still balances |
-| **Sequence discipline** — batch numbers strictly `1..n` | Turns a replay into a refusal, not a duplicate |
-| **Age on arrival** — stamp the settlement date it should have had | A break found late must not look young |
+| **Gate, don't warn**: a failed total refuses the file | Citi's overridable pop-up cost £61.6m |
+| **Recompute, never trust**: recalculate from the details received | A trailer is the sender's claim, not evidence |
+| **Two-sided by construction**: add an explicit netting entry | An unbalanced file should be unpostable |
+| **Hash totals on identity**: sum account numbers, not only values | Catches an altered set that still balances |
+| **Sequence discipline**: batch numbers strictly `1..n` | Turns a replay into a refusal, not a duplicate |
+| **Age on arrival**: stamp the settlement date it should have had | A break found late must not look young |
 | **Owner and root cause per break** | Feeds the histogram that fixes integrations |
 
 ## Key takeaways

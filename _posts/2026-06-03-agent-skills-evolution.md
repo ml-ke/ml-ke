@@ -15,14 +15,14 @@ image:
 
 On May 22, 2026, a team of researchers from **Microsoft Research, Shanghai Jiao Tong University, Tongji University, and Fudan University** published a paper that quietly rewrote the rules for how AI agents learn. Titled *"SkillOpt: Executive Strategy for Self-Evolving Agent Skills"* (arXiv:2605.23904), it introduces something the field has been missing: **a deep-learning-style optimizer for agent skills that works entirely in natural language**.
 
-Here's the core idea: instead of hand-crafting system prompts or hoping an agent figures things out on its own, SkillOpt treats a skill document — a plain Markdown file — as *trainable external state*. A separate frontier LLM acts as the optimizer, proposing bounded edits to the skill based on trajectory rollouts, validation gates, and an edit budget that acts like a textual learning rate.
+Here's the core idea: instead of hand-crafting system prompts or hoping an agent figures things out on its own, SkillOpt treats a skill document (a plain Markdown file) as *trainable external state*. A separate frontier LLM acts as the optimizer, proposing bounded edits to the skill based on trajectory rollouts, validation gates, and an edit budget that acts like a textual learning rate.
 
-> **The result?** Across 52 (model, benchmark, harness) evaluation cells — spanning 6 benchmarks, 7 target models, and 3 execution environments — SkillOpt is best or tied-best on **all 52**. On GPT-5.5 direct chat, it lifts average accuracy from 58.8% (no skill) to 82.3% — a **+23.5 point gain** from pure text edits.
+> **The result?** Across 52 (model, benchmark, harness) evaluation cells, spanning 6 benchmarks, 7 target models, and 3 execution environments, SkillOpt is best or tied-best on **all 52**. On GPT-5.5 direct chat, it lifts average accuracy from 58.8% (no skill) to 82.3%: a **+23.5 point gain** from pure text edits.
 {: .prompt-info }
 
 In this post, we'll dissect how SkillOpt works, why it matters for AI security, and what happens when an AI system can rewrite its own operational playbook.
 
-## The Problem: Today's Skills Are Hand-Crafted
+## The problem: today's skills are hand-crafted
 
 Agent skills today fall into three categories, none of which is satisfactory:
 
@@ -32,12 +32,12 @@ Agent skills today fall into three categories, none of which is satisfactory:
 | **One-shot LLM** | Prompt "write a skill for X" | Generic, misses domain nuance |
 | **Self-revision** | Agent reflects on its own failures | Unstable, can regress, no validation |
 
-None of these behaves like a proper optimizer. A one-shot skill cannot improve from experience. Self-revision without validation can *degrade* performance — the agent confidently adds bad rules. As the SkillOpt authors put it:
+None of these behaves like a proper optimizer. A one-shot skill cannot improve from experience. Self-revision without validation can *degrade* performance, since the agent confidently adds bad rules. As the SkillOpt authors put it:
 
 > "Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision — none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback."
 > — SkillOpt paper, Section 1
 
-## The SkillOpt Architecture
+## The SkillOpt architecture
 
 SkillOpt reframes skill editing as a **controlled domain-adaptation process**. Here's the high-level loop:
 
@@ -77,7 +77,7 @@ The deep-learning analogy runs deep:
 | Momentum | Epoch-wise slow/meta update | Carry durable patterns across epochs |
 | Negative gradient | Rejected-edit buffer | What *not* to repeat |
 
-### The Core Optimizer
+### The core optimizer
 
 The optimizer is a *separate frontier LLM* (not the target model being adapted). It receives scored execution trajectories and produces structured edits using a detailed prompt pipeline (reproduced from the paper's Appendix C):
 
@@ -104,9 +104,9 @@ Constraints:
 """
 ```
 
-### Bounded Text Updates — The "Textual Learning Rate"
+### Bounded text updates: the "textual learning rate"
 
-The most critical innovation is the **edit budget** $L_t$ — the maximum number of atomic edits (ADD, DELETE, REPLACE) allowed per optimization step. This is the textual analogue of a learning rate:
+The most critical innovation is the **edit budget** $L_t$, the maximum number of atomic edits (ADD, DELETE, REPLACE) allowed per optimization step. This is the textual analogue of a learning rate:
 
 $$L_t = L_0 \cdot \text{schedule}(t)$$
 
@@ -119,7 +119,7 @@ where $L_0$ is the initial budget, $t$ is the current step, and $T$ is the total
 > **Why this matters for security:** Unbounded self-revision is a chaotic process that can introduce arbitrary behaviors. A bounded edit budget ensures each revision stays close to the previous one. This is the difference between fine-tuning and randomly rewriting your operating system's kernel.
 {: .prompt-warning }
 
-### The Validation Gate
+### The validation gate
 
 Every candidate skill is evaluated on a **held-out selection split** $D_{sel}$ before acceptance:
 
@@ -172,7 +172,7 @@ class SkillOptValidationGate:
             return False  # REJECT
 ```
 
-## The Deep Benchmarks
+## The deep benchmarks
 
 The SkillOpt paper runs one of the largest empirical studies ever conducted for agent skill optimization:
 
@@ -189,19 +189,19 @@ Results from SkillOpt paper Table 1 (GPT-5.5, direct chat mode). All differences
 
 The benchmark covers **6 benchmarks, 7 target models** (from GPT-5.5 down to Qwen-2.5-7B), and **3 execution harnesses**: direct chat, Codex-style tool loops, and Claude Code-style tool loops. **Best or tied-best on 52/52 cells.**
 
-## Security Implications: The Double-Edged Sword
+## Security implications: the double-edged sword
 
-> This is where we connect the dots back to our series on AI security. In [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}), we warned about *excessive agency* — giving AI tools it shouldn't have. SkillOpt introduces a new axis of risk: **self-modifying procedural knowledge**.
+> This is where we connect the dots back to our series on AI security. In [Insecure Agent Design]({% post_url 2026-06-01-insecure-agent-design %}), we warned about *excessive agency*, giving AI tools it shouldn't have. SkillOpt introduces a new axis of risk: **self-modifying procedural knowledge**.
 {: .prompt-danger }
 
-### The Attack Surface
+### The attack surface
 
 A self-evolving skill system has four distinct components that attackers could target:
 
-1. **The optimizer model** — If compromised, could inject malicious rules into the skill
-2. **The trajectory data** — Poisoned rollouts could teach the optimizer wrong patterns
-3. **The validation gate** — If bypassed, harmful edits could be accepted
-4. **The deployed skill** — The final `best_skill.md` could contain injected instructions
+1. The optimizer model, if compromised, could inject malicious rules into the skill.
+2. Poisoned rollouts could teach the optimizer the wrong patterns.
+3. The validation gate, if bypassed, could accept harmful edits.
+4. The final `best_skill.md` could contain injected instructions.
 
 ```mermaid
 flowchart LR
@@ -230,7 +230,7 @@ flowchart LR
     style I fill:#ff4444,color:#fff
 ```
 
-### What SkillOpt Gets Right (on Security)
+### What SkillOpt gets right (on security)
 
 The paper explicitly acknowledges auditability. Key quotes from the paper:
 
@@ -239,22 +239,22 @@ The paper explicitly acknowledges auditability. Key quotes from the paper:
 - **"Held-out gating prevents harmful proposals from accumulating"** (line 188)
 - The output is **"compact (300–2,000 tokens), inspectable, and procedural rather than instance-specific"** (line 191-192)
 
-This is actually a *strength* compared to weight-space optimization. A model fine-tune is a black box — you can't read what it learned. A SkillOpt skill is **plain Markdown** that a human can read and audit in minutes.
+This is actually a *strength* compared to weight-space optimization. A model fine-tune is a black box; you can't read what it learned. A SkillOpt skill is **plain Markdown** that a human can read and audit in minutes.
 
-### What Still Worries Me
+### What still worries me
 
 The paper is honest about limitations. Here's what keeps me up at night:
 
-1. **The optimizer model is also a frontier LLM** — it could hallucinate edits or insert plausible-sounding but incorrect rules
-2. **Validation gate fidelity** — the held-out split must perfectly represent the deployment distribution. If it doesn't, a skill that passes validation could fail catastrophically in production
-3. **No adversarial testing** — the paper doesn't evaluate how SkillOpt behaves under prompt injection or data poisoning
-4. **Transfer amplifies risk** — a compromised skill that passes validation can be *transferred across models and harnesses*, spreading the harm
+1. The optimizer is itself a frontier LLM, so it could hallucinate edits or insert plausible-sounding but incorrect rules.
+2. Validation gate fidelity matters: the held-out split must perfectly represent the deployment distribution. If it doesn't, a skill that passes validation could fail catastrophically in production.
+3. The paper doesn't evaluate how SkillOpt behaves under prompt injection or data poisoning.
+4. A compromised skill that passes validation can be *transferred across models and harnesses*, spreading the harm.
 
 > **The Observability Imperative**
 > We covered this in [AI Agent Observability]({% post_url 2026-06-01-ai-agent-observability %}): if you can't trace what your agent is doing, you can't secure it. SkillOpt skills are auditable *at rest*, but you still need runtime observability to catch behavioral drift in production. The two defenses are complementary: audit the skill before deployment, trace the agent during execution.
 {: .prompt-tip }
 
-## The MLSecOps Connection
+## The MLSecOps connection
 
 Self-evolving skills are a new **supply chain** artifact. Just as we argued in [MLSecOps Pipeline Security]({% post_url 2026-06-01-mlsecops-pipeline-security %}) that model weights need signing and verification, skill documents need:
 
@@ -316,7 +316,7 @@ class SkillCIValidator:
 
 ## What the Learned Skills Actually Look Like
 
-One of the most striking findings in the paper is that **1–4 accepted edits** are often sufficient to achieve large gains. OfficeQA jumps from 33.1 to 72.1 (+39.0 points) with just a handful of edits. The learned skills remain compact — 300–2,000 tokens — and are purely procedural.
+One of the most striking findings in the paper is that **1–4 accepted edits** are often sufficient to achieve large gains. OfficeQA jumps from 33.1 to 72.1 (+39.0 points) with just a handful of edits. The learned skills remain compact at 300–2,000 tokens, and purely procedural.
 
 Example structure (from the paper's documentation):
 
@@ -344,9 +344,9 @@ This skill guides the agent in answering office productivity questions.
 
 This is **readable by any developer with domain knowledge**. You can code-review a skill just like you'd review a pull request. That's the audit superpower.
 
-## Key Takeaways
+## Key takeaways
 
-> SkillOpt represents a genuine breakthrough — the first systematic, controllable text-space optimizer for agent skills. But with every new capability comes a new class of security considerations. The good news: skill artifacts are the most auditable form of agent knowledge we've ever had. The bad news: we're only beginning to understand how attackers might subvert them.
+> SkillOpt is a genuine breakthrough, the first systematic, controllable text-space optimizer for agent skills. But with every new capability comes a new class of security considerations. The good news: skill artifacts are the most auditable form of agent knowledge we've ever had. The bad news: we're only beginning to understand how attackers might subvert them.
 {: .prompt-warning }
 
 | Finding | Detail |
