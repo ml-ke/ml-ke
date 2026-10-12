@@ -2309,3 +2309,66 @@ phrased as a pointer, not a measured comparison.
   4. If a data-privacy or data-quality theme recurs, reuse the fixture shape, the Luhn/MSISDN/boundary
      validators and the two audits from this post's blocks rather than re-deriving them, and remember
      the timing-claim pattern above.
+
+## Publishing note — 2026-10-12 (Monday)
+
+- **Slug:** `2026-10-12-africa-outbreak-early-warning-network` — "Africa's Outbreak Radar Reached 44 of
+  47 States: Reading What the Expansion Buys". **Lane A** (positive AI story). Oct 11 was Lane B, so the
+  alternation resumed with A as planned.
+- **Story:** WHO AFRO's October 2026 *Health Emergency Intelligence and Surveillance* report (EIOS at 44
+  of 47 Member States; speech-to-text radio mining and machine-learning signal classification added;
+  126 signals in 2025, median one day detection-to-verification, ~74% of outbreaks detected within seven
+  days) read against the peer-reviewed 2025 evaluation it inherited, plus the political layer (New York
+  Call to Action, 25 Sep 2026; PDX launched March 2026; Voyage Sante+; Bangui Communiqué; 10-country MoU
+  signed Aug 2026 at the 76th Regional Committee).
+- Why this angle and not the announcement: a `grep` sweep of `_posts/` found no heading-level coverage of
+  epidemic intelligence, event-based surveillance or signal detection anywhere in the corpus. Nearest
+  siblings differentiate in the intro — `who-prequalification-cad-tb-ai-screening` (Oct 1, procurement
+  gate), `nigeria-maternal-health-multiplier` (Oct 10, alert load and PPV for frontline CDS),
+  `ai-primary-care-class-iib-ce` (Sep 18, regulatory mark). This post's measured axis is different: the
+  two-denominator problem (a signal existing at all versus arriving before the notification), the
+  timeliness tail, and crude-versus-adjusted source effects.
+- **Own measurements (2 blocks, both stdlib-only, both re-run through the post's fences with stdout
+  diffed byte-for-byte against the quoted output — PASS on both):**
+  1. Rebuilt the evaluation's yearly table from its raw counts: per-year detection proportion,
+     sensitivity and harmonic mean, plus totals. Reproduces the published 81.0% / 47.4% / 59.8% exactly;
+     two per-year harmonic cells land 0.1 point off the paper's table (2018 55.8 vs 55.7, 2021 61.3 vs
+     61.4) because the paper rounds inputs first — that discrepancy is stated in the post rather than
+     hidden. Headline trend: detection proportion +11.8 points 2018-2023, sensitivity +3.2.
+  2. Crude early-detection rate per source type from the paper's Table 2 counts: Webnews 66.9%, Medical
+     50.3%, NGO 55.6%, Radio/TV 77.8% (n=9), Social media 35.7%, all 58.5%. Used to make the crude-versus-
+     adjusted point (social media crude worst, adjusted AOR 3.45) and the nine-event-cell warning.
+- Verified anchors (body-level, not snippets): WHO AFRO *Health Emergency Intelligence and Surveillance —
+  quarter three report 2026* (all eight report figures on its own key-message list); WHO AFRO *Public
+  health intelligence 2026*; Williams GS, Koua EL et al., *BMC Public Health* 25:857 (2025) read from
+  PMC11877865 (646 events; 306/217/123; detection proportion, sensitivity, harmonic mean; Table 2 source
+  and language mix; Table 3 median 0 days with IQR −4 to +5 and the per-hazard IQRs; Table 4 adjusted ORs
+  1.76 / 3.45 / 0.57 / 2.73 / 2.35); Medialdea Carrera R et al., *BMC Proceedings* (PMC12442272) for
+  >100 Member States, ~4,500 trained, ~50% first-detected; WHO AFRO news item on the 25 Sep 2026 UNGA
+  dialogue; WHO EIOS initiative page; Streamline's 12 Oct 2026 read (the source that states explicitly
+  the report's figures do not isolate the effect of machine learning) and The Peninsula (27 Sep 2026) as
+  the curl-friendly second passes for the PDX/Call-to-Action claims.
+- **Cover:** new metaphor, checked against the full label dump — no sibling uses a member-state tile grid,
+  a radio-to-text chain or a detection clock. 47 tiles (44 lit, 3 dashed red), mast plus waveform into
+  transcribed text lines, and a timeline axis from day −6 to +14 with the median marker at 0, the IQR bar
+  −4 to +5 and a hatched region past day 7. XML well-formed, `&`-escape clean (no entities needed),
+  rendered-pixel spot check finds all five accent colours, `assets/img/cover-africa-outbreak-early-warning-network.webp`
+  is a real 1200x630 VP8 WebP, 48.6 KB.
+- **Word count: 3,113 full / 2,780 code-excluded** — inside the Lane A sibling band on both axes
+  (full: Oct 5 3,154 / Oct 10 3,137; code-excluded: Oct 10 2,790 / Oct 5 2,613). Trimmed once from
+  3,175 / 2,842 by cutting meta sentences and payoff clauses, keeping every figure.
+- **Verification:** no `{% post_url %}` tags, no `cover:` key, no `.png` image paths, all five internal
+  `/posts/` links resolve, `check-prose-style.py` PASS (0 prose em dashes, 0 title-case headings, 0
+  emoji), `verify-post-code.py` all blocks ran, `check-quoted-output.py` reports the known false negative
+  on `text`-tagged fences so the pairing check was run inline instead: 2/2 blocks match stdout
+  byte-for-byte and every prose figure in each block's section appears in that block's stdout.
+- Commit **53892e7** pushed; Actions run for that SHA `completed success` (no cancellation this run).
+  Live permalink HTTP 200 on the fourth attempt (~60s propagation), cover WebP 200.
+- **Next session actions:**
+  1. **Oct 13 is a TUESDAY** — `tuesday-ai-update` owns it. Do not write or stage a post for Oct 13.
+  2. **Oct 14 = Lane B** (tutorial: runnable code, quoted stdout), then alternate. Lane A siblings run
+     3,113-3,154 full / 2,613-2,790 code-excluded.
+  3. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  4. Reusable for any future surveillance, monitoring or alerting post: the reproduction block in this
+     post (per-year rate table from raw counts) and the crude-versus-adjusted source block are generic
+     shapes, and the reference set above covers event-based surveillance without re-fetching WHO AFRO.
