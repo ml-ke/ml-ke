@@ -1,0 +1,40 @@
+// Serving a built directory (site/) as a Cloudflare Worker on its own hostname.
+//
+//   wrangler deploy
+//
+// Why this shape:
+//   * a Workers custom_domain provisions the DNS record AND the certificate
+//     server-side, so it works on a token with Workers scopes + zone:read and
+//     no dns_records:edit
+//   * NO html_handling override and NO main: let the asset layer serve the URLs
+//     natively. Build the site with directory URLs (/Foo/ + Foo/index.html) and
+//     then "/" resolves to index.html and /Foo/ to Foo/index.html by itself — no
+//     rewrite, no redirect, and nothing on the homepage's critical path that can
+//     go stale. (Flat Page.html output forces html_handling "none", which stops
+//     "/" mapping to index.html and puts a Worker script in the way; when that
+//     script is not running the homepage 404s while /index.html still works.)
+//   * `not_found_handling: "404-page"` serves the generated 404.html instead of
+//     an empty body. Whatever serves misses, return them with
+//     `cache-control: no-store` — a cached 404 is sticky and keeps being served
+//     after the path exists.
+//
+// Keep BOTH route entries: routes take precedence over custom domains, so a
+// broader wildcard route owned by another Worker will steal this hostname and
+// serve the wrong site with a valid certificate. The longer pattern wins.
+//
+// Deploying from CI: pin wrangler 4 (cloudflare/wrangler-action@v3 defaults to
+// wrangler 3.x, which cannot read this .jsonc file and fails "Missing
+// entry-point" as if the config were broken).
+{
+  "name": "my-site",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "site.example.com", "custom_domain": true },
+    { "pattern": "site.example.com/*", "zone_name": "example.com" }
+  ]
+}
