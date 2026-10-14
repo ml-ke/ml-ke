@@ -20,6 +20,21 @@ mkdir -p "$BACKUP_DIR"/{skills,memory,config,scripts,jobs}
 mkdir -p "$SECRETS_DIR"
 
 # ============================================================================
+# HELPER: push with port-22 fallback
+# Some networks block outbound SSH on port 22; github.com:22 then times out.
+# Fall back to ssh.github.com:443, which speaks the same protocol.
+# ============================================================================
+push_with_fallback() {
+  local url="$1" log="$2"
+  if git push origin main 2>"$log"; then
+    return 0
+  fi
+  echo "  push over port 22 failed -- retrying via ssh.github.com:443 ..."
+  git -c core.sshCommand="ssh -o ConnectTimeout=25 -o StrictHostKeyChecking=accept-new -p 443" \
+      push "$url" main >>"$log" 2>&1
+}
+
+# ============================================================================
 # HELPER: Safe env backup — only whitelisted non-secret vars
 # ============================================================================
 backup_env_safe() {
@@ -345,7 +360,7 @@ if scan_for_secrets "$ATLAS_DIR" 2>/dev/null; then
   else
     git commit -m "ATLAS auto-sync: $DATE"
     PUSH_LOG=$(mktemp)
-    if git push origin main 2>"$PUSH_LOG"; then
+    if push_with_fallback "git@ssh.github.com:BongweKE/ATLAS.git" "$PUSH_LOG"; then
       echo "* Pushed to github.com:BongweKE/ATLAS.git"
     else
       echo "WARNING: Push failed (network or auth) -- changes committed locally. Reason:"
@@ -375,7 +390,7 @@ if [ -d "$MLKE_DIR" ] && [ "$SKIP_GIT_PUSH" = false ]; then
   if ! git diff --cached --quiet 2>/dev/null; then
     git commit -m "ATLAS backup: $DATE" 2>/dev/null
     MLKE_PUSH_LOG=$(mktemp)
-    if git push origin main 2>"$MLKE_PUSH_LOG"; then
+    if push_with_fallback "git@ssh.github.com:ml-ke/ml-ke.git" "$MLKE_PUSH_LOG"; then
       echo "* Pushed to ml-ke repo (legacy)"
     else
       echo "WARNING: ml-ke push failed -- committed locally. Reason:"

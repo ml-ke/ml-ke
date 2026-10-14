@@ -36,6 +36,17 @@
 10. `git add _hermes_backups/ skills/ memory.md && commit && push`
 11. Mirror to `~/ProG/ml-ke/_atlas_backups/<DATE>/` and push
 
+## Push failures: try port 443 before believing them
+
+Outbound SSH port 22 is blocked on some networks (home LAN, hotel, mobile tether), which makes `git push` fail with `ssh: connect to host github.com port 22: Connection timed out` — the script prints this as "network or auth", so it reads like a credentials problem and is not. GitHub also serves SSH on **`ssh.github.com:443`**:
+
+```bash
+git -c core.sshCommand="ssh -o ConnectTimeout=25 -p 443" \
+    push ssh://git@ssh.github.com:443/BongweKE/ATLAS.git main
+```
+
+`atlas-sync.sh` now wraps both pushes in `push_with_fallback()` (port 22 first, then 443), so a blocked-22 network no longer leaves the backup committed-but-unpushed. Verified by `git ls-remote ssh://git@ssh.github.com:443/...` matching local HEAD. **A committed-but-unpushed backup is not a backup** — always check remote HEAD, never the script's own "pushed" line.
+
 ## Verifying a sync run (don't false-alarm)
 
 The script's own output is a self-report. Confirm with three cheap checks:

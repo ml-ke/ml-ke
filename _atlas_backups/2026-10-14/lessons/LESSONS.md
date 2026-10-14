@@ -312,6 +312,11 @@
 - Restored: `mvt 2026.10.5`, `mistral-vibe` (both re-installed), SkillSpector 2.9.6 (was 2.9.3, dead), 517 MB dead venv copy removed.
 - Generalization: **liveness-check every tool a cron job depends on** — "the step exited 0" is not evidence it did anything, and a broken scanner's silence reads exactly like a pass.
 
+### GitHub SSH on port 22 blocked (2026-10-14) — a "push failed" that hides a working remote
+- `git push` to both `BongweKE/ATLAS` and `ml-ke/ml-ke` failed with `ssh: connect to host github.com port 22: Connection timed out` — **the network drops outbound 22**, which is indistinguishable from bad auth in the script's own log line ("network or auth"). GitHub also serves SSH over **`ssh.github.com:443`**; `git push ssh://git@ssh.github.com:443/<owner>/<repo>.git main` pushed both repos first try, and `git ls-remote` then confirmed remote HEAD == local HEAD.
+- Rule: when a push times out on 22, do not retry or re-auth — retry on **443** before concluding anything: `git -c core.sshCommand="ssh -o ConnectTimeout=25 -p 443" push ssh://git@ssh.github.com:443/<repo>.git main`.
+- Fix applied in `~/.hermes/scripts/atlas-sync.sh`: a `push_with_fallback()` helper tries `origin` (port 22) first, then falls back to `ssh.github.com:443` for both the ATLAS and ml-ke pushes. A committed-but-unpushed backup is a single-point-of-failure backup — verify remote HEAD, never the script's own "pushed" line.
+
 ## 05 — Android / device ops
 
 ### Rootless Kali NetHunter on the Note 9 (2026-09-12) — three real breakages, all fixed on disk
