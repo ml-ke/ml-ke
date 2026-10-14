@@ -2372,3 +2372,73 @@ phrased as a pointer, not a measured comparison.
   4. Reusable for any future surveillance, monitoring or alerting post: the reproduction block in this
      post (per-year rate table from raw counts) and the crude-versus-adjusted source block are generic
      shapes, and the reference set above covers event-based surveillance without re-fetching WHO AFRO.
+
+## Publishing note — 2026-10-14 (Wednesday, Lane B tutorial)
+
+- **Slug:** `2026-10-14-filtered-vector-search-pool-sizing` — "Your WHERE Clause Ate the Recall:
+  Sizing the Candidate Pool Behind Filtered Vector Search". **Lane B** (tutorial, 4 runnable blocks,
+  seeded numpy, stdout verified). Oct 12 was Lane A and Oct 13 is the Tuesday cron, so the
+  alternation resumed with B.
+- **Technique:** the filter/index interaction in filtered vector search. A vector index ranks
+  candidates by distance only; a predicate applied afterwards keeps a hypergeometric $m \cdot s$ of
+  them. The post measures the collapse, derives the pool size that fixes it, and derives the
+  selectivity at which an exact scan of the matching rows is the cheaper plan.
+- **Differentiation (checked before writing):** a `grep` sweep found zero heading-level coverage of
+  ANN index mechanics anywhere in `_posts/` (`hnsw` appeared once, in passing, in the Sep 24
+  embedding-compression post; `ivf`, `ef_search`, `tombstone`, `approximate nearest` never).
+  Nearest siblings are differentiated in the intro: `rag-recall-at-k-denominator` (Sep 19, the
+  metric's denominator), `embedding-compression-audit` (Sep 24, recall under bit packing).
+- **Sources (body-level, not snippets):** pgvector README (the `ef_search 40` / 10% / "only 4 rows"
+  quote, iterative index scans, `max_scan_tuples`); AWS Database Blog pgvector 0.8.0 on Aurora
+  ("overfiltering", "might return fewer results than expected, or even none at all"); Patel et al.,
+  ACORN, SIGMOD 2024, arXiv 2403.04871 (pre-filter $O(sN+k)$ at perfect recall vs post-filter
+  $O(\log n + k/s)$ and the $O(n)$ worst case, predicate clustering, `s_min` pre-filter fallback);
+  Gollapudi et al., Filtered-DiskANN, WWW 2023 (PDF fetched, abstract read); Shi/Cai/Zheng,
+  *FANNS: A Unified Benchmark*, arXiv 2509.07789 (filter-then-search recommendation for very low
+  selectivity); Amanbayev/Tsan/Dang/Rusu, *Filtered ANN in Vector Databases*, arXiv 2602.11443
+  (Global-Local Selectivity, the suboptimal-plan finding, IVFFlat-vs-HNSW at low selectivity,
+  guidelines 1/3/6/8); Milvus *Filtered Search* docs (iterative filtering).
+- **Own measurements (4 blocks, all stdlib+numpy, every block re-run from the post's own fences in a
+  fresh interpreter):**
+  1. 50,000 unit vectors, 64 dims, 300 queries, six tenants from 50% to 1%: recall@10, rows returned
+     and empty-result rate at pools of 40/100/400/1000. A 1% tenant returns 0.43 rows at `m=40` with
+     65% of queries empty; the 10% case reproduces the vendor's "4 rows".
+  2. Hypergeometric pool sizing (bisection over $P(X \ge k)$, log-gamma binomials): 95% pools per
+     selectivity, measured recall 0.990-0.995, multiplier over $k/s$ of 1.55-1.56 at $k=10$ falling
+     to 1.15 at $k=100$, and the crossover $s^{*} = \sqrt{k/N}$ = 1.4142% against 1.7889% with the
+     95% pool. Measured crossover sits between the 1.0% and 2.0% rows.
+  3. Correlated filter: the same 500 rows pushed within ~10 degrees of one topic direction (mean
+     cosine 0.98). Recovery needs a pool of ~17,283 rows (35% of the index) versus 500 rows for an
+     exact scan; local-prevalence/selectivity falls from 0.94 to 0.22.
+  4. A `choose_plan()` helper printing the recommendation for 5 (rows, k, selectivity) triples,
+     including two at 5M rows.
+- **Verification:** no `{% post_url %}` tags, no `cover:` key, no `.png` paths, all three internal
+  `/posts/` links resolve. `check-prose-style.py` PASS (0 prose em dashes, 0 title-case headings,
+  0 emoji). `verify-post-code.py` all 4 blocks ran. Every block's stdout is byte-identical across
+  repeat runs (md5 compared twice; no timings printed, so re-quoting is safe). The Sep-20 pairing
+  script would report its known false negative here (no `text` fences), so the figure check was run
+  instead: 78 quoted figures asserted against fresh stdout of their own block, 4/4 blocks OK.
+- **Word count: 4,214 full / 2,878 code-excluded** against Lane B siblings 3,706-4,120 full /
+  2,344-2,712 code-excluded (Oct 11 4,120/2,592; Oct 9 3,706/2,712; Oct 7 3,711/2,344). 2.3% over
+  on the full axis; 6% over on code-excluded after two trim passes (4 code blocks, 5 tables and 7
+  references push the token count that the metric still counts), accepted on the Sep 4 quote-density
+  precedent and recorded here rather than trimmed further.
+- **Cover:** new metaphor, checked against the full label dump (112 covers): a hopper of candidate
+  dots falling through a mesh stamped `WHERE tenant = F`, a thin trickle of survivors below, and a
+  tight purple blob of the filtered rows far from the query star on the right (`local prevalence /
+  selectivity = 0.22`). No sibling uses a mesh, a funnel or a candidate-pool metaphor
+  (`sieve`/`funnel`/`mesh` = 0 hits). `&`-escape clean, XML well-formed, rendered-pixel spot check
+  finds all five accent colours in their regions, `assets/img/cover-filtered-vector-search-pool-sizing.webp`
+  is a real 1200x630 VP8 WebP, 41 KB.
+- Commit **90839a2** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"` — port 22
+  to github.com times out on this host right now (verified: `ssh -T git@github.com` times out,
+  `ssh -T -p 443 git@ssh.github.com` authenticates as BongweKE), and there is no `~/.ssh/config`.
+  Actions run for that SHA was `in_progress` at +20s.
+- **Next session actions:**
+  1. **Oct 15 = Lane A** (positive AI story, 2+ body-level sources), then alternate.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. If port 22 is still blocked for git, reuse the 443 SSH command above rather than retrying
+     `git pull` on 22.
+  4. Reusable for any future retrieval/indexing post: the hypergeometric `min_pool`/`p_min` pair, the
+     local-prevalence-divided-by-selectivity diagnostic and the `choose_plan` helper are generic
+     shapes, and the reference set above covers filtered ANN without re-fetching the papers.
