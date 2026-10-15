@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <radialGradient id="fundus" cx="45%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#2b2033"/>
+      <stop offset="70%" stop-color="#1b1520"/>
+      <stop offset="100%" stop-color="#120d16"/>
+    </radialGradient>
+    <radialGradient id="disc" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe98a"/>
+      <stop offset="100%" stop-color="#d9a520"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#6bcf7f" stroke-width="1" opacity="0.03">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <text x="60" y="62" font-family="Helvetica, Arial, sans-serif" font-size="37" font-weight="bold" fill="#e6edf3">The model was not the intervention</text>
+  <text x="60" y="96" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#8892a4">Tanzania diabetic retinopathy screening trial &#183; 2,378 people &#183; 24 hospitals &#183; ISRCTN18317152</text>
+
+  <!-- retina -->
+  <circle cx="230" cy="330" r="122" fill="url(#fundus)" stroke="#3b2f45" stroke-width="2"/>
+  <g stroke="#c96a6a" stroke-width="1.6" fill="none" opacity="0.85">
+    <path d="M198 300 C 240 268, 292 262, 336 286"/>
+    <path d="M198 300 C 232 300, 268 318, 300 350"/>
+    <path d="M198 300 C 236 330, 258 366, 268 402"/>
+    <path d="M198 300 C 210 340, 200 372, 176 404"/>
+    <path d="M258 300 C 286 282, 320 276, 348 260"/>
+    <path d="M268 320 C 300 330, 328 350, 344 378"/>
+  </g>
+  <circle cx="198" cy="300" r="15" fill="url(#disc)"/>
+  <g fill="#ff6b6b">
+    <circle cx="300" cy="286" r="4" opacity="0.9"/>
+    <circle cx="316" cy="332" r="3.2" opacity="0.75"/>
+    <circle cx="262" cy="386" r="3.6" opacity="0.8"/>
+    <circle cx="176" cy="358" r="2.8" opacity="0.7"/>
+    <circle cx="330" cy="252" r="2.6" opacity="0.6"/>
+  </g>
+  <g stroke="#00d2ff" stroke-width="3" fill="none">
+    <path d="M118 232 h-20 v-20"/>
+    <path d="M342 232 h20 v-20"/>
+    <path d="M118 428 h-20 v20"/>
+    <path d="M342 428 h20 v20"/>
+  </g>
+  <text x="230" y="492" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#8892a4">45&#176; disc-centred and macula-centred</text>
+  <text x="230" y="510" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#8892a4">views of each eye, dilated pupils</text>
+
+  <!-- selection tag -->
+  <rect x="430" y="272" width="372" height="80" rx="10" fill="#161f38" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="448" y="300" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#a78bfa">SELENA+ v1.7.0 &#183; offline</text>
+  <text x="448" y="322" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#9fb3c8">runs on a laptop, result in about 30 seconds</text>
+  <text x="448" y="340" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#9fb3c8">referable = moderate retinopathy or worse</text>
+
+  <!-- AI pathway -->
+  <text x="430" y="176" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#00d2ff">AI-supported pathway</text>
+  <text x="430" y="194" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8892a4">graded at the chair, counselling before leaving</text>
+  <path d="M430 214 H800" stroke="#00d2ff" stroke-width="4" fill="none"/>
+  <path d="M792 206 L810 214 L792 222 Z" fill="#00d2ff"/>
+  <rect x="822" y="166" width="318" height="96" rx="10" fill="#0f2231" stroke="#00d2ff" stroke-width="1.6"/>
+  <text x="842" y="200" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="bold" fill="#00d2ff">10&#183;9 days</text>
+  <text x="842" y="224" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#cfe3f2">157/437 &#183; 35&#183;9% attend within 8 weeks</text>
+  <text x="842" y="246" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8892a4">odds ratio 2&#183;52 (1&#183;86 to 3&#183;42)</text>
+
+  <!-- standard pathway -->
+  <text x="430" y="420" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffd93d">standard pathway</text>
+  <text x="430" y="438" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8892a4">resident grades the images, result by phone</text>
+  <path d="M430 458 H560 V522 H700 V458 H800" stroke="#ffd93d" stroke-width="3" fill="none" stroke-dasharray="9 7" opacity="0.85"/>
+  <path d="M792 450 L810 458 L792 466 Z" fill="#ffd93d"/>
+  <rect x="822" y="410" width="318" height="96" rx="10" fill="#2a2310" stroke="#ffd93d" stroke-width="1.6"/>
+  <text x="842" y="444" font-family="Helvetica, Arial, sans-serif" font-size="27" font-weight="bold" fill="#ffd93d">36&#183;9 days</text>
+  <text x="842" y="468" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#f0e6c8">85/467 &#183; 18&#183;2% attend within 8 weeks</text>
+  <text x="842" y="490" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#a89f78">design assumed a 42% baseline</text>
+
+  <text x="60" y="588" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ff6b6b">Both arms stayed under the 56% the trial was powered to detect.</text>
+  <text x="1140" y="610" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#4b5563">ml-ke.github.io</text>
+</svg>
