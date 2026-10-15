@@ -2442,3 +2442,61 @@ phrased as a pointer, not a measured comparison.
   4. Reusable for any future retrieval/indexing post: the hypergeometric `min_pool`/`p_min` pair, the
      local-prevalence-divided-by-selectivity diagnostic and the `choose_plan` helper are generic
      shapes, and the reference set above covers filtered ANN without re-fetching the papers.
+
+## Publishing note — 2026-10-15 (Thursday, Lane A positive AI story)
+
+- **Post:** `2026-10-15-tanzania-retina-screening-trial.md` — "The Model Was Not the Intervention:
+  Reading Tanzania's Retina Screening Trial". Cover: `/assets/img/cover-tanzania-retina-screening-trial.webp`
+  (source `assets/blog/cover-tanzania-retina-screening-trial.svg`).
+- **Lane choice:** Oct 14 was Lane B, so today alternated to Lane A. `.scheduled/` was empty.
+- **Story:** AI-supported diabetic retinopathy screening randomised controlled trial across 24 hospitals
+  in Tanzania (*The Lancet Global Health*, 13 Oct 2026). Attendance at the central eye clinic within
+  8 weeks among participants with true referable retinopathy rose from 18.2% (85/467) to 35.9% (157/437),
+  OR 2.52 (1.86–3.42); time to presentation 10.9 vs 36.9 days.
+- **Angle / differentiation:** the primary endpoint was a *pathway* metric (attendance), not model accuracy;
+  the randomised contrast bundles an immediate result + automated triage + face-to-face counselling in the
+  photography room; the control arm landed at 18.2% against a design assumption of 42%, and the AI arm's
+  35.9% still sat below the 56% the trial was powered to detect. Stated explicitly in the intro against the
+  Oct 1 WHO-PQ post (procurement gate), Oct 10 Nigeria maternal post (adoption arithmetic) and Oct 12
+  outbreak post (coverage vs earliness). Overlap check: `retinopathy` appeared only in passing in
+  `african-ai-landscape` and `constrained-environment-ai` (mDROID); zero heading-level coverage.
+- **Sources (body-level):** Lancet Global Health article via ScienceDirect (Table 2 outcomes, Table 3
+  diagnostic performance, statistical-analysis and procedures sections, fetched through `r.jina.ai`);
+  LSHTM news release (via `r.jina.ai`); Medical Xpress write-up (full body); BMJ Open 2024;14:e075055
+  design paper (PMC10824006) for the primary-outcome definition, the 42%/33% powering assumptions and the
+  "not powered for treatment uptake or visual outcomes" limitation; ISRCTN18317152.
+- **Fetch notes:** LSHTM direct = HTTP 403 and ScienceDirect direct = HTTP 403 (both fine via `r.jina.ai`);
+  Diabetes Care 49(8):1451 and PubMed 42267948 are JS-gated. Treatment of the Diabetes Care head-to-head
+  evaluation is **URL-citation only** — no figure from that paper is quoted in the post body.
+- **Own measurements (2 blocks, stdlib only, each re-run from the post's own fences in a fresh interpreter):**
+  1. Design arithmetic: 263 per group needed for the outcome comparison; 266 referable / 0.225 prevalence
+     gives 1,183 per arm / 2,366 total against the published 2,364 (rounding only). Prints the observed
+     18.2% control against the assumed 42%, and 35.9% against the 56% design target.
+  2. Constant-hazard fit to the four published attendance points: AI 5.41%/week (weeks 1–8) then 3.05%/week
+     (weeks 9–16); standard 2.48% then 1.67%; hazard ratio 2.18 then 1.83; 91.8% of the AI arm's eventual
+     16-week attendance arrived inside 8 weeks. Labelled in-post as a fit to four aggregate points, not a
+     reanalysis.
+- **Verification:** no `{% post_url %}` tags, no `cover:` key, no `.png` paths, all four internal `/posts/`
+  links resolve. `check-prose-style.py` PASS (0 prose em dashes, 0 title-case headings, 0 emoji).
+  `verify-post-code.py` both blocks ran. Both `text`-tagged output fences paired inline against fresh stdout
+  byte-for-byte, 2/2 blocks; md5 identical across repeat runs (`99569e45…`, `3acf9fe1…`), no timings printed
+  so re-quoting is safe.
+- **Word count: 2,967 full / 2,692 code-excluded** against Lane A siblings 2,866–3,183 full / 2,500–2,790
+  code-excluded (Oct 12 3,113/2,780; Oct 10 3,137/2,790; Oct 8 2,866/2,500; Oct 3 3,183/2,643). In band on
+  both axes after one word removed; no trim pass needed.
+- **Cover:** new metaphor checked against the 113-cover label dump — a retina (fundus) with vessel branches,
+  optic disc and lesion dots at left, a purple SELENA+ "offline, about 30 seconds" tag, and two diverging
+  pathways: cyan straight to 10·9 days / 35·9%, dashed yellow looping out to 36·9 days / 18·2% with the
+  label "design assumed a 42% baseline". No sibling uses an eye/fundus/vessel metaphor
+  (`retina`/`fundus`/`vessel`/`eye` = 0 hits in the dump). `&`-escape clean, XML well-formed; the WebP is a
+  real 1200×630 VP8 file, 35 KB.
+- Commit **7739c8b** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"` — port 22 to
+  github.com still times out on this host.
+- **Next session actions:**
+  1. **Oct 16 = Lane B** (AI/ML/ML-engineering tutorial with runnable code and quoted stdout), then alternate.
+  2. `.scheduled/` stays EMPTY — an empty queue is normal, not a gap.
+  3. Port 22 for github.com is still filtered; reuse the 443 SSH command above rather than retrying `git pull`.
+  4. Reusable for future clinical-validation/trial posts: the two-proportion sample-size identity
+     (per-group n → ÷ assumed prevalence → recruitment total) and the constant-hazard conversion-rate fit on
+     an 8-week/16-week attendance pair are generic shapes, and the source set above covers this trial without
+     re-fetching.
