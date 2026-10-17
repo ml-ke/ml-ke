@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Words sharing one script pass through a 51-class classifier rack, with one slot lit, feeding a streaming recogniser">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="0.55" stop-color="#141a2b"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="lit" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00d2ff"/>
+      <stop offset="1" stop-color="#6bcf7f"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#00d2ff"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="72" y="88" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#eef2f7">Same Script, Fifty-One Answers</text>
+  <text x="72" y="126" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#8b98ad">Morocco + Mistral, 29 September 2026 &#183; classifier and ASR, both Apache 2.0</text>
+
+  <!-- input tokens: four inputs, one alphabet -->
+  <g font-family="Menlo, DejaVu Sans Mono, monospace" font-size="17">
+    <rect x="72" y="176" width="212" height="44" rx="8" fill="#1b2233" stroke="#2c3550"/>
+    <text x="92" y="204" fill="#c9d4e6">daba &#183; bzzaf</text>
+    <rect x="72" y="236" width="212" height="44" rx="8" fill="#1b2233" stroke="#2c3550"/>
+    <text x="92" y="264" fill="#c9d4e6">had n-nass</text>
+    <rect x="72" y="296" width="212" height="44" rx="8" fill="#1b2233" stroke="#2c3550"/>
+    <text x="92" y="324" fill="#c9d4e6">kitab &#183; ketab</text>
+    <rect x="72" y="356" width="212" height="44" rx="8" fill="#1b2233" stroke="#2c3550"/>
+    <text x="92" y="384" fill="#c9d4e6">salam &#183; merci</text>
+  </g>
+  <text x="72" y="432" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#6f7d94">Darija, MSA, Persian and Urdu share one script</text>
+
+  <!-- converging arrows -->
+  <g fill="none" stroke-width="1.6" opacity="0.9">
+    <path d="M284 198 C 340 198, 340 300, 396 300" stroke="#00d2ff" stroke-opacity="0.55"/>
+    <path d="M284 258 C 340 258, 340 300, 396 300" stroke="#00d2ff" stroke-opacity="0.45"/>
+    <path d="M284 318 C 340 318, 340 300, 396 300" stroke="#00d2ff" stroke-opacity="0.45"/>
+    <path d="M284 378 C 340 378, 340 300, 396 300" stroke="#00d2ff" stroke-opacity="0.55"/>
+  </g>
+
+  <!-- classifier rack -->
+  <rect x="404" y="150" width="300" height="334" rx="14" fill="#101725" stroke="#2a3550"/>
+  <text x="424" y="180" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#7d8ba3">CLASSIFIER RACK &#183; 51 SLOTS</text>
+  <g font-family="Menlo, DejaVu Sans Mono, monospace" font-size="15">
+    <rect x="424" y="196" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="216" fill="#93a0b6">MOROCCO</text>
+    <rect x="424" y="232" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="252" fill="#93a0b6">ALGERIA</text>
+    <rect x="424" y="268" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="288" fill="#93a0b6">TUNISIA</text>
+    <rect x="424" y="304" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="324" fill="#93a0b6">MSA</text>
+    <rect x="424" y="340" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="360" fill="#93a0b6">EGYPT</text>
+    <rect x="424" y="376" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="396" fill="#93a0b6">URDU</text>
+    <rect x="424" y="412" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="432" fill="#93a0b6">PERSIAN</text>
+    <rect x="424" y="448" width="260" height="28" rx="5" fill="#1b2233" stroke="#2c3550"/>
+    <text x="438" y="468" fill="#93a0b6">SUDAN</text>
+  </g>
+  <rect x="424" y="196" width="260" height="28" rx="5" fill="url(#lit)" fill-opacity="0.22" stroke="#00d2ff"/>
+  <text x="438" y="216" font-family="Menlo, DejaVu Sans Mono, monospace" font-size="15" fill="#dff6ff">MOROCCO</text>
+  <text x="636" y="216" font-family="Menlo, DejaVu Sans Mono, monospace" font-size="15" fill="#00d2ff" text-anchor="end">0.95</text>
+
+  <!-- arrow to ASR panel -->
+  <path d="M704 316 L768 316" stroke="url(#lit)" stroke-width="2.4" fill="none"/>
+  <path d="M762 309 L772 316 L762 323 Z" fill="#6bcf7f"/>
+
+  <!-- ASR panel with waveform -->
+  <rect x="776" y="150" width="352" height="334" rx="14" fill="#101725" stroke="#2a3550"/>
+  <text x="796" y="180" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#7d8ba3">STREAMING ASR &#183; 4.4B</text>
+  <g stroke="url(#wave)" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M800 250 L800 250"/>
+    <path d="M812 236 L812 264"/>
+    <path d="M826 220 L826 280"/>
+    <path d="M840 246 L840 254"/>
+    <path d="M854 208 L854 292"/>
+    <path d="M868 232 L868 268"/>
+    <path d="M882 196 L882 304"/>
+    <path d="M896 240 L896 260"/>
+    <path d="M910 214 L910 286"/>
+    <path d="M924 250 L924 250"/>
+    <path d="M938 228 L938 272"/>
+    <path d="M952 244 L952 256"/>
+    <path d="M966 206 L966 294"/>
+    <path d="M980 238 L980 262"/>
+    <path d="M994 222 L994 278"/>
+    <path d="M1008 248 L1008 252"/>
+    <path d="M1022 230 L1022 270"/>
+    <path d="M1036 216 L1036 284"/>
+    <path d="M1050 244 L1050 256"/>
+  </g>
+  <rect x="796" y="322" width="126" height="34" rx="17" fill="#00d2ff" fill-opacity="0.14" stroke="#00d2ff" stroke-opacity="0.7"/>
+  <text x="859" y="345" font-family="Menlo, DejaVu Sans Mono, monospace" font-size="16" fill="#9fe9ff" text-anchor="middle">480 ms delay</text>
+
+  <g font-family="Menlo, DejaVu Sans Mono, monospace" font-size="17">
+    <text x="796" y="392" fill="#8b98ad">Darija F1</text>
+    <text x="1108" y="392" fill="#6bcf7f" text-anchor="end">88.67</text>
+    <text x="796" y="420" fill="#8b98ad">best baseline</text>
+    <text x="1108" y="420" fill="#ffd93d" text-anchor="end">72.65</text>
+    <text x="796" y="452" fill="#8b98ad">CER realtime</text>
+    <text x="1108" y="452" fill="#00d2ff" text-anchor="end">8.82%</text>
+    <text x="796" y="476" fill="#8b98ad">CER offline</text>
+    <text x="1108" y="476" fill="#ff6b6b" text-anchor="end">7.91%</text>
+  </g>
+
+  <text x="1200" y="600" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4d5a70" text-anchor="end">ml-ke.github.io</text>
+</svg>
