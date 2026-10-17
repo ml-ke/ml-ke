@@ -2500,3 +2500,66 @@ phrased as a pointer, not a measured comparison.
      (per-group n → ÷ assumed prevalence → recruitment total) and the constant-hazard conversion-rate fit on
      an 8-week/16-week attendance pair are generic shapes, and the source set above covers this trial without
      re-fetching.
+
+## Publishing note — 2026-10-17 (Saturday, Lane A positive AI story)
+
+- **Post:** `2026-10-17-morocco-darija-speech-stack.md` — "Same Script, Fifty-One Answers:
+  What Morocco's Open Darija Release Actually Solves". Cover: `/assets/img/cover-morocco-darija-speech-stack.webp`
+  (source `assets/blog/cover-morocco-darija-speech-stack.svg`, 1200x630 VP8, 25.8 KB).
+- **Lane choice:** Oct 16 was Lane B (`annotator-agreement-before-you-train`), so today alternated to
+  Lane A. `.scheduled/` was EMPTY, which is normal, not a gap.
+- **Story:** Morocco's Ministry of Digital Transition and Administrative Reform released, on Tuesday
+  29 September 2026, two open-source tools built with Mistral: `mistralai/LIDstral-Arabic` (51-class
+  Arabic-script language/dialect classifier: fastText OVA + 64-unit LayerNorm MLP over 144 features +
+  per-class isotonic; Darija F1 88.67 vs 72.65 LahjatBERT ALDi CL, 71.28 GlotLID v3; 84,870 eval
+  examples) and `mistralai/Voxtral-Mini-4B-Realtime-Arabic` (~4.4B BF16 streaming ASR, CER 8.82% at
+  480 ms over seven Arabic benchmarks, offline sibling 7.91%, ISMA + "Darija in the Wild" co-developed
+  with MTNRA, `normalization.py` published). Both Apache 2.0.
+- **Angle / differentiation:** not another "open multilingual text release" (Oct 8 MORENA, TranslatePsy)
+  and not a corpus post (Oct 3 sign language) — this one is audio-in and the contribution is the
+  *evaluation frame*: dialect ID as a pre-ASR routing gate, the CER normaliser as the number that makes
+  CER comparable, and the always-51-classes limitation as the argument for abstention. The shipped
+  `classify.py` also carries a hand-built Saudi-vs-Gulf margin feature, which is quoted in-post.
+- **Sources (body-level):** HF model cards for both checkpoints (full README, fetched with curl; card
+  YAML parsed for the 46 language codes / 16 Arabic varieties); Morocco World News (Sep 29); TechReview
+  Africa (Sep 29); Ecofin Agency (Oct 1 — release date, "potential integration avenues rather than
+  large-scale operational deployments" caveat, Apache 2.0 lineage); OrcaRouter teardown (vendor-claim
+  audit, no independent evaluation, BF16 only); iAfrica (partnership context).
+- **Own measurement (this is the differentiator):** downloaded the full 1.07 GB fastText bundle plus the
+  62 KB MLP and 21 KB isotonic pickle, built a Python 3.12 venv (`fasttext-wheel==0.9.2`,
+  `numpy==1.26.4`, `scikit-learn==1.4.0`, `torch 2.6.0+cpu`), and ran 10 hand-labelled probes through
+  `ArabicLID.predict`. Results: 8/10 exact label matches. Darija card example → Morocco 0.952 (card's
+  illustrative value 0.9523); MSA 0.730 and 0.698; Egypt 0.859; Saudi_Arabia 0.440 (lowest in-scope,
+  the confusion the hard-coded feature targets); Persian 0.980; Urdu 0.993; Swahili 0.949; out-of-scope
+  inputs: English → Sindhi 0.889, Latin-script Darija → Wolof 0.146. Two repeat runs byte-identical
+  (`md5 b048df7e87ca90c255ab0b9a078758f7`), no timings printed, so every quoted figure is re-checkable.
+  CLI path also re-run verbatim from the published bash fence (`classify.py --text ...` → Morocco 0.9466).
+- **Verification:** no `{% post_url %}` tags, no `cover:` key, no `.png` paths, all five internal
+  `/posts/` links resolve. `check-prose-style.py` PASS (0 prose em dashes, 0 title-case headings,
+  0 emoji). `verify-post-code.py` reports "No python blocks" (the post ships a bash fence plus a results
+  table, so no python fence to execute). All 28 confidence figures and 10 returned labels in the results
+  table were asserted against the saved probe stdout: 0 missing.
+- **Word count: 3,154 full / 3,060 code-excluded** against Lane A siblings 2,866-3,183 full /
+  2,500-2,790 code-excluded (Oct 15 2,966/2,691; Oct 12 3,113/2,780; Oct 10 3,137/2,790; Oct 8
+  2,866/2,500). Full-body is in band; code-excluded runs ~10% over the sibling top because the 10-row
+  probe table counts as prose. Accepted on the precedent of the Sep 14 citation-dense post; trimmed
+  ~350 words across four passes to get there.
+- **Cover:** new metaphor checked against the cover label dump — a classifier "rack" of eight labelled
+  slots (Morocco lit at 0.95, Algeria/Tunisia/MSA/Egypt/Urdu/Persian/Sudan dim), four input tokens
+  converging on it, and a streaming ASR panel with a waveform, a "480 ms delay" tag and the four real
+  numbers (Darija F1 88.67 / baseline 72.65, CER 8.82 / 7.91). No sibling uses a rack/slot/switchboard
+  metaphor. XML well-formed, `&`-escape clean, WebP verified as 1200x630 VP8.
+- Commit **0d646f3** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"`; port 22 to
+  github.com still times out on this host, and `git pull` showed a remote commit (`fa16a72`) that the
+  rebase absorbed cleanly.
+- **Next session actions:**
+  1. **Oct 18 = Lane B** (AI/ML/ML-engineering tutorial with runnable code and quoted stdout).
+  2. `.scheduled/` stays EMPTY; that is normal.
+  3. **Oct 16's publishing note was never appended to this calendar** (the post exists at
+     `_posts/2026-10-16-annotator-agreement-before-you-train.md`). Backfill its note if the queue is
+     being audited.
+  4. Reusable for future Arabic-language / MENA posts: the LIDstral bundle is still at
+     `~/.hermes/cache/scratch/lidstral/` (1.07 GB) with a working `.venv` and `probe.py`, so a follow-up
+     measurement does not need the download again. Delete it if the scratch cache is being pruned.
+  5. The `classify.py` Saudi-vs-Gulf margin feature and the "always assigns one of 51 classes" limitation
+     are the two anchors to reuse for any future dialect-ID or voice-routing post.
