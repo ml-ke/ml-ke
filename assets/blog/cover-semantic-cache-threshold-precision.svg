@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="55%" stop-color="#141426"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="qcard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c2333"/>
+      <stop offset="100%" stop-color="#161d2a"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="60" y="62" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="34" font-weight="bold" fill="#f0f6fc">The Cache Was Confident and Wrong</text>
+  <text x="60" y="92" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">Choosing a semantic cache threshold you can defend &#183; 12 intents, 38 labelled queries</text>
+
+  <!-- incoming query card -->
+  <rect x="60" y="130" width="290" height="132" rx="10" fill="url(#qcard)" stroke="#30363d" stroke-width="1.5"/>
+  <text x="78" y="158" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" letter-spacing="1">INCOMING QUERY</text>
+  <text x="78" y="184" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#e6edf3">how much credit</text>
+  <text x="78" y="206" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#e6edf3">do i have left now</text>
+  <text x="78" y="234" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">cosine 0.9102 &#183; account 8890</text>
+
+  <line x1="352" y1="196" x2="428" y2="196" stroke="#ff6b6b" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- sorter shelf -->
+  <text x="446" y="120" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" letter-spacing="1">CACHE SLOTS &#183; ONE THRESHOLD FOR ALL OF THEM</text>
+
+  <rect x="446" y="132" width="560" height="72" rx="8" fill="#171f2c" stroke="#30363d" stroke-width="1.2"/>
+  <text x="464" y="160" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">PIN RESET</text>
+  <text x="464" y="184" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">weakest paraphrase 0.9275 &#183; closest confusion 0.7974</text>
+
+  <rect x="446" y="212" width="560" height="72" rx="8" fill="#171f2c" stroke="#30363d" stroke-width="1.2"/>
+  <text x="464" y="240" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">PANEL WARRANTY</text>
+  <text x="464" y="264" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">weakest paraphrase 0.8436 &#183; closest confusion 0.8206</text>
+
+  <rect x="446" y="292" width="560" height="86" rx="8" fill="#22141a" stroke="#ff6b6b" stroke-width="2"/>
+  <text x="464" y="320" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#ff9a9a">CREDIT LEFT &#183; served</text>
+  <text x="464" y="344" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ff6b6b">account 4471 &#183; KES 0 &#183; answer belongs to someone else</text>
+  <text x="464" y="366" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#c9d1d9">same wording, different account: no score separates these</text>
+  <circle cx="962" cy="334" r="34" fill="none" stroke="#ff6b6b" stroke-width="2.5"/>
+  <text x="962" y="332" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#ff6b6b" text-anchor="middle">WRONG</text>
+  <text x="962" y="350" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="10" fill="#ff6b6b" text-anchor="middle">ANSWER</text>
+
+  <rect x="446" y="386" width="560" height="72" rx="8" fill="#171f2c" stroke="#30363d" stroke-width="1.2"/>
+  <text x="464" y="414" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">RETURN WINDOW</text>
+  <text x="464" y="438" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">weakest paraphrase 0.7005 &#183; closest confusion 0.7861</text>
+
+  <!-- score scale -->
+  <text x="60" y="496" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" letter-spacing="1">WHERE THE TWO DISTRIBUTIONS SIT</text>
+  <line x1="90" y1="520" x2="1110" y2="520" stroke="#30363d" stroke-width="2"/>
+  <line x1="134" y1="512" x2="134" y2="528" stroke="#6bcf7f" stroke-width="3"/>
+  <line x1="592" y1="512" x2="592" y2="528" stroke="#ff6b6b" stroke-width="3"/>
+  <rect x="134" y="514" width="458" height="12" fill="#ff6b6b" fill-opacity="0.12"/>
+  <text x="134" y="552" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f" text-anchor="middle">correct pairs</text>
+  <text x="134" y="568" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f" text-anchor="middle">start at 0.7005</text>
+  <text x="592" y="552" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b" text-anchor="middle">wrong pairs</text>
+  <text x="592" y="568" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b" text-anchor="middle">reach 0.9102</text>
+  <text x="363" y="552" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#c9d1d9" text-anchor="middle">ranges overlap: no clean threshold between them</text>
+  <text x="363" y="570" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#8b949e" text-anchor="middle">break-even needs precision above 1 / penalty</text>
+
+  <text x="60" y="606" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#a78bfa">Hit rate counts what the cache served. Precision counts what it got wrong.</text>
+  <text x="1140" y="606" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#484f58" text-anchor="end">ml-ke.github.io</text>
+</svg>
