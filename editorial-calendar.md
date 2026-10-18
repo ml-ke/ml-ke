@@ -2563,3 +2563,70 @@ phrased as a pointer, not a measured comparison.
      measurement does not need the download again. Delete it if the scratch cache is being pruned.
   5. The `classify.py` Saudi-vs-Gulf margin feature and the "always assigns one of 51 classes" limitation
      are the two anchors to reuse for any future dialect-ID or voice-routing post.
+
+## Publishing note: 2026-10-18
+
+- **Post:** `_posts/2026-10-18-semantic-cache-threshold-precision.md` — "The Cache Was Confident and
+  Wrong: Choosing a Semantic Cache Threshold You Can Defend". Cover:
+  `/assets/img/cover-semantic-cache-threshold-precision.webp` (source
+  `assets/blog/cover-semantic-cache-threshold-precision.svg`, 1200x630 VP8, 38.3 KB).
+- **Lane choice:** Oct 17 was Lane A (Morocco Darija release), Oct 16 Lane B, so today alternated back
+  to **Lane B** (tutorial). `.scheduled/` EMPTY, which is normal.
+- **Why this topic:** semantic (answer) caching had no post in the corpus. Nearest siblings are
+  Oct 4 prefix-cache (computation reuse, not answers) and Oct 14 filtered vector search (retrieval
+  recall, not served-answer precision); the intro differentiates all three explicitly.
+- **Technique:** threshold selection for a semantic cache, measured on a 12-intent solar-home-system
+  support FAQ: 24 true paraphrases + 14 danger queries (11 near-misses whose answers are not in the
+  index + 3 personalisation queries). `BAAI/bge-small-en-v1.5` via fastembed; `Xenova/ms-marco-MiniLM-L-6-v2`
+  cross-encoder tested as a second gate.
+- **Own measurements (the differentiator), all deterministic — md5 `8b2d598b868d9ac94b3c8e4b9173f0a6`
+  for the 8-section analysis and `f2a5f4ec877713d0a78b6e259843fc76` for the normalisation demo, two
+  runs each):**
+  - Global sweep: 0.70 serves 24/24 paraphrases and **12/14 wrong answers**; 0.80 serves 23/24 with 3
+    wrong; 0.92+ has 0 wrong but keeps only 11/24. `para_wrong` is 0 at every threshold — the fixture
+    never misrouted a paraphrase to a sibling, so every error is outward drift to an uncached question.
+  - Global window is empty: lowest correct-pair score 0.7005 (`return_window`) vs highest wrong-pair
+    score 0.9102 (`credit_check`). Per-intent fit: 22/24 + 2/14 wrong (89.5%) vs 18/24 + 1/14 at a
+    global 0.85.
+  - Personalisation: "how much credit do I have left now" scores 0.9102 against a correct entry and is
+    served at 0.85 with someone else's balance. No score-based gate can separate identical wording.
+  - Cross-encoder as verifier: paraphrase logits median −0.26, min −10.55; the worst confusion
+    ("pay with cash instead of mpesa") scores +1.05. At τ=0 recall falls 22→12/24. Negative result:
+    a generic MS MARCO reranker is not an answer-equivalence check.
+  - Normalisation: fastembed returns unit norm; with a non-normalising store the same pair reads
+    cosine 0.8340/dot 2.0851 and cosine 0.8081/dot 2.0202 — both clear a 0.85 dot gate.
+  - Break-even rule derived and checked against the table: cache pays only while served-answer error
+    rate p < 1/λ. 0.70 needs λ<3; 0.80 = 8.7; 0.82 = 12.0; 0.85 = 19.0. Savings at λ=1/10% danger =
+    900 per 1k; at λ=8/37% danger = −1,590.
+- **Sources (body-level):** arXiv 2411.05276 (GPT Semantic Cache: 8,000 QA pairs, all-MiniLM-L6-v2,
+  threshold 0.8, 2,000 generated tests, GPT-4o Mini judging each hit, hit 61.6–68.8%, positive hit
+  >97%); arXiv 2502.03771 vCache (ICLR 2026; static thresholds give no formal guarantee; 12.5× hit /
+  26× lower error); InfoQ 2025-11-14 banking case (1,000 real queries, 7 bi-encoders, 99% false
+  positives at 0.7, sub-5% only with a six-layer stack); Redis 2025-02-04 embedding study (labelled
+  pairs, confusion matrices, 5 models); bge-small-en-v1.5 model card (384 dims, 512 tokens, MTEB 62.17).
+- **Verification:** no `{% post_url %}`, no `cover:` key, no `.png` paths, no `{{`/`{%` in the body,
+  all four `/posts/` links resolve. `check-prose-style.py` PASS (2 prose em dashes, 0 title-case
+  headings, 0 emoji). `verify-post-code.py` "OK: all blocks ran" (2 blocks). Both python blocks
+  reproduce their quoted `text` output **byte-for-byte** (3,415 and 204 chars) via an inline pairing
+  check — note `check-quoted-output.py` reports "2 runnable blocks, 0 quoted-output blocks" because it
+  only pairs UNTAGGED output fences, the known false negative for this house style. 48 measurement
+  figures asserted against the quoted stdout (44 direct, 4 derived and checked by parsing the sweep
+  rows).
+- **Word count: 4,197 full / 2,600 code-excluded** against the live Lane B siblings (Oct 16
+  4,650/2,668; Oct 14 4,214/2,878; Oct 11 4,120/2,592; Oct 9 3,706/2,712). In band on both measures.
+- **Cover:** new metaphor checked against the label dump — a mail-sorter shelf of cache slots with the
+  CREDIT LEFT slot pulled and stamped WRONG, plus a score axis showing the empty window (correct pairs
+  from 0.7005, wrong pairs to 0.9102). No sibling uses a sorter/pigeonhole or a stamped card.
+  XML well-formed, `&`-escape clean, WebP 1200x630 VP8 verified.
+- Commit **245706f** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"`; port 22 to
+  github.com still times out. Build for 245706f completed **success**; permalink returned 200 on the
+  sixth retry (~90 s, normal CDN tail).
+- **Next session actions:**
+  1. **Oct 19 = Lane A** (one verified positive AI story, 2+ body-level sources, <=21 days old).
+  2. `.scheduled/` stays EMPTY; that is normal, not a gap.
+  3. Reusable artifacts for any future cache/retrieval post: `~/.hermes/cache/scratch/semcache/`
+     holds `final.py` (8-section analysis), `norm.py`, `pair_check.py` and the frozen outputs
+     (`outF.txt`, `n1.txt`). Re-run with `uv run --with=fastembed --with=numpy python3 final.py`;
+     the fastembed models stay in the HF cache.
+  4. Reusable anchors: the 0.7005/0.9102 empty-window pair, the 0.9102 identical-wording
+     personalisation case, and the "MS MARCO median −0.26 vs worst confusion +1.05" negative result.
