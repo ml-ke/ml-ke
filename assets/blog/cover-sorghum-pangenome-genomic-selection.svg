@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="drawer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2530"/>
+      <stop offset="1" stop-color="#141b24"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-width="1" opacity="0.03">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M150 0 V630 M300 0 V630 M450 0 V630 M600 0 V630 M750 0 V630 M900 0 V630 M1050 0 V630"/>
+  </g>
+
+  <text x="600" y="72" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#f5f7fa">44,000 Seeds, One Open Map</text>
+  <text x="600" y="108" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#8b98a9">A dryland sorghum pangenome, and the variance one reference cannot see</text>
+
+  <!-- seed drawer -->
+  <g>
+    <rect x="58" y="168" width="286" height="300" rx="10" fill="url(#drawer)" stroke="#2c3644" stroke-width="2"/>
+    <rect x="58" y="168" width="286" height="34" rx="10" fill="#222c39"/>
+    <text x="76" y="191" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#94a3b8" letter-spacing="1.5">GENEBANK DRAWER</text>
+    <g fill="none" stroke="#3a4759" stroke-width="1.5">
+      <rect x="80" y="222" width="58" height="70" rx="4"/>
+      <rect x="150" y="222" width="58" height="70" rx="4"/>
+      <rect x="220" y="222" width="58" height="70" rx="4"/>
+      <rect x="290" y="222" width="36" height="70" rx="4"/>
+      <rect x="80" y="304" width="58" height="70" rx="4"/>
+      <rect x="150" y="304" width="58" height="70" rx="4"/>
+      <rect x="220" y="304" width="58" height="70" rx="4"/>
+      <rect x="290" y="304" width="36" height="70" rx="4"/>
+      <rect x="80" y="386" width="58" height="62" rx="4"/>
+      <rect x="150" y="386" width="58" height="62" rx="4"/>
+      <rect x="220" y="386" width="58" height="62" rx="4"/>
+      <rect x="290" y="386" width="36" height="62" rx="4"/>
+    </g>
+    <g fill="#6bcf7f" opacity="0.85">
+      <circle cx="102" cy="262" r="3.4"/><circle cx="119" cy="256" r="3.4"/><circle cx="109" cy="271" r="3.4"/>
+      <circle cx="172" cy="260" r="3.4"/><circle cx="189" cy="270" r="3.4"/><circle cx="178" cy="250" r="3.4"/>
+      <circle cx="242" cy="262" r="3.4"/><circle cx="259" cy="254" r="3.4"/><circle cx="249" cy="273" r="3.4"/>
+      <circle cx="102" cy="342" r="3.4"/><circle cx="119" cy="336" r="3.4"/><circle cx="111" cy="352" r="3.4"/>
+      <circle cx="172" cy="344" r="3.4"/><circle cx="190" cy="337" r="3.4"/><circle cx="180" cy="354" r="3.4"/>
+      <circle cx="242" cy="340" r="3.4"/><circle cx="260" cy="350" r="3.4"/><circle cx="250" cy="334" r="3.4"/>
+      <circle cx="102" cy="420" r="3.4"/><circle cx="120" cy="414" r="3.4"/><circle cx="111" cy="430" r="3.4"/>
+      <circle cx="172" cy="422" r="3.4"/><circle cx="190" cy="416" r="3.4"/><circle cx="180" cy="432" r="3.4"/>
+      <circle cx="242" cy="420" r="3.4"/><circle cx="260" cy="430" r="3.4"/><circle cx="250" cy="412" r="3.4"/>
+    </g>
+    <g stroke="#ffd93d" stroke-width="2" fill="none">
+      <rect x="150" y="304" width="58" height="70" rx="4"/>
+      <rect x="220" y="386" width="58" height="62" rx="4"/>
+    </g>
+    <text x="58" y="492" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#7c8899">44,000 sorghum samples · 90+ countries</text>
+    <text x="58" y="512" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#7c8899">129,000 accessions in the whole bank</text>
+  </g>
+
+  <!-- arrow -->
+  <g stroke="#3f4c60" stroke-width="2.5" fill="none">
+    <path d="M356 320 H412"/>
+    <path d="M398 310 L414 320 L398 330"/>
+  </g>
+
+  <!-- pangenome graph -->
+  <g>
+    <text x="430" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#00d2ff" letter-spacing="1.2">ACCESSORY GENES (PRESENT / ABSENT)</text>
+    <g stroke="#00d2ff" stroke-width="2.2" fill="none" opacity="0.9">
+      <path d="M470 372 C470 286 520 252 566 252 C612 252 612 300 650 300"/>
+      <path d="M556 372 C556 274 606 240 654 240 C702 240 702 296 742 296"/>
+      <path d="M642 372 C642 300 688 268 734 268 C780 268 780 320 818 320"/>
+    </g>
+    <g fill="#00d2ff">
+      <circle cx="566" cy="252" r="5"/><circle cx="654" cy="240" r="5"/><circle cx="734" cy="268" r="5"/>
+    </g>
+    <g fill="#00d2ff" opacity="0.35">
+      <circle cx="650" cy="300" r="3.5"/><circle cx="742" cy="296" r="3.5"/><circle cx="818" cy="320" r="3.5"/>
+    </g>
+
+    <path d="M430 372 H840" stroke="#a78bfa" stroke-width="5" stroke-linecap="round"/>
+    <g fill="#0d1117" stroke="#a78bfa" stroke-width="2.5">
+      <circle cx="470" cy="372" r="7"/><circle cx="556" cy="372" r="7"/><circle cx="642" cy="372" r="7"/>
+      <circle cx="728" cy="372" r="7"/><circle cx="814" cy="372" r="7"/>
+    </g>
+    <text x="430" y="404" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#a78bfa" letter-spacing="1.2">CORE GENOME, SHARED BY EVERY LINE</text>
+
+    <path d="M430 444 H840" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="9 7"/>
+    <text x="430" y="470" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ff8f8f" letter-spacing="1.2">SINGLE REFERENCE: ONE FLAT LINE, ONE GENOME</text>
+  </g>
+
+  <!-- accuracy bars -->
+  <g>
+    <text x="900" y="212" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b98a9" letter-spacing="1.2">PREDICTION ACCURACY</text>
+    <line x1="880" y1="248" x2="1140" y2="248" stroke="#2c3644" stroke-width="1"/>
+    <line x1="880" y1="382" x2="1140" y2="382" stroke="#2c3644" stroke-width="1"/>
+    <rect x="908" y="274" width="70" height="108" rx="4" fill="#ff6b6b" opacity="0.85"/>
+    <rect x="1006" y="265" width="70" height="117" rx="4" fill="#6bcf7f" opacity="0.9"/>
+    <text x="943" y="374" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1a1a2e" font-weight="700">0.74</text>
+    <text x="1041" y="374" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#0d1117" font-weight="700">0.79</text>
+    <text x="943" y="402" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#7c8899">reference</text>
+    <text x="1041" y="402" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#7c8899">+ accessory</text>
+    <line x1="880" y1="262" x2="1140" y2="262" stroke="#ffd93d" stroke-width="1.6" stroke-dasharray="7 6"/>
+    <text x="1140" y="252" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffd93d">ceiling 0.81</text>
+  </g>
+
+  <text x="58" y="568" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#94a3b8">Open atlas · open germplasm · a model that can only see what the panel contains</text>
+  <text x="1142" y="602" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#5f6b7a">ml-ke.github.io</text>
+</svg>
