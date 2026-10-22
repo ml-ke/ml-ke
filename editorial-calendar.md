@@ -2630,3 +2630,58 @@ phrased as a pointer, not a measured comparison.
      the fastembed models stay in the HF cache.
   4. Reusable anchors: the 0.7005/0.9102 empty-window pair, the 0.9102 identical-wording
      personalisation case, and the "MS MARCO median −0.26 vs worst confusion +1.05" negative result.
+
+## Publishing note — 2026-10-22 (Lane A: positive AI story)
+
+- **Post:** `_posts/2026-10-22-sorghum-pangenome-genomic-selection.md` — "44,000 Seeds, One Open
+  Map: What the Dryland Sorghum Pangenome Changes for Breeders". Commit **6471bf0**.
+- **Lane:** A (positive AI story). Preceding non-Tuesday post (Oct 18) was Lane B, so this alternates.
+  Story is <=21 days old (announced 15 Oct 2026) and non-Western in framing (ICRISAT India + African
+  dryland germplasm).
+- **Story:** Google DeepMind + Google.org (AI Collaborative for Food Security) + ICRISAT + HudsonAlpha
+  + UW Dept of Genome Sciences will build an open-access sorghum genetic atlas from a representative
+  sample of a genebank holding >44,000 sorghum accessions from 90+ countries, plus a three-year
+  postdoctoral fellowship at ICRISAT (DeepMind's first in India and first outside the UK); scope
+  extends to chickpea, groundnut and pigeon pea. No dataset, licence or release date — the post says
+  so plainly and treats it as a design argument, not a shipped artifact.
+- **Differentiation:** AlphaGenome (Sep 26) is a human variant atlas; the Gates/Google post (Sep 28)
+  is the advisory layer; this is the genomics/breeding layer. Stated in the intro.
+- **Sources (body-level):** ICRISAT pressroom release adapted from the Google blog (partners, >44,000
+  samples / 90+ countries, 3-year fellowship, "first outside the UK", chickpea/groundnut/pigeon pea,
+  Ramanan + Blade + Odeny quotes); Global Agriculture 16 Oct (independent corroboration of the same
+  numbers); Business Standard 15 Oct (date); ICRISAT genebank page (129,000 accessions, 11 crops,
+  144 countries, 80.8% landraces, repatriation 55,399 accessions, 1.61M samples to 150 countries,
+  regional genebanks Niamey/Bulawayo/Nairobi); Morris et al. Nature 11 Mar 2026 (33-genome pangenome,
+  BTx623, PAV/CNV/SV quote, 1,984 resequenced lines, 693 georeferenced African/Asian cultivars, SRN39,
+  SC 283, CSM-63, RTx430, BTx642); phys.org/Danforth 12 Mar 2026 (33 genomes + 1,984 resequencing);
+  Khalifa & Eltahir, Frontiers 2023 (SSA 24.5 Mha, 0.9 t/ha vs 2.5 t/ha global, 70.6% in six countries,
+  46.3/43.2/40.9 Mha); PMC training-population optimization 2019 (drivers of predictive ability).
+- **Measured demo (both blocks run from the file):** synthetic panel, 600 accessions, three landrace
+  groups, 400 core SNPs + 36 accessory genes, 20 + 8 causal, heritability 0.7. Accessory genome carries
+  **33.9%** of genetic variance, so a reference-only panel caps at **r = 0.813**. Ridge/GBLUP results:
+  random 5-fold **0.738 vs 0.793**; leave-one-landrace-group-out **0.294 vs 0.625**; training-size sweep
+  0.540/0.583, 0.560/0.565, 0.696/0.744, 0.755/0.815. Derived gaps quoted in prose (0.055, 0.043,
+  0.005, 0.048, 0.060) recomputed and checked.
+- **Verification:** no `{% post_url %}`, no `cover:` key, no `.png` path, no `{{`; all four `/posts/`
+  links resolve. `check-prose-style.py` PASS (2,384 prose words, 0 prose em dashes, 0 title-case
+  headings, 0 emoji). `verify-post-code.py` "OK: all blocks ran" (2 blocks). stdout of both python
+  blocks matches its quoted ```text fence **byte-for-byte** (182 and 642 chars) via an inline pairing
+  check, and both were run twice with identical md5 (block1 `24da2a69…`, block2 `1fe35365…`).
+  14 quoted figures asserted against fresh stdout. Word count **3,477 full / 2,663 code-excluded**
+  against Lane A siblings Oct 17 3,154/3,060, Oct 15 2,966/2,691, Oct 12 3,113/2,780 — in band.
+- **Cover:** new metaphor checked against the label dump: an open genebank seed drawer feeding a
+  branching pangenome graph, with a flat single-reference line beneath and two proportional accuracy
+  bars (0.74 / 0.79) under a dashed 0.81 ceiling. No sibling uses a drawer, seed packets or a branching
+  graph. XML well-formed, `&`-escape clean, WebP 1200x630 VP8 33 KB verified with `file`.
+- **Publish:** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"` (port 22 still
+  blocked); all three blobs confirmed on `origin/main` via `git ls-tree`.
+- **Next session actions:**
+  1. **Oct 19 and Oct 21 are unpublished** (the last posts before this one are Oct 17, Oct 18 and the
+     Oct 20 Tuesday roundup). Backfill both: Oct 19 = Lane B tutorial, Oct 21 = Lane A story, checking
+     `_posts/` for subject overlap first.
+  2. `.scheduled/` remains EMPTY — that is the current design, not a gap.
+  3. Reusable demo artifacts: `~/.hermes/cache/scratch/sorg/` holds `block1.py`, `block2.py` (the exact
+     published blocks), `out_b2_1.txt`. Run with `OMP_NUM_THREADS=1 uv run --with=numpy python3
+     block2.py` — single-threaded takes seconds, default BLAS threads take ~2 minutes on this laptop.
+  4. Genomic-selection anchors banked here: 0.738/0.793 random-fold pair, 0.294/0.625 group-holdout
+     collapse, the 33.9% → 0.813 ceiling rule, and the 33-genome / 1,984-line Nature pangenome numbers.
