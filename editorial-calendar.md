@@ -2685,3 +2685,62 @@ phrased as a pointer, not a measured comparison.
      block2.py` — single-threaded takes seconds, default BLAS threads take ~2 minutes on this laptop.
   4. Genomic-selection anchors banked here: 0.738/0.793 random-fold pair, 0.294/0.625 group-holdout
      collapse, the 33.9% → 0.813 ceiling rule, and the 33-genome / 1,984-line Nature pangenome numbers.
+
+## Publishing note — 2026-10-24 (Lane B: tutorial)
+
+- **Post:** `_posts/2026-10-24-hybrid-retrieval-rank-fusion.md` — "Fuse Ranks, Not Scores: Combining
+  BM25 and Dense Retrieval" (categories Machine Learning, AI Engineering). Commit `5e7877b`.
+- **Lane choice:** the two posts before this one were Lane A (Oct 22 sorghum pangenome, Oct 17 Darija
+  speech stack), so today ran Lane B. Tuesday guard not triggered (Oct 24 is a Saturday).
+- **Differentiation (checked before writing):** `rag-recall-at-k-denominator` (Sep 19) covers how to
+  measure one retriever; `filtered-vector-search-pool-sizing` (Oct 14) covers the ANN candidate pool;
+  `semantic-cache-threshold-precision` (Oct 18) covers a similarity cutoff. None of them covers how two
+  retrievers are merged, and no post in `_posts/` used the terms RRF, rank fusion or reranking as a
+  subject. Angle stated in the intro.
+- **Technique:** build a 61-document farm-advisory KB with BM25 (Lucene defaults, k1=1.2, b=0.75) plus a
+  deterministic concept-overlap "dense" stand-in, 30 labelled queries in three classes (literal,
+  paraphrase, mixed), then compare bm25 / dense / raw score sum / min-max convex combination / RRF at
+  k=0,10,60. Includes an alpha-tuning experiment and a normalisation-window check.
+- **Sources (body-level):** Cormack, Clarke & Büttcher SIGIR 2009 PDF (k=60 near-optimal, "the choice was
+  not critical", Table 1 MAP .2072/.2145/.2098 at k=0/60/500, 4-5% average gain, sign tests);
+  Bruch, Gai & Ingber arXiv:2210.11934 PDF (RRF parametric, "NDCG swings wildly as a function of RRF
+  parameters", Table 2 MS MARCO NDCG 0.309/0.441/0.425, Table 3 (5,5)=0.435 and (10,4)=0.451 vs
+  (60,60)=0.425, eta_Lex>eta_Sem helps MS MARCO and reverses on HotpotQA, tuned RRF generalises poorly
+  out-of-domain); Elastic RRF docs (rank_constant default 60, rank_window_size >= size, truncation rule);
+  Azure AI Search RRF page (1/(rank+k), k=60); OpenSearch normalization processor (min_max default, l2
+  ratio preservation); Weaviate fusion-algorithms blog (relativeScoreFusion default from 1.24); Lucene
+  BM25Similarity javadoc (k1/b defaults and the idf formula).
+- **Honest framing kept in the post:** the semantic retriever is a stand-in, not a real embedding model,
+  and the post says so twice. The tuned-alpha failure is labelled a query-mix shift, explicitly
+  distinguished from the dataset shift Bruch et al. study, where their finding runs the other way.
+- **Measured demo (all figures from the published blocks):** bm25 R@10 0.73 / MRR 0.658, dense 0.57 /
+  0.459; raw sum 0.80 / 0.690; min-max a=0.5 0.83 / 0.742; rrf k=0 0.83 / 0.744; rrf k=10 0.589;
+  rrf k=60 0.572. Score scale bm25 3.33-13.24 vs dense 0.12-0.78. Tuned alpha 0.7 on paraphrase-heavy
+  dev (0.706) collapses to 0.233 on literal traffic. Normalisation window 10 vs 50 flips top-1 on
+  6 of 30 queries.
+- **Verification:** no `{% post_url %}`, no `cover:` key, no `.png` path, no `{{`; all five `/posts/`
+  links resolve; slug unique. `verify-post-code.py` "OK: all blocks ran" (3 blocks). All three python
+  blocks match their quoted ```text fences byte-for-byte (451 / 435 / 1028 chars) and re-run with
+  identical md5 (`244ee2b4`, `50c3e26e`, `9e8dcb11`). 49 quoted figures asserted against fresh stdout of
+  their own block, 3/3 blocks OK. `check-prose-style.py` PASS (2,525 prose words, 0 prose em dashes,
+  0 title-case headings, 0 emoji). Word count **2,794 code-excluded** against siblings Oct 22 2,663 /
+  Oct 18 2,600 / Oct 16 2,668 / Oct 14 2,878 — in band.
+- **Cover:** new metaphor checked against the full label dump: two ranked columns (lexical bars, semantic
+  nodes) feeding a fusion block with `1/(k + rank)`, then one merged top-4 with a document raised from
+  rank 4+3 to rank 1. No sibling uses ranked lists, braids or a merge block. XML well-formed, `&`-escape
+  clean, WebP 1200x630 VP8 32 KB verified with `file`.
+- **Publish:** pushed with `GIT_SSH_COMMAND="ssh -o HostName=ssh.github.com -p 443"` (port 22 still
+  blocked); all three blobs confirmed on `origin/main` via `git ls-tree`; Actions run for `5e7877b`
+  completed **success** (not superseded); `https://ml.co.ke/posts/hybrid-retrieval-rank-fusion/` returned
+  **200** on the first attempt, and the served HTML contains the title, `rrf k=60`, `0.572`, `1.15x` and
+  the cover path.
+- **Next session actions:**
+  1. **Oct 19, Oct 21 and Oct 23 remain unpublished** (posts exist for Oct 17, 18, 20, 22 and now 24).
+     Backfill Oct 19 = Lane B, Oct 21 = Lane A, Oct 23 = Lane B, checking `_posts/` for subject overlap
+     first; do not reuse the hybrid-retrieval angle.
+  2. `.scheduled/` is still EMPTY — that is the current design, not a gap.
+  3. Reusable demo artifacts: `~/.hermes/cache/scratch/hyb/` holds `final1.py`, `final2.py`, `final3.py`
+     (the three published blocks, in file order) plus `bruch.pdf`/`bruch.txt` and `out1/out2/out3.txt`.
+     Pure stdlib, no numpy, single-threaded, runs in under a second.
+  4. Retrieval-fusion anchors banked here: the k=60 1.15x floor, the k=0 10.00x ceiling, the
+     6-of-30 window flip rate, and the Bruch Table 3 triple (0.425 / 0.435 / 0.451).
