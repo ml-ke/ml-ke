@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16203a"/>
+      <stop offset="1" stop-color="#0f1626"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- title -->
+  <text x="600" y="72" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="33" fill="#f0f4f8">Ten Kenyan startups, one design constraint</text>
+  <text x="600" y="112" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="21" fill="#8fb3c9">the network is optional</text>
+
+  <!-- LEFT: clinic with local queue -->
+  <g transform="translate(88,190)">
+    <rect x="0" y="0" width="230" height="250" rx="12" fill="url(#screen)" stroke="#2b3a52" stroke-width="2"/>
+    <text x="115" y="30" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#7d8fa8" letter-spacing="2">CLINIC</text>
+    <!-- clinic building -->
+    <rect x="28" y="52" width="86" height="70" rx="4" fill="none" stroke="#6bcf7f" stroke-width="2.5"/>
+    <path d="M60 78 h22 M71 67 v22" stroke="#6bcf7f" stroke-width="4" stroke-linecap="round"/>
+    <rect x="128" y="52" width="74" height="70" rx="6" fill="none" stroke="#3f5470" stroke-width="2"/>
+    <circle cx="165" cy="74" r="9" fill="none" stroke="#3f5470" stroke-width="2"/>
+
+    <!-- local queue stack -->
+    <text x="28" y="155" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8fb3c9" letter-spacing="1">LOCAL QUEUE</text>
+    <g stroke="#00d2ff" stroke-width="2" fill="#0e1a2b">
+      <rect x="28" y="166" width="86" height="30" rx="4"/>
+      <rect x="28" y="182" width="86" height="30" rx="4"/>
+      <rect x="28" y="198" width="86" height="30" rx="4"/>
+    </g>
+    <g fill="#00d2ff" opacity="0.75">
+      <rect x="36" y="174" width="18" height="14" rx="2"/>
+      <rect x="36" y="190" width="18" height="14" rx="2"/>
+      <rect x="36" y="206" width="18" height="14" rx="2"/>
+    </g>
+    <g stroke="#00d2ff" stroke-width="2" opacity="0.6">
+      <path d="M62 181 h44 M62 197 h44 M62 213 h44"/>
+    </g>
+    <text x="140" y="205" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#ffd93d">3</text>
+    <text x="140" y="228" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#7d8fa8">studies waiting</text>
+  </g>
+
+  <!-- MIDDLE: broken link + clock -->
+  <g transform="translate(340,190)">
+    <text x="130" y="120" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ff6b6b" letter-spacing="2">NO SIGNAL</text>
+    <path d="M0 138 h84" stroke="#ff6b6b" stroke-width="3" stroke-dasharray="12 10"/>
+    <path d="M176 138 h84" stroke="#6bcf7f" stroke-width="3" stroke-dasharray="12 10"/>
+    <path d="M104 124 l24 28 M128 124 l-24 28" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round"/>
+    <!-- clock -->
+    <circle cx="130" cy="208" r="34" fill="none" stroke="#ffd93d" stroke-width="2.5"/>
+    <path d="M130 208 V186 M130 208 l16 12" stroke="#ffd93d" stroke-width="3" stroke-linecap="round"/>
+    <text x="130" y="272" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8fb3c9">link up 35% of the time</text>
+  </g>
+
+  <!-- arrow to hub -->
+  <path d="M600 328 h64" stroke="#a78bfa" stroke-width="3" stroke-dasharray="10 8"/>
+  <path d="M664 328 l-12 -6 v12 z" fill="#a78bfa"/>
+  <text x="632" y="308" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#a78bfa">sync</text>
+
+  <!-- RIGHT: hub / radiologist -->
+  <g transform="translate(700,190)">
+    <rect x="0" y="0" width="240" height="250" rx="12" fill="url(#screen)" stroke="#2b3a52" stroke-width="2"/>
+    <text x="120" y="30" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#7d8fa8" letter-spacing="2">HUB</text>
+    <!-- monitor -->
+    <rect x="26" y="52" width="130" height="90" rx="6" fill="#0b1526" stroke="#a78bfa" stroke-width="2.5"/>
+    <rect x="36" y="64" width="52" height="66" rx="3" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.8"/>
+    <circle cx="62" cy="88" r="14" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.8"/>
+    <g stroke="#a78bfa" stroke-width="2" opacity="0.65">
+      <path d="M98 74 h48 M98 90 h48 M98 106 h34 M98 122 h44"/>
+    </g>
+    <path d="M91 142 v14 h-18" stroke="#a78bfa" stroke-width="2" fill="none"/>
+    <!-- report sheet -->
+    <g transform="translate(146,150)">
+      <rect x="0" y="0" width="66" height="72" rx="4" fill="#0e1a2b" stroke="#6bcf7f" stroke-width="2"/>
+      <g stroke="#6bcf7f" stroke-width="2" opacity="0.7">
+        <path d="M10 18 h46 M10 30 h46 M10 42 h30"/>
+      </g>
+      <circle cx="52" cy="58" r="9" fill="none" stroke="#6bcf7f" stroke-width="2"/>
+      <path d="M47 58 l4 4 7 -8" stroke="#6bcf7f" stroke-width="2" fill="none"/>
+    </g>
+    <text x="120" y="240" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#7d8fa8">read when it lands</text>
+  </g>
+
+  <!-- bottom band -->
+  <line x1="88" y1="492" x2="1112" y2="492" stroke="#243449" stroke-width="1.5"/>
+  <text x="88" y="524" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#c9d8e6">426 applications</text>
+  <text x="290" y="524" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4b6076">/</text>
+  <text x="316" y="524" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#c9d8e6">10 finalists</text>
+  <text x="470" y="524" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4b6076">/</text>
+  <text x="496" y="524" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#c9d8e6">5 sectors</text>
+  <text x="88" y="556" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7d8fa8">AI Academy Kenya Pitchathon, Nairobi, 16 Oct 2026</text>
+
+  <!-- logo -->
+  <text x="1112" y="586" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#5d7590">ml-ke.github.io</text>
+</svg>
