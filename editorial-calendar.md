@@ -2761,3 +2761,70 @@ phrased as a pointer, not a measured comparison.
   2. `.scheduled/` is still EMPTY — current design, not a gap; the daily lane is self-contained.
   3. Do NOT repeat the Kenya pitchathon angle: the cohort list, the 426-to-10 funnel and the $5,000 figures are now consumed. A follow-up worth writing after 24 November is what the two winners did at the Istanbul summit.
   4. Reusable demo artifact: `~/.hermes/cache/scratch/pitch/queue_model.py` (stdlib, deterministic, prints the three-policy table plus the 35% verdict line).
+
+## Publishing note — 2026-10-25 (backfill run: Oct 19, Oct 21, Oct 23)
+
+Three calendar days were missing because the scheduler was down on Oct 21 and Oct 23 (no
+execution rows at all) and the Oct 19 `blog-poster` run died on a connection error. All three
+are now published, backdated to their own day at `00:00:00 +0300` per the gap-fill rule.
+Wrote directly to `_posts/`, `.scheduled/` untouched. Every day from Sep 1 to Oct 25 now has
+a file.
+
+| Date | Slug | Lane | Subject | Words (code-excl.) |
+|------|------|------|---------|--------------------|
+| Oct 19 (Mon) | `kenya-civil-service-ai-course` | A | Kenya's eLITI launch at KSG: 2,730 registered / 1,239 completed the UNESCO-Oxford course (45.4%), plus a calibrated completion model | 2,710 |
+| Oct 21 (Wed) | `paired-eval-significance` | B | Gating an eval comparison: per-item pairing, McNemar, paired bootstrap, MDE/sample size, flaky-item detection | 2,846 |
+| Oct 23 (Fri) | `retry-that-charged-twice` | B | Idempotency keys and retry budgets for LLM calls; timeout as an ambiguous result; backoff schedule; dedupe-store race | 2,840 |
+
+**Lane note:** the pre-gap plan (in the Oct 24 note) had Oct 19 as Lane B, which would have made
+it three tutorial days in a row against the published Oct 18 (B) and left the story lane thin.
+Oct 19 was therefore written as Lane A, Oct 21 and Oct 23 as Lane B, which keeps the published
+sequence B(18) A(19) B(21) A(22) B(23) B(24) A(25) — one adjacent repeat at Oct 23/24.
+
+**Sources (body-fetched by the drafting agents; the Kenya numbers, UNESCO page, Stripe reference and Miller arXiv record re-checked here):**
+- Oct 19: Citizen Digital (2,730 total learners incl. public and private sectors, 1,239 completed,
+  DG Prof. Nura Mohamed, skills-gap mapping mandate), TechAfrica News (eLITI remit, Kenya Development Learning Centre 2003
+  lineage, 1,239 UNESCO-Oxford graduates), three UNESCO pages (12-hour duration, free, joint
+  Saïd Business School certificate, SPARK-AI alliance of 50+ training organisations, UN DESA 2024
+  figures: fewer than half of countries, 21% on ethical use). Kenya's public-service headcount,
+  MOOC completion benchmarks and the ict.go.ke AI strategy targets were dropped for lack of a
+  body-level source rather than softened.
+- Oct 21: Miller arXiv:2411.00640 (paired-SE formula, Eq. 9 power equation, 969-item worked
+  example), Dror et al. ACL 2018 (McNemar description, 180-paper significance survey), Dietterich
+  1998 (cited for the preference claim only, via Raschka's STAT 451 notes), Berg-Kirkpatrick 2012
+  (paired bootstrap), Biderman et al. 2024 (small-eval uncertainty).
+- Oct 23: Stripe idempotent-requests reference (saved response includes 500s, 24-hour pruning,
+  parameter comparison, concurrent-conflict rule), Envoy `RetryBudget` proto (`budget_percent`
+  default 20%, `min_retry_concurrency` default 3), AWS Builders' Library + Brooker on full jitter,
+  RFC 9110 §9.2.2, Google SRE book, Google Cloud retry guidance, openai-python retry/timeout docs,
+  OpenAI error codes, Anthropic errors, OpenAI cookbook. Twelve references, all body-fetched.
+
+**Verification (all re-run by the publishing session, not taken from the drafting agents):**
+- `verify-post-code.py`: `OK: all blocks ran` on all three (1, 4 and 3 python fences).
+- Quoted-output pairing: every python block re-executed in a fresh interpreter and its stdout
+  diffed byte-for-byte against the ` ```text ` fence that follows it — **8/8 identical**; each
+  block run twice with identical stdout md5, so no figure in these posts came from a timing run.
+- Figure assertions (by the drafting agents, reported): Oct 21 — 105 figures checked, 97 matched
+  in their own block, 8 in an earlier block by design (summary tables), 0 unmatched; Oct 23 — 43.
+- `check-prose-style.py`: PASS on all three (prose em dashes 0/0/0, title-case headings 0,
+  emoji 0; prose words 2,508 / 2,601 / 2,585).
+- Covers: three new metaphors — a 21×13 dot grid of 273 squares with 124 lit plus a twelve-hour
+  tick dial; an accuracy axis with one 95% interval wider than the point estimate plus a rug of
+  twenty draws; a ledger with the same request entering twice vs once through a keyed store.
+  Text-label dump checked for collisions; all three converted with ffmpeg and `file` reports
+  WebP 1200x630 (32 KB / 24 KB / 39 KB).
+- Cross-links: 4 / 5 / 4 `/posts/` links, all resolve; slugs unique; no `{% post_url %}`, no
+  bare `cover:` key, no `.png` image path.
+- Publish: commits `f754eec`, `4f3734a`, `586ce42` pushed as `5016378..586ce42`; local and remote
+  HEAD match; all three permalinks returned **200** without a retry and the served HTML carries
+  the title and cover path.
+
+**Next session actions:**
+1. Nothing outstanding for October: Sep 1 – Oct 25 is gap-free. Oct 26 (Mon) is the next empty
+   slot, and Oct 27 is a Tuesday owned by `tuesday-ai-update` — do not stage a post there.
+2. Do not reuse these three subjects: the eLITI cohort numbers, eval-significance statistics and
+   LLM retry/idempotency are now consumed.
+3. AI Crime Watch engine and finisher remain paused (since Sep 16) — deliberately, per the
+   "no more dark content" mandate. Do not resume them to fill a gap.
+4. Reusable demo artifacts: `~/.hermes/cache/scratch/evalstat/` (fixture + figure checker),
+   `~/.hermes/cache/scratch/` retry sim from the Oct 23 run.
