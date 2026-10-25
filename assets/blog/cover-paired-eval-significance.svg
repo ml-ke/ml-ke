@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6bcf7f" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#6bcf7f" stop-opacity="0.30"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M100 0 V630 M250 0 V630 M400 0 V630 M550 0 V630 M700 0 V630 M850 0 V630 M1000 0 V630 M1150 0 V630"/>
+  </g>
+
+  <text x="60" y="60" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="32" font-weight="bold" fill="#f0f6fc">Is +3 Points Real?</text>
+  <text x="60" y="94" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">One population, twenty 200-item eval sets, one interval that spans them</text>
+
+  <text x="60" y="160" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" font-weight="bold" fill="#00d2ff" letter-spacing="2">TWENTY DRAWS, SAME +3.0 TRUTH</text>
+  <text x="60" y="200" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#c9d1d9">200 items can only resolve a 6.0 point move, so this claim is inside the noise</text>
+  <text x="60" y="224" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">2,000 items resolve 1.9 points, and the interval tightens to +1.3 to +3.8</text>
+
+  <!-- rug: each draw's reported delta -->
+  <g stroke="#00d2ff" stroke-width="3" stroke-opacity="0.85" stroke-linecap="round">
+    <path d="M199 386 V416"/>
+    <path d="M236 386 V416"/>
+    <path d="M309 386 V416"/>
+    <path d="M345 386 V416"/>
+    <path d="M381 386 V416"/>
+    <path d="M418 386 V416"/>
+    <path d="M454 386 V416"/>
+    <path d="M491 386 V416"/>
+    <path d="M564 386 V416"/>
+    <path d="M600 386 V416"/>
+    <path d="M709 386 V416"/>
+    <path d="M746 386 V416"/>
+    <path d="M782 386 V416"/>
+  </g>
+  <text x="199" y="372" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#ff6b6b">-0.5</text>
+  <text x="770" y="372" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#00d2ff">+7.5</text>
+
+  <!-- axis -->
+  <line x1="90" y1="470" x2="1110" y2="470" stroke="#30363d" stroke-width="2"/>
+  <g stroke="#30363d" stroke-width="2">
+    <path d="M90 464 V476 M236 466 V474 M381 466 V474 M527 466 V474 M673 466 V474 M819 466 V474 M964 466 V474 M1110 464 V476"/>
+  </g>
+  <g font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" fill="#8b949e">
+    <text x="90" y="500" text-anchor="middle">-2</text>
+    <text x="236" y="500" text-anchor="middle">0</text>
+    <text x="381" y="500" text-anchor="middle">+2</text>
+    <text x="527" y="500" text-anchor="middle">+4</text>
+    <text x="673" y="500" text-anchor="middle">+6</text>
+    <text x="819" y="500" text-anchor="middle">+8</text>
+    <text x="964" y="500" text-anchor="middle">+10</text>
+    <text x="1110" y="500" text-anchor="middle">+12</text>
+  </g>
+  <text x="1110" y="524" text-anchor="end" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681">accuracy difference, points</text>
+
+  <!-- the population truth -->
+  <line x1="454" y1="300" x2="454" y2="556" stroke="#ffd93d" stroke-width="2" stroke-dasharray="6 6" stroke-opacity="0.9"/>
+  <text x="462" y="296" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffd93d">truth +3.0</text>
+
+  <!-- no-difference line -->
+  <line x1="236" y1="440" x2="236" y2="556" stroke="#ff6b6b" stroke-width="2" stroke-opacity="0.9"/>
+  <text x="230" y="580" text-anchor="middle" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#ff6b6b">no gain</text>
+
+  <!-- 95 percent interval at n = 200 -->
+  <rect x="236" y="460" width="728" height="20" rx="3" fill="url(#band)"/>
+  <g stroke="#6bcf7f" stroke-width="4">
+    <path d="M236 448 V492"/>
+    <path d="M964 448 V492"/>
+  </g>
+
+  <!-- point estimate -->
+  <circle cx="600" cy="470" r="11" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+  <text x="600" y="440" text-anchor="middle" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#f0f6fc">measured +5.0</text>
+
+  <text x="600" y="545" text-anchor="middle" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#6bcf7f">paired 95% interval: 0.0 to +10.0 points</text>
+  <text x="60" y="604" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#8b949e">the interval is wider than the gain, and the truth sits inside the spread of draws</text>
+
+  <text x="1140" y="604" text-anchor="end" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" fill="#6e7681">ml-ke.github.io</text>
+</svg>
