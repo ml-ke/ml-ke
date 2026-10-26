@@ -2828,3 +2828,70 @@ sequence B(18) A(19) B(21) A(22) B(23) B(24) A(25) — one adjacent repeat at Oc
    "no more dark content" mandate. Do not resume them to fill a gap.
 4. Reusable demo artifacts: `~/.hermes/cache/scratch/evalstat/` (fixture + figure checker),
    `~/.hermes/cache/scratch/` retry sim from the Oct 23 run.
+
+---
+
+## Publishing note: 2026-10-26 (Mon)
+
+| Date | Slug | Lane | Subject | Words (code-excl.) |
+|------|------|------|---------|--------------------|
+| Oct 26 (Mon) | `contamination-checks-before-you-trust-a-score` | B | Benchmark contamination before trusting a fine-tune score: the 13-gram gate measured (n sweep, false alarms at scale), the paraphrase/translation blind spot, and contamination-adjusted scoring with CIs | 2,753 |
+
+**Lane:** B (tutorial). The previous post (Oct 25, `kenya-ai-academy-offline-first`) was Lane A, so
+alternation put a tutorial here. Tuesday guard not triggered (Oct 26 is a Monday). `.scheduled/` was
+empty, so the self-contained lane ran; the post was written directly to `_posts/`.
+
+**Differentiation (checked before writing):** `eval-benchmark-poisoning` (Jun 10) treats contamination
+as an attack and lists three forms of leaderboard gaming; `minhash-lsh-corpus-dedup` covers intra-corpus
+near-duplicate removal. This post owns the build-time measurement: the detector's operating
+characteristics (false-alarm and recall curves against n), the paraphrase/translation blind spot measured
+on the same eval item, and the clean-vs-dirty subset arithmetic with a confidence interval. Stated in the
+intro so a reader can tell the three apart.
+
+**Sources (body-fetched this session, not snippet-level):**
+- Touvron et al., Llama 2, Appendix A.6 (arXiv:2307.09288): token-level contamination rule (>10-token
+  n-grams, skipgram budget of four tokens, no first-10 or trailing mismatches), clean <20 percent and
+  dirty >=80 percent subset definitions, the two-condition test ("It is insufficient evidence ... if only
+  one of these were true"), and Table 51 figures used in the post (MMLU-Overall 70B clean 68.0 on 11,862
+  items vs dirty 78.2 on 1,536; HellaSwag 70B 80.0 vs 92.2; MMLU-Humanities 7B 40.8 vs 56.9).
+- Yang et al., arXiv:2311.04850: GPT-3 13-gram and GPT-4 50-character provenance, MMLU 7B 45.3 to 88.5,
+  13B 54.8 to 85.9 / 89.9, GSM-8K 28.7 to 95.3, HumanEval CodeLlama-7B 32.9 to 67.7 and 100 on the test
+  set, the translated (Chinese) condition 100 / 91.1 / 74.3, HumanEval overlap in The Stack 18.9 percent,
+  StarCoder-Data 15.9, CodeAlpaca 12.8, RedPajama-Data 8.53, and the multiple-choice false-positive
+  discussion.
+- Zhang et al., arXiv:2410.08385 (abstract): 30 developers documented, 9 report train-test overlap
+  (4 release training data, 5 publish methodology and statistics).
+- Marin / Open Athena data-pipeline post: the 13-gram, 50-percent-share-per-paragraph rule, quoted with
+  its own caveat ("catches obvious copies, but misses paraphrases and some embedded examples").
+- arXiv:2406.04244 (survey) for the 13-gram and 50-character thresholds.
+
+**Verification (all re-run by this session):**
+- `verify-post-code.py`: `OK: all blocks ran` (3 python fences, stdlib only).
+- Quoted output: all three python blocks re-executed in a fresh interpreter and diffed byte-for-byte
+  against the following ` ```text ` fence — **3/3 identical**, each block run twice with identical
+  stdout md5, so no figure came from a timing run.
+- Prose figure checks done by hand against the block stdout plus the paper bodies; the two "clean items
+  still flagged" at n=13 were inspected and are same-stem near-duplicates (106/151 and 108/154 characters
+  shared), which the post states rather than calling them false alarms.
+- `check-prose-style.py`: PASS (prose em dashes 0, title-case headings 0, emoji 0).
+- Cover: new forensic span-matching metaphor (two document cards, a character-span ruler, a 50-character
+  rule marker; long cyan span for the verbatim copy, three scattered purple fragments for the paraphrase).
+  Label dump checked against siblings; `&` escaped; ffmpeg output verified as WebP 1200x630, 27 KB.
+- Cross-links: 4 `/posts/` links, all resolve; slug unique; no `{% post_url %}`, no bare `cover:` key, no
+  `.png` image path.
+- Publish: commit `c335728` pushed `0b058d8..c335728`; `git ls-tree origin/main` shows both blobs; Actions
+  run for `c335728a` **completed success**; `https://ml.co.ke/posts/contamination-checks-before-you-trust-a-score/`
+  returned **200 on the first attempt** and the served HTML carries the title tag, the cover path and the
+  code.
+
+**Next session actions:**
+1. Oct 26 is now filled; Sep 1 through Oct 26 is gap-free. Oct 27 is a Tuesday owned by
+   `tuesday-ai-update` — do not stage a post there. Oct 28 (Wed) is the next free slot, Lane A (story).
+2. Do not reuse this subject: the 13-gram gate, the rephrased-sample results and the contamination-adjusted
+   scoring are consumed. Adjacent-but-open topics in the same family: benchmark decontamination at the
+   tokenizer level, deduplicating a benchmark's own near-duplicate stems, and contamination in
+   machine-translated African-language eval sets.
+3. Reusable demo artifacts: `~/.hermes/cache/scratch/contam/` (`d1.py` gate sweep, `d2.py` operating
+   characteristics, `d3.py` adjusted scoring, plus `yang.txt` / `llama2.txt` / `survey.txt` extracted
+   text and `out1/2/3.txt` captured stdout).
+4. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content" mandate.
