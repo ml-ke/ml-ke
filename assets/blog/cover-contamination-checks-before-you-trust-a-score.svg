@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="70" y="86" font-family="Helvetica, Arial, sans-serif" font-size="33" font-weight="bold" fill="#f5f7fa">Contamination checks before you trust a score</text>
+  <text x="70" y="124" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#00d2ff">one long shared span, or scattered fragments, or nothing at all</text>
+
+  <g>
+    <rect x="70" y="170" width="360" height="132" rx="8" fill="#161b26" stroke="#2b3446" stroke-width="1.5"/>
+    <text x="70" y="196" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8b98ad">TRAINING DOCUMENT</text>
+    <rect x="90" y="212" width="300" height="8" rx="4" fill="#3a4457"/>
+    <rect x="90" y="232" width="250" height="8" rx="4" fill="#3a4457"/>
+    <rect x="90" y="252" width="286" height="8" rx="4" fill="#3a4457"/>
+    <rect x="90" y="272" width="180" height="8" rx="4" fill="#3a4457"/>
+  </g>
+
+  <g>
+    <rect x="770" y="170" width="360" height="132" rx="8" fill="#161b26" stroke="#2b3446" stroke-width="1.5"/>
+    <text x="770" y="196" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#8b98ad">EVAL ITEM</text>
+    <rect x="790" y="212" width="300" height="8" rx="4" fill="#3a4457"/>
+    <rect x="790" y="232" width="250" height="8" rx="4" fill="#3a4457"/>
+    <rect x="790" y="252" width="286" height="8" rx="4" fill="#3a4457"/>
+    <rect x="790" y="272" width="180" height="8" rx="4" fill="#3a4457"/>
+  </g>
+
+  <line x1="446" y1="236" x2="754" y2="236" stroke="#6bcf7f" stroke-width="2" stroke-dasharray="6 5"/>
+  <polygon points="446,236 462,230 462,242" fill="#6bcf7f"/>
+  <polygon points="754,236 738,230 738,242" fill="#6bcf7f"/>
+  <text x="600" y="224" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">tokenise, then compare spans</text>
+
+  <line x1="70" y1="352" x2="1130" y2="352" stroke="#3a4457" stroke-width="1.5"/>
+  <line x1="70" y1="346" x2="70" y2="358" stroke="#3a4457" stroke-width="2"/>
+  <line x1="330" y1="346" x2="330" y2="358" stroke="#3a4457" stroke-width="2"/>
+  <line x1="590" y1="346" x2="590" y2="358" stroke="#3a4457" stroke-width="2"/>
+  <line x1="850" y1="346" x2="850" y2="358" stroke="#3a4457" stroke-width="2"/>
+  <line x1="1130" y1="346" x2="1130" y2="358" stroke="#3a4457" stroke-width="2"/>
+  <text x="70" y="378" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#5d6a80">span length in characters</text>
+
+  <line x1="890" y1="330" x2="890" y2="560" stroke="#ffd93d" stroke-width="1.5" stroke-dasharray="5 6" stroke-opacity="0.85"/>
+  <text x="884" y="326" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffd93d">50-character rule</text>
+  <text x="896" y="326" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#ffd93d">n = 13</text>
+
+  <g>
+    <rect x="70" y="404" width="820" height="30" rx="5" fill="#00d2ff" fill-opacity="0.75"/>
+    <text x="70" y="398" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#9fb2cc">VERBATIM COPY</text>
+    <text x="70" y="458" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#00d2ff">150 characters shared: flagged, removed from training</text>
+  </g>
+
+  <g>
+    <rect x="70" y="490" width="200" height="26" rx="5" fill="#a78bfa" fill-opacity="0.65"/>
+    <rect x="300" y="490" width="150" height="26" rx="5" fill="#a78bfa" fill-opacity="0.65"/>
+    <rect x="480" y="490" width="95" height="26" rx="5" fill="#a78bfa" fill-opacity="0.65"/>
+    <text x="70" y="484" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#9fb2cc">PARAPHRASED TWIN</text>
+    <text x="70" y="540" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#a78bfa">longest span 35, n-gram share 0.00: passes both checks, keeps the leak</text>
+  </g>
+
+  <rect x="70" y="572" width="1060" height="1" fill="#233043"/>
+  <text x="70" y="602" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b98ad">report the leaked share next to the score, and read the flagged queue by hand</text>
+  <text x="1130" y="602" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#5d6a80">ml-ke.github.io</text>
+</svg>
