@@ -2895,3 +2895,91 @@ intro so a reader can tell the three apart.
    characteristics, `d3.py` adjusted scoring, plus `yang.txt` / `llama2.txt` / `survey.txt` extracted
    text and `out1/2/3.txt` captured stdout).
 4. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content" mandate.
+
+## Publishing note — 2026-10-28 (Wednesday, Lane A: positive AI story)
+
+| Field | Value |
+|---|---|
+| Date | 2026-10-28 (Wed) |
+| Slug | `open-weights-tb-screening-front-line` |
+| Lane | A (positive AI story) |
+| Story | Open foundation models (MedGemma, MedSigLIP, HeAR) behind TB screening: ~40 facilities in six countries, 25,000+ clinician-reviewed chest radiographs, 45-second turnaround, an offline deployment four kilometres underground at Mponeng, and Indonesia's 50-million-a-year national programme |
+| Cover | `assets/blog/cover-open-weights-tb-screening-front-line.svg` → `assets/img/cover-open-weights-tb-screening-front-line.webp` (29 KB, 1200x630) |
+| Words | 3,544 naive body / 2,654 prose (checker) — inside the Oct 22-26 sibling range (2,919-3,955 naive) |
+
+**Lane choice:** Oct 26 (`contamination-checks-before-you-trust-a-score`) was Lane B and Oct 27 was the
+Tuesday roundup, so alternation put Lane A here. Tuesday guard did not trigger (Oct 28 is a Wednesday).
+`.scheduled/` was empty, so the self-contained lane ran and the post was written directly to `_posts/`.
+
+**Differentiation (checked before writing):** the topic area has three siblings and the post was framed
+against all three. `who-prequalification-cad-tb-ai-screening` (Oct 1) owns the procurement gate, the WHO
+list and version drift. `tanzania-retina-screening-trial` (Oct 15) owns the randomised trial whose
+endpoint was attendance, not accuracy. `ai-primary-care-class-iib-ce` (Sep 18) owns what one Class IIb
+certificate transfers to a health post. This post owns the deployment-and-capacity question: what an
+open-weights distribution model changes, the per-study unit economics, and the memory/throughput
+arithmetic that decides the hardware. Stated in the intro. MedGemma, MedSigLIP and Nexus AI had no prior
+coverage in `_posts/` (grepped).
+
+**Sources (body-fetched this session, not snippet-level):**
+- Google Research, "Bringing foundational models to the front lines of TB screening" (23 Oct 2026, the
+  recency anchor for this post): six countries, ~40 facilities, 90+ clinicians, 25,000+ radiographs,
+  under-45-second turnaround, 3,000 free screenings against a 10,000/year goal, Mponeng deployment,
+  MedGemma 4B/27B variants and 10M+ downloads, MedSigLIP 400M+400M two-tower, HeAR trained on 300M+
+  audio segments, Indonesia's 50-million-a-year goal, CE MDR class IIb, ISO 13485, FIND agreement.
+- Streamlinefeed (2 Sep 2026), "Nexus bets AI chest screens can fill Africa's radiologist void": the
+  $0.70/$0.62 per-study and $7,000-per-modality pricing, CE certification December 2025, 460,000+
+  radiographs in development and validation, Lancet Digital Health AUC 0.897 / 89.1 percent at a 0.5
+  threshold / highest sensitivity among 12 products, NEJM AI Lusaka 87 percent sensitivity and 70 percent
+  specificity against the best of ten radiologists at 84/68, the radiologist-density figures, and the
+  conflicting >50,000-scans-across-~47-sites cumulative count.
+- Google, "MedGemma is helping global healthcare providers deliver better care" (23 Sep 2026): the
+  Indonesia fine-tuning description, DawaMom in Zambia (3,500+ women), Crane AI in Uganda, Visilant in
+  India (50,000+ patients), AIIMS Delhi pilots.
+- Google Africa, "Meet the Pretoria team..." (16 Jun 2026): two parallel models, heatmaps and contours,
+  entire-offline operation, Cameroon/Vietnam pilots under Stop TB Partnership.
+- WHO Global TB Report 2025 fact sheet (1.23 million deaths in 2024, 10.7 million fell ill) and the
+  MedGemma/MedSigLIP model cards (variant list, 448x448, 64 text tokens, 400M+400M encoders).
+- Techpoint Africa feature and the Nexus Intelligence product page for the vendor-side corroboration.
+
+**Unresolved discrepancy, stated in the post:** Google's 23 Oct post says 25,000+ radiographs evaluated by
+90+ clinicians at ~40 facilities; Streamlinefeed's 2 Sep profile says 50,000+ X-rays across ~47 sites. The
+second predates the first, so they are not snapshots of the same measure. The post treats 25,000 as the
+clinician-reviewed figure and 50,000 as the platform's cumulative claim, and says so. Do not "fix" this to
+one number without a primary that reconciles them.
+
+**Verification (all re-run by this session):**
+- `verify-post-code.py`: `OK: all blocks ran` (2 python fences, stdlib only, each in its own interpreter).
+- Quoted output: both blocks re-executed twice in fresh interpreters, stdout byte-identical across runs
+  and byte-identical to the following ` ```text ` fence — **2/2 match** (the pairing check is the inline
+  one from the skill, not `check-quoted-output.py`, which does not count tagged `text` fences). No block
+  prints a wall-clock measurement, so nothing in the post depends on a timing run.
+- Prose figures asserted against block stdout: 6.94 and 1.59 images/s, 720/1800/80 images per hour,
+  35/313/14 devices, 5,760/640/14,400 images per shift, 8.0/4.0/2.0 GB for the 4B model, 54/27/13.5 GB
+  for 27B, 2.30 GB per million embeddings at dim 1152 in fp16 (and the 23 GB ten-million figure derived
+  from it). The dimension rows are parametric because the MedSigLIP model card does not publish the
+  projection width, which the post states.
+- `check-prose-style.py`: PASS (prose em dashes 0, title-case headings 0, emoji 0; review-only hits
+  `actually` x3, `streamline` x3, `only` x3 — the first two are ordinary words in this post, the third is
+  the plain English "not only").
+- Cover: new metaphor (mine shaft cross-section with depth ruler, portable detector plus offline inference
+  box at the working face, no-uplink marker, three stacked model cards with a dashed weight path into the
+  shaft, per-study price badge). Label dump checked against siblings before designing; `&` escape check
+  clean; ffmpeg output verified as WebP 1200x630, 29 KB.
+- Cross-links: 5 `/posts/` links, all resolve; slug unique; no `{% post_url %}`, no bare `cover:` key, no
+  `.png` image path.
+- Publish: commit `7e2fd2b` pushed `3fb0ece..7e2fd2b`; `git ls-tree origin/main` shows both the post blob
+  and the cover WebP; the Actions run for `7e2fd2bb` **completed success**; the permalink
+  `https://ml.co.ke/posts/open-weights-tb-screening-front-line/` returned **200 on the fourth attempt
+  (~60s)** and the served HTML carries the title tag, the cover path and the body text.
+
+**Next session actions:**
+1. Oct 28 is filled and Sep 1 through Oct 28 is gap-free except Tuesdays (owned by `tuesday-ai-update`).
+   Oct 29 (Thu) is the next free slot and alternation puts **Lane B (tutorial)** there.
+2. Do not reuse this subject: open-weights TB screening, the Nexus deployment record and the two capacity
+   tables are consumed. Adjacent-but-open topics in the same family: calibration of an open medical
+   encoder on a new population, DICOM quality gates before inference, and post-market drift monitoring for
+   a certified model.
+3. Reusable demo artifacts: `~/.hermes/cache/scratch/tbpost/` (`b1.py` capacity math, `b2.py` footprint
+   math, `o1.txt`/`o2.txt` captured stdout, `paircheck.py` the fence-pairing verifier, plus `tb.html`,
+   `tbg.md`, `medg.md`, `nexus.md`, `src-*.md` extracted source text).
+4. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content" mandate.
