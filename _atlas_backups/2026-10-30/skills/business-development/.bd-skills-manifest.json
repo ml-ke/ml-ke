@@ -1,0 +1,47 @@
+{
+  "source": "/home/pro-g/Dev/bd-skills/skills",
+  "suite": "business-development",
+  "synced": "2026-10-09T13:10:05Z",
+  "skill_count": 13,
+  "skills": {
+    "account-planning": {
+      "skill_md_sha256": "74227992f17bcd8fdd53ea690922bf1c73879bee8daf09e1a0f366ecb6475db2"
+    },
+    "bd-context": {
+      "skill_md_sha256": "6b5bfb2e3cb2a3af6c66c2f2c4b0aa1f22f448b5ab0d6f4e25467da23229829d"
+    },
+    "competitive-intelligence": {
+      "skill_md_sha256": "7f247e0b74f89b87d6b8f40d6235a8a16ec2e7b7e0b93e54ce02726e5f786185"
+    },
+    "discovery-call": {
+      "skill_md_sha256": "2e4c6545be73456303d539956bf9b29e165919f5a0747558a0b8276816ec7c80"
+    },
+    "market-segmentation": {
+      "skill_md_sha256": "c8b0eb763e8c400a3af202e0b2aa3d844a48ad8da4a9413d92180e89dee2b685"
+    },
+    "objection-handling": {
+      "skill_md_sha256": "0794b74ba566ddc93ac9bf15d19e87f41ff55c6e1ea82ba3589087357f85c2dc"
+    },
+    "outbound-sequencing": {
+      "skill_md_sha256": "f788c0a83783353a5fc3f4b8cba423ac87f2e2e9a98efcb05100f859340c97bc"
+    },
+    "pipeline-forecast": {
+      "skill_md_sha256": "90bf4a76a72328287cbd7eb41f26f2904df73b0955ec6e8598b616722fc3ba7d"
+    },
+    "proposal-and-quote": {
+      "skill_md_sha256": "48adebe203cb8aafb94a4eb56ab3f6782b602366b6db5d6ea52ed8273ae88c38"
+    },
+    "prospect-research": {
+      "skill_md_sha256": "58172913ba87b58090c4982f43345516c3fd8924cfdc9bf4a5214cb6f06bc16d"
+    },
+    "qbr-and-renewal": {
+      "skill_md_sha256": "e727aa4436df8ef53f4949065af06b907479bfae4a5c6638fa5354997c8ff958"
+    },
+    "value-proposition-and-pricing": {
+      "skill_md_sha256": "f167bc502f34c373dc89aa5534988bbe2ca56c154da22f54829651fcf4f7fbb0"
+    },
+    "win-loss-review": {
+      "skill_md_sha256": "84cba2649baf7cddd9daf9eb66089bd05cdf443d0e17f22b0d7b3e8999ef897e"
+    }
+  }
+}
