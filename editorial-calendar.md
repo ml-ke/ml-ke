@@ -2983,3 +2983,91 @@ one number without a primary that reconciles them.
    math, `o1.txt`/`o2.txt` captured stdout, `paircheck.py` the fence-pairing verifier, plus `tb.html`,
    `tbg.md`, `medg.md`, `nexus.md`, `src-*.md` extracted source text).
 4. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content" mandate.
+
+## Publishing note — 2026-11-01 (Sunday, Lane A: positive AI story)
+
+| Field | Value |
+|---|---|
+| Slug | `2026-11-01-human-support-dosage-ai-farm-advice` |
+| Lane | A — positive AI story (non-Western lead: Kenya + Uganda, with a Benin study) |
+| Story | iSDA's 2025 short-rains cohort study, published 21 October 2026: 605 farmers weighed by crop cut across Meru, Tharaka Nithi (Kenya) and Bulambuli, Sironko (Uganda), with the same AI advisory product delivered at three levels of human support. Yield ratios 1.00 unsupported, 1.56 with a trained lead farmer, 2.29 with an iSDA technician |
+| Cover | `assets/blog/cover-human-support-dosage-ai-farm-advice.svg` → `assets/img/cover-human-support-dosage-ai-farm-advice.webp` (31 KB, 1200x630) |
+| Words | 3,820 naive body / 3,054 code-excluded (sibling band 2,919–3,916 naive); prose checker 2,851, 0 em dashes |
+| Commit | `22c35da` — "Add posts: AI farm advice support dosage (Nov 1) + IVF index sizing backfill (Oct 29)" |
+
+**Lane choice:** Oct 29 (`ivf-index-sizing-recall-budget`) was Lane B and Oct 28
+(`open-weights-tb-screening-front-line`) was Lane A, so alternation put Lane A on Nov 1.
+Tuesday guard did not trigger (Nov 1 is a Sunday). `.scheduled/` was empty, so the
+self-contained lane ran and the post was written directly to `_posts/`.
+
+**Differentiation (grepped before writing):** the agriculture shelf already holds three posts.
+`gates-google-farmer-ai-stack` (Sep 28) owns the delivery and reach stack of the Google–Gates
+plan; `sorghum-pangenome-genomic-selection` (Oct 22) owns upstream breeding; `kenya-ai-academy-offline-first`
+(Oct 25) owns the offline-first product constraint. Virtual Agronomist, iSDA and "extension
+worker" had zero prior coverage. This post owns the *support-dosage* question: the human tier is
+the treatment variable, and the margin gain sets the ceiling on what a tier may cost.
+
+**Sources (body-fetched this session, not snippet-level):**
+- iSDA, "How Much Human Support Does AI Advice Need?" (21 Oct 2026) — the whole study: arm sizes
+  214/197/194, crop cuts of 10 m by 10 m scaled by 100, the 1.56 and 2.29 ratios, nitrogen
+  28/47/54 kg/ha, the Uganda sunflower and Kenya maize gross margins, and the explicit caveat that
+  the sorghum and maize margin gaps "could have been chance". Full body captured at
+  `~/.hermes/cache/scratch/isda/post.txt`.
+- iSDA, "The Data Beneath the Harvest" (17 Aug 2026) — the earlier blended average, "eight cohort
+  analyses ... an average 52% yield increase", which is the number this post argues should be
+  replaced by per-tier reporting.
+- Kenya Meteorological Department, December 2025 monthly forecast — Meru at **28.7%** of long-term
+  mean rainfall for November 2025 (`pdftotext`, line 206).
+- Ministry of Agriculture and Livestock Development, Agriculture Extension Manual (2025) —
+  "the extension agent-to-farmer ratio is 1:1,380" against a proposed 1:600 (`pdftotext` line 451).
+- New Vision, extension services feature — "current ratio ... is 1:1,800, whereas the recommended is
+  1:500", quoting MAAIF's ministerial policy statement.
+- Frontiers in Artificial Intelligence (2026), GenAI use among extension agents in Benin — 240
+  agents, six districts, GenAI use positively associated with advisory performance, attitude
+  negatively associated with behavioural intention, cross-sectional and single-item caveats.
+
+**Verification (all re-run by this session):**
+- `verify-post-code.py`: `OK: all blocks ran` (2 python fences, stdlib only).
+- Quoted output: both blocks re-executed in fresh interpreters, stdout md5 stable across runs
+  (`5615556c…`, `75da48e4…`) and byte-identical to the following ` ```text ` fence — **2/2 match**,
+  via the fence-pairing verifier (a closing fence matches the fence regex too, so pair openers with
+  closers; `findall` misindexes here).
+- Prose figures: 30 asserted against the stdout of the block that produced them (605, 1.47, 19, 26,
+  233/439/628, 206/395/278, 158/436, 10.84, 15.19, 4.35, 2.3x, 3.6x, and the power table). No block
+  prints a wall-clock number, so nothing depends on a timing run.
+- One overclaim was caught and fixed in review: an earlier draft said the model "delivers less than
+  half" of the supported yield; 1.56/2.29 is 0.68, so the sentence was rewritten to quote the two
+  ratios directly instead of a derived percentage.
+- `check-prose-style.py`: PASS (prose em dashes 0, title-case headings 0, emoji 0; review-only
+  `only` x5).
+- Cover: new metaphor (a field balance weighing an advice card against a maize cob, a three-rung
+  support ladder, a yield-ratio bar pair, a crop-cut stamp and a support-cost ceiling badge). Label
+  dump checked against siblings first; an earlier pass had the ladder labels overlapping the rail
+  and the stamp overlapping the balance base, both repositioned. `&` escape check clean, XML parses,
+  ffmpeg output verified as WebP 1200x630, 31 KB.
+- Cross-links: 4 internal `/posts/` links, all resolve; slug unique; no `{% post_url %}`, no bare
+  `cover:` key, no `.png` image path.
+- Publish: `cf189f3..22c35da` pushed; `git ls-tree origin/main` shows both post blobs and the cover
+  WebP; the Actions run for `22c35da` **completed success**; both permalinks returned **200** and the
+  served HTML carries the title tags and cover paths.
+
+**Backfill folded into this run (Oct 29):** `2026-10-29-ivf-index-sizing-recall-budget.md` and its
+cover were sitting **untracked** in the working tree, so the Oct 29 post had never been published.
+It was verified before committing: style PASS (2,360 words), and all 4 python fences run with
+`uv run --with=numpy` with all 4 quoted ` ```text ` outputs byte-identical. Only its calendar note
+was missing. That gap is now closed.
+
+**Days still unpublished, to be honest about the gap:**
+1. **Oct 30 (Friday)** and **Oct 31 (Saturday)** have no posts. The lane rotation would put Lane A
+   on Oct 30 and Lane B on Oct 31, but both dates are now in the past, so they are backfills, not
+   scheduled posts. Every calendar day since Oct 28 is otherwise accounted for.
+2. Neither date may reuse the support-dosage study (consumed here), the TB open-weights deployment
+   (Oct 28), or the IVF sizing demo (Oct 29).
+3. Next-session actions: (a) backfill Oct 30 with a Lane A story, (b) backfill Oct 31 with a Lane B
+   tutorial, (c) only then stage the Nov 2–8 queue in `.scheduled/`, leaving Tuesday Nov 3 and
+   Tuesday Nov 10 to the `tuesday-ai-update` cron.
+4. Reusable artifacts: `~/.hermes/cache/scratch/isda/` (`b1.py` ratio/ceiling/staffing arithmetic,
+   `b2.py` power arithmetic, `o1.txt`/`o2.txt` captured stdout, `paircheck.py`, plus `post.txt`,
+   `dbh.txt`, `benin.txt`, `kmd.txt`, `ke-ext.txt` extracted sources).
+5. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content"
+   mandate.
