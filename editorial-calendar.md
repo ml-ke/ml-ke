@@ -3071,3 +3071,57 @@ was missing. That gap is now closed.
    `dbh.txt`, `benin.txt`, `kmd.txt`, `ke-ext.txt` extracted sources).
 5. AI Crime Watch engine and finisher remain paused (since Sep 16) per the "no more dark content"
    mandate.
+
+
+---
+
+**Publishing note (2026-11-01, backfill of Oct 30 and Oct 31).** Both missing days are now closed,
+and the reason they were missing is recorded in `executions.db` rather than guessed: `blog-poster`
+(job `137b7dcf653c`) failed on Oct 30 with `TimeoutError: Cron job 'blog-poster' idle for 0s
+(limit 600s)` and ended `unknown` on Oct 31 with `Scheduler restarted after this execution's owner
+exited before finishing`. Neither fire produced a post, so both dates needed real backfills.
+
+| Date | Slug | Lane | Anchor / angle | Status |
+|------|------|------|----------------|--------|
+| Oct 30 (Fri) | `open-weights-download-cost` | A, positive | Mistral Large 4 weights published 29 Oct: what the artifact costs to own | published |
+| Oct 31 (Sat) | `passk-eval-reliability` | B, tutorial | pass@k versus pass^k, task-cluster intervals, and eval sizing | published |
+
+**Oct 30, `2026-10-30-open-weights-download-cost.md`** (3,531 body words, style PASS, 0 prose em
+dashes). The event is the 29 Oct weights release, not the 6 Oct launch that the Oct 13 and Oct 27
+Tuesday roundups already covered, and the angle is deliberately the download side rather than
+capability: every artifact size in the post was measured by summing the Hugging Face API's file
+sizes on 1 Nov (FP8 checkpoint 1,060.6 GB, NVFP4 610.1 GB, GGUF Q4_K_M 634.8 GB, Q2_K 380.7 GB,
+IQ2_XXS 297.7 GB, unsloth UD-IQ1_S 233.0 GB, BF16 2,098.9 GB), and the hardware-fit table is
+arithmetic on published accelerator capacities. Licence read from the repo's `LICENSE` (modified
+MIT; MaaS carve-out; internal use and embedded end-user features exempt), architecture read from
+`config.json` (72 layers, 128 routed experts with 4 active, 512-value latent KV, 1,048,576 context).
+Two verified discrepancies are recorded in the post: the card says 3,800 training GPUs against
+CNBC's 4,000, and 49B routed parameters against the launch coverage's 52B (52B includes embeddings
+and output). Cover: `cover-open-weights-download-cost.webp`, a size-ladder metaphor with measured
+values, no neural-net cliche.
+
+**Oct 31, `2026-10-31-passk-eval-reliability.md`** (3,893 full / 2,658 excluding code, style PASS,
+0 prose em dashes, 4 python blocks). Written by a drafting subagent, then verified in the parent:
+all four fences re-executed in a fresh interpreter each, stdout byte-identical to the quoted
+` ```text ` blocks (md5 `108cad6c`, `5f83b7d5`, `05fa2b78`, `ec7d8f67`, stable across repeat runs),
+`verify-post-code.py` `OK: all blocks ran`, and every quoted figure re-checked against a fresh PDF
+fetch of the four sources (τ-bench 2406.12045: pass^k definition, "<50%" and "pass^8 <25%" in
+retail, ">60% average task success", "at least 3 trials per task", 115 retail / 50 airline tasks,
+v1 17 June 2024; AI Agents That Matter 2407.01502: the "scientifically meaningless methods such as
+retrying" sentence, author list, AlphaCode 0%→15%→30%; Adding Error Bars 2411.00640: DROP
+9,622/588, 1.34 vs 0.44 at ratio 3.05, the pooled-SE and `E[σ²]/K` quotes; Codex 2107.03374:
+equation 1, the Figure 3 "numerically stable" script, "results in a consistent underestimate" and
+"doesn't fully close even when n > 5k"). Two child errors were caught by that audit and fixed
+before commit (a 1.8x claim that is 3.3x, and "four doublings of compute" where 16→1,024 is 64x).
+Abadie 2022 and Efron 1979 are cited at reference-list level only, carrying no quantitative claim,
+and are flagged as such in the child's report.
+
+**Lane derivation** is from what shipped, not from a plan: Oct 28 A, Oct 29 B, Nov 1 A, so Oct 30
+= A and Oct 31 = B. Neither backfill reuses the support-dosage study, the TB deployment, the IVF
+demo, or any earlier anchor.
+
+**State after this run:** every calendar day from Sep 16 (when the positive/tutorial lane started)
+through Nov 1 now has a post. `.scheduled/` remains empty by design, because the daily cron is
+self-contained since Sep 16 and writes its own post when the queue is empty. Nov 2 is the next
+`blog-poster` fire (14:05 EAT) and Nov 3 belongs to `tuesday-ai-update`, so no queue staging is
+needed and staging one would risk a duplicate.
