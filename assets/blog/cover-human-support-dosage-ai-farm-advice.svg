@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a5568"/>
+      <stop offset="0.5" stop-color="#a0aec0"/>
+      <stop offset="1" stop-color="#4a5568"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#2d3748"/>
+      <stop offset="1" stop-color="#4a5568"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#1f6f45"/>
+      <stop offset="1" stop-color="#6bcf7f"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#0a5f7a"/>
+      <stop offset="1" stop-color="#00d2ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- faint grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <!-- headline -->
+  <text x="60" y="66" fill="#e6edf3" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="34" font-weight="bold">How much human support</text>
+  <text x="60" y="106" fill="#e6edf3" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="34" font-weight="bold">does AI advice need?</text>
+  <text x="60" y="140" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="17">605 weighed harvests in Kenya and Uganda, three levels of human support, one product</text>
+
+  <!-- ================= support ladder (left) ================= -->
+  <g>
+    <text x="60" y="200" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2">SUPPORT DOSAGE</text>
+    <line x1="98" y1="220" x2="98" y2="500" stroke="#4a5568" stroke-width="5"/>
+    <line x1="238" y1="220" x2="238" y2="500" stroke="#4a5568" stroke-width="5"/>
+    <!-- rungs -->
+    <line x1="98" y1="470" x2="238" y2="470" stroke="#2d3748" stroke-width="7" stroke-linecap="round"/>
+    <line x1="98" y1="380" x2="238" y2="380" stroke="#6bcf7f" stroke-width="7" stroke-linecap="round"/>
+    <line x1="98" y1="290" x2="238" y2="290" stroke="#00d2ff" stroke-width="7" stroke-linecap="round"/>
+    <text x="168" y="462" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">no advice</text>
+    <text x="168" y="372" fill="#6bcf7f" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">lead farmer</text>
+    <text x="168" y="282" fill="#00d2ff" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">technician</text>
+  </g>
+
+  <!-- ================= beam balance (centre) ================= -->
+  <g>
+    <!-- base -->
+    <ellipse cx="580" cy="510" rx="86" ry="14" fill="#1f2733"/>
+    <rect x="574" y="250" width="12" height="256" fill="#3a4a5e"/>
+    <!-- fulcrum -->
+    <path d="M580 250 L604 292 L556 292 Z" fill="#5d6b7a"/>
+    <!-- beam, tilted so the produce side sits higher -->
+    <line x1="392" y1="248" x2="768" y2="216" stroke="url(#beam)" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="580" cy="250" r="9" fill="#a0aec0"/>
+    <circle cx="392" cy="248" r="6" fill="#8b98a5"/>
+    <circle cx="768" cy="216" r="6" fill="#8b98a5"/>
+
+    <!-- left hanger and pan: the advice card -->
+    <line x1="392" y1="248" x2="376" y2="330" stroke="#4a5568" stroke-width="2"/>
+    <line x1="392" y1="248" x2="410" y2="330" stroke="#4a5568" stroke-width="2"/>
+    <rect x="326" y="330" width="132" height="86" rx="10" fill="#0f2230" stroke="#00d2ff" stroke-width="2"/>
+    <rect x="344" y="344" width="60" height="7" rx="3" fill="#00d2ff" opacity="0.75"/>
+    <rect x="344" y="360" width="96" height="5" rx="2" fill="#5d6b7a"/>
+    <rect x="344" y="372" width="80" height="5" rx="2" fill="#5d6b7a"/>
+    <rect x="344" y="384" width="88" height="5" rx="2" fill="#5d6b7a"/>
+    <text x="344" y="405" fill="#6bcf7f" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11">NPK 17:17:17 &#215; 54 kg N/ha</text>
+    <text x="326" y="436" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">the advice</text>
+
+    <!-- right hanger and pan: the harvest -->
+    <line x1="768" y1="216" x2="752" y2="296" stroke="#4a5568" stroke-width="2"/>
+    <line x1="768" y1="216" x2="786" y2="296" stroke="#4a5568" stroke-width="2"/>
+    <path d="M700 296 H838 L818 336 H720 Z" fill="#12241a" stroke="#6bcf7f" stroke-width="2"/>
+    <!-- maize cob -->
+    <g transform="translate(762 268) rotate(-12)">
+      <ellipse cx="0" cy="0" rx="20" ry="38" fill="#d9b25f" stroke="#b8912f" stroke-width="1.5"/>
+      <g fill="#b8912f" opacity="0.55">
+        <circle cx="-7" cy="-18" r="2.4"/><circle cx="4" cy="-18" r="2.4"/>
+        <circle cx="-7" cy="-6" r="2.4"/><circle cx="4" cy="-6" r="2.4"/>
+        <circle cx="-7" cy="6" r="2.4"/><circle cx="4" cy="6" r="2.4"/>
+        <circle cx="-7" cy="18" r="2.4"/><circle cx="4" cy="18" r="2.4"/>
+      </g>
+      <path d="M-4 -38 q10 -16 22 -18" stroke="#6bcf7f" stroke-width="2" fill="none"/>
+    </g>
+    <text x="700" y="362" fill="#6bcf7f" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">the harvest, dried and weighed</text>
+  </g>
+
+  <!-- ================= yield bars (right) ================= -->
+  <g>
+    <text x="900" y="200" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2">YIELD RATIO</text>
+    <line x1="892" y1="470" x2="1148" y2="470" stroke="#3a4a5e" stroke-width="2"/>
+
+    <rect x="900" y="410" width="52" height="60" rx="4" fill="url(#bar1)"/>
+    <text x="926" y="398" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="16" text-anchor="middle">1.00</text>
+    <text x="926" y="492" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle">none</text>
+
+    <rect x="976" y="376" width="52" height="94" rx="4" fill="url(#bar2)"/>
+    <text x="1002" y="364" fill="#6bcf7f" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="16" text-anchor="middle">1.56</text>
+    <text x="1002" y="492" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle">neighbour</text>
+
+    <rect x="1052" y="333" width="52" height="137" rx="4" fill="url(#bar3)"/>
+    <text x="1078" y="321" fill="#00d2ff" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="16" text-anchor="middle">2.29</text>
+    <text x="1078" y="492" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle">technician</text>
+
+    <!-- ceiling badge -->
+    <rect x="900" y="242" width="204" height="52" rx="8" fill="#241f0c" stroke="#ffd93d" stroke-width="1.5"/>
+    <text x="910" y="262" fill="#ffd93d" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">support must cost less than</text>
+    <text x="910" y="282" fill="#ffd93d" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" font-weight="bold">$395/ha &#183; $278/ha &#183; $206/ha</text>
+  </g>
+
+  <!-- ================= crop cut stamp (bottom left) ================= -->
+  <g>
+    <rect x="40" y="512" width="440" height="62" rx="6" fill="#101822" stroke="#2d3748" stroke-width="1.5"/>
+    <!-- 10m square with tape rule -->
+    <rect x="56" y="524" width="34" height="34" fill="none" stroke="#6bcf7f" stroke-width="1.6"/>
+    <g stroke="#6bcf7f" stroke-width="1" opacity="0.5">
+      <line x1="73" y1="524" x2="73" y2="558"/>
+      <line x1="56" y1="541" x2="90" y2="541"/>
+    </g>
+    <text x="104" y="537" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">one 10 m &#215; 10 m cut per field,</text>
+    <text x="104" y="556" fill="#8b98a5" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">dried, weighed, &#215; 100 for kg/ha</text>
+  </g>
+
+  <!-- the finding -->
+  <text x="510" y="541" fill="#e6edf3" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold">Same model. Different number of hands.</text>
+  <text x="510" y="562" fill="#5d6b7a" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12">iSDA cohort study, 2025 short rains: 214 unsupported, 197 lead-farmer, 194 technician</text>
+
+  <text x="1140" y="610" fill="#3a4a5e" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" text-anchor="end">ml-ke.github.io</text>
+</svg>
