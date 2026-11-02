@@ -3125,3 +3125,33 @@ through Nov 1 now has a post. `.scheduled/` remains empty by design, because the
 self-contained since Sep 16 and writes its own post when the queue is empty. Nov 2 is the next
 `blog-poster` fire (14:05 EAT) and Nov 3 belongs to `tuesday-ai-update`, so no queue staging is
 needed and staging one would risk a duplicate.
+
+**Nov 2, `2026-11-02-chunk-boundary-damage-rag.md`** (Lane B tutorial, 4,387 full body words /
+2,622 excluding code, style PASS with 0 prose em dashes, two python blocks). Lane derivation: Nov 1
+was Lane A (human-support dosage), Oct 31 was B, so today alternated back to B. Subject: what a chunk
+boundary destroys in a RAG index. New measurement rather than a re-quote: the corpus is the blog's own
+161 posts (2,485,607 characters, 621,688 o200k tokens, 4.00 characters per token), with atoms defined
+as fenced blocks, whole tables, table rows and figure-bearing prose sentences. Headline results, all
+reproducible from the post's first block: a 400-character fixed window keeps 19.8% of fenced blocks,
+8.0% of tables and 54.0% of figure sentences, and answers 54.5% of 200 lexical probes; 800 characters
+(the 200-token size Chroma measured as best) gets to 48.8% / 35.0% / 76.9% and 78.5%; fences-and-tables-
+protected sentence packing gets 100% / 100% / 100% and 97.5% at 1.00 duplication. The budget sweep
+(400-2,400 characters) shows size before boundary: 30.3% of all code survives at 400, 89.1% at 2,400.
+External anchors, each body-verified: Chroma "Evaluating Chunking Strategies" (9% recall spread, the
+200-token recursive result, the 800/400 Assistants default scoring lowest), Anthropic contextual
+retrieval (35% / 49% / 67%, chunk boundaries listed first), Lost in the Middle (arXiv 2307.03172),
+Pinecone's chunking guide, and LangChain `TextSplitter` defaults read from source (`chunk_size=4000`,
+`chunk_overlap=200`, `length_function=len`). Verification: both python fences re-run in a fresh
+interpreter, stdout byte-identical to the quoted ` ```text ` blocks (2/2), `verify-post-code.py` "OK:
+all blocks ran", quoted-output pairing checked inline because the post uses tagged output fences.
+Cover: `assets/blog/cover-chunk-boundary-damage-rag.svg` -> `assets/img/cover-chunk-boundary-damage-rag.webp`
+(25 KB, 1200x630, verified with `file`), metaphor is a document column cut by two dashed chunk seams
+with one sentence sliced across a seam, not a neural-net or shield cliche.
+
+**State after this run:** every calendar day from Sep 16 through Nov 2 has a post. `.scheduled/`
+remains empty by design (the daily cron is self-contained). Nov 3 is a Tuesday, owned by
+`tuesday-ai-update`; the next `blog-poster` fire is Nov 4 and should alternate to Lane A (positive AI
+story, recent <=21 days, 2+ body-level sources). No queue staging is needed and staging one would risk
+a duplicate. Reusable artifact for a future chunking/RAG post: the atom-survival script in this post
+runs in about 12 s on the corpus and needs no third-party packages except `tiktoken` for the
+characters-per-token conversion.
