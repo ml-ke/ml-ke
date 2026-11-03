@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- Starter card for the headless-Chrome infographic renderer.
+     Copy, edit the title/subtitle/body, render:
+       google-chrome --headless --disable-gpu --no-sandbox --hide-scrollbars \
+         --window-size=1600,900 --force-device-scale-factor=1 \
+         --screenshot=assets/<name>.png file://$PWD/infographic-card.html
+     Rules: fixed 1600x900 canvas, one idea per card, no external fonts or JS,
+     and never %-format this file from Python (the CSS contains 100%) -- replace tokens instead. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Infographic card</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --line:#30363d; --ink:#e6edf3; --dim:#8b949e;
+    --teal:#2dd4bf; --blue:#58a6ff; --amber:#d29922; --red:#f85149; --purple:#bc8cff; --green:#3fb950;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1600px;height:900px;background:var(--bg);color:var(--ink);padding:44px 52px;
+       display:flex;flex-direction:column;gap:22px;
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  h1{font-size:34px;font-weight:700;letter-spacing:-.4px}
+  h1 .tag{font-size:15px;font-weight:600;color:#0d1117;background:var(--teal);
+          border-radius:999px;padding:4px 12px;margin-left:14px;vertical-align:middle}
+  .sub{font-size:17px;color:var(--dim);line-height:1.45;max-width:1350px}
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px}
+  .row{display:flex;gap:16px;align-items:stretch}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;flex:1}
+  .card.accent{border-color:var(--teal)}
+  .card.warn{border-color:var(--amber)}
+  .card.bad{border-color:var(--red)}
+  .card h3{font-size:17px;margin-bottom:6px}
+  .card p{font-size:14px;color:var(--dim);line-height:1.45}
+  .node{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;
+        text-align:center;flex:1}
+  .node b{display:block;font-size:16px;margin-bottom:4px}
+  .node span{font-size:13px;color:var(--dim)}
+  .arrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:#484f58;min-width:34px}
+  .bar{display:flex;align-items:center;gap:12px;margin-bottom:9px}
+  .bar .lab{width:330px;font-size:15px;color:#c9d1d9;text-align:right}
+  .bar .track{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:8px;height:34px;overflow:hidden}
+  .bar .fill{height:100%;display:flex;align-items:center;padding-left:12px;font-size:13px;font-weight:600;color:#0d1117}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #21262d}
+  th{color:var(--dim);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+  .foot{font-size:13px;color:#6e7681;border-top:1px solid #21262d;padding-top:12px}
+</style>
+</head>
+<body>
+  <h1>Title that states the idea<span class="tag">Section 5</span></h1>
+  <div class="sub">One or two sentences carrying the actual teaching. This is where the takeaway lives — not in the cards.</div>
+
+  <div class="body">
+    <div class="row">
+      <div class="node"><b>Step one</b><span>what happens</span></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><b>Step two</b><span>what happens</span></div>
+    </div>
+
+    <div class="row">
+      <div class="card accent"><h3>Do this</h3><p>The rule, with its reason.</p></div>
+      <div class="card warn"><h3>Watch out</h3><p>The failure this prevents.</p></div>
+    </div>
+  </div>
+
+  <div class="foot">&lt;Corpus name&gt; · keep the footer constant across every card</div>
+</body>
+</html>
