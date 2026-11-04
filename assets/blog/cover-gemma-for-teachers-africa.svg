@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="ram" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <path d="M0 90H1200M0 180H1200M0 270H1200M0 360H1200M0 450H1200M0 540H1200"/>
+    <path d="M120 0V630M240 0V630M360 0V630M480 0V630M600 0V630M720 0V630M840 0V630M960 0V630M1080 0V630"/>
+  </g>
+
+  <!-- headline -->
+  <text x="70" y="96" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#e6edf3">500 teachers, 15,000 students,</text>
+  <text x="70" y="146" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#00d2ff">one shared tablet</text>
+  <text x="70" y="186" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="#8b98a9">the device picks the model; the phonics sequence picks the text</text>
+
+  <!-- LEFT: shared tablet with five student slots -->
+  <g transform="translate(80,230)">
+    <rect x="0" y="0" width="300" height="300" rx="26" fill="#111826" stroke="#3a4657" stroke-width="2"/>
+    <rect x="18" y="26" width="264" height="212" rx="12" fill="#0b1220" stroke="#243040" stroke-width="1.5"/>
+    <text x="150" y="58" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#7f8ea3">one device, five learners</text>
+    <g fill="#00d2ff">
+      <circle cx="66" cy="104" r="15" fill-opacity="0.85"/>
+      <circle cx="150" cy="104" r="15" fill-opacity="0.85"/>
+      <circle cx="234" cy="104" r="15" fill-opacity="0.85"/>
+      <circle cx="108" cy="166" r="15" fill-opacity="0.85"/>
+      <circle cx="192" cy="166" r="15" fill-opacity="0.85"/>
+    </g>
+    <g fill="#0b1220" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">
+      <text x="66" y="109">1</text><text x="150" y="109">2</text><text x="234" y="109">3</text>
+      <text x="108" y="171">4</text><text x="192" y="171">5</text>
+    </g>
+    <text x="150" y="216" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">30 students per teacher</text>
+    <rect x="110" y="266" width="80" height="14" rx="7" fill="#243040"/>
+    <text x="150" y="294" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#7f8ea3">android, 3 GB RAM</text>
+  </g>
+
+  <!-- MIDDLE: phonics ladder with a word that fails -->
+  <g transform="translate(430,230)">
+    <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#7f8ea3" letter-spacing="1">TAUGHT BY WEEK 8</text>
+    <g font-family="Courier New, monospace" font-size="22">
+      <rect x="0" y="18" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="29" y="48" text-anchor="middle" fill="#6bcf7f">s a t</text>
+      <rect x="66" y="18" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="95" y="48" text-anchor="middle" fill="#6bcf7f">p i n</text>
+      <rect x="132" y="18" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="161" y="48" text-anchor="middle" fill="#6bcf7f">sh ch</text>
+      <rect x="198" y="18" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="227" y="48" text-anchor="middle" fill="#6bcf7f">ai ee</text>
+      <rect x="0" y="72" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="29" y="102" text-anchor="middle" fill="#6bcf7f">oo oa</text>
+      <rect x="66" y="72" width="58" height="46" rx="8" fill="#16202e" stroke="#2c3a4b"/>
+      <text x="95" y="102" text-anchor="middle" fill="#6bcf7f">th ng</text>
+      <rect x="132" y="72" width="86" height="46" rx="8" fill="#3a1620" stroke="#ff6b6b"/>
+      <text x="175" y="102" text-anchor="middle" fill="#ff6b6b">ea ow</text>
+    </g>
+    <path d="M264 40 C300 40 300 96 264 96" fill="none" stroke="#ff6b6b" stroke-width="2.5" stroke-dasharray="6 5"/>
+
+    <text x="0" y="160" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#7f8ea3" letter-spacing="1">DECODABLE SHARE</text>
+    <text x="0" y="196" font-family="Courier New, monospace" font-size="17" fill="#ff6b6b">beautiful  harvest  weather</text>
+    <text x="0" y="224" font-family="Courier New, monospace" font-size="17" fill="#ffd93d">week 3  39%      week 8  70%</text>
+    <rect x="0" y="240" width="256" height="10" rx="5" fill="#243040"/>
+    <rect x="0" y="240" width="179" height="10" rx="5" fill="#ffd93d" fill-opacity="0.8"/>
+    <line x1="230" y1="234" x2="230" y2="256" stroke="#6bcf7f" stroke-width="2"/>
+    <text x="230" y="274" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#6bcf7f">90% target</text>
+  </g>
+
+  <!-- RIGHT: memory bar for a 3 GB device -->
+  <g transform="translate(790,230)">
+    <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#7f8ea3" letter-spacing="1">FITS ON 3 GB?</text>
+    <rect x="0" y="18" width="330" height="196" rx="14" fill="url(#ram)" stroke="#00d2ff" stroke-opacity="0.35"/>
+    <g font-family="Courier New, monospace" font-size="15">
+      <text x="18" y="52" fill="#e6edf3">mobile, text only</text>
+      <rect x="196" y="40" width="46" height="14" rx="4" fill="#6bcf7f"/>
+      <text x="254" y="52" fill="#6bcf7f">0.84 GB</text>
+      <text x="18" y="94" fill="#e6edf3">mobile build</text>
+      <rect x="196" y="82" width="60" height="14" rx="4" fill="#ffd93d"/>
+      <text x="266" y="94" fill="#ffd93d">1.1 GB</text>
+      <text x="18" y="136" fill="#e6edf3">4-bit weights</text>
+      <rect x="196" y="124" width="112" height="14" rx="4" fill="#ff6b6b"/>
+      <text x="196" y="160" fill="#ff6b6b">2.9 GB</text>
+    </g>
+    <text x="18" y="192" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#8b98a9">static weights only, KV cache excluded</text>
+  </g>
+
+  <!-- footer -->
+  <text x="1130" y="600" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4a566a">ml-ke.github.io</text>
+  <text x="70" y="600" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4a566a">google deepmind + fab ai + gates foundation, 4 november 2026</text>
+</svg>
