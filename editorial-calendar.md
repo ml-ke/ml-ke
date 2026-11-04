@@ -3155,3 +3155,46 @@ story, recent <=21 days, 2+ body-level sources). No queue staging is needed and 
 a duplicate. Reusable artifact for a future chunking/RAG post: the atom-survival script in this post
 runs in about 12 s on the corpus and needs no third-party packages except `tiktoken` for the
 characters-per-token conversion.
+
+**Nov 4, `2026-11-04-gemma-for-teachers-africa.md`** (Lane A positive AI story, 3,988 naive body
+words / 3,173 excluding fences, style PASS with 0 prose em dashes, 3,988 measured before any trim
+against Lane A siblings measured the same day: Oct 22 3,477, Oct 25 2,919, Oct 28 3,544, Nov 1 3,820,
+so the post ships 4.4% over the top sibling on the fact-dense precedent). Lane derivation: Nov 2 was
+Lane B (chunk boundaries), Nov 1 Lane A, so Nov 4 alternated back to A. Anchor: the 4 November 2026
+Google Africa blog announcement that Fab AI will lead a cohort of local innovators in Kenya, Ghana and
+South Africa building classroom tools on open Gemma models, jointly funded by Google.org and the Gates
+Foundation with compute credits from Google DeepMind. Verified figures: first phase targeted at up to
+500 teachers and 15,000 students, stated ceiling above 2 million learners, publication of datasets,
+evaluation suites and open models promised; Google.org's 3 November post puts the wider round at over
+$9.5M across five organisations (CUNY CITE, Fab AI, Krause Center for Innovation, Teaching Lab
+Coherence OS, 1EdTech Global); AI Educator Series expands from South Africa with SACE, then Nigeria,
+Kenya and Ghana in 2027 with Ubuntu Hub. Evidence base is the Sierra Leone trial in the DeepMind
+technical report (May 2026), re-read from the PDF: 12 government junior secondary schools in Port Loko
+District, 9 weeks 6 Oct to 5 Dec 2025, 48 classrooms, N=1,763 students aged 13+, balanced panel 1,423,
+24/24 cluster split, pre-registered AEARCTR-0016651; ITT +0.258 SD (95% CI [0.027, 0.488], p=0.029),
++0.016 SD per hour (CI [0.002, 0.031]), +0.380 SD treatment-on-treated at 12 hours (CI [0.040, 0.719]),
+heterogeneity +0.195 SD per baseline SD (CI [0.074, 0.315]); 69.0% of 871 treatment students reached
+12 hours, treatment average about 15 hours; baseline reading about -1.35 SD in both arms; attrition 124
+of a 1,547 baseline sample with 214 entrants. Gemma 4 facts from the model card and docs memory table
+(Apache 2.0, five sizes E2B/E4B/12B/26B A4B/31B, 128K small / 256K medium context, mobile builds via
+LiteRT-LM; E2B 11.4/5.7/2.9/1.1/0.84 GB across BF16/SFP8/Q4_0/mobile/mobile-text-only). Fab AI's seven
+education benchmarks are cited from its own leaderboard pages. Verification: both python fences re-run
+in fresh interpreters, stdout byte-identical to the quoted ```text blocks (2/2, md5 27a5c0b8 and
+b7e25235, block 1 deterministic across repeat runs), `verify-post-code.py` "OK: all blocks ran", every
+/posts/ link resolved against _posts/, no post_url tags, no `cover:` key, image path ends .webp. Cover:
+`cover-gemma-for-teachers-africa.webp` (34 KB, 1200x630, `file`-verified), metaphor is a shared tablet
+split into five learner slots beside a phonics ladder and a memory bar, no neural-net cliche. Sources at
+body level: Google Africa blog (primary, same-day, no independent coverage existed at publish time),
+Google.org products blog, DeepMind technical report PDF, Stanford SCALE repository entry for the trial,
+Gemma 4 model card, Fab AI benchmark pages.
+
+**State after this run:** every calendar day from Sep 16 through Nov 4 now has a post; Nov 3 was the
+Tuesday roundup and today's Lane A closed the gap. `.scheduled/` is empty by design. The next
+`blog-poster` fire is Nov 5 and should alternate to Lane B (tutorial, runnable code, quoted stdout).
+Reusable artifact for a future education/early-reading post: the decodability scorer in
+`_posts/2026-11-04-gemma-for-teachers-africa.md` is stdlib-only, runs in milliseconds, and accepts any
+cumulative scope-and-sequence plus passage pair, so a follow-up post on multilingual phonics (Kiswahili
+syllable structure, for instance) can reuse it instead of rebuilding the matcher. Do not repeat the
+"Sierra Leone Guided Learning" anchor, the Gemma device-memory arithmetic, or the Fab AI benchmark
+inventory in the next Lane A slot; the 500-teacher cohort's own eval-suite release is the obvious
+follow-up when it lands.
