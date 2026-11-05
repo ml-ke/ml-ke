@@ -3198,3 +3198,42 @@ syllable structure, for instance) can reuse it instead of rebuilding the matcher
 "Sierra Leone Guided Learning" anchor, the Gemma device-memory arithmetic, or the Fab AI benchmark
 inventory in the next Lane A slot; the 500-teacher cohort's own eval-suite release is the obvious
 follow-up when it lands.
+
+**2026-11-05 — Lane B (tutorial), `lora-rank-budget`.** Lane derivation: Nov 4 was Lane A
+(`gemma-for-teachers-africa`), Nov 3 the Tuesday roundup, Nov 2 Lane B, so today alternated back to B.
+Topic: LoRA's two budgets, rank and coverage. No prior LoRA/PEFT fine-tuning tutorial existed in the
+corpus (grep for `lora|fine.tun` only returned mentions inside roundups and incident posts), so this
+fills a real curriculum gap rather than re-cutting a covered topic. Three self-contained blocks, all
+stdlib/numpy, all executed: (1) parameter and optimizer arithmetic computed from the published
+Qwen3-8B and Qwen3-0.6B `config.json` files (4096/36 layers/8 KV heads/12288 FFN, and
+1024/28/8/3072, vocab 151,936, untied and tied), yielding 8.191B and 0.537B totals, 3,833,856 params
+for rank 8 over q,v (0.05%), 21,823,488 all-linear (0.27%), 0.35 GB of optimizer state at a 16
+bytes/trainable convention against 131.1 GB for the same accounting on the full model; (2) planted
+rank-8 recovery, error 0.8684 at r=1, 0.5011 at r=4, 0.2827 at r=6, 0.0000 at r=8, trained update's
+singular values reproducing the planted spectrum with zeros behind it; (3) rank-8 core plus 3%
+full-rank detail, r=4 0.5334, r=8 0.1020, r=16 0.0791, unconstrained 0.0000, with update energy
+outside the planted subspace 0.20/0.29/0.70/1.31%. Figures verified body-level in the PDFs, not from
+snippets: LoRA Table 6 (WikiSQL 73.4 at r=1 vs 73.5 at r=64 for {Wq,Wv}; MultiNLI 91.3 vs 91.4) and
+the GPT-2 E2E peaks at r=16 validation loss / r=4 BLEU; QLoRA appendix A.1 ("LoRA r is unrelated to
+final performance if LoRA is used on all layers", all-linear required to match 16-bit, alpha
+proportional to learning rate); Biderman et al. 2024 (perturbation rank 10-100x higher than typical
+adapters, ranks 16-64 insufficient for code, rank 256 all modules, LR range 5e-5 to 5e-4); Shuttleworth
+et al. 2025 intruder dimensions; Park 2026 threshold r(r+1)/2 > KN collapsing to 1 for binary; PEFT docs
+for default targets, zero-init B, and `lora_alpha/r` with the sqrt(r) rank-stabilized variant; Unsloth
+guide for practitioner rank/alpha ranges; Raschka for the 33% memory / 39% runtime QLoRA trade. Post
+shipped 3,788 full body words / 2,682 code-excluded, inside the Nov 2 (4,454/2,689) and Oct 31
+(3,886/2,651) sibling band; prose-style checker PASS at 0 prose em dashes, 0 title-case headings, 0
+emoji; `check-quoted-output` pairing run inline (the post tags output as ```text) reports 3/3 blocks
+byte-identical, md5 a2fdd3ff / 6daf2bcc / 8fbaddde reproduced on a second run; `verify-post-code.py`
+"OK: all blocks ran". Cover `cover-lora-rank-budget.webp` (26.7 KB, 1200x630, `file`-verified): a frozen
+weight slab beside two thin adapter plates with a rank dial and an error curve flattening above zero, no
+neural-net cliche. Commit 28442f6.
+
+**State after this run:** every calendar day from Sep 16 through Nov 5 now has a post; `.scheduled/` is
+empty by design. Next `blog-poster` fire is Nov 6 and should alternate to Lane A (one verified positive
+AI story, <=21 days old, 2+ body-level sources, non-Western preferred). Do not re-run the LoRA rank
+topic; banked follow-ups if a Lane B slot needs one: (a) an rsLoRA/alpha sweep measured on the same
+synthetic harness (the scaling lemma is already in the post), (b) a QLoRA 4-bit adapter quality ladder
+if a GGUF plus llama.cpp build is available locally, (c) a coverage ablation (attention-only vs MLP-only
+vs all) using the same planted-subspace machinery. The synthetic harnesses are cheap to re-run and
+deterministic, so any follow-up should reuse them rather than re-deriving.
