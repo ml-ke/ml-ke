@@ -1,0 +1,7 @@
+Intigriti: h0d4r1254 / h0d4r1254@intigriti.me. Bugcrowd: h0d4r1 / @bugcrowdninja.com. Kenya (EAT). Personal email: lyricsngori@gmail.com. Brave on Linux. PoC-first, actionable findings > research, step-by-step asks, iterative recon + milestone reports, high-value targets, shares creds to unblock progress. Wants lessons saved durably (~/Dev/ATLAS-LEARNINGS/LESSONS.md), memory compressed with pointers, weekly cron reports to chat AND appends lessons, ATLAS studies Hermes docs + worldwide repos weekly.
+§
+Does NOT want to be asked for sudo password repeatedly. The mechanism is SUDO_PASSWORD in the Hermes env file — explain it once, ask once for the password, or fall back to pasting commands for them to run in their own terminal. Never loop back and ask again if they defer.
+§
+Long jobs: wants autonomy ("make executive decisions and proceed") — choose approach, front-load risk, report the decision + reason, interrupt only for physical/interactive steps. Deliverable reports: save to disk AND push to Telegram (hermes send --to telegram --file …; Telegram clips at 4096 chars, so summary as body + full docs as MEDIA: attachments).
+§
+Phones: Nothing (3a) Lite A001T (main) + Galaxy Note9 SM-N960F on a live Safaricom line; wants both checked/kept secure. Security-first: accepted an unofficial maintained ROM over stale vendor firmware.
