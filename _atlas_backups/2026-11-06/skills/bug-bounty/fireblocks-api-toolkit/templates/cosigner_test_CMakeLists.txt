@@ -1,0 +1,14 @@
+# CMakeLists.txt modification to add new PoC files to cosigner_test target
+# Place this in test/cosigner/CMakeLists.txt
+
+add_executable(cosigner_test
+    ecdsa_offline_test.cpp
+    ecdsa_online_test.cpp
+    eddsa_offline_test.cpp
+    eddsa_online_test.cpp
+    bam_test.cpp
+    bam_attack_poc.cpp
+    setup_test.cpp
+    cmp_malicious_key_poc.cpp      # Paillier oracle / timing / Blum ZKP analysis
+    cmp_version_downgrade_poc.cpp  # Version downgrade + CMP setup validation
+)
