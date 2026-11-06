@@ -3237,3 +3237,44 @@ synthetic harness (the scaling lemma is already in the post), (b) a QLoRA 4-bit 
 if a GGUF plus llama.cpp build is available locally, (c) a coverage ablation (attention-only vs MLP-only
 vs all) using the same planted-subspace machinery. The synthetic harnesses are cheap to re-run and
 deterministic, so any follow-up should reuse them rather than re-deriving.
+
+**2026-11-06 — Lane A (positive story), `crop-model-seven-countries`.** Lane derivation: Nov 5 was Lane B
+(`lora-rank-budget`) and Nov 4 Lane A, so the day alternated back to A. Story: on 3 November 2026 the UNDP
+AI Hub for Sustainable Development and DeepLeaf (Casablanca, Morocco) launched an AI foundation model for
+food security, built on DeepLeaf's African-developed model already validated in Kenya, Morocco and Italy;
+local agritech startups in Italy, Morocco, Tunisia, Kenya, Ghana, Tanzania and Rwanda will build on the one
+shared model, data shared by consent, open components returned as digital public goods. Differentiation:
+not another "AI helps farmers" piece, and not a repeat of Nov 1 (`human-support-dosage-ai-farm-advice`) or
+Oct 22 (`sorghum-pangenome-genomic-selection`) — the angle is what a published 96 percent field-validated
+accuracy has to survive when the same weights meet seven different disease mixes (prevalence-adjusted
+precision, prior shift, operating-point choice, and audit sizing). Body-level sources: the UNDP Rome
+release of 3 Nov (fetched through `r.jina.ai`, the live URL 403s to curl), a second UNDP Rome readout
+confirming the foundational model was opened for local founders and that it "now reaches millions of
+farmers", the UNA Boulder write-up (96 percent, under three seconds, hub compute figures), The Next Africa
+interview (80 crops, 1,000+ disorders, Hassad 35,000 farmers, Grupo Versa 200,000, Crédit Agricole du Maroc),
+and the IRCAI Top 100 entry (55+ crops, 800 anomaly types). The 55+/80 crop and 800/1,000 disorder figures
+disagree across sources and the post says so, attributing each. Four self-contained stdlib blocks, all
+executed: (1) prevalence table at sensitivity 0.92 / specificity 0.97 giving accuracy 0.969 at 2 percent
+prevalence against precision 0.385, and 0.958 against 0.911 at 25 percent; (2) planted six-class Gaussian
+model with exact integration, accuracy 0.908 to 0.941 when the local mix is applied while viral precision
+falls 0.873 to 0.774 and nutrient precision 0.804 to 0.676, then 0.946 after prior correction with viral
+recall 0.87 to 0.81 and nutrient 0.75 to 0.66; (3) threshold sweep at 5 percent prevalence, the 0.80
+precision constraint catching only 22.7 percent of cases (77.3 percent missed) and the sensitive setting
+costing KES 135,908 per 1,000 plants at an assumed KES 400 a confirmation; (4) power arithmetic needing 182
+confirmed cases per class to detect a 7-point recall drop, 6,067 photos at 3 percent prevalence, 42,469
+photos across seven separate audits. Post shipped 4,241 full body words / 3,191 code-excluded, inside the
+Nov 1 (3,820/3,054) and Nov 4 (3,988/3,173) sibling band; prose-style checker PASS at 0 prose em dashes,
+0 title-case headings, 0 emoji; `check-quoted-output.py` PASS 4/4 byte-identical; a separate prose-figure
+assertion checked 29 quoted figures against fresh stdout (PASS) and all four blocks hashed stable across
+two runs (d8941df1 / 5a2d39fe / db757dac / 1e2db194). Cover `cover-crop-model-seven-countries.webp`
+(37 KB, 1200x630, `file`-verified): one weight slab with a "96% accuracy, measured somewhere else" stamp
+on the left, a dashed border with KE MA IT TN GH TZ RW gates in the middle, seven stacked class-mix bars on
+the right. Commit 562f725; Actions run for that SHA completed success; permalink 200 on first check.
+
+**State after this run:** every calendar day from Sep 16 through Nov 6 now has a post; `.scheduled/` is empty
+by design. Next `blog-poster` fire is Nov 7 and should alternate to Lane B (tutorial, runnable code, real
+stdout). Do not repeat the crop-diagnostics/shared-model topic. Banked Lane B follow-ups if a slot needs
+one: (a) prior-shift correction by estimated importance weights, measured on the same planted six-class
+harness, (b) an accuracy-versus-prevalence plotting recipe with confidence bands for product docs,
+(c) sample-size planning for per-site subgroup audits (multi-site stratification), which this post stops
+one step short of.
