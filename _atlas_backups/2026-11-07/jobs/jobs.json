@@ -44,7 +44,7 @@
         "kind": "on_time"
       },
       "fire_claim": {
-        "at": "2026-11-07T14:00:28.461378+03:00",
+        "at": "2026-11-07T14:05:28.511251+03:00",
         "by": "h0d4r1:2131:2841829ab6dd4bcab207df3be1f6a1af"
       },
       "failure_streak": 0
@@ -78,7 +78,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-06-03T00:27:51.283208+03:00",
-      "next_run_at": "2026-11-07T14:05:00+03:00",
+      "next_run_at": "2026-11-08T14:05:00+03:00",
       "last_run_at": "2026-11-06T14:18:03.605317+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -94,12 +94,15 @@
       "workdir": null,
       "profile": null,
       "last_dispatch": {
-        "scheduled_at": "2026-11-06T14:05:00+03:00",
-        "dispatched_at": "2026-11-06T14:05:28.683465+03:00",
-        "lateness_seconds": 28.7,
+        "scheduled_at": "2026-11-07T14:05:00+03:00",
+        "dispatched_at": "2026-11-07T14:05:28.316493+03:00",
+        "lateness_seconds": 28.3,
         "kind": "on_time"
       },
-      "fire_claim": null,
+      "fire_claim": {
+        "at": "2026-11-07T14:05:28.372603+03:00",
+        "by": "h0d4r1:2131:b2aab70b501d498a96e9edea7113a936"
+      },
       "failure_streak": 0
     },
     {
@@ -435,5 +438,5 @@
       "workdir": "/home/pro-g/ProG/ml-ke"
     }
   ],
-  "updated_at": "2026-11-07T14:00:28.462800+03:00"
+  "updated_at": "2026-11-07T14:05:28.514869+03:00"
 }
