@@ -3271,10 +3271,43 @@ two runs (d8941df1 / 5a2d39fe / db757dac / 1e2db194). Cover `cover-crop-model-se
 on the left, a dashed border with KE MA IT TN GH TZ RW gates in the middle, seven stacked class-mix bars on
 the right. Commit 562f725; Actions run for that SHA completed success; permalink 200 on first check.
 
-**State after this run:** every calendar day from Sep 16 through Nov 6 now has a post; `.scheduled/` is empty
-by design. Next `blog-poster` fire is Nov 7 and should alternate to Lane B (tutorial, runnable code, real
-stdout). Do not repeat the crop-diagnostics/shared-model topic. Banked Lane B follow-ups if a slot needs
-one: (a) prior-shift correction by estimated importance weights, measured on the same planted six-class
-harness, (b) an accuracy-versus-prevalence plotting recipe with confidence bands for product docs,
-(c) sample-size planning for per-site subgroup audits (multi-site stratification), which this post stops
-one step short of.
+**2026-11-07 — Lane B (tutorial), `model-cascade-escalation-budget`.** Lane derivation: Nov 6 was Lane A
+(`crop-model-seven-countries`) and Nov 5 Lane B, so the day alternated back to a tutorial. Technique:
+cascade routing sized by the escalation rate, not by model choice — cheap model answers first, a
+reliability score decides what pays for the big model. Differentiation: not calibration (Oct 7), not
+paired eval statistics (Oct 21), not the semantic cache (Oct 18), not download cost (Oct 30); the angle is
+the escalation budget plus what the stop rule's discrimination is worth, measured as random versus
+confidence versus oracle at one matched cost. Body-level sources (both PDFs fetched and grepped, not
+snippets): FrugalGPT arXiv:2305.05176 — section 3 for `g(q,a)` in [0,1] and the threshold router with the
+budget-constrained mixed-integer formulation, HEADLINES at 0.857/$33.1 versus 0.872/$6.5 (80 percent cut,
+1.5 points up), Table 3 at 98.3 / 73.3 / 59.2 percent for the cost of matching the best individual model,
+and MPI of 6 percent (HEADLINES) / 13 percent (COQA) for cheap-model complementarity; RouteLLM
+arXiv:2406.18665v4 (ICLR 2025) — the alpha cost threshold in 3.2, PGR/APGR/CPT definitions, Table 6 at
+3.66 and 2.49 (MT-Bench, 95 percent of GPT-4 quality), 1.41 and 1.14 (MMLU), 1.49 and 1.27 (GSM8K),
+appendix D for $24.7 versus $0.24 per million tokens, Table 7 for router overhead (BERT $3.19 per million
+requests at 69.62 req/s). Four self-contained stdlib blocks, all executed: (1) escalation-to-cost table
+(10 percent costs 11.0, 20 percent 21.0, 100 percent 101.0) and the break-even gains (+0.990 if an error
+costs 100 cheap queries, +0.198 at 500); (2) planted traffic (`d = u**2`, cheap 0.763 / strong 0.906) at a
+20 percent budget giving random 0.792 (PGR 0.200), confidence 0.824 (0.426), oracle 0.932 (1.183, above
+strong-alone through complementarity); (3) scorer-noise sweep needing 16.7 / 17.2 / 20.0 / 25.1 percent
+escalation to hold 0.815, plus the fixed-threshold drift from 20.4 percent and 0.825 down to 14.4 percent
+and 0.806 under a 1.3x recalibration; (4) per-million-query bill of $24,700 / $240 / $4,439 and $24,940
+for run-both-then-decide, with router overhead at 0.0129 percent of the strong bill. Post shipped 3,863
+full body words / 2,747 code-excluded, inside the Oct 31–Nov 5 sibling band (3,788–4,454 / 2,651–2,689;
+2.2 percent over the code-excluded top, accepted as citation-dense). prose-style checker PASS at 0 prose
+em dashes, 0 title-case headings, 0 emoji; `check-quoted-output.py` not applicable because the post uses
+`text` fences, so the inline pairing check was run instead and confirmed 4/4 byte-identical;
+`verify-post-code.py` ran all four blocks clean. Cover `cover-model-cascade-escalation-budget.webp`
+(23.7 KB, 1200x630, `file`-verified): a funnel of queries hitting a red gate at the neck, 83 percent
+deflected into the cheap bin at $240 per million, 17 percent falling through into the big-model chamber at
+$4,439 per million, with strong-alone $24,700 below. Commit 0e6b015; Actions run for that SHA completed
+success; permalink 200 on attempt 4 (~50s of CDN propagation); cover WebP served 200 at 23,690 bytes.
+
+**State after this run:** every calendar day from Sep 16 through Nov 7 now has a post; `.scheduled/` is empty
+by design. Next `blog-poster` fire is Nov 8 and should alternate to Lane A (positive story, <=21 days old,
+2+ body-level sources). Do not repeat the crop-diagnostics, teacher-model or cascade-routing topics. Banked
+Lane B follow-ups if a slot needs one: (a) the same cascade harness with a learned router scored on
+pre-call features (mean log-prob, answer length, retrieval score, self-consistency) measured against the
+confidence baseline, (b) enforcement of a hard escalation-budget cap and the quality cost of the cap,
+(c) writing the escalated set back out as a fine-tuning corpus and measuring the escalation rate falling
+across successive cheap-model versions.
