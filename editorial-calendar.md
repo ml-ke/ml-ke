@@ -3303,11 +3303,50 @@ deflected into the cheap bin at $240 per million, 17 percent falling through int
 $4,439 per million, with strong-alone $24,700 below. Commit 0e6b015; Actions run for that SHA completed
 success; permalink 200 on attempt 4 (~50s of CDN propagation); cover WebP served 200 at 23,690 bytes.
 
-**State after this run:** every calendar day from Sep 16 through Nov 7 now has a post; `.scheduled/` is empty
-by design. Next `blog-poster` fire is Nov 8 and should alternate to Lane A (positive story, <=21 days old,
-2+ body-level sources). Do not repeat the crop-diagnostics, teacher-model or cascade-routing topics. Banked
-Lane B follow-ups if a slot needs one: (a) the same cascade harness with a learned router scored on
-pre-call features (mean log-prob, answer length, retrieval score, self-consistency) measured against the
-confidence baseline, (b) enforcement of a hard escalation-budget cap and the quality cost of the cap,
-(c) writing the escalated set back out as a fine-tuning corpus and measuring the escalation rate falling
-across successive cheap-model versions.
+**2026-11-08 — Lane A (positive story), `words-in-enzymes-out-protein-design`.** Lane derivation: Nov 7 was
+Lane B (`model-cascade-escalation-budget`), Nov 6 Lane A, Nov 5 Lane B, so the day alternated back to a
+positive story, which matches the previous note's instruction. Story: two independent groups crossed into
+functional de novo protein design within a month. Pinal (Westlake University, *Nature*, DOI
+10.1038/s41586-026-11205-z): a 16B-parameter model that designs proteins from natural-language prompts,
+trained on 1.7 billion synthetically annotated protein-text pairs built from 135 million sequences, two
+modules (T2struct then SaProt-T), four tasks (fluorescent protein, PET hydrolase, alcohol dehydrogenase,
+metabolic H-protein), H-protein raised product titre 1.7-fold over native *E. coli* in a CO2-fixation
+pathway without iterative optimisation. De novo proteases (Institute for Protein Design, University of
+Washington, two *Nature* papers on 14 October 2026, DOIs 10.1038/s41586-026-11167-2 and
+10.1038/s41586-026-11143-w): RFdiffusion variant keeps the zinc or cysteine catalytic core and designs the
+pocket and scaffold, 13 of 69 cysteine designs cut their target (19 percent), 36 percent of 135 zinc
+designs cut theirs, refinement made the best zinc protease cut 30x faster, and designed proteases cleaved
+full-length TDP-43 (ALS), amyloid-beta fragments and serum amyloid A, with no human trials. Differentiation:
+first protein-design post on the blog (siblings cover genomics, not design: Sep 26 AlphaGenome, Oct 22
+sorghum pangenome), and the angle is the published hit rate plus its denominator, not the headline.
+MORENA was considered and rejected as already covered on Oct 8; CommonLingua rejected as April 2026 (too
+old for the 21-day window); a Nigeria MAZU op-ed rejected as Sep 27 and opinion-grade.
+Body-level sources: three Nature abstract pages fetched and quoted (numbers above come from the abstracts,
+not secondaries), plus phys.org (16 and 8 November), C&EN (20 October) and Ars Technica (14 October) for
+the mechanism description. Four self-contained stdlib blocks, all executed: (1) Wilson 95 percent intervals
+on all four ratios, cysteine [0.114, 0.296] overlapping fluorescent [0.006, 0.172], which is the post's
+central point; (2) generation funnel, 50,000 generated to 29 tested = 0.058 percent of the batch, $2,320
+versus $4,000,000 at an assumed $80 per construct (1,724x), and tests-for-one-hit of 66 / 9 / 12 / 6; (3)
+proteome window arithmetic, 1,245 / 62 / 3.1 / 0.155 / 0.008 chance matches by site length, cysteine
+frequency 2.17x rarer than uniform; (4) budget from the interval, $30,080 to $1,040 per working design on
+the 29-design result (28.9x spread) and $1,600 to $320 on the 20-design result (5.0x). Post shipped 4,195
+full body words / 3,400 code-excluded, inside the Nov 1 to Nov 6 full band (3,820 to 4,241) and 6.5 percent
+over the code-excluded top (3,191), accepted because this draft carries more prose and less code than its
+siblings. prose-style checker PASS at 0 prose em dashes, 0 title-case headings, 0 emoji;
+`check-quoted-output.py` PASS 4/4 byte-identical; `verify-post-code.py` ran all four blocks clean; a
+separate prose-figure assertion matched 38 of 39 quoted figures against fresh stdout, the miss being
+"1,245" printed as `1245.000` (thousands separator only). Cover
+`cover-words-in-enzymes-out-protein-design.webp` (25,150 bytes, 1200x630, `file`-verified VP8): a prompt
+card on the left naming one protein, a dashed arrow into a chain of eight amino-acid beads, a blade landing
+on a single highlighted bond with the chain split into two fragments, and three stat panels (13 of 69, 36
+percent, 1 of 29). Commit cf25e60; Actions run for that SHA completed success; permalink 200 on the first
+check; cover served 200 at 25,150 bytes.
+
+**State after this run:** every calendar day from Sep 16 through Nov 8 now has a post; `.scheduled/` is
+empty by design. Next `blog-poster` fire is Nov 9 and should alternate to Lane B (tutorial). Do not repeat
+the crop-diagnostics, teacher-model, cascade-routing or protein-design topics. Banked Lane B follow-ups if
+that slot needs one: (a) the same cascade harness with a learned router scored on pre-call features (mean
+log-prob, answer length, retrieval score, self-consistency) measured against the confidence baseline, (b)
+enforcement of a hard escalation-budget cap and the quality cost of the cap, (c) writing the escalated set
+back out as a fine-tuning corpus and measuring the escalation rate falling across successive cheap-model
+versions.
