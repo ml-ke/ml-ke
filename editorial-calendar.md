@@ -3350,3 +3350,68 @@ log-prob, answer length, retrieval score, self-consistency) measured against the
 enforcement of a hard escalation-budget cap and the quality cost of the cap, (c) writing the escalated set
 back out as a fine-tuning corpus and measuring the escalation rate falling across successive cheap-model
 versions.
+
+**2026-11-09 — Lane B (tutorial), `annotation-budget-language-classifier`.** Lane derivation: Nov 8 was
+Lane A (`words-in-enzymes-out-protein-design`), Nov 7 Lane B (`model-cascade-escalation-budget`), Nov 6
+Lane A (`crop-model-seven-countries`), and the Nov 8 note said this slot should alternate to Lane B.
+Gap check: no prior post covers annotation budgets, learning curves or active learning; a grep of slugs
+and headings for `active learning|annotation budget|label budget|uncertainty sampling` returned nothing.
+Nearest siblings are `annotator-agreement-before-you-train` (how many annotators and how well they agree,
+not how many items), `low-resource-nlp`, `fine-tuning-african-language-llms` and
+`morena-open-african-language-model-tokenizer`; the tutorial's angle is the budget measurement itself, so
+the intro names those siblings' scope and does not repeat them.
+
+Anchors. (1) arXiv 2609.37882, Vangala, Guda, Peddi and Vangala, *How Many Labels Does a Language Need?*,
+submitted 29 Sep 2026, body-fetched as HTML and sliced locally (the extract script returns page-head for
+this URL, so it was curled and tag-stripped into scratch). Verified body figures: char n-gram TF-IDF plus
+linear SVM on two cores and 7 GB, 28 language-task pairs over MasakhaNEWS (16 languages) and AfriSenti
+(12); 100 labels reach 72 percent of full-data macro-F1 and 400 reach 90 percent; raw n95 median 800 with
+range 200 (chiShona) to the full training set (Tigrinya, Oromo, Rundi, Lingala, Luganda), fitted n95 median
+575 with most languages between 400 and 900; sentiment still improving at full size in 11 of 12; pooling
+adds 0.20 macro-F1 at 25 target labels for news (up to 0.43 for Lingala) and 0.08 for sentiment, decays to
+zero by 800 labels, hurts at full size in 9 of 16 news and 8 of 12 sentiment languages, and 25 target labels
+plus pooled data match 100 to 400 monolingual; zero-shot transfer recovers a median 13 percent (news) and
+4 percent (sentiment) of the floor-to-full gap; monolingual training 0.1 to 6 seconds per language versus
+18 to 53 seconds pooled; MasakhaNEWS few-shot at about 93 percent of full performance from ten examples per
+label with a large model and pattern-exploiting training, which the paper phrases as "40 labels and a GPU
+or 400 labels and a laptop". The paper explicitly did not study active learning, which is the gap this post
+fills. (2) Findings of EACL 2026, Dossou, Arous, Durand and Cheung, *Active Learning with Non-Uniform Costs
+for African Natural Language Processing*, pages 6644-6656, abstract body-verified: annotation costs vary
+with task complexity, annotator expertise and data availability, most AL frameworks assume uniform costs,
+KnapsackBALD combines BatchBALD with a 0-1 knapsack objective and beats seven baselines across three cost
+scenarios on MasakhaNEWS, with the gap widening as cost imbalance grows. (3) Settles survey and modAL docs
+for the least-confident/margin/entropy definitions.
+
+Fixture and measured results (stdlib only, deterministic, md5 stable across repeat runs). Synthetic
+five-class news corpus, skewed priors 30/25/20/15/10, 16 percent label noise in train, clean 150-document
+test, 84 percent background words, char-3gram multinomial NB. Full-data macro-F1 0.880, majority-class floor
+0.092. Curve: 25 labels 0.375 (42.7 percent of full), 50 0.586, 100 0.690 (78.4), 200 0.833 (94.8), 400 0.878
+(99.9); marginal gains +0.314, +0.144, +0.045. Power-law fit a=1.058, b=3.293, c=0.49, rmse 0.015, fitted
+n95 = 245, with the asymptote above 1.0 noted in the post as a short-curve artifact rather than a result.
+Active learning at budget 100 from a 20-label seed, three seeds: random 0.751 (spread 0.097), least-conf
+0.797 (0.018), margin 0.738 (0.029), balanced 0.803 (0.041); no strategy clears random's own seed spread, so
+the post publishes the null result and sells the two effects that do hold, variance reduction and class
+coverage (smallest class 6 labels under least-confidence versus 12 under random and balanced). Transfer:
+unrelated-root source recovers 14.9 percent of the gap, close to the paper's 13 percent median, and adds
++0.145 / +0.129 / +0.030 at 25 / 100 / 400 target labels; shared-root source scores 0.908 alone, 103.7
+percent of the gap, which the post frames as a leakage alarm rather than a win.
+
+Verification. prose-style checker PASS: 2,034 prose words, 0 prose em dashes, 0 title-case headings, 0 emoji.
+`check-quoted-output.py` PASS 3/3 blocks byte-identical; `verify-post-code.py` ran all three blocks clean;
+a separate assertion matched 53 of 53 quoted figures against fresh stdout of their own block. Full body
+4,230 words, code-excluded 2,165, inside the Nov 5 to Nov 8 full band (3,788 to 4,454) and below the
+code-excluded band because this draft is code-heavy at three full harnesses; humanizer pass applied to prose
+only with fences diffed byte-identical afterwards. No `post_url`, no `cover:` key, no `.png` paths, all four
+`/posts/` links resolve. Cover `cover-annotation-budget-language-classifier.webp` (27,406 bytes, 1200x630,
+VP8, `file`-verified): a five-point learning curve on log axes with a dashed 95-percent line, an n95 marker
+at 245, and a chip stack showing least-confidence leaving the smallest class at 6 of 100 against random's 12.
+Commit 65fc560; Actions run for that SHA went in_progress to completed success (~110s); permalink 200 and
+cover WebP 200 on the first check.
+
+**State after this run:** every calendar day from Sep 16 through Nov 9 has a post; `.scheduled/` is empty by
+design. Next `blog-poster` fire is Nov 10 and should alternate to Lane A (positive story). Do not repeat the
+label-budget/active-learning subject. Banked Lane B follow-ups if that slot needs one later: (a) cost-aware
+acquisition with heterogeneous label prices, using the EACL KnapsackBALD paper as the anchor and pricing a
+health label against a sports label; (b) language-tagged or upweighted pooling, since the paper's pooled
+setting mixes languages without weighting; (c) stopping criteria compared against the fitted n95 with more
+budget points per curve.
