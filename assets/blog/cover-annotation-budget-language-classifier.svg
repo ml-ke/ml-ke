@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="0.55" stop-color="#131826"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="curve" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#00d2ff"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.03"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="60" y="86" font-family="Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" fill="#6bcf7f">ANNOTATION BUDGETS</text>
+  <text x="60" y="140" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="bold" fill="#f0f3f8">How many labels does</text>
+  <text x="60" y="186" font-family="Helvetica, Arial, sans-serif" font-size="38" font-weight="bold" fill="#f0f3f8">your language need?</text>
+  <text x="60" y="222" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#8b95a7">five classes, three seeds per budget, one laptop</text>
+
+  <!-- plot frame -->
+  <line x1="120" y1="470" x2="726" y2="470" stroke="#3a4356" stroke-width="2"/>
+  <line x1="120" y1="150" x2="120" y2="470" stroke="#3a4356" stroke-width="2"/>
+
+  <!-- horizontal guides -->
+  <line x1="120" y1="423.8" x2="712" y2="423.8" stroke="#ffffff" stroke-opacity="0.08"/>
+  <line x1="120" y1="331.5" x2="712" y2="331.5" stroke="#ffffff" stroke-opacity="0.08"/>
+  <line x1="120" y1="239.2" x2="712" y2="239.2" stroke="#ffffff" stroke-opacity="0.08"/>
+  <text x="70" y="428" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6b7689">0.40</text>
+  <text x="70" y="336" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6b7689">0.60</text>
+  <text x="70" y="243" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6b7689">0.80</text>
+  <text x="36" y="316" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8b95a7" transform="rotate(-90 36 316)">macro-F1</text>
+
+  <!-- 95 percent reference -->
+  <line x1="120" y1="223.5" x2="712" y2="223.5" stroke="#ffd93d" stroke-width="1.5" stroke-dasharray="7 6" stroke-opacity="0.75"/>
+  <text x="592" y="214" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#ffd93d">95% of full data</text>
+
+  <!-- learning curve -->
+  <polyline points="120,435.4 265,338 410,290 555,223.1 700,202.3"
+            fill="none" stroke="url(#curve)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="120" cy="435.4" r="7" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+  <circle cx="265" cy="338" r="7" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+  <circle cx="410" cy="290" r="7" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+  <circle cx="555" cy="223.1" r="7" fill="#0d1117" stroke="#00d2ff" stroke-width="4"/>
+  <circle cx="700" cy="202.3" r="7" fill="#0d1117" stroke="#a78bfa" stroke-width="4"/>
+
+  <text x="100" y="420" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#c8d1e0">0.375</text>
+  <text x="248" y="323" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#c8d1e0">0.586</text>
+  <text x="392" y="275" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#c8d1e0">0.690</text>
+  <text x="532" y="208" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#c8d1e0">0.833</text>
+  <text x="676" y="190" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#c8d1e0">0.878</text>
+
+  <!-- x ticks -->
+  <text x="110" y="496" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#6b7689">25</text>
+  <text x="252" y="496" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#6b7689">50</text>
+  <text x="392" y="496" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#6b7689">100</text>
+  <text x="534" y="496" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#6b7689">200</text>
+  <text x="680" y="496" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#6b7689">400</text>
+  <text x="330" y="526" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b95a7">labels bought</text>
+
+  <!-- n95 marker -->
+  <line x1="597" y1="470" x2="597" y2="236" stroke="#6bcf7f" stroke-width="2" stroke-dasharray="4 5"/>
+  <path d="M597 470 l-9 -16 h18 z" fill="#6bcf7f"/>
+  <text x="560" y="452" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#6bcf7f">n95 = 245</text>
+
+  <!-- label chips: five classes, one starved -->
+  <g font-family="Helvetica, Arial, sans-serif">
+    <text x="790" y="270" font-size="14" letter-spacing="2" fill="#8b95a7">WHAT 100 LABELS BOUGHT</text>
+
+    <rect x="790" y="290" width="320" height="38" rx="8" fill="#1e2433" stroke="#6bcf7f" stroke-opacity="0.35"/>
+    <text x="808" y="315" font-size="15" fill="#d7dee9">health</text>
+    <text x="1060" y="315" font-size="15" fill="#6bcf7f">25</text>
+
+    <rect x="790" y="334" width="320" height="38" rx="8" fill="#1e2433" stroke="#6bcf7f" stroke-opacity="0.35"/>
+    <text x="808" y="359" font-size="15" fill="#d7dee9">politics</text>
+    <text x="1060" y="359" font-size="15" fill="#6bcf7f">28</text>
+
+    <rect x="790" y="378" width="320" height="38" rx="8" fill="#1e2433" stroke="#6bcf7f" stroke-opacity="0.35"/>
+    <text x="808" y="403" font-size="15" fill="#d7dee9">economy</text>
+    <text x="1060" y="403" font-size="15" fill="#6bcf7f">17</text>
+
+    <rect x="790" y="422" width="320" height="38" rx="8" fill="#1e2433" stroke="#6bcf7f" stroke-opacity="0.35"/>
+    <text x="808" y="447" font-size="15" fill="#d7dee9">sport</text>
+    <text x="1060" y="447" font-size="15" fill="#6bcf7f">24</text>
+
+    <rect x="790" y="466" width="320" height="38" rx="8" fill="#241a1e" stroke="#ff6b6b" stroke-opacity="0.8"/>
+    <text x="808" y="491" font-size="15" fill="#ffb3b3">weather</text>
+    <text x="1060" y="491" font-size="15" font-weight="bold" fill="#ff6b6b">6</text>
+
+    <text x="790" y="536" font-size="13" fill="#8b95a7">least-confidence starved the smallest class</text>
+    <text x="790" y="558" font-size="13" fill="#8b95a7">random kept it at 12 of 100</text>
+  </g>
+
+  <text x="1140" y="606" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#4d5666">ml-ke.github.io</text>
+</svg>
