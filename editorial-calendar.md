@@ -3415,3 +3415,65 @@ acquisition with heterogeneous label prices, using the EACL KnapsackBALD paper a
 health label against a sports label; (b) language-tagged or upweighted pooling, since the paper's pooled
 setting mixes languages without weighting; (c) stopping criteria compared against the fitted n95 with more
 budget points per curve.
+
+**2026-11-11 — Lane A (positive story), `ai-classroom-evidence-base`.** Lane derivation: Nov 9 was Lane B
+(`annotation-budget-language-classifier`), Nov 8 Lane A (`words-in-enzymes-out-protein-design`), Nov 7 Lane
+B (`model-cascade-escalation-budget`), and Nov 10 was the Tuesday cron, so this slot alternated to Lane A.
+Gap check: no prior post covers the education causal-evidence corpus or trial power; slugs and headings
+grepped for `tutor|classroom|randomized controlled trial` returned nothing on either subject. Nearest
+siblings are `gemma-for-teachers-africa` (Nov 4, one teacher-facing deployment read design by design),
+`paired-eval-significance` (Oct 21, gating a single comparison) and `goalkeepers-2026-ai-equity-pledge`
+(Sep 23, reading four numbers in a funding announcement). The intro names the Nov 4 sibling and states the
+differentiation: corpus-level replication and the minimum detectable effect, not one trial's design.
+
+Anchor. SCALE Initiative at Stanford, *The Evidence Base on AI in K-12: A November 2026 Review*, published
+10 November 2026, Walker, Fesler, Martinez Claeys, Agnew and Loeb, DOI 10.26300/80wn-ca81, body-fetched as
+HTML and sliced locally (the extract script returns the page head for early keyphrases, so the appendix was
+pulled with study-specific keyphrases). Verified body figures: 20 papers in the March review to 52 now, +32,
+window October 2025 to June 2026; five new U.S. K-12 student-facing studies against none in March; the
+authors' own "should not be treated as broadly generalizable across U.S. K-12 settings". Appendix table
+entries quoted verbatim: Bastani et al. 2025 (about 1,000 Turkish high school students, four 90-minute
+sessions, 48 and 127 percent practice gains, 17 percent unassisted-exam drop, guardrails mitigating);
+Kosmyna et al. 2025 (55 participants, 83 against 11 percent unable to quote their own essay); Fischer et al.
+2025 (334 German students, 25-minute session); Blasco and Charisi 2025 (122 students, Belgium and Spain);
+LearnLM and Eedi 2025 (165 Year 9-10 students, five UK schools, seven weeks); Ferman et al. 2021 (about
+19,000 Brazilian students, 178 schools); Wang et al. 2025 Tutor CoPilot (700+ tutors, 1,000 students, 4 p.p.,
+p<0.01, 9 p.p. for lowest-rated tutors, about $20 per tutor per year); Demszky et al. 2025 TeachFX (369
+teachers, +20 percent focusing questions, no effect on student talk or reasoning); Roy et al. 2024 (259
+teachers, 68 English schools, 25 minutes a week, 31 percent); Kim et al. 2021 (234 tutors, 2,220 South
+Korean students); Sungu et al. 2026 (193 teachers, 2,816 students, grades 5-12 in Turkiye, one semester, no
+change in average exam scores, motivation and confidence down, scores down for students of lower-performing
+teachers); Kreijkes et al. 2026 (344 Year 10 students in England, note-taking beat AI-only, chatbot rated
+most helpful); Mahinpei et al. 2026 (11 TAs, 88 undergraduates, +11 p.p. feedback likelihood). Cross-checks:
+the Bastani SSRN PDF was downloaded and grepped, confirming 48 / 127 / 17 percent, four 90-minute sessions,
+"about fifty 9th, 10th, and 11th-grade classes, comprising nearly 1000 students" and the 0.054 degradation;
+the Liu et al. EdWorkingPaper 26-1598 abstract confirmed 2,379 undergraduates, 30 instructors, -0.37 SD
+grades and -0.90 SD LMS participation; the Eedi 1,179-student ten-school trial and its 14-versus-19 problems
+per session came from EdTech Innovation Hub quoting Google's technical report.
+
+Measurements. One stdlib block implements the cluster-RCT variance, the 80-percent-power minimum detectable
+effect and effect-size-to-percentile conversion; it runs in 0.0s, prints a deterministic table and its md5
+was identical across two runs. Headline outputs: 0.422 SD at 20 clusters per arm with ICC 0.20 and m=30;
+356 schools per arm (712 total, 21,360 students) to detect 0.10 SD at the same ICC; 2,848,000 dollars at
+4,000 per school; percentile 64.4 for +0.37 SD and 35.6 for -0.37 SD.
+
+Verification. prose-style checker PASS: 2,958 prose words, 0 prose em dashes, 0 title-case headings, 0 emoji.
+`verify-post-code.py` ran the single block clean; the pairing check executed the python fence in a fresh
+interpreter and matched the `text` fence byte-for-byte, with 14 quoted figures asserted as substrings of that
+stdout. Full body 3,876 words, code-excluded 3,302, inside the measured sibling band (full 3,544 to 4,241;
+code-excluded 2,916 to 3,390 across Oct 28, Nov 1, Nov 4, Nov 6, Nov 8 and Nov 9). Humanizer pass applied to
+prose only. No `post_url`, no `cover:` key, no `.png` paths, all four `/posts/` links resolve. Cover
+`cover-ai-classroom-evidence-base.webp` (29,760 bytes, 1200x630, VP8, `file`-verified) is a funnel plot: 26
+studies clustered around a green dashed no-effect line that widens with imprecision, one red estimate at
+-0.37 SD, and three panels (20 to 52 papers, 0.42 SD at a 20-school pilot, 356 schools per arm for 0.10 SD).
+Commit 19861a9; Actions run for that SHA went in_progress to completed success; homepage lists the slug;
+permalink 200 and cover WebP 200 at 29,760 bytes.
+
+**State after this run:** every calendar day from Sep 16 through Nov 11 has a post; `.scheduled/` is empty by
+design. Next `blog-poster` fire is Nov 12 and should alternate to Lane B (tutorial). Do not repeat the
+education-evidence or trial-power subject. Banked Lane B follow-ups if that slot needs one: (a) sizing an
+evaluation harness for a paid annotator panel with heterogeneous label prices, using the EACL KnapsackBALD
+paper from the Nov 9 note; (b) a power calculator for A/B tests on retrieval quality where the unit of
+randomisation is the query, not the document, measured against a paired bootstrap; (c) a stopping rule for
+fine-tune comparisons that spends the eval budget on the smallest detectable difference rather than a fixed
+item count.
