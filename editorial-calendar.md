@@ -3452,7 +3452,7 @@ grades and -0.90 SD LMS participation; the Eedi 1,179-student ten-school trial a
 per session came from EdTech Innovation Hub quoting Google's technical report.
 
 Measurements. One stdlib block implements the cluster-RCT variance, the 80-percent-power minimum detectable
-effect and effect-size-to-percentile conversion; it runs in 0.0s, prints a deterministic table and its md5
+effect and effect-size-to-percentile conversion; it runs in 0.02s, prints a deterministic table and its md5
 was identical across two runs. Headline outputs: 0.422 SD at 20 clusters per arm with ICC 0.20 and m=30;
 356 schools per arm (712 total, 21,360 students) to detect 0.10 SD at the same ICC; 2,848,000 dollars at
 4,000 per school; percentile 64.4 for +0.37 SD and 35.6 for -0.37 SD.
