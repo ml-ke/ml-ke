@@ -3477,3 +3477,62 @@ paper from the Nov 9 note; (b) a power calculator for A/B tests on retrieval qua
 randomisation is the query, not the document, measured against a paired bootstrap; (c) a stopping rule for
 fine-tune comparisons that spends the eval budget on the smallest detectable difference rather than a fixed
 item count.
+
+## Publishing note — 2026-11-12 (Thursday, Lane B: AI/ML engineering tutorial)
+
+Slot and lane. Nov 11 was Lane A (`ai-classroom-evidence-base`), Nov 10 the Tuesday cron, Nov 9 Lane B
+(`annotation-budget-language-classifier`), so this slot alternated back to Lane B. `.scheduled/` was empty;
+no legacy staged file. Slug and headings grepped for `propensity|point-in-time|bootstrap|retrieval` first:
+`paired-eval-significance` (Oct 21) gates one comparison, `passk-eval-reliability` (Oct 31) covers what a
+score means across attempts, `rag-recall-at-k-denominator` covers the metric's denominator, and
+`temporal-validation-fraud-models` (Sep 17) covers leakage from random splits. None covers the *label*
+quality of a click log, so the intro names all four and states the differentiation. A first candidate
+(a point-in-time feature-join tutorial) was dropped after reading the Sep 17 post, which already walks
+through point-in-time features as part of its leakage demo.
+
+Subject. Debiasing click-log relevance estimates with inverse propensity weighting: the position-based
+click model, the naive-versus-IPS estimator comparison, why more traffic does not remove bias, propensity
+floors (clipping) as a bias-variance decision, where the propensity profile comes from, and how much a
+misspecified profile costs. Ends on the CIKM 2026 click-versus-LLM-annotation result and on the
+positivity limit (documents never displayed cannot be scored from clicks).
+
+Sources, all body-fetched (PDFs downloaded and read with `pdftotext -layout`, not snippet-level).
+Joachims, Granka, Pan, Hembrooke and Gay, SIGIR 2005 — Cornell PDF; Table 2 gives 73.9 / 82.6 percent for
+abstracts one and two before a click on link three, 90.6 percent on the diagonal at rank one and 4.3 percent
+for rank six, plus the quoted "click substantially more often on the first than on the second link, while
+they view the corresponding abstract with almost equal frequency". Joachims, Swaminathan and Schnabel,
+WSDM 2017 (arXiv:1608.04468) — position-based propensity model, the `p_r > 0` condition, clipping to trade
+bias for variance with cross-validated tau, the "misspecification is conservative" paragraph, and the live
+arXiv search-engine result (87 wins / 48 losses / 83 ties against Prod, two-tailed sign test p = 0.001,
+seven days of randomized interventions at landmark rank 1). Wang, Bendersky, Metzler and Najork, SIGIR 2016
+— uniform permutation for a small fraction of end users, email profile b1 about 0.40 against b4 about 0.15,
+with the second corpus flatter. Ai, Bi, Guo and Croft, SIGIR 2018 (arXiv:1804.05938) — swap-based propensity
+estimation and the quoted objection that randomized product rankings "may hurt the user experience". Yu,
+Bi, Guo, Liu, Wang, Yin and Cheng, CIKM 2026 (arXiv:2511.06635) — click-supervised models better on
+high-frequency queries, LLM-annotation models better on middle- and low-frequency ones, hybrid
+frequency-aware multi-objective training best at every band.
+
+Measurements. Four stdlib-only blocks, each self-contained, 8 seeds, no wall-clock output.
+(1) 120 documents / 3,000 queries: naive rho 0.845, NDCG@10 0.901, RMSE 0.253, bias -0.150; IPS 0.869 /
+0.981 / 0.186 / -0.021; naive estimate correlates with the incumbent's own score at +0.396 against +0.077
+for true relevance, IPS +0.251; 11 of 120 documents never shown. (2) Volume sweep 300 to 19,200 queries:
+naive RMSE 0.260 to 0.250 and bias flat at -0.149/-0.150, IPS RMSE 0.268 to 0.152. (3) Propensity floor:
+RMSE 0.186 (none), 0.171 (0.2), 0.163 (0.3), 0.172 (0.4), 0.186 (0.5) with bias growing monotonically to
+-0.085. (4) Profile misspecification p**gamma: RMSE 0.253 / 0.198 / 0.186 / 0.479 at gamma 0 / 0.5 / 1 / 1.5,
+bias flipping to +0.144 at 1.5, and gamma = 0 reproducing the raw click rate exactly (asserted True).
+
+Verification. Prose-style checker PASS: 2,768 prose words, 0 em dashes, 0 title-case headings, 0 emoji.
+`verify-post-code.py` ran 4/4 blocks clean; a fence-pairing check (index 0/1, 2/3, …) confirmed every
+Python fence's stdout matches the following `text` fence byte-for-byte, 4/4, and 29 quoted figures were
+asserted as substrings of their own block's stdout. Cover `cover-click-log-propensity-debiasing.webp`
+(31,694 bytes, 1200x630, VP8, `file`-verified) is a ten-slot list with examination bars shrinking down the
+page, 1/p weight badges, and equal bars after weighting. No `post_url`, no `cover:` key, no `.png` path,
+all five `/posts/` links resolve. Commit 0cdc422.
+
+**State after this run:** every calendar day from Sep 16 through Nov 12 has a post; `.scheduled/` is empty
+by design. Next `blog-poster` fire is Nov 13 and should alternate to Lane A (positive AI story). Do not
+repeat the click-propensity subject. Banked Lane A follow-ups if the slot needs one: (a) an Africa/Asia
+open-weight release from the last three weeks with a body-verified model card and licence read; (b) the
+WHO/health-procurement or screening angle, checking `who-prequalification-cad-tb-ai-screening` and
+`tanzania-retina-screening-trial` first; (c) a Kenyan or Nigerian AI deployment with a published
+evaluation, differentiated against `ai-african-education` and `ai-african-healthcare`.
