@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <style>
+      .title { font-family: Helvetica, Arial, sans-serif; font-size: 40px; font-weight: 700; fill: #f0f6fc; }
+      .sub   { font-family: Helvetica, Arial, sans-serif; font-size: 18px; fill: #8b949e; }
+      .head  { font-family: Helvetica, Arial, sans-serif; font-size: 12px; fill: #8b949e; letter-spacing: 2px; }
+      .mono  { font-family: Menlo, Consolas, monospace; font-size: 15px; fill: #c9d1d9; }
+      .dim   { fill: #6e7681; }
+      .badge { fill: #ffd93d; }
+      .note  { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #8b949e; }
+      .logo  { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #4b5563; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.03">
+    <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="45" x2="1200" y2="45"/><line x1="0" y1="90" x2="1200" y2="90"/><line x1="0" y1="135" x2="1200" y2="135"/><line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="225" x2="1200" y2="225"/><line x1="0" y1="270" x2="1200" y2="270"/><line x1="0" y1="315" x2="1200" y2="315"/><line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="405" x2="1200" y2="405"/><line x1="0" y1="450" x2="1200" y2="450"/><line x1="0" y1="495" x2="1200" y2="495"/><line x1="0" y1="540" x2="1200" y2="540"/><line x1="0" y1="585" x2="1200" y2="585"/>
+    <line x1="0" y1="0" x2="0" y2="630"/><line x1="45" y1="0" x2="45" y2="630"/><line x1="90" y1="0" x2="90" y2="630"/><line x1="135" y1="0" x2="135" y2="630"/><line x1="180" y1="0" x2="180" y2="630"/><line x1="225" y1="0" x2="225" y2="630"/><line x1="270" y1="0" x2="270" y2="630"/><line x1="315" y1="0" x2="315" y2="630"/><line x1="360" y1="0" x2="360" y2="630"/><line x1="405" y1="0" x2="405" y2="630"/><line x1="450" y1="0" x2="450" y2="630"/><line x1="495" y1="0" x2="495" y2="630"/><line x1="540" y1="0" x2="540" y2="630"/><line x1="585" y1="0" x2="585" y2="630"/><line x1="630" y1="0" x2="630" y2="630"/><line x1="675" y1="0" x2="675" y2="630"/><line x1="720" y1="0" x2="720" y2="630"/><line x1="765" y1="0" x2="765" y2="630"/><line x1="810" y1="0" x2="810" y2="630"/><line x1="855" y1="0" x2="855" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/><line x1="945" y1="0" x2="945" y2="630"/><line x1="990" y1="0" x2="990" y2="630"/><line x1="1035" y1="0" x2="1035" y2="630"/><line x1="1080" y1="0" x2="1080" y2="630"/><line x1="1125" y1="0" x2="1125" y2="630"/><line x1="1170" y1="0" x2="1170" y2="630"/>
+  </g>
+
+  <text x="60" y="86" class="title">Clicks Are Not Judgments</text>
+  <text x="60" y="122" class="sub">A click is an event shaped by the slot. Divide it by that slot's own weight.</text>
+  <text x="60" y="148" class="sub">Same log, two estimates: raw rate versus inverse propensity.</text>
+
+  <text x="62" y="176" class="head">SLOT</text>
+  <text x="100" y="176" class="head">HOW OFTEN IT WAS SEEN</text>
+  <text x="452" y="176" class="head">1 / p</text>
+  <text x="560" y="176" class="head">AFTER WEIGHTING</text>
+
+  <text x="62" y="202" class="mono dim">01</text>
+  <rect x="100" y="186" width="225" height="22" rx="4" fill="#00d2ff" opacity="0.80"/>
+  <text x="360" y="202" class="mono">0.90</text>
+  <text x="452" y="202" class="mono badge">x1.11</text>
+  <rect x="560" y="186" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="238" class="mono dim">02</text>
+  <rect x="100" y="222" width="210" height="22" rx="4" fill="#00d2ff" opacity="0.76"/>
+  <text x="360" y="238" class="mono">0.84</text>
+  <text x="452" y="238" class="mono badge">x1.19</text>
+  <rect x="560" y="222" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="274" class="mono dim">03</text>
+  <rect x="100" y="258" width="192" height="22" rx="4" fill="#00d2ff" opacity="0.72"/>
+  <text x="360" y="274" class="mono">0.77</text>
+  <text x="452" y="274" class="mono badge">x1.30</text>
+  <rect x="560" y="258" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="310" class="mono dim">04</text>
+  <rect x="100" y="294" width="172" height="22" rx="4" fill="#00d2ff" opacity="0.68"/>
+  <text x="360" y="310" class="mono">0.69</text>
+  <text x="452" y="310" class="mono badge">x1.45</text>
+  <rect x="560" y="294" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="346" class="mono dim">05</text>
+  <rect x="100" y="330" width="150" height="22" rx="4" fill="#00d2ff" opacity="0.63"/>
+  <text x="360" y="346" class="mono">0.60</text>
+  <text x="452" y="346" class="mono badge">x1.67</text>
+  <rect x="560" y="330" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="382" class="mono dim">06</text>
+  <rect x="100" y="366" width="130" height="22" rx="4" fill="#00d2ff" opacity="0.59"/>
+  <text x="360" y="382" class="mono">0.52</text>
+  <text x="452" y="382" class="mono badge">x1.92</text>
+  <rect x="560" y="366" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="418" class="mono dim">07</text>
+  <rect x="100" y="402" width="108" height="22" rx="4" fill="#00d2ff" opacity="0.54"/>
+  <text x="360" y="418" class="mono">0.43</text>
+  <text x="452" y="418" class="mono badge">x2.33</text>
+  <rect x="560" y="402" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="454" class="mono dim">08</text>
+  <rect x="100" y="438" width="85" height="22" rx="4" fill="#00d2ff" opacity="0.49"/>
+  <text x="360" y="454" class="mono">0.34</text>
+  <text x="452" y="454" class="mono badge">x2.94</text>
+  <rect x="560" y="438" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="490" class="mono dim">09</text>
+  <rect x="100" y="474" width="62" height="22" rx="4" fill="#00d2ff" opacity="0.44"/>
+  <text x="360" y="490" class="mono">0.25</text>
+  <text x="452" y="490" class="mono badge">x4.00</text>
+  <rect x="560" y="474" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+  <text x="62" y="526" class="mono dim">10</text>
+  <rect x="100" y="510" width="40" height="22" rx="4" fill="#00d2ff" opacity="0.39"/>
+  <text x="360" y="526" class="mono">0.16</text>
+  <text x="452" y="526" class="mono badge">x6.25</text>
+  <rect x="560" y="510" width="250" height="22" rx="4" fill="#6bcf7f" opacity="0.78"/>
+
+  <line x1="560" y1="180" x2="560" y2="540" stroke="#30363d" stroke-width="1"/>
+
+  <text x="850" y="212" class="note">raw clicks per thousand</text>
+  <text x="850" y="240" class="note">impressions fall 5.6x from</text>
+  <text x="850" y="268" class="note">slot one to slot ten.</text>
+  <text x="850" y="308" class="note">The corrected estimate does</text>
+  <text x="850" y="336" class="note">not, because the fall was</text>
+  <text x="850" y="364" class="note">the layout, not the document.</text>
+
+  <rect x="850" y="400" width="286" height="96" rx="8" fill="#161b22" stroke="#30363d"/>
+  <text x="870" y="430" class="mono badge">floor the weight at 1/tau</text>
+  <text x="870" y="456" class="mono dim">over-correcting is worse</text>
+  <text x="870" y="478" class="mono dim">than not correcting</text>
+
+  <text x="930" y="600" class="logo">ml-ke.github.io</text>
+</svg>
