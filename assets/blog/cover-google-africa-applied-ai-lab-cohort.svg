@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Ten startup tiles pinned to a map grid, grouped in four columns by the constraint each removes">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<line x1="0" y1="60" x2="1200" y2="60" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="105" x2="1200" y2="105" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="150" x2="1200" y2="150" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="195" x2="1200" y2="195" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="240" x2="1200" y2="240" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="285" x2="1200" y2="285" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="330" x2="1200" y2="330" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="375" x2="1200" y2="375" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="420" x2="1200" y2="420" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="465" x2="1200" y2="465" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="510" x2="1200" y2="510" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="555" x2="1200" y2="555" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="600" x2="1200" y2="600" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="0" x2="0" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="60" y1="0" x2="60" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="120" y1="0" x2="120" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="180" y1="0" x2="180" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="240" y1="0" x2="240" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="300" y1="0" x2="300" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="360" y1="0" x2="360" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="420" y1="0" x2="420" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="480" y1="0" x2="480" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="540" y1="0" x2="540" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="600" y1="0" x2="600" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="660" y1="0" x2="660" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="720" y1="0" x2="720" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="780" y1="0" x2="780" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="840" y1="0" x2="840" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="900" y1="0" x2="900" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="960" y1="0" x2="960" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1020" y1="0" x2="1020" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1080" y1="0" x2="1080" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1140" y1="0" x2="1140" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<path d="M 260 40 C 300 200, 220 430, 260 600" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+<path d="M 520 40 C 560 200, 480 430, 520 600" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+<path d="M 780 40 C 820 200, 740 430, 780 600" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+<path d="M 1040 40 C 1080 200, 1000 430, 1040 600" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+<text x="70" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" fill="#00d2ff">FIRST COHORT, NOVEMBER 2026</text>
+<text x="70" y="215" font-family="Inter, Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#f0f6fc">Ten African startups,</text>
+<text x="70" y="265" font-family="Inter, Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#f0f6fc">one constraint map</text>
+<text x="70" y="310" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">Sorted by what each company takes off a</text>
+<text x="70" y="336" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">customer&#39;s plate, not by model size</text>
+<text x="70" y="392" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#6e7681">thousands of applications</text>
+<text x="70" y="416" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#6e7681">45+ countries &#183; 10 teams &#183; demo day in Accra</text>
+<text x="520" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6bcf7f">RAILS</text>
+<line x1="520" y1="162" x2="655" y2="162" stroke="#6bcf7f" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="520" y="190" width="135" height="40" rx="6" fill="#6bcf7f" fill-opacity="0.10" stroke="#6bcf7f" stroke-opacity="0.55"/>
+<circle cx="535" cy="210.0" r="4" fill="#6bcf7f"/>
+<text x="548" y="216" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Smile ID</text>
+<rect x="520" y="256" width="135" height="40" rx="6" fill="#6bcf7f" fill-opacity="0.10" stroke="#6bcf7f" stroke-opacity="0.55"/>
+<circle cx="535" cy="276.0" r="4" fill="#6bcf7f"/>
+<text x="548" y="282" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Termii</text>
+<rect x="520" y="322" width="135" height="40" rx="6" fill="#6bcf7f" fill-opacity="0.10" stroke="#6bcf7f" stroke-opacity="0.55"/>
+<circle cx="535" cy="342.0" r="4" fill="#6bcf7f"/>
+<text x="548" y="348" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Vendy</text>
+<text x="520" y="404" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">who the customer is</text>
+<text x="685" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#00d2ff">VOICE</text>
+<line x1="685" y1="162" x2="820" y2="162" stroke="#00d2ff" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="685" y="190" width="135" height="40" rx="6" fill="#00d2ff" fill-opacity="0.10" stroke="#00d2ff" stroke-opacity="0.55"/>
+<circle cx="700" cy="210.0" r="4" fill="#00d2ff"/>
+<text x="713" y="216" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">AethexAI</text>
+<rect x="685" y="256" width="135" height="40" rx="6" fill="#00d2ff" fill-opacity="0.10" stroke="#00d2ff" stroke-opacity="0.55"/>
+<circle cx="700" cy="276.0" r="4" fill="#00d2ff"/>
+<text x="713" y="282" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Intron</text>
+<rect x="685" y="322" width="135" height="40" rx="6" fill="#00d2ff" fill-opacity="0.10" stroke="#00d2ff" stroke-opacity="0.55"/>
+<circle cx="700" cy="342.0" r="4" fill="#00d2ff"/>
+<text x="713" y="348" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Viamo</text>
+<text x="685" y="404" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">how they speak</text>
+<text x="850" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#ffd93d">FIELD</text>
+<line x1="850" y1="162" x2="985" y2="162" stroke="#ffd93d" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="850" y="190" width="135" height="40" rx="6" fill="#ffd93d" fill-opacity="0.10" stroke="#ffd93d" stroke-opacity="0.55"/>
+<circle cx="865" cy="210.0" r="4" fill="#ffd93d"/>
+<text x="878" y="216" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Agrails</text>
+<rect x="850" y="256" width="135" height="40" rx="6" fill="#ffd93d" fill-opacity="0.10" stroke="#ffd93d" stroke-opacity="0.55"/>
+<circle cx="865" cy="276.0" r="4" fill="#ffd93d"/>
+<text x="878" y="282" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Tolbi</text>
+<text x="850" y="338" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">what the field does</text>
+<text x="1015" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#a78bfa">EDGE</text>
+<line x1="1015" y1="162" x2="1150" y2="162" stroke="#a78bfa" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="1015" y="190" width="135" height="40" rx="6" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.55"/>
+<circle cx="1030" cy="210.0" r="4" fill="#a78bfa"/>
+<text x="1043" y="216" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Crane AI Labs</text>
+<rect x="1015" y="256" width="135" height="40" rx="6" fill="#a78bfa" fill-opacity="0.10" stroke="#a78bfa" stroke-opacity="0.55"/>
+<circle cx="1030" cy="276.0" r="4" fill="#a78bfa"/>
+<text x="1043" y="282" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Satlyt</text>
+<text x="1015" y="338" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" fill="#8b949e">where compute sits</text>
+<line x1="70" y1="530" x2="1130" y2="530" stroke="#ffffff" stroke-opacity="0.08"/>
+<text x="70" y="560" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#6e7681">identity &#183; verification &#183; payments &#183; speech &#183; index insurance &#183; offline inference &#183; orbit</text>
+<text x="1130" y="596" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#484f58">ml-ke.github.io</text>
+</svg>
