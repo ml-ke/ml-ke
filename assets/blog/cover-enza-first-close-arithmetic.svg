@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="A committed capital bar split into fee, opex, reserve and primary slices, above a grid of eighty-four cheque slots with eleven lit">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<line x1="0" y1="90" x2="1200" y2="90" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="0" y1="180" x2="1200" y2="180" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="0" y1="270" x2="1200" y2="270" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="0" y1="360" x2="1200" y2="360" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="0" y1="450" x2="1200" y2="450" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="0" y1="540" x2="1200" y2="540" stroke="#ffffff" stroke-opacity="0.03"/>
+<line x1="120" y1="0" x2="120" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="240" y1="0" x2="240" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="360" y1="0" x2="360" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="480" y1="0" x2="480" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="600" y1="0" x2="600" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="720" y1="0" x2="720" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="840" y1="0" x2="840" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="960" y1="0" x2="960" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1080" y1="0" x2="1080" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+
+<text x="70" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" fill="#00d2ff">FIRST CLOSE, NOVEMBER 2026</text>
+<text x="70" y="188" font-family="Inter, Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#f0f6fc">A first close is</text>
+<text x="70" y="238" font-family="Inter, Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#f0f6fc">not a cheque</text>
+<text x="70" y="292" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">Fees, operating costs and a follow-on</text>
+<text x="70" y="318" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">reserve leave the fund before a founder</text>
+<text x="70" y="344" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">sees a wire.</text>
+<text x="70" y="418" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#6e7681">USD 21.0m committed, 35% of a USD 60m target</text>
+<text x="70" y="442" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#6e7681">first investments scheduled for 2027</text>
+
+<text x="560" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6e7681">WHERE 21.0m GOES</text>
+
+<text x="560" y="152" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#ff6b6b">fees 4.20</text>
+<text x="712" y="152" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#a78bfa">reserve 8.04</text>
+<text x="944" y="152" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6bcf7f">primary 8.04</text>
+
+<rect x="560" y="164" width="112" height="34" fill="#ff6b6b" fill-opacity="0.28" stroke="#ff6b6b" stroke-opacity="0.6"/>
+<rect x="672" y="164" width="19" height="34" fill="#ffd93d" fill-opacity="0.35" stroke="#ffd93d" stroke-opacity="0.6"/>
+<rect x="691" y="164" width="214" height="34" fill="#a78bfa" fill-opacity="0.24" stroke="#a78bfa" stroke-opacity="0.6"/>
+<rect x="905" y="164" width="215" height="34" fill="#6bcf7f" fill-opacity="0.24" stroke="#6bcf7f" stroke-opacity="0.6"/>
+<line x1="681" y1="198" x2="681" y2="226" stroke="#ffd93d" stroke-opacity="0.5"/>
+<text x="640" y="242" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" fill="#ffd93d">opex 0.71</text>
+
+<text x="560" y="300" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6e7681">FIRST CHEQUES</text>
+<rect x="560" y="318" width="16" height="16" rx="3" fill="#6bcf7f" fill-opacity="0.55" stroke="#6bcf7f"/>
+<text x="586" y="331" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#e6edf3">11 at the 0.75m sweet spot</text>
+<rect x="560" y="348" width="16" height="16" rx="3" fill="none" stroke="#8b949e" stroke-opacity="0.4"/>
+<text x="586" y="361" font-family="Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">84 slots at the 0.25m floor</text>
+
+<g stroke="#8b949e" stroke-opacity="0.3" fill="none">
+<rect x="560" y="392" width="18" height="18" rx="3"/><rect x="588" y="392" width="18" height="18" rx="3"/><rect x="616" y="392" width="18" height="18" rx="3"/><rect x="644" y="392" width="18" height="18" rx="3"/><rect x="672" y="392" width="18" height="18" rx="3"/><rect x="700" y="392" width="18" height="18" rx="3"/><rect x="728" y="392" width="18" height="18" rx="3"/><rect x="756" y="392" width="18" height="18" rx="3"/><rect x="784" y="392" width="18" height="18" rx="3"/><rect x="812" y="392" width="18" height="18" rx="3"/><rect x="840" y="392" width="18" height="18" rx="3"/><rect x="868" y="392" width="18" height="18" rx="3"/><rect x="896" y="392" width="18" height="18" rx="3"/><rect x="924" y="392" width="18" height="18" rx="3"/><rect x="560" y="420" width="18" height="18" rx="3"/><rect x="588" y="420" width="18" height="18" rx="3"/><rect x="616" y="420" width="18" height="18" rx="3"/><rect x="644" y="420" width="18" height="18" rx="3"/><rect x="672" y="420" width="18" height="18" rx="3"/><rect x="700" y="420" width="18" height="18" rx="3"/><rect x="728" y="420" width="18" height="18" rx="3"/><rect x="756" y="420" width="18" height="18" rx="3"/><rect x="784" y="420" width="18" height="18" rx="3"/><rect x="812" y="420" width="18" height="18" rx="3"/><rect x="840" y="420" width="18" height="18" rx="3"/><rect x="868" y="420" width="18" height="18" rx="3"/><rect x="896" y="420" width="18" height="18" rx="3"/><rect x="924" y="420" width="18" height="18" rx="3"/><rect x="560" y="448" width="18" height="18" rx="3"/><rect x="588" y="448" width="18" height="18" rx="3"/><rect x="616" y="448" width="18" height="18" rx="3"/><rect x="644" y="448" width="18" height="18" rx="3"/><rect x="672" y="448" width="18" height="18" rx="3"/><rect x="700" y="448" width="18" height="18" rx="3"/><rect x="728" y="448" width="18" height="18" rx="3"/><rect x="756" y="448" width="18" height="18" rx="3"/><rect x="784" y="448" width="18" height="18" rx="3"/><rect x="812" y="448" width="18" height="18" rx="3"/><rect x="840" y="448" width="18" height="18" rx="3"/><rect x="868" y="448" width="18" height="18" rx="3"/><rect x="896" y="448" width="18" height="18" rx="3"/><rect x="924" y="448" width="18" height="18" rx="3"/><rect x="560" y="476" width="18" height="18" rx="3"/><rect x="588" y="476" width="18" height="18" rx="3"/><rect x="616" y="476" width="18" height="18" rx="3"/><rect x="644" y="476" width="18" height="18" rx="3"/><rect x="672" y="476" width="18" height="18" rx="3"/><rect x="700" y="476" width="18" height="18" rx="3"/><rect x="728" y="476" width="18" height="18" rx="3"/><rect x="756" y="476" width="18" height="18" rx="3"/><rect x="784" y="476" width="18" height="18" rx="3"/><rect x="812" y="476" width="18" height="18" rx="3"/><rect x="840" y="476" width="18" height="18" rx="3"/><rect x="868" y="476" width="18" height="18" rx="3"/><rect x="896" y="476" width="18" height="18" rx="3"/><rect x="924" y="476" width="18" height="18" rx="3"/><rect x="560" y="504" width="18" height="18" rx="3"/><rect x="588" y="504" width="18" height="18" rx="3"/><rect x="616" y="504" width="18" height="18" rx="3"/><rect x="644" y="504" width="18" height="18" rx="3"/><rect x="672" y="504" width="18" height="18" rx="3"/><rect x="700" y="504" width="18" height="18" rx="3"/><rect x="728" y="504" width="18" height="18" rx="3"/><rect x="756" y="504" width="18" height="18" rx="3"/><rect x="784" y="504" width="18" height="18" rx="3"/><rect x="812" y="504" width="18" height="18" rx="3"/><rect x="840" y="504" width="18" height="18" rx="3"/><rect x="868" y="504" width="18" height="18" rx="3"/><rect x="896" y="504" width="18" height="18" rx="3"/><rect x="924" y="504" width="18" height="18" rx="3"/><rect x="560" y="532" width="18" height="18" rx="3"/><rect x="588" y="532" width="18" height="18" rx="3"/><rect x="616" y="532" width="18" height="18" rx="3"/><rect x="644" y="532" width="18" height="18" rx="3"/><rect x="672" y="532" width="18" height="18" rx="3"/><rect x="700" y="532" width="18" height="18" rx="3"/><rect x="728" y="532" width="18" height="18" rx="3"/><rect x="756" y="532" width="18" height="18" rx="3"/><rect x="784" y="532" width="18" height="18" rx="3"/><rect x="812" y="532" width="18" height="18" rx="3"/><rect x="840" y="532" width="18" height="18" rx="3"/><rect x="868" y="532" width="18" height="18" rx="3"/><rect x="896" y="532" width="18" height="18" rx="3"/><rect x="924" y="532" width="18" height="18" rx="3"/>
+</g>
+<g fill="#6bcf7f" fill-opacity="0.85" stroke="#6bcf7f">
+<rect x="560" y="392" width="18" height="18" rx="3"/><rect x="588" y="392" width="18" height="18" rx="3"/><rect x="616" y="392" width="18" height="18" rx="3"/><rect x="644" y="392" width="18" height="18" rx="3"/><rect x="672" y="392" width="18" height="18" rx="3"/><rect x="700" y="392" width="18" height="18" rx="3"/><rect x="728" y="392" width="18" height="18" rx="3"/><rect x="756" y="392" width="18" height="18" rx="3"/><rect x="784" y="392" width="18" height="18" rx="3"/><rect x="812" y="392" width="18" height="18" rx="3"/><rect x="840" y="392" width="18" height="18" rx="3"/>
+</g>
+
+
+<text x="1130" y="596" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681">ml-ke.github.io</text>
+</svg>
