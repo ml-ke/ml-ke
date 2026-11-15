@@ -3587,3 +3587,62 @@ Nov 13) if agriculture has not been covered twice already (`human-support-dosage
 `crop-model-seven-countries`); (b) Enza Capital's $21M first close on the AI Africa Fund; (c) a review of
 what the ten cohort companies ship by the December Accra demo day, which is the natural follow-up to this
 post.
+
+
+## Publishing note — 2026-11-15 (Sunday, Lane A: positive AI story)
+
+Slot and lane. Nov 14 was Lane B (`distillation-target-logit-budget`), Nov 13 Lane A, Nov 12 Lane B, so
+this slot alternated back to Lane A. `.scheduled/` empty, no legacy staged file. Differentiation stated
+in the intro: the Nov 13 post read the Google Applied AI Lab cohort and its "undisclosed money"; this
+post uses the same venture dataset only as context and is about fund mechanics, the arithmetic between a
+committed dollar and a deployed one.
+
+Subject. Enza Capital's $21m first close on a $60m AI Africa Fund (hard cap $80m), announced 11 November
+2026: three states of venture money (committed, called, deployed, reserved), the ten-year fee and opex
+drag, first-cheque counts at the fund's own sweet spot, the follow-on reserve recomputed from the firm's
+measured 12-of-23 follow-on rate, the one realised exit (Netcare/Quro, R121m for 55.88%, diluting to
+46.74%) priced against the $1.1m seed, and the market it is fishing in (AI at 3.9% of 2026 African
+startup funding; disclosed AI funding down 90.6% from $170m in 2025 to $16m in H1 2026).
+
+Sources, all body-fetched with `extract-web-text.py` (not snippet-level): Disrupt Africa 13 Nov 2026
+(terms, cheque range, 49 companies, Mompi, Quro exit, no LP named); Launch Base Africa 11 Nov 2026
+(Windows, Enza Capital III LP, the $93m/30-deal/median $1.9m AI dataset, the 60%-of-global-VC framing,
+no large US VC leading an African AI round); TechBuild Africa (independent third write-up, same terms);
+Disrupt Africa Sept 2023 ($58m Fund II, 48 investments); enza.capital FAQ (first check $250k-$5m, sweet
+spot $500k-$2m, Growth Capital to $20m/company, follow-on into 12 of 23 from Fund I); 1752.vc on Carta's
+fund economics (median 2% fee, 75th pct 2.5%, 5-year investment period, 3.4% opex for $1-10m funds);
+Launch Base Africa Dec 2025 (Quro deal anatomy: R121m, closed June 2025, 55.88% to 46.74% after ESIP, the
+2021 seed); Scommerce/`Africa: The Big Deal` ($2.4bn Jan-Oct 2026, -12%, equity +5%, debt -33%, 343
+rounds). The one tension found and stated in the post: the November write-ups call the Quro stake
+"controlling", and the December anatomy shows it dilutes below 50%, so the post says both.
+
+Measurements. One stdlib block, deterministic (identical md5 across repeat runs, no wall-clock output):
+fee drag on $21m under three schedules ($4.20m fees + $0.71m opex = $16.09m investable, $8.04m primary
+after a 50% reserve), first-cheque counts at $0.25m/$0.75m/$1.5m for the first close (32.2/10.7/5.4) and
+at the $60m target (91.9/30.6/15.3), the reserve ratio implied by a 52.2% follow-on rate (34.3% at 1x,
+25.5% at 2x), and the market ratios (3.9% share, 0.65x, 11.1x, 1.31x, 90.6% fall, $12.7m Quro value at
+11.6x its seed). All five `text` fences are byte-identical substrings of that block's stdout.
+
+Verification. Prose-style checker PASS: 2,858 prose words, 0 em dashes, 0 title-case headings, 0 emoji
+(siblings measured 2,768 / 3,031 / 3,181, so in band). `verify-post-code.py` 1/1 block clean. No
+`post_url`, no `cover:` key, no `.png` path, all four `/posts/` links resolve. Cover
+`cover-enza-first-close-arithmetic.webp` (23,792 bytes, 1200x630, VP8, `file`-verified) is a
+committed-capital bar split into fee/opex/reserve/primary slices above an 84-slot cheque grid with 11
+lit; no unescaped ampersands. Commit da403ac.
+
+**Nov 14 backfill (found and fixed this run).** The Nov 14 post (`distillation-target-logit-budget`) was
+written but never committed: `git status` showed it plus its SVG/WebP/generator untracked, and origin had
+no 11-14 post. Its code verification had "failed" only because the checker was run without numpy
+(`ModuleNotFoundError: No module named 'numpy'`). Re-run under `uv run --with=numpy`, both blocks pass and
+each of its two `text` fences matches its own block's stdout. Committed and pushed as 04677cf. Lesson:
+a verify failure whose only error is a missing third-party module is a wrong invocation, not a broken
+post; re-run under `uv run --with=...` before abandoning a publish.
+
+**State after this run:** every calendar day from Sep 16 through Nov 15 has a published post; origin HEAD
+= da403ac; `.scheduled/` is empty by design. Next `blog-poster` fire is Nov 16 (Monday) and should
+alternate to Lane B (tutorial). Do not repeat fund mechanics, the fee-drag model, or the distillation
+target angle. Banked Lane A follow-ups: (a) the Smart Africa/FAO Innovate Africa Challenge III winner
+(Farmerlifeline Technologies, Kenya, US$50,000, announced Nov 13) if the agriculture lane has room after
+`crop-model-seven-countries`; (b) what the Google Applied AI Lab cohort ships by the December Accra demo
+day, which would close the loop on the Nov 13 post; (c) a body-verified read of any named Enza LPs if a
+second close is announced before the 2027 final close.
