@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="A single lit slot labelled hard label beside a ten-number teacher target, with the top-3 cut marked at 0.685">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#1a1a2e"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<line x1="0" y1="60" x2="1200" y2="60" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="105" x2="1200" y2="105" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="150" x2="1200" y2="150" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="195" x2="1200" y2="195" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="240" x2="1200" y2="240" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="285" x2="1200" y2="285" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="330" x2="1200" y2="330" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="375" x2="1200" y2="375" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="420" x2="1200" y2="420" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="465" x2="1200" y2="465" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="510" x2="1200" y2="510" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="555" x2="1200" y2="555" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="600" x2="1200" y2="600" stroke="#ffffff" stroke-opacity="0.035"/>
+<line x1="0" y1="0" x2="0" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="60" y1="0" x2="60" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="120" y1="0" x2="120" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="180" y1="0" x2="180" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="240" y1="0" x2="240" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="300" y1="0" x2="300" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="360" y1="0" x2="360" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="420" y1="0" x2="420" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="480" y1="0" x2="480" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="540" y1="0" x2="540" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="600" y1="0" x2="600" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="660" y1="0" x2="660" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="720" y1="0" x2="720" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="780" y1="0" x2="780" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="840" y1="0" x2="840" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="900" y1="0" x2="900" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="960" y1="0" x2="960" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1020" y1="0" x2="1020" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1080" y1="0" x2="1080" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<line x1="1140" y1="0" x2="1140" y2="630" stroke="#ffffff" stroke-opacity="0.022"/>
+<text x="70" y="150" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" letter-spacing="3" fill="#00d2ff">KNOWLEDGE DISTILLATION, MEASURED</text>
+<text x="70" y="212" font-family="Inter, Helvetica, Arial, sans-serif" font-size="42" font-weight="700" fill="#f0f6fc">One label holds ten numbers</text>
+<text x="70" y="258" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">A teacher&#39;s probability vector is a target you can ship per row.</text>
+<text x="70" y="284" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">A hard label is one number, and the other nine are zeros you invented.</text>
+<text x="70" y="334" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#6bcf7f">HARD LABEL</text>
+<line x1="70" y1="344" x2="260" y2="344" stroke="#6bcf7f" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="70" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="96" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="122" y="370" width="18" height="120" rx="4" fill="#6bcf7f" fill-opacity="0.22" stroke="#6bcf7f" stroke-opacity="0.8"/>
+<text x="131.0" y="435.0" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#f0f6fc">1</text>
+<rect x="148" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="174" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="200" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="226" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="252" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="278" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<rect x="304" y="370" width="18" height="120" rx="4" fill="none" fill-opacity="0.35" stroke="#30363d" stroke-opacity="0.8"/>
+<text x="70" y="515" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681">one lit slot, nine zeros</text>
+<text x="70" y="536" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681">entropy 0.00 bits</text>
+<path d="M 330 430 L 470 430" stroke="#a78bfa" stroke-width="2" stroke-opacity="0.8" marker-end="url(#ar)"/>
+<text x="332" y="418" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="#a78bfa">same row,</text>
+<text x="332" y="452" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="#a78bfa">ten numbers</text>
+<text x="520" y="334" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#00d2ff">TEACHER TARGET, T=2</text>
+<line x1="520" y1="344" x2="1080" y2="344" stroke="#00d2ff" stroke-opacity="0.45" stroke-width="2"/>
+<rect x="520" y="370.0" width="40" height="120.0" rx="3" fill="#00d2ff" fill-opacity="0.75" stroke="#00d2ff" stroke-opacity="0.7"/>
+<rect x="572" y="412.9" width="40" height="77.1" rx="3" fill="#00d2ff" fill-opacity="0.75" stroke="#00d2ff" stroke-opacity="0.7"/>
+<rect x="624" y="450.0" width="40" height="40.0" rx="3" fill="#00d2ff" fill-opacity="0.75" stroke="#00d2ff" stroke-opacity="0.7"/>
+<rect x="676" y="472.9" width="40" height="17.1" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="728" y="478.6" width="40" height="11.4" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="780" y="481.4" width="40" height="8.6" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="832" y="484.3" width="40" height="5.7" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="884" y="487.0" width="40" height="3.0" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="936" y="487.0" width="40" height="3.0" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<rect x="988" y="487.0" width="40" height="3.0" rx="3" fill="#00d2ff" fill-opacity="0.22" stroke="#00d2ff" stroke-opacity="0.25"/>
+<line x1="670.0" y1="360" x2="670.0" y2="498" stroke="#a78bfa" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="678.0" y="372" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12" fill="#a78bfa">top-3 cut</text>
+<text x="520" y="518" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681">1.34 bits per row &#183; 400 rows</text>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/></marker></defs>
+<line x1="70" y1="540" x2="1130" y2="540" stroke="#ffffff" stroke-opacity="0.08"/>
+<text x="70" y="572" font-family="Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">hard labels <tspan fill="#6bcf7f">0.617</tspan> &#183; distilled <tspan fill="#00d2ff" fill-opacity="1">0.693</tspan> &#183; top-3 <tspan fill="#a78bfa">0.685</tspan> &#183; top-1 <tspan fill="#ff6b6b">0.495</tspan></text>
+<text x="70" y="598" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681">1,000 rows distilled at T=2: 0.693 &#183; 4,000 rows on hard labels: 0.679</text>
+<text x="1130" y="596" text-anchor="end" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" fill="#484f58">ml-ke.github.io</text>
+</svg>
