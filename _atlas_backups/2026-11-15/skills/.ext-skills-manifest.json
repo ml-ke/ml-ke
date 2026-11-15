@@ -1,0 +1,201 @@
+{
+  "generated": "2026-10-09T13:39:36Z",
+  "note": "Curated third-party skills. Provenance per skill in its own SKILL.md footer.",
+  "skills": {
+    "api-design-principles": {
+      "skill_md_sha256": "efd6618bfad39634d48692288024e731332a777dee51eef16e673430803fdac0"
+    },
+    "architecture-decision-records": {
+      "skill_md_sha256": "bfc453a245ee1d371efd2cfa0286037723863cd808c2380e5b6d129b3cec8226"
+    },
+    "architecture-patterns": {
+      "skill_md_sha256": "1950154a2d5089d5ef83edeec2bca9bcfdabb0110879a5cd01b81f5a2867bf89"
+    },
+    "attack-tree-construction": {
+      "skill_md_sha256": "2b836525c428884227270615bda2d2e383483865c98aff38c6be2c4b271443d5"
+    },
+    "auth-implementation-patterns": {
+      "skill_md_sha256": "76636a52c1de2defe2c51fcb444a494de9bed32b6c56bea67acfbd3f6633070a"
+    },
+    "before-you-build": {
+      "skill_md_sha256": "c7186c3e508d62161c1bd15f64fe2cce39d0c838b3ffe56cd786054027e7b3fa"
+    },
+    "competitive-landscape": {
+      "skill_md_sha256": "83830cf470d7441cffcd05b14cef441b2449a143aadf327961aaa793491a9f69"
+    },
+    "context-driven-development": {
+      "skill_md_sha256": "d268018ef325027c3f0ca51a0832bf665dde8fb58f96b79487bdd8b48b63f5ac"
+    },
+    "data-storytelling": {
+      "skill_md_sha256": "421cbb8b75a7581bfeff595532d1aec0dfbebef953f93bc768746b37365f0020"
+    },
+    "deployment-pipeline-design": {
+      "skill_md_sha256": "2e0f234b571b24252ab430ca1048a8d87edd1438f590309e4b8355b1e83d34b5"
+    },
+    "design-system-patterns": {
+      "skill_md_sha256": "3bdb79a13bbd604dd4a9083d4ce1f45a28368f3a306502abcde2cee2848a853e"
+    },
+    "e2e-testing-patterns": {
+      "skill_md_sha256": "6f5822fb9a338cb648b8db0ab31c50c947111f427413f383a1ea7f2f79ffe8b5"
+    },
+    "gdpr-data-handling": {
+      "skill_md_sha256": "b74a7d5c6ca39b873ca3b0496c5ed934fd906b6a125aaad41add1a0b38eef3dd"
+    },
+    "incident-runbook-templates": {
+      "skill_md_sha256": "287805772b4166e274fb392f081fc43fde32b58cd894022fc816329fc9a8cff6"
+    },
+    "kpi-dashboard-design": {
+      "skill_md_sha256": "8596e918aec16473b7c276cc68a38b17149dbce29e0fa3e1ece76b838443d324"
+    },
+    "market-sizing-analysis": {
+      "skill_md_sha256": "8b0cc12e53ab75676c52ec295f25387da542eb9fad71c6c7ceac21389bacf581"
+    },
+    "microservices-patterns": {
+      "skill_md_sha256": "b57852d55637645abc38eaab0d9e9ffa929919ca1e5824ff7c608f8d58b49ab8"
+    },
+    "nextjs-app-router-patterns": {
+      "skill_md_sha256": "8814e1353da2cbc6282f69fa9dc67447500e711f2fef9dc45166d128506324df"
+    },
+    "nodejs-backend-patterns": {
+      "skill_md_sha256": "924318df77dbb9adef37364ba5abb7d3afc6ba3f328a69977af7b887e65ce376"
+    },
+    "openapi-spec-generation": {
+      "skill_md_sha256": "eef321f80f82a2dc6e160e66b88a2a3d18ebf0c60bc240457f19158b512cc687"
+    },
+    "postgresql-table-design": {
+      "skill_md_sha256": "766a4e64f8d6930e35214709331ee8c93952dec8d49050b06ce6ef03194dc90c"
+    },
+    "postmortem-writing": {
+      "skill_md_sha256": "74205b1fa3795031addb579e052be06a72419d570966b4be6583f67adcabbaf7"
+    },
+    "secrets-management": {
+      "skill_md_sha256": "fabacf674110104451eb568509fac7b3bd5a158b8a59002bdb542739ea444821"
+    },
+    "security-requirement-extraction": {
+      "skill_md_sha256": "5fa0afe83fe2d8f4014f7267139d00832dc502f96a320f8a1999e244cdcb2c30"
+    },
+    "slo-implementation": {
+      "skill_md_sha256": "fd909cfdbe9785d597532156576088418bc743b74c20eb0f7c366c8d69f950a6"
+    },
+    "sql-optimization-patterns": {
+      "skill_md_sha256": "eae617068eb6e79ca46dde4d60037385a801f9d82bfc371829dd3d62e77de90f"
+    },
+    "startup-financial-modeling": {
+      "skill_md_sha256": "d3cff3c2591798dfa54d602c091d3e3dd9facdc5a04c6efdb137f1c173f1ea3b"
+    },
+    "startup-metrics-framework": {
+      "skill_md_sha256": "1ea984416e5eb83b41f537051cc3c1d47b63caccdd5b81dee6474acf8e931204"
+    },
+    "stride-analysis-patterns": {
+      "skill_md_sha256": "3f1ff60b2b996dce19d580d92d23d87cff1bd0811375ae16486912a6deb96c73"
+    },
+    "threat-mitigation-mapping": {
+      "skill_md_sha256": "24a48d667f998caa10652a0bf00ab616a334203a2560518706ba68a4d07964f9"
+    },
+    "accessibility-compliance": {
+      "skill_md_sha256": "cce965ae8245c95e5ff989a37047a52d4fea19e61acf73744f66793746fc2951"
+    },
+    "brand-landingpage": {
+      "skill_md_sha256": "52760a5aafc36417eef1c02d2c52d2480b9a8b33cc935be2be4102db855b2707"
+    },
+    "employment-contract-templates": {
+      "skill_md_sha256": "4fb274f4c69c52a217d0347b516b18cc489cd4ea89e09c88793f2edadabbb4e4"
+    },
+    "interaction-design": {
+      "skill_md_sha256": "8b373b5ef069b42b24ba567cae6c949980cc7d30f22e6eb83aca1f865182e9e1"
+    },
+    "mobile-android-design": {
+      "skill_md_sha256": "20979dfcc5f26931c6ecf12b436d97c35649147096263af692fd6da783c7d09f"
+    },
+    "mobile-ios-design": {
+      "skill_md_sha256": "bf9a7f42ae26e44510b50a8a2a3ecb0570cb444f877b5dc438c9ad9811f4322a"
+    },
+    "on-call-handoff-patterns": {
+      "skill_md_sha256": "82f6785df6fc8b6abc6ca8e89ea041d546e4ac1e500f5be21ac67093adea0131"
+    },
+    "pci-compliance": {
+      "skill_md_sha256": "04bade0c22538ce170b0b78056ce9897ca2c2e96e04c28f04312ad00562a4629"
+    },
+    "responsive-design": {
+      "skill_md_sha256": "3fec6514e35ad932d5328c21946e695abb9e86efea079d93fab21a902f8fea20"
+    },
+    "risk-metrics-calculation": {
+      "skill_md_sha256": "3b1d1b4525f308edff11e1e60c57427bf1966d9e8b58a3e0bb0ee2b7a082ece9"
+    },
+    "screen-reader-testing": {
+      "skill_md_sha256": "e5d05173eb7b281c8d19e3aceef09a725e665557958c3f29c183d3e57a197b2f"
+    },
+    "social-publishing": {
+      "skill_md_sha256": "ef206ca46db75790aa77a235f49d1b4c0c4f7d76d791f802724bcabdf99b1521"
+    },
+    "tailwind-design-system": {
+      "skill_md_sha256": "957f245286fdf3b91f1996a099ce0cc1fcc0ebf658bc82051199c94b1aae1d96"
+    },
+    "team-communication-protocols": {
+      "skill_md_sha256": "8377dfb6bb1bf156a82515968306d70abb91f0fb638032053bd0a49ec7a8c2c7"
+    },
+    "visual-design-foundations": {
+      "skill_md_sha256": "9f01785570aae2f817c32cd75fc668c999eda086e863cd38f898ece4e7e8fa61"
+    },
+    "wcag-audit-patterns": {
+      "skill_md_sha256": "812f52ef67d7c2557822d0bc267f23491876698e3bddae4f134b42b86b77e03f"
+    },
+    "web-component-design": {
+      "skill_md_sha256": "de3b9ae2be1ea63b2d3105ad9f6ff9368c5912fb1e960e5c85b7874f9e6e8909"
+    },
+    "ab-testing": {
+      "skill_md_sha256": "5343706b7a3ec3d813bbee370de711ee7cd8c793a2f250c48dd79c1469cee40e"
+    },
+    "analytics": {
+      "skill_md_sha256": "6c8dcfaefb262a5c972ff10b0374a0e29a69cbbbd44a7e79a4b82f2095f23383"
+    },
+    "attribution": {
+      "skill_md_sha256": "add1c58d107432851d68c71085631ca7c34899088add4c6119ed7cdcf72958df"
+    },
+    "churn-prevention": {
+      "skill_md_sha256": "3c2eb7557f3cfcacf6f1b64caf9284dcf300bfaee7e4306aa6959848556ad488"
+    },
+    "content-strategy": {
+      "skill_md_sha256": "e05dfedb81af2218e4d6abbefa90c1a4e534355941aa122fc07c509459a6f63b"
+    },
+    "copywriting": {
+      "skill_md_sha256": "d1d49ed043f8f050535e01850e10a23cf210fff9915548b9afa2334af0f5d4e1"
+    },
+    "cro": {
+      "skill_md_sha256": "50cd98b3bd469289ed0e739687e436d300cbad448dbda8cddd81b454960037b0"
+    },
+    "customer-research": {
+      "skill_md_sha256": "7ae2fb16ac3fd345851a3c6b53a44b61bc35029e65376b3e57a82efcba51ac60"
+    },
+    "emails": {
+      "skill_md_sha256": "215546e53f16cc0f45e7a5380d18d1ade176b233a3b90bf0b42febf23ced3fce"
+    },
+    "launch": {
+      "skill_md_sha256": "4e7167063a3b70613013636184e323735af35d70b5355f47e5a4665e35f15d6b"
+    },
+    "marketing-plan": {
+      "skill_md_sha256": "302cde4a0c3e4b0583130718d77afb5817a9927257907102e797428b377b3b5b"
+    },
+    "marketing-psychology": {
+      "skill_md_sha256": "8d51bb2d715f645c7e25b85c9aa59ccfeb7c038d55cdfa262a17632780d8adad"
+    },
+    "onboarding": {
+      "skill_md_sha256": "b093d7f76f4534ec376459c842960bd80133862df95e54774e0a113e04be6470"
+    },
+    "revops": {
+      "skill_md_sha256": "1cb48266e9ffce95a89eb6fdfa53767153f4bccff5d1be5f739bb4a01a9fe5f8"
+    },
+    "sales-enablement": {
+      "skill_md_sha256": "0d4c1bf90c2b3bc758b2752f04136f0ef255f85d061782a7dfeb4828817da147"
+    },
+    "schema": {
+      "skill_md_sha256": "e1a14a512d45fa5b3fad7990b70e7f7bb0c2472ad564d18355a570f79ee9076e"
+    },
+    "seo-audit": {
+      "skill_md_sha256": "29de2a6a3d4f001673a850f78c0f09932ced12f9a5c27aaab2ceaf61673471a4"
+    },
+    "site-architecture": {
+      "skill_md_sha256": "84b0ffeac42b44cf73c83b2f4ec3b9c2bd60edaeab23b9221de8479148b16e13"
+    }
+  }
+}
