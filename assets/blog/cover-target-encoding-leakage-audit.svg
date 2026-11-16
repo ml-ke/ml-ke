@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="barNaive" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#ff9d5c"/>
+    </linearGradient>
+    <linearGradient id="barFresh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#6bcf7f"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ff6b6b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-width="1" opacity="0.03">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <text x="60" y="78" fill="#f5f7fa" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700">Your Encoding Saw Its Own Label</text>
+  <text x="60" y="116" fill="#9aa4b2" font-family="Helvetica, Arial, sans-serif" font-size="19">A level mean is built from the rows it describes, including the row being scored</text>
+
+  <!-- left: rows of a merchant table -->
+  <text x="60" y="176" fill="#00d2ff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">MERCHANT ROWS</text>
+  <g>
+    <!-- grid of tiles 6 x 5 -->
+    <g fill="#151b26" stroke="#243044" stroke-width="1">
+      <rect x="60" y="192" width="66" height="34" rx="4"/><rect x="134" y="192" width="66" height="34" rx="4"/><rect x="208" y="192" width="66" height="34" rx="4"/><rect x="282" y="192" width="66" height="34" rx="4"/><rect x="356" y="192" width="66" height="34" rx="4"/>
+      <rect x="60" y="234" width="66" height="34" rx="4"/><rect x="134" y="234" width="66" height="34" rx="4"/><rect x="208" y="234" width="66" height="34" rx="4"/><rect x="282" y="234" width="66" height="34" rx="4"/><rect x="356" y="234" width="66" height="34" rx="4"/>
+      <rect x="60" y="276" width="66" height="34" rx="4"/><rect x="134" y="276" width="66" height="34" rx="4"/><rect x="282" y="276" width="66" height="34" rx="4"/><rect x="356" y="276" width="66" height="34" rx="4"/>
+      <rect x="60" y="318" width="66" height="34" rx="4"/><rect x="134" y="318" width="66" height="34" rx="4"/><rect x="208" y="318" width="66" height="34" rx="4"/><rect x="282" y="318" width="66" height="34" rx="4"/><rect x="356" y="318" width="66" height="34" rx="4"/>
+      <rect x="60" y="360" width="66" height="34" rx="4"/><rect x="134" y="360" width="66" height="34" rx="4"/><rect x="208" y="360" width="66" height="34" rx="4"/><rect x="356" y="360" width="66" height="34" rx="4"/>
+    </g>
+    <!-- the leaking tile -->
+    <rect x="208" y="276" width="66" height="34" rx="4" fill="#2a1116" stroke="#ff6b6b" stroke-width="2"/>
+    <text x="241" y="298" fill="#ff6b6b" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle">row i</text>
+    <!-- feedback wire: leaves the tile and returns to it -->
+    <path d="M 241 310 C 241 344, 190 352, 176 336 C 158 314, 176 288, 204 290"
+          fill="none" stroke="#ff6b6b" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+    <text x="60" y="428" fill="#ff6b6b" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700">its own label, weight 1/n_c</text>
+    <text x="60" y="452" fill="#9aa4b2" font-family="Helvetica, Arial, sans-serif" font-size="14">the wire is the whole leak</text>
+  </g>
+
+  <!-- right: measured AUC bars -->
+  <text x="530" y="176" fill="#a78bfa" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">MEASURED ON A NO-SIGNAL COLUMN</text>
+  <text x="530" y="206" fill="#f5f7fa" font-family="Helvetica, Arial, sans-serif" font-size="18">AUC of the encoded column against the label</text>
+
+  <g>
+    <rect x="530" y="238" width="560" height="30" rx="5" fill="#151b26"/>
+    <rect x="530" y="238" width="538" height="30" rx="5" fill="url(#barNaive)"/>
+    <text x="1084" y="260" fill="#ffd7d7" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700">0.96</text>
+    <text x="530" y="230" fill="#ff9d5c" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700">in-sample, encoded on the same rows</text>
+
+    <rect x="530" y="312" width="560" height="30" rx="5" fill="#151b26"/>
+    <rect x="530" y="312" width="280" height="30" rx="5" fill="url(#barFresh)"/>
+    <text x="826" y="333" fill="#c8f4ff" font-family="Helvetica, Arial, sans-serif" font-size="15" font-weight="700">0.50</text>
+    <text x="530" y="304" fill="#00d2ff" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700">fresh rows, encoded from the training map</text>
+
+    <path d="M 530 386 H 1090" stroke="#243044" stroke-width="1"/>
+    <text x="530" y="412" fill="#9aa4b2" font-family="Helvetica, Arial, sans-serif" font-size="14">clip 1,000 rows at 0.96 and lose nothing? the same column</text>
+    <text x="530" y="434" fill="#9aa4b2" font-family="Helvetica, Arial, sans-serif" font-size="14">ranks new merchants at chance, because the encoding read</text>
+    <text x="530" y="456" fill="#9aa4b2" font-family="Helvetica, Arial, sans-serif" font-size="14">the answer before it wrote the feature.</text>
+  </g>
+
+  <!-- four numbers strip -->
+  <g>
+    <text x="530" y="500" fill="#ffd93d" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">FOUR NUMBERS, TWO BUGS</text>
+    <text x="530" y="526" fill="#e6e9ee" font-family="Helvetica, Arial, sans-serif" font-size="14">0.9639 in-sample &#183; 0.4969 out-of-fold</text>
+    <text x="530" y="548" fill="#e6e9ee" font-family="Helvetica, Arial, sans-serif" font-size="14">0.5000 fresh rows &#183; 0.9582 test encoded with its own labels</text>
+  </g>
+
+  <text x="1140" y="600" fill="#5c6675" font-family="Helvetica, Arial, sans-serif" font-size="15" text-anchor="end">ml-ke.github.io</text>
+</svg>
