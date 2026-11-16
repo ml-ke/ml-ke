@@ -3646,3 +3646,75 @@ target angle. Banked Lane A follow-ups: (a) the Smart Africa/FAO Innovate Africa
 `crop-model-seven-countries`; (b) what the Google Applied AI Lab cohort ships by the December Accra demo
 day, which would close the loop on the Nov 13 post; (c) a body-verified read of any named Enza LPs if a
 second close is announced before the 2027 final close.
+
+
+## Publishing note — 2026-11-16 (Monday, Lane B: AI/ML engineering tutorial)
+
+Slot and lane. Nov 15 was Lane A (`enza-first-close-arithmetic`), Nov 14 Lane B, so this slot alternated
+back to Lane B. `.scheduled/` empty, no legacy staged file. Differentiation: the corpus already carries
+validation and metric posts (`temporal-validation-fraud-models` = split strategy, `contamination-checks` =
+benchmark contamination, `paired-eval-significance` = comparison statistics, `probability-calibration` =
+thresholds). None of them covers feature-construction leakage, and nothing in `_posts/` mentioned target
+encoding at all before this post (verified by grep for "target encoding", "target-encoding", "KIVI"-style
+siblings).
+
+Subject and technique. Target encoding of a high-cardinality level column: the self-inclusion term (a
+row's own label enters its feature with weight 1/n_c), why the "1% is negligible" intuition fails at a
+2% base rate, the two distinct bugs (self-inclusion in training rows; test rows encoded with their own
+labels) and the four numbers that name which one you have, why shrinkage reduces but never removes the
+leak, and what scikit-learn's cross-fitting already does. Written as a payments book (merchant_id,
+30,000-50,000 transactions) rather than a generic tabular demo.
+
+Sources, all body-fetched (extract-web-text.py), none snippet-level: scikit-learn `TargetEncoder` API
+reference (cross-fitting, unseen levels -> target mean, `smooth="auto"`); scikit-learn user guide §8.3
+(shrinkage formulas, the "fit does not use any cross fitting ... discouraged" warning, the exact
+`fit_transform` vs `fit` asymmetry); scikit-learn example *Target Encoder's Internal Cross fitting*
+(50,000 rows: raw 0.0049896314219659565/0.004577621581464908, with cross-fitting
+0.8000184677460299/0.7927845601690924, without 0.858486250088675/0.6338211367110548, plus the
+"unique identifiers ... should generally be removed" framing); Pargent et al. 2022 via the arXiv abstract
+(regularized target encoding best across five algorithms); Micci-Barreca 2001 (smoothing origin — ACM
+page is 403 to curl, so cited through scikit-learn's own reference entry and the DOI); MetricGate
+*Pitfalls of Target Encoding* June 2026 (leave-one-out + m-estimate recipe); MetricGate *Data Leakage*
+April 2026 (target encoding on the full frame listed as train-test contamination); Iakubovskyi, Medium
+18 Aug 2026 (50,000 noise IDs, 5-fold CV AUC 0.996 against 0.649 on fresh data).
+
+Measurements. Four `python` blocks, numpy only, each self-contained with its own helpers, all seeded and
+deterministic (identical md5 across repeat runs), no wall-clock output. Block 1: naive AUC by rows/level
+1/2/5/20/100 = 1.0000/0.9898/0.9601/0.8595/0.6881, fresh-row AUC 0.5004/0.5003/0.5081/0.5031/0.5062,
+mean self-weight 1.00/0.50/0.20/0.05/0.01. Block 2: in-sample 0.9639, out-of-fold 0.4969, fresh from
+train map 0.5000, fresh self-encoded 0.9582. Block 3 (log-normal popularity, 1,951 levels, median 13,
+max 938, 10.0% of levels <=2 rows holding 0.6% of rows): noise naive 0.7407 -> 0.6912 as m goes 0 -> 500
+while noise OOF stays 0.4882-0.4940, and the informative column's OOF falls 0.9203 -> 0.8944. Block 4:
+`audit_encoding` returns LEAK for the noise column (0.7528/0.5143/0.5009, unseen 0.2%) and ok for the
+informative one (0.9347/0.9180/0.9204). Two off-block checks that back prose claims: the between-level SD
+of level means at 100 rows/level and a 2% base rate is 0.01427 (so 1/n_c = 0.01 is ~70% of the spread),
+and with equal counts the encoding order at m=0 and m=500 is identical (shrinkage is rank-preserving when
+counts are homogeneous).
+
+Verification. `check-quoted-output`-style pairing check: 4/4 python blocks ran and their stdout matched the
+four ` ```text ` fences byte-for-byte. `verify-post-code.py` under `uv run --with=numpy`: all blocks OK.
+Prose-style checker PASS: 3,044 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Word count:
+4,902 naive / 3,339 code-excluded — the code-excluded figure sits inside the live sibling band (Nov 14
+3,420, Nov 12 2,980, Nov 9 2,165), and the full count is above the 4,431 sibling top only because this
+post carries four runnable blocks (1,563 tokens of code) against the siblings' one to two; the rule in the
+skill is to compare code-excluded counts when code volume differs. No `post_url`, no `cover:` key, no
+`.png` path, all five `/posts/` links resolve. Cover `cover-target-encoding-leakage-audit.webp` (34,066
+bytes, 1200x630, VP8, `file`-verified): a merchant-row grid with one tile wired back into itself by a
+dashed red loop labelled "its own label, weight 1/n_c", beside AUC bars at 0.96 in-sample and 0.50 on
+fresh rows, with the four numbers printed underneath. No unescaped ampersands; text widths checked for
+overflow against the 1200px canvas (one strip was split into two lines after the check).
+
+Publish. Commit ddc0ff1, pushed over `ssh.github.com:443`; local and origin HEAD match. Actions run
+completed success for ddc0ff11; live permalink https://ml.co.ke/posts/target-encoding-leakage-audit/
+returns 200 and the rendered page contains the title, the 0.9639/0.5000 figures, `merchant_id`, the
+Micci-Barreca reference and the cover asset.
+
+**State after this run:** every calendar day from Sep 16 through Nov 16 has a published post; origin HEAD
+= ddc0ff1 (plus the ATLAS backup commits that land at the same minute); `.scheduled/` is empty by design.
+Next `blog-poster` fire is Nov 17 (Tuesday) — owned by `tuesday-ai-update`, so the daily lane should skip.
+Then Nov 18 (Wednesday) should alternate back to Lane A (positive story). Banked Lane A follow-ups carried
+forward: (a) the Smart Africa/FAO Innovate Africa Challenge III winner (Farmerlifeline Technologies,
+Kenya, US$50,000, announced Nov 13) if the agriculture lane has room after `crop-model-seven-countries`;
+(b) what the Google Applied AI Lab cohort ships by the December Accra demo day; (c) a body-verified read
+of any named Enza LPs if a second close is announced. Do not repeat target encoding, the four-number audit
+or the leakage arithmetic.
