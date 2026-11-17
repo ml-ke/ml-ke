@@ -1,0 +1,25 @@
+# CMakeLists.txt snippet for adding PoC files to cosigner_test target
+# File: test/cosigner/CMakeLists.txt
+
+# Before (list existing files):
+#add_executable(cosigner_test
+#    ecdsa_offline_test.cpp
+#    ecdsa_online_test.cpp
+#    bam_test.cpp
+#    setup_test.cpp
+#)
+
+# After (add new PoC files):
+add_executable(cosigner_test
+    ecdsa_offline_test.cpp
+    ecdsa_online_test.cpp
+    eddsa_offline_test.cpp
+    eddsa_online_test.cpp
+    bam_test.cpp
+    bam_attack_poc.cpp
+    setup_test.cpp
+    cmp_malicious_key_poc.cpp       # 37 assertions: Blum ZKP, timing, version analysis
+    cmp_version_downgrade_poc.cpp   # 27 assertions: CMP setup at v=10 accepted
+    bam_crt_extraction_poc.cpp      # 9 assertions: CRT probe efficiency
+    bam_full_extraction_poc.cpp     # 48 assertions: Full λ extraction via CRT
+)
