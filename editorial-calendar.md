@@ -3718,3 +3718,47 @@ Kenya, US$50,000, announced Nov 13) if the agriculture lane has room after `crop
 (b) what the Google Applied AI Lab cohort ships by the December Accra demo day; (c) a body-verified read
 of any named Enza LPs if a second close is announced. Do not repeat target encoding, the four-number audit
 or the leakage arithmetic.
+
+## Publishing note — 2026-11-17 (Tuesday: weekly AI update lane)
+
+**2026-11-17 — `tuesday-ai-update`. Title: "Tuesday AI Update: 17 November 2026 — Compute gets a passport".**
+Lane derivation: Nov 9 was Lane B, Nov 10 Tuesday roundup, Nov 11-16 alternated A/B. This is the
+`tuesday-ai-update` cron's own slot. Cover reused as instructed: `/assets/img/cover-global-ai-roundup-july-2026.webp`
+(no new SVG this week; the Tuesday prompt pins the generic cover).
+
+**Angle.** Seven regions, one thesis: the US export-control architecture became the week's real story.
+Anchor is the Commerce/BIS interim final rule published Monday 16 Nov (licence required for AI chips and
+servers going to data centres anywhere that may supply compute to China or the D+5 group; 12M TPP threshold
+≈ 750 H100/H200; Malaysia, Singapore, Indonesia, Thailand and Brazil added; 90-day compliance for existing
+operators; brokers and go-betweens in scope). Supporting arcs: Pax Silica / San Francisco Declaration signed
+by the UAE plus Australia, India, Israel, Japan, South Korea, Qatar, Singapore and the UK (Sunday, in SF);
+the Megaspeed raid in Indonesia with empty racks; Anthropic's S-1/A price range ($70-78, 825M Class A, ANT,
+pricing 18 Nov, ~$1.02T on 13.09B shares vs ~$1.41T fully diluted); California AG's suit against OpenAI (80
+loss-of-control incidents, unfair competition + public nuisance, SF superior court); Huang's 12 Nov
+resignation with Colette Kress as interim; Qwen4-Max (2.4T MoE / 71B active / 1M ctx / $1.50-$4.50, hosted
+only); Tencent Hy4 Flash (224B total / 12B active / $0.07 per M input); DeepSeek's 16 Nov free-tier caps
+citing compute; the first EU AI summit in Dublin on 13 Nov; Ramaphosa's Silicon Valley pitch; Africa funding
+$2.4bn YTD vs $2.7bn; Brazil's R$46.3m Prisma programme and Cerebras' >30MW São Paulo lease; Russia's 66MW
+vs 199MW Moscow-region build and the loss of ~3% of Yandex cloud customer data.
+
+**Never repeated from Nov 10:** Fable/Mythos 5.2, Kimi K3.1, the Paris children's charter, the Abu Dhabi
+OpenAI deals, TICON/Adesina/Senegal hub. G42 Europe & UK was checked and dropped — the launch is June 2025,
+not this week. Mistral ML4 was dropped: the release feed carries the 3,800-Grace-Blackwell detail but no
+publication date I could body-verify, so it is not in the post.
+
+**Verification.** Every figure body-verified with `extract-web-text.py` against the linked article (TechCrunch,
+Guardian, MarkTechPost, Endurance Capital, Moscow Times, Business Day, The National, Intelligent CIO,
+BNamericas, Euronews, DEV Community, kingy.ai, BenchLM). DataCamp returned 403 and was replaced by
+MarkTechPost for Qwen4-Max. No code blocks in this post, so no runnable-output check applies. Prose-style
+checker PASS: 1,234 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Naive body count 1,301 against
+the two live Tuesday siblings at 1,097 (Nov 3) and 1,156 (Nov 10) — 12.5% over the newest sibling, accepted
+for a seven-region roundup carrying 15 external links. No `post_url`, no `cover:` key, no `.png` path; both
+`/posts/` links (`google-africa-applied-ai-lab-cohort`, `enza-first-close-arithmetic`) resolve.
+
+**State after this run:** origin HEAD = 061092f plus the ATLAS backup commits that land at the same minute.
+`.scheduled/` remains empty by design. Next `blog-poster` fire is Nov 18 (Wednesday) — should alternate back
+to Lane A (positive story). Banked Lane A follow-ups carried forward: (a) the Smart Africa/FAO Innovate Africa
+Challenge III winner (Farmerlifeline Technologies, Kenya, US$50,000, announced Nov 13); (b) what the Google
+Applied AI Lab cohort ships by the December Accra demo day; (c) a body-verified read of any named Enza LPs if
+a second close is announced. Do not repeat the export-control angle, Qwen4-Max or the Anthropic S-1 arithmetic
+in next Tuesday's roundup unless there is a genuinely new filing or rule.
