@@ -3762,3 +3762,43 @@ Challenge III winner (Farmerlifeline Technologies, Kenya, US$50,000, announced N
 Applied AI Lab cohort ships by the December Accra demo day; (c) a body-verified read of any named Enza LPs if
 a second close is announced. Do not repeat the export-control angle, Qwen4-Max or the Anthropic S-1 arithmetic
 in next Tuesday's roundup unless there is a genuinely new filing or rule.
+
+
+## Publishing note — 2026-11-18 (Wednesday: Lane A, positive research story)
+
+**2026-11-18 — `unified-particle-simulator-six-materials`. Title: "Six Materials, One Architecture: What a Unified
+Simulator Actually Unifies".** Lane derivation: Nov 12, 14 and 16 were Lane B (tutorials), Nov 11, 13 and 15 were
+Lane A, Nov 17 was the Tuesday roundup, so the daily lane alternated back to Lane A. Banked follow-ups considered and
+dropped: the Farmerlifeline / Smart Africa Innovate Africa Challenge III win (Kenya, US$50,000, announced 13 Nov)
+because the agriculture lane already carries the Oct 22 sorghum pangenome, Nov 1 farm-advice dosage and Nov 6
+crop-model seven-country posts; the Google Applied AI Lab cohort angle was published 13 Nov. Chosen instead:
+WorldParticle, the MIT/UBC unified particle simulator, news peg [MIT News, 9 Nov 2026](https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109)
+(paper arXiv:2605.15305, May 2026, scheduled for ACM SIGGRAPH Asia).
+
+**Angle.** The headline reads as one model for six materials; the paper trains six models, one per dynamics category.
+The post reads the claim at architecture level (shared Lagrangian particle representation, predictor/corrector step,
+token-merge hierarchy), documents the memory ceiling, and runs its own rollout-horizon experiment showing a model
+ranking flip between 200 and 800 steps (5-term 1.7315 vs 9-term 0.7839 at h=200; 6.5885 vs 10.8525 at h=800).
+
+**Verification.** arXiv abstract and HTML v4 (per-category training, Table 1 values, 8xA100 training, ~50,000-particle
+memory limit, cloth 200-to-250-frame extrapolation, fluid ~7,000 training particles tested denser, baselines
+GNS/DeepLagrangian/Neural Operator, ablations, divergence-free regulariser); MIT News 9 Nov (100x protein claim,
+particle merging, six phenomena); BioEngineer.org 14 Nov (team, SIGGRAPH Asia venue). TechXplore returned 403 and was
+not used. Both code blocks executed with `uv run --with=numpy`; quoted `text` fences match stdout byte-for-byte (2/2,
+md5 stable across reruns). Prose gate PASS: 3,092 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Naive body
+3,752 / code-excluded 3,179 against the Nov 11-16 siblings at 3,664-4,902 full / 3,107-3,420 code-excluded. No
+`post_url`, no `cover:` key, no `.png`; both `/posts/` links resolve. Cover: `assets/blog/cover-unified-particle-simulator-six-materials.svg`
+(three material glyphs feeding a four-level token-merge cascade), WebP 1200x630 at 41 KB.
+
+**State after this run.** Commit a781400, pushed over `ssh.github.com:443`; local and origin HEAD match. Actions
+"Build and Deploy" completed success for a7814004; live permalink
+https://ml.co.ke/posts/unified-particle-simulator-six-materials/ returns 200 with title, cover asset, prompt-info
+callout, both python blocks and MathJax present. `.scheduled/` remains empty by design.
+
+**Next-session actions.** (a) Nov 19 (Thursday) should alternate to Lane B (tutorial). Candidates not yet covered: turn
+this post's rollout-horizon demo into a reusable evaluation harness (sweep horizons, report per-seed spread), or an
+evaluation piece on per-horizon reporting for learned simulators. Do not repeat target encoding, the distillation logit
+budget, click-log propensity or the WorldParticle architecture. (b) Open Lane A follow-ups: Farmerlifeline deployment
+outcomes after the US$50,000 grant (not the award itself), what the Google Applied AI Lab cohort ships by the December
+Accra demo day, and any named Enza LPs if a second close is announced. (c) If Thursday reuses the rollout harness, keep
+the single-seed caveat and report min/max across seeds rather than one run.
