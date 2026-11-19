@@ -3802,3 +3802,47 @@ budget, click-log propensity or the WorldParticle architecture. (b) Open Lane A 
 outcomes after the US$50,000 grant (not the award itself), what the Google Applied AI Lab cohort ships by the December
 Accra demo day, and any named Enza LPs if a second close is announced. (c) If Thursday reuses the rollout harness, keep
 the single-seed caveat and report min/max across seeds rather than one run.
+
+## Publishing note — 2026-11-19 (Thursday: Lane B, tutorial)
+
+**2026-11-19 — `rollout-horizon-seed-sweep-harness`. Title: "Report the Horizon You Ship: A Seed Sweep Harness
+for Rollout Evaluations".** Lane derivation: Nov 12, 14 and 16 were Lane B (tutorials), Nov 11, 13 and 18 were
+Lane A, Nov 17 was the Tuesday roundup, so the daily lane alternated back to Lane B. Also closes the first item of
+the Nov 18 note's next-session list: turn that post's single-seed rollout demo into a reusable harness with per-seed
+spread. Slug checked unique (`grep -xF`), no sibling covers Duffing, seed sweeps or horizon sweeps.
+
+**Technique.** A 3-block harness on a damped Duffing oscillator (RK4 at dt=0.005, cached reference): least-squares
+one-step maps fitted on 8 data seeds, swept over horizons 50/200/800/3200, evaluated on a shared 6-IC set, with
+paired differences and a seeded 10,000-resample percentile bootstrap, then a `verdict` gate (interval excludes zero
+at the horizon, same winner at every reliable horizon, winner holds at the ship horizon). Measured: one-step RMSE
+identical to six decimals for both maps (0.000055); marginal seed spread grows 8.6% → 44.8% with horizon; the ridge
+variant loses 0/8 seeds at both ends yet "wins" 7/8 at H=200 with a CI spanning zero; `ls8-WINS` at 2/4 horizons vs
+`ls64-WINS` at 4/4. Mechanism block confirms the analytic crossover: measured slopes 0.999 (bias) and 0.546 (noise)
+against predicted 1 and 0.5, measured crossover between H=400 and H=1600 for a predicted H*=(sigma/b)^2=400.
+
+**Verification.** Seven body-verified anchors: The Well [arXiv:2412.00568](https://arxiv.org/abs/2412.00568) (PDF read
+with pdftotext; verbatim CNextU-net one-step advantage dissipating, Table 2 vs Table 3 mismatch, VRMSE mean-predictor
+= 1.0), [arXiv:2605.29283](https://arxiv.org/abs/2605.29283) (8 dynamics / 25 regimes / 60,000 measurements),
+[arXiv:2605.26324](https://arxiv.org/abs/2605.26324) (rho=0.635, CI [0.621,0.649]),
+[arXiv:2108.13264](https://arxiv.org/abs/2108.13264), [arXiv:1909.03004](https://arxiv.org/abs/1909.03004),
+[arXiv:1709.06560](https://arxiv.org/abs/1709.06560), [arXiv:2503.07329](https://arxiv.org/abs/2503.07329). All three
+code blocks executed with `uv run --with=numpy`; quoted `text` fences byte-identical to stdout 3/3; 33 prose figures
+asserted against their own block's stdout (9/9, 8/8, 16/16); block 3 md5 885681e78878ff5f6b7794eae5c370cd stable
+across reruns; no timing figures printed. Prose gate PASS: 2,884 prose words, 0 em dashes, 0 title-case headings,
+0 emoji. Naive band: 4,468 full / 3,109 code-excluded against Nov 11-18 siblings at 3,664-4,902 full / 2,980-3,420
+code-excluded. No `post_url`, no `cover:` key, no `.png`; all four `/posts/` links resolve. Derived arithmetic in
+prose re-checked: 1.72% (stated 1.7), 3.17% (stated 3), 44.9% (stated 45), 50 steps at dt=0.005 = 0.25 s.
+Cover: `assets/blog/cover-rollout-horizon-seed-sweep-harness.svg` (two mean curves sharing one origin, crossing under
+a yellow marker, eight faint per-seed curves), WebP 1200x630 at 19.6 KB.
+
+**State after this run.** Commit 7354477 on top of the ATLAS backup 8874eae, pushed over `ssh.github.com:443`
+(port 22 still filtered); local and origin HEAD match. Actions "Build and Deploy" completed success for 7354477a;
+permalink https://ml.co.ke/posts/rollout-horizon-seed-sweep-harness/ returns 200 with title, cover, prompt-info
+callout, 3 python blocks and MathJax; cover WebP 200 at 19,634 bytes. `.scheduled/` remains empty by design.
+
+**Next-session actions.** (a) Nov 20 (Friday) alternates to Lane A (positive story). Open Lane A follow-ups from the
+Nov 18 note are still unused: Farmerlifeline deployment outcomes after the US$50,000 grant (not the award itself),
+what the Google Applied AI Lab cohort ships by the December Accra demo day, and any named Enza LPs if a second close
+is announced. (b) Do not repeat the Duffing harness, target encoding, the distillation logit budget, click-log
+propensity or the WorldParticle architecture. (c) If a later post reuses this harness, the reusable parts are the
+cached reference, the shared IC set and the `verdict` gate; the Duffing system is illustrative only.
