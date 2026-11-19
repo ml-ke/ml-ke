@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="a" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#00d2ff"/>
+    </linearGradient>
+    <linearGradient id="b" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6bcf7f" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#6bcf7f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g stroke="#ffffff" stroke-width="1" opacity="0.04">
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="260" x2="1200" y2="260"/>
+    <line x1="0" y1="340" x2="1200" y2="340"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="200" y1="150" x2="200" y2="500"/>
+    <line x1="420" y1="150" x2="420" y2="500"/>
+    <line x1="640" y1="150" x2="640" y2="500"/>
+    <line x1="860" y1="150" x2="860" y2="500"/>
+  </g>
+
+  <text x="600" y="98" text-anchor="middle" font-family="DejaVu Sans, Helvetica, Arial, sans-serif"
+        font-size="35" font-weight="bold" fill="#e6edf3">Report the Horizon You Ship</text>
+  <text x="600" y="136" text-anchor="middle" font-family="DejaVu Sans, Helvetica, Arial, sans-serif"
+        font-size="19" fill="#8b949e">a seed sweep harness for rollout evaluations</text>
+
+  <!-- per-seed fan: eight faint curves, same start, wide spread at long horizon -->
+  <g fill="none" stroke-width="2" opacity="0.16">
+    <path d="M240 432 C 380 418, 520 372, 640 322 C 780 278, 860 232, 950 196" stroke="#6bcf7f"/>
+    <path d="M240 432 C 380 422, 520 384, 640 336 C 780 296, 860 258, 950 226" stroke="#6bcf7f"/>
+    <path d="M240 432 C 380 412, 520 366, 640 314 C 780 266, 860 216, 950 178" stroke="#6bcf7f"/>
+    <path d="M240 432 C 380 416, 520 378, 640 330 C 780 290, 860 250, 950 214" stroke="#6bcf7f"/>
+    <path d="M240 432 C 380 408, 520 352, 640 304 C 780 268, 860 252, 950 236" stroke="#00d2ff"/>
+    <path d="M240 432 C 380 414, 520 364, 640 316 C 780 284, 860 272, 950 262" stroke="#00d2ff"/>
+    <path d="M240 432 C 380 404, 520 344, 640 296 C 780 262, 860 244, 950 228" stroke="#00d2ff"/>
+    <path d="M240 432 C 380 412, 520 358, 640 312 C 780 278, 860 264, 950 250" stroke="#00d2ff"/>
+  </g>
+
+  <!-- the two mean curves: identical at one step, opposite order at long horizon -->
+  <path d="M240 432 C 380 412, 520 360, 640 316 C 780 286, 860 276, 950 268"
+        fill="none" stroke="url(#a)" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M240 432 C 380 420, 520 378, 640 328 C 780 282, 860 236, 950 202"
+        fill="none" stroke="url(#b)" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- crossing marker -->
+  <circle cx="742" cy="292" r="7" fill="#0d1117" stroke="#ffd93d" stroke-width="2.5"/>
+  <line x1="742" y1="299" x2="742" y2="452" stroke="#ffd93d" stroke-width="1.2"
+        stroke-dasharray="4 5" opacity="0.55"/>
+  <text x="756" y="286" font-family="DejaVu Sans, Helvetica, Arial, sans-serif"
+        font-size="15" fill="#ffd93d">the order flips here</text>
+
+  <!-- horizon axis -->
+  <line x1="200" y1="452" x2="1000" y2="452" stroke="#8b949e" stroke-width="1.4" opacity="0.6"/>
+  <g font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14" fill="#8b949e">
+    <g stroke="#8b949e" stroke-width="1.4" opacity="0.6">
+      <line x1="240" y1="452" x2="240" y2="460"/>
+      <line x1="440" y1="452" x2="440" y2="460"/>
+      <line x1="640" y1="452" x2="640" y2="460"/>
+      <line x1="840" y1="452" x2="840" y2="460"/>
+    </g>
+    <text x="240" y="480" text-anchor="middle">50</text>
+    <text x="440" y="480" text-anchor="middle">200</text>
+    <text x="640" y="480" text-anchor="middle">800</text>
+    <text x="840" y="480" text-anchor="middle">3200</text>
+    <text x="1000" y="480" text-anchor="end" font-size="13">rollout steps (log)</text>
+  </g>
+
+  <text x="212" y="424" font-family="DejaVu Sans, Helvetica, Arial, sans-serif"
+        font-size="13" fill="#8b949e">same one-step error</text>
+
+  <g font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="14">
+    <text x="962" y="200" fill="#6bcf7f">model B</text>
+    <text x="962" y="272" fill="#00d2ff">model A</text>
+    <text x="212" y="196" fill="#6bcf7f" font-size="13">8 fits per model</text>
+  </g>
+
+  <text x="1180" y="608" text-anchor="end" font-family="DejaVu Sans, Helvetica, Arial, sans-serif"
+        font-size="13" fill="#484f58">ml-ke.github.io</text>
+</svg>
