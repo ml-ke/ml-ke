@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Five open-weight Wolof model crates of rising size beside a non-commercial licence stamp and an evaluation manifest">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="crate" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b2b45"/>
+      <stop offset="100%" stop-color="#101a2c"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2a4a6b"/>
+      <stop offset="100%" stop-color="#1a3050"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="80" y="86" fill="#f5f7fa" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="40" font-weight="bold">Wolof in Five Sizes</text>
+  <text x="80" y="124" fill="#9fb3c8" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="20">Five open-weight checkpoints, one non-commercial seal</text>
+
+  <!-- floor -->
+  <line x1="60" y1="500" x2="1150" y2="500" stroke="#2a3442" stroke-width="2"/>
+
+  <!-- crates, rising size -->
+  <g font-family="DejaVu Sans, Helvetica, Arial, sans-serif">
+    <!-- 0.6B -->
+    <polygon points="110,430 170,430 190,414 130,414" fill="url(#lid)"/>
+    <rect x="110" y="430" width="60" height="70" fill="url(#crate)" stroke="#00d2ff" stroke-width="1.5" stroke-opacity="0.55"/>
+    <line x1="110" y1="452" x2="170" y2="452" stroke="#00d2ff" stroke-opacity="0.35"/>
+    <text x="140" y="490" fill="#00d2ff" font-size="15" text-anchor="middle">0.6B</text>
+    <circle cx="140" cy="425" r="4" fill="#00d2ff"/>
+
+    <!-- 1.7B -->
+    <polygon points="205,405 295,405 315,389 225,389" fill="url(#lid)"/>
+    <rect x="205" y="405" width="90" height="95" fill="url(#crate)" stroke="#00d2ff" stroke-width="1.5" stroke-opacity="0.6"/>
+    <line x1="205" y1="430" x2="295" y2="430" stroke="#00d2ff" stroke-opacity="0.35"/>
+    <text x="250" y="490" fill="#00d2ff" font-size="16" text-anchor="middle">1.7B</text>
+
+    <!-- 4B -->
+    <polygon points="330,365 440,365 460,349 350,349" fill="url(#lid)"/>
+    <rect x="330" y="365" width="110" height="135" fill="url(#crate)" stroke="#a78bfa" stroke-width="1.6" stroke-opacity="0.7"/>
+    <line x1="330" y1="392" x2="440" y2="392" stroke="#a78bfa" stroke-opacity="0.35"/>
+    <text x="385" y="490" fill="#a78bfa" font-size="17" text-anchor="middle">4B</text>
+
+    <!-- 8B -->
+    <polygon points="500,315 630,315 650,299 520,299" fill="url(#lid)"/>
+    <rect x="500" y="315" width="130" height="185" fill="url(#crate)" stroke="#a78bfa" stroke-width="1.6" stroke-opacity="0.8"/>
+    <line x1="500" y1="345" x2="630" y2="345" stroke="#a78bfa" stroke-opacity="0.35"/>
+    <text x="565" y="490" fill="#c9b6ff" font-size="18" text-anchor="middle">8B</text>
+
+    <!-- 14B -->
+    <polygon points="700,255 855,255 875,239 720,239" fill="url(#lid)"/>
+    <rect x="700" y="255" width="155" height="245" fill="url(#crate)" stroke="#6bcf7f" stroke-width="1.8" stroke-opacity="0.85"/>
+    <line x1="700" y1="288" x2="855" y2="288" stroke="#6bcf7f" stroke-opacity="0.35"/>
+    <text x="777" y="490" fill="#6bcf7f" font-size="19" text-anchor="middle">14B</text>
+  </g>
+
+  <!-- licence stamp -->
+  <g transform="translate(985,255)">
+    <circle r="104" fill="none" stroke="#ffd93d" stroke-opacity="0.35" stroke-width="2" stroke-dasharray="7 7"/>
+    <circle r="86" fill="#1a1508" fill-opacity="0.55" stroke="#ffd93d" stroke-width="2.5"/>
+    <text x="0" y="-30" fill="#ffd93d" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="13" letter-spacing="2" text-anchor="middle">LICENCE SEAL</text>
+    <text x="0" y="2" fill="#f5f7fa" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="21" font-weight="bold" text-anchor="middle">NC</text>
+    <text x="0" y="26" fill="#9fb3c8" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">non-commercial</text>
+    <text x="0" y="48" fill="#ffd93d" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">CC-BY-NC-SA 4.0</text>
+    <text x="0" y="70" fill="#9fb3c8" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="11" text-anchor="middle">commercial: separate terms</text>
+  </g>
+
+  <!-- manifest card -->
+  <g>
+    <rect x="880" y="392" width="270" height="108" rx="8" fill="#12172b" stroke="#2a3442"/>
+    <text x="900" y="418" fill="#9fb3c8" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="12" letter-spacing="1.5">EVALUATION MANIFEST</text>
+    <text x="900" y="444" fill="#f5f7fa" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15">63 tasks, 35 in Wolof</text>
+    <text x="900" y="466" fill="#f5f7fa" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15">12 annotators, blind Elo</text>
+    <text x="900" y="488" fill="#f5f7fa" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15">8B: 1051 against 1112</text>
+  </g>
+
+  <!-- annotation -->
+  <text x="80" y="540" fill="#6bcf7f" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" opacity="0.85">weights public 9 October to 16 November 2026</text>
+  <text x="80" y="565" fill="#ffd93d" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" opacity="0.85">function calling 0.61 to 0.24 after adaptation</text>
+
+  <text x="1150" y="600" fill="#5a6b80" font-family="DejaVu Sans, Helvetica, Arial, sans-serif" font-size="15" text-anchor="end">ml-ke.github.io</text>
+</svg>
