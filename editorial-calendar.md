@@ -3846,3 +3846,58 @@ what the Google Applied AI Lab cohort ships by the December Accra demo day, and 
 is announced. (b) Do not repeat the Duffing harness, target encoding, the distillation logit budget, click-log
 propensity or the WorldParticle architecture. (c) If a later post reuses this harness, the reusable parts are the
 cached reference, the shared IC set and the `verdict` gate; the Duffing system is illustrative only.
+
+## Publishing note — 2026-11-22 (Sunday: Lane A, positive story)
+
+**2026-11-22 — `wolof-five-sizes-orange-release`. Title: "Wolof in Five Sizes: What Orange's Open-Weight Release Actually Gives You".**
+Lane derivation: Nov 19 was Lane B (tutorial), Nov 18 Lane A, so the daily lane alternated back to Lane A. Subject
+checked against the corpus before writing: no sibling covers Wolof model releases, licensing ladders or Orange;
+the nearest neighbours are `morena-open-african-language-model-tokenizer` (tokenizer design, Sep 30 material),
+`fine-tuning-african-language-llms` (general pipeline) and `translatepsy-afrislm-offline-translation` (release
+reading). Differentiation stated in the intro and carried throughout: repository dates vs announcement date, the
+size-dependent recipe, the licence ladder across five African-language releases, and deployment sizing from real
+configs plus third-party Q4_K_M files.
+
+**What the post argues.** Orange published five Qwen3-based Wolof checkpoints (0.6B/1.7B/4B/8B/14B) on 17 Nov 2026
+under CC-BY-NC-SA 4.0 with commercial use by separate terms. HF API creation dates are 9 Oct (8B), 14 Oct (4B, 14B)
+and 16 Nov (0.6B, 1.7B), so the repositories predate the release by up to five weeks. The card's 1.7B aggregate table
+shows Wolof understanding 0.04 to 0.22 and generation -0.04 to 0.22 against the base, paid for with function calling
+0.61 to 0.24 and instruction following 0.50 to 0.25 (false-positive tool calls). Human arena: 12 annotators, 9 tasks x
+100 samples, Elo 1051 for the 8B against Gemini-2.5-flash 1112 and 1093 for pro, with Wolof quality within 8 and 4
+points respectively. Deployment sizing computed from configs: 0.6B 0.81 GiB, 1.7B 1.47, 4B 2.89, 8B 5.25, 14B 9.01
+resident at a 4k context. Licence ladder: MORENA Apache-2.0, InkubaLM and tiny-aya-earth CC-BY-NC-4.0, Oolel-v0.1
+undeclared.
+
+**Verification.** Body-verified primaries: orange.com press release (full text incl. the Javaid and Haidara quotes,
+the 60-organisation coalition and the six-language roadmap: Lingala, Swahili, Darija, Mooré, Dioula), arXiv:2610.20824
+(fetched as HTML and converted; abstract, Section 5, Table 3 narrative, Table 4 arena, appendix E.3 tokenization with
+the 0.35 to 0.39 result, appendix F stage-by-stage with the 14B merge 0.47 vs DPO 0.42), the 1.7B and 14B HF model
+cards (SFT/DPO tables, licence section, limitations), HF API for repo dates/downloads/param counts/licenses,
+TechAfrica News 18 Nov, EdTech Innovation Hub 24 Sep for the Gates coalition, pdfinfo for the 53-page report.
+Figures attributed to their owners: 23M speakers comes from the paper (citing Mbaye et al. 2025), download counts are
+"at check" on 22 Nov, quantities are GiB throughout. Caught during checking and fixed: tiny-aya-earth language count
+(card metadata lists 67, not 101), the licence tally (one commercial, three non-commercial, one undeclared), and a
+false "MORENA is the newest" claim.
+Both python blocks executed with plain `python3`; quoted `text` fences byte-identical to stdout 2/2 and deterministic
+across reruns. Prose gate PASS: 3,156 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Naive band: 3,666 full
+/ 3,343 code-excluded against Nov 11-19 siblings at 3,680-4,902 full / 2,980-3,420 code-excluded. No `post_url`, no
+`cover:` key, no `.png`; all five `/posts/` links resolve. Cover:
+`assets/blog/cover-wolof-five-sizes-orange-release.svg` (five crates of rising size, a dashed NC licence seal, an
+evaluation manifest card), WebP 1200x630 at 26.7 KB.
+
+**State after this run.** Commit 4b966fd on top of the ATLAS backup 4416fcb, pushed over `ssh.github.com:443` (port 22
+still filtered); local and origin HEAD match; both the post blob and the cover WebP confirmed on origin.
+
+**Gap inventory — two calendar days missing.** `_posts/` runs 1-19 Nov continuously, then 22 Nov. There is NO post for
+**Friday 20 November** or **Saturday 21 November**; the daily cron did not produce them. Today's run published one post
+only by design, so those two days remain unfilled and need backfill files written directly to `_posts/` with their own
+dates (the daily cron dates forward and cannot fill them).
+
+**Next-session actions.** (a) Backfill Nov 20 and Nov 21 as two files in `_posts/`: 20 Nov Lane A (candidates not yet
+covered: Orange's own lineage to Lingala/Swahili/Darija, an Aya/tiny-aya update if one ships, or the coalition's first
+published benchmark set) and 21 Nov Lane B (candidates: a multilingual tokenizer fertility harness comparing Qwen3's
+151,936-token vocabulary against a Wolof-extended one, since this post measures the 0.04 the paper left on the table
+but does not run it; or a quantisation-quality check of the released Q4_K_M files). (b) Do not repeat Wolof-specific
+licensing, the Duffing horizon harness, target encoding, the distillation logit budget, click-log propensity or the
+WorldParticle architecture. (c) If a Swahili or Lingala checkpoint from the same Orange programme appears, it is the
+strongest follow-up anchor available: same documentation quality, East African relevance.
