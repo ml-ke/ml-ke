@@ -3901,3 +3901,61 @@ but does not run it; or a quantisation-quality check of the released Q4_K_M file
 licensing, the Duffing horizon harness, target encoding, the distillation logit budget, click-log propensity or the
 WorldParticle architecture. (c) If a Swahili or Lingala checkpoint from the same Orange programme appears, it is the
 strongest follow-up anchor available: same documentation quality, East African relevance.
+
+## Publishing note — 2026-11-23 (Monday: Lane B, tutorial)
+
+**2026-11-23 — `speculative-decoding-draft-cost`. Title: "Who Pays for the Draft: A Break-Even Harness for Speculative Decoding".**
+Lane derivation: Nov 22 was Lane A (Orange Wolof release), so the daily lane alternated to Lane B. Subject checked against
+the corpus first: no sibling covers speculative decoding, acceptance rates or draft-cost arithmetic (grep for
+"speculative decod", "draft model", "acceptance rate", "kv cache" returned no match in `_posts/`). Nearest neighbours are
+cost/latency posts (`model-cascade-escalation-budget` Nov 7, `load-test-latency-coordinated-omission` Oct 9) and
+measurement-harness posts (`rollout-horizon-seed-sweep-harness` Nov 19, `target-encoding-leakage-audit` Nov 16); the
+differentiation is stated in the intro and carried through: the published speedup formula has three inputs, published
+tables assume the draft is free, and two of the three inputs are measurable with the standard library.
+
+**What the post argues.** (1) Theorem 3.8 of arXiv:2211.17192 reproduces its own Table 1 to two decimals
+(largest gap 0.00x), and the same six rows collapse when the draft is priced: alpha 0.9 / gamma 10 falls 6.86x to 4.57x at
+c=0.05 and 2.29x at c=0.20. (2) The accept rule must resample from norm(max(0, p-q)): measured TV distance 0.0018 for the
+exact rule against 0.1230 for the "resample from p" shortcut, both at identical acceptance 0.651 (= E[min(p,q)] 0.650).
+(3) Break-even is not a 60-70 percent threshold: minimum alpha is 0.17 at gamma 4 / c 0.05 and 0.72 at gamma 8 / c 0.30;
+best gamma at alpha 0.7 / c 0.2 is 3 (1.58x). (4) Measured with a lookup drafter on two pinned corpora, first-token
+acceptance runs 0.018-0.046 on prose and 0.192-0.531 on Python source, but coverage is 16.1 percent on code, so the
+end-to-end ratio tops out at 1.10x (prose at c=0.10 is 0.74-0.97x, i.e. slower than no speculation). (5) The constant-alpha
+assumption fails on measurement: P(token 1) 0.531 against P(token 2 | token 1) 0.028, so the geometric model predicts 0.81
+accepted tokens at gamma 2 where the drafter delivers 0.55. (6) Theorem 3.11's operations column reproduces exactly
+(1.53/1.58/1.23/1.63/1.11/1.60): at alpha 0.9 / gamma 10 a 4.57x latency gain costs 1.68x the arithmetic per token, which
+is a capacity loss on a compute-bound server. (7) Leviathan Table 2 supplies the empirical clincher: a T5-large draft
+accepts 0.82 and delivers 1.7x while a T5-small draft accepts 0.75 and delivers 3.4x.
+
+**Verification.** Body-level primaries: arXiv:2211.17192 and arXiv:2302.01318 fetched as PDFs and read with
+`pdftotext -layout` (Equation 1, Theorem 3.8, Corollary 3.9, Definition 3.10, Theorem 3.11, Table 1 both columns,
+Table 2, the "c was always less than 0.05" sentence); llama.cpp `docs/speculative.md` read from raw.githubusercontent
+(ngram-simple description, EAGLE-3 hidden-state sentence, DFlash/DSpark block diffusion, `--spec-draft-n-max`,
+`--spec-draft-p-min`); arXiv:2510.22876v3 read as HTML (realignment cost up to 40 percent of computation, and the
+"batching cannot recover what does not exist at the single-sequence level" quote). Corpus artifacts pinned by hash:
+`big.txt` sha256 fa066c7d... and the four CPython v3.12.3 stdlib files concatenated sha256 4c903ac4... (v3.12.3 tag, not
+the moving 3.12 branch). Every python block is stdlib-only and was executed; `check-quoted-output.py` reports 6 runnable
+blocks, 6 quoted-output blocks, stdout byte-identical for all six. Repeat runs give identical stdout for all blocks
+(blocks 2-6 are seeded or deterministic; block 2 uses `random.Random(20261123)`). Prose gate PASS: 2,922 prose words,
+0 em dashes, 0 title-case headings, 0 emoji. Naive band: 5,170 full / 3,139 code-excluded across 6 code blocks. The
+code-excluded figure is inside the Nov 11-22 sibling band (3,109-3,343); the full figure is ~5 percent over the sibling
+top (4,902) because a six-block tutorial carries ~2,030 tokens of fenced code, the Nov 16 precedent for comparing
+code-excluded counts when the block count differs. No `post_url`, no `cover:` key, no `.png`; all four `/posts/` links
+resolve. Cover: `assets/blog/cover-speculative-decoding-draft-cost.svg` (draft ribbon t1-t4 with one rejected token
+falling to the residual resample, a TARGET PASS beam, and the 2.95x-versus-3.69x price tag), WebP 1200x630 at 29.6 KB.
+
+**State after this run.** Commit fea2b97 pushed over `ssh.github.com:443` (port 22 filtered); local and origin HEAD match;
+post blob and cover WebP confirmed on origin via `git ls-tree origin/main`. Build status recorded below by the run.
+
+**Gap inventory — two calendar days still missing.** `_posts/` runs 1-19 Nov, then 22 Nov and today. There is still NO
+post for **Friday 20 November** or **Saturday 21 November**; today's run published one post by design. Both need backfill
+files written directly to `_posts/` with their own dates.
+
+**Next-session actions.** (a) Backfill Nov 20 as Lane A (candidates: Orange's stated roadmap to Lingala, Swahili, Darija,
+Moore and Dioula if a checkpoint appears; otherwise a fresh positive African or Asian AI deployment story, verified to
+body level with two sources). (b) Backfill Nov 21 as Lane B: the quantisation-quality check of the released Q4_K_M files
+is still unused, and it pairs naturally with this post (measure whether the quantised target changes acceptance, since
+quantisation moves p and therefore alpha). (c) Do NOT repeat: the draft-cost arithmetic, the residual-resample TV
+demonstration, the coverage-times-acceptance result, the operations column, target encoding, the Duffing horizon harness,
+the distillation logit budget, click-log propensity or the Wolof licensing ladder. (d) Tuesday 24 November is owned by
+the `tuesday-ai-update` cron; do not stage anything for it.
