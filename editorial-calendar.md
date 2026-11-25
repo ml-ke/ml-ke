@@ -36,6 +36,18 @@
 | Aug 22 | ncba-ghost-account-fraud | Fintech | NCBA incident anatomy |
 | Aug 23 | ai-automation-fintech-security-playbook | Fintech Security | Prevention playbook |
 
+**Publishing note (Nov 25, 2026):** the Aug 23 playbook shipped with an unquoted
+`image.alt` containing `: ` (colon + space). Jekyll discarded the whole front matter
+without failing the build, so the post published **untitled, undated and uncategorised**
+— dated from the CI checkout time it rode the top of the homepage for three months, and
+its permalink became the date-prefixed `/posts/2026-08-23-…/`, which 404'd the slug-form
+links in `ncba-ghost-account-fraud`, `flutterwave-fraud-anatomy` and
+`kyc-aml-automation-playbook`. Fixed by quoting the alt: the post now renders with its
+title and tags and sits between `ncba-ghost-account-fraud` (Aug 22) and
+`kyc-aml-analytics-african-fintech` (Aug 23), i.e. back in its intended slot at the end of
+the NCBA arc. The old date-prefixed URL is now a redirect stub. Gate every publish with
+`scripts/check-frontmatter.py` (wired into `verify-scheduled-posts.sh` as Check 5).
+
 ## Week 2 — Staged queue (`.scheduled/`)
 
 | Date | Slug | Theme | Anchor / angle |
