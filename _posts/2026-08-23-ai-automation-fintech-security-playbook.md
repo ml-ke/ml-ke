@@ -5,7 +5,7 @@ categories: [AI Security, Fintech, ML Ops]
 tags: [fintech-security, ai-security, fraud-detection, ci-cd, notifications, anomaly-detection, insider-threat, best-practices]
 image:
   path: /assets/img/cover-ai-automation-fintech-security-playbook.webp
-  alt: A shield assembled from four quadrants: an AI eye, a CI/CD pipeline arrow, an automation gear and a notification bell
+  alt: "A shield assembled from four quadrants: an AI eye, a CI/CD pipeline arrow, an automation gear and a notification bell"
 ---
 
 ## The counterfactual: what should have caught this
