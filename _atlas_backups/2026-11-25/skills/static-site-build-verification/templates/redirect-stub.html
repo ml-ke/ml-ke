@@ -1,0 +1,25 @@
+---
+# Copy to the repo root when a page's permalink has changed but the old URL was
+# live, indexed or linked. Rename the file to anything unique, e.g.
+# redirect-<old-slug>.html. `layout: null` emits this file verbatim.
+layout: null
+permalink: /posts/OLD-PATH/
+sitemap: false
+title: "Redirect — NEW TITLE"
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting…</title>
+    <link rel="canonical" href="https://SITE/posts/NEW-PATH/">
+    <meta http-equiv="refresh" content="0; url=/posts/NEW-PATH/">
+    <meta name="robots" content="noindex">
+  </head>
+  <body>
+    <p>This page moved to
+      <a href="/posts/NEW-PATH/">NEW TITLE</a>.
+    </p>
+    <script>location.replace("/posts/NEW-PATH/");</script>
+  </body>
+</html>
