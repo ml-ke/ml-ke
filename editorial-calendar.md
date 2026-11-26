@@ -3988,3 +3988,54 @@ Lane derivation: Nov 23 was Lane B (speculative decoding), Nov 24 was the Tuesda
 **Gap inventory — two calendar days still missing.** `_posts/` now runs 1-19 Nov, 22-25 Nov. There is still NO post for **Friday 20 November** or **Saturday 21 November**, and today's run published one post by design rather than widening scope to two extra fact-checked backfills.
 
 **Next-session actions.** (a) Backfill Nov 20 as Lane A and Nov 21 as Lane B, written directly to `_posts/` with their own past dates (the cron only dates forward). (b) For Nov 21, the quantisation-quality check of Orange's released Q4_K_M files is still unused and now pairs with two neighbours: `speculative-decoding-draft-cost` (quantisation moves p, hence alpha) and this post (a quantised classifier changes the label distribution the field audit is measuring). (c) Do NOT repeat: NAPS itself, the ground-truth cadence argument, the plot-budget arithmetic, the dry-versus-rainy-season framing, the parcel-to-owner credit argument. (d) Tuesday 1 December belongs to `tuesday-ai-update`; stage nothing for it. (e) If PFSCU publishes the month-two baseline land-cover map or the month-five validation report, that is the strongest follow-up anchor available for this theme.
+
+## Publishing note — 2026-11-26 (Thursday: Lane B, tutorial)
+
+**2026-11-26 — `four-bits-and-a-half`. Title: "Four Bits and a Half: Reading GGUF Blocks and Measuring What Rounding Costs".**
+Lane derivation: Nov 25 was Lane A (NAPS crop map), so the daily lane returned to Lane B. Subject checked against the
+corpus first: no sibling covers GGUF block layouts or per-block reconstruction error (grep for `gguf`, `Q4_K`, `Q4_0`,
+`block` in headings matched only passing mentions in `kv-cache-quantization-long-context`, `embedding-compression-audit`,
+`open-weights-download-cost`, `wolof-five-sizes-orange-release` and `gemma-for-teachers-africa`). Differentiation stated in
+the intro: the KV post measured cache precision, the embedding post measured vector compression, the Wolof and Gemma posts
+priced memory and fit; this one measures what the weight rounding itself does, at both the tensor and the next-token level.
+
+**What the post argues.** (1) "4-bit" is a layout, not a size: Q4_0 is 18 bytes per 32 values (4.5 bpw) and Q4_K is 144
+bytes per 256 values (4.5 bpw), the same 0.5-bit overhead spent differently. (2) The published `stories15M-q4_0.gguf` is
+6.015 bpw, not 4.5, because llama-quantize leaves 13 norm tensors at F32 and the output projection at Q8_0; on a 15M model
+that is a third of the compression, on an 8B model it is 1.6 percent of parameters. (3) Measured over 14,690,304 weights:
+per-tensor int4 0.42091 relative Frobenius, Q4_0 0.12954, Q4_K 0.09200, Q5_0 0.07094, Q6_K 0.02570, Q8_0 0.00825. (4) A
+decomposition shows the win is the affine map, not extra bits: per-32 affine at 5.0 bpw gives 0.09102, Q4_K gets the same
+0.09200 at 4.5 bpw. (5) The uniform-quantiser prediction d/sqrt(12) lands within 2 percent on the ffn gate and 7 percent on
+attn_q but misses the token embedding by 26 percent, which is why embeddings top every worst-tensor column. (6) numpy
+forward pass on a 37-token prompt: mean KL 8.1623 (int4), 0.2666 (Q4_0), 0.1665 (Q4_K), 0.0087 (Q6_K), 0.0006 (Q8_0); the
+published file flips the top token from " She" to " He" at 14.06 against 13.09. (7) Output projection only: Q4_0 0.2980,
+Q8_0 0.2662, F32 0.2666, so the builder's high-precision output default is measurable and float32 beyond Q8_0 is not.
+
+**Verification.** Artifacts pinned by size and hash: `stories15M.gguf` 98,357,920 bytes sha256 61b50d45... and
+`stories15M-q4_0.gguf` 19,077,344 bytes sha256 66967fbe... from `ggml-org/models`, a 15M Llama-2-architecture model trained
+on TinyStories (karpathy/llama2.c). Layout facts read from `ggml-common.h` (`QK_K 256`, `K_SCALE_SIZE 12`, the four
+`static_assert` sizes and the "Effectively 4.5 / 6.5625 bits per weight" comments) and the 8B bpw table from
+`tools/quantize/README.md`. QLoRA, AWQ, SmoothQuant and GPTQ claims taken from their arXiv abstracts, fetched and read.
+Decoder validated against llama.cpp's own blocks: 99.96 percent of elements bit-identical, the 84 differing elements off
+by one or two steps. All three python blocks ran under `verify-post-code.py` with `uv run --with=gguf --with=numpy`;
+explicit fence pairing confirms 3/3 quoted `text` outputs byte-identical to stdout, and repeat runs give identical md5
+(no wall-clock or random figures are printed). Front matter 0 errors; no `post_url`, no `cover:` key, no `.png`; all five
+`/posts/` links resolve. Prose gate PASS: 3,002 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Naive band
+5,144 full / 3,208 code-excluded with 3 code blocks, against the Nov 16-23 Lane B siblings at 4,902-5,170 full and
+3,139-3,339 code-excluded: in band on both counts. Cover `assets/blog/cover-four-bits-and-a-half.svg` is a new metaphor (a
+16-rung level ladder with true values snapping down to the nearest rung, beside the Q4_0 18-byte and Q4_K 144-byte budget
+bars, both 4.5 bpw), WebP 1200x630 at 37 KB.
+
+**State after this run.** Commit `1dd0086` pushed over port 22; local and origin HEAD match; post blob and cover WebP
+confirmed on origin via `git ls-tree origin/main`. Build and permalink results recorded in the run report.
+
+**Gap inventory — two calendar days still missing.** `_posts/` now runs 1-19 Nov, 22-26 Nov. There is still NO post for
+**Friday 20 November** or **Saturday 21 November**.
+
+**Next-session actions.** (a) Backfill Nov 20 as Lane A and Nov 21 as Lane B, written directly to `_posts/` with their own
+past dates (the cron only dates forward). (b) The quantisation topic is now consumed at the block-layout level; a follow-up
+would have to move to a different layer (imatrix calibration on a real corpus, or activation-aware scaling) rather than
+re-measuring Q4_0 against Q4_K. (c) Do NOT repeat: the 18/144-byte budget arithmetic, the 0.5-bit overhead decomposition,
+the d/sqrt(12) check, the per-tensor-int4 collapse, the output-projection sweep, NAPS, the draft-cost arithmetic, target
+encoding, the rollout-horizon harness or the Wolof licensing ladder. (d) Tuesday 1 December belongs to
+`tuesday-ai-update`; stage nothing for it.
