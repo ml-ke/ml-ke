@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <marker id="drop" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,0 L5,10 z" fill="#00d2ff"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g stroke="#8b949e" stroke-width="1" opacity="0.05">
+    <path d="M0,90 H1200 M0,180 H1200 M0,270 H1200 M0,360 H1200 M0,450 H1200 M0,540 H1200"/>
+    <path d="M100,0 V630 M300,0 V630 M500,0 V630 M700,0 V630 M900,0 V630 M1100,0 V630"/>
+  </g>
+
+  <text x="70" y="104" font-family="Helvetica, Arial, sans-serif" font-size="46" font-weight="700" fill="#e6edf3">Four bits and a half</text>
+  <text x="70" y="146" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#8b949e">GGUF block layouts, the half bit of scale overhead, and what the other four cost a model</text>
+
+  <!-- LEFT: 16 levels, true values snapping down to the nearest one -->
+  <text x="70" y="214" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#00d2ff" letter-spacing="2">ONE BLOCK, 16 LEVELS</text>
+
+  <g stroke="#8b949e" stroke-width="1" opacity="0.35">
+    <path d="M100,398 H520"/>
+    <path d="M100,392 V404 M128,392 V404 M156,392 V404 M184,392 V404 M212,392 V404 M240,392 V404 M268,392 V404 M296,392 V404 M324,392 V404 M352,392 V404 M380,392 V404 M408,392 V404 M436,392 V404 M464,392 V404 M492,392 V404 M520,392 V404"/>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#6e7681" text-anchor="middle">
+    <text x="100" y="424">-8d</text>
+    <text x="184" y="424">-5d</text>
+    <text x="268" y="424">-2d</text>
+    <text x="352" y="424">+1d</text>
+    <text x="436" y="424">+4d</text>
+    <text x="520" y="424">+7d</text>
+  </g>
+
+  <!-- true values above the ladder, each with a dashed snap to the nearest level -->
+  <g stroke="#00d2ff" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.75" marker-end="url(#drop)">
+    <path d="M118,318 V388"/>
+    <path d="M186,300 V388"/>
+    <path d="M262,318 V388"/>
+    <path d="M330,296 V388"/>
+    <path d="M448,320 V388"/>
+  </g>
+  <g fill="#00d2ff">
+    <circle cx="118" cy="308" r="7"/>
+    <circle cx="186" cy="290" r="7"/>
+    <circle cx="262" cy="308" r="7"/>
+    <circle cx="330" cy="286" r="7"/>
+    <circle cx="448" cy="310" r="7"/>
+  </g>
+  <text x="470" y="286" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#00d2ff">true value</text>
+  <text x="470" y="312" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">nearest level</text>
+
+  <text x="70" y="462" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#c9d1d9">one f16 scale fixes the span, so 32 values share 16 levels</text>
+
+  <!-- RIGHT: where the bytes go, two layouts at the same 4.5 bits per weight -->
+  <text x="620" y="214" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#ffd93d" letter-spacing="2">WHERE THE BYTES GO</text>
+
+  <text x="620" y="254" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="600" fill="#e6edf3">Q4_0, 32 values</text>
+  <g>
+    <rect x="620" y="266" width="22" height="34" fill="#ffd93d" fill-opacity="0.75"/>
+    <rect x="644" y="266" width="352" height="34" fill="#00d2ff" fill-opacity="0.35" stroke="#00d2ff" stroke-width="1"/>
+    <g stroke="#00d2ff" stroke-width="0.7" opacity="0.45">
+      <path d="M666,266 V300 M688,266 V300 M710,266 V300 M732,266 V300 M754,266 V300 M776,266 V300 M798,266 V300 M820,266 V300 M842,266 V300 M864,266 V300 M886,266 V300 M908,266 V300 M930,266 V300 M952,266 V300 M974,266 V300"/>
+    </g>
+  </g>
+  <text x="620" y="326" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffd93d">2 B scale</text>
+  <text x="700" y="326" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#00d2ff">16 B of nibbles</text>
+  <text x="996" y="290" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#e6edf3">18 B</text>
+  <text x="620" y="352" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#8b949e">18 bytes per 32 values = 4.5 bits per weight</text>
+
+  <text x="620" y="404" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="600" fill="#e6edf3">Q4_K, 256 values</text>
+  <g>
+    <rect x="620" y="416" width="10" height="34" fill="#ffd93d" fill-opacity="0.75"/>
+    <rect x="632" y="416" width="32" height="34" fill="#a78bfa" fill-opacity="0.55"/>
+    <rect x="666" y="416" width="330" height="34" fill="#00d2ff" fill-opacity="0.35" stroke="#00d2ff" stroke-width="1"/>
+    <g stroke="#00d2ff" stroke-width="0.7" opacity="0.35">
+      <path d="M686,416 V450 M706,416 V450 M726,416 V450 M746,416 V450 M766,416 V450 M786,416 V450 M806,416 V450 M826,416 V450 M846,416 V450 M866,416 V450 M886,416 V450 M906,416 V450 M926,416 V450 M946,416 V450 M966,416 V450"/>
+    </g>
+  </g>
+  <text x="620" y="476" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#ffd93d">d, dmin</text>
+  <text x="700" y="476" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#a78bfa">12 B of 6-bit scales</text>
+  <text x="900" y="476" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#00d2ff">128 B of nibbles</text>
+  <text x="996" y="440" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#e6edf3">144 B</text>
+
+  <!-- bottom strip: the trade -->
+  <g>
+    <rect x="70" y="504" width="452" height="72" rx="12" fill="#00d2ff" fill-opacity="0.07" stroke="#00d2ff" stroke-width="1.5"/>
+    <text x="92" y="534" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#00d2ff">same 4.5 bpw on disk</text>
+    <text x="92" y="560" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#e6edf3">144 B / 256 values, spent differently</text>
+  </g>
+  <g>
+    <rect x="552" y="504" width="576" height="72" rx="12" fill="#6bcf7f" fill-opacity="0.08" stroke="#6bcf7f" stroke-width="1.5"/>
+    <text x="574" y="534" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#6bcf7f">relative reconstruction error, measured</text>
+    <text x="574" y="560" font-family="Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#e6edf3">Q4_0 0.130 to Q4_K 0.092, same size</text>
+  </g>
+
+  <text x="1130" y="608" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#6e7681" text-anchor="end">ml-ke.github.io</text>
+</svg>
