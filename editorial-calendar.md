@@ -4039,3 +4039,67 @@ re-measuring Q4_0 against Q4_K. (c) Do NOT repeat: the 18/144-byte budget arithm
 the d/sqrt(12) check, the per-tensor-int4 collapse, the output-projection sweep, NAPS, the draft-cost arithmetic, target
 encoding, the rollout-horizon harness or the Wolof licensing ladder. (d) Tuesday 1 December belongs to
 `tuesday-ai-update`; stage nothing for it.
+
+## Publishing note — 2026-11-27 (Friday: Lane A, positive/open-release story)
+
+**2026-11-27 — `litmusbench-chemistry-benchmark-audit`. Title: "A Chemistry Exam You Can Audit: Reading LitmusBench v0.2
+Before You Trust a Score".** Lane derivation: Nov 26 was Lane B (four-bits-and-a-half), so the daily lane returned to
+Lane A. `.scheduled/` was empty, so this is a self-contained lane run, not a legacy staged publish. Subject checked
+against the corpus first: `grep -ril "litmus|chembl" _posts/` matched only a passing mention in
+`ml-secrets-management`; no sibling covers a chemistry benchmark. Differentiation stated in the intro and in the
+audit-one section: the Oct `contamination-checks-before-you-trust-a-score` post measured shared word spans between
+training text and eval items (has the model seen this text), while this post audits provenance records (has the model
+seen this measurement), plus the grader rules and a marginal floor.
+
+**Anchor.** NVIDIA announced Nemotron for Science at SC26 in Chicago on 16 November 2026: Nemotron 3.5 Super VL
+(120B total / 12B active, Mamba-2 + Transformer, C-RADIO encoder, 1M context, OpenMDW-1.1, four H100s or two GB200s for
+BF16), LitmusBench v0.2 and RLVR post-training recipes on NeMo Gym. Named users in the release: Argonne, Jülich,
+Lila Sciences, Terray Therapeutics, Therna. What is actually new is the dataset and the recipes, not the model: the
+Hugging Face API dates the model repository to 2026-10-12, three weeks before the announcement.
+
+**What the post measures (all from the published files, no vendor numbers reused).** 47,118 train / 2,056 test
+questions, 49,174 total, 64 MB. 138 distinct `property` strings in the file against the card's stated 126. 29 distinct
+answer-format regexes in the test split, busiest three at 133 / 128 / 90. Split audit at the provenance-record level:
+27,208 distinct source records in train (chembl 21,670 / biogen 2,562 / expansionrx 2,976), 1,955 in test, **0 overlap,
+0 in every one of the five question families**. Grader mix: 672 `exact` (rounded-integer), 1,176 `abs_window`,
+85 `rel_window`, 123 with no rule in the file (118 booleans + 5 floats, inherited from the harness default). Median
+absolute tolerance is 0.234 of that property's interquartile range; 12 distinct absolute tolerances from 1e-06 to 0.3;
+ratio range 0.0 to 0.569. Marginal floor: per-property train median scores **21.52 percent** on the 1,933 rows the file
+grades explicitly (416/1,933); per family 8.2 (`tier1_rdkit`), 17.6 (`tier2_rdkit`), 28.8 (`tier5_admet_analog`),
+30.1 (`tier5_admet_direct`); global median 14.54; constant zero 10.66; always-true on the 118 booleans 56.8. Schema
+delta v0.1 → v0.2: 8 fields dropped, 6 added, and v0.1 carries no `match` field at all (0 of 482 rows) against 1,933
+of 2,056 in v0.2.
+
+**Verification.** Body-level sources: NVIDIA newsroom press release (16 Nov, Ian Buck quote, Argonne and Jülich, DGX
+Spark), the Hugging Face dataset card for v0.2 (row counts, licences, 126-property claim, Sept 2 creation date), the v0.1
+card (5,232 / 482, ChEMBL only, CC-BY-4.0), the NeMo Gym `benchmarks/litmus-bench` README (subset table 1,000 / 598 /
+358 / 100, five rollouts, 131,072 vs 8,192 output tokens, SHA-256 prepare check), the `litmus_agent` verifier README
+(`REWARD_RULES`, `exact` = rounded integer, float default `isclose`), CASRAI (16 Nov, matching quotes), XenoSpectrum
+evidence review (17 Nov, model release date and the partner-reported results). All four python blocks are stdlib-only,
+run clean under `verify-post-code.py`, and each quoted `text` fence matches its block's stdout byte-for-byte (4/4, checked
+with explicit open/close fence pairing because the post uses `text` fences). Determinism: repeat runs give identical
+md5 for all four blocks (blk1 `ec1488de`, blk2 `c5a5482c`, blk3 `6680fce8`, blk4 `7f93dafb`) after fixing a set-iteration
+ordering wobble in blk2; no block prints a wall-clock or random figure. Blocks were re-run from an empty cache to prove
+the download path works (52 s total). Front matter 0 errors; no `post_url`, no `cover:` key, no `.png`; all five
+`/posts/` links resolve. Prose gate PASS: 2,513 prose words, 0 em dashes, 0 title-case headings, 0 emoji. Naive band
+3,722 full / 2,730 code-excluded with 4 blocks, against Lane A siblings at 3,382-3,752 full and 2,976-3,343
+code-excluded: inside the full band, 8 percent under the code-excluded floor because this post's code is heavier than
+theirs, accepted rather than padded. Cover `assets/blog/cover-litmusbench-chemistry-benchmark-audit.svg` is a new
+metaphor (three grader strips each showing a tolerance band around a true-value tick with an accepted guess, a split
+audit seal, and a floor panel with the three family bars), WebP 1200x630 at 36 KB.
+
+**State after this run.** Commit `a9b5a24` pushed; local and origin HEAD match; post blob and cover WebP confirmed on
+origin via `git ls-tree origin/main`. Build and permalink results recorded in the run report.
+
+**Gap inventory — two calendar days still missing.** `_posts/` now runs 1-19 Nov and 22-27 Nov. There is still NO post
+for **Friday 20 November** or **Saturday 21 November**.
+
+**Next-session actions.** (a) Backfill Nov 20 as Lane A and Nov 21 as Lane B, written directly to `_posts/` with their
+own past dates (the cron only dates forward). (b) For Nov 21, the quantisation-quality check of Orange's Q4_K_M files is
+still unused and now has three neighbours to differentiate against: `speculative-decoding-draft-cost`,
+`four-bits-and-a-half` and this post. (c) Do NOT repeat: the LitmusBench counts, the provenance-record split audit, the
+0.234-of-IQR tolerance statistic, the 21.52 percent floor or the per-family floors, NAPS, the draft-cost arithmetic,
+target encoding, the rollout-horizon harness, the Wolof licensing ladder or the GGUF block budget. (d) The strongest
+follow-up on this theme would be a training-side companion (fine-tune a small model on the train split and report the
+gap over the 21.52 percent floor), not a re-read of the same file. (e) Tuesday 1 December belongs to `tuesday-ai-update`;
+stage nothing for it.
