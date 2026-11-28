@@ -4103,3 +4103,59 @@ target encoding, the rollout-horizon harness, the Wolof licensing ladder or the 
 follow-up on this theme would be a training-side companion (fine-tune a small model on the train split and report the
 gap over the 21.52 percent floor), not a re-read of the same file. (e) Tuesday 1 December belongs to `tuesday-ai-update`;
 stage nothing for it.
+
+---
+
+## Publishing note — Saturday 28 November 2026
+
+**Published:** `_posts/2026-11-28-weak-supervision-labeling-function-audit.md` — "Three Rules and a Ballot Box:
+Auditing Labeling Functions Before You Train". Commit `d982a91`, pushed to `main`. Cover
+`assets/blog/cover-weak-supervision-labeling-function-audit.svg` (new metaphor: three rule cards dropping chips into
+a ballot box, a dashed link between the two chips that share a token, and an audit panel reading 0.61 coverage /
+0.910 against 0.746 / 2.54x joint error), WebP 1200x630 at 29 KB.
+
+**Lane:** B (tutorial). Lane derivation: Nov 26 was Lane B (`four-bits-and-a-half`) and Nov 27 was Lane A
+(`litmusbench-chemistry-benchmark-audit`), so the daily lane returned to B. `.scheduled/` was empty, so this is a
+self-contained lane run, not a legacy staged publish. Not a Tuesday (Saturday), so no guard trip.
+
+**Subject check before writing.** `grep -ril` for `weak supervision`, `labeling function` and `snorkel` across
+`_posts/` returned no hits, so programmatic labeling was uncovered. Nearest siblings and the stated differentiation:
+`annotation-budget-language-classifier` (Nov 9) asks which rows to pay humans for under active learning;
+`annotator-agreement-before-you-train` (Oct 16) asks whether two humans agree; `minhash-lsh-corpus-dedup` (Sep 30) is
+corpus-level duplication. This post audits the machine rules themselves: per-rule coverage and accuracy, vote-count
+strata, correlated-failure structure, gold-sample weighting, and label-free accuracy estimation.
+
+**What the post measures (all from its own code, stdlib only, seed 7, 1,200 synthetic tickets).**
+8 keyword rules over a 40%-refund corpus. Coverage 0.152-0.440; L4_double_charge accuracy **0.317**, worse than
+chance; L2/L3 at 0.581/0.578. Majority vote covers **731 rows (0.609)** at **0.833** against a 0.602 majority-class
+baseline. Vote-count strata are non-monotonic (0.873 / 0.793 / 0.865 / 0.843 / 0.625 / 0.667 for 2-7 voters).
+Unanimous rows **389 at 0.910**, conflicted **342 at 0.746**. Joint failure over the independent product: L2-L3
+**2.54x**, L1-L4 1.97x, L5-L8 1.73x, L6-L7 2.42x. Gold sample: 120 rows gives L4 25 votes and a CI of [0.20,0.55];
+weighted vote **0.812** against counting's **0.842** on the shared 702 rows, and at 600 gold the weighted vote reaches
+**0.849** and wins. Triplet estimator: independent trio within 0.059 of truth; the correlated trio estimates B2 at
+**0.964** against a true 0.248, with the independence check at **9.12x**.
+
+**Verification.** Body-level sources: Snorkel VLDB paper (label matrix definition, tie-vote example, 2.8x/45.5% user
+study, 2.16-point optimizer), DryBell (three Google tasks, tens of thousands of hand labels, 52% F1 gain), FlyingSquid
+(triplet closed form, `a_i := E[v_i Y]` scaled accuracy), the 2022 PWS survey (label-model / end-model workflow,
+keyword-rule LF class), Zhu et al. 2023 (all WSL methods fail without clean validation, eight WRENCH datasets), Arize
+glossary (correlated-failure quote), Snorkel analysis docs (`get_label_buckets`). Author list of 2305.17442 checked on
+the PDF (Zhu, Shen, Mosbach, Stephan, Klakow) after an initial mis-attribution to "Shu". All four python blocks are
+stdlib-only, run clean under `verify-post-code.py`, and each quoted `text` fence matches its block's stdout
+byte-for-byte (4/4, explicit open/close fence pairing). Determinism: two runs per block gave identical md5
+(b1 `7849438f`, b2 `8840aa45`, b3 `78868dca`, b4 `294075f`-family); no block prints a wall clock or a random figure.
+Front matter 0 errors; no `post_url`, no `cover:` key, no `.png`; all four `/posts/` links resolve. Prose gate PASS:
+2,330 checker words, 0 em dashes, 0 title-case headings, 0 emoji. Naive band 4,404 full / 2,597 code-excluded with
+4 code blocks, against Lane B siblings at 3,722-5,170 full and 2,165-3,224 code-excluded: inside both.
+
+**Gap inventory — two calendar days still missing.** `_posts/` runs 1-19 Nov and 22-28 Nov. There is still NO post for
+**Friday 20 November** or **Saturday 21 November**.
+
+**Next-session actions.** (a) Backfill Nov 20 as Lane A and Nov 21 as Lane B, written directly to `_posts/` with their
+own past dates. (b) For Nov 21, the quantisation-quality check of Orange's Q4_K_M files is still unused, with three
+neighbours to differentiate against. (c) Do NOT repeat: the LF coverage/accuracy table, the 0.910-versus-0.746
+unanimity split, the 2.54x joint-error ratio, the 120-versus-600 gold weighting crossover, the 9.12x independence
+check, LitmusBench counts, the draft-cost arithmetic, target encoding, the rollout-horizon harness, the Wolof
+licensing ladder or the GGUF block budget. (d) The strongest follow-up on this theme is the label model that repairs
+correlation: a dependency-aware estimator on the same fixture, reporting what modelling the L2/L3 edge buys over the
+2.54x-broken flat vote. (e) Tuesday 1 December belongs to `tuesday-ai-update`; stage nothing for it.
