@@ -4143,7 +4143,7 @@ glossary (correlated-failure quote), Snorkel analysis docs (`get_label_buckets`)
 the PDF (Zhu, Shen, Mosbach, Stephan, Klakow) after an initial mis-attribution to "Shu". All four python blocks are
 stdlib-only, run clean under `verify-post-code.py`, and each quoted `text` fence matches its block's stdout
 byte-for-byte (4/4, explicit open/close fence pairing). Determinism: two runs per block gave identical md5
-(b1 `7849438f`, b2 `8840aa45`, b3 `78868dca`, b4 `294075f`-family); no block prints a wall clock or a random figure.
+(b1 `7849438f`, b2 `8840aa45`, b3 `78868dca`, b4 `c294075f`); no block prints a wall clock or a random figure.
 Front matter 0 errors; no `post_url`, no `cover:` key, no `.png`; all four `/posts/` links resolve. Prose gate PASS:
 2,330 checker words, 0 em dashes, 0 title-case headings, 0 emoji. Naive band 4,404 full / 2,597 code-excluded with
 4 code blocks, against Lane B siblings at 3,722-5,170 full and 2,165-3,224 code-excluded: inside both.
